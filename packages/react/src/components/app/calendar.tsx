@@ -56,6 +56,40 @@ const calendar_nav_button = clx(
   "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
 );
 
+/** One day cell: 40px comfortable, 32px compact. Set on the calendar's root. */
+const calendar_cell_size =
+  "[--cal-cell:2.5rem] in-data-[density=compact]:[--cal-cell:2rem]";
+
+/** Day-grid styles shared by Calendar and the range picker's two-month calendar. */
+const calendar_day_classnames = {
+  button_previous: calendar_nav_button,
+  button_next: calendar_nav_button,
+  chevron: "size-4",
+  month_grid: "w-full border-collapse space-y-1",
+  weekdays: "",
+  weekday:
+    "text-txt-black-700 text-label-compact w-(--cal-cell) py-2 font-normal",
+  week: "w-full mt-1.5",
+  day: "aspect-square p-0",
+  day_button: clx(
+    "text-txt-black-900 text-label-sm inline-flex size-(--cal-cell) cursor-pointer items-center justify-center rounded-md",
+    "hover:bg-bg-washed transition-colors duration-150 motion-reduce:transition-none focus-ring",
+    "disabled:text-txt-black-disabled disabled:cursor-not-allowed disabled:bg-transparent",
+    "[.selected:not(.in-range)_&]:bg-bg-primary-600 [.selected:not(.in-range)_&]:text-txt-white",
+    "[.today:not(.selected)_&]:text-txt-primary [.today.selected_&]:text-txt-white",
+  ),
+  today: "today",
+  outside: "text-txt-black-900 opacity-50",
+  disabled: "",
+  range_start:
+    "rounded-l-md bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
+  range_middle:
+    "in-range bg-bg-primary-50 *:hover:bg-bg-primary-100 *:focus:bg-bg-primary-100",
+  range_end:
+    "rounded-r-md bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
+  hidden: "invisible",
+};
+
 const Calendar: FC<CalendarProps> = ({
   className,
   classNames,
@@ -98,7 +132,7 @@ const Calendar: FC<CalendarProps> = ({
       className={clx(
         // The calendar owns its size: one cell is 40px comfortable, 32px compact, and
         // the width is seven cells plus padding, so popovers can wrap it with w-fit
-        "[--cal-cell:2.5rem] in-data-[density=compact]:[--cal-cell:2rem]",
+        calendar_cell_size,
         "w-[calc(var(--cal-cell)*7+1.5rem)] max-w-full p-3 pb-4.5",
         view !== "day" && "h-[342px]",
         className,
@@ -109,38 +143,13 @@ const Calendar: FC<CalendarProps> = ({
         month_caption: "",
         caption_label: "text-sm font-medium",
         nav: "absolute right-0 flex gap-2 items-center",
-        button_previous: calendar_nav_button,
-        button_next: calendar_nav_button,
-        chevron: "size-4",
-        month_grid: "w-full border-collapse space-y-1",
-        weekdays: "",
-        weekday:
-          "text-txt-black-700 text-label-compact w-(--cal-cell) py-2 font-normal",
-        week: "w-full mt-1.5",
-        day: "aspect-square p-0",
-        day_button: clx(
-          "text-txt-black-900 text-label-sm inline-flex size-(--cal-cell) cursor-pointer items-center justify-center rounded-md",
-          "hover:bg-bg-washed transition-colors duration-150 motion-reduce:transition-none focus-ring",
-          "disabled:text-txt-black-disabled disabled:cursor-not-allowed disabled:bg-transparent",
-          "[.selected:not(.in-range)_&]:bg-bg-primary-600 [.selected:not(.in-range)_&]:text-txt-white",
-          "[.today:not(.selected)_&]:text-txt-primary [.today.selected_&]:text-txt-white",
-        ),
+        ...calendar_day_classnames,
         selected: clx(
           "selected",
           props.mode === "single"
             ? "*:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white"
             : "",
         ),
-        today: "today",
-        outside: "text-txt-black-900 opacity-50",
-        disabled: "",
-        range_start:
-          "rounded-l-md bg-bg-primary-100 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
-        range_middle:
-          "in-range bg-bg-primary-100 *:hover:bg-bg-primary-200 *:focus:bg-bg-primary-200",
-        range_end:
-          "rounded-r-md bg-bg-primary-100 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
-        hidden: "invisible",
         ...classNames,
       }}
       components={{
@@ -427,7 +436,7 @@ const Calendar: FC<CalendarProps> = ({
 };
 Calendar.displayName = "Calendar";
 
-export { Calendar };
+export { Calendar, calendar_cell_size, calendar_day_classnames };
 
 function dateMatchers(
   view: "month" | "year",

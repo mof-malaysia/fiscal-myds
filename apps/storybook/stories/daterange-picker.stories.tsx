@@ -1,160 +1,99 @@
-import { DateRangePicker } from "@mof-malaysia/myds-react/daterange-picker";
+import {
+  DateRangePicker,
+  type DateRange,
+} from "@mof-malaysia/myds-react/daterange-picker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
 import { fn } from "storybook/test";
-import { createStory } from "../utils";
+import { createRender, createStory } from "../utils";
 
 /**
  * ### Overview
- * The Date Range Picker component allows users to select a range of dates from an interactive calendar.
+ * DateRangePicker picks a start and an end date from one control. A single trigger opens
+ * two months side by side (one on phones): click the start date, then the end date, and
+ * the range is set and the popup closes. While choosing, the days up to the pointer are
+ * previewed, and the footer shows the range and its length, with Clear.
+ *
+ * - `presets`: quick ranges beside the calendar. `true` gives Today, Last 7 days, Last 30
+ *   days, This month, Last month and This year; or pass your own list.
+ * - `disabled` with `excludeDisabled` restarts a range that would span a disabled day.
+ * - Day cells follow the density toolbar (40px comfortable, 32px compact).
+ * - `locale="ms"` switches dates and labels to Bahasa Melayu; `labels` overrides any text.
  *
  * ### Usage
- * ```ts
- * import * as React from "react"
- * import { DateRange, DateRangePicker } from "@mof-malaysia/myds-react/daterange-picker";
+ * ```tsx
+ * import { DateRangePicker, type DateRange } from "@mof-malaysia/myds-react/daterange-picker";
  *
- * export function DateRangePickerDemo() {
- *    const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
- *        from: new Date(),
- *        to: new Date(),
- *    });
- *
- *    return (
- *      <DateRangePicker value={dateRange} onValueChange={setDateRange} />
- *    )
- * }
+ * const [range, setRange] = useState<DateRange | undefined>();
+ * <DateRangePicker presets value={range} onValueChange={setRange} />
  * ```
  */
 const meta = {
   title: "App/DateRangePicker",
   component: DateRangePicker,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
   args: { onValueChange: fn() },
   argTypes: {
-    defaultValue: {
-      description:
-        "The date range when initially rendered. Use when you do not need to control the state of the date range picker.",
-    },
-    disabled: {
-      description:
-        "A value or a function that matches a specific day. See: https://daypicker.dev/api/type-aliases/Matcher",
-    },
-    excludeDisabled: {
-      table: {
-        defaultValue: {
-          summary: "true",
-        },
-      },
-      description:
-        "When `true`, the range will reset when including a disabled day.",
-    },
-    fromLabel: {
-      table: {
-        defaultValue: {
-          summary: "From",
-        },
-      },
-      description: "The button label for the start date picker.",
-    },
-    formatStr: {
-      table: {
-        defaultValue: {
-          summary: "dd MMM yyy",
-        },
-      },
-      description:
-        "Returns the formatted date string in the given format. The result may vary by locale. ⚠️ Please note that the format tokens used are from date-fns, which differ from Moment.js and other libraries. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md",
-    },
-    locale: {
-      table: {
-        defaultValue: {
-          summary: "en",
-        },
-        type: {
-          summary: "enum",
-        },
-      },
-      description: "Controls which locale the date range picker is in.",
-      control: "inline-radio",
-      options: ["en", "ms"],
-    },
-    maxYear: {
-      table: {
-        defaultValue: {
-          summary: "2099",
-        },
-      },
-      description: "Maximum selectable year.",
-    },
-    minYear: {
-      table: {
-        defaultValue: {
-          summary: "1900",
-        },
-      },
-      description: "Minimum selectable year.",
-    },
-    onValueChange: {
-      table: {
-        type: {
-          summary: "function",
-        },
-      },
-      description: "Event handler when a date is selected.",
-    },
-    placeholder: {
-      description: "Text that appears when no value is set.",
-    },
-    value: {
-      description:
-        "The controlled date range currently selected. Should be used in conjunction with `onValueChange`.",
-    },
-    size: {
-      table: {
-        defaultValue: {
-          summary: "small",
-        },
-        type: {
-          summary: "enum",
-        },
-      },
-      description: "Controls the size of the button.",
-      control: "inline-radio",
-      options: ["small", "medium", "large"],
-    },
-    toLabel: {
-      table: {
-        defaultValue: {
-          summary: "To",
-        },
-      },
-      description: "The button label for the end date picker.",
-    },
-    yearOrder: {
-      table: {
-        defaultValue: {
-          summary: "asc",
-        },
-        type: {
-          summary: "enum",
-        },
-      },
-      description:
-        "Controls the order of the years displayed. It is in ascending (chronological) order by default.",
-      control: "inline-radio",
-      options: ["asc", "desc"],
-    },
+    presets: { control: "boolean" },
+    locale: { control: "inline-radio", options: ["en", "ms"] },
+    size: { control: "inline-radio", options: ["small", "medium", "large"] },
+    excludeDisabled: { control: "boolean" },
   },
+  decorators: [
+    (Story) => (
+      <div className="min-h-[420px] pt-4">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof DateRangePicker>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/**
- * The default DateRangePicker
- */
-export const Default: Story = createStory({
-  defaultDateRange: { from: new Date(1957, 7, 31), to: new Date(1963, 8, 16) },
+export const Default: Story = createStory({});
+
+/** Quick ranges beside the two months. The active one is highlighted. */
+export const WithPresets: Story = createStory({ presets: true });
+
+/** A starting range: the popup opens on its first month. */
+export const WithValue: Story = createStory({
+  presets: true,
+  defaultValue: { from: new Date(2025, 2, 12), to: new Date(2025, 3, 18) },
 });
+
+const ReportFilter = () => {
+  const [range, setRange] = useState<DateRange | undefined>();
+  return (
+    <div className="flex flex-col gap-2">
+      <DateRangePicker presets value={range} onValueChange={setRange} />
+      <p className="text-txt-black-700 text-label-sm">
+        {range?.from && range.to
+          ? `Showing payments from ${range.from.toDateString()} to ${range.to.toDateString()}.`
+          : "Showing all payments."}
+      </p>
+    </div>
+  );
+};
+
+/** Controlled, as a report filter. */
+export const Controlled: Story = createRender(ReportFilter);
+
+/** Weekends can't be chosen, and a range can't span one. */
+export const DisabledDays: Story = createStory({
+  disabled: { dayOfWeek: [0, 6] },
+  excludeDisabled: true,
+});
+
+export const BahasaMelayu: Story = createStory({ locale: "ms", presets: true });
+
+export const DarkWithPresets: Story = createStory(
+  {
+    presets: true,
+    className: "dark",
+    defaultValue: { from: new Date(2025, 2, 12), to: new Date(2025, 3, 18) },
+  },
+  "dark",
+);

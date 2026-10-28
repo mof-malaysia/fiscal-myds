@@ -283,9 +283,12 @@
       "registryDependencies": [
         "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/calendar.json",
         "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/dialog.json",
         "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/popover.json"
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/popover.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/calendar.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-left.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json"
       ],
       "files": [
         "styles/default/daterange-picker.json"
