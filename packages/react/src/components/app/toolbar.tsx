@@ -1,6 +1,11 @@
 "use client";
 
-import React, { createContext, forwardRef, useContext } from "react";
+import React, {
+  createContext,
+  forwardRef,
+  isValidElement,
+  useContext,
+} from "react";
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import { cva, type VariantProps } from "class-variance-authority";
 import {
@@ -92,8 +97,14 @@ interface ToolbarButtonProps
  * `render={<MenuTrigger />}` to open a menu. Icon-only buttons need an `aria-label`.
  */
 const ToolbarButton = forwardRef<HTMLButtonElement, ToolbarButtonProps>(
-  ({ className, size, iconOnly = false, ...props }, ref) => {
+  ({ className, size, iconOnly: iconOnlyProp, ...props }, ref) => {
     const toolbar = useContext(ToolbarContext);
+    // `render={<Toggle iconOnly />}` is icon-only too: without this the toolbar's
+    // label-button box wins the class merge and the toggle loses its square width
+    const iconOnly =
+      iconOnlyProp ??
+      (isValidElement<{ iconOnly?: boolean }>(props.render) &&
+        props.render.props.iconOnly === true);
     // Inside a ToggleGroup the rendered Toggle styles itself as a segment
     const inGroup = useContext(ToggleGroupContext) !== null;
 
