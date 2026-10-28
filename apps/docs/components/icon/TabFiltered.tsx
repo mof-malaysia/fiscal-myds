@@ -19,7 +19,6 @@ const TabFiltered: FunctionComponent = () => {
   return (
     <Tabs
       size="medium"
-      variant="pill"
       defaultValue="all"
       onValueChange={(value) => setType(value as IconType)}
     >

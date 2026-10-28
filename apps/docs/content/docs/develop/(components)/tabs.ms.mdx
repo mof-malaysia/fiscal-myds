@@ -18,13 +18,12 @@ import Preview from "@/components/preview";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import { Tab, Tabs as FumaTabs } from "fumadocs-ui/components/tabs";
 
-<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Preview">
+<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
     <Tab value="Pratonton">
         <div className="flex justify-center">
             <Tabs
                 defaultValue="1"
                 size="small"
-                variant="line"
             >
                 <TabsListExample lang="bm"/>
                 <TabsContentExample lang="bm"/>
@@ -42,7 +41,6 @@ import { Tab, Tabs as FumaTabs } from "fumadocs-ui/components/tabs";
         <Tabs
             defaultValue="1"
             size="small"
-            variant="line"
         >
             <TabsList>
                 <TabsTrigger value="1">Novel</TabsTrigger>
@@ -50,25 +48,25 @@ import { Tab, Tabs as FumaTabs } from "fumadocs-ui/components/tabs";
                 <TabsTrigger value="3">Puisi</TabsTrigger>
                 <TabsTrigger value="4">Drama</TabsTrigger>
             </TabsList>
-            <TabsContent value="1" className="py-6">
+            <TabsContent value="1">
         Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
         dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
         seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
       </TabsContent>
 
-      <TabsContent value="2" className="py-6">
+      <TabsContent value="2">
         Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
         Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
         watak-watak yang berkesan.
       </TabsContent>
 
-      <TabsContent value="3" className="py-6">
+      <TabsContent value="3">
         Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
         berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
         dipilih dengan teliti untuk memberi kesan yang mendalam.
       </TabsContent>
 
-      <TabsContent value="4" className="py-6">
+      <TabsContent value="4">
         Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
         mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
         Drama boleh membawa pelbagai emosi kepada penonton.
@@ -121,177 +119,22 @@ export default () => (
 
 ## Contoh
 
-### Variasi
+Tab mempunyai satu gaya sahaja: label dalam Ink Secondary di atas satu Hairline, dengan tab aktif dalam Ink dan garis bawah MYDS Blue setebal 2px yang menggelongsor antara tab.
 
-Gunakan prop `variant` untuk menukar gaya tab. Pada masa ini, terdapat 3 reka bentuk untuk tab: `pill`, `enclosed` dan `line`.
-
-<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Preview">
-    <Tab value="Pratonton">
-        <div className="flex flex-col justify-center gap-5">
-            <div>
-                <p className="text-lg font-bold">Line</p>
-                <Tabs
-                    defaultValue="1"
-                    size="small"
-                    variant="line"
-                >
-                    <TabsListExample lang="bm" />
-                    <TabsContentExample lang="bm" />
-                </Tabs>
-            </div>
-            <div>
-                <p className="text-lg font-bold">Pill</p>
-                <Tabs
-                    defaultValue="1"
-                    size="small"
-                    variant="pill"
-                >
-                    <TabsListExample lang="bm" />
-                    <TabsContentExample lang="bm" />
-                </Tabs>
-            </div>
-            <div>
-                <p className="text-lg font-bold">Enclosed</p>
-                <Tabs
-                    defaultValue="1"
-                    size="small"
-                    variant="enclosed"
-                >
-                    <TabsListExample lang="bm" />
-                    <TabsContentExample lang="bm" />
-                </Tabs>
-            </div>
-        </div>
-    </Tab>
-    <Tab value="Kod">
-        ```tsx 
-        import {
-            Tabs,
-            TabsContent,
-            TabsCounter,
-        } from "@/components/myds";
-
-        <Tabs
-            defaultValue="1"
-            size="small"
-            variant="line"
-        >
-            <TabsList>
-                <TabsTrigger value="1">Novel</TabsTrigger>
-                <TabsTrigger value="2">Cerpen</TabsTrigger>
-                <TabsTrigger value="3">Puisi</TabsTrigger>
-                <TabsTrigger value="4">Drama</TabsTrigger>
-            </TabsList>
-            <TabsContent value="1" className="py-6">
-                Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-            </TabsContent>
-            <TabsContent value="2" className="py-6">
-                Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                watak-watak yang berkesan.
-            </TabsContent>
-            <TabsContent value="3" className="py-6">
-                Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                dipilih dengan teliti untuk memberi kesan yang mendalam.
-            </TabsContent>
-            <TabsContent value="4" className="py-6">
-                Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                Drama boleh membawa pelbagai emosi kepada penonton.
-            </TabsContent>
-        </Tabs>
-
-        // for pill variant
-        <Tabs
-            defaultValue="1"
-            size="small"
-            variant="pill"
-        >
-            <TabsList>
-                <TabsTrigger value="1">Novel</TabsTrigger>
-                <TabsTrigger value="2">Cerpen</TabsTrigger>
-                <TabsTrigger value="3">Puisi</TabsTrigger>
-                <TabsTrigger value="4">Drama</TabsTrigger>
-            </TabsList>
-            <TabsContent value="1" className="py-6">
-                Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-            </TabsContent>
-            <TabsContent value="2" className="py-6">
-                Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                watak-watak yang berkesan.
-            </TabsContent>
-            <TabsContent value="3" className="py-6">
-                Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                dipilih dengan teliti untuk memberi kesan yang mendalam.
-            </TabsContent>
-            <TabsContent value="4" className="py-6">
-                Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                Drama boleh membawa pelbagai emosi kepada penonton.
-            </TabsContent>
-        </Tabs>
-
-        // for enclosed variant
-        <Tabs
-            defaultValue="1"
-            size="small"
-            variant="enclosed"
-        >
-            <TabsList>
-                <TabsTrigger value="1">Novel</TabsTrigger>
-                <TabsTrigger value="2">Cerpen</TabsTrigger>
-                <TabsTrigger value="3">Puisi</TabsTrigger>
-                <TabsTrigger value="4">Drama</TabsTrigger>
-            </TabsList>
-            <TabsContent value="1" className="py-6">
-                Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-            </TabsContent>
-            <TabsContent value="2" className="py-6">
-                Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                watak-watak yang berkesan.
-            </TabsContent>
-            <TabsContent value="3" className="py-6">
-                Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                dipilih dengan teliti untuk memberi kesan yang mendalam.
-            </TabsContent>
-            <TabsContent value="4" className="py-6">
-                Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                Drama boleh membawa pelbagai emosi kepada penonton.
-            </TabsContent>
-        </Tabs>
-        ```
-    </Tab>
-
-</FumaTabs>
-
-### Size
+### Saiz
 
 Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua jenis dihuraikan di bawah:
 
 1.  **Small**: Biasanya digunakan untuk komponen kecil atau pada peranti yang lebih kecil seperti telefon bimbit.
 2.  **Medium**: Biasanya digunakan untuk komponen atau peranti bersaiz sederhana atau besar seperti tablet dan desktop.
 
-<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Preview">
+<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
    <Tab value="Pratonton">
        <div className="flex flex-col justify-center gap-5">
            <div>
-               <p className="text-lg font-bold">Line variant</p>
                <Tabs
                    defaultValue="1"
                    size="small"
-                   variant="line"
                >
                    <TabsListExample lang="bm"/>
                    <TabsContentExample lang="bm"/>
@@ -299,45 +142,6 @@ Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua je
                <Tabs
                    defaultValue="1"
                    size="medium"
-                   variant="line"
-               >
-                   <TabsListExample lang="bm" />
-                   <TabsContentExample lang="bm"  />
-               </Tabs>
-           </div>
-           <div>
-               <p className="text-lg font-bold">Pill variant</p>
-               <Tabs
-                   defaultValue="1"
-                   size="small"
-                   variant="pill"
-               >
-                   <TabsListExample lang="bm" />
-                   <TabsContentExample lang="bm"  />
-               </Tabs>
-               <Tabs
-                   defaultValue="1"
-                   size="medium"
-                   variant="pill"
-               >
-                   <TabsListExample lang="bm" />
-                   <TabsContentExample lang="bm"  />
-               </Tabs>
-           </div>
-           <div>
-               <p className="text-lg font-bold">Enclosed variant</p>
-               <Tabs
-                   defaultValue="1"
-                   size="small"
-                   variant="enclosed"
-               >
-                   <TabsListExample lang="bm" />
-                   <TabsContentExample lang="bm"  />
-               </Tabs>
-               <Tabs
-                   defaultValue="1"
-                   size="medium"
-                   variant="enclosed"
                >
                    <TabsListExample lang="bm" />
                    <TabsContentExample lang="bm"  />
@@ -356,7 +160,6 @@ Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua je
            <Tabs
                defaultValue="1"
                size="small"
-               variant="line"
            >
                <TabsList>
                    <TabsTrigger value="1">Novel</TabsTrigger>
@@ -364,22 +167,22 @@ Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua je
                    <TabsTrigger value="3">Puisi</TabsTrigger>
                    <TabsTrigger value="4">Drama</TabsTrigger>
                </TabsList>
-               <TabsContent value="1" className="py-6">
+               <TabsContent value="1">
                    Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
                    dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
                    seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
                </TabsContent>
-               <TabsContent value="2" className="py-6">
+               <TabsContent value="2">
                    Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
                    Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
                    watak-watak yang berkesan.
                </TabsContent>
-               <TabsContent value="3" className="py-6">
+               <TabsContent value="3">
                    Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
                    berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
                    dipilih dengan teliti untuk memberi kesan yang mendalam.
                </TabsContent>
-               <TabsContent value="4" className="py-6">
+               <TabsContent value="4">
                    Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
                    mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
                    Drama boleh membawa pelbagai emosi kepada penonton.
@@ -389,7 +192,6 @@ Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua je
            <Tabs
                defaultValue="1"
                size="medium"
-               variant="line"
            >
                <TabsList>
                    <TabsTrigger value="1">Novel</TabsTrigger>
@@ -397,156 +199,22 @@ Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua je
                    <TabsTrigger value="3">Puisi</TabsTrigger>
                    <TabsTrigger value="4">Drama</TabsTrigger>
                </TabsList>
-               <TabsContent value="1" className="py-6">
+               <TabsContent value="1">
                    Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
                    dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
                    seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
                </TabsContent>
-               <TabsContent value="2" className="py-6">
+               <TabsContent value="2">
                    Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
                    Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
                    watak-watak yang berkesan.
                </TabsContent>
-               <TabsContent value="3" className="py-6">
+               <TabsContent value="3">
                    Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
                    berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
                    dipilih dengan teliti untuk memberi kesan yang mendalam.
                </TabsContent>
-               <TabsContent value="4" className="py-6">
-                   Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                   mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                   Drama boleh membawa pelbagai emosi kepada penonton.
-               </TabsContent>
-           </Tabs>
-
-           // for pill variant
-           <Tabs
-               defaultValue="1"
-               size="small"
-               variant="pill"
-           >
-               <TabsList>
-                   <TabsTrigger value="1">Novel</TabsTrigger>
-                   <TabsTrigger value="2">Cerpen</TabsTrigger>
-                   <TabsTrigger value="3">Puisi</TabsTrigger>
-                   <TabsTrigger value="4">Drama</TabsTrigger>
-               </TabsList>
-               <TabsContent value="1" className="py-6">
-                   Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                   dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                   seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-               </TabsContent>
-               <TabsContent value="2" className="py-6">
-                   Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                   Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                   watak-watak yang berkesan.
-               </TabsContent>
-               <TabsContent value="3" className="py-6">
-                   Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                   berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                   dipilih dengan teliti untuk memberi kesan yang mendalam.
-               </TabsContent>
-               <TabsContent value="4" className="py-6">
-                   Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                   mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                   Drama boleh membawa pelbagai emosi kepada penonton.
-               </TabsContent>
-           </Tabs>
-
-           <Tabs
-               defaultValue="1"
-               size="medium"
-               variant="pill"
-           >
-               <TabsList>
-                   <TabsTrigger value="1">Novel</TabsTrigger>
-                   <TabsTrigger value="2">Cerpen</TabsTrigger>
-                   <TabsTrigger value="3">Puisi</TabsTrigger>
-                   <TabsTrigger value="4">Drama</TabsTrigger>
-               </TabsList>
-               <TabsContent value="1" className="py-6">
-                   Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                   dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                   seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-               </TabsContent>
-               <TabsContent value="2" className="py-6">
-                   Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                   Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                   watak-watak yang berkesan.
-               </TabsContent>
-               <TabsContent value="3" className="py-6">
-                   Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                   berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                   dipilih dengan teliti untuk memberi kesan yang mendalam.
-               </TabsContent>
-               <TabsContent value="4" className="py-6">
-                   Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                   mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                   Drama boleh membawa pelbagai emosi kepada penonton.
-               </TabsContent>
-           </Tabs>
-
-           // for enclosed variant
-           <Tabs
-               defaultValue="1"
-               size="small"
-               variant="enclosed"
-           >
-               <TabsList>
-                   <TabsTrigger value="1">Novel</TabsTrigger>
-                   <TabsTrigger value="2">Cerpen</TabsTrigger>
-                   <TabsTrigger value="3">Puisi</TabsTrigger>
-                   <TabsTrigger value="4">Drama</TabsTrigger>
-               </TabsList>
-               <TabsContent value="1" className="py-6">
-                   Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                   dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                   seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-               </TabsContent>
-               <TabsContent value="2" className="py-6">
-                   Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                   Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                   watak-watak yang berkesan.
-               </TabsContent>
-               <TabsContent value="3" className="py-6">
-                   Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                   berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                   dipilih dengan teliti untuk memberi kesan yang mendalam.
-               </TabsContent>
-               <TabsContent value="4" className="py-6">
-                   Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
-                   mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
-                   Drama boleh membawa pelbagai emosi kepada penonton.
-               </TabsContent>
-           </Tabs>
-
-           <Tabs
-               defaultValue="1"
-               size="medium"
-               variant="enclosed"
-           >
-               <TabsList>
-                   <TabsTrigger value="1">Novel</TabsTrigger>
-                   <TabsTrigger value="2">Cerpen</TabsTrigger>
-                   <TabsTrigger value="3">Puisi</TabsTrigger>
-                   <TabsTrigger value="4">Drama</TabsTrigger>
-               </TabsList>
-               <TabsContent value="1" className="py-6">
-                   Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
-                   dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
-                   seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
-               </TabsContent>
-               <TabsContent value="2" className="py-6">
-                   Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
-                   Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
-                   watak-watak yang berkesan.
-               </TabsContent>
-               <TabsContent value="3" className="py-6">
-                   Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
-                   berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
-                   dipilih dengan teliti untuk memberi kesan yang mendalam.
-               </TabsContent>
-               <TabsContent value="4" className="py-6">
+               <TabsContent value="4">
                    Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
                    mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
                    Drama boleh membawa pelbagai emosi kepada penonton.
@@ -560,15 +228,14 @@ Gunakan prop `size` untuk menukar saiz tab. Contoh penggunaan untuk kedua-dua je
 
 ### Ikon
 
-Ikon ("leading icon") berfungsi sebagai penunjuk visual yang diletakkan di tab, meningkatkan kebolehgunaan dengan memberikan pengecaman serta-merta tentang tujuan tab. Subkomponen `TabsIcon` boleh digunakan untuk tujuan tersebut. Tambahan pula, `TabsIcon` boleh diletakkan di sebelah kiri atau kanan penerangan `TagsTrigger`.
+Ikon ("leading icon") berfungsi sebagai penunjuk visual yang diletakkan di tab, meningkatkan kebolehgunaan dengan memberikan pengecaman serta-merta tentang tujuan tab. Subkomponen `TabsIcon` boleh digunakan untuk tujuan tersebut. Tambahan pula, `TabsIcon` boleh diletakkan di sebelah kiri atau kanan penerangan `TabsTrigger`.
 
-<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Preview">
+<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
    <Tab value="Pratonton">
        <div className="flex flex-col justify-center gap-5 not-prose">
            <Tabs
                defaultValue="1"
                size="small"
-               variant="line"
            >
                <TabsList>
                    <TabsTrigger value="1">
@@ -611,7 +278,6 @@ Ikon ("leading icon") berfungsi sebagai penunjuk visual yang diletakkan di tab, 
        <Tabs
            defaultValue="1"
            size="small"
-           variant="line"
        >
            <TabsList>
                <TabsTrigger value="1">
@@ -639,22 +305,22 @@ Ikon ("leading icon") berfungsi sebagai penunjuk visual yang diletakkan di tab, 
                    Drama
                </TabsTrigger>
            </TabsList>
-           <TabsContent value="1" className="py-6">
+           <TabsContent value="1">
                Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
                dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
                seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
            </TabsContent>
-           <TabsContent value="2" className="py-6">
+           <TabsContent value="2">
                Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
                Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
                watak-watak yang berkesan.
            </TabsContent>
-           <TabsContent value="3" className="py-6">
+           <TabsContent value="3">
                Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
                berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
                dipilih dengan teliti untuk memberi kesan yang mendalam.
            </TabsContent>
-           <TabsContent value="4" className="py-6">
+           <TabsContent value="4">
                Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
                mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
                Drama boleh membawa pelbagai emosi kepada penonton.
@@ -669,13 +335,12 @@ Ikon ("leading icon") berfungsi sebagai penunjuk visual yang diletakkan di tab, 
 
 Pembilang ("Counter") muncul sebagai penunjuk berangka selepas label tab, memberikan maklumat pantas tentang kuantiti item dalam setiap kategori tab. Ia membantu pengguna memahami bilangan item merentasi bahagian tab yang berbeza tanpa perlu beralih antara tab.
 
-<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Preview">
+<FumaTabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
    <Tab value="Pratonton">
        <div className="flex flex-col justify-center gap-5 not-prose">
            <Tabs
                defaultValue="1"
                size="small"
-               variant="line"
            >
                <TabsList>
                    <TabsTrigger value="1">
@@ -710,7 +375,6 @@ Pembilang ("Counter") muncul sebagai penunjuk berangka selepas label tab, member
        <Tabs
            defaultValue="1"
            size="small"
-           variant="line"
        >
            <TabsList>
                <TabsTrigger value="1">
@@ -730,22 +394,22 @@ Pembilang ("Counter") muncul sebagai penunjuk berangka selepas label tab, member
                    <TabsCounter>1</TabsCounter>
                </TabsTrigger>
            </TabsList>
-           <TabsContent value="1" className="py-6">
+           <TabsContent value="1">
                Novel merupakan karya fiksyen panjang yang memaparkan kisah yang lengkap
                dengan watak, plot dan latar. Ia biasanya mengandungi pelbagai tema
                seperti cinta, keluarga, perjuangan hidup dan cabaran masyarakat.
            </TabsContent>
-           <TabsContent value="2" className="py-6">
+           <TabsContent value="2">
                Cerpen adalah karya fiksyen pendek yang boleh dibaca dalam satu waktu.
                Walaupun ringkas, cerpen tetap mempunyai plot yang menarik dan
                watak-watak yang berkesan.
            </TabsContent>
-           <TabsContent value="3" className="py-6">
+           <TabsContent value="3">
                Puisi adalah bentuk penulisan kreatif yang menggunakan bahasa indah dan
                berirama untuk menyampaikan perasaan dan idea. Setiap baris puisi
                dipilih dengan teliti untuk memberi kesan yang mendalam.
            </TabsContent>
-           <TabsContent value="4" className="py-6">
+           <TabsContent value="4">
                Drama adalah karya yang ditulis untuk dipersembahkan di pentas. Ia
                mengandungi dialog antara watak-watak dan arahan pentas yang jelas.
                Drama boleh membawa pelbagai emosi kepada penonton.
@@ -764,17 +428,17 @@ Bekas utama yang menggabungkan semua komponen tab, mengurus keadaan dan interaks
 
 <TypeTable
   type={{
-    variant: {
-      description: "Variasi gaya tab",
-      type: "enum",
-      typeDescription: "pill | enclosed | line",
-      default: "line",
-    },
     size: {
       description: "Saiz tab",
       type: "enum",
       typeDescription: "small | medium",
       default: "small",
+    },
+    activationMode: {
+      description: "`automatic` mengaktifkan tab sebaik sahaja ia menerima fokus papan kekunci; `manual` menunggu kekunci Enter atau Space",
+      type: "enum",
+      typeDescription: "automatic | manual",
+      default: "automatic",
     },
   }}
 />
@@ -786,7 +450,7 @@ Bekas yang menempatkan dan menyusun semua pencetus tab, menyediakan susun atur y
 <TypeTable
   type={{
     width: {
-      description: "Lebar TabList",
+      description: "Lebar TabsList. `full` memanjangkan Hairline merentasi bekas; `fit` menghentikannya pada tab terakhir",
       type: "enum",
       typeDescription: "full | fit",
       default: "fit",
@@ -800,7 +464,7 @@ Elemen interaktif yang memaparkan panel tab yang sepadan apabila dipilih. Ia dib
 
 ### TabsContent
 
-Panel yang memaparkan kandungan apabila pencetus yang sepadan dipilih, dan disembunyikan apabila tab lain diaktifkan. Ia dibina di atas `Tabs.Panel` Base UI.
+Panel yang memaparkan kandungan apabila pencetus yang sepadan dipilih, dan disembunyikan apabila tab lain diaktifkan. Secara lalai, ia mempunyai padding atas dan teks Ink, jadi anda jarang perlu menambah jarak sendiri. Ia dibina di atas `Tabs.Panel` Base UI.
 
 ### TabsIcon
 
@@ -808,7 +472,7 @@ Panel yang memaparkan kandungan apabila pencetus yang sepadan dipilih, dan disem
 
 ### TabsCounter
 
-`TabsCounter` ialah komponen yang memaparkan penunjuk angka atau lencana dalam `TabsTrigger`, melaraskan saiz teksnya berdasarkan konteks tab induk (`small` atau `medium`).
+`TabsCounter` memaparkan bilangan di sebelah label tab sebagai pil neutral dengan angka tabular, supaya ia tidak bersaing dengan garis bawah MYDS Blue pada tab aktif.
 
 <small>
   Untuk penyesuaian yang lebih mendalam, anda boleh merujuk kepada rujukan API

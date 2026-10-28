@@ -5,9 +5,7 @@ import {
   ForwardRefExoticComponent,
   FunctionComponent,
   JSXElementConstructor,
-  LegacyRef,
   ReactElement,
-  ReactNode,
   useContext,
 } from "react";
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
@@ -16,13 +14,33 @@ import { cva } from "class-variance-authority";
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
 
+/**
+ * Tabs switch between views of the same subject. There is one style (DESIGN.md,
+ * Navigation): Label type in Ink Secondary on a single Hairline, the active tab in Ink
+ * with a 2px MYDS Blue underline that slides between tabs. No pills, no boxes.
+ *
+ * Tab height follows `data-density`; `size` steps it within the density.
+ *
+ * @example
+ * <Tabs defaultValue="details">
+ *   <TabsList>
+ *     <TabsTrigger value="details">Details</TabsTrigger>
+ *     <TabsTrigger value="documents">
+ *       Documents <TabsCounter>3</TabsCounter>
+ *     </TabsTrigger>
+ *   </TabsList>
+ *   <TabsContent value="details">...</TabsContent>
+ *   <TabsContent value="documents">...</TabsContent>
+ * </Tabs>
+ */
+
 /*========================================================================================================================*/
 
 /** Base UI parts accept a state function for className; MYDS keeps it a plain string. */
 type WithStringClassName<P> = Omit<P, "className"> & { className?: string };
 
 interface TabsProps extends WithStringClassName<TabsPrimitive.Root.Props> {
-  variant?: "pill" | "enclosed" | "line";
+  /** @default "small" */
   size?: "small" | "medium";
   /**
    * `automatic` activates a tab when it receives keyboard focus, `manual` requires Enter/Space.
@@ -31,10 +49,7 @@ interface TabsProps extends WithStringClassName<TabsPrimitive.Root.Props> {
   activationMode?: "automatic" | "manual";
 }
 
-const TabsContext = createContext<
-  Pick<TabsProps, "variant" | "size" | "activationMode">
->({
-  variant: "line",
+const TabsContext = createContext<Pick<TabsProps, "size" | "activationMode">>({
   size: "small",
   activationMode: "automatic",
 });
@@ -42,9 +57,16 @@ const TabsContext = createContext<
 /*========================================================================================================================*/
 
 const Tabs: ForwardRefExoticComponent<TabsProps> = forwardRef(
-  ({ variant, size, activationMode = "automatic", ...props }, ref) => (
-    <TabsContext.Provider value={{ variant, size, activationMode }}>
-      <TabsPrimitive.Root ref={ref} {...props} />
+  (
+    { size = "small", activationMode = "automatic", className, ...props },
+    ref,
+  ) => (
+    <TabsContext.Provider value={{ size, activationMode }}>
+      <TabsPrimitive.Root
+        ref={ref}
+        className={clx("font-body flex flex-col", className)}
+        {...props}
+      />
     </TabsContext.Provider>
   ),
 );
@@ -52,41 +74,40 @@ Tabs.displayName = "Tabs";
 
 /*========================================================================================================================*/
 
-const tabs_list_cva = cva(
-  "relative flex flex-row items-center space-x-1 justify-start font-medium py-1",
-  {
-    variants: {
-      variant: {
-        pill: "bg-transparent rounded-full",
-        enclosed: "bg-bg-washed rounded-md",
-        line: "before:h-[1px] before:absolute before:-bottom-[9px] before:bg-otl-gray-200 before:left-0 before:right-0",
-      },
-      width: {
-        full: "w-full",
-        fit: "w-fit",
-      },
-    },
-    defaultVariants: {
-      variant: "line",
-    },
-  },
-);
-
 interface TabsListProps extends WithStringClassName<TabsPrimitive.List.Props> {
+  /**
+   * `full` runs the Hairline across the container; `fit` stops it at the last tab.
+   * @default "fit"
+   */
   width?: "fit" | "full";
 }
 
 const TabsList: ForwardRefExoticComponent<TabsListProps> = forwardRef(
-  ({ className, width = "fit", ...props }, ref) => {
-    const { variant, activationMode } = useContext(TabsContext);
+  ({ className, width = "fit", children, ...props }, ref) => {
+    const { activationMode } = useContext(TabsContext);
 
     return (
       <TabsPrimitive.List
         ref={ref}
         activateOnFocus={activationMode !== "manual"}
-        className={tabs_list_cva({ variant, width, className })}
+        className={clx(
+          // The Hairline is an inset shadow so the indicator can sit on top of it
+          "relative z-0 flex max-w-full items-stretch gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-otl-gray-200)]",
+          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          width === "full" ? "w-full" : "w-fit",
+          className,
+        )}
         {...props}
-      />
+      >
+        {children}
+        <TabsPrimitive.Indicator
+          className={clx(
+            "bg-txt-primary absolute bottom-0 left-0 z-10 h-0.5 rounded-full",
+            "w-(--active-tab-width) translate-x-(--active-tab-left)",
+            "transition-[translate,width] duration-200 ease-(--ease-standard) motion-reduce:transition-none",
+          )}
+        />
+      </TabsPrimitive.List>
     );
   },
 );
@@ -96,50 +117,21 @@ TabsList.displayName = "TabsList";
 
 const tabs_trigger_cva = cva(
   [
-    "relative flex gap-1 items-center text-txt-black-500 hover:text-txt-black-900 data-[active]:text-txt-black-900 outline-none border border-transparent",
-    "focus-visible:ring-2 focus-visible:ring-fr-primary space",
+    "relative flex shrink-0 cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-md font-medium",
+    "text-txt-black-700 hover:text-txt-black-900 data-[active]:text-txt-black-900",
+    "transition-colors duration-150 motion-reduce:transition-none",
+    // Inset so the ring isn't clipped by the scrolling list
+    "outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[rgb(var(--fr-primary))]",
+    "data-[disabled]:text-txt-black-disabled data-[disabled]:cursor-not-allowed",
   ],
   {
     variants: {
-      variant: {
-        pill: [
-          "bg-transparent data-[active]:bg-bg-washed-active transition-colors rounded-full",
-        ],
-        enclosed: [
-          "data-[active]:bg-bg-raised rounded-md transition-[border] data-[active]:border-otl-gray-200",
-          // "before:h-auto before:w-[1px] before:content-[''] before:absolute before:-left-1 before:bg-otl-gray-300 before:first-of-type:hidden",
-        ],
-        line: "rounded-md before:h-0.5 before:content-[''] before:absolute before:-bottom-2.5 before:left-0 before:right-0 data-[active]:before:bg-primary-600 before:transition-all before:duration-200",
-      },
       size: {
-        small: "text-label-sm py-1.5 px-2.5",
-        medium: "text-label-md py-2 px-3",
+        small: "control-sm px-3 text-label-sm",
+        medium: "control-md px-4 text-label-md",
       },
     },
-    compoundVariants: [
-      {
-        variant: "enclosed",
-        size: "small",
-        className: "before:py-2",
-      },
-      {
-        variant: "enclosed",
-        size: "medium",
-        className: "before:py-2.5",
-      },
-      {
-        variant: "line",
-        size: "small",
-        className: "before:mx-2.5",
-      },
-      {
-        variant: "line",
-        size: "medium",
-        className: "before:mx-3",
-      },
-    ],
     defaultVariants: {
-      variant: "line",
       size: "small",
     },
   },
@@ -148,11 +140,11 @@ const tabs_trigger_cva = cva(
 const TabsTrigger: ForwardRefExoticComponent<
   WithStringClassName<TabsPrimitive.Tab.Props>
 > = forwardRef(({ className, ...props }, ref) => {
-  const { variant, size } = useContext(TabsContext);
+  const { size } = useContext(TabsContext);
   return (
     <TabsPrimitive.Tab
       ref={ref}
-      className={tabs_trigger_cva({ variant, size, className })}
+      className={tabs_trigger_cva({ size, className })}
       {...props}
     />
   );
@@ -161,20 +153,17 @@ TabsTrigger.displayName = "TabsTrigger";
 
 /*========================================================================================================================*/
 
-const tab_icon_cva = cva(
-  "block shrink-0 stroke-inherit text-inherit stroke-[1.5px]",
-  {
-    variants: {
-      size: {
-        small: "size-4",
-        medium: "size-5",
-      },
-    },
-    defaultVariants: {
-      size: "small",
+const tab_icon_cva = cva("block shrink-0 stroke-inherit text-inherit", {
+  variants: {
+    size: {
+      small: "size-4",
+      medium: "size-5",
     },
   },
-);
+  defaultVariants: {
+    size: "small",
+  },
+});
 
 interface TabsIconProps {
   children: ReactElement<any, string | JSXElementConstructor<any>>;
@@ -185,37 +174,28 @@ const TabsIcon: FunctionComponent<TabsIconProps> = ({ children }) => {
 
   return useRender({
     render: children,
-    props: mergeProps<"svg">({ className: clx(tab_icon_cva({ size })) }, {}),
+    props: mergeProps<"svg">(
+      { className: tab_icon_cva({ size }), "aria-hidden": true },
+      {},
+    ),
   });
 };
-
 TabsIcon.displayName = "TabsIcon";
+
 /*========================================================================================================================*/
 
-interface TabsCounterProps extends ComponentProps<"span"> {
-  children: ReactNode;
-  ref?: LegacyRef<HTMLSpanElement>;
-}
-
-const TabsCounter: ForwardRefExoticComponent<TabsCounterProps> = forwardRef(
-  ({ children, ...props }, ref) => {
-    const { size } = useContext(TabsContext);
-    return (
-      <span
-        ref={ref}
-        className={clx(
-          size === "medium" && "text-body-md",
-          size === "small" && "text-body-sm",
-          "text-txt-primary",
-        )}
-        {...props}
-      >
-        {children}
-      </span>
-    );
-  },
-);
-
+/** A count beside the tab label: a neutral wash pill in tabular figures. */
+const TabsCounter: ForwardRefExoticComponent<ComponentProps<"span">> =
+  forwardRef(({ className, ...props }, ref) => (
+    <span
+      ref={ref}
+      className={clx(
+        "bg-bg-washed-active text-txt-black-700 text-label-compact inline-flex min-w-5 justify-center rounded-full px-1.5 font-medium tabular-nums",
+        className,
+      )}
+      {...props}
+    />
+  ));
 TabsCounter.displayName = "TabsCounter";
 
 /*========================================================================================================================*/
@@ -225,13 +205,16 @@ const TabsContent: ForwardRefExoticComponent<
 > = forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.Panel
     ref={ref}
-    className={clx("text-txt-black-700", className)}
+    className={clx(
+      "text-txt-black-900 text-content focus-ring rounded-md pt-(--space-stack-md)",
+      className,
+    )}
     {...props}
   />
 ));
-
 TabsContent.displayName = "TabsContent";
 
 /*========================================================================================================================*/
 
 export { Tabs, TabsIcon, TabsCounter, TabsList, TabsTrigger, TabsContent };
+export type { TabsProps, TabsListProps };
