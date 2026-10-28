@@ -2,34 +2,44 @@ import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { ComponentProps, ForwardRefExoticComponent, forwardRef } from "react";
 import { clx } from "../../utils";
-import { cva, VariantProps } from "class-variance-authority";
 import { ChevronRightIcon } from "../../icons/chevron-right";
+import { EllipsisIcon } from "../../icons/ellipsis";
 
-const breadcrumb_cva = cva(
-  [
-    "group flex flex-wrap select-none items-center font-body font-medium text-body-sm rounded-md gap-1",
-  ],
-  {
-    variants: {
-      variant: {
-        default: "",
-        fill: "py-1 px-3 bg-bg-washed",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  },
-);
+/**
+ * Breadcrumb shows where the current page sits and links back up the trail. It is
+ * quiet navigation: Label type, parents in Ink Secondary, the current page in Ink,
+ * small chevrons between them, and no container around the trail.
+ *
+ * Long names truncate (the full name stays in the tooltip). For deep trails, keep the
+ * first and last two levels and collapse the middle into `BreadcrumbEllipsis`.
+ *
+ * @example
+ * <Breadcrumb>
+ *   <BreadcrumbItem>
+ *     <BreadcrumbLink href="/">Home</BreadcrumbLink>
+ *   </BreadcrumbItem>
+ *   <BreadcrumbSeparator />
+ *   <BreadcrumbItem>
+ *     <BreadcrumbPage>Applications</BreadcrumbPage>
+ *   </BreadcrumbItem>
+ * </Breadcrumb>
+ */
 
-interface BreadcrumbProps
-  extends ComponentProps<"nav">,
-    VariantProps<typeof breadcrumb_cva> {}
+/** The full name for the tooltip: an explicit `title`, else plain-text children. */
+const titleOf = (title: string | undefined, children: unknown) =>
+  title ?? (typeof children === "string" ? children : undefined);
 
-const Breadcrumb: ForwardRefExoticComponent<BreadcrumbProps> = forwardRef(
-  ({ variant = "default", className, children, ...props }, ref) => (
-    <nav ref={ref} aria-label="breadcrumb" {...props}>
-      <ol className={breadcrumb_cva({ variant, className })}>{children}</ol>
+const Breadcrumb: ForwardRefExoticComponent<ComponentProps<"nav">> = forwardRef(
+  ({ className, children, "aria-label": ariaLabel, ...props }, ref) => (
+    <nav ref={ref} aria-label={ariaLabel ?? "Breadcrumb"} {...props}>
+      <ol
+        className={clx(
+          "font-body text-label-sm flex min-w-0 flex-wrap items-center gap-1",
+          className,
+        )}
+      >
+        {children}
+      </ol>
     </nav>
   ),
 );
@@ -39,54 +49,47 @@ const BreadcrumbItem: ForwardRefExoticComponent<ComponentProps<"li">> =
   forwardRef(({ className, ...props }, ref) => (
     <li
       ref={ref}
+      className={clx(
+        "inline-flex max-w-[200px] min-w-0 items-center",
+        className,
+      )}
       {...props}
-      className={clx("line-clamp-1 max-w-[200px]", className)}
     />
   ));
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
+/** A parent level. Renders an `<a>`; pass `render` for your router's link. */
 const BreadcrumbLink: ForwardRefExoticComponent<useRender.ComponentProps<"a">> =
-  forwardRef(({ render, className, ...props }, ref) => {
-    return useRender({
+  forwardRef(({ render, className, ...props }, ref) =>
+    useRender({
       defaultTagName: "a",
       render,
       ref,
       props: mergeProps<"a">(
         {
           className: clx(
-            "hover:text-txt-black-900 text-txt-black-500 transition-colors hover:underline",
+            "text-txt-black-700 hover:text-txt-black-900 truncate rounded-sm font-medium",
+            "underline-offset-4 decoration-from-font hover:underline",
+            "transition-colors duration-150 motion-reduce:transition-none focus-ring",
             className,
           ),
+          title: titleOf(props.title, props.children),
         },
         props,
-        {
-          title:
-            props.title || typeof props.children === "string"
-              ? (props.children as string)
-              : undefined,
-        },
       ),
-    });
-  });
+    }),
+  );
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
+/** The current page: Ink, not a link. */
 const BreadcrumbPage: ForwardRefExoticComponent<ComponentProps<"span">> =
-  forwardRef(({ className, ...props }, ref) => (
+  forwardRef(({ className, title, ...props }, ref) => (
     <span
       ref={ref}
-      {...props}
-      role="link"
-      aria-disabled="true"
       aria-current="page"
-      className={clx(
-        "text-txt-black-900 line-clamp-1 max-w-[200px]",
-        className,
-      )}
-      title={
-        props.title || typeof props.children === "string"
-          ? (props.children as string)
-          : undefined
-      }
+      title={titleOf(title, props.children)}
+      className={clx("text-txt-black-900 truncate font-medium", className)}
+      {...props}
     />
   ));
 BreadcrumbPage.displayName = "BreadcrumbPage";
@@ -99,13 +102,38 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={clx("[&>svg]:text-bg-black-400 [&>svg]:size-6", className)}
+    className={clx(
+      "text-txt-black-500 inline-flex shrink-0 items-center [&>svg]:size-4",
+      className,
+    )}
     {...props}
   >
-    {children || <ChevronRightIcon />}
+    {children ?? <ChevronRightIcon />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
+
+/**
+ * Stands in for collapsed middle levels. Decorative on its own; to let people expand
+ * the trail, wrap it in a button or a `Menu` trigger that lists the hidden levels.
+ */
+const BreadcrumbEllipsis = ({
+  className,
+  ...props
+}: ComponentProps<"span">) => (
+  <span
+    role="presentation"
+    aria-hidden="true"
+    className={clx(
+      "text-txt-black-700 inline-flex size-6 items-center justify-center [&>svg]:size-4",
+      className,
+    )}
+    {...props}
+  >
+    <EllipsisIcon />
+  </span>
+);
+BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";
 
 export {
   Breadcrumb,
@@ -113,4 +141,5 @@ export {
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  BreadcrumbEllipsis,
 };

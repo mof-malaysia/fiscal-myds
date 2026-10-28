@@ -9,7 +9,7 @@ Elemen utama yang mendefinisikan struktur dan fungsi Breadcrumb.
 
 1. **Halaman Induk**: Pautan ke halaman atau bahagian sebelumnya, membantu pengguna menavigasi semula melalui hierarki.
 2. **Halaman Semasa**: Menunjukkan lokasi semasa pengguna dalam laluan navigasi, biasanya tidak boleh diklik.
-3. **Pembungkus (Wrapper)**: Bekas yang menutupi breadcrumb untuk memastikan jarak dan penjajaran yang konsisten.
+3. **Jejak (Trail)**: Senarai tersusun yang memuatkan serpihan breadcrumb, dipisahkan oleh chevron kecil. Ia diletakkan terus dalam susun atur tanpa latar belakang, sempadan atau bekas; ia hanya memastikan jarak dan penjajaran yang konsisten.
 
 ## Keadaan Hover
 
@@ -18,15 +18,12 @@ Elemen utama yang mendefinisikan struktur dan fungsi Breadcrumb.
 1. Kawasan untuk tindakan hover dan klik.
 2. Garis bawah untuk halaman induk apabila tetikus berada di atasnya.
 
-## Pembungkus (Wrapper)
-
-![breadcrumb-wrapper.png](/design/breadcrumb-wrapper.png)
-
-1. Penampilan tanpa pembungkus tambahan.
-2. Penampilan alternatif dengan pembungkus untuk fleksibiliti reka bentuk.
-
 ## Had Panjang Tajuk
 
 ![breadcrumb-overflow-ellipsis.png](/design/breadcrumb-overflow-ellipsis.png)
 
-1. **Had Panjang Tajuk**: Tetapkan lebar maksimum 200px untuk tajuk halaman semasa. Jika tajuk melebihi panjang ini, secara automatik paparkan elipsis (contohnya, "Tajuk Halaman Panjang...") untuk memastikan komponen yang kemas dan teratur.
+1. **Had Panjang Tajuk**: Setiap serpihan, sama ada halaman induk atau halaman semasa, mempunyai lebar maksimum 200px. Jika tajuk melebihi panjang ini, ia dipendekkan dengan elipsis (contohnya, "Tajuk Halaman Panjang...") untuk memastikan komponen yang kemas dan teratur. Tajuk penuh masih boleh dilihat sebagai tooltip apabila dituding.
+
+## Lipat Jejak yang Dalam
+
+Untuk hierarki yang dalam, kekalkan tahap pertama dan dua tahap terakhir, dan gantikan tahap di antaranya dengan elipsis ("…"). Elipsis ini hanya hiasan; jika pengguna perlu mencapai tahap yang tersembunyi, letakkannya di dalam butang atau menu yang menyenaraikan tahap tersebut.

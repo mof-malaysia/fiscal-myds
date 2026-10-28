@@ -10,6 +10,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
+  BreadcrumbEllipsis,
 } from "@/components/myds";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
@@ -32,7 +33,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/callout";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 
 <Breadcrumb>
     <BreadcrumbItem>
@@ -77,6 +78,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
+  BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
 ```
 
@@ -88,84 +90,14 @@ export default () => (
       <BreadcrumbPage />
     </BreadcrumbItem>
     <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
   </Breadcrumb>
 );
 ```
 
 ## Contoh
-
-### Varian
-
-Gunakan prop `variant` untuk menukar gaya breadcrumb!
-
-<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
-  <Tab value="Pratonton">
-  <div className="space-y-2 not-prose">
-   <Breadcrumb variant="default">
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#collection">Koleksi</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Laman Anda</BreadcrumbPage>
-    </BreadcrumbItem>
-  </Breadcrumb>
-
-  <Breadcrumb variant="fill">
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#collection">Koleksi</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Laman Anda</BreadcrumbPage>
-    </BreadcrumbItem>
-  </Breadcrumb>
-  </div>
-  </Tab>
-  <Tab value="Kod">
-```tsx 
-/** Varian: Default **/
-
-<Breadcrumb variant="default">
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#collection">Koleksi</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbPage>Laman Anda</BreadcrumbPage>
-  </BreadcrumbItem>
-</Breadcrumb>
-
-/** Varian: Fill **/
-
-<Breadcrumb variant="fill">
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#collection">Koleksi</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbPage>Laman Anda</BreadcrumbPage>
-  </BreadcrumbItem>
-</Breadcrumb>
-```
-  </Tab>
-</Tabs>
 
 ### Pautan vs Halaman
 
@@ -174,7 +106,7 @@ Gunakan prop `variant` untuk menukar gaya breadcrumb!
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
     <div className="not-prose space-y-2">
-      <Breadcrumb variant="default">
+      <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink href="#home">BreadcrumbLink 1</BreadcrumbLink>
         </BreadcrumbItem>
@@ -191,7 +123,7 @@ Gunakan prop `variant` untuk menukar gaya breadcrumb!
   </Tab>
   <Tab value="Kod">
     ```tsx
-    <Breadcrumb variant="default">
+    <Breadcrumb>
       <BreadcrumbItem>
         <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
       </BreadcrumbItem>
@@ -210,12 +142,12 @@ Gunakan prop `variant` untuk menukar gaya breadcrumb!
 
 ### Serpihan Ellipsis
 
-Serpihan yang terlalu panjang akan dipendekkan dengan elipsis. Had lebar maksimum ialah `200px`. Pengguna boleh melayang di atas serpihan untuk melihat teks penuh.
+Serpihan yang terlalu panjang akan dipendekkan dengan elipsis. Had lebar maksimum ialah `200px`. Nama penuh disimpan dalam tooltip `title`, jadi pengguna boleh menuding pada serpihan untuk melihatnya.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
     <div className="not-prose space-y-2">
-      <Breadcrumb variant="default">
+      <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
         </BreadcrumbItem>
@@ -235,7 +167,7 @@ Serpihan yang terlalu panjang akan dipendekkan dengan elipsis. Had lebar maksimu
   </Tab>
   <Tab value="Kod">
     ```tsx
-    <Breadcrumb variant="default">
+    <Breadcrumb>
       <BreadcrumbItem>
         <BreadcrumbLink href="#home">Laman Utama</BreadcrumbLink>
       </BreadcrumbItem>
@@ -254,17 +186,113 @@ Serpihan yang terlalu panjang akan dipendekkan dengan elipsis. Had lebar maksimu
   </Tab>
 </Tabs>
 
+### Tahap Dilipat
+
+Untuk jejak yang dalam, kekalkan tahap pertama dan dua tahap terakhir, dan lipat tahap di tengah ke dalam `BreadcrumbEllipsis`. Komponen ini hanya hiasan (disembunyikan daripada pembaca skrin); untuk membolehkan pengguna mencapai tahap yang tersembunyi, balutkannya dalam butang atau pencetus `Menu` yang menyenaraikan tahap tersebut.
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton">
+    <div className="not-prose space-y-2">
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Laman Utama</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Permohonan</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>APP-2025-00418</BreadcrumbPage>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Laman Utama</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbEllipsis />
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Permohonan</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>APP-2025-00418</BreadcrumbPage>
+      </BreadcrumbItem>
+    </Breadcrumb>
+    ```
+  </Tab>
+</Tabs>
+
 ## Props
 
 ### Breadcrumb
 
+Landmark `<nav>` bagi jejak. Menerima semua atribut `<nav>`.
+
 <TypeTable
   type={{
-    variant: {
-      description: "Gaya varian breadcrumb",
-      type: "enum",
-      typeDescription: "default | fill",
-      default: "default",
+    "aria-label": {
+      description: "Nama boleh akses bagi landmark navigasi. Berikan label yang diterjemah, contohnya `\"Jejak navigasi\"`, untuk halaman Bahasa Melayu.",
+      type: "string",
+      default: "\"Breadcrumb\"",
     },
   }}
 />
+
+### BreadcrumbLink
+
+<TypeTable
+  type={{
+    href: {
+      description: "URL",
+      type: "string",
+    },
+    title: {
+      description: "Nama penuh yang dipaparkan dalam tooltip. Lalai kepada children jika ia teks biasa.",
+      type: "string",
+    },
+    render: {
+      description: "Paparkan pautan router anda dan bukannya `<a>`, contohnya `render={<Link href=\"/\" />}`.",
+      type: "ReactElement | function",
+    },
+  }}
+/>
+
+### BreadcrumbPage
+
+<TypeTable
+  type={{
+    title: {
+      description: "Nama penuh yang dipaparkan dalam tooltip. Lalai kepada children jika ia teks biasa.",
+      type: "string",
+    },
+  }}
+/>
+
+### BreadcrumbSeparator
+
+<TypeTable
+  type={{
+    children: {
+      description: "Ikon pemisah tersuai.",
+      type: "ReactNode",
+      default: "Chevron kanan",
+    },
+  }}
+/>
+
+### BreadcrumbEllipsis
+
+"…" hiasan yang menggantikan tahap tengah yang dilipat. Menerima semua atribut `<span>`.

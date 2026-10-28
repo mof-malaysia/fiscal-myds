@@ -9,7 +9,7 @@ The key elements that define a Breadcrumb’s structure and function.
 
 1. **Parent Page**: Links to the preceding page or section, helping users navigate back through the hierarchy.
 2. **Current Page**: Indicates the user’s current location in the navigation path, typically not clickable.
-3. **Wrapper**: A container that holds the breadcrumb trail, ensuring consistent spacing and alignment within the layout.
+3. **Trail**: The ordered list that holds the crumbs, separated by small chevrons. It sits directly in the layout with no background, border or container around it; it only keeps spacing and alignment consistent.
 
 ## Hover state
 
@@ -18,15 +18,12 @@ The key elements that define a Breadcrumb’s structure and function.
 1. Trigger area for hover and click action
 2. Underlined hover state for parents page
 
-## Wrapper
-
-![breadcrumb-wrapper.png](/design/breadcrumb-wrapper.png)
-
-1. Default without wrapper appearance
-2. Alternative with wrapper appearance
-
 ## Limit title length
 
 ![breadcrumb-overflow-ellipsis.png](/design/breadcrumb-overflow-ellipsis.png)
 
-1. **Limit Title Length**: Set a maximum width of 200px for the current page title. If the title exceeds this length, automatically display an ellipsis (e.g., "Long Page Title...") to maintain a clean and organized layout.
+1. **Limit Title Length**: Each crumb, parent or current page, has a maximum width of 200px. If a title exceeds this length, it is truncated with an ellipsis (e.g., "Long Page Title...") to maintain a clean and organized layout. The full title stays available as a tooltip on hover.
+
+## Collapse deep trails
+
+For deep hierarchies, keep the first level and the last two, and replace the levels in between with an ellipsis ("…"). The ellipsis is decorative; if users need to reach the hidden levels, place it inside a button or menu that lists them.

@@ -10,6 +10,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
+  BreadcrumbEllipsis,
 } from "@/components/myds";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
@@ -32,7 +33,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/callout";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 
 <Breadcrumb>
     <BreadcrumbItem>
@@ -77,6 +78,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
+  BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
 ```
 
@@ -88,84 +90,14 @@ export default () => (
       <BreadcrumbPage />
     </BreadcrumbItem>
     <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
   </Breadcrumb>
 );
 ```
 
 ## Examples
-
-### Variant
-
-Use the `variant` prop to change the breadcrumb style!
-
-<Tabs items={["Preview", "Code"]} defaultValue="Preview">
-  <Tab value="Preview">
-  <div className="space-y-2 not-prose">
-   <Breadcrumb variant="default">
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#home">Home</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#collection">Collection</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Your Page</BreadcrumbPage>
-    </BreadcrumbItem>
-  </Breadcrumb>
-
-  <Breadcrumb variant="fill">
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#home">Home</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#collection">Collection</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Your Page</BreadcrumbPage>
-    </BreadcrumbItem>
-  </Breadcrumb>
-  </div>
-  </Tab>
-  <Tab value="Code">
-```tsx 
-/** Variant: Default **/
-
-<Breadcrumb variant="default">
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#home">Home</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#collection">Collection</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbPage>Your Page</BreadcrumbPage>
-  </BreadcrumbItem>
-</Breadcrumb>
-
-/** Variant: Fill **/
-
-<Breadcrumb variant="fill">
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#home">Home</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#collection">Collection</BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbSeparator />
-  <BreadcrumbItem>
-    <BreadcrumbPage>Your Page</BreadcrumbPage>
-  </BreadcrumbItem>
-</Breadcrumb>
-```
-  </Tab>
-</Tabs>
 
 ### Link vs Page
 
@@ -174,7 +106,7 @@ Use the `variant` prop to change the breadcrumb style!
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
     <div className="not-prose space-y-2">
-      <Breadcrumb variant="default">
+      <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink href="#home">BreadcrumbLink 1</BreadcrumbLink>
         </BreadcrumbItem>
@@ -191,7 +123,7 @@ Use the `variant` prop to change the breadcrumb style!
   </Tab>
   <Tab value="Code">
     ```tsx
-    <Breadcrumb variant="default">
+    <Breadcrumb>
       <BreadcrumbItem>
         <BreadcrumbLink href="#home">Home</BreadcrumbLink>
       </BreadcrumbItem>
@@ -210,12 +142,12 @@ Use the `variant` prop to change the breadcrumb style!
 
 ### Ellipsis Crumb
 
-Crumbs that are too long will be truncated with an ellipsis. The maximum width limit is `200px`. User may hover over the crumb to see the full text.
+Crumbs that are too long will be truncated with an ellipsis. The maximum width limit is `200px`. The full name is kept in the `title` tooltip, so users can hover over the crumb to see it.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
     <div className="not-prose space-y-2">
-      <Breadcrumb variant="default">
+      <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink href="#home">Home</BreadcrumbLink>
         </BreadcrumbItem>
@@ -234,7 +166,7 @@ Crumbs that are too long will be truncated with an ellipsis. The maximum width l
   </Tab>
   <Tab value="Code">
     ```tsx
-    <Breadcrumb variant="default">
+    <Breadcrumb>
       <BreadcrumbItem>
         <BreadcrumbLink href="#home">Home</BreadcrumbLink>
       </BreadcrumbItem>
@@ -253,17 +185,113 @@ Crumbs that are too long will be truncated with an ellipsis. The maximum width l
   </Tab>
 </Tabs>
 
+### Collapsed Levels
+
+For deep trails, keep the first level and the last two, and collapse the middle into `BreadcrumbEllipsis`. It is decorative on its own (hidden from screen readers); to let people reach the hidden levels, wrap it in a button or a `Menu` trigger that lists them.
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview">
+    <div className="not-prose space-y-2">
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Applications</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>APP-2025-00418</BreadcrumbPage>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbEllipsis />
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Applications</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>APP-2025-00418</BreadcrumbPage>
+      </BreadcrumbItem>
+    </Breadcrumb>
+    ```
+  </Tab>
+</Tabs>
+
 ## Props
 
 ### Breadcrumb
 
+The trail's `<nav>` landmark. Accepts all `<nav>` attributes.
+
 <TypeTable
   type={{
-    variant: {
-      description: "Style variant of the breadcrumb",
-      type: "enum",
-      typeDescription: "default | fill",
-      default: "default",
+    "aria-label": {
+      description: "Accessible name of the navigation landmark. Pass a translated label, e.g. `\"Jejak navigasi\"`, for Bahasa Melayu pages.",
+      type: "string",
+      default: "\"Breadcrumb\"",
     },
   }}
 />
+
+### BreadcrumbLink
+
+<TypeTable
+  type={{
+    href: {
+      description: "URL",
+      type: "string",
+    },
+    title: {
+      description: "Full name shown in the tooltip. Defaults to the children when they are plain text.",
+      type: "string",
+    },
+    render: {
+      description: "Render your router's link instead of `<a>`, e.g. `render={<Link href=\"/\" />}`.",
+      type: "ReactElement | function",
+    },
+  }}
+/>
+
+### BreadcrumbPage
+
+<TypeTable
+  type={{
+    title: {
+      description: "Full name shown in the tooltip. Defaults to the children when they are plain text.",
+      type: "string",
+    },
+  }}
+/>
+
+### BreadcrumbSeparator
+
+<TypeTable
+  type={{
+    children: {
+      description: "Custom separator icon.",
+      type: "ReactNode",
+      default: "Chevron right",
+    },
+  }}
+/>
+
+### BreadcrumbEllipsis
+
+Decorative "…" that stands in for collapsed middle levels. Accepts all `<span>` attributes.
