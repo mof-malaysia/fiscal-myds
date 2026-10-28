@@ -40,18 +40,20 @@ const RadioItemContext = createContext<
  * Uses Base UI's RadioGroup API.
  * @see https://base-ui.com/react/components/radio#api-reference
  */
-const Radio = React.forwardRef<HTMLDivElement, RadioProps>(({ className, size = DEFAULT_SIZE, disabled = false, ...props }, ref) => {
-  return (
-    <RadioContext.Provider value={{ size, disabled }}>
-      <RadioGroupPrimitive
-        className={clx("grid gap-3", className)}
-        disabled={disabled}
-        ref={ref}
-        {...props}
-      />
-    </RadioContext.Provider>
-  );
-});
+const Radio = React.forwardRef<HTMLDivElement, RadioProps>(
+  ({ className, size = DEFAULT_SIZE, disabled = false, ...props }, ref) => {
+    return (
+      <RadioContext.Provider value={{ size, disabled }}>
+        <RadioGroupPrimitive
+          className={clx("grid gap-3", className)}
+          disabled={disabled}
+          ref={ref}
+          {...props}
+        />
+      </RadioContext.Provider>
+    );
+  },
+);
 Radio.displayName = "Radio";
 
 const RadioItem: FunctionComponent<
@@ -82,8 +84,8 @@ const RadioButton = React.forwardRef<
     <RadioPrimitive.Root
       ref={ref}
       className={clx(
-        "shadow-button hover:border-otl-gray-300 border-otl-gray-200 inline-flex aspect-square shrink-0 rounded-full border",
-        "focus-visible:ring-fr-primary focus:outline-none focus-visible:ring-4 focus-visible:ring-opacity-40",
+        "hover:border-otl-control-hover border-otl-control inline-flex aspect-square shrink-0 rounded-full border",
+        "focus-visible:ring-fr-primary focus-visible:ring-opacity-40 focus:outline-none focus-visible:ring-4",
         "data-[disabled]:bg-bg-washed data-[disabled]:cursor-not-allowed",
         "data-[checked]:bg-primary-600 data-[checked]:border-none",
         "data-[checked]:data-[disabled]:bg-primary-600 data-[checked]:data-[disabled]:opacity-30",

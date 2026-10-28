@@ -492,8 +492,8 @@ const RadioColumn = <TData extends Record<string, any>>() => {
     cell: ({ row }) => (
       <div
         className={clx(
-          "shadow-button hover:border-otl-gray-300 border-otl-gray-200 flex aspect-square size-4 items-center justify-center rounded-full border",
-          "focus-within:ring-fr-primary focus-within:ring-4 focus-within:ring-opacity-40 focus:outline-none",
+          "hover:border-otl-control-hover border-otl-control flex aspect-square size-4 items-center justify-center rounded-full border",
+          "focus-within:ring-fr-primary focus-within:ring-opacity-40 focus-within:ring-4 focus:outline-none",
           "has-[:checked]:bg-primary-600 has-[:disabled]:has-[:checked]::bg-primary-600 has-[:checked]:border-none has-[:disabled]:opacity-30",
         )}
       >
@@ -507,7 +507,7 @@ const RadioColumn = <TData extends Record<string, any>>() => {
           onClick={row.getToggleSelectedHandler()}
           className={clx(
             "disabled:bg-bg-washed relative h-full w-full disabled:cursor-not-allowed",
-            "before:bg-bg-white before:contents-[''] appearance-none before:absolute before:left-[5px] before:top-[5px] before:size-[6px] before:rounded-full",
+            "before:bg-bg-white before:contents-[''] appearance-none before:absolute before:top-[5px] before:left-[5px] before:size-[6px] before:rounded-full",
           )}
         />
       </div>

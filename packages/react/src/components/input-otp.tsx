@@ -45,7 +45,7 @@ InputOTP.displayName = "InputOTP";
 const slot_cva = cva(
   [
     "relative flex h-[68px] w-[50px] items-center justify-center rounded-md border bg-bg-white text-4xl font-medium text-txt-black-900 transition-all",
-    "border-otl-gray-200 group-has-[input[aria-invalid=true]]:border-otl-danger-300",
+    "border-otl-control group-has-[input[aria-invalid=true]]:border-otl-danger-300",
     "group-has-[:disabled]:bg-bg-washed group-has-[:disabled]:text-txt-black-500",
   ],
   {

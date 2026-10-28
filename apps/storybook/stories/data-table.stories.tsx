@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
-import { Cell, ColumnDef, DataTable } from "@mof-malaysia/myds-react/data-table";
+import {
+  Cell,
+  ColumnDef,
+  DataTable,
+} from "@mof-malaysia/myds-react/data-table";
 import type { TypeWithDeepControls } from "storybook-addon-deep-controls";
 import { Button } from "@mof-malaysia/myds-react/button";
 import { Tag } from "@mof-malaysia/myds-react/tag";
@@ -160,7 +164,7 @@ const meta: Meta<typeof DataTable> = {
         id: "action",
         header: "Action",
         cell: () => {
-          return <Button variant="default-outline">Edit</Button>;
+          return <Button variant="default-ghost">Edit</Button>;
         },
       },
     ] satisfies ColumnDef<EmployeeProps>[],
@@ -277,7 +281,7 @@ export const GroupedHeader: Story = createStory({
           id: "action",
           header: "Action",
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
         },
       ],
@@ -373,7 +377,7 @@ export const FixedHeader: Story = createStory({
           id: "action",
           header: "Action",
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
         },
       ],
@@ -603,7 +607,7 @@ export const NestedRows: Story = createStory({
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
   ] satisfies ColumnDef<EmployeeProps>[],
@@ -658,7 +662,7 @@ export const Footer: Story = createStory({
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
   ] satisfies ColumnDef<EmployeeProps>[],
@@ -707,77 +711,77 @@ export const PinnedColumns: Story = createStory({
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
     {
       id: "action",
       header: "Action",
       cell: () => {
-        return <Button variant="default-outline">Edit</Button>;
+        return <Button variant="default-ghost">Edit</Button>;
       },
     },
   ] satisfies ColumnDef<EmployeeProps>[],

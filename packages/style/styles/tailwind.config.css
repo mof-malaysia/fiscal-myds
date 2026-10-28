@@ -51,8 +51,7 @@
 
   /* === Font Families === */
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* === Colors (using CSS variables from color.css) === */
@@ -220,6 +219,8 @@
 
   /* Semantic outline colors */
   --color-otl-divider: rgb(var(--otl-divider));
+  --color-otl-control: rgb(var(--otl-control));
+  --color-otl-control-hover: rgb(var(--otl-control-hover));
   --color-otl-gray-200: rgb(var(--otl-gray-200));
   --color-otl-gray-300: rgb(var(--otl-gray-300));
   --color-otl-primary-disabled: rgb(var(--otl-primary-disabled));
@@ -245,9 +246,10 @@
   --duration-600: 600ms;
 
   /* === Box Shadows === */
-  --shadow-button: 0px 1px 3px 0px rgba(0, 0, 0, 0.07);
-  --shadow-card: 0px 2px 6px 0px rgba(0, 0, 0, 0.05), 0px 6px 24px 0px rgba(0, 0, 0, 0.05);
-  --shadow-context-menu: 0px 2px 6px 0px rgba(0, 0, 0, 0.05), 0px 12px 50px 0px rgba(0, 0, 0, 0.10);
+  /* Flat at rest: shadows only for layers that float (DESIGN.md, Elevation) */
+  --shadow-card: 0 1px 2px rgba(22, 27, 34, 0.06), 0 8px 24px rgba(22, 27, 34, 0.08);
+  --shadow-context-menu: 0 1px 2px rgba(22, 27, 34, 0.06), 0 8px 24px rgba(22, 27, 34, 0.08);
+  --shadow-dialog: 0 2px 4px rgba(22, 27, 34, 0.06), 0 24px 48px rgba(22, 27, 34, 0.14);
 
   /* === Transform Origins === */
   --transform-origin-tooltip-origin: var(--transform-origin);

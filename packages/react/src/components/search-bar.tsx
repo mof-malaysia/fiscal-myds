@@ -48,7 +48,7 @@ const SearchBar: FunctionComponent<SearchBarProps> = forwardRef(
 
 const search_bar_input_container_cva = cva(
   [
-    "flex items-center bg-bg-white border border-otl-gray-200 shadow-button",
+    "flex items-center bg-bg-white border border-otl-control",
     "has-[input:focus]:ring has-[input:focus]:ring-otl-primary-200 has-[input:focus]:border-otl-primary-300",
   ],
   {
