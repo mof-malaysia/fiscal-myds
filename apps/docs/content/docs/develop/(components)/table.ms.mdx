@@ -450,6 +450,180 @@ Anda boleh menambah footer pada jadual menggunakan komponen `TableFooter`.
   </Tab>
 </Tabs>
 
+### Amaun
+
+Tambah `numeric` pada `TableHead` dan setiap `TableCell` dalam lajur amaun atau bilangan. Lajur tersebut dijajarkan ke kanan dengan angka tabular, supaya digit sejajar dan mudah dibandingkan.
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton">
+    <div className="not-prose flex flex-col items-center gap-3">
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Rujukan</TableHead>
+          <TableHead>Keterangan</TableHead>
+          <TableHead>Tarikh</TableHead>
+          <TableHead numeric>Amaun (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Duti setem, perjanjian sewa</TableCell>
+          <TableCell>3 Mac 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Pembaharuan lesen perniagaan</TableCell>
+          <TableCell>14 Mac 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Penalti lewat fail, Borang C</TableCell>
+          <TableCell>28 Mac 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Ansuran 4 daripada 12, anggaran cukai</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Rujukan</TableHead>
+          <TableHead>Keterangan</TableHead>
+          <TableHead>Tarikh</TableHead>
+          <TableHead numeric>Amaun (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Duti setem, perjanjian sewa</TableCell>
+          <TableCell>3 Mac 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Pembaharuan lesen perniagaan</TableCell>
+          <TableCell>14 Mac 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Penalti lewat fail, Borang C</TableCell>
+          <TableCell>28 Mac 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Ansuran 4 daripada 12, anggaran cukai</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    ```
+  </Tab>
+</Tabs>
+
+### Baris Dipilih
+
+Tetapkan `data-selected` pada `TableRow` untuk mengisinya dengan Blue Wash. Baris `Table` biasa tidak diserlahkan semasa dituding kerana jadual statik sering merentasi beberapa baris; untuk isihan, pilihan dan serlahan baris, gunakan [Data Table](./data-table).
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton">
+    <div className="not-prose flex flex-col items-center gap-3">
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Rujukan</TableHead>
+          <TableHead>Keterangan</TableHead>
+          <TableHead>Tarikh</TableHead>
+          <TableHead numeric>Amaun (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Duti setem, perjanjian sewa</TableCell>
+          <TableCell>3 Mac 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Pembaharuan lesen perniagaan</TableCell>
+          <TableCell>14 Mac 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow data-selected>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Penalti lewat fail, Borang C</TableCell>
+          <TableCell>28 Mac 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Ansuran 4 daripada 12, anggaran cukai</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Rujukan</TableHead>
+          <TableHead>Keterangan</TableHead>
+          <TableHead>Tarikh</TableHead>
+          <TableHead numeric>Amaun (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Duti setem, perjanjian sewa</TableCell>
+          <TableCell>3 Mac 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Pembaharuan lesen perniagaan</TableCell>
+          <TableCell>14 Mac 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow data-selected>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Penalti lewat fail, Borang C</TableCell>
+          <TableCell>28 Mac 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Ansuran 4 daripada 12, anggaran cukai</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    ```
+  </Tab>
+</Tabs>
+
 ### Skeleton Loading
 
 Anda boleh menggunakan komponen `TableSkeleton` untuk membuat keadaan pemuatan rangka untuk jadual.
@@ -599,6 +773,11 @@ Gunakan komponen `TableEmpty` untuk menunjukkan keadaan kosong.
 
 <TypeTable
   type={{
+    numeric: {
+      description: "Menjajarkan lajur ke kanan dengan angka tabular, untuk amaun dan bilangan",
+      type: "boolean",
+      default: "false",
+    },
     rowSpan: {
       description: "Bilangan baris yang sel akan merangkumi",
       type: "boolean",
@@ -616,10 +795,27 @@ Gunakan komponen `TableEmpty` untuk menunjukkan keadaan kosong.
   }}
 />
 
+### TableRow
+
+<TypeTable
+  type={{
+    "data-selected": {
+      description: "Mengisi baris dengan Blue Wash untuk menandakannya sebagai dipilih",
+      type: "boolean",
+      default: "false",
+    },
+  }}
+/>
+
 ### TableCell
 
 <TypeTable
   type={{
+    numeric: {
+      description: "Menjajarkan lajur ke kanan dengan angka tabular, untuk amaun dan bilangan",
+      type: "boolean",
+      default: "false",
+    },
     rowSpan: {
       description: "Bilangan baris yang sel akan merangkumi",
       type: "boolean",

@@ -338,7 +338,8 @@
   --ctl-field-lg: 1.125rem;
   --content-text: 1rem;
   --content-leading: 1.5rem;
-  --cell-py: 12px;
+  /* Table row height (DESIGN.md, Data Table); rows with controls grow to fit */
+  --row-h: 48px;
   --space-surface: 24px;
   --space-stack-lg: 24px;
   --space-stack-md: 16px;
@@ -360,7 +361,7 @@
   --ctl-field-lg: 1rem;
   --content-text: 0.875rem;
   --content-leading: 1.25rem;
-  --cell-py: 8px;
+  --row-h: 40px;
   --space-surface: 16px;
   --space-stack-lg: 16px;
   --space-stack-md: 12px;

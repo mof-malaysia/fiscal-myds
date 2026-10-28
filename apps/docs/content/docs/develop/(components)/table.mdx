@@ -450,6 +450,180 @@ You can add a footer to the table using the `TableFooter` component.
   </Tab>
 </Tabs>
 
+### Amounts
+
+Add `numeric` to the `TableHead` and every `TableCell` in a column of amounts or counts. The column is right-aligned in tabular figures, so the digits line up and are easy to compare.
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview">
+    <div className="not-prose flex flex-col items-center gap-3">
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Reference</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead numeric>Amount (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Stamp duty, tenancy agreement</TableCell>
+          <TableCell>3 Mar 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Business licence renewal</TableCell>
+          <TableCell>14 Mar 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Late filing penalty, Form C</TableCell>
+          <TableCell>28 Mar 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Instalment 4 of 12, tax estimate</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Reference</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead numeric>Amount (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Stamp duty, tenancy agreement</TableCell>
+          <TableCell>3 Mar 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Business licence renewal</TableCell>
+          <TableCell>14 Mar 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Late filing penalty, Form C</TableCell>
+          <TableCell>28 Mar 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Instalment 4 of 12, tax estimate</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    ```
+  </Tab>
+</Tabs>
+
+### Selected Rows
+
+Set `data-selected` on a `TableRow` to fill it with the Blue Wash. Plain `Table` rows don't highlight on hover, since static tables often span rows; for sorting, selection and row hover, use [Data Table](./data-table).
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview">
+    <div className="not-prose flex flex-col items-center gap-3">
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Reference</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead numeric>Amount (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Stamp duty, tenancy agreement</TableCell>
+          <TableCell>3 Mar 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Business licence renewal</TableCell>
+          <TableCell>14 Mar 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow data-selected>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Late filing penalty, Form C</TableCell>
+          <TableCell>28 Mar 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Instalment 4 of 12, tax estimate</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Reference</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead numeric>Amount (RM)</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>PAY-2025-1042</TableCell>
+          <TableCell>Stamp duty, tenancy agreement</TableCell>
+          <TableCell>3 Mar 2025</TableCell>
+          <TableCell numeric>120.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1043</TableCell>
+          <TableCell>Business licence renewal</TableCell>
+          <TableCell>14 Mar 2025</TableCell>
+          <TableCell numeric>1,250.00</TableCell>
+        </TableRow>
+        <TableRow data-selected>
+          <TableCell>PAY-2025-1051</TableCell>
+          <TableCell>Late filing penalty, Form C</TableCell>
+          <TableCell>28 Mar 2025</TableCell>
+          <TableCell numeric>300.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>PAY-2025-1066</TableCell>
+          <TableCell>Instalment 4 of 12, tax estimate</TableCell>
+          <TableCell>15 Apr 2025</TableCell>
+          <TableCell numeric>2,416.67</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    ```
+  </Tab>
+</Tabs>
+
 ### Skeleton Loading
 
 You can use the `TableSkeleton` component to create a skeleton loading state for the table.
@@ -599,6 +773,11 @@ Use the `TableEmpty` component to show the empty state.
 
 <TypeTable
   type={{
+    numeric: {
+      description: "Right-aligns the column in tabular figures, for amounts and counts",
+      type: "boolean",
+      default: "false",
+    },
     rowSpan: {
       description: "Number of rows that the cell is to span",
       type: "boolean",
@@ -616,10 +795,27 @@ Use the `TableEmpty` component to show the empty state.
   }}
 />
 
+### TableRow
+
+<TypeTable
+  type={{
+    "data-selected": {
+      description: "Fills the row with the Blue Wash to mark it as selected",
+      type: "boolean",
+      default: "false",
+    },
+  }}
+/>
+
 ### TableCell
 
 <TypeTable
   type={{
+    numeric: {
+      description: "Right-aligns the column in tabular figures, for amounts and counts",
+      type: "boolean",
+      default: "false",
+    },
     rowSpan: {
       description: "Number of rows that the cell is to span",
       type: "boolean",

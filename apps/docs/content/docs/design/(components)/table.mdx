@@ -8,11 +8,11 @@ import { s3 } from "@/lib/constant";
 ![table-anatomy.png](/design/table-anatomy.png)
 
 1. **Header**: Title of the column, providing clear context for the data beneath.
-2. **Expand column button**: Initially hidden, this button appears when the user hovers over the entire column. Clicking it expands the column horizontally, revealing longer descriptions for better readability.
+2. **Expand column button**: Initially hidden, this quiet toggle appears when the user hovers over the column header. Clicking it expands the column horizontally, revealing longer descriptions for better readability.
 3. **Tooltip**: Hover on this icon to show tooltips. Useful to explain the role of the table column.
-4. **Sort column button**: Initially hidden, this button appears on hover over the column. Clicking it toggles between ascending and descending order for easy data sorting.
+4. **Sortable header**: The header label itself is the sort button. Clicking it toggles between ascending and descending order, and an arrow beside the label shows the direction.
 5. **Cell for Text**: Left-aligned by default
-6. **Cell for Button**: Contains action buttons aligned left, allowing users to take specific actions for each row.
+6. **Cell for Button**: Contains row actions aligned left, allowing users to take specific actions for each row. Use ghost buttons (or a single overflow menu), not a column of outlined buttons.
 7. **Cell for Status Pill**: Displays a colour-coded status indicator (pill) aligned left, providing a quick visual reference for the status of each row
 8. **Skeleton Loader**: An animated placeholder element that mimics the layout of content while data is loading, giving users a visual cue that content is on the way. It improves the perceived loading time by reducing abrupt transitions.
 
@@ -21,7 +21,7 @@ import { s3 } from "@/lib/constant";
 ![table-usage.png](/design/table-usage.png)
 
 1. **Cell with text aligned center**: For visual balance, often used for headings or key information to draw attention.
-2. **Cell with numbers aligned right**: Aligns numerical data to the right for easy comparison and ensures decimal points line up, enhancing readability of financial or statistical information.
+2. **Cell with numbers aligned right**: Aligns numerical data to the right in tabular figures for easy comparison and ensures decimal points line up, enhancing readability of financial or statistical information. Mark both the header and the cells of the column as numeric.
 3. **Cell with row span**: Occupies two rows or more vertically, consolidating related data and reducing redundancy. Useful for representing information relevant to multiple rows, improving table clarity.
 
 ### Expand column
@@ -32,7 +32,7 @@ import { s3 } from "@/lib/constant";
   </video>
 </figure>
 
-When expanded, keep header underlined and show collapse button.
+When expanded, keep the collapse button visible in the header.
 
 ### Sort column
 
@@ -42,7 +42,10 @@ When expanded, keep header underlined and show collapse button.
   </video>
 </figure>
 
-By default, first click sorts the column in descending order. Then, sort in
-ascending on next click.
+Click the header label to sort the column, and click again to reverse the order.
 
-When sorted, keep header underlined and show sort button.
+When sorted, the header label turns Ink and the arrow stays visible to show the direction.
+
+## Row states
+
+Plain tables have no row hover, since static tables often span rows. Interactive tables highlight the row under the pointer in Well, fill selected rows with the Blue Wash, and mark the edge of pinned columns with a Hairline.
