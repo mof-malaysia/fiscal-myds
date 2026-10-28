@@ -20,7 +20,7 @@ import {
   TrophyIcon,
   UserIcon,
 } from "@mof-malaysia/myds-react/icon";
-import { Pill } from "@mof-malaysia/myds-react/pill";
+import { Kbd } from "@mof-malaysia/myds-react/kbd";
 
 /**
  * ### Overview
@@ -45,7 +45,7 @@ import { Pill } from "@mof-malaysia/myds-react/pill";
  *   <SearchBarInputContainer>
  *     <SearchBarInput value={query} onValueChange={setQuery} />
  *     <SearchBarHint>
- *       Press <Pill size="small">/</Pill> to search
+ *       Press <Kbd combo="/" /> to search
  *     </SearchBarHint>
  *     <SearchBarClearButton />
  *     <SearchBarSearchButton />
@@ -150,7 +150,7 @@ const DemoBasicSearchBar = (props: ComponentProps<typeof SearchBar>) => {
           !hasFocus &&
           props.size === "large" && (
             <SearchBarHint className="hidden lg:flex">
-              Press <Pill size="small">/</Pill> to search
+              Press <Kbd combo="/" /> to search
             </SearchBarHint>
           )
         )}
@@ -225,7 +225,7 @@ const DemoGroupedSearchBar = (props: ComponentProps<typeof SearchBar>) => {
           !hasFocus &&
           props.size === "large" && (
             <SearchBarHint className="hidden lg:flex">
-              Press <Pill size="small">/</Pill> to search
+              Press <Kbd combo="/" /> to search
             </SearchBarHint>
           )
         )}

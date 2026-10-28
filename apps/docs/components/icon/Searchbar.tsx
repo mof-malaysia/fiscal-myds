@@ -14,7 +14,7 @@ import {
   SearchBarClearButton,
   SearchBarHint,
 } from "@mof-malaysia/myds-react/search-bar";
-import { Pill } from "@mof-malaysia/myds-react/pill";
+import { Kbd } from "@mof-malaysia/myds-react/kbd";
 import { SearchContext } from "./SearchProvider";
 import { getRosetta } from "@/locales/_server";
 import { useParams } from "next/navigation";
@@ -72,8 +72,7 @@ const SearchBarIcon: FunctionComponent = () => {
         {query && <SearchBarClearButton onClick={() => setQuery("")} />}
         {!hasFocus && (
           <SearchBarHint className="hidden sm:flex">
-            {t("searchbar.press")} <Pill size="small">/</Pill>{" "}
-            {t("searchbar.tosearch")}
+            {t("searchbar.press")} <Kbd combo="/" /> {t("searchbar.tosearch")}
           </SearchBarHint>
         )}
         <SearchBarSearchButton />

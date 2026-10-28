@@ -54,7 +54,7 @@ export default () => <Pill>Trending</Pill>;
 
 ### Size
 
-Use the `size` prop to change the pill size.
+Use the `size` prop to change the pill size. Sizes follow the page density, a step taller than `Tag` so the "x" is easy to hit: `small` is 13px in either density, `medium` (default) is 14px in comfortable and 13px in compact, and `large` is 16px in comfortable and 14px in compact.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview" className="not-prose flex justify-center items-end gap-1">
@@ -122,7 +122,7 @@ Pill can be disabled by setting the `disabled` prop to `true`. When disabled, th
       description: "Sizes of the pill",
       type: "enum",
       typeDescription: "small | medium | large",
-      default: "small",
+      default: "medium",
     },
     disabled: {
       type: "boolean",
@@ -132,6 +132,11 @@ Pill can be disabled by setting the `disabled` prop to `true`. When disabled, th
       description:
         'A callback function that is called when the trailing "x" button is clicked',
       type: "function",
+    },
+    dismissLabel: {
+      description:
+        'Accessible name of the "x" button. Defaults to "Remove {children}" when the children are plain text; set it for other content and for Bahasa Melayu.',
+      type: "string",
     },
   }}
 />

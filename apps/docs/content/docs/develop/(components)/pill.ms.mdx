@@ -54,7 +54,7 @@ export default () => <Pill>Trending</Pill>;
 
 ### Size
 
-Gunakan prop `size` untuk menukar saiz pil.
+Gunakan prop `size` untuk menukar saiz pil. Saiz mengikut kepadatan halaman, selangkah lebih tinggi daripada `Tag` supaya butang "x" mudah ditekan: `small` ialah 13px dalam mana-mana kepadatan, `medium` (lalai) ialah 14px dalam kepadatan selesa dan 13px dalam kepadatan padat, dan `large` ialah 16px dalam kepadatan selesa dan 14px dalam kepadatan padat.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview" className="not-prose flex justify-center items-end gap-1">
@@ -122,7 +122,7 @@ Pil boleh dinyahaktifkan dengan menetapkan prop `disabled` kepada `true`. Apabil
       description: "Saiz pill",
       type: "enum",
       typeDescription: "small | medium | large",
-      default: "small",
+      default: "medium",
     },
     disabled: {
       type: "boolean",
@@ -132,6 +132,11 @@ Pil boleh dinyahaktifkan dengan menetapkan prop `disabled` kepada `true`. Apabil
       description:
         'Callback function yang dipanggil apabila butang "x" mengekori diklik',
       type: "function",
+    },
+    dismissLabel: {
+      description:
+        'Nama boleh akses butang "x". Lalai kepada "Remove {children}" apabila kandungan ialah teks biasa; tetapkan untuk kandungan lain dan untuk Bahasa Melayu, contohnya "Buang Diluluskan".',
+      type: "string",
     },
   }}
 />
