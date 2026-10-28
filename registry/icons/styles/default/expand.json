@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "expand",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/expand.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Expand Icon\n * @param className\n * @returns ExpandIcon\n */\nexport const ExpandIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/expand\">\n        <path\n          id=\"Vector\"\n          d=\"M3 3V6.81818M3 3H6.81818M3 3L7.45455 7.45455M3 17V13.1818M3 17H6.81818M3 17L7.45455 12.5455M17 3H13.1818M17 3V6.81818M17 3L12.5455 7.45455M17 17H13.1818M17 17V13.1818M17 17L12.5455 12.5455\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

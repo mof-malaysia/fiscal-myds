@@ -17,7 +17,7 @@ import { TextArea } from "@mof-malaysia/myds-react/textarea";
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 
 <TextArea placeholder="Placeholder text displayed when the text area is empty." 
 size={'small'}
@@ -29,16 +29,24 @@ size={'small'}
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-textarea--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-textarea--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/textarea.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/textarea.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/textarea.json
+```
 
 ## Usage
 
 ```ts copy title="Import"
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 ```
 
 ```tsx copy title="Anatomy"
@@ -70,7 +78,7 @@ Controls the input field's size variant. Supports `small`, `medium`, or `large`.
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 
 /\*_ Size props_/
 
@@ -98,7 +106,7 @@ The `disabled` props can be used to disable user input and applies a visual styl
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 
 /\*_ Size props_/
 

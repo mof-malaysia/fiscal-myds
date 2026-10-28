@@ -5,7 +5,7 @@
   "components": [
     {
       "name": "base-styles",
-      "type": "components:style",
+      "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -14,7 +14,7 @@
     },
     {
       "name": "colors",
-      "type": "components:style",
+      "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -23,27 +23,21 @@
     },
     {
       "name": "myds-init",
-      "type": "components:style",
+      "type": "registry:file",
       "dependencies": [],
-      "registryDependencies": [
-        "colors",
-        "theme-light",
-        "theme-dark",
-        "theme-config",
-        "base-styles"
-      ],
+      "registryDependencies": [],
       "files": [
         "styles/default/myds-init.json"
       ]
     },
     {
       "name": "theme-config",
-      "type": "components:style",
+      "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [
-        "colors",
-        "theme-light",
-        "theme-dark"
+        "https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/colors.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-light.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-dark.json"
       ],
       "files": [
         "styles/default/theme-config.json"
@@ -51,10 +45,10 @@
     },
     {
       "name": "theme-dark",
-      "type": "components:style",
+      "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [
-        "colors"
+        "https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/colors.json"
       ],
       "files": [
         "styles/default/theme-dark.json"
@@ -62,10 +56,10 @@
     },
     {
       "name": "theme-light",
-      "type": "components:style",
+      "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [
-        "colors"
+        "https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/colors.json"
       ],
       "files": [
         "styles/default/theme-light.json"

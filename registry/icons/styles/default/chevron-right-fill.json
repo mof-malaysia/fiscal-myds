@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "chevron-right-fill",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/chevron-right-fill.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * ChevronRightFill Icon\n * @param className\n * @returns ChevronRightFillIcon\n */\nexport const ChevronRightFillIcon: FunctionComponent<\n  SVGProps<SVGSVGElement>\n> = (props) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/chevron-right-opaque\">\n        <path\n          id=\"Vector\"\n          d=\"M9.13388 5.36862C8.34643 4.58117 7 5.13887 7 6.25251V13.8383C7 14.9519 8.34643 15.5096 9.13388 14.7222L12.9268 10.9293C13.4149 10.4411 13.4149 9.64967 12.9268 9.16152L9.13388 5.36862Z\"\n          fill=\"currentColor\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

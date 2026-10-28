@@ -5,22 +5,17 @@ description: Panduan ringkas untuk memasang MYDS dalam aplikasi Vite.
 
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
-import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 
 ### Panduan Pemasangan
 
 <Steps>
   <Step>
     #### Bina projek Vite
-    ```sh title="terminal"
-    npm create vite@latest nama-projek -- --template react-ts
-    ```
-    Anda akan ditanya beberapa soalan. Pilih pilihan berikut:
 
-    ```sh title="terminal"
-    ✔ Project name: … nama-projek
-    ✔ Select a framework: » React
-    ✔ Select a variant: » TypeScript
+    CLI shadcn boleh membina projek Vite + React + TypeScript yang telah ditetapkan dengan Tailwind CSS v4, alias import `@/` dan Base UI.
+
+    ```package-install
+    npx shadcn@latest init -t vite -n nama-projek
     ```
 
     Selepas projek dibuat, pergi ke induk projek:
@@ -29,32 +24,43 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
     ```
 
   </Step>
-  
+
   <Step>
-    #### Pasang pakej
+    #### Pasang gaya MYDS
 
     ```package-install
-    npm i @mof-malaysia/myds-react @mof-malaysia/myds-style
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
     ```
 
+    Arahan ini mencipta `styles/myds.css` di induk projek.
+
   </Step>
-  
+
   <Step>
     #### Konfigurasi stylesheet CSS
 
-    Anda boleh menetapkan gaya melalui salah satu daripada dua (2) kaedah yang disenaraikan di bawah.
-
-    __1. Import CSS__
+    Tambah fon MYDS di bahagian paling atas `src/index.css`, dan import `styles/myds.css` sejurus selepas Tailwind.
 
     ```css title="src/index.css"
-    @import "@mof-malaysia/myds-style/full.css";
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"); /* [!code ++] */
+    @import "tailwindcss";
+    @import "../styles/myds.css"; /* [!code ++] */
     ```
-
-    __2. Tailwind CSS__
 
     Sila baca [Konfigurasi Gaya](./style-configuration) untuk konfigurasi lanjutan.
 
-    </Step>
+  </Step>
+
+  <Step>
+    #### Tambah komponen
+
+    ```package-install
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
+    ```
+
+    `--overwrite` menggantikan `src/components/ui/button.tsx` yang dicipta oleh `shadcn init` dengan butang MYDS.
+
+  </Step>
 
   <Step>
     #### Mula menggunakan komponen!
@@ -62,7 +68,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
     Cubalah `<Button />` untuk memulakan membina dengan MYDS!
 
     ```tsx title="src/App.tsx"
-    import { Button } from "@mof-malaysia/myds-react/button";
+    import { Button } from "@/components/ui/button";
 
     function App() {
       return (
@@ -75,18 +81,6 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
     export default App;
     ```
 
-    ```tsx title="src/main.tsx"
-    import React from "react";
-    import ReactDOM from "react-dom/client";
-    import App from "./App";
-    import "./index.css";
-
-    ReactDOM.createRoot(document.getElementById("root")!).render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-    ```
-    </Step>
+  </Step>
 
 </Steps>

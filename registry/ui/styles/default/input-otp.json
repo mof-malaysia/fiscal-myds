@@ -1,27 +1,19 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
-  "type": "components:ui",
+  "type": "registry:ui",
   "dependencies": [
-    "class-variance-authority",
-    "input-otp"
+    "class-variance-authority@^0.7.1",
+    "input-otp@^1.4.2"
   ],
   "registryDependencies": [
-    "utils"
+    "https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/utils.json"
   ],
   "files": [
     {
       "path": "components/ui/input-otp.tsx",
-      "content": "import React, {\n  ComponentProps,\n  ComponentPropsWithoutRef,\n  ElementRef,\n} from \"react\";\nimport {\n  OTPInput as PrimitiveInputOTP,\n  OTPInputContext as PrimitiveInputOTPContext,\n} from \"input-otp\";\nimport { clx } from \"@/lib/utils\";\nimport { cva } from \"class-variance-authority\";\n\ninterface BaseInputOTPProps {\n  maxLength: number;\n  value?: string;\n  onChange?: (value: string) => void;\n  containerClassName?: string;\n  children: React.ReactNode;\n  invalid?: boolean;\n}\n\ninterface InputOTPProps\n  extends BaseInputOTPProps,\n    Omit<ComponentProps<\"input\">, keyof BaseInputOTPProps> {}\n\nconst InputOTP = React.forwardRef<\n  ElementRef<typeof PrimitiveInputOTP>,\n  InputOTPProps\n>(({ className, containerClassName, children, invalid, ...props }, ref) => (\n  <PrimitiveInputOTP\n    ref={ref}\n    containerClassName={clx(\n      \"group flex items-center gap-1.5\",\n      containerClassName,\n    )}\n    className={clx(\"disabled:cursor-not-allowed\", className)}\n    aria-invalid={invalid}\n    {...props}\n  >\n    {children}\n  </PrimitiveInputOTP>\n));\nInputOTP.displayName = \"InputOTP\";\n\nconst slot_cva = cva(\n  [\n    \"relative flex h-[68px] w-[50px] items-center justify-center rounded-md border bg-bg-white text-4xl font-medium text-txt-black-900 transition-all\",\n    \"border-otl-gray-200 group-has-[input[aria-invalid=true]]:border-otl-danger-300\",\n    \"group-has-[:disabled]:bg-bg-washed group-has-[:disabled]:text-txt-black-500\",\n  ],\n  {\n    variants: {\n      active: {\n        true: \"z-10 border-otl-primary-300 ring ring-otl-primary-200 group-has-[input[aria-invalid=true]]:ring-otl-danger-200\",\n        false: \"\",\n      },\n    },\n    defaultVariants: {},\n  },\n);\n\nconst InputOTPSlot = React.forwardRef<\n  ElementRef<\"div\">,\n  ComponentPropsWithoutRef<\"div\"> & { index: number }\n>(({ index, className, ...props }, ref) => {\n  const { slots } = React.useContext(PrimitiveInputOTPContext);\n  const { char, hasFakeCaret, isActive } = slots[index]!;\n\n  return (\n    <div\n      ref={ref}\n      className={slot_cva({ active: isActive, className })}\n      {...props}\n    >\n      {char}\n      {hasFakeCaret && (\n        <div className=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n          <div className=\"animate-caret-blink bg-bg-black-900 h-11 w-px duration-1000\" />\n        </div>\n      )}\n    </div>\n  );\n});\nInputOTPSlot.displayName = \"InputOTPSlot\";\n\nexport { InputOTP, InputOTPSlot };\n",
-      "type": "components:ui"
+      "content": "import React, {\n  ComponentProps,\n  ComponentPropsWithoutRef,\n  ElementRef,\n} from \"react\";\nimport {\n  OTPInput as PrimitiveInputOTP,\n  OTPInputContext as PrimitiveInputOTPContext,\n} from \"input-otp\";\nimport { clx } from \"@/lib/myds/utils\";\nimport { cva } from \"class-variance-authority\";\n\ninterface BaseInputOTPProps {\n  maxLength: number;\n  value?: string;\n  onChange?: (value: string) => void;\n  containerClassName?: string;\n  children: React.ReactNode;\n  invalid?: boolean;\n}\n\ninterface InputOTPProps\n  extends BaseInputOTPProps,\n    Omit<ComponentProps<\"input\">, keyof BaseInputOTPProps> {}\n\nconst InputOTP = React.forwardRef<\n  ElementRef<typeof PrimitiveInputOTP>,\n  InputOTPProps\n>(({ className, containerClassName, children, invalid, ...props }, ref) => (\n  <PrimitiveInputOTP\n    ref={ref}\n    containerClassName={clx(\n      \"group flex items-center gap-1.5\",\n      containerClassName,\n    )}\n    className={clx(\"disabled:cursor-not-allowed\", className)}\n    aria-invalid={invalid}\n    {...props}\n  >\n    {children}\n  </PrimitiveInputOTP>\n));\nInputOTP.displayName = \"InputOTP\";\n\nconst slot_cva = cva(\n  [\n    \"relative flex h-[68px] w-[50px] items-center justify-center rounded-md border bg-bg-white text-4xl font-medium text-txt-black-900 transition-all\",\n    \"border-otl-gray-200 group-has-[input[aria-invalid=true]]:border-otl-danger-300\",\n    \"group-has-[:disabled]:bg-bg-washed group-has-[:disabled]:text-txt-black-500\",\n  ],\n  {\n    variants: {\n      active: {\n        true: \"z-10 border-otl-primary-300 ring ring-otl-primary-200 group-has-[input[aria-invalid=true]]:ring-otl-danger-200\",\n        false: \"\",\n      },\n    },\n    defaultVariants: {},\n  },\n);\n\nconst InputOTPSlot = React.forwardRef<\n  ElementRef<\"div\">,\n  ComponentPropsWithoutRef<\"div\"> & { index: number }\n>(({ index, className, ...props }, ref) => {\n  const { slots } = React.useContext(PrimitiveInputOTPContext);\n  const { char, hasFakeCaret, isActive } = slots[index]!;\n\n  return (\n    <div\n      ref={ref}\n      className={slot_cva({ active: isActive, className })}\n      {...props}\n    >\n      {char}\n      {hasFakeCaret && (\n        <div className=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n          <div className=\"animate-caret-blink bg-bg-black-900 h-11 w-px duration-1000\" />\n        </div>\n      )}\n    </div>\n  );\n});\nInputOTPSlot.displayName = \"InputOTPSlot\";\n\nexport { InputOTP, InputOTPSlot };\n",
+      "type": "registry:ui"
     }
-  ],
-  "tailwind": {
-    "config": {
-      "theme": {
-        "extend": {
-          "colors": {}
-        }
-      }
-    }
-  }
+  ]
 }

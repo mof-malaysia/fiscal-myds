@@ -21,18 +21,12 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton" className="not-prose flex justify-center">
     <AlertDialog variant="success">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">Buka Dialog Amaran</Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog Amaran</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -40,18 +34,12 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   <Tab value="Kod">
     ```tsx
     <AlertDialog variant="success">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">Buka Dialog Amaran</Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog Amaran</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -62,11 +50,19 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-alertdialog--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-alertdialog--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/alert-dialog.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/alert-dialog.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/alert-dialog.json
+```
 
 ## Penggunaan
 
@@ -79,7 +75,7 @@ import {
   AlertDialogTrigger,
   AlertDialogAction,
   AlertDialogClose,
-} from "@mof-malaysia/myds-react/alert-dialog";
+} from "@/components/ui/alert-dialog";
 ```
 
 ```tsx copy title="Anatomi" title="Anatomi"
@@ -111,92 +107,72 @@ Gunakan prop `variant` untuk menetapkan tema dialog amaran. Variasi lalai adalah
     <Tab value="Pratonton">
         <div className="not-prose flex justify-center items-center gap-3">
             <AlertDialog variant="default">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Default</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Default</AlertDialogTrigger>
             <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
             <AlertDialog variant="info">
-            <AlertDialogTrigger>
-                <Button variant="primary-fill">Info</Button>
-            </AlertDialogTrigger>
+            <AlertDialogTrigger render={<Button variant="primary-fill" />}>Info</AlertDialogTrigger>
             <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
             <AlertDialog variant="success">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Success</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Success</AlertDialogTrigger>
             <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
             <AlertDialog variant="warning">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Warning</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Warning</AlertDialogTrigger>
             <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
             <AlertDialog variant="danger">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Danger</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Danger</AlertDialogTrigger>
             <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
@@ -207,95 +183,75 @@ Gunakan prop `variant` untuk menetapkan tema dialog amaran. Variasi lalai adalah
         ```tsx
         // Default
          <AlertDialog variant="default">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Default</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Default</AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                 <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
         // Info
             <AlertDialog variant="info">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Info</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Info</AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                 <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
                 <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                 </AlertDialogAction>
             </AlertDialogContent>
         </AlertDialog>
 
         // Success
             <AlertDialog variant="success">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Success</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Success</AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
                     <AlertDialogAction>
-                        <AlertDialogClose>
-                            <Button variant="default-outline">Tindakan Sekunder</Button>
+                        <AlertDialogClose render={<Button variant="default-outline" />}>
+                          Tindakan Sekunder
                         </AlertDialogClose>
-                        <AlertDialogClose>
-                            <Button variant="primary-fill">Tindakan Utama</Button>
-                        </AlertDialogClose>
+                        <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
 
             // Warning
             <AlertDialog variant="warning">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Warning</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Warning</AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
                     <AlertDialogAction>
-                        <AlertDialogClose>
-                            <Button variant="default-outline">Tindakan Sekunder</Button>
+                        <AlertDialogClose render={<Button variant="default-outline" />}>
+                          Tindakan Sekunder
                         </AlertDialogClose>
-                        <AlertDialogClose>
-                            <Button variant="primary-fill">Tindakan Utama</Button>
-                        </AlertDialogClose>
+                        <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
 
             // Danger
             <AlertDialog variant="danger">
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Danger</Button>
-                </AlertDialogTrigger>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>Danger</AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
                     <AlertDialogAction>
-                        <AlertDialogClose>
-                            <Button variant="default-outline">Tindakan Sekunder</Button>
+                        <AlertDialogClose render={<Button variant="default-outline" />}>
+                          Tindakan Sekunder
                         </AlertDialogClose>
-                        <AlertDialogClose>
-                            <Button variant="primary-fill">Tindakan Utama</Button>
-                        </AlertDialogClose>
+                        <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
@@ -307,32 +263,22 @@ Gunakan prop `variant` untuk menetapkan tema dialog amaran. Variasi lalai adalah
 
 ### Pencetus
 
-Gunakan `AlertDialogTrigger` untuk membungkus elemen pencetus yang membuka dialog. Contoh di bawah menunjukkan tiga (3) butang yang membuka dialog amaran yang sama.
+Gunakan `AlertDialogTrigger` untuk membuka dialog. Hantar elemen anda sendiri melalui prop `render`, contohnya `render={<Button />}`, untuk menggunakannya sebagai pencetus. Contoh di bawah menunjukkan tiga (3) butang yang membuka dialog amaran yang sama.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
     <div className="not-prose flex flex-col items-center gap-3">
       <AlertDialog variant="success">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Buka Dialog Amaran 1</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-          <Button variant="primary-outline">Buka Dialog Amaran 2</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-          <Button variant="primary-ghost">Buka Dialog Amaran 3</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog Amaran 1</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-outline" />}>Buka Dialog Amaran 2</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-ghost" />}>Buka Dialog Amaran 3</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
           <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -342,25 +288,15 @@ Gunakan `AlertDialogTrigger` untuk membungkus elemen pencetus yang membuka dialo
   <Tab value="Kod">
     ```tsx
     <AlertDialog variant="success">
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Buka Dialog Amaran 1</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-            <Button variant="primary-outline">Buka Dialog Amaran 2</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-            <Button variant="primary-ghost">Buka Dialog Amaran 3</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog Amaran 1</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-outline" />}>Buka Dialog Amaran 2</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-ghost" />}>Buka Dialog Amaran 3</AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
             <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
             <AlertDialogAction>
-            <AlertDialogClose>
-                <Button variant="default-outline">Tindakan Sekunder</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-                <Button variant="primary-fill">Tindakan Utama</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
@@ -381,19 +317,17 @@ Untuk menggunakan dialog amaran dalam keadaan terkawal, gunakan prop `open` dan 
         <div>
             Tidak Terkawal
             <AlertDialog variant="success" defaultOpen={false}>
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Buka Dialog (Tidak Terkawal)</Button>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+                  Buka Dialog (Tidak Terkawal)
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
                     <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
@@ -401,20 +335,18 @@ Untuk menggunakan dialog amaran dalam keadaan terkawal, gunakan prop `open` dan 
         <div>
             Terkawal
             <AlertDialog variant="success" open={false}>
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Buka Dialog (Terkawal)</Button>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+                  Buka Dialog (Terkawal)
                 </AlertDialogTrigger>
                
                 <AlertDialogContent>
                     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
                     <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
                     <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Tindakan Sekunder</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Tindakan Sekunder
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Tindakan Utama</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
@@ -426,39 +358,27 @@ Untuk menggunakan dialog amaran dalam keadaan terkawal, gunakan prop `open` dan 
     ```tsx
     // Keadaan Tidak Terkawal
     <AlertDialog variant="success" defaultOpen={false}>
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Buka Dialog (Tidak Terkawal)</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog (Tidak Terkawal)</AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
             <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
             <AlertDialogAction>
-            <AlertDialogClose>
-                <Button variant="default-outline">Tindakan Sekunder</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-                <Button variant="primary-fill">Tindakan Utama</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
 
     // Keadaan Terkawal
     <AlertDialog variant="success" open={false}>
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Buka Dialog (Terkawal)</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog (Terkawal)</AlertDialogTrigger>
 
         <AlertDialogContent>
             <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
             <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
             <AlertDialogAction>
-            <AlertDialogClose>
-                <Button variant="default-outline">Tindakan Sekunder</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-                <Button variant="primary-fill">Tindakan Utama</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
@@ -484,10 +404,8 @@ Anda boleh melampirkan fungsi panggilan balik kepada prop `onDismiss` untuk meng
   <Tab value="Kod">
     ```tsx
     <AlertDialog variant="warning">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">
-          Dialog Amaran Boleh Dismiss + onDismiss
-        </Button>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+        Dialog Amaran Boleh Dismiss + onDismiss
       </AlertDialogTrigger>
       <AlertDialogContent
         dismissible={true}
@@ -499,12 +417,8 @@ Anda boleh melampirkan fungsi panggilan balik kepada prop `onDismiss` untuk meng
         </AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -523,19 +437,15 @@ Anda boleh menetapkan `align` kepada `DialogAction` untuk menjajarkan anak-anak 
       <div>
         Mula
         <AlertDialog variant="danger">
-          <AlertDialogTrigger>
-              <Button variant="primary-fill">Jajarkan Dialog Amaran (mula)</Button>
+          <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+            Jajarkan Dialog Amaran (mula)
           </AlertDialogTrigger>
           <AlertDialogContent>
               <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
               <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
               <AlertDialogAction align="start">
-                <AlertDialogClose>
-                    <Button variant="default-outline">Tindakan Sekunder</Button>
-                </AlertDialogClose>
-                <AlertDialogClose>
-                    <Button variant="primary-fill">Tindakan Utama</Button>
-                </AlertDialogClose>
+                <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+                <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
               </AlertDialogAction>
           </AlertDialogContent>
         </AlertDialog>
@@ -543,19 +453,15 @@ Anda boleh menetapkan `align` kepada `DialogAction` untuk menjajarkan anak-anak 
       <div>
         Penuh
         <AlertDialog variant="danger">
-          <AlertDialogTrigger>
-              <Button variant="primary-fill">Jajarkan Dialog Amaran (penuh)</Button>
+          <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+            Jajarkan Dialog Amaran (penuh)
           </AlertDialogTrigger>
           <AlertDialogContent>
               <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
               <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
               <AlertDialogAction align="full">
-                <AlertDialogClose>
-                    <Button variant="default-outline">Tindakan Sekunder</Button>
-                </AlertDialogClose>
-                <AlertDialogClose>
-                    <Button variant="primary-fill">Tindakan Utama</Button>
-                </AlertDialogClose>
+                <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+                <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
               </AlertDialogAction>
           </AlertDialogContent>
       </AlertDialog>
@@ -564,19 +470,15 @@ Anda boleh menetapkan `align` kepada `DialogAction` untuk menjajarkan anak-anak 
       <div>
         Akhir
         <AlertDialog variant="danger">
-          <AlertDialogTrigger>
-              <Button variant="primary-fill">Jajarkan Dialog Amaran (akhir)</Button>
+          <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+            Jajarkan Dialog Amaran (akhir)
           </AlertDialogTrigger>
           <AlertDialogContent>
               <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
               <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
               <AlertDialogAction align="end">
-                <AlertDialogClose>
-                    <Button variant="default-outline">Tindakan Sekunder</Button>
-                </AlertDialogClose>
-                <AlertDialogClose>
-                    <Button variant="primary-fill">Tindakan Utama</Button>
-                </AlertDialogClose>
+                <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+                <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
               </AlertDialogAction>
           </AlertDialogContent>
       </AlertDialog>
@@ -588,19 +490,13 @@ Anda boleh menetapkan `align` kepada `DialogAction` untuk menjajarkan anak-anak 
 ```tsx
 // Mula
  <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-      <Button variant="primary-fill">Jajarkan Dialog Amaran (mula)</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog Amaran (mula)</AlertDialogTrigger>
   <AlertDialogContent>
       <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
       <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
       <AlertDialogAction align="start">
-        <AlertDialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-        </AlertDialogClose>
-        <AlertDialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-        </AlertDialogClose>
+        <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+        <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
       </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>
@@ -608,21 +504,15 @@ Anda boleh menetapkan `align` kepada `DialogAction` untuk menjajarkan anak-anak 
 // Penuh
 
 <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-    <Button variant="primary-fill">Jajarkan Dialog Amaran (penuh)</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog Amaran (penuh)</AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
     <AlertDialogDescription>
       Kandungan dialog amaran di sini.
     </AlertDialogDescription>
     <AlertDialogAction align="full">
-      <AlertDialogClose>
-        <Button variant="default-outline">Tindakan Sekunder</Button>
-      </AlertDialogClose>
-      <AlertDialogClose>
-        <Button variant="primary-fill">Tindakan Utama</Button>
-      </AlertDialogClose>
+      <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+      <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
     </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>
@@ -630,21 +520,15 @@ Anda boleh menetapkan `align` kepada `DialogAction` untuk menjajarkan anak-anak 
 // Akhir
 
 <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-    <Button variant="primary-fill">Jajarkan Dialog Amaran (akhir)</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog Amaran (akhir)</AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
     <AlertDialogDescription>
       Kandungan dialog amaran di sini.
     </AlertDialogDescription>
     <AlertDialogAction align="end">
-      <AlertDialogClose>
-        <Button variant="default-outline">Tindakan Sekunder</Button>
-      </AlertDialogClose>
-      <AlertDialogClose>
-        <Button variant="primary-fill">Tindakan Utama</Button>
-      </AlertDialogClose>
+      <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+      <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
     </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>
@@ -661,19 +545,15 @@ Anda boleh menambah tindakan khas kepada dialog dengan menggunakan prop `action`
   <Tab value="Pratonton">
     <div className="not-prose flex justify-center gap-3">
     <AlertDialog variant="danger">
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Tindakan Tambahan Dialog Amaran</Button>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+          Tindakan Tambahan Dialog Amaran
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
             <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
             <AlertDialogAction action={<Button variant="primary-ghost">Tertiari</Button>}>
-              <AlertDialogClose>
-                  <Button variant="default-outline">Tindakan Sekunder</Button>
-              </AlertDialogClose>
-              <AlertDialogClose>
-                  <Button variant="primary-fill">Tindakan Utama</Button>
-              </AlertDialogClose>
+              <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+              <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
@@ -683,19 +563,13 @@ Anda boleh menambah tindakan khas kepada dialog dengan menggunakan prop `action`
   <Tab value="Kod">
 ```tsx
 <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-      <Button variant="primary-fill">Tindakan Tambahan Dialog Amaran</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Tindakan Tambahan Dialog Amaran</AlertDialogTrigger>
   <AlertDialogContent>
       <AlertDialogTitle>Tajuk Dialog Amaran</AlertDialogTitle>
       <AlertDialogDescription>Kandungan dialog amaran di sini.</AlertDialogDescription>
       <AlertDialogAction action={<Button variant="primary-ghost">Tertiari</Button>}>
-        <AlertDialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-        </AlertDialogClose>
-        <AlertDialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-        </AlertDialogClose>
+        <AlertDialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</AlertDialogClose>
+        <AlertDialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</AlertDialogClose>
       </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>

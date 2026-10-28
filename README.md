@@ -15,33 +15,39 @@
 
 ### Quick Start
 
-MYDS v2 is distributed entirely via shadcn registry. No npm packages required!
+MYDS is distributed as a shadcn registry: the CLI copies the source into your project. No npm package to install. Components are built on [Base UI](https://base-ui.com), so use shadcn's default Base UI setup.
 
 ```bash
-# 1. Initialize shadcn in your project (if not already done)
+# 1. Initialise shadcn (Tailwind v4, `@/` alias, Base UI). For a new project: npx shadcn@latest init -t next -n my-app
 npx shadcn@latest init
 
-# 2. Install MYDS styles (Tailwind v4)
-npx shadcn@latest add myds-init --registry=https://mof-malaysia.github.io/fiscal-myds/registry/style
+# 2. Install MYDS styles -> creates styles/myds.css
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
 
-# 3. Install UI components
-npx shadcn@latest add button --registry=https://mof-malaysia.github.io/fiscal-myds/registry/ui
+# 3. Install UI components (dependencies, icons and hooks come along).
+#    --overwrite replaces the button.tsx that `shadcn init` created.
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
 
-# 4. Install icons
-npx shadcn@latest add chevron-down --registry=https://mof-malaysia.github.io/fiscal-myds/registry/icons
+# 4. Install a standalone icon
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-down.json
 ```
+
+Then import the styles in your global CSS:
+
+```css
+/* app/globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+@import "tailwindcss";
+@import "../styles/myds.css";
+```
+
+Every item lives at `https://mof-malaysia.github.io/fiscal-myds/registry/<ui|icons|style>/styles/default/<name>.json`. See the registry catalogs (`https://mof-malaysia.github.io/fiscal-myds/registry/ui/index.json`, `.../icons/index.json`, `.../style/index.json`) for the names.
 
 ### Style Installation Options
 
 #### Option A: Quick Setup (Recommended)
 
-Install all MYDS styles at once:
-
-```bash
-npx shadcn@latest add myds-init --registry=https://mof-malaysia.github.io/fiscal-myds/registry/style
-```
-
-This installs:
+`myds-init` writes a single `styles/myds.css` with:
 
 - Base color variables
 - Light theme semantic tokens
@@ -51,37 +57,26 @@ This installs:
 
 #### Option B: Granular Control
 
-Install individual style components:
+Install the parts individually. Each is written to `styles/myds/<name>.css`; import the ones you need instead of `styles/myds.css`:
 
 ```bash
-npx shadcn@latest add colors theme-light theme-dark theme-config base-styles --registry=https://mof-malaysia.github.io/fiscal-myds/registry/style
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/colors.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-light.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-dark.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-config.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/base-styles.json
 ```
 
-### Configure Multiple Registries
+### Where files go
 
-For easier installation, configure all registries in `components.json`:
-
-```json
-{
-  "registries": {
-    "style": "https://mof-malaysia.github.io/fiscal-myds/registry/style",
-    "ui": "https://mof-malaysia.github.io/fiscal-myds/registry/ui",
-    "icons": "https://mof-malaysia.github.io/fiscal-myds/registry/icons"
-  }
-}
-```
-
-Then install with registry keys:
-
-```bash
-npx shadcn add myds-init --registry-key=style
-npx shadcn add button --registry-key=ui
-npx shadcn add chevron-down --registry-key=icons
-```
+| Item | Installed to |
+| --- | --- |
+| UI components | `components/ui/<name>.tsx` |
+| Icons | `components/ui/icons/<name>.tsx` |
+| `utils` (`clx`) | `lib/myds/utils/` (leaves shadcn's `lib/utils.ts` alone) |
+| `hooks` | `lib/myds/hooks/` |
+| Styles | `styles/myds.css` or `styles/myds/*.css` |
 
 ### Requirements
 
-- **Tailwind CSS v4**: `npm install tailwindcss@^4.0.0`
+- **shadcn CLI with Base UI**: `npx shadcn@latest init` (the default `base` library)
+- **Tailwind CSS v4**
 - **React 18+**: Components are built for React 18 or 19
 - **TypeScript**: Recommended for best experience
 
@@ -119,41 +114,6 @@ See [REGISTRY.md](./REGISTRY.md) for full component list and details.
 - **📦 Registry Catalog**: [https://mof-malaysia.github.io/fiscal-myds/registry](https://mof-malaysia.github.io/fiscal-myds/registry/index.json)
 - **Registry Docs**: See [REGISTRY.md](./REGISTRY.md)
 - **Deployment Guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
-
-## Migration from v1 (npm)
-
-If you were using the old `@mof-malaysia/myds-style` npm package, you'll need to migrate to the new registry-based approach:
-
-### Before (v1)
-
-```bash
-npm install @mof-malaysia/myds-style
-```
-
-```css
-/* app/globals.css */
-@import "@mof-malaysia/myds-style/color.css";
-@import "@mof-malaysia/myds-style/light.css";
-@import "@mof-malaysia/myds-style/dark.css";
-```
-
-### After (v2)
-
-```bash
-npx shadcn@latest add myds-init --registry=https://mof-malaysia.github.io/fiscal-myds/registry/style
-```
-
-The styles are now automatically injected into your `app/globals.css` file with Tailwind v4 configuration.
-
-**Benefits:**
-
-- ✅ No npm dependencies to manage
-- ✅ Tailwind v4 native CSS configuration
-- ✅ Full ownership of your styles
-- ✅ Easy customization
-- ✅ Dark mode support out of the box
-
----
 
 ## important note
 

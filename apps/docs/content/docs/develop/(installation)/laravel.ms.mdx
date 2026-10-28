@@ -11,17 +11,28 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 
 <Steps>
   <Step>
-    #### Bina projek Laravel
-    ```sh title="terminal"
-    laravel new nama-projek
-    ```
-    Anda akan ditanya beberapa soalan. Anda boleh membuat pilihan yang sesuai dengan keperluan projek anda:
+    #### Bina projek Laravel dengan React
 
     ```sh title="terminal"
-    ✔ Would you like to install a starter kit?
-    ✔ Which testing framework do you prefer?
-    ✔ Which database will your application use?
-    ✔ Default database updated. Would you like to run the default database migrations?
+    laravel new nama-projek --react
+    ```
+
+    Kit permulaan React menetapkan Inertia, Vite, Tailwind CSS v4 dan alias import `@/` (merujuk kepada `resources/js`). Kemudian pergi ke induk projek:
+
+    ```sh title="terminal"
+    cd nama-projek
+    npm install && npm run build
+    ```
+
+  </Step>
+
+  <Step>
+    #### Tukar shadcn kepada Base UI
+
+    Kit permulaan disertakan dengan komponen shadcn yang dibina di atas Radix. MYDS dibina di atas Base UI, jadi tukar konfigurasi shadcn projek:
+
+    ```package-install
+    npx shadcn@latest init --base base --force
     ```
 
     <Callout
@@ -30,130 +41,65 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
       className="bg-bg-primary-50 text-txt-primary border-transparent"
       icon={<InfoIcon className="size-5" />}
     >
-      Laravel Breeze atau Jetstream akan mengendalikan penyediaan frontend untuk anda, dengan memasang pakej yang diperlukan. Pastikan anda memilih `React with Inertia` atau mana-mana pilihan berasaskan `React`
+      Halaman kit permulaan (log masuk, tetapan, dll.) menggunakan komponen shadcn kit tersebut. Selepas penukaran, dan selepas MYDS menggantikan komponen dengan nama yang sama (seperti `button`, `dialog` dan `checkbox`), sesetengah halaman mungkin perlu dikemas kini. Jalankan `npx tsc --noEmit` untuk mengenal pasti halaman tersebut.
     </Callout>
 
-    Selepas projek dibuat, pergi ke induk projek:
-    ```sh title="terminal"
-    cd nama-projek
-    npm install && npm run build
-    composer run dev
-    ```
-
   </Step>
-  
+
   <Step>
-    #### Pasang pakej
+    #### Pasang gaya MYDS
 
     ```package-install
-    npm i @mof-malaysia/myds-react @mof-malaysia/myds-style
-    // ☝️ Menggunakan kit permulaan (Laravel Breeze atau Jetstream)
-
-    npm i @mof-malaysia/myds-react @mof-malaysia/myds-style react react-dom @vitejs/plugin-react
-    // ☝️ Tidak menggunakan kit permulaan
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
     ```
 
+    Arahan ini mencipta `styles/myds.css` di induk projek.
+
   </Step>
-  
+
   <Step>
     #### Konfigurasi stylesheet CSS
 
-    Anda boleh menetapkan gaya melalui salah satu daripada dua (2) kaedah yang disenaraikan di bawah.
-
-    __1. Import CSS__
+    Tambah fon MYDS di bahagian paling atas `resources/css/app.css`, dan import `styles/myds.css` sejurus selepas Tailwind.
 
     ```css title="resources/css/app.css"
-    @import "@mof-malaysia/myds-style/full.css";
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"); /* [!code ++] */
+    @import "tailwindcss";
+    @import "../../styles/myds.css"; /* [!code ++] */
     ```
-
-    __2. Tailwind CSS__
 
     Sila baca [Konfigurasi Gaya](./style-configuration) untuk konfigurasi lanjutan.
 
   </Step>
-  
+
   <Step>
-    #### Konfigurasi `vite.config.js` & integrasi Blade
+    #### Tambah komponen
 
-    <Callout
-      type="info"
-      title="Penting"
-      className="bg-bg-primary-50 text-txt-primary border-transparent"
-      icon={<InfoIcon className="size-5" />}
-    >
-     Jika anda menggunakan Laravel Breeze atau Jetstream, ini telah ditetapkan secara lalai melalui penyediaan berasaskan Inertia. Jika tidak melalui Inertia, anda perlu menetapkannya secara manual seperti di bawah.
-    </Callout>
-
-    ```js title="vite.config.js"
-    import { defineConfig } from "vite";
-    import laravel from "laravel-vite-plugin";
-    import react from "@vitejs/plugin-react"; // [!code ++]
-
-    export default defineConfig({
-        plugins: [
-            laravel({
-                input: ["resources/css/app.css", "resources/js/app.js"],
-                refresh: true,
-            }),
-            react(), // [!code ++]
-        ],
-    });
+    ```package-install
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
     ```
 
-    ```php title="resources/views/app.blade.php"
-    # Pastikan konfigurasi berikut wujud dalam fail Blade.
-    <head>
-      # Penyediaan bukan Inertia
-      @viteReactRefresh # [!code ++]
-      @vite(['resources/css/app.css', 'resources/js/app.jsx']) # [!code ++]
-
-      # Penyediaan Inertia
-      @viteReactRefresh # [!code ++]
-      @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"]) # [!code ++]
-      @inertiaHead # [!code ++]
-    </head>
-    ```
+    Komponen ditambah ke `resources/js/components/ui`. `--overwrite` menggantikan komponen kit permulaan yang mempunyai nama yang sama.
 
   </Step>
 
   <Step>
     #### Mula menggunakan komponen!
 
-    Cubalah `<Button />` untuk memulakan membina dengan MYDS!
+    Gunakan komponen dalam komponen `Pages` Inertia anda:
 
-    ```tsx title="resources/js/app.jsx"
-    import { Button } from "@mof-malaysia/myds-react/button";
-
-    function App() {
-      return (
-          <Button variant="primary-fill">
-            Hello MYDS
-          </Button>
-      )
-    }
-
-    export default App
-    ```
-
-    Jika anda menggunakan penyediaan `Inertia`, anda boleh mula menggunakan komponen dalam komponen `Pages` anda.:
-
-    ```tsx title="app/js/Pages/Welcome.jsx"
-
-    import { PageProps } from '@/types';
-    import { Head, Link } from '@inertiajs/react';
+    ```tsx title="resources/js/pages/welcome.tsx"
+    import { Head } from "@inertiajs/react";
+    import { Button } from "@/components/ui/button";
 
     export default function Welcome() {
-        return (
-          <>
-            <Head title="Welcome" />
-            <Button variant="primary-fill">
-              Hello MYDS
-            </Button>
-          </>
-        );
-
+      return (
+        <>
+          <Head title="Welcome" />
+          <Button variant="primary-fill">Hello MYDS</Button>
+        </>
+      );
     }
-
     ```
     </Step>
 

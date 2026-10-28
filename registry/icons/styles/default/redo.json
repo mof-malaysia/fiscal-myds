@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "redo",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/redo.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Redo Icon\n * @param className\n * @returns RedoIcon\n */\nexport const RedoIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (props) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/redo\">\n        <path\n          id=\"Vector\"\n          d=\"M12.75 2.75L17.25 7M17.25 7L12.75 11.25M17.25 7C17.25 7 11.9207 7 7.49987 7C4.87652 7 2.75 9.12665 2.75 11.75C2.75 14.3734 4.87665 16.5 7.5 16.5H12.5\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

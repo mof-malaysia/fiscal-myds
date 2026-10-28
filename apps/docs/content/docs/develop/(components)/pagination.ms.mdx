@@ -33,7 +33,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
     </div>
   </Tab>
   <Tab value="Kod">
-    ```tsx import {AutoPagination} from "@mof-malaysia/myds-react/pagination";
+    ```tsx import {AutoPagination} from "@/components/ui/pagination";
     <AutoPagination
       page={1}
       limit={10}
@@ -49,11 +49,19 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-pagination--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-pagination--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/pagination.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/pagination.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/pagination.json
+```
 
 ## Penggunaan
 
@@ -62,7 +70,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 Komponen `AutoPagination` boleh digunakan terus untuk penggunaan mudah. Komponen ini boleh digunakan untuk tujuan paginasi lazim.
 
 ```ts copy title="Import"
-import { AutoPagination } from "@mof-malaysia/myds-react/pagination";
+import { AutoPagination } from "@/components/ui/pagination";
 ```
 
 ```tsx copy title="Anatomi"
@@ -143,7 +151,7 @@ Gunakan props `type` untuk menukar jenis komponen `AutoPagination`. Contoh pengg
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { AutoPagination } from "@mof-malaysia/myds-react/pagination";
+    import { AutoPagination } from "@/components/ui/pagination";
 
     // default type
     <AutoPagination
@@ -197,7 +205,7 @@ Penggunaan `AutoPagination` atau pemasangan manual subkomponen paginasi memerluk
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { AutoPagination } from "@mof-malaysia/myds-react/pagination";
+    import { AutoPagination } from "@/components/ui/pagination";
 
     // simple type
     <AutoPagination
@@ -351,11 +359,11 @@ Komponen yang dirender sebagai elemen `li` yang mengandungi elemen seperti `Pagi
 
 ### PaginationNext
 
-Komponen `button` yang mengendalikan navigasi ke halaman seterusnya. Komponen lalai tersebut boleh digantikan dengan menggunakan props `asChild`.
+Komponen `button` yang mengendalikan navigasi ke halaman seterusnya. Elemen lalai tersebut boleh digantikan dengan menggunakan prop `render`, contohnya `render={<a href="/page/2" />}`.
 
 ### PaginationPrevious
 
-Komponen `button` yang mengendalikan navigasi ke halaman sebelumnya. Komponen lalai tersebut boleh digantikan dengan menggunakan props `asChild`.
+Komponen `button` yang mengendalikan navigasi ke halaman sebelumnya. Elemen lalai tersebut boleh digantikan dengan menggunakan prop `render`, contohnya `render={<a href="/page/1" />}`.
 
 ### PaginationLabel
 

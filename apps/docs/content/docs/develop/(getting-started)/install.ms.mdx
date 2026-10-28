@@ -11,38 +11,56 @@ import LaravelIcon from "@/icons/laravel";
 
 ### Pemasangan secara Manual
 
-MYDS boleh ditetapkan dengan pelbagai cara, bergantung kepada keperluan projek anda. Namun, cara yang paling mudah mengambil hanya 3-langkah!
+MYDS diedarkan sebagai registri [shadcn](https://ui.shadcn.com). Selain memasang pakej npm, CLI shadcn menyalin gaya dan kod sumber komponen MYDS ke dalam projek anda, supaya anda memiliki dan boleh mengubah suai kod tersebut. Komponen MYDS dibina di atas [Base UI](https://base-ui.com).
 
 <Steps>
   <Step>
-    ### Pemasangan pakej
-   
-     ```package-install
-    npm i @mof-malaysia/myds-react @mof-malaysia/myds-style
+    ### Mulakan shadcn
+
+    Jalankan arahan ini di induk projek anda. Ia menetapkan Tailwind CSS v4, alias import `@/` dan fail `components.json`. Kekalkan pustaka komponen lalai, Base UI.
+
+    ```package-install
+    npx shadcn@latest init
     ```
+
   </Step>
 
   <Step>
+    ### Pasang gaya MYDS<a name="full-css"></a>
 
-    ### Tetapkan stylesheet CSS<a name="full-css"></a>
-
-    Anda boleh 'import' stylesheet MYDS secara keseluruhan mengikut salah satu cara di bawah.
-
-    __1. Import melalui JS (Bundler)__
-
-    ```ts
-    // Letakkan dalam fail permulaan JS/TS (eg. index.{ts,js})
-    import "@mof-malaysia/myds-style/full.css";
+    ```package-install
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
     ```
 
-    __2. Import melalui CSS__
+    Arahan ini mencipta `styles/myds.css` di induk projek anda, yang mengandungi warna, tema terang & gelap, tema Tailwind dan gaya asas MYDS.
 
-    ```css
-    /* Letakkan dalam fail permulaan CSS  */
-    @import "@mof-malaysia/myds-style/full.css";
+  </Step>
+
+  <Step>
+    ### Import stylesheet
+
+    Dalam fail CSS global anda (fail yang mengandungi `@import "tailwindcss";`), tambah fon MYDS di bahagian paling atas dan import `styles/myds.css` sejurus selepas Tailwind. Laraskan laluan relatif mengikut lokasi fail CSS anda.
+
+    ```css title="app/globals.css"
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"); /* [!code ++] */
+    @import "tailwindcss";
+    @import "../styles/myds.css"; /* [!code ++] */
     ```
 
     Untuk tetapan yang lebih lanjut, sila baca [Konfigurasi Style](./style-configuration)
+
+  </Step>
+
+  <Step>
+    ### Tambah komponen
+
+    Tambah mana-mana komponen menggunakan URL registrinya. Kebergantungannya (komponen MYDS lain, ikon, hook dan pakej npm) turut dipasang bersama.
+
+    ```package-install
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json
+    ```
+
+    Jika `shadcn init` telah mencipta `components/ui/button.tsx` sendiri, tambah `--overwrite` untuk menggantikannya dengan butang MYDS.
 
   </Step>
 
@@ -52,7 +70,7 @@ MYDS boleh ditetapkan dengan pelbagai cara, bergantung kepada keperluan projek a
     Cubalah `<Button />` untuk memulakan membina dengan MYDS!
 
     ```tsx
-    import { Button } from "@mof-malaysia/myds-react/button";
+    import { Button } from "@/components/ui/button";
 
     export default () => {
       return <Button variant="primary-fill">Hello MYDS</Button>;

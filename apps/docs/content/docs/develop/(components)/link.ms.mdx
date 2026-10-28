@@ -22,7 +22,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Link } from "@mof-malaysia/myds-react/link";
+    import { Link } from "@/components/ui/link";
 
     <Link href="/" primary underline="always">
       Sistem Reka Bentuk Rasmi Malaysia
@@ -35,16 +35,24 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-link--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-link--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/link.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/link.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/link.json
+```
 
 ## Cara Penggunaan
 
 ```tsx copy
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Link } from "@/components/ui/link";
 ```
 
 ```tsx copy title="Anatomi"
@@ -58,27 +66,23 @@ export default () => (
 
 ## Contoh
 
-### Prop asChild
+### Prop render
 
 Sekiranya anda perlu menggunakan komponen `Link` daripada pakej yang lain, anda boleh
-menggunakan prop `asChild` seperti berikut (Next.js sebagai contoh):
+menggunakan prop `render` seperti berikut (Next.js sebagai contoh):
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Preview">
   <Tab value="Pratonton">
-    <Link asChild>
-      <NextLink href="#using-aschild-for-custom-links">
-        Custom Link
-      </NextLink>
+    <Link render={<NextLink href="#prop-render" />}>
+      Custom Link
     </Link>
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Link } from "@mof-malaysia/myds-react/link";
+    import { Link } from "@/components/ui/link";
     import NextLink from "next/link";
 
-    <Link asChild>
-      <NextLink href="#">Custom Link</NextLink>
-    </Link>
+    <Link render={<NextLink href="#" />}>Custom Link</Link>
     ```
 
   </Tab>
@@ -87,13 +91,11 @@ menggunakan prop `asChild` seperti berikut (Next.js sebagai contoh):
 Anda juga boleh membina komponen sendiri dan import mengikut keperluan:
 
 ```tsx
-import { Link as LinkPrimitive } from "@mof-malaysia/myds-react/link";
+import { Link as LinkPrimitive } from "@/components/ui/link";
 import NextLink from "next/link";
 
-export const Link = (props) => (
-  <LinkPrimitive asChild>
-    <NextLink {...props} />
-  </LinkPrimitive>
+export const Link = ({ href, ...props }) => (
+  <LinkPrimitive render={<NextLink href={href} />} {...props} />
 );
 ```
 
@@ -107,7 +109,7 @@ Prop ini menetapkan sama ada pautan dibuka dalam tab baharu dengan menggunakan `
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Link } from "@mof-malaysia/myds-react/link";
+    import { Link } from "@/components/ui/link";
 
     <Link href="https://digital.gov.my" newTab>Ministry of Digital</Link>
     ```
@@ -140,7 +142,7 @@ Prop ini digunakan untuk menetapkan warna teks pautan.
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Link } from "@mof-malaysia/myds-react/link";
+    import { Link } from "@/components/ui/link";
 
     <Link href="#" primary>Primary</Link>
     <Link href="#">Inherit from parent</Link>
@@ -165,7 +167,7 @@ Prop ini digunakan untuk menetapkan waktu pautan digaris bawah.
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Link } from "@mof-malaysia/myds-react/link";
+    import { Link } from "@/components/ui/link";
 
     <Link href="#underline" underline="always">Always</Link>
     <Link href="#underline" underline="hover">Hover</Link>
@@ -181,10 +183,10 @@ Prop ini digunakan untuk menetapkan waktu pautan digaris bawah.
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        'Digunakan untuk "merender" elemen anak (child element) berbanding elemen lalai (default element).',
-      type: "boolean",
+        'Menggantikan elemen yang dipaparkan, contohnya `render={<a href="/" />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
     href: {
       description: "URL yang akan dilayari oleh pautan",

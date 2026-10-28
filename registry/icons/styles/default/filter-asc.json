@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "filter-asc",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/filter-asc.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * FilterAsc Icon\n * @param className\n * @returns FilterAscIcon\n */\nexport const FilterAscIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <path\n        d=\"M4 6H16M7 10H13M10 14H10.1\"\n        stroke=\"currentColor\"\n        strokeWidth=\"1.5\"\n        strokeLinecap=\"round\"\n      />\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

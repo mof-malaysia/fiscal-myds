@@ -246,7 +246,7 @@
   --shadow-context-menu: 0px 2px 6px 0px rgba(0, 0, 0, 0.05), 0px 12px 50px 0px rgba(0, 0, 0, 0.10);
 
   /* === Transform Origins === */
-  --transform-origin-tooltip-origin: var(--radix-tooltip-content-transform-origin);
+  --transform-origin-tooltip-origin: var(--transform-origin);
 
   /* === Keyframes === */
   @keyframes decrease-width {
@@ -256,21 +256,21 @@
 
   @keyframes accordion-slide-down {
     from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
+    to { height: var(--accordion-panel-height); }
   }
 
   @keyframes accordion-slide-up {
-    from { height: var(--radix-accordion-content-height); }
+    from { height: var(--accordion-panel-height); }
     to { height: 0; }
   }
 
   @keyframes collapsible-slide-down {
     from { height: 0; }
-    to { height: var(--radix-collapsible-content-height); }
+    to { height: var(--collapsible-panel-height); }
   }
 
   @keyframes collapsible-slide-up {
-    from { height: var(--radix-collapsible-content-height); }
+    from { height: var(--collapsible-panel-height); }
     to { height: 0; }
   }
 

@@ -24,6 +24,15 @@ But you might not need everything in your project! Here's how we can be more sel
 
 ## Foundation
 
+Instead of the combined `myds-init` stylesheet, you can install each part on its own. Every part is written to its own file under `styles/myds/`:
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/colors.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-light.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-dark.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-config.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/base-styles.json
+```
+
+Then import only the parts you need, after `@import "tailwindcss";`, in place of `styles/myds.css`.
+
+
 ### Fonts
 
 MYDS supports 2 typefaces: `Poppins` & `Inter`. We recommend you to import via a reputable CDN like [GoogleFonts](https://fonts.google.com/). Here's a one-liner CSS import!
@@ -37,7 +46,7 @@ MYDS supports 2 typefaces: `Poppins` & `Inter`. We recommend you to import via a
 We define each color in the MYDS Design Language as a CSS variable, which later becomes the building block to build themes!
 
 ```css
-@import "@mof-malaysia/myds-style/color.css";
+@import "../styles/myds/colors.css";
 ```
 
 ### Theme
@@ -47,10 +56,10 @@ So, you can omit importing the unwanted theme from your project!
 
 ```css
 /* Import Light theme */
-@import "@mof-malaysia/myds-style/light.css";
+@import "../styles/myds/theme-light.css";
 
 /* Import Dark theme */
-@import "@mof-malaysia/myds-style/dark.css";
+@import "../styles/myds/theme-dark.css";
 ```
 
 <Callout
@@ -69,25 +78,15 @@ However, using TailwindCSS is optional at the project level.
 
 If you do use TailwindCSS, MYDS provides the option for developers to leverage on the defined CSS classes or extend your own variation to MYDS.
 
-### Installation
+### Theme configuration
 
-Before we start, make sure you have installed Tailwind CSS in your project. Refer to the [official documentation](https://tailwindcss.com/docs/installation/using-vite) for more information.
+MYDS requires Tailwind CSS v4, which the shadcn CLI sets up for you. There is no preset or `content` configuration to add: the `theme-config` part (included in `styles/myds.css`) defines every MYDS token with Tailwind's `@theme` directive, and Tailwind v4 detects the component files in your project automatically.
 
-### Preset Configuration
-
-Once TailwindCSS is installed, you can import the MYDS presets to your own project! Also we need to make sure the TailwindCSS is 'aware' of the components from the library.
-
-```ts title="tailwind.config.ts"
-import { preset } from "@mof-malaysia/myds-style";
-
-export default {
-  content: [
-    "src/**/*.{js,jsx,ts,tsx}", // Your own project source files
-    "node_modules/@mof-malaysia/myds-react/dist/**/*.{js,jsx,ts,tsx}",
-  ],
-  presets: [preset],
-};
+```css title="app/globals.css"
+@import "../styles/myds/theme-config.css";
 ```
+
+To extend MYDS, add your own `@theme` block in your global CSS after the MYDS import.
 
 ### Color Token
 
@@ -97,4 +96,4 @@ MYDS has 2 types of color token that developers need to be aware of, which are:
 
 - **Theme token** - The value of the theme token changes based on the theme applied.
 
-To learn the entire list of primitive & theme tokens available, read the [full configuration](https://github.com/govtechmy/myds/blob/main/packages/style/tailwind.config.js)
+To learn the entire list of primitive & theme tokens available, read the [full configuration](https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/style/styles/tailwind.config.css)

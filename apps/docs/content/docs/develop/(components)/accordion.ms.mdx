@@ -54,9 +54,9 @@ export const items = {
         kami{" "}
         <a
           className="text-txt-primary"
-          href="https://github.com/govtechmy/myds"
+          href="https://github.com/mof-malaysia/fiscal-myds"
         >
-          (@govtechmy)
+          (mof-malaysia/fiscal-myds)
         </a>{" "}
         repositori.
       </AccordionContent>
@@ -87,9 +87,9 @@ export const items = {
         kami{" "}
         <a
           className="text-txt-primary"
-          href="https://github.com/govtechmy/myds"
+          href="https://github.com/mof-malaysia/fiscal-myds"
         >
-          (@govtechmy)
+          (mof-malaysia/fiscal-myds)
         </a>{" "}
         repositori.
       </AccordionContent>
@@ -113,7 +113,7 @@ import {
   AccordionContent,
   Accordion,
   AccordionItem,
-} from "@mof-malaysia/myds-react/accordion";
+} from "@/components/ui/accordion";
     
     <Accordion type="single" defaultValue="item-1" collapsible>
       <AccordionItem key="item-1" value="item-1">
@@ -132,8 +132,8 @@ import {
         <AccordionTrigger>Adakah ia sumber terbuka?</AccordionTrigger>
         <AccordionContent>
           Ya, kami adalah sumber terbuka. Anda boleh mencari kod sumber di GitHub kami{" "}
-          <a className="text-txt-primary" href="https://github.com/govtechmy/myds">
-            (@govtechmy)
+          <a className="text-txt-primary" href="https://github.com/mof-malaysia/fiscal-myds">
+            (mof-malaysia/fiscal-myds)
           </a>
           repositori.
         </AccordionContent>
@@ -146,11 +146,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-accordion--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-accordion--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/accordion.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/accordion.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/accordion.json
+```
 
 ## Penggunaan
 
@@ -160,7 +168,7 @@ import {
   AccordionContent,
   Accordion,
   AccordionItem,
-} from "@mof-malaysia/myds-react/accordion";
+} from "@/components/ui/accordion";
 ```
 
 ```tsx copy title="Anatomi"
@@ -217,9 +225,9 @@ Gunakan prop `type` untuk menukar cara kandungan dipaparkan!
           GitHub kami{" "}
           <a
             className="text-txt-primary"
-            href="https://github.com/govtechmy/myds"
+            href="https://github.com/mof-malaysia/fiscal-myds"
           >
-            (@govtechmy)
+            (mof-malaysia/fiscal-myds)
           </a>
           repositori.
         </AccordionContent>
@@ -259,8 +267,8 @@ Gunakan prop `collapsible` untuk menentukan sama ada semua akordion boleh dilipa
       <AccordionTrigger>Adakah ia sumber terbuka?</AccordionTrigger>
       <AccordionContent>
         Ya, kami adalah sumber terbuka. Anda boleh mencari kod sumber di GitHub kami{" "}
-        <a className="text-txt-primary" href="https://github.com/govtechmy/myds">
-          (@govtechmy)
+        <a className="text-txt-primary" href="https://github.com/mof-malaysia/fiscal-myds">
+          (mof-malaysia/fiscal-myds)
         </a>
         repositori.
       </AccordionContent>
@@ -309,9 +317,9 @@ Menetapkan `disabled` kepada `true` dalam `Accordion` akan melumpuhkan semua kom
           GitHub kami{" "}
           <a
             className="text-txt-primary"
-            href="https://github.com/govtechmy/myds"
+            href="https://github.com/mof-malaysia/fiscal-myds"
           >
-            (@govtechmy)
+            (mof-malaysia/fiscal-myds)
           </a>
           repositori.
         </AccordionContent>
@@ -328,33 +336,49 @@ Menetapkan `disabled` kepada `true` dalam `Accordion` akan melumpuhkan semua kom
 <TypeTable
   type={{
     type: {
+      description: "Sama ada satu atau banyak item boleh dibuka pada masa yang sama.",
       type: "enum",
       typeDescription: "single | multiple",
+      default: "single",
     },
     value: {
       description:
         "Nilai terkawal item untuk dikembangkan. Mesti digunakan bersama dengan onValueChange.",
-      type: "string|string[]",
+      type: "string | string[]",
     },
     defaultValue: {
       description:
         "Nilai item untuk dikembangkan apabila mula-mula dipaparkan. Gunakan apabila anda tidak perlu mengawal keadaan item.",
-      type: "string|string[]",
+      type: "string | string[]",
     },
     onValueChange: {
       description:
-        "Pengendali acara dipanggil apabila keadaan berkembang item berubah dan jenis adalah 'single'.",
-      type: "string|string[]",
+        "Pengendali acara dipanggil apabila keadaan berkembang item berubah.",
+      type: "(value: string | string[]) => void",
     },
     collapsible: {
       description:
         "Apabila jenis adalah 'single', membenarkan penutupan kandungan apabila mengklik pencetus untuk item yang dibuka.",
-      type: "string|string[]",
+      type: "boolean",
+      default: "false",
     },
     disabled: {
       description:
         "Apabila benar, menghalang pengguna daripada berinteraksi dengan akordion dan semua itemnya.",
-      type: "string|string[]",
+      type: "boolean",
+      default: "false",
+    },
+    hiddenUntilFound: {
+      description:
+        "Membenarkan carian halaman terbina dalam pelayar untuk mencari dan mengembangkan kandungan item yang tertutup.",
+      type: "boolean",
+      default: "false",
+    },
+    keepMounted: {
+      description:
+        "Sama ada untuk mengekalkan kandungan item yang tertutup di dalam DOM.",
+      type: "boolean",
+      default: "false",
     },
   }}
 />
@@ -363,21 +387,21 @@ Menetapkan `disabled` kepada `true` dalam `Accordion` akan melumpuhkan semua kom
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "Nilai terkawal item untuk dikembangkan. Mesti digunakan bersama dengan onValueChange.",
-      type: "boolean",
-      default: "false",
+        'Menggantikan elemen yang dipaparkan, contohnya `render={<section />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
     value: {
       description:
-        "Nilai terkawal item untuk dikembangkan. Mesti digunakan bersama dengan onValueChange.",
-      type: "string|string[]",
+        "Nilai unik yang mengenal pasti item akordion ini.",
+      type: "string",
     },
     disabled: {
       description:
-        "Apabila benar, menghalang pengguna daripada berinteraksi dengan akordion dan semua itemnya.",
-      type: "string|string[]",
+        "Apabila benar, menghalang pengguna daripada berinteraksi dengan item tersebut.",
+      type: "boolean",
+      default: "false",
     },
   }}
 />
@@ -386,11 +410,10 @@ Menetapkan `disabled` kepada `true` dalam `Accordion` akan melumpuhkan semua kom
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "Nilai terkawal item untuk dikembangkan. Mesti digunakan bersama dengan onValueChange.",
-      type: "boolean",
-      default: "false",
+        'Menggantikan elemen yang dipaparkan, contohnya `render={<section />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
   }}
 />
@@ -399,9 +422,20 @@ Menetapkan `disabled` kepada `true` dalam `Accordion` akan melumpuhkan semua kom
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "Nilai terkawal item untuk dikembangkan. Mesti digunakan bersama dengan onValueChange.",
+        'Menggantikan elemen yang dipaparkan, contohnya `render={<section />}`',
+      type: "ReactElement | (props, state) => ReactElement",
+    },
+    hiddenUntilFound: {
+      description:
+        "Membenarkan carian halaman terbina dalam pelayar untuk mencari dan mengembangkan kandungan.",
+      type: "boolean",
+      default: "false",
+    },
+    keepMounted: {
+      description:
+        "Sama ada untuk mengekalkan kandungan di dalam DOM semasa tertutup.",
       type: "boolean",
       default: "false",
     },
@@ -410,7 +444,5 @@ Menetapkan `disabled` kepada `true` dalam `Accordion` akan melumpuhkan semua kom
 
 <small>
   Untuk penyesuaian yang lebih mendalam, anda boleh merujuk kepada rujukan API
-  dalam
-  [dokumentasi](https://www.radix-ui.com/primitives/docs/components/accordion#api-reference)
-  ini.
+  dalam [dokumentasi](https://base-ui.com/react/components/accordion#api-reference) ini.
 </small>

@@ -11,10 +11,10 @@ import {
   DialogBody,
   DialogTitle,
   DialogTrigger,
-  DialogProps,
-  DialogBodyProps,
-  DialogFooterProps,
-  DialogHeaderProps,
+  type DialogProps,
+  type DialogBodyProps,
+  type DialogFooterProps,
+  type DialogHeaderProps,
 } from "@mof-malaysia/myds-react/dialog";
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
@@ -36,10 +36,8 @@ import { createStory } from "../utils";
  * } from "@mof-malaysia/myds-react/dialog";
  *
  *    <Dialog>
- *       <DialogTrigger>
- *         <Button variant="danger-fill" size="medium">
- *           Padam data
- *         </Button>
+ *       <DialogTrigger render={<Button variant="danger-fill" size="medium" />}>
+ *         Padam data
  *       </DialogTrigger>
  *       <DialogBody>
  *         <DialogHeader>
@@ -55,22 +53,16 @@ import { createStory } from "../utils";
  *
  *         <DialogFooter
  *           action={
- *             <DialogClose asChild>
- *               <Button variant="danger-ghost" size="small">
- *                 Lapor kejadian
- *               </Button>
+ *             <DialogClose render={<Button variant="danger-ghost" size="small" />}>
+ *               Lapor kejadian
  *             </DialogClose>
  *           }
  *         >
- *           <DialogClose asChild>
- *             <Button variant="default-outline" size="medium">
- *               Batal
- *             </Button>
+ *           <DialogClose render={<Button variant="default-outline" size="medium" />}>
+ *             Batal
  *           </DialogClose>
- *           <DialogClose asChild>
- *             <Button variant="danger-fill" size="medium">
- *               Ya, teruskan
- *             </Button>
+ *           <DialogClose render={<Button variant="danger-fill" size="medium" />}>
+ *             Ya, teruskan
  *           </DialogClose>
  *         </DialogFooter>
  *       </DialogBody>
@@ -84,10 +76,8 @@ const meta: Meta = {
   render: ({ dismissible, border, align, border_header }) => {
     return (
       <Dialog>
-        <DialogTrigger>
-          <Button variant="danger-fill" size="medium">
-            Padam data
-          </Button>
+        <DialogTrigger render={<Button variant="danger-fill" size="medium" />}>
+          Padam data
         </DialogTrigger>
         <DialogBody dismissible={dismissible}>
           <DialogHeader border={border_header}>
@@ -105,22 +95,22 @@ const meta: Meta = {
             border={border}
             align={align}
             action={
-              <DialogClose asChild>
-                <Button variant="danger-ghost" size="small">
-                  Lapor kejadian
-                </Button>
+              <DialogClose
+                render={<Button variant="danger-ghost" size="small" />}
+              >
+                Lapor kejadian
               </DialogClose>
             }
           >
-            <DialogClose asChild>
-              <Button variant="default-outline" size="medium">
-                Batal
-              </Button>
+            <DialogClose
+              render={<Button variant="default-outline" size="medium" />}
+            >
+              Batal
             </DialogClose>
-            <DialogClose asChild>
-              <Button variant="danger-fill" size="medium">
-                Ya, teruskan
-              </Button>
+            <DialogClose
+              render={<Button variant="danger-fill" size="medium" />}
+            >
+              Ya, teruskan
             </DialogClose>
           </DialogFooter>
         </DialogBody>

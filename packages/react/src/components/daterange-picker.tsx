@@ -70,19 +70,21 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
       {/* Mobile */}
       <div className="text-txt-black-900 flex items-center gap-1.5 lg:hidden">
         <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              variant="default-outline"
-              size={size}
-              className="whitespace-nowrap"
-            >
-              <span className="text-txt-black-500">
-                {fromLabel ? fromLabel : isMS ? "Dari:" : "From:"}
-              </span>
-              {selectedDateRange?.from
-                ? formatDate(selectedDateRange.from)
-                : placeholder}
-            </Button>
+          <DialogTrigger
+            render={
+              <Button
+                variant="default-outline"
+                size={size}
+                className="whitespace-nowrap"
+              />
+            }
+          >
+            <span className="text-txt-black-500">
+              {fromLabel ? fromLabel : isMS ? "Dari:" : "From:"}
+            </span>
+            {selectedDateRange?.from
+              ? formatDate(selectedDateRange.from)
+              : placeholder}
           </DialogTrigger>
           <DialogBody className="w-fit min-w-fit" hideClose>
             <DialogContent className="w-[304px] p-0">
@@ -113,19 +115,21 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
         </Dialog>
         -
         <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              variant="default-outline"
-              size={size}
-              className="whitespace-nowrap"
-            >
-              <span className="text-txt-black-500">
-                {toLabel ? toLabel : isMS ? "Hingga:" : "To:"}
-              </span>
-              {selectedDateRange?.to
-                ? formatDate(selectedDateRange.to)
-                : placeholder}
-            </Button>
+          <DialogTrigger
+            render={
+              <Button
+                variant="default-outline"
+                size={size}
+                className="whitespace-nowrap"
+              />
+            }
+          >
+            <span className="text-txt-black-500">
+              {toLabel ? toLabel : isMS ? "Hingga:" : "To:"}
+            </span>
+            {selectedDateRange?.to
+              ? formatDate(selectedDateRange.to)
+              : placeholder}
           </DialogTrigger>
           <DialogBody className="w-fit min-w-fit" hideClose>
             <DialogContent className="w-[304px] p-0">
@@ -156,19 +160,21 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
       {/* Desktop */}
       <div className="text-txt-black-900 hidden items-center gap-1.5 lg:flex">
         <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="default-outline"
-              size={size}
-              className="whitespace-nowrap"
-            >
-              <span className="text-txt-black-500">
-                {fromLabel ? fromLabel : isMS ? "Dari:" : "From:"}
-              </span>
-              {selectedDateRange?.from
-                ? formatDate(selectedDateRange.from)
-                : placeholder}
-            </Button>
+          <PopoverTrigger
+            render={
+              <Button
+                variant="default-outline"
+                size={size}
+                className="whitespace-nowrap"
+              />
+            }
+          >
+            <span className="text-txt-black-500">
+              {fromLabel ? fromLabel : isMS ? "Dari:" : "From:"}
+            </span>
+            {selectedDateRange?.from
+              ? formatDate(selectedDateRange.from)
+              : placeholder}
           </PopoverTrigger>
           <PopoverContent className="w-[304px] p-0" align="start">
             <Calendar
@@ -197,19 +203,21 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
         </Popover>
         -
         <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="default-outline"
-              size={size}
-              className="whitespace-nowrap"
-            >
-              <span className="text-txt-black-500">
-                {toLabel ? toLabel : isMS ? "Hingga:" : "To:"}
-              </span>
-              {selectedDateRange?.to
-                ? formatDate(selectedDateRange.to)
-                : placeholder}
-            </Button>
+          <PopoverTrigger
+            render={
+              <Button
+                variant="default-outline"
+                size={size}
+                className="whitespace-nowrap"
+              />
+            }
+          >
+            <span className="text-txt-black-500">
+              {toLabel ? toLabel : isMS ? "Hingga:" : "To:"}
+            </span>
+            {selectedDateRange?.to
+              ? formatDate(selectedDateRange.to)
+              : placeholder}
           </PopoverTrigger>
           <PopoverContent className="w-[304px] p-0" align="end">
             <Calendar

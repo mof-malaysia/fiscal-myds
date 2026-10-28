@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "minus",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/minus.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Minus Icon\n * @param className\n * @returns MinusIcon\n */\nexport const MinusIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/minus\">\n        <path\n          id=\"Vector\"\n          d=\"M16 10H4\"\n          stroke=\"currentColor\"\n          strokeWidth=\"10%\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

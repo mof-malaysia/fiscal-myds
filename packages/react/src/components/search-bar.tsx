@@ -82,24 +82,28 @@ export const SearchBarInputContainer: FunctionComponent<
  */
 export const SearchBarInput: FunctionComponent<
   ComponentProps<typeof Command.Input>
-> = forwardRef(({ className, ...props }, ref) => {
-  return (
-    <Command.Input
-      ref={ref}
-      className={clx(
-        "text-txt-black-900 placeholder:text-txt-black-500 flex-1 bg-transparent focus:outline-none",
-        className,
-      )}
-      asChild
-      {...props}
-    >
-      <input
-        aria-controls="search-input"
-        // The hardcoded aria-controls here is a temporary fix such that it matches the id of SearchBarResults. It is related to this error (https://github.com/dequelabs/axe-core/issues/4172)
+> = forwardRef<HTMLInputElement, ComponentProps<typeof Command.Input>>(
+  ({ className, ...props }, ref) => {
+    // The hardcoded aria-controls here is a temporary fix such that it matches the id of SearchBarResults. It is related to this error (https://github.com/dequelabs/axe-core/issues/4172)
+    // cmdk sets aria-controls after spreading props, so it is overridden on the DOM node instead.
+    const setRef = (node: HTMLInputElement | null) => {
+      node?.setAttribute("aria-controls", "search-input");
+      if (typeof ref === "function") ref(node);
+      else if (ref) ref.current = node;
+    };
+
+    return (
+      <Command.Input
+        ref={setRef}
+        className={clx(
+          "text-txt-black-900 placeholder:text-txt-black-500 flex-1 bg-transparent focus:outline-none",
+          className,
+        )}
+        {...props}
       />
-    </Command.Input>
-  );
-});
+    );
+  },
+);
 
 export const SearchBarSearchButton: FunctionComponent<ButtonProps> = ({
   className,

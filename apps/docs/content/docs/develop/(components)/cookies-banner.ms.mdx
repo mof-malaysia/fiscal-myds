@@ -30,7 +30,7 @@ import {
       CookieBannerPreferences,
       CookieBannerTitle,
       CookieBannerPreferencesTrigger,
-    } from "@mof-malaysia/myds-react/cookie-banner";
+    } from "@/components/ui/cookie-banner";
 
     const CookiesBannerPreview = () => {
       const [open, setOpen] = useState(false);
@@ -136,25 +136,29 @@ import {
             </CookieBannerPreferences>
 
             <CookieBannerAction>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Terima semua kuki.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Terima Semua
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Terima semua kuki.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Terima Semua
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Tolak semua kuki.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Tolak Semua
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Tolak semua kuki.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Tolak Semua
               </CookieBannerClose>
 
               <CookieBannerPreferencesTrigger>
@@ -163,25 +167,29 @@ import {
             </CookieBannerAction>
 
             <CookieBannerAction preferences>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Terima Pilihan yang disimpan.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Simpan Pilihan
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Terima Pilihan yang disimpan.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Simpan Pilihan
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Kuki perlu diterima.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Terima kuki perlu
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Kuki perlu diterima.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Terima kuki perlu
               </CookieBannerClose>
             </CookieBannerAction>
           </CookieBanner>
@@ -196,11 +204,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-cookiesbanner--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-cookiesbanner--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/cookie-banner.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/cookie-banner.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/cookie-banner.json
+```
 
 ## Penggunaan
 
@@ -213,7 +229,7 @@ import {
   CookieBannerPreferences,
   CookieBannerTitle,
   CookieBannerPreferencesTrigger,
-} from "@mof-malaysia/myds-react/cookie-banner";
+} from "@/components/ui/cookie-banner";
 ```
 
 ```tsx copy title="Anatomi"
@@ -257,7 +273,7 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
       CookieBannerPreferences,
       CookieBannerTitle,
       CookieBannerPreferencesTrigger,
-    } from "@mof-malaysia/myds-react/cookie-banner";
+    } from "@/components/ui/cookie-banner";
 
     const CookiesBannerPreview = () => {
       const [open, setOpen] = useState(false);
@@ -363,25 +379,29 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
             </CookieBannerPreferences>
 
             <CookieBannerAction>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Terima semua kuki.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Terima Semua
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Terima semua kuki.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Terima Semua
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Tolak semua kuki.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Tolak Semua
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Tolak semua kuki.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Tolak Semua
               </CookieBannerClose>
 
               <CookieBannerPreferencesTrigger>
@@ -390,25 +410,29 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
             </CookieBannerAction>
 
             <CookieBannerAction preferences>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Terima Pilihan yang disimpan.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Simpan Pilihan
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Terima Pilihan yang disimpan.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Simpan Pilihan
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Kuki perlu diterima.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Terima kuki perlu
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Kuki perlu diterima.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Terima kuki perlu
               </CookieBannerClose>
             </CookieBannerAction>
           </CookieBanner>
@@ -466,25 +490,29 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
 
           {/* Default CTA */}
           <CookieBannerAction>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Terima semua kuki.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Terima Semua
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Terima semua kuki.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Terima Semua
             </CookieBannerClose>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Tolak semua kuki.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Tolak Semua
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Tolak semua kuki.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Tolak Semua
             </CookieBannerClose>
 
             <CookieBannerPreferencesTrigger>
@@ -495,15 +523,17 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
           {/* Preference CTA */}
           <CookieBannerAction preferences>
             <CookieBannerPreferencesTrigger>Balik</CookieBannerPreferencesTrigger>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Kuki perlu diterima.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Terima kuki perlu
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Kuki perlu diterima.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Terima kuki perlu
             </CookieBannerClose>
           </CookieBannerAction>
         </CookieBanner>
@@ -580,10 +610,9 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
 
 <TypeTable
   type={{
-    asChild: {
-      type: "boolean",
-      description:
-        "Menimpa untuk menggunakan komponen anak sebagai elemen DOM asas.",
+    render: {
+      description: "Menggantikan elemen yang dipaparkan, contohnya `render={<a href=\"/\" />}`",
+      type: "ReactElement | (props, state) => ReactElement",
     },
     children: {
       type: "ReactNode",
@@ -608,10 +637,9 @@ Berikut adalah contoh **Banner Kuki Terkawal**.
 
 <TypeTable
   type={{
-    asChild: {
-      type: "boolean",
-      description:
-        "Menimpa untuk menggunakan komponen anak sebagai elemen DOM asas.",
+    render: {
+      description: "Menggantikan elemen yang dipaparkan, contohnya `render={<a href=\"/\" />}`",
+      type: "ReactElement | (props, state) => ReactElement",
     },
     children: {
       type: "ReactNode",

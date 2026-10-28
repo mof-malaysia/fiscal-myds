@@ -1,27 +1,20 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pill",
-  "type": "components:ui",
+  "type": "registry:ui",
   "dependencies": [
-    "@radix-ui/react-slot",
-    "class-variance-authority"
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [
-    "button"
+    "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json",
+    "https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json"
   ],
   "files": [
     {
       "path": "components/ui/pill.tsx",
-      "content": "import { Slot, Slottable } from \"@radix-ui/react-slot\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport React, { ComponentProps, ForwardRefExoticComponent } from \"react\";\nimport { CrossIcon } from \"@/components/ui/icons/cross\";\nimport { Button, ButtonIcon } from \"./button\";\n\nconst pill_cva = cva(\n  \"rounded-sm border font-medium text-txt-black-700 shadow-button inline-flex justify-between items-center\",\n  {\n    variants: {\n      size: {\n        small: \"px-[6px] py-[2px] text-body-xs gap-[2px]\",\n        medium: \"px-[8px] py-[4px] text-body-sm gap-[4px]\",\n        large: \"px-[10px] py-[4px] text-body-md gap-[4px]\",\n      },\n      disabled: {\n        false: \"border-otl-gray-300 bg-bg-dialog\",\n        true: \"border-otl-gray-200 bg-bg-white-disabled text-txt-black-disabled\",\n      },\n    },\n    defaultVariants: {\n      size: \"medium\",\n      disabled: false,\n    },\n  },\n);\n\ninterface PillProps\n  extends ComponentProps<\"div\">,\n    VariantProps<typeof pill_cva> {\n  asChild?: boolean;\n  disabled?: boolean;\n  onDismiss?: ComponentProps<typeof Button>[\"onClick\"];\n}\n\nexport const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(\n  (\n    { asChild, children, disabled, size, className, onDismiss, ...props },\n    ref,\n  ) => {\n    const Comp = asChild ? Slot : \"div\";\n    return (\n      <Comp\n        className={pill_cva({ size, disabled, className })}\n        ref={ref}\n        {...props}\n      >\n        <Slottable>{children}</Slottable>\n        {onDismiss && !disabled && (\n          <Button\n            variant=\"default-ghost\"\n            size=\"small\"\n            className=\"p-0\"\n            onClick={onDismiss}\n          >\n            <ButtonIcon aria-label=\"close button\">\n              <CrossIcon className=\"text-txt-black-500 size-4\" />\n            </ButtonIcon>\n          </Button>\n        )}\n      </Comp>\n    );\n  },\n);\nPill.displayName = \"Pill\";\n",
-      "type": "components:ui"
+      "content": "import { useRender } from \"@base-ui/react/use-render\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport React, { ComponentProps, ForwardRefExoticComponent } from \"react\";\nimport { CrossIcon } from \"@/components/ui/icons/cross\";\nimport { Button, ButtonIcon } from \"@/components/ui/button\";\n\nconst pill_cva = cva(\n  \"rounded-sm border font-medium text-txt-black-700 shadow-button inline-flex justify-between items-center\",\n  {\n    variants: {\n      size: {\n        small: \"px-[6px] py-[2px] text-body-xs gap-[2px]\",\n        medium: \"px-[8px] py-[4px] text-body-sm gap-[4px]\",\n        large: \"px-[10px] py-[4px] text-body-md gap-[4px]\",\n      },\n      disabled: {\n        false: \"border-otl-gray-300 bg-bg-dialog\",\n        true: \"border-otl-gray-200 bg-bg-white-disabled text-txt-black-disabled\",\n      },\n    },\n    defaultVariants: {\n      size: \"medium\",\n      disabled: false,\n    },\n  },\n);\n\ninterface PillProps\n  extends useRender.ComponentProps<\"div\">,\n    VariantProps<typeof pill_cva> {\n  disabled?: boolean;\n  onDismiss?: ComponentProps<typeof Button>[\"onClick\"];\n}\n\nexport const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(\n  (\n    { render, children, disabled, size, className, onDismiss, ...props },\n    ref,\n  ) => {\n    return useRender({\n      defaultTagName: \"div\",\n      render,\n      ref,\n      props: mergeProps<\"div\">(\n        {\n          className: pill_cva({ size, disabled, className }),\n          children: (\n            <>\n              {children}\n        {onDismiss && !disabled && (\n          <Button\n            variant=\"default-ghost\"\n            size=\"small\"\n            className=\"p-0\"\n            onClick={onDismiss}\n          >\n            <ButtonIcon aria-label=\"close button\">\n              <CrossIcon className=\"text-txt-black-500 size-4\" />\n            </ButtonIcon>\n          </Button>\n        )}\n            </>\n          ),\n        },\n        props,\n      ),\n    });\n  },\n);\nPill.displayName = \"Pill\";\n",
+      "type": "registry:ui"
     }
-  ],
-  "tailwind": {
-    "config": {
-      "theme": {
-        "extend": {
-          "colors": {}
-        }
-      }
-    }
-  }
+  ]
 }

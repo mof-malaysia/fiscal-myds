@@ -22,7 +22,7 @@ Hanya import komponen & gunakannya, seperti di bawah!
 </Preview>
 
 ```tsx title="Butang Asas"
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@/components/ui/button";
 
 <Button variant="primary-fill" size="small" onClick={...}>
   Jana Pantun
@@ -41,24 +41,28 @@ Lihat beberapa contoh berikut di bawah:
 
 #### A. Gantikan komponen induk
 
-Contoh ini menunjukkan cara untuk menimpa props untuk menerapkan kelas atau pendengar acara yang ditetapkan melalui `asChild`.
+Contoh ini menunjukkan cara untuk menggantikan elemen yang dipaparkan melalui prop `render`, sambil mengekalkan kelas atau pendengar acara yang ditetapkan.
 
 <Preview>
-  <Button variant="primary-ghost" size="small" asChild>
-    <Link href="#composition" className="no-underline">
-      <span>Skrol ke tajuk</span>
-    </Link>
+  <Button
+    variant="primary-ghost"
+    size="small"
+    render={<Link href="#composition" className="no-underline" />}
+  >
+    <span>Skrol ke tajuk</span>
   </Button>
 </Preview>
 
 ```tsx title="Pautan sebagai Butang"
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/components/ui/link";
 
-<Button variant="primary-ghost" size="small" asChild>
-  <Link href="#composition">
-    <span className="text-txt-primary">Skrol ke tajuk</span>
-  </Link>
+<Button
+  variant="primary-ghost"
+  size="small"
+  render={<Link href="#composition" />}
+>
+  <span className="text-txt-primary">Skrol ke tajuk</span>
 </Button>;
 ```
 
@@ -82,8 +86,8 @@ Contoh ini menunjukkan bagaimana komponen induk boleh menimpa props komponen ana
 </Preview>
 
 ```tsx title="Butang dengan Props Ikon Ditimpa"
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
-import { ArrowForwardIcon } from "@mof-malaysia/myds-react/icon";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { ArrowForwardIcon } from "@/components/ui/icons/arrow-forward";
 
 <Button variant="primary-fill" size="small" onClick={...}>
   Jana Pantun

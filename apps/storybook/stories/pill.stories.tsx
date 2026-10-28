@@ -44,14 +44,13 @@ const meta = {
     onDismiss: {
       type: "function",
     },
-    asChild: {
-      type: "boolean",
+    render: {
+      control: false,
+      description:
+        'Replaces the rendered element, e.g. `render={<a href="/" />}`.',
       table: {
-        defaultValue: {
-          summary: "false",
-        },
+        type: { summary: "ReactElement | (props, state) => ReactElement" },
       },
-      control: "boolean",
     },
   },
 } satisfies Meta<typeof Pill>;

@@ -17,7 +17,7 @@ import { Tag } from "@mof-malaysia/myds-react/tag";
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Tag } from "@/components/ui/tag";
 
 <Tag size="medium" dot={true}>Default</Tag>
 ```
@@ -27,16 +27,24 @@ import { Tag } from "@mof-malaysia/myds-react/tag";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-tag--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-tag--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/tag.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/tag.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/tag.json
+```
 
 ## Usage
 
 ```ts copy title="Import"
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Tag } from "@/components/ui/tag";
 ```
 
 ```tsx copy title="Anatomy"
@@ -75,7 +83,7 @@ Use the `variant` props to change the visual style variant of the tag. The curre
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Tag } from "@/components/ui/tag";
 
 <Tag size="medium" dot={true} variant="default">
   Default
@@ -112,7 +120,7 @@ Use the `size` props to change the size of the tag component. The current option
   </Tab>
   <Tab value="Code">
   ```tsx
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Tag } from "@/components/ui/tag";
 
 <Tag size="small" dot={true} variant="primary">Small</Tag>
 <Tag size="medium" dot={true} variant="primary">Medium</Tag>
@@ -138,7 +146,7 @@ Use the `mode` props to change the type of the tag component. The `default` mode
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Tag } from "@/components/ui/tag";
 
 <Tag size="medium" dot={true} variant="success" mode="default">
   Default
@@ -165,7 +173,7 @@ The `dot` props to toggle the dot appearance. The optional status dot can act as
   </Tab>
   <Tab value="Code">
   ```tsx
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Tag } from "@/components/ui/tag";
 
 <Tag size="medium" dot={false} variant="warning" mode="default">No Dot</Tag>
 <Tag size="medium" dot={true} variant="warning" mode="default">Dot</Tag>

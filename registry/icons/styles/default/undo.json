@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "undo",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/undo.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Undo Icon\n * @param className\n * @returns UndoIcon\n */\nexport const UndoIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (props) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/undo\">\n        <path\n          id=\"Vector\"\n          d=\"M7.25 2.75L2.75 7M2.75 7L7.25 11.25M2.75 7C2.75 7 8.0793 7 12.5001 7C15.1235 7 17.25 9.12665 17.25 11.75C17.25 14.3734 15.1234 16.5 12.5 16.5H7.5\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

@@ -12,7 +12,8 @@ import {
 } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 import { clx } from "../utils";
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 type InputContextProps = {
   size: "small" | "medium" | "large" | null;
@@ -122,22 +123,21 @@ const input_addon_cva = cva(
   },
 );
 
-interface InputAddonProps extends ComponentProps<"div"> {
-  asChild?: boolean;
-}
+interface InputAddonProps extends useRender.ComponentProps<"div"> {}
 
 const InputAddon: ForwardRefExoticComponent<InputAddonProps> = forwardRef(
-  ({ className, asChild = false, ...props }, ref) => {
+  ({ className, render, ...props }, ref) => {
     const { size } = useContext(InputContext);
-    const Comp = asChild ? Slot : "div";
 
-    return (
-      <Comp
-        ref={ref}
-        className={input_addon_cva({ size, className })}
-        {...props}
-      />
-    );
+    return useRender({
+      defaultTagName: "div",
+      render,
+      ref,
+      props: mergeProps<"div">(
+        { className: input_addon_cva({ size, className }) },
+        props,
+      ),
+    });
   },
 );
 
@@ -167,16 +167,20 @@ interface InputIconProps extends ComponentProps<"div"> {
 }
 
 const InputIcon: ForwardRefExoticComponent<InputIconProps> = forwardRef(
-  ({ className, position = "left", ...props }, ref) => {
+  ({ className, position = "left", children, ...props }, ref) => {
     const { size } = useContext(InputContext);
+    const childIsElement = isValidElement(children);
 
-    return (
-      <Slot
-        ref={ref}
-        className={input_icon_cva({ position, size, className })}
-        {...props}
-      />
-    );
+    // Merges the icon classes onto its single child element (e.g. an svg icon).
+    return useRender({
+      defaultTagName: "div",
+      render: childIsElement ? children : undefined,
+      ref,
+      props: mergeProps<"div">(
+        { className: input_icon_cva({ position, size, className }) },
+        childIsElement ? props : { ...props, children },
+      ),
+    });
   },
 );
 

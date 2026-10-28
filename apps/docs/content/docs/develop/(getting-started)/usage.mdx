@@ -22,7 +22,7 @@ Simply import the component & use it, like below!
 </Preview>
 
 ```tsx title="Basic Button"
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@/components/ui/button";
 
 <Button variant="primary-fill" size="small" onClick={...}>
   Jana Pantun
@@ -41,24 +41,28 @@ Take a look at some of the following examples below:
 
 #### A. Replace parent component
 
-This example demonstrates how to override props to apply designated classes or event listeners through `asChild`.
+This example demonstrates how to replace the rendered element through the `render` prop, while keeping the designated classes and event listeners.
 
 <Preview>
-  <Button variant="primary-ghost" size="small" asChild>
-    <Link href="#composition" className="no-underline">
-      <span>Scroll to title</span>
-    </Link>
+  <Button
+    variant="primary-ghost"
+    size="small"
+    render={<Link href="#composition" className="no-underline" />}
+  >
+    <span>Scroll to title</span>
   </Button>
 </Preview>
 
 ```tsx title="Anchor masked as Button"
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/components/ui/link";
 
-<Button variant="primary-ghost" size="small" asChild>
-  <Link href="#composition">
-    <span className="text-txt-primary">Scroll to title</span>
-  </Link>
+<Button
+  variant="primary-ghost"
+  size="small"
+  render={<Link href="#composition" />}
+>
+  <span className="text-txt-primary">Scroll to title</span>
 </Button>;
 ```
 
@@ -82,8 +86,8 @@ This example demonstrates how a parent component can override the child componen
 </Preview>
 
 ```tsx title="Button with Overidden Icon Props"
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
-import { ArrowForwardIcon } from "@mof-malaysia/myds-react/icon";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { ArrowForwardIcon } from "@/components/ui/icons/arrow-forward";
 
 <Button variant="primary-fill" size="small" onClick={...}>
   Jana Pantun

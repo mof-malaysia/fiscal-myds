@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "logout",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/logout.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Logout Icon\n * @param className\n * @returns LogoutIcon\n */\nexport const LogoutIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/logout\">\n        <path\n          id=\"Vector\"\n          d=\"M13.75 6.75L17.25 10M17.25 10L13.75 13.25M17.25 10H7.75M11.25 2.75H4.75C3.64543 2.75 2.75 3.64543 2.75 4.75V15.25C2.75 16.3546 3.64543 17.25 4.75 17.25H11.25\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

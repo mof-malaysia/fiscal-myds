@@ -21,8 +21,8 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
   </Tab>
   <Tab value="Code">
     ```tsx
-    import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
-    import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
+    import { ThemeSwitch } from "@/components/ui/theme-switch";
+    import { ThemeProvider } from "@/lib/myds/hooks";
 
     <ThemeProvider>
         <ThemeSwitch/>
@@ -35,17 +35,25 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-themeswitch--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-themeswitch--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/theme-switch.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/theme-switch.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/theme-switch.json
+```
 
 ## Usage
 
 ```ts copy title="Import"
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 ```
 
 ```tsx copy title="Anatomy"
@@ -71,8 +79,8 @@ By default, `ThemeSwitch` will appear as a toggle button, switching between `lig
   </Tab>
   <Tab value="Code">
 ```tsx
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 <ThemeProvider>
   <ThemeSwitch as="toggle" />
@@ -103,8 +111,8 @@ You can also use `ThemeSwitch` as a select dropdown, allowing users to choose fr
 </Tab>
 <Tab value="Code">
 ```tsx
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 <ThemeProvider>
   <ThemeSwitch as="select" />
@@ -165,8 +173,8 @@ You can also extend themes available by defining the `themes` property! This als
 </Tab>
 <Tab value="Code">
 ```tsx
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 <ThemeProvider>
   <ThemeSwitch

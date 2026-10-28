@@ -16,8 +16,8 @@ import { Label } from "@mof-malaysia/myds-react/label";
  * - Two sizes: small and medium
  * - Light and Dark Theme supported
  *
- * ### Uses RadixUI's checkbox API.
- * https://www.radix-ui.com/primitives/docs/components/checkbox
+ * ### Uses Base UI's checkbox API.
+ * https://base-ui.com/react/components/checkbox
  *
  * ### Usage
  * ```tsx
@@ -73,7 +73,7 @@ const meta: Meta<typeof Checkbox> = {
       action: "checked changed",
       description: "Callback function triggered when the checked state changes",
       table: {
-        type: { summary: "(checked: boolean | 'indeterminate') => void" },
+        type: { summary: "(checked: boolean, eventDetails) => void" },
       },
     },
   },

@@ -8,12 +8,20 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
+## Pemasangan
+
+Hook MYDS dipasang bersama dalam item `hooks`, ke `lib/myds/hooks`. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/hooks.json
+```
+
 ## Penggunaan
 
 <Tabs items={["Hook", "Keperluan"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { useTheme } from "@mof-malaysia/myds-react/hooks";
+    import { useTheme } from "@/lib/myds/hooks";
 
     const { theme, setTheme } = useTheme();
     ```
@@ -21,7 +29,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
   </Tab>
   <Tab value="Keperluan">
     ```tsx
-    import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
+    import { ThemeProvider } from "@/lib/myds/hooks";
 
     const Layout = () => {
       return (
@@ -40,7 +48,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Quicklinks
   links={{
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/hooks/use-theme.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/hooks/use-theme.tsx",
   }}
 />
 
@@ -63,7 +71,7 @@ Hook `useTheme` menyediakan cara mudah untuk menguruskan keadaan tema dalam apli
 <Tabs items={["Tukar", "Pilih"]} defaultValue="Tukar">
   <Tab value="Tukar" className="not-prose">
     ```tsx title="theme-toggle.tsx"
-    import { useTheme } from "@mof-malaysia/myds-react/hooks";
+    import { useTheme } from "@/lib/myds/hooks";
 
     const ThemeToggle = () => {
       const { theme, setTheme } = useTheme();
@@ -81,7 +89,7 @@ Hook `useTheme` menyediakan cara mudah untuk menguruskan keadaan tema dalam apli
   </Tab>
   <Tab value="Pilih">
     ```tsx title="theme-select.tsx"
-    import { Select } from "@mof-malaysia/myds-react/select";
+    import { Select } from "@/components/ui/select";
   
     const ThemeSelect = () => {
       const { theme, setTheme } = useTheme();

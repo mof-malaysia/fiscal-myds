@@ -119,11 +119,12 @@ const meta = {
           </DropdownContent>,
         ],
         custom_trigger: [
-          <DropdownTrigger asChild>
-            {/* asChild is used here because interactive controls must not be nested as per https://dequeuniversity.com/rules/axe/4.10/nested-interactive?application=axeAPI */}
-            <Link href="#" primary underline="always">
-              hello
-            </Link>
+          // `render` is used here because interactive controls must not be nested as per https://dequeuniversity.com/rules/axe/4.10/nested-interactive?application=axeAPI
+          <DropdownTrigger
+            nativeButton={false}
+            render={<Link href="#" primary underline="always" />}
+          >
+            hello
           </DropdownTrigger>,
           <DropdownContent>
             <DropdownItem>Profile</DropdownItem>

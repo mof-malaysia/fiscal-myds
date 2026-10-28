@@ -21,8 +21,8 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
   </Tab>
   <Tab value="Kod">
     ```tsx
-    import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
-    import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
+    import { ThemeSwitch } from "@/components/ui/theme-switch";
+    import { ThemeProvider } from "@/lib/myds/hooks";
 
     <ThemeProvider>
         <ThemeSwitch/>
@@ -35,17 +35,25 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-themeswitch--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-themeswitch--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/theme-switch.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/theme-switch.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/theme-switch.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 ```
 
 ```tsx copy title="Anatomi" title="Pelaksanaan"
@@ -71,8 +79,8 @@ Secara lalai, `ThemeSwitch` akan muncul sebagai butang togol, beralih antara mod
   </Tab>
   <Tab value="Kod">
 ```tsx
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 <ThemeProvider>
   <ThemeSwitch as="toggle" />
@@ -103,8 +111,8 @@ Anda juga boleh menggunakan `ThemeSwitch` sebagai menu pilihan dropdown, membole
 </Tab>
 <Tab value="Kod">
 ```tsx
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 <ThemeProvider>
   <ThemeSwitch as="select" />
@@ -165,8 +173,8 @@ Anda juga boleh memperluaskan tema yang tersedia dengan menentukan sifat `themes
 </Tab>
 <Tab value="Kod">
 ```tsx
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@/lib/myds/hooks";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 <ThemeProvider>
   <ThemeSwitch

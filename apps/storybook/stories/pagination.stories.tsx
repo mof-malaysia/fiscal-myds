@@ -212,23 +212,19 @@ export const CustomizedButtonAndLabel: Story = createStory({
   count: 60,
   maxDisplay: 2,
   previous: (
-    <PaginationPrevious asChild>
-      <Button variant="danger-fill">
-        <ButtonIcon>
-          <ArrowBack />
-        </ButtonIcon>
-        Stop
-      </Button>
+    <PaginationPrevious render={<Button variant="danger-fill" />}>
+      <ButtonIcon>
+        <ArrowBack />
+      </ButtonIcon>
+      Stop
     </PaginationPrevious>
   ),
   next: (
-    <PaginationNext asChild>
-      <Button variant="primary-fill">
-        <ButtonIcon>
-          <GovtOfficeIcon />
-        </ButtonIcon>
-        Go
-      </Button>
+    <PaginationNext render={<Button variant="primary-fill" />}>
+      <ButtonIcon>
+        <GovtOfficeIcon />
+      </ButtonIcon>
+      Go
     </PaginationNext>
   ),
   fullText: `Muka Surat 1 daripada 20`,

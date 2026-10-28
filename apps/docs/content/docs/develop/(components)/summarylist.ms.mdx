@@ -42,10 +42,10 @@ import {
   SummaryListTerm,
   SummaryListDetail,
   SummaryListRow,
-} from "@mof-malaysia/myds-react/summary-list";
-import { Tag } from "@mof-malaysia/myds-react/tag";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { SwapIcon } from "@mof-malaysia/myds-react/icon";
+} from "@/components/ui/summary-list";
+import { Tag } from "@/components/ui/tag";
+import { Button } from "@/components/ui/button";
+import { SwapIcon } from "@/components/ui/icons/swap";
 
 <SummaryList>
   <SummaryListHeader>Government Subsidy Application</SummaryListHeader>
@@ -117,11 +117,19 @@ import { SwapIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-summarylist--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-summarylist--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/summary-list.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/summary-list.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/summary-list.json
+```
 
 ## Penggunaan
 
@@ -134,7 +142,7 @@ import {
   SummaryListTerm,
   SummaryListDetail,
   SummaryListRow,
-} from "@mof-malaysia/myds-react/summary-list";
+} from "@/components/ui/summary-list";
 ```
 
 ```tsx copy title="Anatomi"

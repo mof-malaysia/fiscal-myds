@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "reset-style",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/reset-style.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * ResetStyle Icon\n * @param className\n * @returns ResetStyleIcon\n */\nexport const ResetStyleIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"WYSIWYG Icon\">\n        <g id=\"Vector\">\n          <path\n            d=\"M5.46973 5.46967L7.9394 3L9.00006 4.06066L6.53039 6.53033L8.96967 9.03033L7.9394 10.0607L5.46973 7.59099L3.00006 10.0607L1.9394 9L4.40907 6.53033L1.9394 4.06066L3.00006 3L5.46973 5.46967Z\"\n            fill=\"currentColor\"\n          />\n          <path\n            fillRule=\"evenodd\"\n            clipRule=\"evenodd\"\n            d=\"M13.9211 4L5.84867 17.0909H8.37992L10.3865 13.8629H15.3081L15.4687 17.0909H17.9999L16.8487 4H13.9211ZM15.2133 11.9581L14.9509 6.68466H14.8487L11.5706 11.9581H15.2133Z\"\n            fill=\"currentColor\"\n          />\n        </g>\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

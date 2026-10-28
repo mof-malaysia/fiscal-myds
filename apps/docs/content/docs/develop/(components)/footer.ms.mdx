@@ -51,7 +51,7 @@ import {
   SiteLinkGroup,
   SiteLink,
   FooterLogo,
-} from "@mof-malaysia/myds-react/footer";
+} from "@/components/ui/footer";
 
 <Footer >
   <FooterSection>
@@ -181,11 +181,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-footer--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-footer--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/footer.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/footer.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/footer.json
+```
 
 ## Penggunaan
 
@@ -197,7 +205,7 @@ import {
   SiteLinkGroup,
   SiteLink,
   FooterLogo,
-} from "@mof-malaysia/myds-react/footer";
+} from "@/components/ui/footer";
 ```
 
 ```tsx copy title="Anatomy"
@@ -239,10 +247,9 @@ export default () => (
   </Tab>
   <Tab value="Kod">
   ```
-  import 
-  {
+  import {
   FooterSection,
-  } from "@mof-malaysia/myds-react/footer";
+  } from "@/components/ui/footer";
 
   <FooterSection className="text-txt-black-500 md:max-lg:gap-4.5 mx-auto flex w-full max-w-[1280px] flex-col justify-between border-none text-sm max-md:gap-4 lg:flex-row lg:gap-6">
     <div className="flex flex-col gap-3 lg:flex-row">
@@ -271,10 +278,9 @@ Komponen HTML `aside` yang digunakan untuk mengandungi maklumat seperti maklumat
   </Tab>
   <Tab value="Kod">
   ```
-  import 
-  {
+  import {
   SiteInfo,
-  } from "@mof-malaysia/myds-react/footer";
+  } from "@/components/ui/footer";
 
     <SiteInfo className="not-prose">
       <div className="text-txt-black-900 flex items-center gap-x-2.5">
@@ -358,7 +364,7 @@ Bekas (container) yang menyusun koleksi `SiteLink` ke dalam kumpulan bertajuk.
 <Tab value="Kod">
 ```
 
-import { SiteLinkGroup, SiteLink } from "@mof-malaysia/myds-react/footer";
+import { SiteLinkGroup, SiteLink } from "@/components/ui/footer";
 
   <SiteLinkGroup groupTitle="Super super long long long long long long long long title">
       <SiteLink href="#">
@@ -479,10 +485,10 @@ import { SiteLinkGroup, SiteLink } from "@mof-malaysia/myds-react/footer";
       description: "Kandungan bahagian SiteLink",
       type: "ReactNode",
     },
-    asChild: {
-      description: "Suis untuk mewarisi komponen anak secara langsung",
-      type: "boolean",
-      default: "false",
+    render: {
+      description:
+        'Menggantikan elemen yang dipaparkan, contohnya `render={<a href="/" />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
   }}
 />

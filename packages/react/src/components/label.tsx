@@ -1,6 +1,7 @@
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { cva, VariantProps } from "class-variance-authority";
-import React, { ComponentProps, ForwardRefExoticComponent } from "react";
+import React, { ForwardRefExoticComponent } from "react";
 
 const label_cva = cva(
   [
@@ -23,17 +24,20 @@ const label_cva = cva(
 );
 
 interface LabelProps
-  extends ComponentProps<"label">,
-    VariantProps<typeof label_cva> {
-  asChild?: boolean;
-}
+  extends useRender.ComponentProps<"label">,
+    VariantProps<typeof label_cva> {}
 
 const Label: ForwardRefExoticComponent<LabelProps> = React.forwardRef(
-  ({ asChild, size, className, ...props }, ref) => {
-    const Comp = asChild ? Slot : "label";
-    return (
-      <Comp className={label_cva({ size, className })} ref={ref} {...props} />
-    );
+  ({ render, size, className, ...props }, ref) => {
+    return useRender({
+      defaultTagName: "label",
+      render,
+      ref,
+      props: mergeProps<"label">(
+        { className: label_cva({ size, className }) },
+        props,
+      ),
+    });
   },
 );
 Label.displayName = "Label";

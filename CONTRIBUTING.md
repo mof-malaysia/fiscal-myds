@@ -38,20 +38,11 @@ Running tests
    pnpm run lint
    ```
 
-3. **Adding Changeset**:
-
-   ```sh
-   pnpm changeset
-   ```
-
-   - Describe the changes made in the PR inside the Changeset and only select the affected package(s)
-   - Refer to [Changeset guide](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
-
-4. **Push Your Changes**:
+3. **Push Your Changes**:
    ```sh
    git push origin feature/your-feature-name
    ```
-5. **Open a Pull Request**:
+4. **Open a Pull Request**:
    - Go to the repository on GitHub.
    - Click "New pull request".
    - Fill out the PR template.

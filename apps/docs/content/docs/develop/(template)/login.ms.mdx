@@ -33,24 +33,22 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Code">
   ```tsx
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Input } from "@mof-malaysia/myds-react/input";
-import {
-  GlobeIcon,
-  GoogleIcon,
-  JataNegaraIcon,
-} from "@mof-malaysia/myds-react/icon";
-import { Navbar, NavbarLogo } from "@mof-malaysia/myds-react/navbar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { GlobeIcon } from "@/components/ui/icons/globe";
+import { GoogleIcon } from "@/components/ui/icons/google";
+import { JataNegaraIcon } from "@/components/ui/icons/legacy-jata-negara";
+import { Navbar, NavbarLogo } from "@/components/ui/navbar";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@mof-malaysia/myds-react/select";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
-import { Link } from "@mof-malaysia/myds-react/link";
-import { clx } from "@mof-malaysia/myds-react/utils";
+} from "@/components/ui/select";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
+import { Link } from "@/components/ui/link";
+import { clx } from "@/lib/myds/utils";
 
 export default function LoginTemplate() {
   return (
@@ -207,7 +205,7 @@ function Navlinks() {
 ## Ringkasan Umum
 
 
-Komponen `LoginTemplate` menyediakan contoh UI skrin log masuk menggunakan komponen [MYDS](https://github.com/govtechmy/myds). Ia merangkumi:
+Komponen `LoginTemplate` menyediakan contoh UI skrin log masuk menggunakan komponen [MYDS](https://github.com/mof-malaysia/fiscal-myds). Ia merangkumi:
 
 - Header responsif dengan logo, penukar bahasa, dan togol tema.
 - Borang log masuk yang dipusatkan dengan medan e-mel/katalaluan serta sokongan log masuk pihak ketiga.
@@ -230,24 +228,22 @@ Komponen `LoginTemplate` menyediakan contoh UI skrin log masuk menggunakan kompo
 Salin keseluruhan kod di bawah untuk mula!
 
 ```tsx copy title="Template"
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Input } from "@mof-malaysia/myds-react/input";
-import {
-  GlobeIcon,
-  GoogleIcon,
-  JataNegaraIcon,
-} from "@mof-malaysia/myds-react/icon";
-import { Navbar, NavbarLogo } from "@mof-malaysia/myds-react/navbar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { GlobeIcon } from "@/components/ui/icons/globe";
+import { GoogleIcon } from "@/components/ui/icons/google";
+import { JataNegaraIcon } from "@/components/ui/icons/legacy-jata-negara";
+import { Navbar, NavbarLogo } from "@/components/ui/navbar";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@mof-malaysia/myds-react/select";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
-import { Link } from "@mof-malaysia/myds-react/link";
-import { clx } from "@mof-malaysia/myds-react/utils";
+} from "@/components/ui/select";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
+import { Link } from "@/components/ui/link";
+import { clx } from "@/lib/myds/utils";
 
 export default function LoginTemplate() {
   return (

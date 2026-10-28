@@ -8,12 +8,20 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
+## Installation
+
+MYDS hooks are installed together as the `hooks` item, into `lib/myds/hooks`. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/hooks.json
+```
+
 ## Usage
 
 <Tabs items={["Hook", "Requirement"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { useToast } from "@mof-malaysia/myds-react/hooks";
+    import { useToast } from "@/lib/myds/hooks";
 
     const { toast } = useToast();
 
@@ -30,7 +38,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
   <Tab value="Requirement">
     ```tsx
     // Place this component at the root of your application
-    import { AutoToast } from "@mof-malaysia/myds-react/toast";
+    import { AutoToast } from "@/components/ui/toast";
 
     <AutoToast />
     ```
@@ -41,7 +49,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Quicklinks
   links={{
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/hooks/use-toast.ts",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/hooks/use-toast.ts",
   }}
 />
 
@@ -63,7 +71,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 A toast event can be triggered by calling the `toast` method from the `useToast` hook. Define a `ToastEvent` object with the required properties and pass it to the `toast` method.
 
 ```ts title="Example"
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 //... inside your component
 const { toast } = useToast();
@@ -83,7 +91,7 @@ The `useToast` hook provides the handlers required to listen to toast events fro
 
 ```ts title="Toast.tsx"
 import { useEffect } from "react";
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 //... inside your component
 const { subscribe, unsubscribe } = useToast();
@@ -101,7 +109,7 @@ useEffect(() => {
 Toasts can be accessed through the `toasts` object provided by the `useToast` hook. This object contains an array of active toast events.
 
 ```ts title="Example"
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 const { toasts } = useToast();
 console.log(toasts);

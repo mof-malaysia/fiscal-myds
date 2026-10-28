@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "warning",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/warning.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Warning Icon\n * @param className\n * @returns WarningIcon\n */\nexport const WarningIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/warning\">\n        <path\n          id=\"Vector\"\n          d=\"M10 8V11M10 13.95V14M2.95221 14.3536L8.21521 3.85659C8.95311 2.38482 11.0539 2.38521 11.7913 3.85724L17.0495 14.3543C17.7156 15.6841 16.7487 17.25 15.2613 17.25H4.74008C3.25235 17.25 2.28541 15.6835 2.95221 14.3536Z\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

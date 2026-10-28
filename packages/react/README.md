@@ -1,51 +1,10 @@
-# myds-react
+# myds-react (internal)
 
-![myds-hero-img](https://d2391uizq0pg2.cloudfront.net/design/myds-hero-img.png)
+Source for the MYDS React components, hooks, icons and utilities.
 
-> The Malaysian Government Design System (MYDS) is an open-source design system to build products for the Malaysian government. It contains the design guideline and the component library for creating consistent and accessible digital services.
+**This package is not published to npm.** It is `private` and exists only inside this monorepo:
 
-## Getting started
+- `scripts/registry/generate-ui.ts` and `scripts/registry/generate-icons.ts` read `src/` to build the shadcn registry (`registry/ui`, `registry/icons`).
+- `apps/docs` and `apps/storybook` consume it via `workspace:*`.
 
-To install `@mof-malaysia/myds-react` in your project, run the installation command for the package manager of your choice:
-
-```bash
-# npm
-npm i @mof-malaysia/myds-react
-
-# yarn
-yarn add @mof-malaysia/myds-react
-
-# pnpm
-pnpm add @mof-malaysia/myds-react
-```
-
-This package requires [@mof-malaysia/myds-style](#) to provide styling. For more info on how to configure the styling, we recommend to check out the docs provided below:
-
-- [Style Configuration](https://design.digital.gov.my/en/docs/develop/install#b-import-via-css)
-
-## Usage
-
-The package provides components and icons to support MYDS implementation for your project.
-
-To use a component, you can import directly from the package:
-
-```tsx
-import { Button } from "@mof-malaysia/myds-react/button";
-
-<Button variant="primary-fill" size="small">
-  Jana Pantun
-</Button>;
-```
-
-> For Nextjs or any framework that supports RSC, please note that MYDS components are not RSC-compatible. To make it work, you are required to explicitly render the components client-side with the `"use client"` directive or similar
-
-## Contributing
-
-MYDS is an open-source project and welcomes contributions from the public. To contribute:
-
-1. **Discuss New Features**: Before submitting a pull request (PR), please open an issue to discuss the feature you would like to add or change. This helps to ensure that your contribution aligns with the project's goals and guidelines.
-2. **Submit a PR**: Once the feature has been discussed and approved, you can submit a PR with your changes. Please follow the contribution guidelines provided in the repository.
-
-We look forward to collaborating with you to improve MYDS.
-
----
+To use MYDS in a project, install components from the registry. See the [root README](../../README.md).

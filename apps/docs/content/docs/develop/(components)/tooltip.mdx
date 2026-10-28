@@ -25,8 +25,8 @@ import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
   </Tab>
   <Tab value="Code">
     ```tsx
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
-    import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+    import { QuestionCircleIcon } from "@/components/ui/icons/question-circle";
 
     <Tooltip>
       <TooltipTrigger>
@@ -42,11 +42,19 @@ import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-tooltip--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-tooltip--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/tooltip.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/tooltip.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/tooltip.json
+```
 
 ## Usage
 
@@ -55,7 +63,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@mof-malaysia/myds-react/tooltip";
+} from "@/components/ui/tooltip";
 ```
 
 ```tsx copy title="Anatomy"
@@ -71,7 +79,7 @@ import {
 
 The `open` and `onOpenChange` can be used to manually to handle the state programmatically.
 
-The `defaulOpen` props can be used to treat the component as an uncontrolled component.
+The `defaultOpen` props can be used to treat the component as an uncontrolled component.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview" className="not-prose flex justify-center">
@@ -84,7 +92,7 @@ The `defaulOpen` props can be used to treat the component as an uncontrolled com
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
     <Tooltip open={true}>
       <TooltipTrigger>
@@ -130,7 +138,7 @@ The `side` props can be used to manually adjust the placement of the `TooltipCon
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
     <Tooltip>
       <TooltipTrigger>
@@ -165,7 +173,7 @@ The `side` props can be used to manually adjust the placement of the `TooltipCon
 
 ### Tooltip
 
-`Tooltip` is the wrapper component which manages the tooltip's state. It is being built on top of `TooltipPrimitive.Provider` and `TooltipPrimitive.Root`. Please refer to the full API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/tooltip#provider).
+`Tooltip` is the wrapper component which manages the tooltip's state. It is built on top of Base UI's `Tooltip.Provider` and `Tooltip.Root`. Please refer to the full API references in this [documentation](https://base-ui.com/react/components/tooltip#root).
 
 <TypeTable
   type={{
@@ -185,9 +193,9 @@ The `side` props can be used to manually adjust the placement of the `TooltipCon
     delayDuration: {
       description: "The time delay before showing the tooltip when hovering.",
       type: "number",
-      default: "700ms",
+      default: "200ms",
     },
-    disableHoverableContent: {
+    disableHoverablePopup: {
       description:
         "When true, prevents the user from hovering over the tooltip content.",
       type: "boolean",
@@ -197,7 +205,7 @@ The `side` props can be used to manually adjust the placement of the `TooltipCon
 
 ### TooltipContent
 
-`TooltipContent` is the "bubble" that displays the tooltip. It is being built on top of `TooltipPrimitive.Portal` and `TooltipPrimitive.Content`. Please refer to the full API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/tooltip#portal).
+`TooltipContent` is the "bubble" that displays the tooltip. It is built on top of Base UI's `Tooltip.Portal`, `Tooltip.Positioner` and `Tooltip.Popup`; positioning props are forwarded to the positioner. Please refer to the full API references in this [documentation](https://base-ui.com/react/components/tooltip#positioner).
 
 <TypeTable
   type={{
@@ -205,6 +213,11 @@ The `side` props can be used to manually adjust the placement of the `TooltipCon
       description: "The element to portal the tooltip content into.",
       type: "HTMLElement",
       default: "document.body",
+    },
+    keepMounted: {
+      description: "Whether to keep the tooltip content mounted in the DOM while closed.",
+      type: "boolean",
+      default: "false",
     },
     arrowPadding: {
       description: "Space between the arrow and the tooltip content edges.",
@@ -227,4 +240,4 @@ The `side` props can be used to manually adjust the placement of the `TooltipCon
 
 ### TooltipTrigger
 
-`TooltipTrigger` is the component where the user interacts with to show the tooltip. It is being built on top of `TooltipPrimitive.Trigger`. Please refer to the full API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/tooltip#content).
+`TooltipTrigger` is the component where the user interacts with to show the tooltip. It is built on top of Base UI's `Tooltip.Trigger`. Use the `render` prop to render your own element as the trigger, e.g. `render={<Button />}`. Please refer to the full API references in this [documentation](https://base-ui.com/react/components/tooltip#trigger).

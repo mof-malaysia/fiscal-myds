@@ -19,7 +19,7 @@ import { TextArea } from "@mof-malaysia/myds-react/textarea";
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 
 <TextArea placeholder="Placeholder text displayed when the text area is empty." 
 size={'small'}
@@ -31,16 +31,24 @@ size={'small'}
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-textarea--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-textarea--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/textarea.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/textarea.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/textarea.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 ```
 
 ```tsx copy title="Anatomi"
@@ -72,7 +80,7 @@ Mengawal varian saiz komponen. Menerima nilai `small`, `medium`, atau `large`.
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 
 /\*_ Size props_/
 
@@ -100,7 +108,7 @@ Props in boleh digunakan untuk menyahaktifkan input pengguna dan menggunakan gay
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@/components/ui/textarea";
 
 /\*_ Size props_/
 

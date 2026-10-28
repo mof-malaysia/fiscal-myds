@@ -8,12 +8,20 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
+## Pemasangan
+
+Hook MYDS dipasang bersama dalam item `hooks`, ke `lib/myds/hooks`. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/hooks.json
+```
+
 ## Penggunaan
 
 <Tabs items={["Hook", "Keperluan"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { usePagination } from "@mof-malaysia/myds-react/hooks";
+    import { usePagination } from "@/lib/myds/hooks";
 
     const { visiblePages, max } = usePagination({ count: 10, page: 1, limit: 10, maxDisplay: 4 });
     ```
@@ -30,7 +38,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Quicklinks
   links={{
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/hooks/use-pagination.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/hooks/use-pagination.tsx",
   }}
 />
 
@@ -41,7 +49,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 Hook `usePagination` menyediakan pengendali yang diperlukan untuk menguruskan keadaan dan tindakan penomboran untuk komponen senarai dan jadual. Ini boleh dilihat dalam [Konfigurasi Penomboran](/docs/develop/pagination#pagination-configurations) dokumentasi Penomboran.
 
 ```tsx title="Contoh"
-import { usePagination } from "@mof-malaysia/myds-react/hooks";
+import { usePagination } from "@/lib/myds/hooks";
 
 //... dalam komponen anda
 const { visiblePages } = usePagination();

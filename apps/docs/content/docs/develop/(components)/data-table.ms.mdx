@@ -113,16 +113,24 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-datatable--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-datatable--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/data-table.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/data-table.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/data-table.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { DataTable } from "@mof-malaysia/myds-react/data-table";
+import { DataTable } from "@/components/ui/data-table";
 ```
 
 ```tsx copy title="Anatomi"

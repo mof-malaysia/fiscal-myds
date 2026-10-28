@@ -22,16 +22,24 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-checkbox--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-checkbox--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/checkbox.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/checkbox.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/checkbox.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 ```
 
 ```tsx copy title="Anatomi"
@@ -168,8 +176,7 @@ Keadaan tidak menentu digunakan apabila kotak semak adalah sebahagian daripada k
     },
     onCheckedChange: {
       description: "Pembolehubah keadaan kotak semak (terkawal)",
-      type: "(checked: boolean | indeterminate) => void",
-      default: "false",
+      type: "(checked: boolean, eventDetails) => void",
     },
   }}
 />

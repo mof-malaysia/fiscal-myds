@@ -5,7 +5,7 @@
   "components": [
     {
       "name": "accessible",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -14,7 +14,7 @@
     },
     {
       "name": "align-center",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -23,7 +23,7 @@
     },
     {
       "name": "align-justify",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -32,7 +32,7 @@
     },
     {
       "name": "align-left",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -41,7 +41,7 @@
     },
     {
       "name": "align-right",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -50,7 +50,7 @@
     },
     {
       "name": "arrow-back",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -59,7 +59,7 @@
     },
     {
       "name": "arrow-back-close",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -68,7 +68,7 @@
     },
     {
       "name": "arrow-down",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -77,7 +77,7 @@
     },
     {
       "name": "arrow-forward",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -86,7 +86,7 @@
     },
     {
       "name": "arrow-forward-close",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -95,7 +95,7 @@
     },
     {
       "name": "arrow-incoming",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -104,7 +104,7 @@
     },
     {
       "name": "arrow-outgoing",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -113,7 +113,7 @@
     },
     {
       "name": "arrow-up",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -122,7 +122,7 @@
     },
     {
       "name": "attachment",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -131,7 +131,7 @@
     },
     {
       "name": "bell",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -140,7 +140,7 @@
     },
     {
       "name": "bold",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -149,7 +149,7 @@
     },
     {
       "name": "bolt",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -158,7 +158,7 @@
     },
     {
       "name": "book",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -167,7 +167,7 @@
     },
     {
       "name": "bulleted-list",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -176,7 +176,7 @@
     },
     {
       "name": "button",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -185,7 +185,7 @@
     },
     {
       "name": "calendar",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -194,7 +194,7 @@
     },
     {
       "name": "carousel",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -203,7 +203,7 @@
     },
     {
       "name": "chat-bubble",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -212,7 +212,7 @@
     },
     {
       "name": "check",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -221,7 +221,7 @@
     },
     {
       "name": "check-circle",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -230,7 +230,7 @@
     },
     {
       "name": "check-circle-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -239,7 +239,7 @@
     },
     {
       "name": "check-shield",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -248,7 +248,7 @@
     },
     {
       "name": "check-star",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -257,7 +257,7 @@
     },
     {
       "name": "chevron-down",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -266,7 +266,7 @@
     },
     {
       "name": "chevron-down-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -275,7 +275,7 @@
     },
     {
       "name": "chevron-left",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -284,7 +284,7 @@
     },
     {
       "name": "chevron-left-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -293,7 +293,7 @@
     },
     {
       "name": "chevron-right",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -302,7 +302,7 @@
     },
     {
       "name": "chevron-right-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -311,7 +311,7 @@
     },
     {
       "name": "chevron-up",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -320,7 +320,7 @@
     },
     {
       "name": "chevron-up-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -329,7 +329,7 @@
     },
     {
       "name": "clock",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -338,7 +338,7 @@
     },
     {
       "name": "column-collapse",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -347,7 +347,7 @@
     },
     {
       "name": "column-expand",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -356,7 +356,7 @@
     },
     {
       "name": "component",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -365,7 +365,7 @@
     },
     {
       "name": "copy",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -374,7 +374,7 @@
     },
     {
       "name": "cross",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -383,7 +383,7 @@
     },
     {
       "name": "cross-circle",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -392,7 +392,7 @@
     },
     {
       "name": "cross-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -401,7 +401,7 @@
     },
     {
       "name": "cursor",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -410,7 +410,7 @@
     },
     {
       "name": "database",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -419,7 +419,7 @@
     },
     {
       "name": "desktop",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -428,7 +428,7 @@
     },
     {
       "name": "direction",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -437,7 +437,7 @@
     },
     {
       "name": "document",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -446,7 +446,7 @@
     },
     {
       "name": "document-add",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -455,7 +455,7 @@
     },
     {
       "name": "document-filled",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -464,7 +464,7 @@
     },
     {
       "name": "document-minus",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -473,7 +473,7 @@
     },
     {
       "name": "download",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -482,7 +482,7 @@
     },
     {
       "name": "drop-arrow-down",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -491,7 +491,7 @@
     },
     {
       "name": "duplicate",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -500,7 +500,7 @@
     },
     {
       "name": "edit",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -509,7 +509,7 @@
     },
     {
       "name": "ellipsis",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -518,7 +518,7 @@
     },
     {
       "name": "ellipsis-vertical",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -527,7 +527,7 @@
     },
     {
       "name": "email",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -536,7 +536,7 @@
     },
     {
       "name": "excel",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -545,7 +545,7 @@
     },
     {
       "name": "excel-media",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -554,7 +554,7 @@
     },
     {
       "name": "expand",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -563,7 +563,7 @@
     },
     {
       "name": "eye-hide",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -572,7 +572,7 @@
     },
     {
       "name": "eye-show",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -581,7 +581,7 @@
     },
     {
       "name": "facebook",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -590,7 +590,7 @@
     },
     {
       "name": "figma",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -599,7 +599,7 @@
     },
     {
       "name": "filter",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -608,7 +608,7 @@
     },
     {
       "name": "filter-asc",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -617,7 +617,7 @@
     },
     {
       "name": "filter-desc",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -626,7 +626,7 @@
     },
     {
       "name": "flag",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -635,7 +635,7 @@
     },
     {
       "name": "folder",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -644,7 +644,7 @@
     },
     {
       "name": "folder-minus",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -653,7 +653,7 @@
     },
     {
       "name": "folder-plus",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -662,7 +662,7 @@
     },
     {
       "name": "font",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -671,7 +671,7 @@
     },
     {
       "name": "forms",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -680,7 +680,7 @@
     },
     {
       "name": "gallery",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -689,7 +689,7 @@
     },
     {
       "name": "github",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -698,7 +698,7 @@
     },
     {
       "name": "globe",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -707,7 +707,7 @@
     },
     {
       "name": "google",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -716,7 +716,7 @@
     },
     {
       "name": "govt-office",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -725,7 +725,7 @@
     },
     {
       "name": "grid",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -734,7 +734,7 @@
     },
     {
       "name": "hamburger-menu",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -743,7 +743,7 @@
     },
     {
       "name": "heart",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -752,7 +752,7 @@
     },
     {
       "name": "home",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -761,7 +761,7 @@
     },
     {
       "name": "info",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -770,7 +770,7 @@
     },
     {
       "name": "input-field",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -779,7 +779,7 @@
     },
     {
       "name": "instagram",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -788,7 +788,7 @@
     },
     {
       "name": "italic",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -797,7 +797,7 @@
     },
     {
       "name": "legacy-ambulance-mers",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -806,7 +806,7 @@
     },
     {
       "name": "legacy-ballot-spr",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -815,7 +815,7 @@
     },
     {
       "name": "legacy-blood-pdn",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -824,7 +824,7 @@
     },
     {
       "name": "legacy-bnm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -833,7 +833,7 @@
     },
     {
       "name": "legacy-book-moe",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -842,7 +842,7 @@
     },
     {
       "name": "legacy-car-jpj",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -851,7 +851,7 @@
     },
     {
       "name": "legacy-document-mof",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -860,7 +860,7 @@
     },
     {
       "name": "legacy-dosm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -869,7 +869,7 @@
     },
     {
       "name": "legacy-fire-bomba",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -878,7 +878,7 @@
     },
     {
       "name": "legacy-flood-jps",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -887,7 +887,7 @@
     },
     {
       "name": "legacy-helmet-jpa",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -896,7 +896,7 @@
     },
     {
       "name": "legacy-helping-hand-icu-jpm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -905,7 +905,7 @@
     },
     {
       "name": "legacy-hospital-moh",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -914,7 +914,7 @@
     },
     {
       "name": "legacy-identity-jpn",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -923,7 +923,7 @@
     },
     {
       "name": "legacy-internet-mcmc",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -932,7 +932,7 @@
     },
     {
       "name": "legacy-jakoa",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -941,7 +941,7 @@
     },
     {
       "name": "legacy-jata-negara",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -950,7 +950,7 @@
     },
     {
       "name": "legacy-light-bulb-ipr-epu",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -959,7 +959,7 @@
     },
     {
       "name": "legacy-mampu",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -968,7 +968,7 @@
     },
     {
       "name": "legacy-mini-ambulance-mers",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -977,7 +977,7 @@
     },
     {
       "name": "legacy-mini-ballot-spr",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -986,7 +986,7 @@
     },
     {
       "name": "legacy-mini-blood-pdn",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -995,7 +995,7 @@
     },
     {
       "name": "legacy-mini-bnm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1004,7 +1004,7 @@
     },
     {
       "name": "legacy-mini-book-moe",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1013,7 +1013,7 @@
     },
     {
       "name": "legacy-mini-car-jpj",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1022,7 +1022,7 @@
     },
     {
       "name": "legacy-mini-document-mof",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1031,7 +1031,7 @@
     },
     {
       "name": "legacy-mini-dosm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1040,7 +1040,7 @@
     },
     {
       "name": "legacy-mini-fire-bomba",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1049,7 +1049,7 @@
     },
     {
       "name": "legacy-mini-flood-warning",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1058,7 +1058,7 @@
     },
     {
       "name": "legacy-mini-helmet-jpa",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1067,7 +1067,7 @@
     },
     {
       "name": "legacy-mini-helping-hands-icu-jpm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1076,7 +1076,7 @@
     },
     {
       "name": "legacy-mini-hospital-moh",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1085,7 +1085,7 @@
     },
     {
       "name": "legacy-mini-identity-jpn",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1094,7 +1094,7 @@
     },
     {
       "name": "legacy-mini-internet-mcmc",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1103,7 +1103,7 @@
     },
     {
       "name": "legacy-mini-jakoa",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1112,7 +1112,7 @@
     },
     {
       "name": "legacy-mini-light-bulb-ipr-epu",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1121,7 +1121,7 @@
     },
     {
       "name": "legacy-mini-mampu",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1130,7 +1130,7 @@
     },
     {
       "name": "legacy-mini-money-epf",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1139,7 +1139,7 @@
     },
     {
       "name": "legacy-mini-money-kwap",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1148,7 +1148,7 @@
     },
     {
       "name": "legacy-mini-money-lhdn",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1157,7 +1157,7 @@
     },
     {
       "name": "legacy-mini-passport-imigresen",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1166,7 +1166,7 @@
     },
     {
       "name": "legacy-mini-phcorp",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1175,7 +1175,7 @@
     },
     {
       "name": "legacy-mini-police-pdrm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1184,7 +1184,7 @@
     },
     {
       "name": "legacy-mini-ribbon-ntrc",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1193,7 +1193,7 @@
     },
     {
       "name": "legacy-mini-socso",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1202,7 +1202,7 @@
     },
     {
       "name": "legacy-mini-train-mot",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1211,7 +1211,7 @@
     },
     {
       "name": "legacy-mini-unhcr",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1220,7 +1220,7 @@
     },
     {
       "name": "legacy-mini-weather-climate",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1229,7 +1229,7 @@
     },
     {
       "name": "legacy-mini-website",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1238,7 +1238,7 @@
     },
     {
       "name": "legacy-money-epf",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1247,7 +1247,7 @@
     },
     {
       "name": "legacy-money-kwap",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1256,7 +1256,7 @@
     },
     {
       "name": "legacy-money-lhdn",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1265,7 +1265,7 @@
     },
     {
       "name": "legacy-passport-imigresen",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1274,7 +1274,7 @@
     },
     {
       "name": "legacy-phcorp",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1283,7 +1283,7 @@
     },
     {
       "name": "legacy-police-pdrm",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1292,7 +1292,7 @@
     },
     {
       "name": "legacy-ribbon-ntrc",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1301,7 +1301,7 @@
     },
     {
       "name": "legacy-socso-perkeso",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1310,7 +1310,7 @@
     },
     {
       "name": "legacy-train-mot",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1319,7 +1319,7 @@
     },
     {
       "name": "legacy-unhcr",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1328,7 +1328,7 @@
     },
     {
       "name": "legacy-weather-met",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1337,7 +1337,7 @@
     },
     {
       "name": "link",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1346,7 +1346,7 @@
     },
     {
       "name": "link-diagonal",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1355,7 +1355,7 @@
     },
     {
       "name": "linkedin",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1364,7 +1364,7 @@
     },
     {
       "name": "list",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1373,7 +1373,7 @@
     },
     {
       "name": "lock",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1382,7 +1382,7 @@
     },
     {
       "name": "lock-2",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1391,7 +1391,7 @@
     },
     {
       "name": "lock-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1400,7 +1400,7 @@
     },
     {
       "name": "logout",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1409,7 +1409,7 @@
     },
     {
       "name": "malaysia-flag",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1418,7 +1418,7 @@
     },
     {
       "name": "map",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1427,7 +1427,7 @@
     },
     {
       "name": "megaphone",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1436,7 +1436,7 @@
     },
     {
       "name": "minus",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1445,7 +1445,7 @@
     },
     {
       "name": "minus-circle",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1454,7 +1454,7 @@
     },
     {
       "name": "mobile",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1463,7 +1463,7 @@
     },
     {
       "name": "money",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1472,7 +1472,7 @@
     },
     {
       "name": "moon",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1481,7 +1481,7 @@
     },
     {
       "name": "numbered-list",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1490,7 +1490,7 @@
     },
     {
       "name": "org-chart",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1499,7 +1499,7 @@
     },
     {
       "name": "pause",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1508,7 +1508,7 @@
     },
     {
       "name": "pdf",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1517,7 +1517,7 @@
     },
     {
       "name": "pdf-media",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1526,7 +1526,7 @@
     },
     {
       "name": "phone",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1535,7 +1535,7 @@
     },
     {
       "name": "pin",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1544,7 +1544,7 @@
     },
     {
       "name": "placeholder",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1553,7 +1553,7 @@
     },
     {
       "name": "play",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1562,7 +1562,7 @@
     },
     {
       "name": "plus",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1571,7 +1571,7 @@
     },
     {
       "name": "plus-circle",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1580,7 +1580,7 @@
     },
     {
       "name": "powerpoint-media",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1589,7 +1589,7 @@
     },
     {
       "name": "printer",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1598,7 +1598,7 @@
     },
     {
       "name": "putrajaya",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1607,7 +1607,7 @@
     },
     {
       "name": "qr-code",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1616,7 +1616,7 @@
     },
     {
       "name": "question-circle",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1625,7 +1625,7 @@
     },
     {
       "name": "redo",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1634,7 +1634,7 @@
     },
     {
       "name": "reload",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1643,7 +1643,7 @@
     },
     {
       "name": "reset-style",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1652,7 +1652,7 @@
     },
     {
       "name": "rss",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1661,7 +1661,7 @@
     },
     {
       "name": "search",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1670,7 +1670,7 @@
     },
     {
       "name": "section",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1679,7 +1679,7 @@
     },
     {
       "name": "setting",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1688,7 +1688,7 @@
     },
     {
       "name": "share",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1697,7 +1697,7 @@
     },
     {
       "name": "star",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1706,7 +1706,7 @@
     },
     {
       "name": "star-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1715,7 +1715,7 @@
     },
     {
       "name": "strikethrough",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1724,7 +1724,7 @@
     },
     {
       "name": "sun",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1733,7 +1733,7 @@
     },
     {
       "name": "swap",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1742,7 +1742,7 @@
     },
     {
       "name": "table",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1751,7 +1751,7 @@
     },
     {
       "name": "tablet",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1760,7 +1760,7 @@
     },
     {
       "name": "telegram",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1769,7 +1769,7 @@
     },
     {
       "name": "text",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1778,7 +1778,7 @@
     },
     {
       "name": "thumbs-down",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1787,7 +1787,7 @@
     },
     {
       "name": "thumbs-up",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1796,7 +1796,7 @@
     },
     {
       "name": "tiktok",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1805,7 +1805,7 @@
     },
     {
       "name": "trash",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1814,7 +1814,7 @@
     },
     {
       "name": "trophy",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1823,7 +1823,7 @@
     },
     {
       "name": "twitter-x",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1832,7 +1832,7 @@
     },
     {
       "name": "underline",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1841,7 +1841,7 @@
     },
     {
       "name": "undo",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1850,7 +1850,7 @@
     },
     {
       "name": "unlink",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1859,7 +1859,7 @@
     },
     {
       "name": "upload",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1868,7 +1868,7 @@
     },
     {
       "name": "user",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1877,7 +1877,7 @@
     },
     {
       "name": "user-group",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1886,7 +1886,7 @@
     },
     {
       "name": "video",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1895,7 +1895,7 @@
     },
     {
       "name": "warning",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1904,7 +1904,7 @@
     },
     {
       "name": "warning-circle",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1913,7 +1913,7 @@
     },
     {
       "name": "warning-diamond",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1922,7 +1922,7 @@
     },
     {
       "name": "warning-fill",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1931,7 +1931,7 @@
     },
     {
       "name": "whatsapp",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1940,7 +1940,7 @@
     },
     {
       "name": "word",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1949,7 +1949,7 @@
     },
     {
       "name": "word-media",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1958,7 +1958,7 @@
     },
     {
       "name": "youtube",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1967,7 +1967,7 @@
     },
     {
       "name": "zoom-in",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -1976,7 +1976,7 @@
     },
     {
       "name": "zoom-out",
-      "type": "components:icon",
+      "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [],
       "files": [

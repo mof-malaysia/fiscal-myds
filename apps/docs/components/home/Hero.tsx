@@ -27,10 +27,10 @@ const Hero: FunctionComponent = () => {
         className={clx(
           "col-span-full flex flex-col justify-start gap-6 px-[1.125rem] pt-[3rem]",
           "md:max-lg:mx-auto md:max-lg:w-[600px]",
-          "lg:col-span-5 lg:col-start-1 lg:justify-center lg:pl-6 lg:pr-0 lg:pt-0",
+          "lg:col-span-5 lg:col-start-1 lg:justify-center lg:pt-0 lg:pr-0 lg:pl-6",
         )}
       >
-        <span className="text-txt-accent text-body-sm font-semibold uppercase tracking-[0.2em]">
+        <span className="text-txt-accent text-body-sm font-semibold tracking-[0.2em] uppercase">
           {t("common.beta")}
         </span>
         <h1 className="text-balance lg:text-start">{t("Home.title.hero")}</h1>
@@ -42,26 +42,26 @@ const Hero: FunctionComponent = () => {
             variant="unset"
             size="large"
             className="border-otl-primary-300 flex gap-2 border bg-[linear-gradient(247.99deg,_#FFEAA1_0%,_#24B9F9_18.41%,_#1351F0_45.16%)] font-medium text-white outline-none"
-            asChild
+            render={<Link newTab href={links.figma} underline="none" />}
           >
-            <Link newTab href={links.figma} underline="none">
-              <ButtonIcon>
-                <IconFigma />
-              </ButtonIcon>
-              {t("common.figma.explore")}
-            </Link>
+            <ButtonIcon>
+              <IconFigma />
+            </ButtonIcon>
+            {t("common.figma.explore")}
           </Button>
-          <Button variant="default-outline" size="large" asChild>
-            <Link href="#contribute" underline="none">
-              {t("common.contribute")}
-              <ButtonIcon>
-                <ArrowForward />
-              </ButtonIcon>
-            </Link>
+          <Button
+            variant="default-outline"
+            size="large"
+            render={<Link href="#contribute" underline="none" />}
+          >
+            {t("common.contribute")}
+            <ButtonIcon>
+              <ArrowForward />
+            </ButtonIcon>
           </Button>
         </div>
       </div>
-      <picture className="border-otl-divider col-span-full mt-[3rem] w-full overflow-hidden border-t object-cover lg:col-span-6 lg:col-start-7 lg:mt-0 lg:border-l lg:border-t-0 lg:pr-0">
+      <picture className="border-otl-divider col-span-full mt-[3rem] w-full overflow-hidden border-t object-cover lg:col-span-6 lg:col-start-7 lg:mt-0 lg:border-t-0 lg:border-l lg:pr-0">
         <Image
           src="/common/hero.svg"
           alt="Hero"

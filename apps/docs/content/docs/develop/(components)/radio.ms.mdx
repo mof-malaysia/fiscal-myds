@@ -32,7 +32,7 @@ import {
       RadioHintText,
       RadioItem,
       RadioLabel,
-    } from "@mof-malaysia/myds-react/radio";
+    } from "@/components/ui/radio";
 
     <Radio>
       <RadioItem>
@@ -89,11 +89,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-radio--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-radio--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/radio.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/radio.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/radio.json
+```
 
 ## Usage
 
@@ -104,7 +112,7 @@ import {
   RadioHintText,
   RadioItem,
   RadioLabel,
-} from "@mof-malaysia/myds-react/radio";
+} from "@/components/ui/radio";
 ```
 
 ```tsx copy title="Anatomi"
@@ -145,7 +153,7 @@ Gunakan prop `size` untuk menukar saiz radio.
       RadioHintText,
       RadioItem,
       RadioLabel,
-    } from "@mof-malaysia/myds-react/radio";
+    } from "@/components/ui/radio";
 
     <Radio size="small">
       <RadioItem>
@@ -230,7 +238,7 @@ Nyahaktifkan semua item radio dengan menetapkan prop `disabled` kepada true pada
       RadioHintText,
       RadioItem,
       RadioLabel,
-    } from "@mof-malaysia/myds-react/radio";
+    } from "@/components/ui/radio";
 
     <Radio disabled>
       <RadioItem>
@@ -298,7 +306,7 @@ Nyahaktifkan item radio individu dengan menetapkan prop `disabled` kepada true p
       RadioHintText,
       RadioItem,
       RadioLabel,
-    } from "@mof-malaysia/myds-react/radio";
+    } from "@/components/ui/radio";
 
     <Radio>
       <RadioItem>
@@ -368,7 +376,7 @@ const [value, setValue] = useState("")
 
 ### Radio
 
-`Radio` menggunakan `RadioGroup.Root` Radix UI. Sila rujuk rujukan API dalam [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/radio-group#root).
+`Radio` menggunakan `RadioGroup` Base UI. Sila rujuk rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/radio#radiogroup).
 
 <TypeTable
   type={{
@@ -380,7 +388,7 @@ const [value, setValue] = useState("")
     onValueChange: {
       description: "Event handler yang dipanggil apabila nilai berubah",
       type: "function",
-      typeDescription: "(value: string) => void",
+      typeDescription: "(value: string, eventDetails) => void",
     },
     size: {
       description: "Saiz radio",
@@ -398,7 +406,7 @@ const [value, setValue] = useState("")
 
 ### RadioButton
 
-`RadioButton` menggunakan `RadioGroup.Item` Radix UI. Sila rujuk rujukan API dalam [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/radio-group#item).
+`RadioButton` menggunakan `Radio.Root` Base UI. Sila rujuk rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/radio#root).
 
 ### RadioItem
 

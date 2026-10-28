@@ -172,8 +172,8 @@ export const DismissibleCalloutExample: FunctionComponent<
       <CalloutTitle>{title}</CalloutTitle>
       <CalloutContent>{description}</CalloutContent>
       <CalloutAction>
-        <CalloutClose>
-          <Button variant="default-outline">Call to Action</Button>
+        <CalloutClose render={<Button variant="default-outline" />}>
+          Call to Action
         </CalloutClose>
       </CalloutAction>
     </Callout>

@@ -23,9 +23,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton" className="not-prose flex justify-center">
     <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog</DialogTrigger>
       <DialogBody>
         <DialogHeader>
           <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -34,12 +32,8 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -47,9 +41,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   <Tab value="Kod">
     ```tsx
     <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog</DialogTrigger>
       <DialogBody>
         <DialogHeader>
           <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -58,12 +50,8 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -74,16 +62,24 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-dialog--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-dialog--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/dialog.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/dialog.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/dialog.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { Dialog } from "@mof-malaysia/myds-react/dialog";
+import { Dialog } from "@/components/ui/dialog";
 ```
 
 ```tsx copy title="Anatomi"
@@ -109,21 +105,15 @@ export default () => (
 
 ### Pencetus
 
-Gunakan `DialogTrigger` untuk membungkus elemen pencetus yang membuka dialog. Contoh di bawah menunjukkan tiga butang yang berbeza membuka dialog yang sama.
+Gunakan `DialogTrigger` untuk membuka dialog. Hantar elemen anda sendiri melalui prop `render`, contohnya `render={<Button />}`, untuk menggunakannya sebagai pencetus. Contoh di bawah menunjukkan tiga butang yang berbeza membuka dialog yang sama.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
     <div className="not-prose flex flex-col items-center gap-3">
       <Dialog>
-        <DialogTrigger>
-          <Button variant="primary-fill">Buka Dialog 1</Button>
-        </DialogTrigger>
-        <DialogTrigger>
-          <Button variant="primary-outline">Buka Dialog 2</Button>
-        </DialogTrigger>
-        <DialogTrigger>
-          <Button variant="primary-ghost">Buka Dialog 3</Button>
-        </DialogTrigger>
+        <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog 1</DialogTrigger>
+        <DialogTrigger render={<Button variant="primary-outline" />}>Buka Dialog 2</DialogTrigger>
+        <DialogTrigger render={<Button variant="primary-ghost" />}>Buka Dialog 3</DialogTrigger>
 
       <DialogBody>
         <DialogHeader>
@@ -133,12 +123,8 @@ Gunakan `DialogTrigger` untuk membungkus elemen pencetus yang membuka dialog. Co
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -148,15 +134,9 @@ Gunakan `DialogTrigger` untuk membungkus elemen pencetus yang membuka dialog. Co
   <Tab value="Kod">
     ```tsx
     <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog 1</Button>
-      </DialogTrigger>
-      <DialogTrigger>
-        <Button variant="primary-outline">Buka Dialog 2</Button>
-      </DialogTrigger>
-      <DialogTrigger>
-        <Button variant="primary-ghost">Buka Dialog 3</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog 1</DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-outline" />}>Buka Dialog 2</DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-ghost" />}>Buka Dialog 3</DialogTrigger>
 
       <DialogBody>
         <DialogHeader>
@@ -166,12 +146,8 @@ Gunakan `DialogTrigger` untuk membungkus elemen pencetus yang membuka dialog. Co
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -192,8 +168,8 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
         <div>
             Tidak Terkawal
             <Dialog defaultOpen={false}>
-              <DialogTrigger>
-                <Button variant="primary-fill">Buka Dialog (Tidak Terkawal)</Button>
+              <DialogTrigger render={<Button variant="primary-fill" />}>
+                Buka Dialog (Tidak Terkawal)
               </DialogTrigger>
       
             <DialogBody>
@@ -204,12 +180,8 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
                 <DialogDescription>Kandungan dialog di sini.</DialogDescription>
               </DialogContent>
               <DialogFooter>
-                <DialogClose>
-                  <Button variant="default-outline">Tindakan Sekunder</Button>
-                </DialogClose>
-                <DialogClose>
-                  <Button variant="primary-fill">Tindakan Utama</Button>
-                </DialogClose>
+                <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+                <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
               </DialogFooter>
             </DialogBody>
           </Dialog>
@@ -217,9 +189,7 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
         <div>
             Terkawal
             <Dialog open={false}>
-              <DialogTrigger>
-                <Button variant="primary-fill">Buka Dialog (Terkawal)</Button>
-              </DialogTrigger>
+              <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog (Terkawal)</DialogTrigger>
       
             <DialogBody>
               <DialogHeader>
@@ -229,12 +199,8 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
                 <DialogDescription>Kandungan dialog di sini.</DialogDescription>
               </DialogContent>
               <DialogFooter>
-                <DialogClose>
-                  <Button variant="default-outline">Tindakan Sekunder</Button>
-                </DialogClose>
-                <DialogClose>
-                  <Button variant="primary-fill">Tindakan Utama</Button>
-                </DialogClose>
+                <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+                <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
               </DialogFooter>
             </DialogBody>
           </Dialog>
@@ -246,9 +212,7 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
     ```tsx
     // Keadaan tidak terkawal
     <Dialog defaultOpen={false}>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog (Tidak Terkawal)</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog (Tidak Terkawal)</DialogTrigger>
       <DialogBody>
         <DialogHeader>
           <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -257,21 +221,15 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
 
     // Keadaan terkawal
     <Dialog open={false}>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog (Terkawal)</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog (Terkawal)</DialogTrigger>
       <DialogBody>
         <DialogHeader>
           <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -280,12 +238,8 @@ Untuk menggunakan dialog dalam keadaan terkawal, gunakan prop `open` dan `onOpen
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -311,9 +265,7 @@ Anda boleh melampirkan fungsi panggilan balik kepada prop `onDismiss` untuk meng
   <Tab value="Kod">
     ```tsx
     <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog (Tidak Terkawal)</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog (Tidak Terkawal)</DialogTrigger>
 
       <DialogBody
         dismissible={true}
@@ -326,12 +278,8 @@ Anda boleh melampirkan fungsi panggilan balik kepada prop `onDismiss` untuk meng
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -348,9 +296,7 @@ Sempadan boleh ditambah pada `DialogHeader` dan `DialogFooter` dengan menetapkan
   <Tab value="Pratonton">
     <div className="not-prose flex justify-center">
      <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog Bersempadan</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog Bersempadan</DialogTrigger>
 
       <DialogBody>
         <DialogHeader border>
@@ -360,12 +306,8 @@ Sempadan boleh ditambah pada `DialogHeader` dan `DialogFooter` dengan menetapkan
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter border>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -375,9 +317,7 @@ Sempadan boleh ditambah pada `DialogHeader` dan `DialogFooter` dengan menetapkan
   <Tab value="Kod">
     ```tsx
     <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Buka Dialog Bersempadan</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Buka Dialog Bersempadan</DialogTrigger>
       <DialogBody>
         <DialogHeader border>
           <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -386,12 +326,8 @@ Sempadan boleh ditambah pada `DialogHeader` dan `DialogFooter` dengan menetapkan
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter border>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -410,9 +346,7 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
       <div>
         Mula
         <Dialog>
-          <DialogTrigger>
-            <Button variant="primary-fill">Jajarkan Dialog (mula)</Button>
-          </DialogTrigger>
+          <DialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog (mula)</DialogTrigger>
           <DialogBody>
             <DialogHeader border>
               <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -421,12 +355,8 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
               <DialogDescription>Kandungan dialog di sini.</DialogDescription>
             </DialogContent>
             <DialogFooter border align="start">
-              <DialogClose>
-                <Button variant="default-outline">Tindakan Sekunder</Button>
-              </DialogClose>
-              <DialogClose>
-                <Button variant="primary-fill">Tindakan Utama</Button>
-              </DialogClose>
+              <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+              <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
             </DialogFooter>
           </DialogBody>
         </Dialog>
@@ -434,9 +364,7 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
       <div>
         Penuh
         <Dialog>
-          <DialogTrigger>
-            <Button variant="primary-fill">Jajarkan Dialog (penuh)</Button>
-          </DialogTrigger>
+          <DialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog (penuh)</DialogTrigger>
           <DialogBody>
             <DialogHeader border>
               <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -445,12 +373,8 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
               <DialogDescription>Kandungan dialog di sini.</DialogDescription>
             </DialogContent>
             <DialogFooter border align="full">
-              <DialogClose>
-                <Button variant="default-outline">Tindakan Sekunder</Button>
-              </DialogClose>
-              <DialogClose>
-                <Button variant="primary-fill">Tindakan Utama</Button>
-              </DialogClose>
+              <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+              <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
             </DialogFooter>
           </DialogBody>
         </Dialog>
@@ -458,9 +382,7 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
       <div>
         Akhir
         <Dialog>
-          <DialogTrigger>
-            <Button variant="primary-fill">Jajarkan Dialog (akhir)</Button>
-          </DialogTrigger>
+          <DialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog (akhir)</DialogTrigger>
           <DialogBody>
             <DialogHeader border>
               <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -469,12 +391,8 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
               <DialogDescription>Kandungan dialog di sini.</DialogDescription>
             </DialogContent>
             <DialogFooter border align="end">
-              <DialogClose>
-                <Button variant="default-outline">Tindakan Sekunder</Button>
-              </DialogClose>
-              <DialogClose>
-                <Button variant="primary-fill">Tindakan Utama</Button>
-              </DialogClose>
+              <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+              <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
             </DialogFooter>
           </DialogBody>
         </Dialog>
@@ -486,9 +404,7 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
 ```tsx
 // Mula
 <Dialog>
-  <DialogTrigger>
-    <Button variant="primary-fill">Jajarkan Dialog (mula)</Button>
-  </DialogTrigger>
+  <DialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog (mula)</DialogTrigger>
   <DialogBody>
     <DialogHeader border>
       <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -497,12 +413,8 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
       <DialogDescription>Kandungan dialog di sini.</DialogDescription>
     </DialogContent>
     <DialogFooter border align="start">
-      <DialogClose>
-        <Button variant="default-outline">Tindakan Sekunder</Button>
-      </DialogClose>
-      <DialogClose>
-        <Button variant="primary-fill">Tindakan Utama</Button>
-      </DialogClose>
+      <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+      <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
     </DialogFooter>
   </DialogBody>
 </Dialog>
@@ -510,9 +422,7 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
 // Penuh
 
 <Dialog>
-  <DialogTrigger>
-    <Button variant="primary-fill">Jajarkan Dialog (penuh)</Button>
-  </DialogTrigger>
+  <DialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog (penuh)</DialogTrigger>
   <DialogBody>
     <DialogHeader border>
       <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -521,12 +431,8 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
       <DialogDescription>Kandungan dialog di sini.</DialogDescription>
     </DialogContent>
     <DialogFooter border align="full">
-      <DialogClose>
-        <Button variant="default-outline">Tindakan Sekunder</Button>
-      </DialogClose>
-      <DialogClose>
-        <Button variant="primary-fill">Tindakan Utama</Button>
-      </DialogClose>
+      <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+      <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
     </DialogFooter>
   </DialogBody>
 </Dialog>
@@ -534,9 +440,7 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
 // Akhir
 
 <Dialog>
-  <DialogTrigger>
-    <Button variant="primary-fill">Jajarkan Dialog (akhir)</Button>
-  </DialogTrigger>
+  <DialogTrigger render={<Button variant="primary-fill" />}>Jajarkan Dialog (akhir)</DialogTrigger>
   <DialogBody>
     <DialogHeader border>
       <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -545,12 +449,8 @@ Anda boleh menetapkan `align` pada `DialogFooter` untuk menjajarkan anak kepada 
       <DialogDescription>Kandungan dialog di sini.</DialogDescription>
     </DialogContent>
     <DialogFooter border align="end">
-      <DialogClose>
-        <Button variant="default-outline">Tindakan Sekunder</Button>
-      </DialogClose>
-      <DialogClose>
-        <Button variant="primary-fill">Tindakan Utama</Button>
-      </DialogClose>
+      <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+      <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
     </DialogFooter>
   </DialogBody>
 </Dialog>
@@ -567,9 +467,7 @@ Anda boleh menambah tindakan khas pada dialog dengan menggunakan prop `action` p
   <Tab value="Pratonton">
     <div className="not-prose flex justify-center gap-3">
     <Dialog>
-      <DialogTrigger>
-        <Button variant="primary-fill">Dialog Tindakan Tambahan</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="primary-fill" />}>Dialog Tindakan Tambahan</DialogTrigger>
       <DialogBody>
         <DialogHeader border>
           <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -578,12 +476,8 @@ Anda boleh menambah tindakan khas pada dialog dengan menggunakan prop `action` p
           <DialogDescription>Kandungan dialog di sini.</DialogDescription>
         </DialogContent>
         <DialogFooter action={<Button variant="primary-ghost">Tertiary</Button>}>
-          <DialogClose>
-            <Button variant="default-outline">Tindakan Sekunder</Button>
-          </DialogClose>
-          <DialogClose>
-            <Button variant="primary-fill">Tindakan Utama</Button>
-          </DialogClose>
+          <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+          <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
         </DialogFooter>
       </DialogBody>
     </Dialog>
@@ -593,9 +487,7 @@ Anda boleh menambah tindakan khas pada dialog dengan menggunakan prop `action` p
   <Tab value="Kod">
 ```tsx
   <Dialog>
-    <DialogTrigger>
-      <Button variant="primary-fill">Dialog Tindakan Tambahan</Button>
-    </DialogTrigger>
+    <DialogTrigger render={<Button variant="primary-fill" />}>Dialog Tindakan Tambahan</DialogTrigger>
     <DialogBody>
       <DialogHeader border>
         <DialogTitle>Tajuk Dialog</DialogTitle>
@@ -604,12 +496,8 @@ Anda boleh menambah tindakan khas pada dialog dengan menggunakan prop `action` p
         <DialogDescription>Kandungan dialog di sini.</DialogDescription>
       </DialogContent>
       <DialogFooter action={<Button variant="primary-ghost">Tertiary</Button>}>
-        <DialogClose>
-          <Button variant="default-outline">Tindakan Sekunder</Button>
-        </DialogClose>
-        <DialogClose>
-          <Button variant="primary-fill">Tindakan Utama</Button>
-        </DialogClose>
+        <DialogClose render={<Button variant="default-outline" />}>Tindakan Sekunder</DialogClose>
+        <DialogClose render={<Button variant="primary-fill" />}>Tindakan Utama</DialogClose>
       </DialogFooter>
     </DialogBody>
   </Dialog>

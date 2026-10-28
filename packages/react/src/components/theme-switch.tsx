@@ -1,6 +1,7 @@
 import {
   FunctionComponent,
   isValidElement,
+  ReactElement,
   ReactNode,
   useEffect,
   useState,
@@ -15,7 +16,8 @@ import {
   SelectTrigger,
   SelectContent,
 } from "./select";
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 interface Theme {
   label: string;
@@ -28,6 +30,16 @@ interface ThemeSwitch {
   themes?: Array<Theme>;
   onChange?: (value: string) => void;
 }
+
+/** Merges the icon classes onto the theme's icon element. */
+const ThemeIcon: FunctionComponent<{ icon: ReactElement }> = ({ icon }) =>
+  useRender({
+    render: icon,
+    props: mergeProps<"svg">(
+      { className: "text-txt-black-900 size-4 flex-shrink-0" },
+      {},
+    ),
+  });
 
 const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
   as = "toggle",
@@ -47,11 +59,7 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
     if (!value) return null;
     const _theme = getTheme(value);
     if (isValidElement(_theme?.icon))
-      return (
-        <Slot className={"text-txt-black-900 size-4 flex-shrink-0"}>
-          {_theme?.icon}
-        </Slot>
-      );
+      return <ThemeIcon icon={_theme.icon} />;
     return _theme?.icon;
   };
 

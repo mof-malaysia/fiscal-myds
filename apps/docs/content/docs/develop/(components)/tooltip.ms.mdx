@@ -25,8 +25,8 @@ import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
   </Tab>
   <Tab value="Kod">
     ```tsx
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
-    import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+    import { QuestionCircleIcon } from "@/components/ui/icons/question-circle";
 
     <Tooltip>
       <TooltipTrigger>
@@ -42,11 +42,19 @@ import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-tooltip--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-tooltip--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/tooltip.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/tooltip.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/tooltip.json
+```
 
 ## Penggunaan
 
@@ -55,7 +63,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@mof-malaysia/myds-react/tooltip";
+} from "@/components/ui/tooltip";
 ```
 
 ```tsx copy title="Anatomy"
@@ -84,7 +92,7 @@ Untuk menggunakan komponen dalam keadaan terkawal, gunakan prop `open` dan `onOp
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
     <Tooltip open={true}>
       <TooltipTrigger>
@@ -130,7 +138,7 @@ Props `side` boleh digunakan untuk melaraskan kedudukan `TooltipContent`. Nilai-
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
     <Tooltip>
       <TooltipTrigger>
@@ -165,7 +173,7 @@ Props `side` boleh digunakan untuk melaraskan kedudukan `TooltipContent`. Nilai-
 
 ### Tooltip
 
-Komponen `Tooltip` dibina di atas `TooltipPrimitive.Provider` and `TooltipPrimitive.Root`. Sila rujuk senarai API lengkap dalam [documentasi ini](https://www.radix-ui.com/primitives/docs/components/tooltip#provider).
+Komponen `Tooltip` dibina di atas `Tooltip.Provider` dan `Tooltip.Root` daripada Base UI. Sila rujuk senarai API lengkap dalam [dokumentasi ini](https://base-ui.com/react/components/tooltip#root).
 
 <TypeTable
   type={{
@@ -185,9 +193,9 @@ Komponen `Tooltip` dibina di atas `TooltipPrimitive.Provider` and `TooltipPrimit
     delayDuration: {
       description: "Masa tertangguh sebelum tooltip ditunjukkan.",
       type: "number",
-      default: "700ms",
+      default: "200ms",
     },
-    disableHoverableContent: {
+    disableHoverablePopup: {
       description:
         "Jika nilai 'true', pengguna dihalang untuk 'hover' pada tooltip.",
       type: "boolean",
@@ -197,7 +205,7 @@ Komponen `Tooltip` dibina di atas `TooltipPrimitive.Provider` and `TooltipPrimit
 
 ### TooltipContent
 
-Komponen `TooltipContent` ini dibina di atas `TooltipPrimitive.Portal` dan `TooltipPrimitive.Content`. Sila rujuk senarai penuh API di [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/tooltip#portal).
+Komponen `TooltipContent` ini dibina di atas `Tooltip.Portal`, `Tooltip.Positioner` dan `Tooltip.Popup` daripada Base UI; prop kedudukan dihantar ke positioner. Sila rujuk senarai penuh API di [dokumentasi ini](https://base-ui.com/react/components/tooltip#positioner).
 
 <TypeTable
   type={{
@@ -205,6 +213,11 @@ Komponen `TooltipContent` ini dibina di atas `TooltipPrimitive.Portal` dan `Tool
       description: "Elemen untuk menempatkan elemen TooltipContainer.",
       type: "HTMLElement",
       default: "document.body",
+    },
+    keepMounted: {
+      description: "Sama ada kandungan tooltip kekal dalam DOM semasa ditutup.",
+      type: "boolean",
+      default: "false",
     },
     arrowPadding: {
       description: "Ruang antara anak panah dan tepi kandungan tooltip.",
@@ -227,4 +240,4 @@ Komponen `TooltipContent` ini dibina di atas `TooltipPrimitive.Portal` dan `Tool
 
 ### TooltipTrigger
 
-`TooltipTrigger` membolehkan pengguna untuk berinteraksi atas tujuan menunjukkan "tooltip". Komponenen ini dibina menggunakan `TooltipPrimitive.Trigger`. Sila rujuk senarai penuh API di [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/tooltip#content).
+`TooltipTrigger` membolehkan pengguna untuk berinteraksi atas tujuan menunjukkan "tooltip". Komponen ini dibina menggunakan `Tooltip.Trigger` daripada Base UI. Gunakan prop `render` untuk memaparkan elemen anda sendiri sebagai pencetus, contohnya `render={<Button />}`. Sila rujuk senarai penuh API di [dokumentasi ini](https://base-ui.com/react/components/tooltip#trigger).

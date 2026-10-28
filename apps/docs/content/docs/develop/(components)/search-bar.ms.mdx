@@ -53,15 +53,13 @@ import {
       SearchBarResultsItem,
       SearchBarClearButton,
       SearchBarHint,
-    } from "@mof-malaysia/myds-react/search-bar";
-    import { Pill } from "@mof-malaysia/myds-react/pill";
-    import {
-      ChevronRightIcon,
-      MoneyIcon,
-      StarIcon,
-      TrophyIcon,
-      UserIcon,
-    } from "@mof-malaysia/myds-react/icon";
+    } from "@/components/ui/search-bar";
+    import { Pill } from "@/components/ui/pill";
+    import { ChevronRightIcon } from "@/components/ui/icons/chevron-right";
+    import { MoneyIcon } from "@/components/ui/icons/money";
+    import { StarIcon } from "@/components/ui/icons/star";
+    import { TrophyIcon } from "@/components/ui/icons/trophy";
+    import { UserIcon } from "@/components/ui/icons/user";
 
     const [hasFocus, setHasFocus] = useState(false);
     const [query, setQuery] = useState("");
@@ -127,11 +125,19 @@ import {
 <Quicklinks
 links={{
   storybook:
-    "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-searchbar--docs",
+    "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-searchbar--docs",
   source:
-    "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/search-bar.tsx",
+    "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/search-bar.tsx",
 }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/search-bar.json
+```
 
 ## Usage
 
@@ -146,7 +152,7 @@ SearchBarResultsList,
 SearchBarResultsItem,
 SearchBarClearButton,
 SearchBarHint,
-} from "@mof-malaysia/myds-react/search-bar";
+} from "@/components/ui/search-bar";
 ````
 
 ```tsx copy title="Anatomi"
@@ -208,7 +214,7 @@ Gunakan prop `size` untuk menukar saiz bar carian.
         SearchBarInput,
         SearchBarInputContainer,
         SearchBarSearchButton,
-    } from "@mof-malaysia/myds-react/search-bar";
+    } from "@/components/ui/search-bar";
 
     <SearchBar size="small">
       <SearchBarInputContainer>
@@ -251,7 +257,7 @@ Anda boleh menggunakan `SearchBarClearButton` untuk menunjukkan butang _clear_.
         SearchBarInputContainer,
         SearchBarSearchButton,
         SearchBarClearButton,
-    } from "@mof-malaysia/myds-react/search-bar";
+    } from "@/components/ui/search-bar";
 
     const [query, setQuery] = useState("Hello world!");
     const showClearButton = query.length > 0;
@@ -296,8 +302,8 @@ Tunjukkan _hint_ dengan `SearchBarHint`.
       SearchBarInputContainer,
       SearchBarSearchButton,
       SearchBarHint,
-  } from "@mof-malaysia/myds-react/search-bar";
-  import { Pill } from "@mof-malaysia/myds-react/pill";
+  } from "@/components/ui/search-bar";
+  import { Pill } from "@/components/ui/pill";
 
   <SearchBar size="large">
     <SearchBarInputContainer>
@@ -331,11 +337,9 @@ Anda boleh menunjukkan hasil carian atau cadangan dengan komponen `SearchBarResu
       SearchBarResults,
       SearchBarResultsList,
       SearchBarResultsItem,
-    } from "@mof-malaysia/myds-react/search-bar";
-    import {
-      ChevronRightIcon,
-      UserIcon,
-    } from "@mof-malaysia/myds-react/icon";
+    } from "@/components/ui/search-bar";
+    import { ChevronRightIcon } from "@/components/ui/icons/chevron-right";
+    import { UserIcon } from "@/components/ui/icons/user";
 
     <SearchBar size="large">
       <SearchBarInputContainer>
@@ -382,14 +386,12 @@ Anda juga boleh mengumpulkan hasil dengan komponen `SearchBarResultsGroup`:
     SearchBarResults,
     SearchBarResultsList,
     SearchBarResultsItem,
-  } from "@mof-malaysia/myds-react/search-bar";
-  import {
-    ChevronRightIcon,
-    MoneyIcon,
-    StarIcon,
-    TrophyIcon,
-    UserIcon,
-  } from "@mof-malaysia/myds-react/icon";
+  } from "@/components/ui/search-bar";
+  import { ChevronRightIcon } from "@/components/ui/icons/chevron-right";
+  import { MoneyIcon } from "@/components/ui/icons/money";
+  import { StarIcon } from "@/components/ui/icons/star";
+  import { TrophyIcon } from "@/components/ui/icons/trophy";
+  import { UserIcon } from "@/components/ui/icons/user";
 
   <SearchBar size="large">
     <SearchBarInputContainer>
@@ -455,15 +457,13 @@ Dalam contoh di bawah, kami juga menjejaki sama ada bar carian difokuskan atau t
       SearchBarResultsItem,
       SearchBarClearButton,
       SearchBarHint,
-    } from "@mof-malaysia/myds-react/search-bar";
-    import { Pill } from "@mof-malaysia/myds-react/pill";
-    import {
-      ChevronRightIcon,
-      MoneyIcon,
-      StarIcon,
-      TrophyIcon,
-      UserIcon,
-    } from "@mof-malaysia/myds-react/icon";
+    } from "@/components/ui/search-bar";
+    import { Pill } from "@/components/ui/pill";
+    import { ChevronRightIcon } from "@/components/ui/icons/chevron-right";
+    import { MoneyIcon } from "@/components/ui/icons/money";
+    import { StarIcon } from "@/components/ui/icons/star";
+    import { TrophyIcon } from "@/components/ui/icons/trophy";
+    import { UserIcon } from "@/components/ui/icons/user";
 
     const [hasFocus, setHasFocus] = useState(false);
     const [query, setQuery] = useState("");

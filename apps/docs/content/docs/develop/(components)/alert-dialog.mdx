@@ -21,18 +21,12 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview" className="not-prose flex justify-center">
     <AlertDialog variant="success">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">Open AlertDialog</Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>Open AlertDialog</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -40,18 +34,12 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   <Tab value="Code">
     ```tsx
     <AlertDialog variant="success">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">Open AlertDialog</Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>Open AlertDialog</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -62,11 +50,19 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-alertdialog--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-alertdialog--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/alert-dialog.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/alert-dialog.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/alert-dialog.json
+```
 
 ## Usage
 
@@ -79,7 +75,7 @@ import {
   AlertDialogTrigger,
   AlertDialogAction,
   AlertDialogClose,
-} from "@mof-malaysia/myds-react/alert-dialog";
+} from "@/components/ui/alert-dialog";
 ```
 
 ```tsx copy title="Anatomy"
@@ -111,92 +107,62 @@ Use the `variant` prop to set the theme of the alert dialog. The default variant
   <Tab value="Preview">
     <div className="not-prose flex justify-center items-center gap-3">
       <AlertDialog variant="default">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Default</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Default</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
       <AlertDialog variant="info">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">Info</Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>Info</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
       <AlertDialog variant="success">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Success</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Success</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
       <AlertDialog variant="warning">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Warning</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Warning</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
       <AlertDialog variant="danger">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Danger</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Danger</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -207,95 +173,65 @@ Use the `variant` prop to set the theme of the alert dialog. The default variant
     ```tsx
     // Default
      <AlertDialog variant="default">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Default</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Default</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
         <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
     // Info
       <AlertDialog variant="info">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Info</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Info</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
         <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
 
     // Success
       <AlertDialog variant="success">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Success</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Success</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
           <AlertDialogAction>
-            <AlertDialogClose>
-              <Button variant="default-outline">Secondary Action</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-              <Button variant="primary-fill">Primary Action</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
           </AlertDialogAction>
         </AlertDialogContent>
       </AlertDialog>
 
       // Warning
       <AlertDialog variant="warning">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Warning</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Warning</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
           <AlertDialogAction>
-            <AlertDialogClose>
-              <Button variant="default-outline">Secondary Action</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-              <Button variant="primary-fill">Primary Action</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
           </AlertDialogAction>
         </AlertDialogContent>
       </AlertDialog>
 
       // Danger
       <AlertDialog variant="danger">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Danger</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Danger</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
           <AlertDialogAction>
-            <AlertDialogClose>
-              <Button variant="default-outline">Secondary Action</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-              <Button variant="primary-fill">Primary Action</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
           </AlertDialogAction>
         </AlertDialogContent>
       </AlertDialog>
@@ -306,32 +242,22 @@ Use the `variant` prop to set the theme of the alert dialog. The default variant
 
 ### Trigger
 
-Use the `AlertDialogTrigger` to wrap the trigger element that opens the dialog. The example below shows three different (3) buttons opening the same alert dialog.
+Use `AlertDialogTrigger` to open the dialog. Pass your own element through the `render` prop, e.g. `render={<Button />}`, to use it as the trigger. The example below shows three different (3) buttons opening the same alert dialog.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
     <div className="not-prose flex flex-col items-center gap-3">
       <AlertDialog variant="success">
-        <AlertDialogTrigger>
-          <Button variant="primary-fill">Open AlertDialog 1</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-          <Button variant="primary-outline">Open AlertDialog 2</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-          <Button variant="primary-ghost">Open AlertDialog 3</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Open AlertDialog 1</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-outline" />}>Open AlertDialog 2</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-ghost" />}>Open AlertDialog 3</AlertDialogTrigger>
       <AlertDialogContent>
           <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
           <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -341,25 +267,15 @@ Use the `AlertDialogTrigger` to wrap the trigger element that opens the dialog. 
   <Tab value="Code">
     ```tsx
     <AlertDialog variant="success">
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Open AlertDialog 1</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-            <Button variant="primary-outline">Open AlertDialog 2</Button>
-        </AlertDialogTrigger>
-        <AlertDialogTrigger>
-            <Button variant="primary-ghost">Open AlertDialog 3</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Open AlertDialog 1</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-outline" />}>Open AlertDialog 2</AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-ghost" />}>Open AlertDialog 3</AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
             <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
             <AlertDialogAction>
-            <AlertDialogClose>
-                <Button variant="default-outline">Secondary Action</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-                <Button variant="primary-fill">Primary Action</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
@@ -380,19 +296,17 @@ To use the alert dialog in the controlled state, utilize the `open` and `onOpenC
         <div>
             Uncontrolled
             <AlertDialog variant="success" defaultOpen={false}>
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Open Dialog (Uncontrolled)</Button>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+                  Open Dialog (Uncontrolled)
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
                     <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
                     <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Secondary Action</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Secondary Action
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Primary Action</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
@@ -400,20 +314,18 @@ To use the alert dialog in the controlled state, utilize the `open` and `onOpenC
         <div>
             Controlled
             <AlertDialog variant="success" open={false}>
-                <AlertDialogTrigger>
-                    <Button variant="primary-fill">Open Dialog (Controlled)</Button>
+                <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+                  Open Dialog (Controlled)
                 </AlertDialogTrigger>
                
                 <AlertDialogContent>
                     <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
                     <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
                     <AlertDialogAction>
-                    <AlertDialogClose>
-                        <Button variant="default-outline">Secondary Action</Button>
+                    <AlertDialogClose render={<Button variant="default-outline" />}>
+                      Secondary Action
                     </AlertDialogClose>
-                    <AlertDialogClose>
-                        <Button variant="primary-fill">Primary Action</Button>
-                    </AlertDialogClose>
+                    <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
                     </AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
@@ -425,39 +337,27 @@ To use the alert dialog in the controlled state, utilize the `open` and `onOpenC
     ```tsx
     // Uncontrolled state
     <AlertDialog variant="success" defaultOpen={false}>
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Open Dialog (Uncontrolled)</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Open Dialog (Uncontrolled)</AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
             <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
             <AlertDialogAction>
-            <AlertDialogClose>
-                <Button variant="default-outline">Secondary Action</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-                <Button variant="primary-fill">Primary Action</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
 
     // Controlled state
     <AlertDialog variant="success" open={false}>
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Open Dialog (Controlled)</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>Open Dialog (Controlled)</AlertDialogTrigger>
 
         <AlertDialogContent>
             <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
             <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
             <AlertDialogAction>
-            <AlertDialogClose>
-                <Button variant="default-outline">Secondary Action</Button>
-            </AlertDialogClose>
-            <AlertDialogClose>
-                <Button variant="primary-fill">Primary Action</Button>
-            </AlertDialogClose>
+            <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+            <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
@@ -483,10 +383,8 @@ You can attach a callback function to the `onDismiss` prop to handle the dismiss
   <Tab value="Code">
     ```tsx
     <AlertDialog variant="warning">
-      <AlertDialogTrigger>
-        <Button variant="primary-fill">
-          Dismissible + onDismiss AlertDialog
-        </Button>
+      <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+        Dismissible + onDismiss AlertDialog
       </AlertDialogTrigger>
       <AlertDialogContent
         dismissible={true}
@@ -498,12 +396,8 @@ You can attach a callback function to the `onDismiss` prop to handle the dismiss
         </AlertDialogDescription>
 
         <AlertDialogAction>
-          <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-          </AlertDialogClose>
-          <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-          </AlertDialogClose>
+          <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+          <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
         </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
@@ -522,19 +416,13 @@ You can set `align` to `DialogAction` to align the children to the `start`, `end
       <div>
         Start
         <AlertDialog variant="danger">
-          <AlertDialogTrigger>
-              <Button variant="primary-fill">Align Alert Dialog (start)</Button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger render={<Button variant="primary-fill" />}>Align Alert Dialog (start)</AlertDialogTrigger>
           <AlertDialogContent>
               <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
               <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
               <AlertDialogAction align="start">
-                <AlertDialogClose>
-                    <Button variant="default-outline">Secondary Action</Button>
-                </AlertDialogClose>
-                <AlertDialogClose>
-                    <Button variant="primary-fill">Primary Action</Button>
-                </AlertDialogClose>
+                <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+                <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
               </AlertDialogAction>
           </AlertDialogContent>
         </AlertDialog>
@@ -542,19 +430,13 @@ You can set `align` to `DialogAction` to align the children to the `start`, `end
       <div>
         Full
         <AlertDialog variant="danger">
-          <AlertDialogTrigger>
-              <Button variant="primary-fill">Align Alert Dialog (full)</Button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger render={<Button variant="primary-fill" />}>Align Alert Dialog (full)</AlertDialogTrigger>
           <AlertDialogContent>
               <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
               <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
               <AlertDialogAction align="full">
-                <AlertDialogClose>
-                    <Button variant="default-outline">Secondary Action</Button>
-                </AlertDialogClose>
-                <AlertDialogClose>
-                    <Button variant="primary-fill">Primary Action</Button>
-                </AlertDialogClose>
+                <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+                <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
               </AlertDialogAction>
           </AlertDialogContent>
       </AlertDialog>
@@ -563,19 +445,13 @@ You can set `align` to `DialogAction` to align the children to the `start`, `end
       <div>
         End
         <AlertDialog variant="danger">
-          <AlertDialogTrigger>
-              <Button variant="primary-fill">Align Alert Dialog (end)</Button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger render={<Button variant="primary-fill" />}>Align Alert Dialog (end)</AlertDialogTrigger>
           <AlertDialogContent>
               <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
               <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
               <AlertDialogAction align="end">
-                <AlertDialogClose>
-                    <Button variant="default-outline">Secondary Action</Button>
-                </AlertDialogClose>
-                <AlertDialogClose>
-                    <Button variant="primary-fill">Primary Action</Button>
-                </AlertDialogClose>
+                <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+                <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
               </AlertDialogAction>
           </AlertDialogContent>
       </AlertDialog>
@@ -587,19 +463,13 @@ You can set `align` to `DialogAction` to align the children to the `start`, `end
 ```tsx
 // Start
  <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-      <Button variant="primary-fill">Align Alert Dialog (start)</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Align Alert Dialog (start)</AlertDialogTrigger>
   <AlertDialogContent>
       <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
       <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
       <AlertDialogAction align="start">
-        <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-        </AlertDialogClose>
-        <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-        </AlertDialogClose>
+        <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+        <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
       </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>
@@ -607,21 +477,15 @@ You can set `align` to `DialogAction` to align the children to the `start`, `end
 // Full
 
 <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-    <Button variant="primary-fill">Align Alert Dialog (full)</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Align Alert Dialog (full)</AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
     <AlertDialogDescription>
       AlertDialog content goes here.
     </AlertDialogDescription>
     <AlertDialogAction align="full">
-      <AlertDialogClose>
-        <Button variant="default-outline">Secondary Action</Button>
-      </AlertDialogClose>
-      <AlertDialogClose>
-        <Button variant="primary-fill">Primary Action</Button>
-      </AlertDialogClose>
+      <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+      <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
     </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>
@@ -629,21 +493,15 @@ You can set `align` to `DialogAction` to align the children to the `start`, `end
 // End
 
 <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-    <Button variant="primary-fill">Align Alert Dialog (end)</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Align Alert Dialog (end)</AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
     <AlertDialogDescription>
       AlertDialog content goes here.
     </AlertDialogDescription>
     <AlertDialogAction align="end">
-      <AlertDialogClose>
-        <Button variant="default-outline">Secondary Action</Button>
-      </AlertDialogClose>
-      <AlertDialogClose>
-        <Button variant="primary-fill">Primary Action</Button>
-      </AlertDialogClose>
+      <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+      <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
     </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>
@@ -660,19 +518,15 @@ You can add special actions to the dialog by utilising the `action` prop on the 
   <Tab value="Preview">
     <div className="not-prose flex justify-center gap-3">
     <AlertDialog variant="danger">
-        <AlertDialogTrigger>
-            <Button variant="primary-fill">Additional Action Alert Dialog</Button>
+        <AlertDialogTrigger render={<Button variant="primary-fill" />}>
+          Additional Action Alert Dialog
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
             <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
             <AlertDialogAction action={<Button variant="primary-ghost">Tertiary</Button>}>
-              <AlertDialogClose>
-                  <Button variant="default-outline">Secondary Action</Button>
-              </AlertDialogClose>
-              <AlertDialogClose>
-                  <Button variant="primary-fill">Primary Action</Button>
-              </AlertDialogClose>
+              <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+              <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
             </AlertDialogAction>
         </AlertDialogContent>
     </AlertDialog>
@@ -682,19 +536,13 @@ You can add special actions to the dialog by utilising the `action` prop on the 
   <Tab value="Code">
 ```tsx
 <AlertDialog variant="danger">
-  <AlertDialogTrigger>
-      <Button variant="primary-fill">Additional Action Alert Dialog</Button>
-  </AlertDialogTrigger>
+  <AlertDialogTrigger render={<Button variant="primary-fill" />}>Additional Action Alert Dialog</AlertDialogTrigger>
   <AlertDialogContent>
       <AlertDialogTitle>AlertDialog Title</AlertDialogTitle>
       <AlertDialogDescription>AlertDialog content goes here.</AlertDialogDescription>
       <AlertDialogAction action={<Button variant="primary-ghost">Tertiary</Button>}>
-        <AlertDialogClose>
-            <Button variant="default-outline">Secondary Action</Button>
-        </AlertDialogClose>
-        <AlertDialogClose>
-            <Button variant="primary-fill">Primary Action</Button>
-        </AlertDialogClose>
+        <AlertDialogClose render={<Button variant="default-outline" />}>Secondary Action</AlertDialogClose>
+        <AlertDialogClose render={<Button variant="primary-fill" />}>Primary Action</AlertDialogClose>
       </AlertDialogAction>
   </AlertDialogContent>
 </AlertDialog>

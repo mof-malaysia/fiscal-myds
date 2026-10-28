@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "swap",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/swap.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Swap Icon\n * @param className\n * @returns SwapIcon\n */\nexport const SwapIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (props) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/swap\">\n        <path\n          id=\"Vector\"\n          d=\"M3.29997 3V7L7.29997 7M16.8 17L16.8 13L12.8 13M3.6736 7C4.79707 4.63505 7.20758 3 9.99997 3C13.5264 3 16.4439 5.60771 16.9291 9M16.3263 13C15.2029 15.3649 12.7924 17 9.99997 17C6.4735 17 3.55609 14.3923 3.07086 11\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

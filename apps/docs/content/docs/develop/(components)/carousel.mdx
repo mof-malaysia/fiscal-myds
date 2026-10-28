@@ -62,7 +62,7 @@ This is useful when you want to display multiple features, showcasing product hi
     DialogTrigger,
     DialogFooter,
     DialogClose,
-  } from "@mof-malaysia/myds-react/dialog";
+  } from "@/components/ui/dialog";
 
   interface Feature {
     id: number;
@@ -211,7 +211,8 @@ This is useful when you want to display multiple features, showcasing product hi
   <Tab value="HorizontalCardTSX">
   
   ```tsx
-  import { ChevronLeftIcon, ChevronRightIcon } from '@mof-malaysia/myds-react/icon';
+  import { ChevronLeftIcon } from '@/components/ui/icons/chevron-left';
+  import { ChevronRightIcon } from '@/components/ui/icons/chevron-right';
   import { useRef } from 'react';
 
   interface HorizontalCardProps {
@@ -299,7 +300,7 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
-} from "@mof-malaysia/myds-react/dialog";
+} from "@/components/ui/dialog";
 
 ```
 
@@ -334,7 +335,7 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
-} from "@mof-malaysia/myds-react/dialog";
+} from "@/components/ui/dialog";
 
 // Define the structure for your carousel items.
 interface Feature {

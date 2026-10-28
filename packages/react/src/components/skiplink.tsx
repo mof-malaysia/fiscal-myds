@@ -19,29 +19,33 @@ interface SkiplinkProps extends ComponentProps<"a"> {
 const Skiplink = forwardRef<HTMLAnchorElement, SkiplinkProps>(
   ({ children, href, className, ...props }, ref) => {
     return (
-      <Button asChild variant="primary-outline" size={"small"}>
-        <a
-          ref={ref}
-          className={clx(
-            // to hide the element
-            "shadow-context-menu",
-            "absolute z-[99] size-[1px]",
-            "overflow-hidden",
-            "whitespace-nowrap",
-            "[clip-path:inset(50%)]",
-            // Focus state (visible)
-            "focus:h-auto focus:w-auto",
-            "focus:left-4 focus:top-11",
-            "focus:[clip-path:none]",
-            "transition-all duration-500 ease-in-out",
-            "opacity-0 focus:opacity-100",
-            className,
-          )}
-          href={href}
-          {...props}
-        >
-          {children}
-        </a>
+      <Button
+        variant="primary-outline"
+        size={"small"}
+        render={
+          <a
+            ref={ref}
+            className={clx(
+              // to hide the element
+              "shadow-context-menu",
+              "absolute z-[99] size-[1px]",
+              "overflow-hidden",
+              "whitespace-nowrap",
+              "[clip-path:inset(50%)]",
+              // Focus state (visible)
+              "focus:h-auto focus:w-auto",
+              "focus:left-4 focus:top-11",
+              "focus:[clip-path:none]",
+              "transition-all duration-500 ease-in-out",
+              "opacity-0 focus:opacity-100",
+              className,
+            )}
+            href={href}
+            {...props}
+          />
+        }
+      >
+        {children}
       </Button>
     );
   },

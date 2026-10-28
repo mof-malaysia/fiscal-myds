@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "calendar",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/calendar.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Calendar Icon\n * @param className\n * @returns CalendarIcon\n */\nexport const CalendarIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/calendar\">\n        <path\n          id=\"Vector\"\n          d=\"M6 2.75V6.25M14 2.75V6.25M5.75 9.75H14.25M2.75 6.75C2.75 5.64543 3.64543 4.75 4.75 4.75H15.25C16.3546 4.75 17.25 5.64543 17.25 6.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H4.75C3.64543 17.25 2.75 16.3546 2.75 15.25V6.75Z\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

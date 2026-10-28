@@ -33,9 +33,9 @@ import { Toggle, ToggleThumb, label } from "@/components/myds";
   <Tab value="Code">
 
 ```tsx
-import { Label } from "@mof-malaysia/myds-react/label";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
 <>
   <div className="flex items-center justify-between">
@@ -59,18 +59,26 @@ import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-label--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-label--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/label.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/label.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/label.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { Label } from "@mof-malaysia/myds-react/label";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 ```
 
 ```tsx copy title="Anatomi"
@@ -130,9 +138,9 @@ Gunakan prop `size` untuk menukar saiz label!
   </Tab>
   <Tab value="Code">
 ```tsx
-import { Label } from "@mof-malaysia/myds-react/label";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
 /** Saiz **/
 
@@ -171,26 +179,22 @@ import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
 </Tabs>
 
 
-### Menggunakan sebagai Slot
+### Elemen Dipaparkan Tersuai
 
-Gunakan prop `asChild` untuk memaparkan label menggunakan komponen `Slot`!
+Gunakan prop `render` untuk memaparkan label sebagai elemen yang berbeza.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
-    <Label asChild>
-       <span>Label Dihasilkan Secara Tersuai</span>
-    </Label>
+    <Label render={<span />}>Label Dihasilkan Secara Tersuai</Label>
   </Tab>
   <Tab value="Code">
 
 ```tsx
-import { Label } from "@mof-malaysia/myds-react/label";
+import { Label } from "@/components/ui/label";
 
-/** Gunakan Sebagai Slot **/
+/** Paparkan sebagai elemen yang berbeza **/
 
-<Label asChild>
-    <span>Label Dihasilkan Secara Tersuai</span>
-</Label>
+<Label render={<span />}>Label Dihasilkan Secara Tersuai</Label>
 
 ````
 
@@ -204,11 +208,10 @@ import { Label } from "@mof-malaysia/myds-react/label";
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "Jika `true`, memaparkan label menggunakan komponen `Slot` sebagai ganti elemen `label`.",
-      type: "boolean",
-      default: "false",
+        'Menggantikan elemen yang dipaparkan, contohnya `render={<span />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
     size: {
       description: "Menentukan saiz teks label. Mewarisi daripada `label_cva`.",

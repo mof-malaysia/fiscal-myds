@@ -50,7 +50,7 @@ import { Skiplink } from "@/components/myds";
   </Tab>
   <Tab value="Kod">
     ```tsx 
-    import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
+    import { Skiplink } from "@/components/ui/skiplink";
 
     <Skiplink href="#main-content">
       <span>Skip to main content</span>
@@ -68,16 +68,24 @@ import { Skiplink } from "@/components/myds";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-skiplink--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-skiplink--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/skiplink.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/skiplink.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/skiplink.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
+import { Skiplink } from "@/components/ui/skiplink";
 ```
 
 ```tsx copy title="Anatomi"

@@ -9,7 +9,6 @@ import {
   ReactNode,
 } from "react";
 import { clx } from "../utils";
-import { Slot } from "@radix-ui/react-slot";
 import { Link } from "./link";
 
 interface FooterSectionProps extends ComponentProps<"div"> {}
@@ -161,19 +160,7 @@ interface SiteLinkProps extends ComponentProps<typeof Link> {
 }
 
 const SiteLink: ForwardRefExoticComponent<SiteLinkProps> = forwardRef(
-  ({ children, className, asChild = false, href, ...props }, ref) => {
-    if (asChild) {
-      return (
-        <Slot
-          className={clx("hover:text-txt-black-900", className)}
-          ref={ref}
-          {...props}
-        >
-          {children}
-        </Slot>
-      );
-    }
-
+  ({ children, className, href, ...props }, ref) => {
     return (
       <Link
         className={clx("hover:text-txt-black-900", className)}

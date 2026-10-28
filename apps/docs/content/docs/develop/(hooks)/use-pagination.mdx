@@ -8,12 +8,20 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
+## Installation
+
+MYDS hooks are installed together as the `hooks` item, into `lib/myds/hooks`. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/hooks.json
+```
+
 ## Usage
 
 <Tabs items={["Hook", "Requirement"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { usePagination } from "@mof-malaysia/myds-react/hooks";
+    import { usePagination } from "@/lib/myds/hooks";
 
     const { visiblePages, max } = usePagination({ count: 10, page: 1, limit: 10, maxDisplay: 4 });
     ```
@@ -30,7 +38,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Quicklinks
   links={{
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/hooks/use-pagination.ts",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/hooks/use-pagination.ts",
   }}
 />
 
@@ -41,7 +49,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 The `usePagination` hook provides the handlers required to manage pagination state and actions for list and tables. This can be seen in the [Pagination Configuration](/docs/develop/pagination#pagination-configurations) of the Pagination documentation.
 
 ```tsx title="Example"
-import { usePagination } from "@mof-malaysia/myds-react/hooks";
+import { usePagination } from "@/lib/myds/hooks";
 
 //... inside your component
 const { visiblePages } = usePagination();

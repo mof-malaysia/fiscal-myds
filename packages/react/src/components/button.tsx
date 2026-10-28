@@ -9,7 +9,8 @@ import React, {
 } from "react";
 import { clx } from "../utils";
 import { cva, VariantProps } from "class-variance-authority";
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 /*========================================================================================================================*/
 
@@ -111,9 +112,8 @@ const button_cva = cva(
 );
 
 export interface ButtonProps
-  extends ComponentProps<"button">,
+  extends useRender.ComponentProps<"button">,
     VariantProps<typeof button_cva> {
-  asChild?: boolean;
   iconOnly?: boolean;
 }
 
@@ -123,24 +123,25 @@ const Button: ForwardRefExoticComponent<ButtonProps> = forwardRef(
       className,
       variant = "primary-fill",
       size = "small",
-      children,
-      asChild = false,
+      render,
       iconOnly = false,
       ...props
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "button";
+    const element = useRender({
+      defaultTagName: "button",
+      render,
+      ref,
+      props: mergeProps<"button">(
+        { className: clx(button_cva({ variant, size, className, iconOnly })) },
+        props,
+      ),
+    });
 
     return (
       <ButtonContext.Provider value={{ variant, size }}>
-        <Comp
-          ref={ref}
-          className={clx(button_cva({ variant, size, className, iconOnly }))}
-          {...props}
-        >
-          {children}
-        </Comp>
+        {element}
       </ButtonContext.Provider>
     );
   },
@@ -253,15 +254,14 @@ const ButtonIcon: ForwardRefExoticComponent<ButtonIconProps> = forwardRef(
   ({ children, className, ...props }, ref) => {
     const { size } = useContext(ButtonContext);
 
-    return (
-      <Slot
-        ref={ref}
-        className={button_icon_cva({ size, className })}
-        {...props}
-      >
-        {children}
-      </Slot>
-    );
+    return useRender({
+      render: children,
+      ref,
+      props: mergeProps<"div">(
+        { className: button_icon_cva({ size, className }) },
+        props,
+      ),
+    });
   },
 );
 
