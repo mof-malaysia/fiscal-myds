@@ -272,6 +272,8 @@ const Carousel: ForwardRefExoticComponent<
 
     return (
       <CarouselContext.Provider value={context}>
+        {/* Arrow keys bubble up from the focused track or controls */}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <div
           ref={ref}
           role="region"
@@ -342,6 +344,7 @@ const CarouselContent: ForwardRefExoticComponent<
     <div
       ref={setRefs}
       // Focusable so keyboard users can scroll it and use the arrow keys.
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
       aria-live={autoplay && playing ? "off" : "polite"}
       className={clx(

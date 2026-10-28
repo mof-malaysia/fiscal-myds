@@ -112,7 +112,7 @@ function useFocusOnKeyPress<T extends HTMLElement>(
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isFocused, ref]);
+  }, [isFocused, key, ref]);
 
   return ref;
 }

@@ -5,7 +5,7 @@ module.exports = {
   //* `content` is for debugging purpose only -- inspect the generated css in styles/output.tailwind.css
   content: ["../react/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    colors: ({ colors, theme }) => ({
+    colors: ({ colors }) => ({
       current: colors.current,
       inherit: colors.inherit,
       transparent: colors.transparent,

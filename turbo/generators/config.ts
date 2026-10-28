@@ -7,11 +7,6 @@ interface ComponentPrompt {
   has_story: boolean;
 }
 
-interface MDXPrompt {
-  project: "design" | "develop";
-  title: string;
-}
-
 /**
  *! DO NOT MODIFY. This is a template for the export statement in the package.json file.
  */
@@ -163,7 +158,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         },
       },
     ],
-    actions: (data) => {
+    actions: () => {
       const actions: PlopTypes.ActionType[] = [];
 
       actions.push({

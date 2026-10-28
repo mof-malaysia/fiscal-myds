@@ -86,6 +86,8 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
       const index = themes.findIndex((t) => t.value === theme);
       setCurrentIndex(index);
     }
+    // Sync only when the active theme changes; `themes` defaults to a new array each render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   if (as === "toggle")

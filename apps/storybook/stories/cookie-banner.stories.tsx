@@ -41,7 +41,9 @@ import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
 
 const meta = {
   title: "Core/CookiesBanner",
-  component: (args: React.ComponentProps<typeof CookieBanner>) => {
+  component: function CookieBannerDemo(
+    _args: React.ComponentProps<typeof CookieBanner>,
+  ) {
     const [open, setOpen] = useState(false);
     const [preferences, setPreferences] = useState({
       necessary: true,

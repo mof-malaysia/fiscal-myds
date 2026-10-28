@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
 import {
   AutoPagination,
-  Pagination,
   PaginationNext,
   PaginationPrevious,
 } from "@mof-malaysia/myds-react/pagination";
@@ -263,7 +262,7 @@ export const ServerSidePagination: Story = {
       default: "light",
     },
   },
-  render: (args, context) => {
+  render: () => {
     const urlParams = new URLSearchParams(document.location.search);
     return (
       <AutoPagination

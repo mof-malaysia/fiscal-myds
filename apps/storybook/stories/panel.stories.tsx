@@ -47,7 +47,9 @@ export const Default = createRender(Success);
 const Info = () => (
   <Panel variant="info">
     <PanelTitle>Application submitted</PanelTitle>
-    <PanelBody>We will review it within 14 working days and email you the outcome.</PanelBody>
+    <PanelBody>
+      We will review it within 14 working days and email you the outcome.
+    </PanelBody>
     <PanelReference label="Date submitted">28 October 2026</PanelReference>
   </Panel>
 );
@@ -56,7 +58,9 @@ export const Informational = createRender(Info);
 const Warning = () => (
   <Panel variant="warning">
     <PanelTitle>Payment still due</PanelTitle>
-    <PanelBody>Pay the remaining amount by 30 November 2026 to avoid a late penalty.</PanelBody>
+    <PanelBody>
+      Pay the remaining amount by 30 November 2026 to avoid a late penalty.
+    </PanelBody>
     <PanelReference label="Amount due">RM 312.40</PanelReference>
   </Panel>
 );
@@ -85,6 +89,8 @@ const Dark = () => (
   <div className="dark bg-bg-white flex flex-col gap-4 p-4">
     <Success />
     <Panel variant="danger">
+      {/* PanelTitle renders its children into the heading */}
+      {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
       <PanelTitle render={<h2 />}>Payment failed</PanelTitle>
       <PanelBody>Your bank declined the payment. No money was taken.</PanelBody>
     </Panel>

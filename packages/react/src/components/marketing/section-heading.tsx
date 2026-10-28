@@ -107,6 +107,8 @@ const renderAction = (
       variant={variant}
       size="large"
       className={className}
+      // Button renders the label into this anchor
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       render={<a href={action.href} />}
     >
       {action.label}

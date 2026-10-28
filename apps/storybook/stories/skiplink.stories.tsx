@@ -41,17 +41,17 @@ const meta = {
               <div className="text-txt-black-900 text-xl font-bold">Logo</div>
               <ul className="flex gap-6">
                 <li>
-                  <a href="#" className="text-txt-black-700">
+                  <a href="#home" className="text-txt-black-700">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-txt-black-700">
+                  <a href="#about" className="text-txt-black-700">
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-txt-black-700">
+                  <a href="#contact" className="text-txt-black-700">
                     Contact
                   </a>
                 </li>

@@ -1,4 +1,4 @@
-import { createPreset, Preset } from "fumadocs-ui/tailwind-plugin";
+import { createPreset } from "fumadocs-ui/tailwind-plugin";
 import { Config } from "tailwindcss";
 import { preset, preset_fumadocs } from "@mof-malaysia/myds-style";
 

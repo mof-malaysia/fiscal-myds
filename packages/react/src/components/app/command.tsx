@@ -80,8 +80,8 @@ const CommandInput = forwardRef<
     <CommandInputPrimitive
       ref={ref}
       className={clx(
-        "text-txt-black-900 placeholder:text-txt-black-500 h-[var(--ctl-h-md)] w-full min-w-0 bg-transparent text-field-md outline-none",
-        "disabled:cursor-not-allowed disabled:text-txt-black-disabled",
+        "text-txt-black-900 placeholder:text-txt-black-500 text-field-md h-[var(--ctl-h-md)] w-full min-w-0 bg-transparent outline-none",
+        "disabled:text-txt-black-disabled disabled:cursor-not-allowed",
         className,
       )}
       {...props}
@@ -129,7 +129,10 @@ const CommandLoading = forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandLoadingPrimitive
     ref={ref}
-    className={clx("text-txt-black-700 text-content px-4 py-6 text-center", className)}
+    className={clx(
+      "text-txt-black-700 text-content px-4 py-6 text-center",
+      className,
+    )}
     {...props}
   />
 ));
@@ -168,7 +171,6 @@ const CommandSeparator = forwardRef<
   return (
     <div
       ref={ref}
-      role="none"
       aria-hidden
       className={clx(menu_separator_class, "-mx-2", className)}
       {...props}
@@ -198,7 +200,6 @@ const CommandItem = forwardRef<
   />
 ));
 CommandItem.displayName = "CommandItem";
-
 
 /*========================================================================================================================*/
 

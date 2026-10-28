@@ -1,4 +1,3 @@
-import { fn } from "@storybook/test";
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
 import { TextArea } from "@mof-malaysia/myds-react/textarea";

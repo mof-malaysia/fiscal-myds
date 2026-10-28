@@ -169,7 +169,7 @@ const Calendar: FC<CalendarProps> = ({
             <table role="grid" className="table h-full">
               <tbody>
                 {[0, 1, 2, 3].map((row_index) => (
-                  <tr>
+                  <tr key={row_index}>
                     {[0, 1, 2].map((col_index) => {
                       const date = new Date();
                       date.setHours(0, 0, 0, 0);
@@ -189,7 +189,7 @@ const Calendar: FC<CalendarProps> = ({
                         month.getMonth() === i && month.getFullYear() === year;
 
                       return (
-                        <td role="gridcell">
+                        <td key={i} role="gridcell">
                           <Button
                             data-selected={isSelected}
                             variant={
@@ -248,7 +248,7 @@ const Calendar: FC<CalendarProps> = ({
                   {Array(Math.ceil((maxYear - minYear) / 3))
                     .fill(null)
                     .map((_, row_index) => (
-                      <tr>
+                      <tr key={row_index}>
                         {[0, 1, 2].map((col_index) => {
                           const i = row_index * 3 + col_index;
 
@@ -275,7 +275,7 @@ const Calendar: FC<CalendarProps> = ({
                           );
 
                           return (
-                            <td role="gridcell">
+                            <td key={displayYear} role="gridcell">
                               <Button
                                 ref={isSelected ? yearRef : null}
                                 data-selected-date={date}

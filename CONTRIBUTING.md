@@ -22,20 +22,34 @@ MYDS is largely managed by [Turborepo](https://turbo.build/). If you would like 
 
 ## Coding standards
 
-Our code formatting rules are defined in the [prettierc](./.prettierrc) and [\_eslint](./packages/_eslint/).
+Formatting is defined in [.prettierrc](./.prettierrc) and lint rules in [.oxlintrc.json](./.oxlintrc.json) ([oxlint](https://oxc.rs/docs/guide/usage/linter)). `apps/docs` is not linted.
 
-Running tests
+```sh
+pnpm run lint        # oxlint, fails on any warning
+pnpm run lint:fix    # apply safe autofixes
+pnpm run typecheck   # tsc --noEmit in every package, via Turborepo
+```
+
+## Git hooks
+
+[Lefthook](https://lefthook.dev) installs the hooks when you run `pnpm install`. Before every commit it runs, in parallel:
+
+- Prettier on staged `.ts`, `.tsx` and `.md` files, re-staging the fixes
+- `pnpm lint` across the workspace
+- `pnpm typecheck` across the workspace
+
+A failing check blocks the commit. If the hooks are missing, run `pnpm exec lefthook install`. To skip them in an emergency, use `LEFTHOOK=0 git commit ...`, then run the checks yourself before opening a PR.
 
 ## Submitting a Pull Request (PR)
 
-1. **Ensure Tests Pass**:
+1. **Ensure Checks Pass**:
    ```sh
-   pnpm run test
+   pnpm run lint && pnpm run typecheck
    ```
 2. **Format Code**:
 
    ```sh
-   pnpm run lint
+   pnpm run format
    ```
 
 3. **Push Your Changes**:

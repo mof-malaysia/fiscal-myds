@@ -1,4 +1,3 @@
-import { fn } from "@storybook/test";
 import LandingPage from "./components/landingPage";
 
 export default {

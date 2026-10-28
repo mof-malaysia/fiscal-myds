@@ -153,7 +153,8 @@ const TaskListItemHint: ForwardRefExoticComponent<TaskListItemHintProps> =
       props: mergeProps<"div">(
         {
           id: itemId ? hintId(itemId) : undefined,
-          // Lets the status span the hint line
+          // Lets the status span the hint line; spread so TS allows a data-* key here
+          // eslint-disable-next-line unicorn/no-useless-spread
           ...{ "data-slot": "task-list-item-hint" },
           className: clx(
             "text-txt-black-700 text-content col-start-1 row-start-2",

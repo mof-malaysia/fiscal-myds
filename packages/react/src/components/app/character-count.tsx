@@ -165,6 +165,7 @@ const CharacterCount = forwardRef<HTMLTextAreaElement, CharacterCountProps>(
       const timer = setTimeout(() => setAnnounced(message), announceDelay);
       return () => clearTimeout(timer);
       // `message` is derived from value; re-run when the text changes
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value, announceDelay]);
 
     return (

@@ -134,7 +134,7 @@ export const Bottom: Story = createStory({
   children: "bottom",
 });
 
-const EdgeTooltipDemo = (props: any) => {
+const EdgeTooltipDemo = () => {
   return (
     <div className="flex h-[100vh] flex-col items-center justify-center gap-4 p-10">
       <div className="flex w-full">

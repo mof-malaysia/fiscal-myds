@@ -212,10 +212,11 @@ const DataTableProvider = <TData extends Record<string, any>>({
     debugHeaders: false,
   });
 
+  // Report only when the selection changes, not when the callback's identity does
   useEffect(() => {
-    if (!selection) return;
-    selection?.onSelectionChange?.(Object.keys(table.getState().rowSelection));
-  }, [table.getState().rowSelection]);
+    selection?.onSelectionChange?.(Object.keys(rowSelection));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rowSelection]);
 
   return (
     <DataTableContext.Provider

@@ -23,6 +23,8 @@ const Skiplink = forwardRef<HTMLAnchorElement, SkiplinkProps>(
         variant="primary-outline"
         size={"small"}
         render={
+          // Button renders its children into this anchor
+          // eslint-disable-next-line jsx-a11y/anchor-has-content
           <a
             ref={ref}
             className={clx(

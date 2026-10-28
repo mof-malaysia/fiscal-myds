@@ -1,0 +1,16 @@
+# Git hooks, installed by `pnpm install` (the `prepare` script runs `lefthook install`).
+# Skip once in an emergency with `LEFTHOOK=0 git commit ...`.
+pre-commit:
+  parallel: true
+  skip:
+    - merge
+    - rebase
+  commands:
+    format:
+      glob: "*.{ts,tsx,md}"
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+    lint:
+      run: pnpm lint
+    typecheck:
+      run: pnpm typecheck

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "@mof-malaysia/myds-react/button";
 import {
   Dialog,
@@ -7,7 +7,6 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogIcon,
   DialogBody,
   DialogTitle,
   DialogTrigger,

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
 import { createStory } from "../utils";
-import { Label } from "@mof-malaysia/myds-react/label";
 
 /**
  * ### Overview

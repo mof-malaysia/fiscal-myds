@@ -7,8 +7,8 @@
     "dev": "echo 'Build disabled - component source only'",
     "build": "echo 'Build disabled - component source only'",
     "check-exports": "echo 'Exports check disabled'",
-    "lint": "eslint .",
-    "sync-exports": "pnpm -w run components:sync-exports"
+    "sync-exports": "pnpm -w run components:sync-exports",
+    "typecheck": "tsc --noEmit"
   },
   "files": [
     "src",
@@ -479,7 +479,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@myds/eslint-config": "workspace:*",
     "@swc/core": "^1.15.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.6",
