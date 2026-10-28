@@ -25,7 +25,7 @@ import { createStory } from "../utils";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/DateRangePicker",
+  title: "App/DateRangePicker",
   component: DateRangePicker,
   tags: ["autodocs"],
   parameters: {

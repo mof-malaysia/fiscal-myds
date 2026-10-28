@@ -5,11 +5,14 @@
 ## What's inside?
 
 1. **@myds-style Registry** - Tailwind v4 styling system (6 style components)
-2. **@myds-ui Registry** - 42 shadcn-compatible React components, hooks, utilities
+2. **Component registries**, one per tier:
+   - **@myds-core** - 40 shared primitives and government chrome, plus utils and hooks
+   - **@myds-app** - 35 service and officer tools
+   - **@myds-marketing** - 5 agency site components and 7 page blocks
 3. **@myds-icon Registry** - 220+ icons
 4. **Storybook** - Interactive component browser
 
-**Total: 268 components across 3 registries**
+**Total: 315 items across 5 registries**
 
 ## Installation
 
@@ -26,7 +29,7 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 
 # 3. Install UI components (dependencies, icons and hooks come along).
 #    --overwrite replaces the button.tsx that `shadcn init` created.
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json --overwrite
 
 # 4. Install a standalone icon
 npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-down.json
@@ -41,7 +44,7 @@ Then import the styles in your global CSS:
 @import "../styles/myds.css";
 ```
 
-Every item lives at `https://mof-malaysia.github.io/fiscal-myds/registry/<ui|icons|style>/styles/default/<name>.json`. See the registry catalogs (`https://mof-malaysia.github.io/fiscal-myds/registry/ui/index.json`, `.../icons/index.json`, `.../style/index.json`) for the names.
+Every item lives at `https://mof-malaysia.github.io/fiscal-myds/registry/<core|app|marketing|icons|style>/styles/default/<name>.json`. See the registry catalogs (`https://mof-malaysia.github.io/fiscal-myds/registry/core/index.json`, `.../app/index.json`, `.../marketing/index.json`, `.../icons/index.json`, `.../style/index.json`) for the names.
 
 ### Style Installation Options
 
@@ -67,7 +70,8 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 
 | Item | Installed to |
 | --- | --- |
-| UI components | `components/ui/<name>.tsx` |
+| Components (all tiers) | `components/ui/<name>.tsx` |
+| Marketing blocks | `components/blocks/<name>.tsx` |
 | Icons | `components/ui/icons/<name>.tsx` |
 | `utils` (`clx`) | `lib/myds/utils/` (leaves shadcn's `lib/utils.ts` alone) |
 | `hooks` | `lib/myds/hooks/` |
@@ -91,12 +95,26 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 - `theme-config` - Tailwind v4 @theme configuration
 - `base-styles` - Base CSS layers and utilities
 
-### UI Components (42)
+### Core components (40) — `registry/core`
 
-- **UI Primitives**: button, input, checkbox, radio, select, etc.
-- **Complex Components**: data-table, date-picker, dropdown, etc.
-- **Layout Components**: navbar, footer, masthead, announce-bar
-- **Utilities**: utils (clx), hooks
+Shared primitives and the government chrome every MOF site needs.
+
+alert-dialog, avatar, backlink, breadcrumb, button, callout, card, checkbox, cookie-banner, details, dialog, field, fieldset, footer, form, input, inset-text, label, link, masthead, menu, phase-banner, pill, popover, radio, scroll-area, select, separator, skeleton, skiplink, spinner, switch, tabs, tag, textarea, theme-switch, toast, toggle, toggle-group, tooltip
+
+Plus `utils` (clx) and `hooks`.
+
+### App components (35) — `registry/app`
+
+Service and officer tools: forms, data, workflows.
+
+app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, search-bar, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar
+
+### Marketing components (5) and blocks (7) — `registry/marketing`
+
+Agency and landing sites. Blocks are composed page sections (`registry:block`) installed to `components/blocks/`.
+
+- Components: accordion, announce-bar, carousel, navbar, site-footer
+- Blocks: cta-band, faq, feature-grid, hero, logo-cloud, stats-band, testimonial
 
 ### Icons (220)
 

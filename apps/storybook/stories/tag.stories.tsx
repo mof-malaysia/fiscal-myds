@@ -23,7 +23,7 @@ import { Tag } from "@mof-malaysia/myds-react/tag";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Tag",
+  title: "Core/Tag",
   component: Tag,
   parameters: {
     layout: "centered",

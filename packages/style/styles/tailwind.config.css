@@ -135,6 +135,8 @@
   --color-bg-contrast: rgb(var(--bg-contrast));
   --color-bg-dialog: rgb(var(--bg-dialog));
   --color-bg-dialog-active: rgb(var(--bg-dialog-active));
+  --color-bg-raised: rgb(var(--bg-raised));
+  --color-bg-track: rgb(var(--bg-track));
 
   --color-bg-black-900: rgb(var(--bg-black-900));
   --color-bg-black-800: rgb(var(--bg-black-800));
@@ -240,6 +242,15 @@
   --color-fr-primary: rgb(var(--fr-primary));
   --color-fr-danger: rgb(var(--fr-danger));
 
+  /* === Density-aware spacing (values set per density below) === */
+  --spacing-surface: var(--space-surface);
+  --spacing-stack-lg: var(--space-stack-lg);
+  --spacing-stack-md: var(--space-stack-md);
+  --spacing-stack-sm: var(--space-stack-sm);
+
+  /* === Motion (DESIGN.md: 150–200ms, ease-out) === */
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
   /* === Transition Durations === */
   --duration-200: 200ms;
   --duration-400: 400ms;
@@ -328,6 +339,10 @@
   --content-text: 1rem;
   --content-leading: 1.5rem;
   --cell-py: 12px;
+  --space-surface: 24px;
+  --space-stack-lg: 24px;
+  --space-stack-md: 16px;
+  --space-stack-sm: 12px;
 }
 
 [data-density="compact"] {
@@ -346,6 +361,10 @@
   --content-text: 0.875rem;
   --content-leading: 1.25rem;
   --cell-py: 8px;
+  --space-surface: 16px;
+  --space-stack-lg: 16px;
+  --space-stack-md: 12px;
+  --space-stack-sm: 8px;
 }
 
 /* Control box: height and horizontal padding for each size step */
@@ -406,4 +425,35 @@
 @utility text-content {
   font-size: var(--content-text);
   line-height: var(--content-leading);
+}
+
+/* DESIGN.md type hierarchy (fixed sizes; weight is set separately) */
+@utility text-display {
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+@utility text-headline {
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: -0.015em;
+}
+@utility text-title {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+/* The smallest size in the system: compact-density labels, badges, captions */
+@utility text-label-compact {
+  font-size: 0.8125rem;
+  line-height: 1.38;
+}
+
+/* Focus ring for every interactive element: solid, offset 2px (DESIGN.md: Buttons) */
+@utility focus-ring {
+  &:focus-visible {
+    /* rgb(var(--fr-primary)), not --color-fr-primary: resolves per element, so .dark islands switch */
+    outline: 2px solid rgb(var(--fr-primary));
+    outline-offset: 2px;
+  }
 }

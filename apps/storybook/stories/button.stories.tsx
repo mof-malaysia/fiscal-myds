@@ -57,7 +57,7 @@ import React from "react";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Button",
+  title: "Core/Button",
   component: Button,
   parameters: {
     layout: "centered",

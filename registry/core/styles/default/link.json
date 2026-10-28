@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "link",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/link.tsx",
+      "content": "import { useRender } from \"@base-ui/react/use-render\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { forwardRef, ForwardRefExoticComponent } from \"react\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport { clx } from \"@/lib/myds/utils\";\n\ninterface LinkProps\n  extends useRender.ComponentProps<\"a\">,\n    VariantProps<typeof link_cva> {\n  newTab?: boolean;\n}\n\nconst link_cva = cva(\n  \"decoration-1 underline-offset-[3px] transition-colors rounded-xs outline-none focus-ring\",\n  {\n    variants: {\n      underline: {\n        always: \"underline hover:decoration-2\",\n        hover: \"no-underline hover:underline\",\n        none: \"no-underline\",\n      },\n      primary: {\n        true: \"text-txt-primary\",\n        false: \"text-inherit decoration-inherit\",\n      },\n    },\n  },\n);\n\n/**\n * The Link component extends the `<a>` element, customised according to the MYDS theme.\n * @example\n * <Link href=\"https://design.digital.gov.my\" newTab primary underline=\"always\">MYDS</Link>\n * @see {@link https://design.digital.gov.my/?path=/docs/myds-react-link--docs}\n */\nconst Link: ForwardRefExoticComponent<LinkProps> = forwardRef(\n  (\n    {\n      render,\n      className,\n      href,\n      newTab = false,\n      primary = false,\n      underline = \"always\",\n      ...props\n    },\n    ref,\n  ) => {\n    return useRender({\n      defaultTagName: \"a\",\n      render,\n      ref,\n      props: mergeProps<\"a\">(\n        {\n          href,\n          className: clx(link_cva({ primary, underline }), className),\n          target: newTab ? \"_blank\" : \"_self\",\n          rel: newTab ? \"noopener noreferrer\" : undefined,\n        },\n        props,\n      ),\n    });\n  },\n);\nLink.displayName = \"Link\";\n\nexport { Link, link_cva };\nexport type { LinkProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ import { clx } from "@mof-malaysia/myds-react/utils";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Skiplink",
+  title: "Core/Skiplink",
   component: Skiplink,
   decorators: [
     (Story, context) => {

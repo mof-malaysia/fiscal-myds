@@ -26,7 +26,7 @@ import {
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Table",
+  title: "App/Table",
   component: Table,
   tags: ["autodocs"],
   parameters: {

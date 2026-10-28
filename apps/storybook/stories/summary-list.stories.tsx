@@ -21,7 +21,7 @@ import { SwapIcon } from "@mof-malaysia/myds-react/icon";
  */
 
 const meta = {
-  title: "@mof-malaysia/myds-react/SummaryList",
+  title: "App/SummaryList",
   component: SummaryList,
   tags: ["autodocs"],
   parameters: {

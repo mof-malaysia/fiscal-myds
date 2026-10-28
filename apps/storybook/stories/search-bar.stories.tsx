@@ -70,7 +70,7 @@ import { Pill } from "@mof-malaysia/myds-react/pill";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/SearchBar",
+  title: "App/SearchBar",
   component: SearchBar,
   tags: ["autodocs"],
   parameters: {

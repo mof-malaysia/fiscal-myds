@@ -1,7 +1,7 @@
 import Article from "./components/article";
 
 export default {
-  title: "@mof-malaysia/examples/Article",
+  title: "Examples/Article",
   component: Article,
   // remove the automatic documentation for Layout
   tags: ["!autodocs"],

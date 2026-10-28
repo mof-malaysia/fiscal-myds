@@ -40,7 +40,7 @@ import { Label } from "@mof-malaysia/myds-react/label";
  * ```
  */
 const meta: Meta<typeof Checkbox> = {
-  title: "@mof-malaysia/myds-react/Checkbox",
+  title: "Core/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "centered",

@@ -15,7 +15,7 @@ import { Pill } from "@mof-malaysia/myds-react/pill";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Pill",
+  title: "Core/Pill",
   component: Pill,
   tags: ["autodocs"],
   parameters: {

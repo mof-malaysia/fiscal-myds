@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
+    "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/breadcrumb.tsx",
+      "content": "import { useRender } from \"@base-ui/react/use-render\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { ComponentProps, ForwardRefExoticComponent, forwardRef } from \"react\";\nimport { clx } from \"@/lib/myds/utils\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport { ChevronRightIcon } from \"@/components/ui/icons/chevron-right\";\n\nconst breadcrumb_cva = cva(\n  [\n    \"group flex flex-wrap select-none items-center font-body font-medium text-body-sm rounded-md gap-1\",\n  ],\n  {\n    variants: {\n      variant: {\n        default: \"\",\n        fill: \"py-1 px-3 bg-bg-washed\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n);\n\ninterface BreadcrumbProps\n  extends ComponentProps<\"nav\">,\n    VariantProps<typeof breadcrumb_cva> {}\n\nconst Breadcrumb: ForwardRefExoticComponent<BreadcrumbProps> = forwardRef(\n  ({ variant = \"default\", className, children, ...props }, ref) => (\n    <nav ref={ref} aria-label=\"breadcrumb\" {...props}>\n      <ol className={breadcrumb_cva({ variant, className })}>{children}</ol>\n    </nav>\n  ),\n);\nBreadcrumb.displayName = \"Breadcrumb\";\n\nconst BreadcrumbItem: ForwardRefExoticComponent<ComponentProps<\"li\">> =\n  forwardRef(({ className, ...props }, ref) => (\n    <li\n      ref={ref}\n      {...props}\n      className={clx(\"line-clamp-1 max-w-[200px]\", className)}\n    />\n  ));\nBreadcrumbItem.displayName = \"BreadcrumbItem\";\n\nconst BreadcrumbLink: ForwardRefExoticComponent<useRender.ComponentProps<\"a\">> =\n  forwardRef(({ render, className, ...props }, ref) => {\n    return useRender({\n      defaultTagName: \"a\",\n      render,\n      ref,\n      props: mergeProps<\"a\">(\n        {\n          className: clx(\n            \"hover:text-txt-black-900 text-txt-black-500 transition-colors hover:underline\",\n            className,\n          ),\n        },\n        props,\n        {\n          title:\n            props.title || typeof props.children === \"string\"\n              ? (props.children as string)\n              : undefined,\n        },\n      ),\n    });\n  });\nBreadcrumbLink.displayName = \"BreadcrumbLink\";\n\nconst BreadcrumbPage: ForwardRefExoticComponent<ComponentProps<\"span\">> =\n  forwardRef(({ className, ...props }, ref) => (\n    <span\n      ref={ref}\n      {...props}\n      role=\"link\"\n      aria-disabled=\"true\"\n      aria-current=\"page\"\n      className={clx(\n        \"text-txt-black-900 line-clamp-1 max-w-[200px]\",\n        className,\n      )}\n      title={\n        props.title || typeof props.children === \"string\"\n          ? (props.children as string)\n          : undefined\n      }\n    />\n  ));\nBreadcrumbPage.displayName = \"BreadcrumbPage\";\n\nconst BreadcrumbSeparator = ({\n  children,\n  className,\n  ...props\n}: ComponentProps<\"li\">) => (\n  <li\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    className={clx(\"[&>svg]:text-bg-black-400 [&>svg]:size-6\", className)}\n    {...props}\n  >\n    {children || <ChevronRightIcon />}\n  </li>\n);\nBreadcrumbSeparator.displayName = \"BreadcrumbSeparator\";\n\nexport {\n  Breadcrumb,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}

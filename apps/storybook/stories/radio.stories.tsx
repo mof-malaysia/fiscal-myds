@@ -40,7 +40,7 @@ import {
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Radio",
+  title: "Core/Radio",
   component: Radio,
   render: ({ ...props }) => {
     return (

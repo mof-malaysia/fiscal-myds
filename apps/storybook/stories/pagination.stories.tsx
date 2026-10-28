@@ -35,7 +35,7 @@ import ArrowBack from "../react/arrow-back";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Pagination",
+  title: "App/Pagination",
   component: AutoPagination,
   parameters: {
     layout: "centered",

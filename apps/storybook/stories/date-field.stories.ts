@@ -19,7 +19,7 @@ import { DateField } from "@mof-malaysia/myds-react/date-field";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/DateField",
+  title: "App/DateField",
   component: DateField,
   tags: ["autodocs"],
   parameters: {

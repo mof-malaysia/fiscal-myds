@@ -32,7 +32,7 @@ import { Link } from "@mof-malaysia/myds-react/link";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/AnnounceBar",
+  title: "Marketing/AnnounceBar",
   component: AnnounceBar,
   tags: ["autodocs"],
   parameters: {

@@ -71,7 +71,7 @@ import { createStory } from "../utils";
  */
 // @ts-expect-error
 const meta: Meta = {
-  title: "@mof-malaysia/myds-react/Dialog",
+  title: "Core/Dialog",
   component: Dialog,
   render: ({ dismissible, border, align, border_header }) => {
     return (

@@ -2,7 +2,7 @@ import { fn } from "@storybook/test";
 import LandingPage from "./components/landingPage";
 
 export default {
-  title: "@mof-malaysia/examples/LandingPage",
+  title: "Examples/LandingPage",
   component: LandingPage,
   // remove the automatic documentation for Layout
   tags: ["!autodocs"],

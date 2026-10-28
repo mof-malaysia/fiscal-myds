@@ -22,7 +22,7 @@ import { TextArea } from "@mof-malaysia/myds-react/textarea";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/TextArea",
+  title: "Core/TextArea",
   component: TextArea,
   tags: ["autodocs"],
   parameters: {

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fieldset",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/fieldset.tsx",
+      "content": "\"use client\";\n\nimport React, { ComponentRef, forwardRef } from \"react\";\nimport { Fieldset as FieldsetPrimitive } from \"@base-ui/react/fieldset\";\nimport { clx, type WithClassName } from \"@/lib/myds/utils\";\n\n/**\n * Fieldset groups related fields under one legend, such as an address or the\n * parts of a date. Disabling the fieldset disables every field inside it.\n *\n * @example\n * <Fieldset>\n *   <FieldsetLegend>Correspondence address</FieldsetLegend>\n *   <FieldsetDescription>We'll post your certificate here.</FieldsetDescription>\n *   <Field>...</Field>\n * </Fieldset>\n */\n\nconst Fieldset = forwardRef<\n  ComponentRef<typeof FieldsetPrimitive.Root>,\n  WithClassName<FieldsetPrimitive.Root.Props>\n>(({ className, ...props }, ref) => (\n  <FieldsetPrimitive.Root\n    ref={ref}\n    className={clx(\n      // Comfortable 16–24px gaps, compact 8–12px (DESIGN.md: Density)\n      \"gap-stack-md flex w-full min-w-0 flex-col border-none p-0\",\n      className,\n    )}\n    {...props}\n  />\n));\nFieldset.displayName = \"Fieldset\";\n\nconst fieldset_legend_sizes = {\n  // Title: form section headings\n  medium: \"text-title font-semibold\",\n  // Headline: a question that is the whole page (\"What is your income?\")\n  large: \"text-headline font-semibold\",\n};\n\ninterface FieldsetLegendProps\n  extends WithClassName<FieldsetPrimitive.Legend.Props> {\n  size?: keyof typeof fieldset_legend_sizes;\n}\n\nconst FieldsetLegend = forwardRef<\n  ComponentRef<typeof FieldsetPrimitive.Legend>,\n  FieldsetLegendProps\n>(({ className, size = \"medium\", ...props }, ref) => (\n  <FieldsetPrimitive.Legend\n    ref={ref}\n    className={clx(\n      \"font-heading text-txt-black-900\",\n      \"data-[disabled]:text-txt-black-disabled\",\n      fieldset_legend_sizes[size],\n      className,\n    )}\n    {...props}\n  />\n));\nFieldsetLegend.displayName = \"FieldsetLegend\";\n\nconst FieldsetDescription = forwardRef<\n  HTMLParagraphElement,\n  React.ComponentProps<\"p\">\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={clx(\n      \"font-body text-content text-txt-black-700 -mt-2\",\n      className,\n    )}\n    {...props}\n  />\n));\nFieldsetDescription.displayName = \"FieldsetDescription\";\n\nexport { Fieldset, FieldsetLegend, FieldsetDescription };\nexport type { FieldsetLegendProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

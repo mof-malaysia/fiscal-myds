@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/skeleton.tsx",
+      "content": "import React, { ComponentProps, forwardRef } from \"react\";\nimport { clx } from \"@/lib/myds/utils\";\n\n/**\n * Skeleton holds the place of content that is still loading, in the shape it will\n * take, so the layout does not jump when the data arrives. It is a Well-toned block\n * with a slow shimmer (still under reduced motion), hidden from screen readers.\n *\n * Shape it with `className` (height, width, radius). Announce loading once for the\n * region instead, e.g. `aria-busy=\"true\"` on the container plus visually hidden\n * \"Loading\" text.\n *\n * @example\n * <div aria-busy=\"true\" className=\"flex items-center gap-3\">\n *   <span className=\"sr-only\">Loading applications</span>\n *   <Skeleton className=\"size-10 rounded-full\" />\n *   <div className=\"flex flex-1 flex-col gap-2\">\n *     <Skeleton className=\"h-4 w-1/2\" />\n *     <Skeleton className=\"h-4 w-1/3\" />\n *   </div>\n * </div>\n */\n\ntype SkeletonProps = ComponentProps<\"div\">;\n\nconst Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(\n  ({ className, ...props }, ref) => (\n    <div\n      ref={ref}\n      aria-hidden=\"true\"\n      className={clx(\n        \"bg-bg-washed block h-4 w-full rounded-md\",\n        \"from-bg-washed via-bg-washed-active to-bg-washed animate-shimmer bg-gradient-to-r bg-[length:200%_100%]\",\n        \"motion-reduce:animate-none\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nSkeleton.displayName = \"Skeleton\";\n\nexport { Skeleton };\nexport type { SkeletonProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

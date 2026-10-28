@@ -15,7 +15,7 @@ import { Button } from "@mof-malaysia/myds-react/button";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Spinner",
+  title: "Core/Spinner",
   component: Spinner,
   tags: ["autodocs"],
   parameters: {

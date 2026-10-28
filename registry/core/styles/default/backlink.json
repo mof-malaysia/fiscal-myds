@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "backlink",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
+    "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/arrow-back.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/backlink.tsx",
+      "content": "import React, { forwardRef, ForwardRefExoticComponent } from \"react\";\nimport { useRender } from \"@base-ui/react/use-render\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { ArrowBackIcon } from \"@/components/ui/icons/arrow-back\";\nimport { clx } from \"@/lib/myds/utils\";\nimport { link_cva } from \"@/components/ui/link\";\n\n/**\n * Backlink takes the user to the previous step of a multi-page flow. Place it at\n * the top of the page, above the heading. Give it context where it helps:\n * \"Back to Payment details\". Pass `render` to use your router's link.\n *\n * @example\n * <Backlink href=\"/apply/details\" />\n * <Backlink render={<NextLink href=\"/payments\" />}>Back to Payments</Backlink>\n */\n\ninterface BacklinkProps extends useRender.ComponentProps<\"a\"> {}\n\nconst Backlink: ForwardRefExoticComponent<BacklinkProps> = forwardRef(\n  ({ render, className, children = \"Back\", ...props }, ref) =>\n    useRender({\n      defaultTagName: \"a\",\n      render,\n      ref,\n      props: mergeProps<\"a\">(\n        {\n          className: clx(\n            \"group font-body text-content text-txt-black-700 hover:text-txt-black-900 inline-flex w-fit items-center gap-1.5 rounded-xs font-medium\",\n            \"transition-colors duration-150 outline-none motion-reduce:transition-none\",\n            \"focus-ring\",\n            className,\n          ),\n          children: (\n            <>\n              <ArrowBackIcon aria-hidden className=\"size-4 shrink-0\" />\n              <span\n                className={link_cva({\n                  underline: \"always\",\n                  className: \"group-hover:decoration-2\",\n                })}\n              >\n                {children}\n              </span>\n            </>\n          ),\n        },\n        props,\n      ),\n    }),\n);\nBacklink.displayName = \"Backlink\";\n\nexport { Backlink };\nexport type { BacklinkProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

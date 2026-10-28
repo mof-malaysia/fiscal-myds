@@ -23,7 +23,7 @@ import { fn } from "@storybook/test";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/DatePicker",
+  title: "App/DatePicker",
   component: DatePicker,
   tags: ["autodocs"],
   parameters: {

@@ -7,7 +7,7 @@ import React, {
   forwardRef,
 } from "react";
 import { Button } from "@mof-malaysia/myds-react/button";
-export * from "@mof-malaysia/myds-react/toggle";
+export * from "@mof-malaysia/myds-react/switch";
 export * from "@mof-malaysia/myds-react/button";
 export * from "@mof-malaysia/myds-react/link";
 export * from "@mof-malaysia/myds-react/skiplink";
@@ -23,7 +23,7 @@ export * from "@mof-malaysia/myds-react/date-field";
 export * from "@mof-malaysia/myds-react/date-picker";
 export * from "@mof-malaysia/myds-react/daterange-picker";
 export * from "@mof-malaysia/myds-react/dialog";
-export * from "@mof-malaysia/myds-react/dropdown";
+export * from "@mof-malaysia/myds-react/menu";
 export * from "@mof-malaysia/myds-react/pill";
 export * from "@mof-malaysia/myds-react/select";
 export * from "@mof-malaysia/myds-react/input";
@@ -33,7 +33,7 @@ export * from "@mof-malaysia/myds-react/search-bar";
 export * from "@mof-malaysia/myds-react/masthead";
 export * from "@mof-malaysia/myds-react/navbar";
 export * from "@mof-malaysia/myds-react/radio";
-export * from "@mof-malaysia/myds-react/input-otp";
+export * from "@mof-malaysia/myds-react/otp-field";
 export * from "@mof-malaysia/myds-react/tabs";
 export * from "@mof-malaysia/myds-react/navbar";
 export * from "@mof-malaysia/myds-react/summary-list";
@@ -80,7 +80,7 @@ import {
 } from "@mof-malaysia/myds-react/select";
 import { Tag } from "@mof-malaysia/myds-react/tag";
 import { Cell, ColumnDef } from "@mof-malaysia/myds-react/data-table";
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Switch } from "@mof-malaysia/myds-react/switch";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -107,14 +107,15 @@ import {
   PaginationNumber,
   PaginationPrevious,
 } from "@mof-malaysia/myds-react/pagination";
+// 2.0 moved the multi-column footer to the marketing tier as site-footer
 import {
-  Footer,
-  FooterLogo,
-  FooterSection,
-  SiteInfo,
-  SiteLink,
-  SiteLinkGroup,
-} from "@mof-malaysia/myds-react/footer";
+  SiteFooter as Footer,
+  SiteFooterLogo as FooterLogo,
+  SiteFooterSection as FooterSection,
+  SiteFooterInfo as SiteInfo,
+  SiteFooterLink as SiteLink,
+  SiteFooterLinkGroup as SiteLinkGroup,
+} from "@mof-malaysia/myds-react/site-footer";
 import { Link } from "@mof-malaysia/myds-react/link";
 
 interface PreviewButtonProps extends ComponentProps<typeof Button> {
@@ -184,7 +185,7 @@ export const DismissibleCalloutExample: FunctionComponent<
   );
 };
 
-interface PreviewToggleProps extends ComponentProps<typeof Toggle> {}
+interface PreviewToggleProps extends ComponentProps<typeof Switch> {}
 
 export const ControlledToggle: FunctionComponent<PreviewToggleProps> = (
   props,
@@ -194,13 +195,11 @@ export const ControlledToggle: FunctionComponent<PreviewToggleProps> = (
   return (
     <div className="flex flex-col items-center justify-center">
       <p>State: {isChecked ? "On" : "Off"}</p>
-      <Toggle
+      <Switch
         checked={isChecked}
         onCheckedChange={(checked) => setIsChecked(checked)}
         {...props}
-      >
-        <ToggleThumb />
-      </Toggle>
+      />
     </div>
   );
 };
