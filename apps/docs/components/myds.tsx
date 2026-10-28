@@ -297,7 +297,7 @@ export const CustomValueSelect: FunctionComponent = () => {
   return (
     <Select multiple size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit">
+        <SelectValue>
           {(value) => (
             <div className="flex gap-1">
               {Array.isArray(value)
@@ -836,7 +836,7 @@ export const SiteInfoComponent = () => {
       <div className="text-txt-black-900 flex items-center gap-x-2.5">
         <FooterLogo
           logoTitle={
-            <p className="font-poppins text-body-md whitespace-nowrap font-semibold">
+            <p className="font-poppins text-body-md font-semibold whitespace-nowrap">
               Kementerian Digital
             </p>
           }

@@ -115,6 +115,7 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
       onValueChange={handleChange}
     >
       <SelectTrigger
+        className="w-fit"
         aria-label={`${label}: ${getTheme(theme || defaultTheme)?.label ?? ""}`}
       >
         <SelectValue>

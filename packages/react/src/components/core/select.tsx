@@ -2,32 +2,100 @@
 
 import * as React from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import {
-  clx,
-  splitPositionerProps,
-  type PositionerProps,
-} from "../../utils";
-import { floating_popup_class } from "./popover";
 import { cva } from "class-variance-authority";
-import { ChevronDownFillIcon } from "../../icons/chevron-down-fill";
-import { CheckCircleFillIcon } from "../../icons/check-circle-fill";
+import { clx, splitPositionerProps, type PositionerProps } from "../../utils";
+import {
+  menu_group_label_class,
+  menu_item_cva,
+  menu_popup_cva,
+  menu_separator_class,
+} from "./menu";
 import { Checkbox } from "./checkbox";
+import { useMergedRefs } from "../../hooks";
+import { CheckIcon } from "../../icons/check";
+import { ChevronDownIcon } from "../../icons/chevron-down";
+import { CrossIcon } from "../../icons/cross";
+
+/**
+ * Select lets someone choose one option (or several, with `multiple`) from a
+ * list that opens below a field-like trigger. It sits in a `Field` like any
+ * other control: the label goes above it in `FieldLabel`, never inside the
+ * trigger, and the field's invalid state turns its stroke Danger.
+ *
+ * For a plain list, pass `items` and Select renders the trigger and the list.
+ * Compose the parts when you need groups, a header or custom rendering.
+ *
+ * @example
+ * <Field name="state">
+ *   <FieldLabel>State</FieldLabel>
+ *   <Select placeholder="Choose a state" items={[
+ *     { value: "jhr", label: "Johor" },
+ *     { value: "kdh", label: "Kedah" },
+ *   ]} />
+ * </Field>
+ *
+ * @example
+ * <Select multiple clearable defaultValue={["apple"]}>
+ *   <SelectTrigger icon={<FilterIcon />}>
+ *     <SelectValue placeholder="Any fruit" />
+ *   </SelectTrigger>
+ *   <SelectContent>
+ *     <SelectGroup>
+ *       <SelectGroupTitle>Fruits</SelectGroupTitle>
+ *       <SelectItem value="apple" description="Crisp and sweet">Apple</SelectItem>
+ *     </SelectGroup>
+ *   </SelectContent>
+ * </Select>
+ */
+
+type SelectVariant = "outline" | "ghost";
+type SelectSize = "small" | "medium" | "large";
+
+/** One option for the `items` shorthand. Consecutive items with the same `group` share a heading. */
+interface SelectOption {
+  value: string;
+  label: React.ReactNode;
+  description?: React.ReactNode;
+  disabled?: boolean;
+  group?: string;
+}
 
 type SelectBase = Omit<
   SelectPrimitive.Root.Props<string, boolean>,
-  "value" | "defaultValue" | "onValueChange" | "multiple"
+  "value" | "defaultValue" | "onValueChange" | "multiple" | "items"
 > & {
-  variant: "outline" | "ghost" | null;
-  size: "small" | "medium" | "large" | null;
+  /** `outline` for forms; `ghost` for toolbars and dense headers. @default "outline" */
+  variant?: SelectVariant;
+  /** Follows `data-density`, like Input. @default "small" */
+  size?: SelectSize;
+  /** Shows a button that clears the value. For optional choices and filters. */
+  clearable?: boolean;
+  /** Accessible name of the clear button. @default "Clear selection" */
+  clearLabel?: string;
+  /**
+   * The options. Without children, Select renders the trigger and the list from
+   * these. With children, pass them anyway whenever labels differ from values:
+   * options only report their labels once the list has opened, so this is how
+   * the trigger shows "In review" rather than "review" on first render.
+   */
+  items?: SelectOption[];
+  /** For the `items` shorthand: text shown while nothing is chosen. */
+  placeholder?: React.ReactNode;
+  /** For the `items` shorthand: an icon before the value. */
+  icon?: React.ReactNode;
+  /** For the `items` shorthand: sizes the trigger, e.g. `w-fit` or `max-w-64`. */
+  className?: string;
 };
 
 type SelectSingle = SelectBase & {
   multiple?: false;
+  /** `""` means nothing is chosen. */
   value?: string;
   defaultValue?: string;
+  /** Called with `""` when the clear button empties it (no `eventDetails` then). */
   onValueChange?: (
     value: string,
-    eventDetails: SelectPrimitive.Root.ChangeEventDetails,
+    eventDetails?: SelectPrimitive.Root.ChangeEventDetails,
   ) => void;
 };
 
@@ -35,39 +103,45 @@ type SelectMultiple = SelectBase & {
   multiple: true;
   value?: string[];
   defaultValue?: string[];
+  /** Called with `[]` when the clear button empties it (no `eventDetails` then). */
   onValueChange?: (
     value: string[],
-    eventDetails: SelectPrimitive.Root.ChangeEventDetails,
+    eventDetails?: SelectPrimitive.Root.ChangeEventDetails,
   ) => void;
 };
 
-const isMultiple = (props: { multiple?: boolean }): boolean =>
-  Boolean(props.multiple);
-
 type SelectProps = SelectSingle | SelectMultiple;
 
-type SelectContextProps = {
+interface SelectContextValue {
   multiple: boolean;
-  variant: SelectBase["variant"];
-  size: SelectBase["size"];
-  /** Current value. `null` when nothing is selected (single), `[]` (multiple). */
+  variant: SelectVariant;
+  size: SelectSize;
+  /** `null` when nothing is chosen (single), `[]` (multiple). */
   value: string | string[] | null;
-  /** Items register their rendered label so `<SelectValue>` can display it instead of the raw value. */
+  /** Rendered label of each value, so the trigger shows labels, not raw values. */
+  labels: Record<string, React.ReactNode>;
   registerLabel: (value: string, label: React.ReactNode) => void;
-};
+  clearable: boolean;
+  clearLabel: string;
+  clear: () => void;
+}
 
-const SelectContext = React.createContext<SelectContextProps>({
+const SelectContext = React.createContext<SelectContextValue>({
   multiple: false,
   variant: "outline",
   size: "small",
   value: null,
+  labels: {},
   registerLabel: () => {},
+  clearable: false,
+  clearLabel: "Clear selection",
+  clear: () => {},
 });
 
 const useIsoLayoutEffect =
   typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
-/** Normalise MYDS values ("" = empty) to Base UI values (`null` = empty). */
+/** MYDS values ("" = empty) to Base UI values (`null` = empty). */
 const normalise = (
   value: string | string[] | undefined | null,
   multiple: boolean,
@@ -77,220 +151,203 @@ const normalise = (
   return value;
 };
 
+const hasValue = (value: string | string[] | null) =>
+  Array.isArray(value) ? value.length > 0 : value !== null;
+
+/** Consecutive options that share a `group`, in order. */
+const groupOptions = (items: SelectOption[]) =>
+  items.reduce<{ group?: string; items: SelectOption[] }[]>((groups, item) => {
+    const last = groups[groups.length - 1];
+    if (last && last.group === item.group) last.items.push(item);
+    else groups.push({ group: item.group, items: [item] });
+    return groups;
+  }, []);
+
 const Select: React.FunctionComponent<SelectProps> = (props) => {
   const {
     multiple: _multiple,
     value: valueProp,
     defaultValue,
     onValueChange,
-    variant,
-    size,
+    variant = "outline",
+    size = "small",
+    clearable = false,
+    clearLabel = "Clear selection",
     items,
+    placeholder,
+    icon,
+    className,
+    children,
     ...rest
   } = props;
-  const multiple = isMultiple(props);
+  const multiple = Boolean(_multiple);
 
   const [uncontrolledValue, setUncontrolledValue] = React.useState<
     string | string[] | null
   >(() => normalise(defaultValue, multiple));
-  const [labels, setLabels] = React.useState<Record<string, React.ReactNode>>(
-    {},
-  );
+  const raw = valueProp !== undefined ? valueProp : uncontrolledValue;
+  const value = React.useMemo(() => normalise(raw, multiple), [raw, multiple]);
 
-  const value = normalise(
-    valueProp !== undefined ? valueProp : uncontrolledValue,
-    multiple,
+  // Labels come from `items` first; options outside `items` register their own once mounted
+  const itemLabels = React.useMemo(
+    () =>
+      items &&
+      Object.fromEntries(items.map((item) => [item.value, item.label])),
+    [items],
   );
-
+  const itemLabelsRef = React.useRef(itemLabels);
+  itemLabelsRef.current = itemLabels;
+  const [registered, setRegistered] = React.useState<
+    Record<string, React.ReactNode>
+  >({});
   const registerLabel = React.useCallback(
     (itemValue: string, label: React.ReactNode) => {
-      setLabels((prev) =>
+      if (itemLabelsRef.current && itemValue in itemLabelsRef.current) return;
+      setRegistered((prev) =>
         prev[itemValue] === label ? prev : { ...prev, [itemValue]: label },
       );
     },
     [],
+  );
+  const labels = React.useMemo(
+    () => ({ ...registered, ...itemLabels }),
+    [registered, itemLabels],
+  );
+
+  // One loose handler inside; the single/multiple union only matters to callers
+  const onChange = React.useRef(
+    onValueChange as
+      | ((
+          value: string | string[],
+          eventDetails?: SelectPrimitive.Root.ChangeEventDetails,
+        ) => void)
+      | undefined,
+  );
+  onChange.current = onValueChange as typeof onChange.current;
+
+  const emit = React.useCallback(
+    (
+      next: string | string[],
+      eventDetails?: SelectPrimitive.Root.ChangeEventDetails,
+    ) => {
+      setUncontrolledValue(normalise(next, multiple));
+      onChange.current?.(next, eventDetails);
+    },
+    [multiple],
   );
 
   const handleValueChange = (
     next: string | string[] | null,
     eventDetails: SelectPrimitive.Root.ChangeEventDetails,
   ) => {
-    if (multiple) {
-      const nextValue = Array.isArray(next) ? next : [];
-      setUncontrolledValue(nextValue);
-      (onValueChange as SelectMultiple["onValueChange"])?.(
-        nextValue,
-        eventDetails,
-      );
-    } else {
-      if (next === undefined || next === null || Array.isArray(next)) return;
-      setUncontrolledValue(next);
-      (onValueChange as SelectSingle["onValueChange"])?.(next, eventDetails);
-    }
+    if (multiple) emit(Array.isArray(next) ? next : [], eventDetails);
+    else if (typeof next === "string") emit(next, eventDetails);
   };
 
+  const clear = React.useCallback(
+    () => emit(multiple ? [] : ""),
+    [emit, multiple],
+  );
+
+  // Stable unless something it carries changes, so options don't all re-render
+  const context = React.useMemo<SelectContextValue>(
+    () => ({
+      multiple,
+      variant,
+      size,
+      value,
+      labels,
+      registerLabel,
+      clearable,
+      clearLabel,
+      clear,
+    }),
+    [
+      multiple,
+      variant,
+      size,
+      value,
+      labels,
+      registerLabel,
+      clearable,
+      clearLabel,
+      clear,
+    ],
+  );
+
   return (
-    <SelectContext.Provider
-      value={{ multiple, variant, size, value, registerLabel }}
-    >
+    <SelectContext.Provider value={context}>
       <SelectPrimitive.Root<string, boolean>
         {...rest}
-        items={items ?? labels}
+        items={labels}
         multiple={multiple}
         value={value}
         onValueChange={handleValueChange}
-      />
+      >
+        {children ??
+          (items && (
+            <>
+              <SelectTrigger icon={icon} className={className}>
+                <SelectValue placeholder={placeholder} />
+              </SelectTrigger>
+              <SelectContent>
+                {groupOptions(items).map(({ group, items: options }, i) => {
+                  const rendered = options.map((option) => (
+                    <SelectItem
+                      key={option.value}
+                      value={option.value}
+                      description={option.description}
+                      disabled={option.disabled}
+                    >
+                      {option.label}
+                    </SelectItem>
+                  ));
+                  return group ? (
+                    <SelectGroup key={`${group}-${i}`}>
+                      <SelectGroupTitle>{group}</SelectGroupTitle>
+                      {rendered}
+                    </SelectGroup>
+                  ) : (
+                    <React.Fragment key={i}>{rendered}</React.Fragment>
+                  );
+                })}
+              </SelectContent>
+            </>
+          ))}
+      </SelectPrimitive.Root>
     </SelectContext.Provider>
   );
 };
 Select.displayName = "Select";
 
-const SelectGroup = SelectPrimitive.Group;
-
-/*========================================================================================================================*/
-
-const select_icon_cva = cva(["text-txt-black-900"], {
-  variants: {
-    size: {
-      small: "size-4",
-      medium: "size-5",
-      large: "size-5",
-    },
-  },
-});
-
-interface SelectValueProps
-  extends Omit<
-    SelectPrimitive.Value.Props,
-    "children" | "render" | "className"
-  > {
-  className?: string;
-  label?: React.ReactNode;
-  icon?: React.JSXElementConstructor<any>;
-  children?: (value: string | string[]) => React.ReactNode;
-}
-const SelectValue: React.ForwardRefExoticComponent<
-  SelectValueProps & React.RefAttributes<HTMLSpanElement>
-> = React.forwardRef<HTMLSpanElement, SelectValueProps>(
-  ({ label, icon, children, className, placeholder, ...props }, ref) => {
-    const rootProps = React.useContext(SelectContext);
-    const Icon = icon || ChevronDownFillIcon;
-
-    const icon_node = (
-      <SelectPrimitive.Icon className="flex shrink-0">
-        <Icon className={select_icon_cva({ size: rootProps.size })} />
-      </SelectPrimitive.Icon>
-    );
-
-    if (!rootProps.multiple)
-      return (
-        <>
-          {typeof label === "string" ? (
-            <SelectLabel>{label}</SelectLabel>
-          ) : (
-            label
-          )}
-          <SelectPrimitive.Value
-            ref={ref}
-            placeholder={placeholder}
-            {...props}
-            className={clx("text-inherit", className)}
-          >
-            {children}
-          </SelectPrimitive.Value>
-          {icon_node}
-        </>
-      );
-
-    const selected = Array.isArray(rootProps.value) ? rootProps.value : [];
-
-    return (
-      <>
-        {typeof label === "string" ? <SelectLabel>{label}</SelectLabel> : label}
-        <SelectPrimitive.Value
-          ref={ref}
-          {...props}
-          className={clx("text-inherit", className)}
-        >
-          {children ??
-            ((value: string[]) => (value?.length ? null : placeholder))}
-        </SelectPrimitive.Value>
-
-        {!children && <SelectCounter>{selected.length}</SelectCounter>}
-
-        {icon_node}
-      </>
-    );
-  },
-);
-SelectValue.displayName = "SelectValue";
-
-/*========================================================================================================================*/
-
-const select_counter_cva = cva(
-  [
-    "flex aspect-square shrink-0 leading-none items-center justify-center bg-primary-600",
-    "rounded-full px-1 leading-none text-white",
-    "group-disabled:bg-bg-white-disabled group-disabled:text-inherit",
-    "group-data-[disabled]:bg-bg-white-disabled group-data-[disabled]:text-inherit",
-  ],
-  {
-    variants: {
-      size: {
-        small: "text-body-sm",
-        medium: "text-body-md",
-        large: "text-body-md",
-      },
-    },
-    defaultVariants: {
-      size: "small",
-    },
-  },
-);
-
-interface SelectCounterProps extends React.ComponentProps<"span"> {}
-
-const SelectCounter: React.ForwardRefExoticComponent<SelectCounterProps> =
-  React.forwardRef(({ children, className, ...props }, ref) => {
-    const { size } = React.useContext(SelectContext);
-
-    return (
-      <span
-        ref={ref}
-        className={clx(select_counter_cva({ size }), className)}
-        {...props}
-      >
-        {children}
-      </span>
-    );
-  });
-
-SelectCounter.displayName = "SelectCounter";
 /*========================================================================================================================*/
 
 const select_trigger_cva = cva(
   [
-    "group inline-flex select-none items-center gap-1.5 outline-none rounded-md w-fit text-txt-black-900",
-    "focus-visible:ring focus-visible:ring-fr-primary",
-    "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:border-transparent disabled:cursor-not-allowed",
-    "data-[disabled]:bg-bg-white-disabled data-[disabled]:text-txt-black-disabled data-[disabled]:border-transparent data-[disabled]:cursor-not-allowed",
+    "group flex w-full min-w-0 cursor-pointer select-none items-center gap-2 rounded-md text-left outline-none",
+    "font-body text-txt-black-900 transition-colors duration-150 motion-reduce:transition-none",
+    // Focus and open match Input: Blue stroke, Focus Blue ring on keyboard focus
+    "focus-visible:ring focus-visible:ring-fr-primary focus-visible:border-otl-primary-300",
+    "data-[popup-open]:border-otl-primary-300",
+    // Inside an invalid Field (DESIGN.md: error stroke turns Danger)
+    "data-[invalid]:border-danger-600",
+    // Disabled: Well, Ink Tertiary, stroke removed
+    "data-[disabled]:bg-bg-washed data-[disabled]:text-txt-black-disabled data-[disabled]:border-transparent data-[disabled]:cursor-not-allowed",
+    "[&>svg]:shrink-0",
   ],
   {
     variants: {
       variant: {
-        outline: [
-          "bg-bg-white border border-otl-control",
-          "hover:bg-bg-white-hover hover:border-otl-control-hover",
-        ],
-        ghost: [
-          "bg-transparent border border-transparent",
-          "hover:bg-bg-white-hover",
-        ],
+        outline:
+          "bg-bg-white border border-otl-control hover:border-otl-control-hover",
+        ghost:
+          "bg-transparent border border-transparent hover:bg-bg-washed data-[popup-open]:bg-bg-washed",
       },
       size: {
-        small: "control-sm text-field-sm",
-        medium: "control-md text-field-md",
-        large: "control-lg text-field-lg",
+        // Follows data-density, like Input
+        small: "control-sm text-field-sm [&>svg]:size-4",
+        medium: "control-md text-field-md [&>svg]:size-5",
+        large: "control-lg text-field-lg [&>svg]:size-5",
       },
     },
     defaultVariants: { variant: "outline", size: "small" },
@@ -299,27 +356,63 @@ const select_trigger_cva = cva(
 
 interface SelectTriggerProps
   extends Omit<SelectPrimitive.Trigger.Props, "className"> {
+  /** Sizes and places the control, e.g. `w-fit` for a toolbar or `max-w-64`. */
   className?: string;
+  /** Icon before the value, e.g. a filter or language icon. */
+  icon?: React.ReactNode;
 }
 
-const SelectTrigger: React.ForwardRefExoticComponent<
-  SelectTriggerProps & React.RefAttributes<HTMLButtonElement>
-> = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
-  ({ className, children, ...props }, ref) => {
-    const { variant, size } = React.useContext(SelectContext);
+/**
+ * The field-like button. Put a `SelectValue` inside. Fills its container; pass
+ * `className="w-fit"` for a compact one. With `clearable`, a clear button sits
+ * beside the chevron once something is chosen.
+ */
+const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
+  ({ className, children, icon, ...props }, forwardedRef) => {
+    const { variant, size, value, clearable, clearLabel, clear } =
+      React.useContext(SelectContext);
+    const triggerRef = React.useRef<HTMLButtonElement>(null);
+    const ref = useMergedRefs(triggerRef, forwardedRef);
+    const showClear = clearable && hasValue(value) && !props.disabled;
 
     return (
-      <SelectPrimitive.Trigger
-        ref={ref}
-        className={select_trigger_cva({
-          variant,
-          size,
-          className,
-        })}
-        {...props}
-      >
-        {children}
-      </SelectPrimitive.Trigger>
+      // The clear button can't sit inside the trigger button, so both share a frame
+      <div className={clx("relative flex w-full min-w-0", className)}>
+        <SelectPrimitive.Trigger
+          ref={ref}
+          className={select_trigger_cva({ variant, size })}
+          {...props}
+        >
+          {icon && (
+            <span aria-hidden className="text-txt-black-700 flex shrink-0">
+              {icon}
+            </span>
+          )}
+          {children}
+          {/* Keeps the value clear of the clear button */}
+          {showClear && <span aria-hidden className="w-5 shrink-0" />}
+          <ChevronDownIcon
+            aria-hidden
+            className="text-txt-black-700 transition-transform duration-200 group-data-[popup-open]:rotate-180 motion-reduce:transition-none"
+          />
+        </SelectPrimitive.Trigger>
+        {showClear && (
+          <button
+            type="button"
+            aria-label={clearLabel}
+            className={clx(
+              "text-txt-black-700 hover:text-txt-black-900 hover:bg-bg-washed focus-ring absolute top-1/2 grid size-6 -translate-y-1/2 cursor-pointer place-content-center rounded-sm",
+              size === "small" ? "right-8" : "right-9",
+            )}
+            onClick={() => {
+              clear();
+              triggerRef.current?.focus();
+            }}
+          >
+            <CrossIcon aria-hidden className="size-4" />
+          </button>
+        )}
+      </div>
     );
   },
 );
@@ -327,75 +420,94 @@ SelectTrigger.displayName = "SelectTrigger";
 
 /*========================================================================================================================*/
 
-const select_label_cva = cva(
-  ["group-data-[disabled]:text-txt-black-disabled"],
-  {
-    variants: {
-      size: {
-        small: "text-body-sm",
-        medium: "text-body-md",
-        large: "text-body-lg",
-      },
-      multiple: {
-        false: "text-txt-black-500",
-        true: "text-txt-black-900",
-      },
-    },
-    defaultVariants: { size: "small", multiple: false },
+interface SelectValueProps
+  extends Omit<
+    SelectPrimitive.Value.Props,
+    "children" | "render" | "className"
+  > {
+  className?: string;
+  /** Custom display of the chosen value(s). */
+  children?: (value: string | string[]) => React.ReactNode;
+  /** Multiple: text after the first choice; `{count}` is the number of others. @default "+{count} more" */
+  moreLabel?: string;
+}
+
+/**
+ * The chosen option's label, or the placeholder in Ink Secondary. With
+ * `multiple`, the first choice and "+2 more"; screen readers hear every choice.
+ */
+const SelectValue = React.forwardRef<HTMLSpanElement, SelectValueProps>(
+  (
+    { children, className, placeholder, moreLabel = "+{count} more", ...props },
+    ref,
+  ) => {
+    const { multiple, labels } = React.useContext(SelectContext);
+    const labelOf = (value: string) => labels[value] ?? value;
+
+    const summary = (value: string[]) => {
+      if (!value.length)
+        return <span className="text-txt-black-500">{placeholder}</span>;
+      const others = value.length - 1;
+      return (
+        <>
+          <span aria-hidden>
+            {labelOf(value[0]!)}
+            {others > 0 && (
+              <span className="text-txt-black-700">
+                {" "}
+                {moreLabel.replace("{count}", String(others))}
+              </span>
+            )}
+          </span>
+          <span className="sr-only">
+            {value.map((item, i) => (
+              <React.Fragment key={item}>
+                {i > 0 && ", "}
+                {labelOf(item)}
+              </React.Fragment>
+            ))}
+          </span>
+        </>
+      );
+    };
+
+    return (
+      <SelectPrimitive.Value
+        ref={ref}
+        placeholder={placeholder}
+        className={clx(
+          "min-w-0 flex-1 truncate text-inherit",
+          "data-[placeholder]:text-txt-black-500",
+          className,
+        )}
+        {...props}
+      >
+        {children ??
+          (multiple ? (value: string[]) => summary(value ?? []) : undefined)}
+      </SelectPrimitive.Value>
+    );
   },
 );
-
-const SelectLabel: React.ForwardRefExoticComponent<
-  React.ComponentProps<"span">
-> = React.forwardRef(({ className, ...props }, ref) => {
-  const { size, multiple } = React.useContext(SelectContext);
-  return (
-    <span
-      ref={ref}
-      className={select_label_cva({ size, multiple, className })}
-      {...props}
-    />
-  );
-});
-SelectLabel.displayName = "SelectLabel";
+SelectValue.displayName = "SelectValue";
 
 /*========================================================================================================================*/
-
-const select_content_cva = cva(
-  [
-    floating_popup_class,
-    "relative py-1 min-w-[max(8rem,var(--anchor-width))] overflow-y-auto",
-  ],
-  {
-    variants: {
-      size: {
-        small: "max-h-64",
-        medium: "max-h-72",
-        large: "max-h-80",
-      },
-    },
-    defaultVariants: { size: "small" },
-  },
-);
 
 interface SelectContentProps
   extends Omit<SelectPrimitive.Popup.Props, "className">,
     PositionerProps<SelectPrimitive.Positioner.Props> {
   className?: string;
   /**
-   * `popper` (default) positions the popup below the trigger.
-   * `item-aligned` overlaps the trigger so the selected item aligns with the trigger value.
+   * `popper` (default) opens the list below the trigger. `item-aligned` overlaps
+   * the trigger so the chosen option sits where the value was.
    */
   position?: "popper" | "item-aligned";
-  /** Element to portal the popup into. Defaults to `document.body`. */
+  /** Element to portal the list into. Defaults to `document.body`. */
   container?: SelectPrimitive.Portal.Props["container"];
 }
 
-const SelectContent: React.ForwardRefExoticComponent<
-  SelectContentProps & React.RefAttributes<HTMLDivElement>
-> = React.forwardRef<HTMLDivElement, SelectContentProps>(
+/** The list, on a floating panel at least as wide as the trigger. */
+const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
   ({ className, children, position = "popper", container, ...props }, ref) => {
-    const { size } = React.useContext(SelectContext);
     const [positionerProps, popupProps] = splitPositionerProps(props, {
       side: "bottom",
       sideOffset: 4,
@@ -410,7 +522,13 @@ const SelectContent: React.ForwardRefExoticComponent<
         >
           <SelectPrimitive.Popup
             ref={ref}
-            className={select_content_cva({ size, className })}
+            className={menu_popup_cva({
+              // The Menu panel, at least as wide as the trigger
+              className: clx(
+                "font-body relative max-h-[min(20rem,var(--available-height))] min-w-[max(8rem,var(--anchor-width))]",
+                className,
+              ),
+            })}
             {...popupProps}
           >
             {children}
@@ -424,25 +542,23 @@ SelectContent.displayName = "SelectContent";
 
 /*========================================================================================================================*/
 
+const SelectGroup = SelectPrimitive.Group;
+
 interface SelectGroupTitleProps
   extends Omit<SelectPrimitive.GroupLabel.Props, "className"> {
   className?: string;
 }
 
+/** Group heading in Label Compact, Ink Secondary (the Menu group label). */
 const SelectGroupTitle = React.forwardRef<
   HTMLDivElement,
   SelectGroupTitleProps
 >(({ className, ...props }, ref) => (
-  <SelectXPad>
-    <SelectPrimitive.GroupLabel
-      ref={ref}
-      className={clx(
-        "text-body-xs px-2.5 py-1.5 font-semibold text-gray-400",
-        className,
-      )}
-      {...props}
-    />
-  </SelectXPad>
+  <SelectPrimitive.GroupLabel
+    ref={ref}
+    className={clx(menu_group_label_class, className)}
+    {...props}
+  />
 ));
 SelectGroupTitle.displayName = "SelectGroupTitle";
 
@@ -450,26 +566,20 @@ SelectGroupTitle.displayName = "SelectGroupTitle";
 
 const select_item_cva = cva(
   [
-    "flex items-center w-full cursor-default select-none py-1.5 gap-2 font-medium outline-none text-txt-black-700 rounded-xs",
-    "data-[highlighted]:bg-bg-washed",
+    // The Menu item; options read as content, so full Ink and regular weight until chosen
+    menu_item_cva(),
+    "w-full font-normal text-txt-black-900 data-[selected]:font-medium",
   ],
   {
     variants: {
+      // Bigger triggers are for citizen forms: give the options room to tap
       size: {
-        small: "text-body-xs",
-        medium: "text-body-sm",
-        large: "text-body-md",
+        small: "",
+        medium: "py-2.5",
+        large: "py-2.5",
       },
-      multiple: {
-        false: "pl-2.5 pr-[38px]",
-        true: "px-2.5",
-      },
-      disabled: {
-        false: "",
-        true: "bg-bg-white-disabled text-txt-black-disabled border-transparent cursor-not-allowed hover:bg-none",
-      },
+      hasDescription: { true: "items-start", false: "" },
     },
-    defaultVariants: { size: "small", multiple: false, disabled: false },
   },
 );
 
@@ -477,78 +587,64 @@ interface SelectItemProps
   extends Omit<SelectPrimitive.Item.Props, "className" | "value"> {
   className?: string;
   value: string;
+  /** A second line under the label, in Ink Secondary. Not shown in the trigger. */
+  description?: React.ReactNode;
 }
 
-const SelectItem: React.ForwardRefExoticComponent<
-  SelectItemProps & React.RefAttributes<HTMLDivElement>
-> = React.forwardRef<HTMLDivElement, SelectItemProps>(
-  ({ className, children, disabled, value, ...props }, ref) => {
-    const rootProps = React.useContext(SelectContext);
-    const { registerLabel } = rootProps;
+/** One option. The label (children) is what the trigger shows once it's chosen. */
+const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+  ({ className, children, description, value, disabled, ...props }, ref) => {
+    const {
+      multiple,
+      size,
+      value: selected,
+      registerLabel,
+    } = React.useContext(SelectContext);
 
     useIsoLayoutEffect(() => {
       registerLabel(value, children);
     }, [registerLabel, value, children]);
 
-    if (!rootProps.multiple)
-      return (
-        <SelectXPad>
-          <SelectPrimitive.Item
-            ref={ref}
-            value={value}
-            disabled={disabled}
-            className={clx(
-              select_item_cva({
-                size: rootProps.size,
-                multiple: false,
-                disabled,
-              }),
-              className,
-            )}
-            {...props}
-          >
-            <span className="absolute right-4 flex h-3.5 w-3.5 items-center justify-center">
-              <SelectPrimitive.ItemIndicator>
-                <CheckCircleFillIcon
-                  data-size={rootProps.size}
-                  className="text-primary-600 size-5 data-[size=small]:size-4"
-                />
-              </SelectPrimitive.ItemIndicator>
-            </span>
-            <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-          </SelectPrimitive.Item>
-        </SelectXPad>
-      );
-
-    const checked =
-      Array.isArray(rootProps.value) && rootProps.value.includes(value);
+    const text = (
+      <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <SelectPrimitive.ItemText className="min-w-0">
+          {children}
+        </SelectPrimitive.ItemText>
+        {description && (
+          <span className="text-txt-black-700 text-label-compact in-data-[disabled]:text-txt-black-disabled font-normal">
+            {description}
+          </span>
+        )}
+      </span>
+    );
 
     return (
-      <SelectXPad>
-        <SelectPrimitive.Item
-          ref={ref}
-          value={value}
-          disabled={disabled}
-          className={clx(
-            select_item_cva({
-              size: rootProps.size,
-              multiple: true,
-              disabled,
-            }),
-            className,
-          )}
-          {...props}
-        >
+      <SelectPrimitive.Item
+        ref={ref}
+        value={value}
+        disabled={disabled}
+        className={clx(
+          select_item_cva({ size, hasDescription: !!description }),
+          className,
+        )}
+        {...props}
+      >
+        {multiple && (
           <Checkbox
-            checked={checked}
+            checked={Array.isArray(selected) && selected.includes(value)}
             disabled={disabled}
             tabIndex={-1}
             aria-hidden
             className="pointer-events-none"
           />
-          <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-        </SelectPrimitive.Item>
-      </SelectXPad>
+        )}
+        {text}
+        {!multiple && (
+          <SelectPrimitive.ItemIndicator className="text-txt-primary flex shrink-0">
+            <CheckIcon aria-hidden className="size-4" />
+          </SelectPrimitive.ItemIndicator>
+        )}
+      </SelectPrimitive.Item>
     );
   },
 );
@@ -561,58 +657,48 @@ interface SelectSeparatorProps
   className?: string;
 }
 
-const SelectSeparator: React.ForwardRefExoticComponent<
-  SelectSeparatorProps & React.RefAttributes<HTMLDivElement>
-> = React.forwardRef<HTMLDivElement, SelectSeparatorProps>(
+const SelectSeparator = React.forwardRef<HTMLDivElement, SelectSeparatorProps>(
   ({ className, ...props }, ref) => (
     <SelectPrimitive.Separator
       ref={ref}
-      className={clx("bg-otl-divider -mx-1 my-1 h-px", className)}
+      className={clx(menu_separator_class, className)}
       {...props}
     />
   ),
 );
 SelectSeparator.displayName = "SelectSeparator";
 
-/*========================================================================================================================*/
-
-const SelectHeader: React.ForwardRefExoticComponent<
+/** Pinned above the options, e.g. a search field or a note. */
+const SelectHeader = React.forwardRef<
+  HTMLDivElement,
   React.ComponentProps<"div">
-> = React.forwardRef(({ className, ...props }, ref) => {
-  return (
-    <SelectXPad
-      ref={ref}
-      className={clx("bg-bg-dialog sticky top-0 z-50 pb-1", className)}
-      {...props}
-    />
-  );
-});
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={clx(
+      "bg-bg-dialog sticky -top-1 z-10 -mx-1 -mt-1 px-1 pt-1 pb-1",
+      className,
+    )}
+    {...props}
+  />
+));
 SelectHeader.displayName = "SelectHeader";
 
-/*========================================================================================================================*/
-
-const SelectFooter: React.ForwardRefExoticComponent<
+/** Pinned below the options, e.g. "Select all" or a link. */
+const SelectFooter = React.forwardRef<
+  HTMLDivElement,
   React.ComponentProps<"div">
-> = React.forwardRef(({ className, ...props }, ref) => {
-  return (
-    <SelectXPad
-      ref={ref}
-      className={clx(
-        "bg-bg-dialog border-otl-gray-200 sticky bottom-0 z-50 border-t py-1",
-        className,
-      )}
-      {...props}
-    />
-  );
-});
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={clx(
+      "bg-bg-dialog border-otl-gray-200 sticky -bottom-1 z-10 -mx-1 mt-1 -mb-1 border-t p-1",
+      className,
+    )}
+    {...props}
+  />
+));
 SelectFooter.displayName = "SelectFooter";
-
-/*========================================================================================================================*/
-
-const SelectXPad: React.FunctionComponent<React.ComponentProps<"div">> = ({
-  children,
-  className,
-}) => <div className={clx("px-1", className)}>{children}</div>;
 
 export {
   Select,
@@ -620,12 +706,19 @@ export {
   SelectGroupTitle,
   SelectValue,
   SelectTrigger,
-  SelectLabel,
   SelectContent,
   SelectHeader,
   SelectFooter,
   SelectItem,
   SelectSeparator,
-  // SelectScrollUpButton,
-  // SelectScrollDownButton,
+};
+export type {
+  SelectProps,
+  SelectOption,
+  SelectTriggerProps,
+  SelectValueProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectVariant,
+  SelectSize,
 };
