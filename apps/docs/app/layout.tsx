@@ -1,5 +1,5 @@
 import "@/app/global.css";
-import { clx } from "@civictechmy/myds-react/utils";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import Analytics from "@/components/analytics";
 import Head from "next/head";
 import { FunctionComponent, ReactNode } from "react";

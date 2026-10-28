@@ -5,7 +5,7 @@ description: Manage toast lifecycle events dynamically from anywhere inside the 
 
 import { Quicklinks } from "@/components/quicklinks";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 ## Usage
@@ -13,7 +13,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Tabs items={["Hook", "Requirement"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { useToast } from "@civictechmy/myds-react/hooks";
+    import { useToast } from "@mof-malaysia/myds-react/hooks";
 
     const { toast } = useToast();
 
@@ -30,7 +30,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
   <Tab value="Requirement">
     ```tsx
     // Place this component at the root of your application
-    import { AutoToast } from "@civictechmy/myds-react/toast";
+    import { AutoToast } from "@mof-malaysia/myds-react/toast";
 
     <AutoToast />
     ```
@@ -63,7 +63,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 A toast event can be triggered by calling the `toast` method from the `useToast` hook. Define a `ToastEvent` object with the required properties and pass it to the `toast` method.
 
 ```ts title="Example"
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 //... inside your component
 const { toast } = useToast();
@@ -83,7 +83,7 @@ The `useToast` hook provides the handlers required to listen to toast events fro
 
 ```ts title="Toast.tsx"
 import { useEffect } from "react";
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 //... inside your component
 const { subscribe, unsubscribe } = useToast();
@@ -101,7 +101,7 @@ useEffect(() => {
 Toasts can be accessed through the `toasts` object provided by the `useToast` hook. This object contains an array of active toast events.
 
 ```ts title="Example"
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 const { toasts } = useToast();
 console.log(toasts);

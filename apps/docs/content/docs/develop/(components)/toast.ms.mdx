@@ -35,7 +35,7 @@ ToastProvider,
 ToastViewport, 
 ToastTitle, 
 ToastDescription 
-}from "@civictechmy/myds-react/toast";
+}from "@mof-malaysia/myds-react/toast";
  
   <button
    onClick={() => {
@@ -103,7 +103,7 @@ ToastDescription
 Untuk penggunaan mudah, `AutoToast` boleh digunakan secara terus untuk mengendalikan kes penggunaan biasa.
 
 ```tsx copy title="layout.tsx"
-import { AutoToast } from "@civictechmy/myds-react/toast";
+import { AutoToast } from "@mof-malaysia/myds-react/toast";
 
 // Letakkan komponen ini di bahagian atas dalam DOM
 <AutoToast />;
@@ -111,7 +111,7 @@ import { AutoToast } from "@civictechmy/myds-react/toast";
 
 ```tsx copy title="Anatomi"
 // Kemudian, terbitkan atau hantar peristiwa baru kepada Toast
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 export default () => (
   const { toast } = useToast();
@@ -140,7 +140,7 @@ import {
   ToastViewport,
   ToastTitle,
   ToastDescription,
-} from "@civictechmy/myds-react/toast";
+} from "@mof-malaysia/myds-react/toast";
 
 export default () => (
   <ToastProvider>
@@ -169,7 +169,7 @@ export default () => (
 
 ```tsx copy title="Anatomi"
 // to publish or emit a new event to the Toast
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 export default () => (
   const { toast } = useToast();
@@ -211,15 +211,15 @@ export default () => (
   <Tab value="Kod">
   ```tsx 
 // autotoast for simple usage
-import { Button } from "@civictechmy/myds-react/button";
-import { AutoToast }from "@civictechmy/myds-react/toast";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { AutoToast }from "@mof-malaysia/myds-react/toast";
 
 // put the component high up the layout tree
 
 <AutoToast />
 
 // to publish or emit a new event to the Toast
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 const { toast } = useToast();
 

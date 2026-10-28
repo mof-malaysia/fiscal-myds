@@ -6,16 +6,16 @@ import {
   DropdownItem,
   DropdownItemIcon,
   DropdownTrigger,
-} from "@civictechmy/myds-react/dropdown";
+} from "@mof-malaysia/myds-react/dropdown";
 import {
   CopyIcon,
   EditIcon,
   LogoutIcon,
   EllipsisIcon,
   SettingIcon,
-} from "@civictechmy/myds-react/icon";
-import { Button, ButtonIcon } from "@civictechmy/myds-react/button";
-import { Link } from "@civictechmy/myds-react/link";
+} from "@mof-malaysia/myds-react/icon";
+import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
+import { Link } from "@mof-malaysia/myds-react/link";
 
 /**
  * ### Overview
@@ -38,8 +38,8 @@ import { Link } from "@civictechmy/myds-react/link";
   DropdownItem,
   DropdownItemIcon,
   DropdownTrigger,
-} from "@civictechmy/myds-react/dropdown";
-import { ButtonIcon } from "@civictechmy/myds-react/button";
+} from "@mof-malaysia/myds-react/dropdown";
+import { ButtonIcon } from "@mof-malaysia/myds-react/button";
  *
 * //* Basic
  * <Dropdown>
@@ -94,7 +94,7 @@ import { ButtonIcon } from "@civictechmy/myds-react/button";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Dropdown",
+  title: "@mof-malaysia/myds-react/Dropdown",
   component: Dropdown,
   tags: ["autodocs"],
   parameters: {

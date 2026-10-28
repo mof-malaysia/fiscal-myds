@@ -1,8 +1,8 @@
 "use client";
-import { clx } from "@civictechmy/myds-react/utils";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import { Paragraph } from "../Paragraph";
 import { FunctionComponent, useContext } from "react";
-import { Button, ButtonIcon } from "@civictechmy/myds-react/button";
+import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
 import IconFigma from "@/icons/figma";
 import ArrowForward from "@/icons/arrow-forward";
 import Section from "../section";

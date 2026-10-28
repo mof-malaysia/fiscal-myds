@@ -6,15 +6,15 @@ import {
   TwitterXIcon,
   TiktokIcon,
   LinkedinIcon,
-} from "@civictechmy/myds-react/icon";
+} from "@mof-malaysia/myds-react/icon";
 
 import {
   Footer,
   FooterSection,
   FooterLogo,
   SiteInfo,
-} from "@civictechmy/myds-react/footer";
-import { Link } from "@civictechmy/myds-react/link";
+} from "@mof-malaysia/myds-react/footer";
+import { Link } from "@mof-malaysia/myds-react/link";
 
 export const FooterComponent = () => {
   return (

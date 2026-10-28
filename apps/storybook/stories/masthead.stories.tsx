@@ -6,12 +6,12 @@ import {
   MastheadTrigger,
   MastheadSection,
   MastheadTitle,
-} from "@civictechmy/myds-react/masthead";
+} from "@mof-malaysia/myds-react/masthead";
 import {
   Lock2Icon,
   PutrajayaIcon,
   LockFillIcon,
-} from "@civictechmy/myds-react/icon";
+} from "@mof-malaysia/myds-react/icon";
 import { createStory } from "../utils";
 
 /**
@@ -41,7 +41,7 @@ import { createStory } from "../utils";
  * ### Usage
  * ```tsx
  * // Basic usage with all defaults
- * import { Masthead } from "@civictechmy/myds-react/masthead";
+ * import { Masthead } from "@mof-malaysia/myds-react/masthead";
  *
  * const MyPage = () => <Masthead />;
  *
@@ -78,7 +78,7 @@ import { createStory } from "../utils";
  */
 
 const meta = {
-  title: "@civictechmy/myds-react/Masthead",
+  title: "@mof-malaysia/myds-react/Masthead",
   component: Masthead,
   tags: ["autodocs"],
   parameters: {

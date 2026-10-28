@@ -6,20 +6,20 @@
 
 ## Getting started
 
-To install `@civictechmy/myds-react` in your project, run the installation command for the package manager of your choice:
+To install `@mof-malaysia/myds-react` in your project, run the installation command for the package manager of your choice:
 
 ```bash
 # npm
-npm i @civictechmy/myds-react
+npm i @mof-malaysia/myds-react
 
 # yarn
-yarn add @civictechmy/myds-react
+yarn add @mof-malaysia/myds-react
 
 # pnpm
-pnpm add @civictechmy/myds-react
+pnpm add @mof-malaysia/myds-react
 ```
 
-This package requires [@civictechmy/myds-style](#) to provide styling. For more info on how to configure the styling, we recommend to check out the docs provided below:
+This package requires [@mof-malaysia/myds-style](#) to provide styling. For more info on how to configure the styling, we recommend to check out the docs provided below:
 
 - [Style Configuration](https://design.digital.gov.my/en/docs/develop/install#b-import-via-css)
 
@@ -30,7 +30,7 @@ The package provides components and icons to support MYDS implementation for you
 To use a component, you can import directly from the package:
 
 ```tsx
-import { Button } from "@civictechmy/myds-react/button";
+import { Button } from "@mof-malaysia/myds-react/button";
 
 <Button variant="primary-fill" size="small">
   Jana Pantun

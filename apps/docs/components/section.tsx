@@ -1,4 +1,4 @@
-import { clx } from "@civictechmy/myds-react/utils";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import { FunctionComponent, ReactNode } from "react";
 
 interface SectionProps {

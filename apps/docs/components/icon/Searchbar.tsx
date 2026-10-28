@@ -13,8 +13,8 @@ import {
   SearchBarSearchButton,
   SearchBarClearButton,
   SearchBarHint,
-} from "@civictechmy/myds-react/search-bar";
-import { Pill } from "@civictechmy/myds-react/pill";
+} from "@mof-malaysia/myds-react/search-bar";
+import { Pill } from "@mof-malaysia/myds-react/pill";
 import { SearchContext } from "./SearchProvider";
 import { getRosetta } from "@/locales/_server";
 import { useParams } from "next/navigation";

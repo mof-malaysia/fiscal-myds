@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ThemeProvider } from "@civictechmy/myds-react/hooks";
-import { ThemeSwitch } from "@civictechmy/myds-react/theme-switch";
+import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
+import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
 import { createStory } from "../utils";
 
 /**
@@ -9,7 +9,7 @@ import { createStory } from "../utils";
  * It cycles through a list of provided themes, each represented by an icon.
  * ### Usage
  * ```tsx
- * import { ThemeSwitch } from "@civictechmy/myds-react/theme-switch";
+ * import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
  *
  * <ThemeProvider>
  *   <ThemeSwitch />
@@ -17,7 +17,7 @@ import { createStory } from "../utils";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/ThemeSwitch",
+  title: "@mof-malaysia/myds-react/ThemeSwitch",
   // tags: ["!dev"],
   component: ThemeSwitch,
   parameters: {

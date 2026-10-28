@@ -6,8 +6,8 @@ import {
   CalloutAction,
   CalloutContent,
   CalloutTitle,
-} from "@civictechmy/myds-react/callout";
-import { Button } from "@civictechmy/myds-react/button";
+} from "@mof-malaysia/myds-react/callout";
+import { Button } from "@mof-malaysia/myds-react/button";
 import { ComponentProps } from "react";
 
 const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
@@ -29,8 +29,8 @@ const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
  *
  * ### Usage
  * ```tsx
- * import { Callout, CalloutTitle, CalloutDescription } from "@civictechmy/myds-react/callout";
- * import { Button } from "@civictechmy/myds-react/button";
+ * import { Callout, CalloutTitle, CalloutDescription } from "@mof-malaysia/myds-react/callout";
+ * import { Button } from "@mof-malaysia/myds-react/button";
  *
  * <Callout>
  *  <CalloutTitle>Title</CalloutTitle>
@@ -42,7 +42,7 @@ const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Callout",
+  title: "@mof-malaysia/myds-react/Callout",
   component: CalloutDemo,
   tags: ["autodocs"],
   parameters: {

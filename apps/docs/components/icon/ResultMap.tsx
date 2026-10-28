@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@civictechmy/myds-react/button";
+import { Button } from "@mof-malaysia/myds-react/button";
 import { IconData } from "./IconDataList";
 import { FunctionComponent, useContext, useRef, useState } from "react";
-import { CopyIcon } from "@civictechmy/myds-react/icon";
+import { CopyIcon } from "@mof-malaysia/myds-react/icon";
 import { SearchContext } from "./SearchProvider";
 import { useParams } from "next/navigation";
 import { getRosetta } from "@/locales/_server";

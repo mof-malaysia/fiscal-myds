@@ -2,7 +2,7 @@ import Section from "../section";
 import { Paragraph } from "@/components/Paragraph";
 import { Tag } from "@/components/Tag";
 import { darkify } from "@/lib/constant";
-import { clx } from "@civictechmy/myds-react/utils";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import Image from "next/image";
 
 type Props = {

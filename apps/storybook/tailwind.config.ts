@@ -1,5 +1,5 @@
 import { Config } from "tailwindcss";
-import { preset } from "@civictechmy/myds-style";
+import { preset } from "@mof-malaysia/myds-style";
 
 const config: Config = {
   content: [

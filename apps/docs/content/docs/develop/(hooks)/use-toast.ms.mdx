@@ -5,7 +5,7 @@ description: Menguruskan acara kitaran hayat toast secara dinamik dari mana-mana
 
 import { Quicklinks } from "@/components/quicklinks";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 ## Penggunaan
@@ -13,7 +13,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Tabs items={["Hook", "Keperluan"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { useToast } from "@civictechmy/myds-react/hooks";
+    import { useToast } from "@mof-malaysia/myds-react/hooks";
 
     const { toast } = useToast();
 
@@ -30,7 +30,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
   <Tab value="Keperluan">
     ```tsx
     // Letakkan komponen ini di akar aplikasi anda
-    import { AutoToast } from "@civictechmy/myds-react/toast";
+    import { AutoToast } from "@mof-malaysia/myds-react/toast";
 
     <AutoToast />
     ```
@@ -63,7 +63,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 Acara toast boleh dicetuskan dengan memanggil kaedah `toast` dari hook `useToast`. Tentukan objek `ToastEvent` dengan sifat yang diperlukan dan serahkannya kepada kaedah `toast`.
 
 ```ts title="Contoh"
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 //... dalam komponen anda
 const { toast } = useToast();
@@ -83,7 +83,7 @@ Hook `useToast` menyediakan pengendali yang diperlukan untuk mendengar acara toa
 
 ```ts title="Toast.tsx"
 import { useEffect } from "react";
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 //... dalam komponen anda
 const { subscribe, unsubscribe } = useToast();
@@ -101,7 +101,7 @@ useEffect(() => {
 Toast boleh diakses melalui objek `toasts` yang disediakan oleh hook `useToast`. Objek ini mengandungi array acara toast aktif.
 
 ```ts title="Contoh"
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 const { toasts } = useToast();
 console.log(toasts);

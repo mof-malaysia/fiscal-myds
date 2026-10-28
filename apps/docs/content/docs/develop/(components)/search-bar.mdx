@@ -35,7 +35,7 @@ import {
   StarIcon,
   TrophyIcon,
   UserIcon,
-} from "@civictechmy/myds-react/icon";
+} from "@mof-malaysia/myds-react/icon";
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview" className="not-prose h-[420px]">
@@ -53,15 +53,15 @@ import {
       SearchBarResultsItem,
       SearchBarClearButton,
       SearchBarHint,
-    } from "@civictechmy/myds-react/search-bar";
-    import { Pill } from "@civictechmy/myds-react/pill";
+    } from "@mof-malaysia/myds-react/search-bar";
+    import { Pill } from "@mof-malaysia/myds-react/pill";
     import {
       ChevronRightIcon,
       MoneyIcon,
       StarIcon,
       TrophyIcon,
       UserIcon,
-    } from "@civictechmy/myds-react/icon";
+    } from "@mof-malaysia/myds-react/icon";
 
     const [hasFocus, setHasFocus] = useState(false);
     const [query, setQuery] = useState("");
@@ -146,7 +146,7 @@ import {
   SearchBarResultsItem,
   SearchBarClearButton,
   SearchBarHint,
-} from "@civictechmy/myds-react/search-bar";
+} from "@mof-malaysia/myds-react/search-bar";
 ```
 
 ```tsx copy title="Anatomy"
@@ -208,7 +208,7 @@ Use the `size` prop to change the search bar's size.
         SearchBarInput,
         SearchBarInputContainer,
         SearchBarSearchButton,
-    } from "@civictechmy/myds-react/search-bar";
+    } from "@mof-malaysia/myds-react/search-bar";
 
     <SearchBar size="small">
       <SearchBarInputContainer>
@@ -251,7 +251,7 @@ You can use `SearchBarClearButton` to show a clear button.
         SearchBarInputContainer,
         SearchBarSearchButton,
         SearchBarClearButton,
-    } from "@civictechmy/myds-react/search-bar";
+    } from "@mof-malaysia/myds-react/search-bar";
 
     const [query, setQuery] = useState("Hello world!");
     const showClearButton = query.length > 0;
@@ -296,8 +296,8 @@ Show a hint with `SearchBarHint`.
       SearchBarInputContainer,
       SearchBarSearchButton,
       SearchBarHint,
-  } from "@civictechmy/myds-react/search-bar";
-  import { Pill } from "@civictechmy/myds-react/pill";
+  } from "@mof-malaysia/myds-react/search-bar";
+  import { Pill } from "@mof-malaysia/myds-react/pill";
 
   <SearchBar size="large">
     <SearchBarInputContainer>
@@ -331,11 +331,11 @@ You can show search results or suggestions with the `SearchBarResults`, `SearchB
       SearchBarResults,
       SearchBarResultsList,
       SearchBarResultsItem,
-    } from "@civictechmy/myds-react/search-bar";
+    } from "@mof-malaysia/myds-react/search-bar";
     import {
       ChevronRightIcon,
       UserIcon,
-    } from "@civictechmy/myds-react/icon";
+    } from "@mof-malaysia/myds-react/icon";
 
     <SearchBar size="large">
       <SearchBarInputContainer>
@@ -382,14 +382,14 @@ You can also group results with the `SearchBarResultsGroup` component:
     SearchBarResults,
     SearchBarResultsList,
     SearchBarResultsItem,
-  } from "@civictechmy/myds-react/search-bar";
+  } from "@mof-malaysia/myds-react/search-bar";
   import {
     ChevronRightIcon,
     MoneyIcon,
     StarIcon,
     TrophyIcon,
     UserIcon,
-  } from "@civictechmy/myds-react/icon";
+  } from "@mof-malaysia/myds-react/icon";
 
   <SearchBar size="large">
     <SearchBarInputContainer>
@@ -455,15 +455,15 @@ In the example below, we also keep track of whether the search bar is focused or
       SearchBarResultsItem,
       SearchBarClearButton,
       SearchBarHint,
-    } from "@civictechmy/myds-react/search-bar";
-    import { Pill } from "@civictechmy/myds-react/pill";
+    } from "@mof-malaysia/myds-react/search-bar";
+    import { Pill } from "@mof-malaysia/myds-react/pill";
     import {
       ChevronRightIcon,
       MoneyIcon,
       StarIcon,
       TrophyIcon,
       UserIcon,
-    } from "@civictechmy/myds-react/icon";
+    } from "@mof-malaysia/myds-react/icon";
 
     const [hasFocus, setHasFocus] = useState(false);
     const [query, setQuery] = useState("");

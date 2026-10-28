@@ -3,7 +3,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@civictechmy/myds-react/input";
+import { Input } from "@mof-malaysia/myds-react/input";
 import {
   Select,
   SelectTrigger,
@@ -11,7 +11,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-} from "@civictechmy/myds-react/select";
+} from "@mof-malaysia/myds-react/select";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,8 +19,8 @@ import {
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogTitle,
-} from "@civictechmy/myds-react/alert-dialog";
-import { Button } from "@civictechmy/myds-react/button";
+} from "@mof-malaysia/myds-react/alert-dialog";
+import { Button } from "@mof-malaysia/myds-react/button";
 import { useState } from "react";
 
 type Props = {

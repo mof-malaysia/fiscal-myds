@@ -8,7 +8,7 @@
 
 ## 🚨 Migration Notice
 
-This npm package (`@civictechmy/myds-style`) has been **deprecated** in favor of a modern, registry-based distribution via shadcn CLI.
+This npm package (`@mof-malaysia/myds-style`) has been **deprecated** in favor of a modern, registry-based distribution via shadcn CLI.
 
 ### Why the change?
 
@@ -24,14 +24,14 @@ Instead of installing this package:
 
 ```bash
 # ❌ Old way (deprecated)
-npm install @civictechmy/myds-style
+npm install @mof-malaysia/myds-style
 ```
 
 Use the new registry-based installation:
 
 ```bash
 # ✅ New way (recommended)
-npx shadcn@latest add myds-init --registry=https://civictechmy.github.io/myds/registry/style
+npx shadcn@latest add myds-init --registry=https://mof-malaysia.github.io/fiscal-myds/registry/style
 ```
 
 For full migration instructions, see the [main README](../../README.md#migration-from-v1-npm).
@@ -44,17 +44,17 @@ For full migration instructions, see the [main README](../../README.md#migration
 
 ## Getting started
 
-To install `@civictechmy/myds-style` in your project, run the installation command for the package manager of your choice:
+To install `@mof-malaysia/myds-style` in your project, run the installation command for the package manager of your choice:
 
 ```bash
 # npm
-npm i @civictechmy/myds-style
+npm i @mof-malaysia/myds-style
 
 # yarn
-yarn add @civictechmy/myds-style
+yarn add @mof-malaysia/myds-style
 
 # pnpm
-pnpm add @civictechmy/myds-style
+pnpm add @mof-malaysia/myds-style
 ```
 
 ## Usage
@@ -65,14 +65,14 @@ A. Import via CSS
 
 ```ts
 /* Place in the CSS entry point */
-@import "@civictechmy/myds-tailwindcss/full.css";
+@import "@mof-malaysia/myds-tailwindcss/full.css";
 ```
 
 B. Import via JS (Bundler)
 
 ```ts
 // Place in the bundle entry point (eg. index.{ts,js})
-import "@civictechmy/myds-tailwindcss/full.css";
+import "@mof-malaysia/myds-tailwindcss/full.css";
 ```
 
 MYDS is an open-source project and welcomes contributions from the public. To contribute:

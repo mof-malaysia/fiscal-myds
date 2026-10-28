@@ -1,7 +1,7 @@
 "use client";
 
-import { Link } from "@civictechmy/myds-react/link";
-import { Button, ButtonIcon } from "@civictechmy/myds-react/button";
+import { Link } from "@mof-malaysia/myds-react/link";
+import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
 import { FunctionComponent } from "react";
 import Storybook from "@/icons/storybook";
 import Github from "@/icons/github";

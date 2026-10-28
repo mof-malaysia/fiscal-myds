@@ -4,8 +4,8 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@civictechmy/myds-react/tooltip";
-import { QuestionCircleIcon } from "@civictechmy/myds-react/icon";
+} from "@mof-malaysia/myds-react/tooltip";
+import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
 
 /**
  * ### Overview
@@ -22,7 +22,7 @@ import { QuestionCircleIcon } from "@civictechmy/myds-react/icon";
  *
  * ### Usage
  * ```tsx
- * import { Tooltip, TooltipTrigger, TooltipContent } from "@civictechmy/myds-react/tooltip";
+ * import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
  *
  * <Tooltip>
  *     <TooltipTrigger aria-label="Tooltip">
@@ -33,7 +33,7 @@ import { QuestionCircleIcon } from "@civictechmy/myds-react/icon";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Tooltip",
+  title: "@mof-malaysia/myds-react/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
   parameters: {

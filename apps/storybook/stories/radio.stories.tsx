@@ -8,7 +8,7 @@ import {
   RadioItem,
   RadioLabel,
   RadioProps,
-} from "@civictechmy/myds-react/radio";
+} from "@mof-malaysia/myds-react/radio";
 
 /**
  * ### Overview
@@ -22,7 +22,7 @@ import {
  *   RadioHintText,
  *   RadioItem,
  *   RadioLabel,
- * } from "@civictechmy/myds-react/radio";
+ * } from "@mof-malaysia/myds-react/radio";
  *
  * <Radio>
  *   <RadioItem>
@@ -40,7 +40,7 @@ import {
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Radio",
+  title: "@mof-malaysia/myds-react/Radio",
   component: Radio,
   render: ({ ...props }) => {
     return (

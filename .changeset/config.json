@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@civictechmy/myds-cli", "@myds/typescript-config"]
+  "ignore": ["@mof-malaysia/myds-cli", "@myds/typescript-config"]
 }

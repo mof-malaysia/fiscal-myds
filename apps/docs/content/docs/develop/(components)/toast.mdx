@@ -35,7 +35,7 @@ ToastProvider,
 ToastViewport, 
 ToastTitle, 
 ToastDescription 
-}from "@civictechmy/myds-react/toast";
+}from "@mof-malaysia/myds-react/toast";
  
   <button
    onClick={() => {
@@ -103,7 +103,7 @@ ToastDescription
 For simple usage, `AutoToast` can be used directly. It is a pre-assembled, simplified version of the `Toast` that handles common use cases.
 
 ```tsx copy title="layout.tsx"
-import { AutoToast } from "@civictechmy/myds-react/toast";
+import { AutoToast } from "@mof-malaysia/myds-react/toast";
 
 // Put the component high up in the DOM tree
 <AutoToast />;
@@ -111,7 +111,7 @@ import { AutoToast } from "@civictechmy/myds-react/toast";
 
 ```tsx copy title="Anatomy"
 // Then, publish or emit a new event to the Toast
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 export default () => {
   const { toast } = useToast();
@@ -144,7 +144,7 @@ import {
   ToastViewport,
   ToastTitle,
   ToastDescription,
-} from "@civictechmy/myds-react/toast";
+} from "@mof-malaysia/myds-react/toast";
 
 export default () => (
   <ToastProvider>
@@ -197,15 +197,15 @@ export default () => (
   <Tab value="Code">
   ```tsx 
 // autotoast for simple usage
-import { Button } from "@civictechmy/myds-react/button";
-import { AutoToast }from "@civictechmy/myds-react/toast";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { AutoToast }from "@mof-malaysia/myds-react/toast";
 
 // put the component high up the layout tree
 
 <AutoToast />
 
 // to publish or emit a new event to the Toast
-import { useToast } from "@civictechmy/myds-react/hooks";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
 
 const { toast } = useToast();
 

@@ -5,7 +5,7 @@ description: Manage pagination state and actions for list and tables.
 
 import { Quicklinks } from "@/components/quicklinks";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 ## Usage
@@ -13,7 +13,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Tabs items={["Hook", "Requirement"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { usePagination } from "@civictechmy/myds-react/hooks";
+    import { usePagination } from "@mof-malaysia/myds-react/hooks";
 
     const { visiblePages, max } = usePagination({ count: 10, page: 1, limit: 10, maxDisplay: 4 });
     ```
@@ -41,7 +41,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 The `usePagination` hook provides the handlers required to manage pagination state and actions for list and tables. This can be seen in the [Pagination Configuration](/docs/develop/pagination#pagination-configurations) of the Pagination documentation.
 
 ```tsx title="Example"
-import { usePagination } from "@civictechmy/myds-react/hooks";
+import { usePagination } from "@mof-malaysia/myds-react/hooks";
 
 //... inside your component
 const { visiblePages } = usePagination();

@@ -9,7 +9,7 @@ import {
   InfoIcon,
   SettingIcon,
   UserGroupIcon,
-} from "@civictechmy/myds-react/icon";
+} from "@mof-malaysia/myds-react/icon";
 import { type HomeLayoutProps } from "fumadocs-ui/home-layout";
 import { LinkItemType } from "fumadocs-ui/layout";
 import Image from "next/image";

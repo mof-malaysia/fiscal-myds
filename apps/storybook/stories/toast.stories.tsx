@@ -1,9 +1,9 @@
 import { fn } from "@storybook/test";
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
-import { AutoToast } from "@civictechmy/myds-react/toast";
-import { useToast } from "@civictechmy/myds-react/hooks";
-import { Button } from "@civictechmy/myds-react/button";
+import { AutoToast } from "@mof-malaysia/myds-react/toast";
+import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { Button } from "@mof-malaysia/myds-react/button";
 import React from "react";
 
 const DemoToast = (props: any) => {
@@ -80,7 +80,7 @@ const DemoToast = (props: any) => {
 /**
  * ### Overview
  *
- * This file contains the implementation of a Toast component using `@civictechmy/myds-react/toast`.
+ * This file contains the implementation of a Toast component using `@mof-malaysia/myds-react/toast`.
  * The `DemoToast` component demonstrates various toast notifications such as message, info, success, warning, and error.
  *
  * > Toast enak dimakan pagi,
@@ -91,7 +91,7 @@ const DemoToast = (props: any) => {
  *
  * ### Usage
  * ```tsx
- * import { AutoToast, ToastRoot, ToastIcon, ToastProgress, ToastProvider, ToastViewport, ToastTitle, ToastDescription } from "@civictechmy/myds-react/toast";
+ * import { AutoToast, ToastRoot, ToastIcon, ToastProgress, ToastProvider, ToastViewport, ToastTitle, ToastDescription } from "@mof-malaysia/myds-react/toast";
  *
  * <button
  *  onClick={() => {
@@ -141,7 +141,7 @@ const DemoToast = (props: any) => {
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Toast",
+  title: "@mof-malaysia/myds-react/Toast",
   component: DemoToast,
   tags: ["autodocs"],
   parameters: {

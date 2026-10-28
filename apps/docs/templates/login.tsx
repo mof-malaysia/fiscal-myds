@@ -1,22 +1,22 @@
 "use client";
-import { Button } from "@civictechmy/myds-react/button";
-import { Input } from "@civictechmy/myds-react/input";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { Input } from "@mof-malaysia/myds-react/input";
 import {
   GlobeIcon,
   GoogleIcon,
   JataNegaraIcon,
-} from "@civictechmy/myds-react/icon";
-import { Navbar, NavbarLogo } from "@civictechmy/myds-react/navbar";
+} from "@mof-malaysia/myds-react/icon";
+import { Navbar, NavbarLogo } from "@mof-malaysia/myds-react/navbar";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@civictechmy/myds-react/select";
-import { ThemeSwitch } from "@civictechmy/myds-react/theme-switch";
-import { Link } from "@civictechmy/myds-react/link";
-import { clx } from "@civictechmy/myds-react/utils";
+} from "@mof-malaysia/myds-react/select";
+import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { Link } from "@mof-malaysia/myds-react/link";
+import { clx } from "@mof-malaysia/myds-react/utils";
 
 export default function LoginTemplate({className}:{className?:string}) {
   return (

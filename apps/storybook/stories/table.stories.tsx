@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@civictechmy/myds-react/table";
+} from "@mof-malaysia/myds-react/table";
 
 /**
  * ### Overview
@@ -20,13 +20,13 @@ import {
  *
  * ### Usage
  * ```tsx
- * import Table from "@civictechmy/myds-react/table";
+ * import Table from "@mof-malaysia/myds-react/table";
  *
  * <Table />
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Table",
+  title: "@mof-malaysia/myds-react/Table",
   component: Table,
   tags: ["autodocs"],
   parameters: {

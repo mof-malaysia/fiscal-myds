@@ -11,11 +11,11 @@ import {
   SelectValue,
   SelectGroupTitle,
   SelectFooter,
-} from "@civictechmy/myds-react/select";
-import { Input, InputIcon } from "@civictechmy/myds-react/input";
+} from "@mof-malaysia/myds-react/select";
+import { Input, InputIcon } from "@mof-malaysia/myds-react/input";
 import { SearchIcon } from "../../../packages/react/src/icons/search";
-import { Button } from "@civictechmy/myds-react/button";
-import { Pill } from "@civictechmy/myds-react/pill";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { Pill } from "@mof-malaysia/myds-react/pill";
 
 const CONTENT = (
   <SelectGroup>
@@ -49,7 +49,7 @@ const CONTENT = (
  *
  * ### Usage
  * ```tsx
- * import Select from "@civictechmy/myds-react/select";
+ * import Select from "@mof-malaysia/myds-react/select";
  *
  * <Select
  *  size="small"
@@ -105,7 +105,7 @@ const CONTENT = (
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Select",
+  title: "@mof-malaysia/myds-react/Select",
   component: Select,
   tags: ["autodocs"],
   parameters: {

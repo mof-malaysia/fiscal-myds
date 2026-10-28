@@ -1,6 +1,6 @@
 "use client";
-import { Tabs, TabsList, TabsTrigger } from "@civictechmy/myds-react/tabs";
-import { clx } from "@civictechmy/myds-react/utils";
+import { Tabs, TabsList, TabsTrigger } from "@mof-malaysia/myds-react/tabs";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import { IconType } from "./IconDataList";
 import { FunctionComponent, useContext } from "react";
 import { SearchContext } from "./SearchProvider";

@@ -71,7 +71,7 @@ function generateComponentRegistry(
   // Filter and enhance npm dependencies
   const finalNpmDeps = Array.from(npmDependencies).filter(
     (dep) =>
-      !dep.includes("@civictechmy") && // Exclude our own packages from dependencies
+      !dep.includes("@mof-malaysia") && // Exclude our own packages from dependencies
       dep !== "class-variance-authority" || // CVA is included separately if needed
       KNOWN_NPM_DEPENDENCIES[componentName]?.includes(dep)
   );

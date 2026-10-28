@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@civictechmy/myds-react/icon';
+import { ChevronLeftIcon, ChevronRightIcon } from '@mof-malaysia/myds-react/icon';
 import { useRef } from 'react';
 
 interface HorizontalCardProps {

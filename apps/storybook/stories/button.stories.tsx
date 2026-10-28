@@ -5,7 +5,7 @@ import {
   Button,
   ButtonIcon,
   ButtonCounter,
-} from "@civictechmy/myds-react/button";
+} from "@mof-malaysia/myds-react/button";
 import ArrowForward from "../react/arrow-forward";
 import ArrowBack from "../react/arrow-back";
 import React from "react";
@@ -21,7 +21,7 @@ import React from "react";
  *
  * ### Usage
  * ```tsx
- * import { Button, ButtonIcon, ButtonCounter } from "@civictechmy/myds-react/button"
+ * import { Button, ButtonIcon, ButtonCounter } from "@mof-malaysia/myds-react/button"
  *
  * //* Text only
  * <Button variant="primary-fill" size="medium">Welcome</Button>
@@ -57,7 +57,7 @@ import React from "react";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Button",
+  title: "@mof-malaysia/myds-react/Button",
   component: Button,
   parameters: {
     layout: "centered",
