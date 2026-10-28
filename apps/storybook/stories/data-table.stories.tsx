@@ -71,26 +71,10 @@ const ringgit = (value: number) =>
   });
 
 const statusTag: Record<Application["status"], React.ReactNode> = {
-  Approved: (
-    <Tag variant="success" size="small">
-      Approved
-    </Tag>
-  ),
-  "In review": (
-    <Tag variant="primary" size="small">
-      In review
-    </Tag>
-  ),
-  "Needs info": (
-    <Tag variant="warning" size="small">
-      Needs info
-    </Tag>
-  ),
-  Rejected: (
-    <Tag variant="danger" size="small">
-      Rejected
-    </Tag>
-  ),
+  Approved: <Tag variant="success">Approved</Tag>,
+  "In review": <Tag variant="primary">In review</Tag>,
+  "Needs info": <Tag variant="warning">Needs info</Tag>,
+  Rejected: <Tag variant="danger">Rejected</Tag>,
 };
 
 const actions = () => (

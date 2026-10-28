@@ -77,12 +77,7 @@ export const SummaryListCustom: Story = {
           <SummaryListRow>
             <SummaryListTerm>Status</SummaryListTerm>
             <SummaryListDetail className="py-2">
-              <Tag
-                variant="warning"
-                size={"medium"}
-                className="h-fit"
-                mode={"default"}
-              >
+              <Tag variant="warning" size={"medium"} className="h-fit">
                 Pending
               </Tag>
             </SummaryListDetail>
@@ -152,12 +147,7 @@ export const SummaryListCustomDark: Story = {
           <SummaryListRow>
             <SummaryListTerm>Status</SummaryListTerm>
             <SummaryListDetail className="py-2">
-              <Tag
-                variant="warning"
-                size={"medium"}
-                className="h-fit"
-                mode={"default"}
-              >
+              <Tag variant="warning" size={"medium"} className="h-fit">
                 Pending
               </Tag>
             </SummaryListDetail>
@@ -236,12 +226,7 @@ export const SummaryListCustomWithAdditionalTab: Story = {
           <SummaryListRow>
             <SummaryListTerm>Status</SummaryListTerm>
             <SummaryListDetail className="py-2">
-              <Tag
-                variant="warning"
-                size={"medium"}
-                className="h-fit"
-                mode={"default"}
-              >
+              <Tag variant="warning" size={"medium"} className="h-fit">
                 Pending
               </Tag>
             </SummaryListDetail>

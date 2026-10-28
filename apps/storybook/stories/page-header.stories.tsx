@@ -73,7 +73,7 @@ const Record = () => (
       <Button>Approve</Button>
     </PageHeaderActions>
     <PageHeaderMeta>
-      <Tag variant="warning" mode="pill" size="small">
+      <Tag variant="warning" size="small">
         Pending review
       </Tag>
       <span>Last updated 27 October 2026</span>

@@ -500,7 +500,7 @@ export const DataTableColumns = [
   {
     cell: () => {
       return (
-        <Tag variant="success" size={"small"} mode="pill">
+        <Tag variant="success" size={"small"}>
           Success
         </Tag>
       );
@@ -556,7 +556,7 @@ export const DataTableFooterColumns: ColumnDef<Employee>[] = [
   {
     cell: () => {
       return (
-        <Tag variant="success" size={"small"} mode="pill">
+        <Tag variant="success" size={"small"}>
           Success
         </Tag>
       );
@@ -605,7 +605,7 @@ export const DataTableNestedColumns = [
     header: "Status",
     cell: () => {
       return (
-        <Tag variant="success" size={"small"} mode="pill">
+        <Tag variant="success" size={"small"}>
           Success
         </Tag>
       );
@@ -662,7 +662,7 @@ export const DataTableGroupedColumns = [
         header: "Status",
         cell: () => {
           return (
-            <Tag variant="success" size={"small"} mode="pill">
+            <Tag variant="success" size={"small"}>
               Success
             </Tag>
           );
@@ -729,12 +729,7 @@ export const PreviewSummaryList: FunctionComponent<PreviewSummaryList> = () => {
         <SummaryListRow>
           <SummaryListTerm>Status</SummaryListTerm>
           <SummaryListDetail className="py-2">
-            <Tag
-              variant="warning"
-              size={"medium"}
-              className="h-fit"
-              mode={"default"}
-            >
+            <Tag variant="warning" size={"medium"} className="h-fit">
               Pending
             </Tag>
           </SummaryListDetail>

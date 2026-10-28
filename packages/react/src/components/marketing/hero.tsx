@@ -88,7 +88,7 @@ const Hero: ForwardRefExoticComponent<HeroProps & RefAttributes<HTMLElement>> =
             >
               {eyebrow &&
                 (typeof eyebrow === "string" ? (
-                  <Tag variant="primary" size="medium" mode="pill">
+                  <Tag variant="primary" size="medium">
                     {eyebrow}
                   </Tag>
                 ) : (

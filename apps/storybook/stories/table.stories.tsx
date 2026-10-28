@@ -99,21 +99,9 @@ const payments = [
 ];
 
 const statusTag = {
-  Paid: (
-    <Tag variant="success" size="small">
-      Paid
-    </Tag>
-  ),
-  Due: (
-    <Tag variant="warning" size="small">
-      Due
-    </Tag>
-  ),
-  Overdue: (
-    <Tag variant="danger" size="small">
-      Overdue
-    </Tag>
-  ),
+  Paid: <Tag variant="success">Paid</Tag>,
+  Due: <Tag variant="warning">Due</Tag>,
+  Overdue: <Tag variant="danger">Overdue</Tag>,
 } as Record<string, React.ReactNode>;
 
 const header = (

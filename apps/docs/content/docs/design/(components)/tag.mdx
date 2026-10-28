@@ -15,20 +15,19 @@ description: Display current state or status of an item, process, or entity
 
 ## Style
 
-![tag-style.png](/design/tag-style.png)
-
-1. **Style 1**: Typically used to display a status independently, positioned absolutely on an image or container. Visually, it features a border radius of 9999px, giving it a fully rounded appearance.
-2. **Style 2**: Typically used to display a status inline, positioned side by side with text. Visually, it features a 6px border radius, giving it slightly rounded edges.
+Tags have one style: a pill (9999px radius) with a wash background, matching coloured text in Medium weight, and no border. The same shape works on its own, on an image, or inline with text. The words carry the meaning, so status never rests on colour alone.
 
 ## Size
 
 ![tag-size.png](/design/tag-size.png)
 
-**Small**: Typically used for small components or on smaller devices like mobile phones.
+Sizes follow the page density (comfortable for citizen services, compact for officer tools), not the device.
 
-**Medium**: Commonly applied to medium-sized components or devices such as tablets.
+**Small**: The 13px badge (22px tall, 10px side padding), for tables and dense lists in either density.
 
-**Large**: Designed for large components or larger devices like desktops or laptops.
+**Medium** (default): 14px and 24px tall in comfortable density; the 13px badge in compact.
+
+**Large**: 16px and 32px tall, for citizen-facing emphasis; 14px in compact.
 
 ## Status dot (Optional)
 
@@ -36,5 +35,5 @@ description: Display current state or status of an item, process, or entity
 
 1. **Dot**: The optional status dot provides a visual indicator to represent the current state or status of an item.
    - Small = 6x6
-   - Medium = 8x8
-   - Large = 10x10
+   - Medium = 6x6
+   - Large = 8x8

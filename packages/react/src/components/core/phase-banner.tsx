@@ -62,8 +62,7 @@ const PhaseBanner: ForwardRefExoticComponent<PhaseBannerProps> = forwardRef(
               <Tag
                 variant={tagVariant}
                 size="medium"
-                mode="pill"
-                className="max-md:text-label-compact max-md:h-[22px] max-md:px-2 max-md:py-0.5"
+                className="max-md:text-label-compact max-md:h-[22px]"
               >
                 {phase}
               </Tag>

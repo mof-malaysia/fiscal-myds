@@ -188,7 +188,7 @@ interface TaskListItemStatusProps extends Omit<TagProps, "variant"> {
 }
 
 /** The task's state as a wash tag. Children replace the default label (e.g. for BM). */
-const TaskListItemStatus = forwardRef<HTMLDivElement, TaskListItemStatusProps>(
+const TaskListItemStatus = forwardRef<HTMLSpanElement, TaskListItemStatusProps>(
   ({ status, variant, className, children, ...props }, ref) => {
     const itemId = useContext(ItemContext);
     const style = statusStyle[status];
@@ -197,10 +197,9 @@ const TaskListItemStatus = forwardRef<HTMLDivElement, TaskListItemStatusProps>(
         ref={ref}
         id={itemId ? statusId(itemId) : undefined}
         variant={variant ?? style.variant}
-        mode="pill"
         size="medium"
         className={clx(
-          "in-data-[density=compact]:text-label-compact col-start-2 row-start-1 self-start in-data-[density=compact]:h-[22px]",
+          "col-start-2 row-start-1 self-start",
           // Span the hint line too, when the row has one
           "[li:has(>[data-slot=task-list-item-hint])>&]:row-span-2",
           className,

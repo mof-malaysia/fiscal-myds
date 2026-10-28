@@ -50,7 +50,7 @@ import { Tag } from "@/components/ui/tag";
 ```tsx copy title="Anatomi"
 export default () => (
   <Tag size="medium" dot={true}>Default</Tag>
-  <Tag size="small" dot={false} variant="warning" mode="default">
+  <Tag size="small" dot={false} variant="warning">
     <span>Default</span>
   </Tag>
 );
@@ -106,7 +106,13 @@ import { Tag } from "@/components/ui/tag";
 </Tabs>
 
 ### Size
-Gunakan props `size` untuk menukar saiz komponen tag. Pilihan yang disokong adalah `small`, `medium`, dan `large`.
+Gunakan prop `size` untuk menukar saiz tag. Saiz mengikut kepadatan halaman:
+
+- `small`: lencana 13px, untuk jadual dan senarai padat dalam mana-mana kepadatan.
+- `medium` (lalai): 14px dalam kepadatan selesa, lencana 13px dalam kepadatan padat.
+- `large`: 16px untuk penekanan kepada rakyat, 14px dalam kepadatan padat.
+
+Tag sentiasa berbentuk pil, dengan latar belakang lembut dan tanpa sempadan.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
@@ -131,34 +137,6 @@ import { Tag } from "@/components/ui/tag";
   </Tab>
 </Tabs>
 
-### Mode
-
-Gunakan props `mode` untuk menukar jenis komponen tag. Mode `default` memberikan tag bucu (border radius) yang sedikit bulat, manakala mode `pill` memberikannya penampilan yang bulat sepenuhnya (rounded).
-
-<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
-  <Tab value="Pratonton">
-  <div className="space-y-2">
-  <div className="flex justify-center items-center h-fit gap-1">
-      <Tag size="medium" dot={true} variant="success" mode="default">Default</Tag>
-      <Tag size="medium" dot={true} variant="success" mode="pill">Pill</Tag>
-    </div>
-  </div>
-  </Tab>
-  <Tab value="Kod">
-  ```tsx 
-import { Tag } from "@/components/ui/tag";
-
-<Tag size="medium" dot={true} variant="success" mode="default">
-  Default
-</Tag>
-<Tag size="medium" dot={true} variant="success" mode="pill">
-  Pill
-</Tag>
-
-````
-  </Tab>
-</Tabs>
-
 ### Dot
 Props `dot` digunakan untuk mengubah penampilan titik di dalam komponen `tag`. Titik status pilihan ini boleh bertindak sebagai penunjuk visual untuk mewakili keadaan atau status semasa sesuatu item.
 
@@ -166,8 +144,8 @@ Props `dot` digunakan untuk mengubah penampilan titik di dalam komponen `tag`. T
   <Tab value="Pratonton">
   <div className="space-y-2">
   <div className="flex justify-center items-center h-fit gap-1">
-      <Tag size="medium" dot={false} variant="warning" mode="default">No Dot</Tag>
-      <Tag size="medium" dot={true} variant="warning" mode="default">Dot</Tag>
+      <Tag size="medium" dot={false} variant="warning">No Dot</Tag>
+      <Tag size="medium" dot={true} variant="warning">Dot</Tag>
     </div>
   </div>
   </Tab>
@@ -175,8 +153,8 @@ Props `dot` digunakan untuk mengubah penampilan titik di dalam komponen `tag`. T
   ```tsx
 import { Tag } from "@/components/ui/tag";
 
-<Tag size="medium" dot={false} variant="warning" mode="default">No Dot</Tag>
-<Tag size="medium" dot={true} variant="warning" mode="default">Dot</Tag>
+<Tag size="medium" dot={false} variant="warning">No Dot</Tag>
+<Tag size="medium" dot={true} variant="warning">Dot</Tag>
 
 ````
 
@@ -199,18 +177,12 @@ import { Tag } from "@/components/ui/tag";
       description: "Saiz tag",
       type: "enum",
       typeDescription: "small | medium | large",
-      default: "small",
+      default: "medium",
     },
     dot: {
       description: "Sama ada untuk menunjukkan titik status dalam tag",
       type: "boolean",
       default: "false",
-    },
-    mode: {
-      description: "Gaya tag (bulat sepenuhnya atau tidak)",
-      type: "enum",
-      typeDescription: "pill | default",
-      default: "pill",
     },
   }}
 />
