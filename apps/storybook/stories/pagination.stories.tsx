@@ -261,7 +261,6 @@ export const ServerSidePagination: Story = {
     query: { page: "6" },
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args, context) => {

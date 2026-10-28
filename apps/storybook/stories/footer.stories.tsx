@@ -206,13 +206,9 @@ export const Default: Story = {
  */
 
 export const CustomDark: Story = {
-  decorators: [
-    (Story) => (
-      <div className="dark">
-        <Story />
-      </div>
-    ),
-  ],
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
   render: (args) => {
     const date = new Date();
 

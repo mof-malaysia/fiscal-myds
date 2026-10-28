@@ -2,7 +2,7 @@ name: "Storybook Accessibility Tests"
 
 on:
   pull_request:
-    branches: -main
+    branches: [main]
 
 jobs:
   test:
@@ -17,7 +17,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.8
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Playwright
         working-directory: ./apps/storybook
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Build Storybook
         run: pnpm build --filter=@mof-malaysia/myds-storybook

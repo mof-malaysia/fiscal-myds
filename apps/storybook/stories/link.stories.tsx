@@ -102,7 +102,6 @@ export const ButtonAsLink: Story = {
   parameters: {
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args) => <Button render={<Link {...args} />}>Ask a question</Button>,
@@ -119,7 +118,6 @@ export const Backlink: Story = {
   parameters: {
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args) => (
@@ -151,7 +149,6 @@ export const NavbarLink: Story = {
   parameters: {
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args) => (

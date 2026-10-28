@@ -172,14 +172,7 @@ export const calloutError: Story = {
   ),
 };
 
-export const CalloutDefaultDark: Story = {
-  ...createStory({}, "dark"),
-  render: () => (
-    <div className="dark">
-      <Callout></Callout>
-    </div>
-  ),
-};
+export const CalloutDefaultDark: Story = createStory({}, "dark");
 
 export const calloutDefaultDarkWithTitle: Story = {
   ...createStory({}, "dark"),
