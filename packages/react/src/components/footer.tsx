@@ -7,6 +7,7 @@ import {
   isValidElement,
   ReactElement,
   ReactNode,
+  useId,
 } from "react";
 import { clx } from "../utils";
 import { Link } from "./link";
@@ -36,7 +37,7 @@ const Footer: ForwardRefExoticComponent<FooterProps> = forwardRef(
       <footer
         className={clx(
           "bg-bg-gray-50 border-otl-gray-200 font-body text-body-sm flex flex-col border-t print:hidden",
-          "max-md:px-4.5 max-md:gap-6 max-md:py-8",
+          "max-md:gap-6 max-md:px-4.5 max-md:py-8",
           "gap-8 md:px-6 md:py-8 md:max-lg:pt-8",
           "lg:py-16",
           className,
@@ -50,11 +51,12 @@ const Footer: ForwardRefExoticComponent<FooterProps> = forwardRef(
   },
 );
 
-interface SiteInfoProps extends ComponentProps<"aside"> {}
+// A <div>, not <aside>: a complementary landmark can't sit inside <footer>.
+interface SiteInfoProps extends ComponentProps<"div"> {}
 const SiteInfo: ForwardRefExoticComponent<SiteInfoProps> = forwardRef(
   ({ children, className, ...props }, ref) => {
     return (
-      <aside
+      <div
         className={clx(
           "flex flex-col max-lg:col-span-full lg:col-start-1 lg:col-end-4",
           "max-lg:gap-4",
@@ -65,7 +67,7 @@ const SiteInfo: ForwardRefExoticComponent<SiteInfoProps> = forwardRef(
         ref={ref}
       >
         {children}
-      </aside>
+      </div>
     );
   },
 );
@@ -76,14 +78,18 @@ interface SiteLinkGroupProps extends ComponentProps<"div"> {
 }
 const SiteLinkGroup: ForwardRefExoticComponent<SiteLinkGroupProps> = forwardRef(
   ({ children, className, groupTitle, linkCount = 8, ...props }, ref) => {
-    const titleElement =
-      typeof groupTitle === "string" ? (
-        <h6 className="text-txt-black-900 line-clamp-1 font-semibold">
-          {groupTitle}
-        </h6>
-      ) : (
-        groupTitle
-      );
+    const titleId = useId();
+    const hasTextTitle = typeof groupTitle === "string";
+    const titleElement = hasTextTitle ? (
+      <h2
+        id={titleId}
+        className="text-txt-black-900 line-clamp-1 font-semibold"
+      >
+        {groupTitle}
+      </h2>
+    ) : (
+      groupTitle
+    );
 
     const processedChildren = Children.toArray(children)
       .slice(0, linkCount)
@@ -112,13 +118,11 @@ const SiteLinkGroup: ForwardRefExoticComponent<SiteLinkGroupProps> = forwardRef(
       >
         {titleElement}
         <nav
+          aria-labelledby={hasTextTitle ? titleId : undefined}
           className={clx(
-            "gap-x-4.5 grid grid-cols-2 md:grid-cols-4 md:gap-x-6 lg:grid-cols-2",
+            "grid grid-cols-2 gap-x-4.5 md:grid-cols-4 md:gap-x-6 lg:grid-cols-2",
             "max-md:gap-y-2 md:max-lg:gap-y-3 lg:gap-y-2",
-            className,
           )}
-          ref={ref}
-          {...props}
         >
           {processedChildren}
         </nav>

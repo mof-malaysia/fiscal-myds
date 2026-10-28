@@ -29,6 +29,8 @@ interface ThemeSwitch {
   as?: "toggle" | "select";
   themes?: Array<Theme>;
   onChange?: (value: string) => void;
+  /** Accessible name prefix for the select trigger, e.g. "Theme: Light". */
+  label?: string;
 }
 
 /** Merges the icon classes onto the theme's icon element. */
@@ -48,6 +50,7 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
     { label: "Dark", value: "dark", icon: <MoonIcon /> },
   ],
   onChange,
+  label = "Theme",
 }) => {
   const { theme, setTheme, defaultTheme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -58,8 +61,7 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
   const displayIcon = (value?: string | null) => {
     if (!value) return null;
     const _theme = getTheme(value);
-    if (isValidElement(_theme?.icon))
-      return <ThemeIcon icon={_theme.icon} />;
+    if (isValidElement(_theme?.icon)) return <ThemeIcon icon={_theme.icon} />;
     return _theme?.icon;
   };
 
@@ -110,7 +112,9 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
       value={theme || defaultTheme}
       onValueChange={handleChange}
     >
-      <SelectTrigger>
+      <SelectTrigger
+        aria-label={`${label}: ${getTheme(theme || defaultTheme)?.label ?? ""}`}
+      >
         <SelectValue>
           {(value) => (
             <div className="flex items-center gap-2">

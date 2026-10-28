@@ -36,22 +36,22 @@ const meta = {
           )}
         >
           <Story />
-          <nav className="h-[200px] bg-slate-800">
+          <nav className="bg-bg-washed h-[200px]">
             <div className="items-center justify-between">
-              <div className="text-xl font-bold">Logo</div>
+              <div className="text-txt-black-900 text-xl font-bold">Logo</div>
               <ul className="flex gap-6">
                 <li>
-                  <a href="#" className="text-black-700">
+                  <a href="#" className="text-txt-black-700">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-black-700">
+                  <a href="#" className="text-txt-black-700">
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-black-700">
+                  <a href="#" className="text-txt-black-700">
                     Contact
                   </a>
                 </li>
@@ -60,8 +60,10 @@ const meta = {
           </nav>
           <main id={contentId} className="flex-1" tabIndex={-1}>
             <div className="mx-auto max-w-7xl">
-              <h1 className="mb-4 text-2xl font-bold">Main Content</h1>
-              <p className="text-slate-600">
+              <h1 className="text-txt-black-900 mb-4 text-2xl font-bold">
+                Main Content
+              </h1>
+              <p className="text-txt-black-700">
                 To navigate using the skip link: Press the Shift + Tab keys (or
                 Tab) after clicking on the story to navigate through the
                 tab-able components in the story. A skip link will appear at the

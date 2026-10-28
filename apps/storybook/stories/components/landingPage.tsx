@@ -131,25 +131,25 @@ const DemoFooter = () => {
             </Link>
           </div>
         </SiteInfo>
-        <SiteLinkGroup groupTitle="Title">
+        <SiteLinkGroup groupTitle="About Us">
           <SiteLink href="#">Link 1 </SiteLink>
           <SiteLink href="#">Link 2</SiteLink>
           <SiteLink href="#">Link 3</SiteLink>
           <SiteLink href="#">Link 4</SiteLink>
         </SiteLinkGroup>
-        <SiteLinkGroup groupTitle="Title">
+        <SiteLinkGroup groupTitle="Quick Links">
           <SiteLink href="#">Link 1 </SiteLink>
           <SiteLink href="#">Link 2</SiteLink>
           <SiteLink href="#">Link 3</SiteLink>
           <SiteLink href="#">Link 4</SiteLink>
         </SiteLinkGroup>
-        <SiteLinkGroup groupTitle="Title">
+        <SiteLinkGroup groupTitle="Open Source">
           <SiteLink href="#">Link 1 </SiteLink>
           <SiteLink href="#">Link 2</SiteLink>
           <SiteLink href="#">Link 3</SiteLink>
           <SiteLink href="#">Link 4</SiteLink>
         </SiteLinkGroup>
-        <SiteLinkGroup groupTitle="Title">
+        <SiteLinkGroup groupTitle="Resources">
           <SiteLink href="#">Link 1 </SiteLink>
           <SiteLink href="#">Link 2</SiteLink>
           <SiteLink href="#">Link 3</SiteLink>
