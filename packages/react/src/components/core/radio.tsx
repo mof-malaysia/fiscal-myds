@@ -85,6 +85,7 @@ const RadioButton = React.forwardRef<
       ref={ref}
       className={clx(
         "hover:border-otl-control-hover border-otl-control inline-flex aspect-square shrink-0 rounded-full border",
+        "data-[invalid]:border-danger-600",
         "focus-visible:ring-fr-primary focus-visible:ring-opacity-40 focus:outline-none focus-visible:ring-4",
         "data-[disabled]:bg-bg-washed data-[disabled]:cursor-not-allowed",
         "data-[checked]:bg-primary-600 data-[checked]:border-none",

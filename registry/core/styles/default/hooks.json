@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "lib/myds/hooks/index.ts",
-      "content": "export { useCallbackRef } from \"./use-callback-ref\";\nexport { useControllableState } from \"./use-controllable-state\";\nexport { default as useToast } from \"./use-toast\";\nexport { usePagination } from \"./use-pagination\";\nexport { ThemeProvider, ThemeContext, useTheme } from \"./use-theme\";\nexport { useMergedRefs } from \"./use-merged-refs\";\nexport { useMediaQuery } from \"./use-media-query\";\n",
+      "content": "export { useCallbackRef } from \"./use-callback-ref\";\nexport { useControllableState } from \"./use-controllable-state\";\nexport { default as useToast } from \"./use-toast\";\nexport { usePagination } from \"./use-pagination\";\nexport { ThemeProvider, ThemeContext, useTheme } from \"./use-theme\";\nexport { useMergedRefs } from \"./use-merged-refs\";\nexport { useMediaQuery } from \"./use-media-query\";\nexport { useCountdown } from \"./use-countdown\";\nexport { useCopy } from \"./use-copy\";\n",
       "type": "registry:lib"
     },
     {
@@ -25,13 +25,23 @@
       "type": "registry:lib"
     },
     {
+      "path": "lib/myds/hooks/use-copy.ts",
+      "content": "import { useCallback, useEffect, useRef, useState } from \"react\";\n\n/**\n * Copies `text` to the clipboard; `copied` stays true for `timeout` ms so a button\n * can confirm. A blocked clipboard is ignored: the text is still on screen.\n * @example const [copied, copy] = useCopy(reference);\n */\nfunction useCopy(text: string, timeout: number = 2000) {\n  const [copied, setCopied] = useState(false);\n  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);\n  useEffect(() => () => clearTimeout(timer.current), []);\n\n  const copy = useCallback(async () => {\n    try {\n      await navigator.clipboard.writeText(text);\n      setCopied(true);\n      clearTimeout(timer.current);\n      timer.current = setTimeout(() => setCopied(false), timeout);\n    } catch {\n      // Clipboard blocked: leave the text for the user to copy by hand\n    }\n  }, [text, timeout]);\n\n  return [copied, copy] as const;\n}\n\nexport { useCopy };\n",
+      "type": "registry:lib"
+    },
+    {
+      "path": "lib/myds/hooks/use-countdown.ts",
+      "content": "import { useEffect, useState } from \"react\";\n\nconst secondsUntil = (endsAt: number | null) =>\n  endsAt === null ? 0 : Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));\n\n/**\n * Whole seconds left until `endsAt` (a timestamp in ms), updated every second and\n * stopping at 0. Pass `null` while there is nothing to count down.\n * @example const remaining = useCountdown(open ? expiresAt : null);\n */\nfunction useCountdown(endsAt: number | null): number {\n  const [state, setState] = useState(() => ({\n    endsAt,\n    remaining: secondsUntil(endsAt),\n  }));\n\n  // A new end time takes effect in this render, so nothing sees the old count\n  let current = state;\n  if (state.endsAt !== endsAt) {\n    current = { endsAt, remaining: secondsUntil(endsAt) };\n    setState(current);\n  }\n\n  useEffect(() => {\n    if (endsAt === null) return;\n    let timer: number | undefined;\n    const tick = () => {\n      const remaining = secondsUntil(endsAt);\n      setState((s) => (s.endsAt === endsAt ? { endsAt, remaining } : s));\n      if (remaining === 0) window.clearInterval(timer);\n    };\n    tick();\n    timer = window.setInterval(tick, 1000);\n    return () => window.clearInterval(timer);\n  }, [endsAt]);\n\n  return current.remaining;\n}\n\nexport { useCountdown };\n",
+      "type": "registry:lib"
+    },
+    {
       "path": "lib/myds/hooks/use-media-query.ts",
       "content": "import * as React from \"react\";\n\n/**\n * Whether a media query matches, kept in sync as the viewport changes.\n * Returns `false` during server rendering.\n * @example const isMobile = useMediaQuery(\"(max-width: 767px)\");\n */\nfunction useMediaQuery(query: string): boolean {\n  const mql = React.useMemo(\n    () => (typeof window === \"undefined\" ? null : window.matchMedia(query)),\n    [query],\n  );\n\n  const subscribe = React.useCallback(\n    (onChange: () => void) => {\n      mql?.addEventListener(\"change\", onChange);\n      return () => mql?.removeEventListener(\"change\", onChange);\n    },\n    [mql],\n  );\n\n  return React.useSyncExternalStore(\n    subscribe,\n    () => mql?.matches ?? false,\n    () => false,\n  );\n}\n\nexport { useMediaQuery };\n",
       "type": "registry:lib"
     },
     {
       "path": "lib/myds/hooks/use-merged-refs.ts",
-      "content": "import * as React from \"react\";\n\ntype PossibleRef<T> = React.Ref<T> | undefined;\n\n/**\n * Combines refs (an inner `useRef` and a forwarded ref, say) into one stable callback ref.\n * @example <input ref={useMergedRefs(innerRef, forwardedRef)} />\n */\nfunction useMergedRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {\n  // eslint-disable-next-line react-hooks/exhaustive-deps\n  return React.useCallback((node: T | null) => {\n    for (const ref of refs) {\n      if (typeof ref === \"function\") ref(node);\n      else if (ref) (ref as React.MutableRefObject<T | null>).current = node;\n    }\n  }, refs);\n}\n\nexport { useMergedRefs };\n",
+      "content": "import * as React from \"react\";\n\ntype PossibleRef<T> = React.Ref<T> | undefined;\n\n/**\n * Combines refs (an inner `useRef` and a forwarded ref, say) into one stable callback ref.\n * @example <input ref={useMergedRefs(innerRef, forwardedRef)} />\n */\nfunction useMergedRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {\n  return React.useCallback((node: T | null) => {\n    for (const ref of refs) {\n      if (typeof ref === \"function\") ref(node);\n      else if (ref) (ref as React.MutableRefObject<T | null>).current = node;\n    }\n    // The refs themselves are the dependencies\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, refs);\n}\n\nexport { useMergedRefs };\n",
       "type": "registry:lib"
     },
     {

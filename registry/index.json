@@ -18,7 +18,7 @@
       "name": "@myds-app",
       "description": "Service and officer tools: forms, data, workflows",
       "url": "/registry/app",
-      "components": 38
+      "components": 55
     },
     "marketing": {
       "name": "@myds-marketing",
@@ -39,5 +39,5 @@
       "components": 6
     }
   },
-  "totalComponents": 320
+  "totalComponents": 337
 }

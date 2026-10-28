@@ -1,6 +1,11 @@
 "use client";
 
-import React, { ComponentRef, forwardRef } from "react";
+import React, {
+  ComponentRef,
+  createContext,
+  forwardRef,
+  useContext,
+} from "react";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { WarningCircleIcon } from "../../icons/warning-circle";
 import { clx, type WithClassName } from "../../utils";
@@ -20,15 +25,20 @@ import { clx, type WithClassName } from "../../utils";
  * </Field>
  */
 
+/** Base UI's `invalid` styles the control but doesn't show `Field.Error`; FieldError reads it from here. */
+const FieldInvalidContext = createContext(false);
+
 const Field = forwardRef<
   ComponentRef<typeof FieldPrimitive.Root>,
   WithClassName<FieldPrimitive.Root.Props>
 >(({ className, ...props }, ref) => (
-  <FieldPrimitive.Root
-    ref={ref}
-    className={clx("flex w-full flex-col gap-1.5", className)}
-    {...props}
-  />
+  <FieldInvalidContext.Provider value={!!props.invalid}>
+    <FieldPrimitive.Root
+      ref={ref}
+      className={clx("flex w-full flex-col gap-1.5", className)}
+      {...props}
+    />
+  </FieldInvalidContext.Provider>
 ));
 Field.displayName = "Field";
 
@@ -62,30 +72,37 @@ const FieldDescription = forwardRef<
 FieldDescription.displayName = "FieldDescription";
 
 /**
- * Shown only while the field is invalid. Say what to do, not just what's wrong.
- * Pass `match` (e.g. `"valueMissing"`) to show a message for one validity state only.
+ * Shown only while the field is invalid, including when `Field` has `invalid` set.
+ * Say what to do, not just what's wrong. Pass `match` (e.g. `"valueMissing"`) to
+ * show a message for one validity state only.
  */
 const FieldError = forwardRef<
   ComponentRef<typeof FieldPrimitive.Error>,
   WithClassName<FieldPrimitive.Error.Props>
->(({ className, children, ...props }, ref) => (
-  <FieldPrimitive.Error
-    ref={ref}
-    className={clx(
-      "font-body text-content text-txt-danger flex items-start gap-1.5 font-medium",
-      className,
-    )}
-    {...props}
-  >
-    <WarningCircleIcon className="mt-0.5 size-4 shrink-0" aria-hidden />
-    <span>
-      {/* Without children, fall back to the message from `validate` or the browser */}
-      {children ?? (
-        <FieldPrimitive.Validity>{(validity) => validity.error}</FieldPrimitive.Validity>
+>(({ className, children, match, ...props }, ref) => {
+  const invalid = useContext(FieldInvalidContext);
+  return (
+    <FieldPrimitive.Error
+      ref={ref}
+      match={match ?? (invalid || undefined)}
+      className={clx(
+        "font-body text-content text-txt-danger flex items-start gap-1.5 font-medium",
+        className,
       )}
-    </span>
-  </FieldPrimitive.Error>
-));
+      {...props}
+    >
+      <WarningCircleIcon className="mt-0.5 size-4 shrink-0" aria-hidden />
+      <span>
+        {/* Without children, fall back to the message from `validate` or the browser */}
+        {children ?? (
+          <FieldPrimitive.Validity>
+            {(validity) => validity.error}
+          </FieldPrimitive.Validity>
+        )}
+      </span>
+    </FieldPrimitive.Error>
+  );
+});
 FieldError.displayName = "FieldError";
 
 /** One option inside a field that holds a group (checkbox group, radio group). */

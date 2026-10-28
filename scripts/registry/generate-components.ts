@@ -20,7 +20,7 @@ import {
 /**
  * Generate the component registries, one per tier:
  *   core      shared primitives, gov chrome, utils and hooks
- *   app       service and officer tools
+ *   app       service and officer tools (components and blocks)
  *   marketing agency and landing sites (components and blocks)
  *
  * Source lives in packages/react/src/components/<tier>/. Every item installs
@@ -34,13 +34,13 @@ const HOOKS_DIR = path.join(SRC_DIR, "hooks");
 const ICONS_DIR = path.join(SRC_DIR, "icons");
 const REGISTRY_DIR = path.join(__dirname, "../../registry");
 
-/** A marketing file that starts with this comment is a composed page section (`registry:block`). */
+/** An app or marketing file that starts with this comment is a composed page section (`registry:block`). */
 const BLOCK_MARKER = /^(?:"use client";\s*)?\/\/ registry:block\b/;
 
 const iconMap = getIconExportMap(ICONS_DIR);
 
 const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
-  readFileContent(path.join(__dirname, "../../packages/react/package.json"))
+  readFileContent(path.join(__dirname, "../../packages/react/package.json")),
 ).dependencies;
 
 /**
@@ -51,7 +51,7 @@ function withVersions(deps: Iterable<string>): string[] {
   return Array.from(deps)
     .sort()
     .map((dep) =>
-      PACKAGE_DEPENDENCIES[dep] ? `${dep}@${PACKAGE_DEPENDENCIES[dep]}` : dep
+      PACKAGE_DEPENDENCIES[dep] ? `${dep}@${PACKAGE_DEPENDENCIES[dep]}` : dep,
     );
 }
 
@@ -77,10 +77,10 @@ function generateComponentItem({
   const registryDeps = new Set(
     localImports
       .map((importPath) => mapToRegistryDependency(importPath, tier))
-      .filter((dep): dep is string => dep !== null && dep !== selfUrl)
+      .filter((dep): dep is string => dep !== null && dep !== selfUrl),
   );
 
-  const isBlock = tier === "marketing" && BLOCK_MARKER.test(content);
+  const isBlock = tier !== "core" && BLOCK_MARKER.test(content);
   const target = isBlock
     ? `components/blocks/${name}.tsx`
     : `components/ui/${name}.tsx`;
@@ -140,7 +140,9 @@ function generateHooksItem(): RegistryComponent {
 
   files.push({
     path: "lib/myds/utils/events.ts",
-    content: transformImports(readFileContent(path.join(UTILS_DIR, "events.ts"))),
+    content: transformImports(
+      readFileContent(path.join(UTILS_DIR, "events.ts")),
+    ),
     type: "registry:lib",
   });
 

@@ -343,13 +343,19 @@ interface ShortcutContextValue {
 
 const ShortcutContext = createContext<ShortcutContextValue | null>(null);
 
+const MISSING_PROVIDER =
+  "Shortcut hooks must be used inside <ShortcutProvider> (or <DeskShell>).";
+
+/** The registry, or null outside a provider when `optional`. */
+function useRegistry(optional = false): ShortcutRegistry | null {
+  const context = useContext(ShortcutContext);
+  if (!context && !optional) throw new Error(MISSING_PROVIDER);
+  return context?.registry ?? null;
+}
+
 function useShortcutContext(): ShortcutContextValue {
   const context = useContext(ShortcutContext);
-  if (!context) {
-    throw new Error(
-      "Shortcut hooks must be used inside <ShortcutProvider> (or <DeskShell>).",
-    );
-  }
+  if (!context) throw new Error(MISSING_PROVIDER);
   return context;
 }
 
@@ -514,9 +520,13 @@ function useCommands(list: ShortcutCommand[]): void {
 function useShortcut(
   combo: string,
   run: () => void,
-  options: ShortcutOptions & { enabled?: boolean } = {},
+  options: ShortcutOptions & {
+    enabled?: boolean;
+    /** Do nothing outside a `ShortcutProvider` instead of throwing (for blocks that work with or without one). */
+    optional?: boolean;
+  } = {},
 ): void {
-  const { registry } = useShortcutContext();
+  const registry = useRegistry(options.optional);
   const latest = useRef(run);
   latest.current = run;
   const when = useRef(options.when);
@@ -524,7 +534,7 @@ function useShortcut(
   const { enabled = true, scope, allowInInput, allowDefault } = options;
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || !registry) return;
     return registry.add({
       combo,
       scope,
@@ -536,11 +546,20 @@ function useShortcut(
   }, [registry, combo, scope, allowInInput, allowDefault, enabled]);
 }
 
-/** Activates a shortcut scope while the component is mounted (and `active`). */
-function useShortcutScope(scope: string, active: boolean = true): void {
-  const { registry } = useShortcutContext();
+/**
+ * Activates a shortcut scope while the component is mounted (and `active`).
+ * With `optional`, does nothing outside a `ShortcutProvider` instead of throwing.
+ */
+function useShortcutScope(
+  scope: string,
+  {
+    active = true,
+    optional = false,
+  }: { active?: boolean; optional?: boolean } = {},
+): void {
+  const registry = useRegistry(optional);
   useEffect(() => {
-    if (!active) return;
+    if (!active || !registry) return;
     return registry.pushScope(scope);
   }, [registry, scope, active]);
 }

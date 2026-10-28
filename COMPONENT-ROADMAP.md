@@ -15,7 +15,7 @@ A component goes in the **lowest tier that every consumer of it belongs to**:
 
 - **Core**: used on both service screens and agency sites, or legally required on every MOF site.
 - **App**: only makes sense inside a task or workflow (forms with state, data, multi-step flows, officer tooling).
-- **Marketing**: exists to inform or persuade on a public site. Large composed sections ship as `registry:block`, not `registry:ui`.
+- **Marketing**: exists to inform or persuade on a public site. Large composed sections ship as `registry:block`, not `registry:ui` (so do the app tier's composed screens).
 
 App and Marketing items may depend on Core. App and Marketing never depend on each other. Cross-registry `registryDependencies` use full URLs.
 
@@ -80,6 +80,17 @@ App and Marketing items may depend on Core. App and Marketing never depend on ea
 | command (palette)                                                                                                   | new, on existing `cmdk` dep                                          | none                              |
 | drawer                                                                                                              | new                                                                  | `drawer`                          |
 | preview-card                                                                                                        | new                                                                  | `preview-card`                    |
+
+### App blocks
+
+Composed screens ship as `registry:block` (they install to `components/blocks`), like the marketing blocks. Full-page compositions live in Storybook under `Examples/App`.
+
+| Block                                                                                | Screens                                                                                                                         |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| auth-layout, sign-in-form, sign-up-form, password-reset, otp-verify, session-timeout | Access: sign in (MyDigital ID, email and password, officer SSO), sign up, forgot/reset password, one-time code, session timeout |
+| form-step, check-answers, confirmation-panel, payment-summary, application-list      | Citizen tasks: multi-step application, check your answers, submitted, pay and receipt, citizen dashboard                        |
+| work-queue, activity-timeline, decision-panel                                        | Officer work on DeskShell: case queue, case detail, officer dashboard                                                           |
+| settings-layout, notification-list, error-page                                       | Account and system states: profile, security, preferences, notifications, 404/500/403/maintenance                               |
 
 ### Marketing
 
