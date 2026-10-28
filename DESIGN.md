@@ -24,17 +24,17 @@ colors:
   warning: "#A16207"
   warning-wash: "#FEFCE8"
   dark-myds-blue: "#6394FF"
-  dark-myds-blue-wash: "#172554"
-  dark-paper: "#161619"
-  dark-sheet: "#18181B"
-  dark-well: "#1D1D21"
-  dark-hover-mist: "#27272A"
-  dark-hairline: "#27272A"
-  dark-control-edge: "#6B6B74"
-  dark-ink: "#FFFFFF"
-  dark-ink-secondary: "#D4D4D8"
-  dark-ink-tertiary: "#A1A1AA"
-  dark-on-myds-blue: "#18181B"
+  dark-myds-blue-wash: "#1D2B4D"
+  dark-paper: "#131316"
+  dark-sheet: "#1C1C20"
+  dark-well: "#25252A"
+  dark-hover-mist: "#2E2E34"
+  dark-hairline: "#2E2E34"
+  dark-control-edge: "#71717C"
+  dark-ink: "#EDEDF0"
+  dark-ink-secondary: "#B4B4BD"
+  dark-ink-tertiary: "#9A9AA5"
+  dark-on-myds-blue: "#131316"
   dark-danger: "#F87171"
   dark-danger-wash: "#450A0A"
   dark-success: "#22C55E"
@@ -257,7 +257,14 @@ Every semantic pair reads at 4.75:1 or better. Status is always carried by text 
 
 ### Dark theme
 
-Dark mode is a first-class theme for officers in long sessions, not an inversion. It uses the `dark-` tokens: Dark Paper (#161619) canvas, Dark Sheet (#18181B) for raised content, Dark Ink (#FFFFFF) text, Dark Ink Secondary (#D4D4D8) at 12:1, and Dark MYDS Blue (#6394FF) as the accent with Dark Sheet text on primary buttons (6.1:1). The same rules apply: tone, not lines.
+Dark mode is a first-class theme for officers in long sessions, not an inversion. Its neutrals are Graphite, a ramp of its own rather than the light greys reversed, and it uses the `dark-` tokens:
+
+- **Surfaces step in tone, about 1.1:1 apart**, so tone still separates areas the way it does in light: Dark Paper (#131316) canvas, Dark Sheet (#1C1C20) for raised content, Dark Well (#25252A) for grouped areas and secondary buttons, Dark Hover Mist (#2E2E34) for hover and the Hairline. Floating layers sit one step up, on the Well tone. Surfaces closer than 1.05:1 read as one flat slab; avoid them.
+- **Text stops short of pure white.** Dark Ink (#EDEDF0) reads at 14.5:1 on Sheet; pure white on near-black (17:1 and up) glares over a long session. Dark Ink Secondary (#B4B4BD) is 8.3:1 and Dark Ink Tertiary (#9A9AA5) 6.1:1, and at least 4.5:1 on every dark surface including hover and the selection wash, so the three levels stay clearly apart and all stay readable.
+- **Accent:** Dark MYDS Blue (#6394FF), 5.8:1 on Sheet, with Dark Paper text on primary buttons (6.4:1). Selection uses Dark MYDS Blue Wash (#1D2B4D), calmer than a saturated navy; blue text on it reads at 4.8:1.
+- **Control Edge** (#71717C) keeps 3.5:1 on Sheet.
+
+The same rules apply: tone, not lines.
 
 ### Named Rules
 
