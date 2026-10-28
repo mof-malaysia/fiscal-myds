@@ -452,6 +452,9 @@
 
 /* Focus ring for every interactive element: solid, offset 2px (DESIGN.md: Buttons) */
 @utility focus-ring {
+  /* Set at rest too: with transition-colors, an outline-color that only changes on
+     focus would fade in from the text colour instead of appearing in Focus Blue */
+  outline-color: rgb(var(--fr-primary));
   &:focus-visible {
     /* rgb(var(--fr-primary)), not --color-fr-primary: resolves per element, so .dark islands switch */
     outline: 2px solid rgb(var(--fr-primary));
