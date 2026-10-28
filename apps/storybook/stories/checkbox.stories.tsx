@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
-import { createStory } from "../utils";
+import { createRender, createStory } from "../utils";
 
 /**
  * ### Overview
@@ -158,5 +158,41 @@ export const DisabledIndeterminateDark: Story = createStory(
     className: "dark",
     "aria-label": "checkbox",
   },
+  "dark",
+);
+
+const states = (
+  <div className="grid grid-cols-[auto_repeat(4,2rem)] items-center gap-x-4 gap-y-3">
+    <span />
+    {["Off", "On", "Mixed", ""].map((h) => (
+      <span key={h} className="text-txt-black-700 text-label-compact">
+        {h}
+      </span>
+    ))}
+    {(["Enabled", "Disabled"] as const).map((row) => (
+      <div key={row} className="contents">
+        <span className="text-txt-black-700 text-label-sm">{row}</span>
+        <Checkbox aria-label={`${row} off`} disabled={row === "Disabled"} />
+        <Checkbox
+          aria-label={`${row} on`}
+          defaultChecked
+          disabled={row === "Disabled"}
+        />
+        <Checkbox
+          aria-label={`${row} mixed`}
+          defaultChecked="indeterminate"
+          disabled={row === "Disabled"}
+        />
+        <span />
+      </div>
+    ))}
+  </div>
+);
+
+/** Every state side by side. Tab to a box to see the solid focus ring. */
+export const States: Story = createRender(() => states);
+
+export const StatesDark: Story = createRender(
+  () => <div className="dark">{states}</div>,
   "dark",
 );

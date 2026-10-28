@@ -84,15 +84,15 @@ const RadioButton = React.forwardRef<
     <RadioPrimitive.Root
       ref={ref}
       className={clx(
-        "hover:border-otl-control-hover border-otl-control inline-flex aspect-square shrink-0 rounded-full border",
+        // DESIGN.md, Inputs: 1.5px Control Edge stroke; checked fills MYDS Blue with an
+        // On MYDS Blue dot (theme tokens, so dark mode follows); disabled is a Well circle with a Hairline
+        "bg-bg-white border-otl-control hover:border-otl-control-hover inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border-[1.5px]",
+        "focus-ring transition-colors duration-150 motion-reduce:transition-none",
         "data-[invalid]:border-danger-600",
-        "focus-visible:ring-fr-primary focus-visible:ring-opacity-40 focus:outline-none focus-visible:ring-4",
-        "data-[disabled]:bg-bg-washed data-[disabled]:cursor-not-allowed",
-        "data-[checked]:bg-primary-600 data-[checked]:border-none",
-        "data-[checked]:data-[disabled]:bg-primary-600 data-[checked]:data-[disabled]:opacity-30",
-        size === "small" && "w-4",
-        size === "medium" && "w-5",
-        size === "large" && "w-5",
+        "data-[checked]:bg-bg-primary-600 data-[checked]:hover:bg-bg-primary-700 data-[checked]:border-transparent",
+        "data-[disabled]:bg-bg-washed data-[disabled]:border-otl-gray-200 data-[disabled]:cursor-not-allowed",
+        "data-[checked]:data-[disabled]:bg-bg-primary-disabled",
+        size === "small" ? "size-4" : "size-5",
         className,
       )}
       disabled={props.disabled ?? disabled}
@@ -100,7 +100,7 @@ const RadioButton = React.forwardRef<
     >
       <RadioPrimitive.Indicator className="flex size-full items-center justify-center">
         <div
-          className="bg-bg-white aspect-square w-2/5 rounded-full"
+          className="bg-txt-white aspect-square w-2/5 rounded-full"
           aria-hidden="true"
         />
       </RadioPrimitive.Indicator>
@@ -119,11 +119,12 @@ const RadioLabel = ({
   return (
     <label
       className={clx(
-        "text-txt-black-700 font-medium",
-        size === "small" && "text-body-sm",
-        size === "medium" && "text-body-md",
+        // An option reads as content: Ink, regular weight, density-aware at medium
+        "text-txt-black-900 cursor-pointer",
+        size === "small" && "text-label-sm",
+        size === "medium" && "text-content",
         size === "large" && "text-lg",
-        disabled && "text-txt-black-disabled",
+        disabled && "text-txt-black-disabled cursor-not-allowed",
         className,
       )}
       {...props}
@@ -144,11 +145,12 @@ const RadioHintText = ({
   return (
     <label
       className={clx(
-        "text-txt-black-500",
-        size === "small" && "text-xs",
+        // Hints are Ink Secondary (DESIGN.md: never lighter for text the user reads)
+        "text-txt-black-700",
+        size === "small" && "text-label-compact",
         size === "medium" && "text-body-sm",
         size === "large" && "text-body-md",
-        disabled && "text-otl-gray-300",
+        disabled && "text-txt-black-disabled",
         className,
       )}
       {...props}

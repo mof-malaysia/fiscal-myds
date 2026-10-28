@@ -7,22 +7,28 @@ import { clx } from "../../utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { forwardRef, ForwardRefExoticComponent, useState } from "react";
 
+/**
+ * Checkbox (DESIGN.md, Inputs): a 1.5px Control Edge stroke on Sheet; checked and
+ * indeterminate fill MYDS Blue with an On MYDS Blue mark (theme tokens, so dark mode
+ * gets Dark MYDS Blue with a dark mark). The focus ring is the shared solid 2px ring,
+ * and disabled is a Well box with a Hairline rather than a faded one.
+ */
 const checkbox_cva = cva(
   [
-    "outline-none flex items-center justify-center",
-    "border border-otl-control hover:border-otl-control-hover bg-bg-white",
+    "flex shrink-0 cursor-pointer items-center justify-center bg-bg-white",
+    "border-[1.5px] border-otl-control hover:border-otl-control-hover",
+    "transition-colors duration-150 motion-reduce:transition-none focus-ring",
     // Same red stroke as Input when its Field is invalid
     "data-[invalid]:border-danger-600",
-    "data-[checked]:bg-primary-600 data-[checked]:border-none data-[checked]:hover:border-primary-700 data-[checked]:hover:bg-primary-700",
-    "data-[indeterminate]:bg-primary-600 data-[indeterminate]:border-none data-[indeterminate]:hover:border-primary-700 data-[indeterminate]:hover:bg-primary-700",
-    "focus-visible:ring-[3px] focus-visible:ring-fr-primary",
-    "focus-visible:ring-[3px] focus-visible:ring-fr-primary",
-    "data-[disabled]:opacity-30 data-[disabled]:cursor-not-allowed data-[disabled]:bg-bg-washed data-[checked]:data-[disabled]:bg-primary-600 data-[indeterminate]:data-[disabled]:bg-primary-600",
+    "data-[checked]:bg-bg-primary-600 data-[checked]:border-transparent data-[checked]:hover:bg-bg-primary-700",
+    "data-[indeterminate]:bg-bg-primary-600 data-[indeterminate]:border-transparent data-[indeterminate]:hover:bg-bg-primary-700",
+    "data-[disabled]:cursor-not-allowed data-[disabled]:bg-bg-washed data-[disabled]:border-otl-gray-200",
+    "data-[checked]:data-[disabled]:bg-bg-primary-disabled data-[indeterminate]:data-[disabled]:bg-bg-primary-disabled",
   ],
   {
     variants: {
       size: {
-        small: "size-4 rounded-xs",
+        small: "size-4 rounded-[4px]",
         medium: "size-5 rounded-[5px]",
         large: "size-5 rounded-[5px]",
       },
@@ -35,7 +41,7 @@ const checkbox_cva = cva(
 
 const checkbox_icon_cva = cva(
   [
-    "flex items-center justify-center text-white",
+    "flex items-center justify-center text-txt-white",
     "[&_.minus-icon]:hidden",
     "[&_.checked-icon]:hidden",
     "[&[data-checked]_.checked-icon]:inline-block",
