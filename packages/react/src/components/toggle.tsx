@@ -4,7 +4,7 @@ import { clx } from "../utils";
 
 const thumbVariants = cva(
   [
-    "block outline-none focus:ring-[3px] focus:ring-fr-primary bg-otl-control hover:bg-otl-control-hover data-[state=checked]:bg-bg-primary-600 cursor-pointer rounded-full transition-color duration-200 z-10",
+    "block outline-none focus-visible:ring-[3px] focus-visible:ring-fr-primary bg-otl-control hover:bg-otl-control-hover data-[state=checked]:bg-bg-primary-600 cursor-pointer rounded-full transition-color duration-200 z-10",
     "before:content-[''] before:left-[3px] before:bottom-[3px] before:bg-white before:absolute before:rounded-full before:transition-all before:duration-200",
     "peer-disabled:data-[state=checked]:bg-bg-primary-disabled peer-disabled:cursor-not-allowed peer-disabled:before:data-[state=checked]:bg-bg-white",
     "peer-disabled:data-[state=unchecked]:bg-bg-washed peer-disabled:before:data-[state=unchecked]:bg-bg-white",

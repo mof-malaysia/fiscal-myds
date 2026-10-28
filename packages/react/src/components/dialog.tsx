@@ -156,7 +156,9 @@ const DialogBody: ForwardRefExoticComponent<
             "h-full w-full",
             "bg-gray-700/60",
             "data-[open]:animate-in data-[open]:fade-in-0",
-            "data-[closed]:animate-out data-[closed]:fade-out-0",
+            "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:fade-out-0",
+            // Same duration as the popup, so neither finishes early and snaps back
+            "duration-200",
           )}
         />
         <DialogPrimitive.Popup
@@ -168,8 +170,10 @@ const DialogBody: ForwardRefExoticComponent<
             "rounded-lg",
             "shadow-dialog",
             "bg-bg-white",
-            "data-[open]:animate-in data-[open]:fade-in-0 data-[open]:zoom-in-95 data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-[48%]",
-            "data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-[48%]",
+            // Fade and scale from the centre only. Tailwind v4 centres with the `translate`
+            // property, so v3-style slide-in-from-left-1/2 offsets would add, not cancel.
+            "data-[open]:animate-in data-[open]:fade-in-0 data-[open]:zoom-in-95",
+            "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
             "duration-200",
             className,
           )}

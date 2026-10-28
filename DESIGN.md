@@ -200,8 +200,6 @@ components:
     backgroundColor: "{colors.well}"
 ---
 
-<!-- TARGET: this file defines the direction Fiscal MYDS is moving to, derived from PRODUCT.md. The tokens in packages/style do not match it yet; migrate them to these values. Once they do, delete this comment. -->
-
 # Design System: Fiscal MYDS
 
 ## 1. Overview

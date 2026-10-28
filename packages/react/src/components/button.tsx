@@ -27,7 +27,8 @@ const button_cva = cva(
     "group flex select-none items-center gap-1.5 rounded-md w-fit",
     "font-body font-medium outline-none transition disabled:cursor-not-allowed",
     "text-center active:translate-y-[0.5px]",
-    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-primary",
+    // outline-solid is required: outline-2 alone keeps the base outline-none style
+    "focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-primary",
   ],
   {
     variants: {

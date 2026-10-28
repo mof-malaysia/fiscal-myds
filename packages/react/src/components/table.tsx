@@ -84,7 +84,7 @@ const TableCell: ForwardRefExoticComponent<ComponentProps<"td">> = forwardRef(
         "border-otl-gray-200 text-txt-black-900 text-content border-b py-(--cell-py) pr-3 align-middle",
         // Cells holding a control (row actions) keep rows tight: 52px comfortable, 40px compact
         "[&:has(button)]:py-1",
-        "focus:outline-primary-600/20 rounded-[1px] focus:z-20 focus:outline-[3px] focus:outline-offset-0",
+        "focus-visible:outline-primary-600/20 rounded-[1px] focus:z-20 focus-visible:outline-[3px] focus-visible:outline-offset-0",
         "[&:has([role=checkbox])]:w-8 [&:has([role=checkbox])]:pl-1",
         "[&:has([role=radio])]:w-8 [&:has([role=radio])]:pl-1",
         className,

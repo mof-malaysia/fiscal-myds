@@ -54,7 +54,7 @@ export const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(
                 <button
                   type="button"
                   aria-label="Remove"
-                  className="text-txt-black-500 hover:bg-bg-washed-active hover:text-txt-black-900 focus-visible:outline-fr-primary rounded-full p-0.5 transition outline-none focus-visible:outline-2"
+                  className="text-txt-black-500 hover:bg-bg-washed-active hover:text-txt-black-900 focus-visible:outline-fr-primary rounded-full p-0.5 transition outline-none focus-visible:outline-2 focus-visible:outline-solid"
                   onClick={onDismiss}
                 >
                   <CrossIcon className="size-4" aria-hidden />

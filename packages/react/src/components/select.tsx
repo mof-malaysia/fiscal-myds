@@ -264,7 +264,7 @@ SelectCounter.displayName = "SelectCounter";
 const select_trigger_cva = cva(
   [
     "group inline-flex select-none items-center gap-1.5 outline-none rounded-md w-fit text-txt-black-900",
-    "focus:ring focus:ring-fr-primary",
+    "focus-visible:ring focus-visible:ring-fr-primary",
     "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:border-transparent disabled:cursor-not-allowed",
     "data-[disabled]:bg-bg-white-disabled data-[disabled]:text-txt-black-disabled data-[disabled]:border-transparent data-[disabled]:cursor-not-allowed",
   ],
@@ -358,7 +358,7 @@ const select_content_cva = cva(
   [
     "bg-bg-dialog relative py-1 max-h-64 min-w-[max(8rem,var(--anchor-width))] overflow-y-auto outline-none",
     "rounded-md border border-otl-gray-200 shadow-context-menu",
-    "data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+    "data-[open]:animate-in data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   ],
   {
     variants: {

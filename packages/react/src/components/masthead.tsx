@@ -51,7 +51,7 @@ const Masthead: FunctionComponent<ComponentProps<"div">> = ({
         data-nosnippet
         {...props}
       >
-        <div className="mx-auto grid w-full max-w-screen-xl outline-none transition-[grid-template-rows] duration-500 print:hidden">
+        <div className="mx-auto grid w-full max-w-screen-xl transition-[grid-template-rows] duration-500 outline-none print:hidden">
           {children}
         </div>
       </div>
@@ -67,7 +67,7 @@ const MastheadHeader: FunctionComponent<ComponentProps<"div">> = ({
 }) => {
   return (
     <div
-      className="px-4.5 flex items-center gap-2 overflow-x-hidden py-2 outline-none sm:py-1 md:px-6"
+      className="flex items-center gap-2 overflow-x-hidden px-4.5 py-2 outline-none sm:py-1 md:px-6"
       {...props}
     >
       <MalaysiaFlagIcon className="inline-block aspect-auto w-fit shrink-0" />
@@ -108,16 +108,16 @@ const MastheadTrigger: FunctionComponent<ComponentProps<"button">> = ({
 
   return (
     <CollapsiblePrimitive.Trigger
-      className="text-txt-primary focus:ring-fr-primary bg-otl-gray-200 group flex items-center gap-0.5 rounded-md p-1 px-1 focus:outline-none focus:ring focus:ring-inset sm:bg-transparent sm:pl-1.5 xl:rounded-sm"
+      className="text-txt-primary focus-visible:ring-fr-primary bg-otl-gray-200 group flex items-center gap-0.5 rounded-md p-1 px-1 focus:outline-none focus-visible:ring focus-visible:ring-inset sm:bg-transparent sm:pl-1.5 xl:rounded-sm"
       aria-label="Toggle masthead"
       tabIndex={0}
       onClick={handleToggle}
       {...props}
     >
-      <span className="text-txt-primary hidden select-none tracking-[-0.01em] sm:block">
+      <span className="text-txt-primary hidden tracking-[-0.01em] select-none sm:block">
         {children}
       </span>
-      <ChevronDownIcon className="size-4 transform transition-transform rotate-0 group-data-[panel-open]:rotate-180" />
+      <ChevronDownIcon className="size-4 rotate-0 transform transition-transform group-data-[panel-open]:rotate-180" />
     </CollapsiblePrimitive.Trigger>
   );
 };
@@ -137,7 +137,7 @@ const MastheadContent: FunctionComponent<
       )}
       {...props}
     >
-      <div className="px-4.5 gap-4.5 flex flex-col pb-6 pt-3 sm:grid-cols-2 sm:flex-row sm:pb-8 sm:pt-6 md:px-6">
+      <div className="flex flex-col gap-4.5 px-4.5 pt-3 pb-6 sm:grid-cols-2 sm:flex-row sm:pt-6 sm:pb-8 md:px-6">
         {children}
       </div>
     </CollapsiblePrimitive.Panel>

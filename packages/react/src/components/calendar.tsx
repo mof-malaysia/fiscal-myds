@@ -78,7 +78,7 @@ const Calendar: FC<CalendarProps> = ({
       month={month}
       onMonthChange={setMonth}
       className={clx(
-        "pb-4.5 w-full p-3",
+        "w-full p-3 pb-4.5",
         view === "day" ? "sm:w-fit" : "h-[342px]",
         className,
       )}
@@ -142,7 +142,7 @@ const Calendar: FC<CalendarProps> = ({
               className={clx(
                 "px-1.5 py-1 text-base font-semibold",
                 view === monthOrYear
-                  ? "text-txt-primary bg-bg-primary-50 ring-fr-primary focus:ring"
+                  ? "text-txt-primary bg-bg-primary-50 ring-fr-primary focus-visible:ring"
                   : "border-none",
               )}
               onClick={() =>
@@ -156,7 +156,7 @@ const Calendar: FC<CalendarProps> = ({
           return (
             <span
               {...props}
-              className="text-bg-black-400 relative flex w-fit select-none items-center gap-0.5"
+              className="text-bg-black-400 relative flex w-fit items-center gap-0.5 select-none"
             >
               {toggle("month", "LLLL")}/{toggle("year", "yyy")}
             </span>

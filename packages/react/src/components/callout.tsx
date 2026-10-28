@@ -132,7 +132,7 @@ const CalloutContent: ForwardRefExoticComponent<ComponentProps<"p">> =
         ref={ref}
         role="definition"
         className={clx(
-          "text-txt-black-900 peer text-sm font-normal leading-5",
+          "text-txt-black-900 peer text-content font-normal",
           className,
         )}
         {...props}

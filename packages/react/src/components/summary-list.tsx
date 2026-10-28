@@ -18,7 +18,7 @@ const SummaryListHeader: FunctionComponent<ComponentProps<"div">> = ({
 }) => (
   <h1
     className={clx(
-      "text-txt-black-900 text-xl font-semibold leading-[30px]",
+      "text-txt-black-900 text-xl leading-[30px] font-semibold",
       className,
     )}
     {...props}

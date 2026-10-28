@@ -14,7 +14,7 @@ const checkbox_cva = cva(
     "data-[checked]:bg-primary-600 data-[checked]:border-none data-[checked]:hover:border-primary-700 data-[checked]:hover:bg-primary-700",
     "data-[indeterminate]:bg-primary-600 data-[indeterminate]:border-none data-[indeterminate]:hover:border-primary-700 data-[indeterminate]:hover:bg-primary-700",
     "focus-visible:ring-[3px] focus-visible:ring-fr-primary",
-    "focus:ring-[3px] focus:ring-fr-primary",
+    "focus-visible:ring-[3px] focus-visible:ring-fr-primary",
     "data-[disabled]:opacity-30 data-[disabled]:cursor-not-allowed data-[disabled]:bg-bg-washed data-[checked]:data-[disabled]:bg-primary-600 data-[indeterminate]:data-[disabled]:bg-primary-600",
   ],
   {

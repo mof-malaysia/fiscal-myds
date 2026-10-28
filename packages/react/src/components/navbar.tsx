@@ -151,7 +151,7 @@ const NavbarMenu: FunctionComponent<NavigationMenuProps> = ({
             className={clx(
               "bg-bg-white shadow-context-menu min-w-[220px] rounded-md p-1.5 outline-none",
               "data-[open]:animate-in data-[open]:fade-in-0",
-              "data-[closed]:animate-out data-[closed]:fade-out-0",
+              "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:fade-out-0",
             )}
           >
             <NavigationMenuPrimitive.Viewport className="relative" />
@@ -214,7 +214,7 @@ const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
                 "absolute h-dvh w-[var(--anchor-width)]",
                 "bg-gray-700/60",
                 "group-data-[open]:animate-in group-data-[open]:fade-in-0",
-                "group-data-[closed]:animate-out group-data-[closed]:fade-out-0",
+                "group-data-[closed]:animate-out group-data-[closed]:fill-mode-forwards group-data-[closed]:fade-out-0",
               )}
               aria-hidden
               onClick={() => setShow(false)}
@@ -225,7 +225,7 @@ const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
                 "border-otl-gray-200 rounded-md rounded-t-none border border-t-0 outline-none",
                 "bg-bg-dialog text-txt-black-900 shadow-context-menu",
                 "group-data-[open]:animate-in group-data-[open]:fade-in-0 group-data-[open]:slide-in-from-top-2",
-                "group-data-[closed]:animate-out group-data-[closed]:fade-out-0 group-data-[closed]:slide-out-to-top-2",
+                "group-data-[closed]:animate-out group-data-[closed]:fill-mode-forwards group-data-[closed]:fade-out-0 group-data-[closed]:slide-out-to-top-2",
               )}
             >
               <NavbarMobileContext.Provider value={true}>

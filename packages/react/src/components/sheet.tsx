@@ -17,7 +17,9 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Backdrop
     className={clx(
-      "data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 bg-bg-washed fixed inset-0 z-50",
+      "data-[open]:animate-in data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:fade-out-0 data-[open]:fade-in-0 bg-bg-washed fixed inset-0 z-50",
+      // Match the panel (300ms close, 500ms open) so the overlay never finishes first
+      "data-[closed]:duration-300 data-[open]:duration-500",
       className,
     )}
     {...props}
@@ -27,7 +29,7 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = "SheetOverlay";
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 p-6 shadow-context-menu transition ease-in-out data-[open]:animate-in data-[closed]:animate-out data-[closed]:duration-300 data-[open]:duration-500",
+  "fixed z-50 gap-4 p-6 shadow-context-menu transition ease-in-out data-[open]:animate-in data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:duration-300 data-[open]:duration-500",
   {
     variants: {
       side: {

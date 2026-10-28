@@ -5,7 +5,7 @@ const text_area_cva = cva(
   [
     "w-full rounded border border-otl-control bg-bg-white resize-none",
     "placeholder:text-txt-black-500 text-txt-black-700 transition-colors font-body placeholder:font-body",
-    "focus:outline-none focus:ring focus:ring-fr-primary focus:border-otl-primary-300",
+    "focus:outline-none focus-visible:ring focus-visible:ring-fr-primary focus-visible:border-otl-primary-300",
     "disabled:bg-bg-washed disabled:cursor-not-allowed disabled:text-txt-black-disabled",
   ],
   {
