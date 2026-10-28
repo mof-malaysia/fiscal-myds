@@ -46,7 +46,7 @@ The reference for craft is Linear: restraint, soft surfaces instead of outlines,
 
 ## Accessibility & Inclusion
 
-- **WCAG 2.2 AA minimum** across all components; the Storybook test runner enforces axe checks in CI.
+- **WCAG 2.2 AA minimum** across all components. Check each story in the Storybook a11y panel (axe); automated axe checks in the test runner and CI are planned but not in place yet.
 - **Older citizens:** comfortable density uses 16px body text, generous touch targets (at least 44px for primary controls), high-contrast secondary text (no light-grey hint text), and plain-language copy.
 - **Officers in long sessions:** compact density stays readable at 14px, avoids low-contrast text and visual noise, and keeps dark mode a first-class theme for eye comfort.
 - **Bilingual BM/EN:** Malay strings run longer than English; components must hold both without truncating key information.

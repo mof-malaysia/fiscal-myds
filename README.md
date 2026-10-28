@@ -8,11 +8,11 @@
 2. **Component registries**, one per tier:
    - **@myds-core** - 40 shared primitives and government chrome, plus utils and hooks
    - **@myds-app** - 35 service and officer tools
-   - **@myds-marketing** - 5 agency site components and 7 page blocks
+   - **@myds-marketing** - 6 agency site components and 7 page blocks
 3. **@myds-icon Registry** - 220+ icons
 4. **Storybook** - Interactive component browser
 
-**Total: 315 items across 5 registries**
+**Total: 316 items across 5 registries**
 
 ## Installation
 
@@ -41,8 +41,11 @@ Then import the styles in your global CSS:
 /* app/globals.css */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "../styles/myds.css";
 ```
+
+`myds-init` installs `tw-animate-css` for the component animations; import it before `myds.css`.
 
 Every item lives at `https://mof-malaysia.github.io/fiscal-myds/registry/<core|app|marketing|icons|style>/styles/default/<name>.json`. See the registry catalogs (`https://mof-malaysia.github.io/fiscal-myds/registry/core/index.json`, `.../app/index.json`, `.../marketing/index.json`, `.../icons/index.json`, `.../style/index.json`) for the names.
 
@@ -68,14 +71,14 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 
 ### Where files go
 
-| Item | Installed to |
-| --- | --- |
-| Components (all tiers) | `components/ui/<name>.tsx` |
-| Marketing blocks | `components/blocks/<name>.tsx` |
-| Icons | `components/ui/icons/<name>.tsx` |
-| `utils` (`clx`) | `lib/myds/utils/` (leaves shadcn's `lib/utils.ts` alone) |
-| `hooks` | `lib/myds/hooks/` |
-| Styles | `styles/myds.css` or `styles/myds/*.css` |
+| Item                   | Installed to                                             |
+| ---------------------- | -------------------------------------------------------- |
+| Components (all tiers) | `components/ui/<name>.tsx`                               |
+| Marketing blocks       | `components/blocks/<name>.tsx`                           |
+| Icons                  | `components/ui/icons/<name>.tsx`                         |
+| `utils` (`clx`)        | `lib/myds/utils/` (leaves shadcn's `lib/utils.ts` alone) |
+| `hooks`                | `lib/myds/hooks/`                                        |
+| Styles                 | `styles/myds.css` or `styles/myds/*.css`                 |
 
 ### Requirements
 
@@ -109,11 +112,11 @@ Service and officer tools: forms, data, workflows.
 
 app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, search-bar, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar
 
-### Marketing components (5) and blocks (7) — `registry/marketing`
+### Marketing components (6) and blocks (7) — `registry/marketing`
 
 Agency and landing sites. Blocks are composed page sections (`registry:block`) installed to `components/blocks/`.
 
-- Components: accordion, announce-bar, carousel, navbar, site-footer
+- Components: accordion, announce-bar, carousel, navbar, section-heading, site-footer
 - Blocks: cta-band, faq, feature-grid, hero, logo-cloud, stats-band, testimonial
 
 ### Icons (220)
@@ -132,25 +135,47 @@ See [REGISTRY.md](./REGISTRY.md) for full component list and details.
 - **📦 Registry Catalog**: [https://mof-malaysia.github.io/fiscal-myds/registry](https://mof-malaysia.github.io/fiscal-myds/registry/index.json)
 - **Registry Docs**: See [REGISTRY.md](./REGISTRY.md)
 - **Deployment Guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
+- **Design and product**: [DESIGN.md](./DESIGN.md), [PRODUCT.md](./PRODUCT.md), [COMPONENT-ROADMAP.md](./COMPONENT-ROADMAP.md)
 
-## important note
+## Development
 
-### 1. Tailwind Intellisense Workaround
+### Repository layout
 
-MYDS incorporates a unified tailwind config file, as the base config for multiple apps/packages. If you are using Tailwind Intellisense extension on VSCode, you may lose the extension's ability to auto-suggest and CSS preview if you work within `packages/**`. This is because the extension requires `tailwind.config` to be available in the local package workspace, which is not defined in individual packages.
-
-To solve this, add the following in your VSCode **Workspace settings** (_Not your User settings_):
-
-```json
-// .vscode/settings.json
-{
-  "tailwindCSS.experimental.configFile": {
-    "apps/docs/tailwind.config.ts": "apps/docs/**",
-    "packages/tailwindcss/tailwind.config.ts": "packages/**"
-  }
-}
+```
+apps/
+  storybook/        Component browser, deployed to GitHub Pages
+  docs/             Legacy docs site (being deprecated; not linted)
+packages/
+  react/            Component source, by tier: src/components/{core,app,marketing}
+  style/            Tailwind v4 tokens and themes (source for @myds-style)
+  _typescript/      Shared tsconfig presets
+registry/           Generated registry JSON (committed, served by GitHub Pages)
+scripts/
+  registry/         Registry generators (pnpm registry:build)
+  icons/            SVG to React icon converter (pnpm icons:generate)
+  deploy/           GitHub Pages bundle (pnpm deploy:prepare)
 ```
 
-This will override Intellisense's auto-config-locator to point to the defined config files and together with its glob scope.
+### Setup
+
+Requires Node.js 18+ and pnpm 9 (pinned via `packageManager`).
+
+```bash
+pnpm install                                   # also installs the lefthook git hooks
+pnpm --filter @mof-malaysia/myds-storybook dev # Storybook at http://localhost:6006
+```
+
+### Common commands
+
+| Command                        | What it does                                                    |
+| ------------------------------ | --------------------------------------------------------------- |
+| `pnpm lint`                    | oxlint across the workspace; fails on any warning               |
+| `pnpm typecheck`               | `tsc --noEmit` in every package, via Turborepo                  |
+| `pnpm format`                  | Prettier over `.ts`, `.tsx` and `.md` files                     |
+| `pnpm icons:generate`          | Rebuild `packages/react/src/icons` from `src/svg/icons/*.svg`   |
+| `pnpm components:sync-exports` | Regenerate `packages/react/package.json` exports from the tiers |
+| `pnpm registry:build`          | Regenerate everything under `registry/`                         |
+
+Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow.
 
 Made with ❤️ by MY tech folks

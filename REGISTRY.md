@@ -4,7 +4,7 @@ This document describes the MYDS shadcn-compatible component registry structure 
 
 ## Overview
 
-MYDS now supports a **shadcn-compatible registry** system that allows users to copy component source code directly into their projects instead of installing them as npm packages. This gives users full ownership and control over the components.
+MYDS is distributed as a **shadcn-compatible registry**: the shadcn CLI copies component source into your project instead of installing an npm package, so you own and can change the code.
 
 ## Registry Structure
 
@@ -36,22 +36,22 @@ A component goes in the lowest tier that every consumer of it belongs to. App an
 
 - **Core (40)**: alert-dialog, avatar, backlink, breadcrumb, button, callout, card, checkbox, cookie-banner, details, dialog, field, fieldset, footer, form, input, inset-text, label, link, masthead, menu, phase-banner, pill, popover, radio, scroll-area, select, separator, skeleton, skiplink, spinner, switch, tabs, tag, textarea, theme-switch, toast, toggle, toggle-group, tooltip. Plus `utils` and `hooks`.
 - **App (35)**: app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, search-bar, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar.
-- **Marketing (12)**: accordion, announce-bar, carousel, cta-band, faq, feature-grid, hero, logo-cloud, navbar, site-footer, stats-band, testimonial.
+- **Marketing (13)**: accordion, announce-bar, carousel, navbar, section-heading, site-footer; blocks cta-band, faq, feature-grid, hero, logo-cloud, stats-band, testimonial.
 
 ## Migrating from 1.x
 
 The flat `registry/ui` registry is gone. Re-add components from their tier's URL. Renamed or replaced:
 
-| 1.x | 2.0 |
-| --- | --- |
-| `ui/toggle` (Toggle + ToggleThumb) | `core/switch` (Switch, on Base UI Switch). `core/toggle` is now a pressed button. |
-| `ui/dropdown` (Dropdown*) | `core/menu` (Menu*, with checkbox/radio items, groups, submenus) |
-| `ui/input-otp` (InputOTP, InputOTPSlot; `input-otp` package) | `app/otp-field` (OTPField, OTPFieldSlot, OTPFieldSeparator; Base UI) |
-| `ui/footer` (multi-column: Footer, SiteInfo, SiteLinkGroup, ...) | `marketing/site-footer` (SiteFooter, SiteFooterInfo, SiteFooterLinkGroup, ...) |
-| — | `core/footer` is the plain mandatory government footer |
-| `ui/accordion`, `ui/announce-bar`, `ui/navbar` | `marketing/...` |
-| `ui/calendar`, `data-table`, `date-*`, `pagination`, `search-bar`, `sheet`, `summary-list`, `table` | `app/...` |
-| everything else | `core/...` |
+| 1.x                                                                                                 | 2.0                                                                               |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ui/toggle` (Toggle + ToggleThumb)                                                                  | `core/switch` (Switch, on Base UI Switch). `core/toggle` is now a pressed button. |
+| `ui/dropdown` (Dropdown\*)                                                                          | `core/menu` (Menu\*, with checkbox/radio items, groups, submenus)                 |
+| `ui/input-otp` (InputOTP, InputOTPSlot; `input-otp` package)                                        | `app/otp-field` (OTPField, OTPFieldSlot, OTPFieldSeparator; Base UI)              |
+| `ui/footer` (multi-column: Footer, SiteInfo, SiteLinkGroup, ...)                                    | `marketing/site-footer` (SiteFooter, SiteFooterInfo, SiteFooterLinkGroup, ...)    |
+| —                                                                                                   | `core/footer` is the plain mandatory government footer                            |
+| `ui/accordion`, `ui/announce-bar`, `ui/navbar`                                                      | `marketing/...`                                                                   |
+| `ui/calendar`, `data-table`, `date-*`, `pagination`, `search-bar`, `sheet`, `summary-list`, `table` | `app/...`                                                                         |
+| everything else                                                                                     | `core/...`                                                                        |
 
 ## How to Use
 
@@ -93,6 +93,7 @@ npx shadcn@latest add http://localhost:8765/registry/core/styles/default/button.
 ```
 
 This will:
+
 - Copy the component source code to your project
 - Install npm dependencies (`@base-ui/react`, etc.), pinned to the ranges MYDS is built against
 - Install registry dependencies (utils, hooks, icons, other components) via their full URLs
@@ -100,14 +101,14 @@ This will:
 #### 5. Use the component
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export function MyComponent() {
   return (
     <Button variant="primary-fill" size="medium">
       Click me
     </Button>
-  )
+  );
 }
 ```
 
@@ -116,7 +117,9 @@ export function MyComponent() {
 Components have two types of dependencies:
 
 #### npm Dependencies
+
 External packages that will be installed via npm/pnpm/yarn:
+
 - `@base-ui/react` - Primitive components
 - `class-variance-authority` - Variant management
 - `tailwind-merge` - Tailwind class merging
@@ -126,7 +129,9 @@ External packages that will be installed via npm/pnpm/yarn:
 - `date-fns` - Date formatting
 
 #### Registry Dependencies
+
 Other MYDS items, referenced by full URL:
+
 - `utils` - Utility functions (clx)
 - `hooks` - Custom React hooks
 - Icons and other components (e.g., button, menu), possibly from the core registry
@@ -164,8 +169,10 @@ pnpm registry:clean
   - Pins npm `dependencies` to the ranges in `packages/react/package.json`.
   - Emits the blocks listed in `MARKETING_BLOCKS` as `registry:block`.
   - Fails if an app item depends on marketing or vice versa.
-- `generate-icons.ts` writes one item per file in `packages/react/src/icons`.
+- `generate-icons.ts` writes one item per file in `packages/react/src/icons`. Those files are generated from `packages/react/src/svg/icons/*.svg` by `pnpm icons:generate`; run it first when the SVGs change.
 - `generate-style.ts` reads `packages/style/styles` and writes `myds-init` (combined `styles/myds.css`) plus the granular style items (`styles/myds/<name>.css`).
+
+After adding, moving or renaming a component file, run `pnpm components:sync-exports` so `packages/react/package.json` exports match the tiers.
 
 Registry dependency URLs use `https://mof-malaysia.github.io/fiscal-myds/registry` by default. Set `MYDS_REGISTRY_URL` to build against another host (e.g. a local server for testing). Always rebuild with the default before committing the `registry/` output.
 
@@ -233,6 +240,7 @@ npx shadcn@latest add http://localhost:8765/registry/core/styles/default/button.
 ### 5. Test the component
 
 Create a test page and verify:
+
 - Component files are copied correctly
 - Dependencies are installed
 - Imports resolve properly (`npx tsc --noEmit`)
@@ -261,18 +269,19 @@ data-table → table, button, checkbox, icons, utils
 
 The shadcn CLI automatically resolves and installs these dependencies.
 
-
 ## Troubleshooting
 
 ### Component not found
 
 If you get "was not found" errors:
+
 1. Check the full item URL opens in a browser
-2. Ensure the component name matches a file in `registry/<ui|icons|style>/styles/default/`
+2. Ensure the component name matches a file in `registry/<core|app|marketing|icons|style>/styles/default/`. 1.x `registry/ui` URLs no longer exist; see [Migrating from 1.x](#migrating-from-1x).
 
 ### Import errors
 
 If imports don't resolve:
+
 1. Check that aliases are configured in `components.json` (`npx shadcn@latest init` sets them up)
 2. Verify `tsconfig.json` maps `@/*` to your source root
 
@@ -283,12 +292,14 @@ MYDS is built on Base UI. Make sure `components.json` uses a Base UI style (e.g.
 ### Missing styles
 
 If components don't look correct:
+
 1. Ensure `styles/myds.css` exists (`myds-init` was added)
 2. Verify it is imported after `@import "tailwindcss";` and `@import "tw-animate-css";` in your global CSS
 
 ### Dependency issues
 
 If npm dependencies aren't installing:
+
 1. Check your package manager (npm/pnpm/yarn)
 2. Clear cache and reinstall: `rm -rf node_modules && pnpm install`
 3. Verify internet connection for package registry
@@ -296,20 +307,18 @@ If npm dependencies aren't installing:
 ## Future Enhancements
 
 - [ ] Add versioning support for registry
-- [ ] Create visual component browser
 - [ ] Support multiple style variants
-- [ ] Add automated testing for registry
-- [ ] Create CI/CD pipeline for automatic deployment
-- [ ] Add component usage analytics
+- [ ] Automated tests: Storybook interaction and axe checks, and a check of the generated registry
+- [ ] Re-enable the GitHub Pages workflow and run lint and typecheck on pull requests
 
 ## Support
 
 For issues or questions:
-- File an issue on GitHub
-- Check the documentation at your docs site
-- Join the community discussions
+
+- File an issue at [mof-malaysia/fiscal-myds](https://github.com/mof-malaysia/fiscal-myds/issues)
+- Browse components in [Storybook](https://mof-malaysia.github.io/fiscal-myds/storybook)
 
 ---
 
 **Registry Version**: 2.0.0
-**Last Updated**: 2025-11-19
+**Last Updated**: 2026-10-28

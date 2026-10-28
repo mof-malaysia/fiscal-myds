@@ -4,13 +4,13 @@ Thank you for your interest in contributing to MYDS! We welcome all contribution
 
 ## Issue Reporting
 
-If you've found a bug in MYDS that you'd like to fix, you may raise it in [Issues](https://github.com/govtechmy/myds/issues) first. After the bug is confirmed by our team, we may opt to resolve it ourselves or open it to the public (or you) to submit a pull request with the fix, depending on how critical the bug is.
+If you've found a bug in MYDS that you'd like to fix, you may raise it in [Issues](https://github.com/mof-malaysia/fiscal-myds/issues) first. After the bug is confirmed by our team, we may opt to resolve it ourselves or open it to the public (or you) to submit a pull request with the fix, depending on how critical the bug is.
 
 We recommend searching the existing issues to avoid duplicates.
 
 ## New features
 
-If there's a new feature you'd like to see added to MYDS, share your idea with us in the [Discussion](https://github.com/govtechmy/myds/discussions) forum to get it on our radar as something to consider for a future release.
+If there's a new feature you'd like to see added to MYDS, share your idea with us in the [Discussions](https://github.com/mof-malaysia/fiscal-myds/discussions) forum to get it on our radar as something to consider for a future release.
 
 Please note that we don't often accept pull requests for new features. Adding a new feature or component to MYDS requires us to think through the entire problem ourselves to make sure we agree with the proposed API, which means the feature needs to be high on our own priority list for us to be able to give it the attention it needs.
 

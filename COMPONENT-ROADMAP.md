@@ -1,6 +1,6 @@
 # Component Roadmap: Fiscal MYDS 2.0
 
-Status: implemented on `feat/restore-myds-colors` (uncommitted). Breaking release (2.0).
+Status: implemented on `feat/myds-2-tiered-components` (d449458). Breaking release (2.0).
 
 ## Decisions
 
@@ -25,73 +25,74 @@ App and Marketing items may depend on Core. App and Marketing never depend on ea
 
 ### Core
 
-| Component | Status | Base UI primitive |
-|---|---|---|
-| button, link, label, input, textarea, checkbox, radio, select, tooltip, popover, dialog, alert-dialog, spinner, tag, pill, callout, tabs, breadcrumb, toast, theme-switch | existing | (as today) |
-| switch | rebuild + rename (was `toggle`) | `switch` |
-| toggle (pressed button) | new | `toggle` |
-| toggle-group | new | `toggle-group` |
-| menu | rename (was `dropdown`) | `menu` |
-| field | new (label + hint + error + description, the base for every input) | `field` |
-| fieldset | new | `fieldset` |
-| form | new | `form` |
-| details (single disclosure) | new, documented | `collapsible` |
-| separator | new | `separator` |
-| scroll-area | new | `scroll-area` |
-| avatar | new | `avatar` |
-| skeleton | new | none |
-| card | new | none |
-| backlink | new, documented | none |
-| inset-text | new, documented | none |
-| **Gov chrome:** masthead, skiplink, cookie-banner, footer | existing | |
-| phase-banner | new, documented | none |
+| Component                                                                                                                                                                 | Status                                                             | Base UI primitive |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------------- |
+| button, link, label, input, textarea, checkbox, radio, select, tooltip, popover, dialog, alert-dialog, spinner, tag, pill, callout, tabs, breadcrumb, toast, theme-switch | existing                                                           | (as today)        |
+| switch                                                                                                                                                                    | rebuild + rename (was `toggle`)                                    | `switch`          |
+| toggle (pressed button)                                                                                                                                                   | new                                                                | `toggle`          |
+| toggle-group                                                                                                                                                              | new                                                                | `toggle-group`    |
+| menu                                                                                                                                                                      | rename (was `dropdown`)                                            | `menu`            |
+| field                                                                                                                                                                     | new (label + hint + error + description, the base for every input) | `field`           |
+| fieldset                                                                                                                                                                  | new                                                                | `fieldset`        |
+| form                                                                                                                                                                      | new                                                                | `form`            |
+| details (single disclosure)                                                                                                                                               | new, documented                                                    | `collapsible`     |
+| separator                                                                                                                                                                 | new                                                                | `separator`       |
+| scroll-area                                                                                                                                                               | new                                                                | `scroll-area`     |
+| avatar                                                                                                                                                                    | new                                                                | `avatar`          |
+| skeleton                                                                                                                                                                  | new                                                                | none              |
+| card                                                                                                                                                                      | new                                                                | none              |
+| backlink                                                                                                                                                                  | new, documented                                                    | none              |
+| inset-text                                                                                                                                                                | new, documented                                                    | none              |
+| **Gov chrome:** masthead, skiplink, cookie-banner, footer                                                                                                                 | existing                                                           |                   |
+| phase-banner                                                                                                                                                              | new, documented                                                    | none              |
 
 ### App
 
-| Component | Status | Base UI primitive |
-|---|---|---|
-| data-table, table, summary-list, pagination, calendar, date-field, date-picker, daterange-picker, search-bar, sheet | existing | (as today) |
-| otp-field | rebuild + rename (was `input-otp`, drops the `input-otp` dependency) | `otp-field` |
-| file-upload | new, documented | none (Field + dropzone) |
-| password-input | new, documented | `input` |
-| character-count | new, documented | `field` |
-| panel (confirmation: "payment received") | new, documented | none |
-| task-list | new, documented | none |
-| error-summary | new | none (links to Field errors) |
-| combobox | new | `combobox` |
-| autocomplete | new | `autocomplete` |
-| number-field + currency (MYR) variant | new | `number-field` |
-| checkbox-group | new | `checkbox-group` |
-| slider | new | `slider` |
-| progress | new | `progress` |
-| meter | new | `meter` |
-| stepper (multi-step form progress) | new | none |
-| app-shell / sidebar | new | `navigation-menu` / `collapsible` |
-| page-header | new | none |
-| stat (KPI tile) | new | none |
-| empty-state | new | none |
-| menubar | new | `menubar` |
-| toolbar | new | `toolbar` |
-| context-menu | new | `context-menu` |
-| command (palette) | new, on existing `cmdk` dep | none |
-| drawer | new | `drawer` |
-| preview-card | new | `preview-card` |
+| Component                                                                                                           | Status                                                               | Base UI primitive                 |
+| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------- |
+| data-table, table, summary-list, pagination, calendar, date-field, date-picker, daterange-picker, search-bar, sheet | existing                                                             | (as today)                        |
+| otp-field                                                                                                           | rebuild + rename (was `input-otp`, drops the `input-otp` dependency) | `otp-field`                       |
+| file-upload                                                                                                         | new, documented                                                      | none (Field + dropzone)           |
+| password-input                                                                                                      | new, documented                                                      | `input`                           |
+| character-count                                                                                                     | new, documented                                                      | `field`                           |
+| panel (confirmation: "payment received")                                                                            | new, documented                                                      | none                              |
+| task-list                                                                                                           | new, documented                                                      | none                              |
+| error-summary                                                                                                       | new                                                                  | none (links to Field errors)      |
+| combobox                                                                                                            | new                                                                  | `combobox`                        |
+| autocomplete                                                                                                        | new                                                                  | `autocomplete`                    |
+| number-field + currency (MYR) variant                                                                               | new                                                                  | `number-field`                    |
+| checkbox-group                                                                                                      | new                                                                  | `checkbox-group`                  |
+| slider                                                                                                              | new                                                                  | `slider`                          |
+| progress                                                                                                            | new                                                                  | `progress`                        |
+| meter                                                                                                               | new                                                                  | `meter`                           |
+| stepper (multi-step form progress)                                                                                  | new                                                                  | none                              |
+| app-shell / sidebar                                                                                                 | new                                                                  | `navigation-menu` / `collapsible` |
+| page-header                                                                                                         | new                                                                  | none                              |
+| stat (KPI tile)                                                                                                     | new                                                                  | none                              |
+| empty-state                                                                                                         | new                                                                  | none                              |
+| menubar                                                                                                             | new                                                                  | `menubar`                         |
+| toolbar                                                                                                             | new                                                                  | `toolbar`                         |
+| context-menu                                                                                                        | new                                                                  | `context-menu`                    |
+| command (palette)                                                                                                   | new, on existing `cmdk` dep                                          | none                              |
+| drawer                                                                                                              | new                                                                  | `drawer`                          |
+| preview-card                                                                                                        | new                                                                  | `preview-card`                    |
 
 ### Marketing
 
-| Component | Status | Type |
-|---|---|---|
-| accordion | existing, moved | ui (`accordion`) |
-| announce-bar | existing, moved | ui |
-| navbar (mega navigation) | existing, moved | ui (`navigation-menu`) |
-| carousel | promote from docs-only into the package | ui |
-| hero | new | block |
-| feature-grid | new | block |
-| faq (built on accordion) | new | block |
-| stats-band | new | block |
-| cta-band | new | block |
-| logo-cloud | new | block |
-| testimonial | new | block |
+| Component                                       | Status                                  | Type                   |
+| ----------------------------------------------- | --------------------------------------- | ---------------------- |
+| accordion                                       | existing, moved                         | ui (`accordion`)       |
+| announce-bar                                    | existing, moved                         | ui                     |
+| navbar (mega navigation)                        | existing, moved                         | ui (`navigation-menu`) |
+| carousel                                        | promote from docs-only into the package | ui                     |
+| section-heading (shared heading for the blocks) | new                                     | ui                     |
+| hero                                            | new                                     | block                  |
+| feature-grid                                    | new                                     | block                  |
+| faq (built on accordion)                        | new                                     | block                  |
+| stats-band                                      | new                                     | block                  |
+| cta-band                                        | new                                     | block                  |
+| logo-cloud                                      | new                                     | block                  |
+| testimonial                                     | new                                     | block                  |
 
 ## Phases
 
@@ -135,13 +136,13 @@ Move accordion, announce-bar and navbar; promote carousel; build the hero, featu
 
 - Wraps the Base UI primitive where one exists; no custom focus, keyboard or ARIA logic that Base UI already provides.
 - Follows `DESIGN.md`: tokens only, separates with surface rather than outlines, works in both comfortable and compact density, dark mode.
-- Storybook story with all variants and states; the axe check passes in the test runner.
+- Storybook story with all variants and states, with no violations in the Storybook a11y panel. (Automated axe checks in the test runner are planned but not in place yet.)
 - Registry item in the correct tier with correct `dependencies` and `registryDependencies`.
 - BM strings fit without truncating key information.
 
 ## Resolved questions
 
-- **Docs (EN and BM, Design and Develop).** Out of scope for 2.0: components and Storybook only. The docs site is not updated.
+- **Docs (EN and BM, Design and Develop).** Out of scope for 2.0: components and Storybook only. The docs site (`apps/docs`) is not updated and is being deprecated; it is excluded from linting.
 - **Transitory Assistance (CSS) docs section.** Out of scope with the rest of the docs.
 - **`react-chart`.** Left out.
 - **Footer.** Split: `footer` (Core) is the plain mandatory government footer; `site-footer` (Marketing) is the multi-column agency footer.
