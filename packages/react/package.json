@@ -115,6 +115,11 @@
       "import": "./src/components/core/inset-text.tsx",
       "require": "./src/components/core/inset-text.tsx"
     },
+    "./kbd": {
+      "type": "./src/components/core/kbd.tsx",
+      "import": "./src/components/core/kbd.tsx",
+      "require": "./src/components/core/kbd.tsx"
+    },
     "./label": {
       "type": "./src/components/core/label.tsx",
       "import": "./src/components/core/label.tsx",
@@ -290,6 +295,11 @@
       "import": "./src/components/app/daterange-picker.tsx",
       "require": "./src/components/app/daterange-picker.tsx"
     },
+    "./desk-shell": {
+      "type": "./src/components/app/desk-shell.tsx",
+      "import": "./src/components/app/desk-shell.tsx",
+      "require": "./src/components/app/desk-shell.tsx"
+    },
     "./drawer": {
       "type": "./src/components/app/drawer.tsx",
       "import": "./src/components/app/drawer.tsx",
@@ -370,10 +380,20 @@
       "import": "./src/components/app/sheet.tsx",
       "require": "./src/components/app/sheet.tsx"
     },
+    "./shortcuts": {
+      "type": "./src/components/app/shortcuts.tsx",
+      "import": "./src/components/app/shortcuts.tsx",
+      "require": "./src/components/app/shortcuts.tsx"
+    },
     "./slider": {
       "type": "./src/components/app/slider.tsx",
       "import": "./src/components/app/slider.tsx",
       "require": "./src/components/app/slider.tsx"
+    },
+    "./split-pane": {
+      "type": "./src/components/app/split-pane.tsx",
+      "import": "./src/components/app/split-pane.tsx",
+      "require": "./src/components/app/split-pane.tsx"
     },
     "./stat": {
       "type": "./src/components/app/stat.tsx",

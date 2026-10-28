@@ -269,6 +269,17 @@
       ]
     },
     {
+      "name": "kbd",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+      ],
+      "files": [
+        "styles/default/kbd.json"
+      ]
+    },
+    {
       "name": "label",
       "type": "registry:ui",
       "dependencies": [

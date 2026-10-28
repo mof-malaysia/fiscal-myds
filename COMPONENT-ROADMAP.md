@@ -43,6 +43,7 @@ App and Marketing items may depend on Core. App and Marketing never depend on ea
 | card                                                                                                                                                                      | new                                                                | none              |
 | backlink                                                                                                                                                                  | new, documented                                                    | none              |
 | inset-text                                                                                                                                                                | new, documented                                                    | none              |
+| kbd (shortcut key caps)                                                                                                                                                   | new                                                                | none              |
 | **Gov chrome:** masthead, skiplink, cookie-banner, footer                                                                                                                 | existing                                                           |                   |
 | phase-banner                                                                                                                                                              | new, documented                                                    | none              |
 
@@ -67,6 +68,9 @@ App and Marketing items may depend on Core. App and Marketing never depend on ea
 | meter                                                                                                               | new                                                                  | `meter`                           |
 | stepper (multi-step form progress)                                                                                  | new                                                                  | none                              |
 | app-shell / sidebar                                                                                                 | new                                                                  | `navigation-menu` / `collapsible` |
+| desk-shell (compact rail, status bar)                                                                               | new                                                                  | none                              |
+| shortcuts (registry, ⌘K palette, ? cheat sheet)                                                                     | new, on `command`                                                    | none                              |
+| split-pane                                                                                                          | new                                                                  | none                              |
 | page-header                                                                                                         | new                                                                  | none                              |
 | stat (KPI tile)                                                                                                     | new                                                                  | none                              |
 | empty-state                                                                                                         | new                                                                  | none                              |
@@ -126,7 +130,7 @@ error-summary, combobox, autocomplete, number-field (with MYR currency), checkbo
 
 ### Phase 4: App shell and data
 
-app-shell/sidebar, page-header, card, stat, progress, meter, skeleton, empty-state, avatar, separator, scroll-area, menubar, toolbar, context-menu, command, drawer, preview-card.
+app-shell/sidebar, desk-shell, shortcuts, split-pane, page-header, card, stat, progress, meter, skeleton, empty-state, avatar, separator, scroll-area, menubar, toolbar, context-menu, command, drawer, preview-card.
 
 ### Phase 5: Marketing
 

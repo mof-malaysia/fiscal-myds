@@ -125,6 +125,8 @@ interface DrawerContentProps
   extends WithClassName<DrawerPrimitive.Popup.Props> {
   /** Element to portal the drawer into. Defaults to `document.body`. */
   container?: DrawerPrimitive.Portal.Props["container"];
+  /** Keep the drawer's contents mounted (and hidden) while it is closed. */
+  keepMounted?: DrawerPrimitive.Portal.Props["keepMounted"];
   /** Show the grab handle. Defaults to `true` for bottom drawers only. */
   handle?: boolean;
   /** Hide the ghost close button in the top corner. */
@@ -142,6 +144,7 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     {
       className,
       container,
+      keepMounted,
       handle,
       hideClose = false,
       closeLabel = "Close",
@@ -154,7 +157,7 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     const showHandle = handle ?? side === "bottom";
 
     return (
-      <DrawerPrimitive.Portal container={container}>
+      <DrawerPrimitive.Portal container={container} keepMounted={keepMounted}>
         <DrawerPrimitive.Backdrop
           className={clx(
             "fixed inset-0 z-[900] min-h-dvh bg-gray-900",

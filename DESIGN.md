@@ -213,6 +213,7 @@ The system is quiet by construction. Surfaces are white and soft neutral greys; 
 It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (every element outlined in grey, boxes inside boxes), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).
 
 **Key Characteristics:**
+
 - Neutral surfaces with almost no borders; spacing and tone do the grouping.
 - The national MYDS blue, used sparingly for action, selection and focus.
 - A single typeface (Inter) with a real hierarchy and tabular figures for money.
@@ -220,7 +221,7 @@ It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailw
 - Flat at rest; shadows only for things that genuinely float.
 - Light and dark themes designed as equals, both verified for contrast.
 
-**Density.** Every component ships in two densities, switched by `data-density="comfortable" | "compact"` on any element (comfortable is the default on `:root`); component `size` props stay relative to it. *Comfortable* (citizen-facing, the default): 16px body text, 44px control height, 16–24px gaps. *Compact* (officer tools): 14px body text, 32px control height, 8–12px gaps. Density changes size and spacing only; colour, radius and behaviour stay identical.
+**Density.** Every component ships in two densities, switched by `data-density="comfortable" | "compact"` on any element (comfortable is the default on `:root`); component `size` props stay relative to it. _Comfortable_ (citizen-facing, the default): 16px body text, 44px control height, 16–24px gaps. _Compact_ (officer tools): 14px body text, 32px control height, 8–12px gaps. Density changes size and spacing only; colour, radius and behaviour stay identical.
 
 **Motion.** State changes only: hover, press, open, close, expand. 150–200ms with an ease-out curve (`cubic-bezier(0.16, 1, 0.3, 1)`). No entrance choreography, no bounce, and everything respects `prefers-reduced-motion`.
 
@@ -229,12 +230,14 @@ It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailw
 The national MYDS palette: a clear, confident blue on neutral zinc greys and white surfaces, with semantic colours as soft washes. The calm comes from how sparingly colour is used, not from muting it.
 
 ### Primary
+
 - **MYDS Blue** (#2563EB): the primary action button, links, the selected tab or nav item, checked checkboxes and radios. The national MYDS blue, kept so Fiscal MYDS stays recognisably part of the family. White text on it reads at 5.2:1; as text on Paper, 5.0:1.
 - **MYDS Blue Deep** (#1D4ED8): hover and pressed state of primary buttons and links.
 - **MYDS Blue Wash** (#EFF6FF): selected rows, the active item in a menu, info badges and callouts. MYDS Blue text on it reads at 4.8:1.
 - **Focus Blue** (#3A75F6): the focus ring only, drawn solid (never translucent) so it measures 4.0:1 against Paper.
 
 ### Neutral
+
 - **Paper** (#FAFAFA): the page canvas.
 - **Sheet** (#FFFFFF): raised content that needs to separate from Paper: dialogs, popovers, input fields, the main content panel in a layout.
 - **Well** (#F4F4F5): recessed or grouped areas (secondary buttons, filter bars, the sidebar, summary blocks) and the row hover in tables.
@@ -245,6 +248,7 @@ The national MYDS palette: a clear, confident blue on neutral zinc greys and whi
 - **Ink Tertiary** (#6B6B74): placeholders and meta text. 5.3:1 on Sheet. Never for anything the user must read to complete a task.
 
 ### Semantic
+
 - **Danger** (#B91C1C text) on **Danger Wash** (#FEF2F2), with **Danger Fill** (#DC2626) for destructive buttons: errors, destructive actions, overdue amounts.
 - **Success** (#15803D) on **Success Wash** (#F0FDF4): completed payments, approved status.
 - **Warning** (#A16207) on **Warning Wash** (#FEFCE8): upcoming deadlines, incomplete information.
@@ -252,9 +256,11 @@ The national MYDS palette: a clear, confident blue on neutral zinc greys and whi
 Every semantic pair reads at 4.75:1 or better. Status is always carried by text or an icon as well as colour.
 
 ### Dark theme
+
 Dark mode is a first-class theme for officers in long sessions, not an inversion. It uses the `dark-` tokens: Dark Paper (#161619) canvas, Dark Sheet (#18181B) for raised content, Dark Ink (#FFFFFF) text, Dark Ink Secondary (#D4D4D8) at 12:1, and Dark MYDS Blue (#6394FF) as the accent with Dark Sheet text on primary buttons (6.1:1). The same rules apply: tone, not lines.
 
 ### Named Rules
+
 **The One Blue Rule.** MYDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.
 
 **The Dark-Enough Rule.** Text the user needs to read is Ink or Ink Secondary, never lighter. Light-grey hint text is forbidden.
@@ -270,6 +276,7 @@ Dark mode is a first-class theme for officers in long sessions, not an inversion
 **Character:** One family, tuned rather than paired. Inter is neutral enough to disappear into a task and precise enough to make numbers trustworthy. Poppins is retired: its wide, round geometry fought Inter wherever they met.
 
 ### Hierarchy
+
 - **Display** (600, 2rem / 32px, 1.25, -0.02em): page titles on service landing screens; one per page at most.
 - **Headline** (600, 1.5rem / 24px, 1.33, -0.015em): section titles, dialog titles on high-stakes confirmations.
 - **Title** (600, 1.125rem / 18px, 1.45, -0.01em): card and panel headings, form section headings, standard dialog titles.
@@ -282,6 +289,7 @@ Dark mode is a first-class theme for officers in long sessions, not an inversion
 The scale steps at roughly 1.2–1.33, so each level is visibly distinct. Hierarchy comes from size and weight together; never from colour alone.
 
 ### Named Rules
+
 **The Floor Rule.** Nothing is smaller than 13px, and 13px is only for labels in the compact density. Citizen-facing text starts at 16px.
 
 **The Tabular Money Rule.** Every amount uses tabular figures and right-aligns in columns, so ringgit and sen line up and can be compared at a glance.
@@ -293,18 +301,22 @@ The scale steps at roughly 1.2–1.33, so each level is visibly distinct. Hierar
 Flat by default, with depth expressed through tone: Paper is the floor, Sheet sits on it, Well recesses into it. Shadows exist only for layers that genuinely float above the page and must be dismissed: menus, popovers, select lists, toasts and dialogs. Buttons, inputs, cards and table rows never cast a shadow.
 
 ### Shadow Vocabulary
+
 - **Float** (`box-shadow: 0 1px 2px rgba(22, 27, 34, 0.06), 0 8px 24px rgba(22, 27, 34, 0.08)`): menus, popovers, select lists, tooltips, toasts.
 - **Lift** (`box-shadow: 0 2px 4px rgba(22, 27, 34, 0.06), 0 24px 48px rgba(22, 27, 34, 0.14)`): dialogs and sheets, over a scrim of Ink at 40%.
 
 In the dark theme, floating layers use Dark Sheet plus a 1px Dark Hairline edge instead of a heavier shadow, since shadows disappear on dark canvases.
 
 ### Named Rules
+
 **The Floats-Only Rule.** If it doesn't float above the page and close, it doesn't get a shadow. `shadow-button` is retired.
 
 ## 5. Components
 
 ### Buttons
+
 Calm and decisive: a clear primary, quiet everything else.
+
 - **Shape:** gently rounded corners (8px).
 - **Primary:** MYDS Blue fill, On MYDS Blue text, Label type, no border, no shadow. Comfortable 44px tall with 20px horizontal padding; compact 32px with 12px.
 - **Hover / Focus:** hover deepens to MYDS Blue Deep over 150ms. Focus shows a 2px Focus Blue ring offset 2px from the button. Pressed scales nothing; it simply holds the deep colour.
@@ -313,10 +325,12 @@ Calm and decisive: a clear primary, quiet everything else.
 - **Danger:** Danger Fill (#DC2626) with white text, used only for the final confirmation of a destructive action.
 
 ### Badges and Tags
+
 - **Style:** a wash background with matching coloured text, pill-shaped (9999px), Label Compact type, no border.
 - **State:** removable tags add a ghost ✕ inside the pill; the pill itself stays borderless.
 
 ### Cards / Containers
+
 - **Corner Style:** softly rounded (12px).
 - **Background:** Sheet on a Paper page, or Well for grouped secondary content.
 - **Shadow Strategy:** none (see Elevation).
@@ -324,6 +338,7 @@ Calm and decisive: a clear primary, quiet everything else.
 - **Internal Padding:** 24px comfortable, 16px compact. Cards are never nested.
 
 ### Inputs / Fields
+
 - **Style:** Sheet background, 1px Control Edge stroke, 8px radius; 44px tall comfortable, 32px compact. Labels sit above in Label type and Ink; hints sit below in Ink Secondary.
 - **Focus:** the stroke turns MYDS Blue and a 2px Focus Blue ring appears outside it.
 - **Error:** stroke and message turn Danger; the message always says what to do, not just what's wrong.
@@ -331,12 +346,16 @@ Calm and decisive: a clear primary, quiet everything else.
 - **Checkbox and radio:** 1.5px Control Edge stroke; checked fills MYDS Blue with an On MYDS Blue mark.
 
 ### Navigation
+
 - **Top bar:** Paper background with a single Hairline rule beneath. Items in Label type and Ink Secondary; hover moves to Ink; the current item is Ink with a 2px MYDS Blue underline.
 - **Tabs:** one style across the system: the same underline treatment as the top bar. The three tab variants collapse into this one.
 - **Mobile:** the menu opens as a full-width Sheet panel with comfortable-density rows (44px), no dividers between items.
+- **Desk layout** (`DeskShell`, officer workstations): always compact. A 48px icon rail on the Well with a Hairline on its right; the current section takes the Blue Wash and a 2px MYDS Blue bar on the rail's edge. A 40px top bar (breadcrumbs, underlined section tabs, ⌘K search) and a 28px status bar on the Well in Label Compact. Every destination has a shortcut shown in its tooltip as key caps (`Kbd`); ⌘K opens the command palette and `?` lists every shortcut. On narrow screens the rail opens as a left drawer with labelled rows.
 
 ### Data Table (signature component)
+
 The officer's home screen, built to be looked at all day.
+
 - **No outer border or box.** Header row is Paper with Label Compact text in Ink Secondary.
 - **Rows:** 48px tall in comfortable density and 40px in compact (52px in comfortable when a row holds actions), content text, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with MYDS Blue Wash.
 - **Amounts:** Amount type, right-aligned.
@@ -344,6 +363,7 @@ The officer's home screen, built to be looked at all day.
 - **Row actions:** ghost buttons or a single overflow menu, never a column of outlined "Edit" buttons.
 
 ### Dialogs
+
 - **Style:** Sheet, 12px radius, 24px padding, Lift shadow over the scrim. No dividers between header, body and footer; spacing separates them.
 - **Close:** a ghost icon button, unboxed.
 - **High-stakes confirmations:** the title states the consequence in plain language ("This will permanently delete 3 records"), the primary button repeats the verb ("Delete records"), and the safe option is the secondary button.
@@ -351,6 +371,7 @@ The officer's home screen, built to be looked at all day.
 ## 6. Do's and Don'ts
 
 ### Do:
+
 - **Do** separate groups with spacing (16–24px comfortable, 8–12px compact) and tone (Paper, Sheet, Well) before reaching for any line.
 - **Do** keep MYDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.
 - **Do** use Ink (#18181B) or Ink Secondary (#3F3F46) for any text a user must read; Ink Secondary measures 10:1.
@@ -361,6 +382,7 @@ The officer's home screen, built to be looked at all day.
 - **Do** confirm high-stakes moments (payment, submission, deletion) with plain language and a visible result.
 
 ### Don't:
+
 - **Don't** look like a **generic Tailwind starter**: no 1px grey outline on every button, tag, card and row, and no boxes inside boxes.
 - **Don't** look like an **old government portal**: no crests and banners on every screen, no gradients, no tiny text, no 2010-era layouts.
 - **Don't** look like **flashy fintech**: no neon accents, no dark gradient heroes, no glassmorphism.

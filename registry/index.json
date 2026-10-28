@@ -12,13 +12,13 @@
       "name": "@myds-core",
       "description": "Shared primitives, government site chrome, utilities and hooks",
       "url": "/registry/core",
-      "components": 42
+      "components": 43
     },
     "app": {
       "name": "@myds-app",
       "description": "Service and officer tools: forms, data, workflows",
       "url": "/registry/app",
-      "components": 35
+      "components": 38
     },
     "marketing": {
       "name": "@myds-marketing",
@@ -39,5 +39,5 @@
       "components": 6
     }
   },
-  "totalComponents": 316
+  "totalComponents": 320
 }

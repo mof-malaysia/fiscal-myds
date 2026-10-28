@@ -212,6 +212,28 @@
       ]
     },
     {
+      "name": "desk-shell",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/drawer.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/shortcuts.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/tooltip.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/hamburger-menu.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/search.json"
+      ],
+      "files": [
+        "styles/default/desk-shell.json"
+      ]
+    },
+    {
       "name": "drawer",
       "type": "registry:ui",
       "dependencies": [
@@ -458,6 +480,19 @@
       ]
     },
     {
+      "name": "shortcuts",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/command.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/dialog.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json"
+      ],
+      "files": [
+        "styles/default/shortcuts.json"
+      ]
+    },
+    {
       "name": "slider",
       "type": "registry:ui",
       "dependencies": [
@@ -468,6 +503,17 @@
       ],
       "files": [
         "styles/default/slider.json"
+      ]
+    },
+    {
+      "name": "split-pane",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+      ],
+      "files": [
+        "styles/default/split-pane.json"
       ]
     },
     {
