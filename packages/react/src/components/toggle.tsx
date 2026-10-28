@@ -6,18 +6,18 @@ const thumbVariants = cva(
   [
     "block outline-none focus-visible:ring-[3px] focus-visible:ring-fr-primary bg-otl-control hover:bg-otl-control-hover data-[state=checked]:bg-bg-primary-600 cursor-pointer rounded-full transition-color duration-200 z-10",
     "before:content-[''] before:left-[3px] before:bottom-[3px] before:bg-white before:absolute before:rounded-full before:transition-all before:duration-200",
-    "peer-disabled:data-[state=checked]:bg-bg-primary-disabled peer-disabled:cursor-not-allowed peer-disabled:before:data-[state=checked]:bg-bg-white",
-    "peer-disabled:data-[state=unchecked]:bg-bg-washed peer-disabled:before:data-[state=unchecked]:bg-bg-white",
+    "peer-disabled:data-[state=checked]:bg-bg-primary-disabled peer-disabled:cursor-not-allowed peer-disabled:data-[state=checked]:before:bg-bg-white",
+    "peer-disabled:data-[state=unchecked]:bg-bg-washed peer-disabled:data-[state=unchecked]:before:bg-bg-white",
   ],
   {
     variants: {
       size: {
         small:
-          "h-[16px] w-[24px] before:size-[10px] before:data-[state=checked]:translate-x-2",
+          "h-[16px] w-[24px] before:size-[10px] data-[state=checked]:before:translate-x-2",
         medium:
-          "h-[20px] w-[30px] before:size-[14px] before:data-[state=checked]:translate-x-[10px]",
+          "h-[20px] w-[30px] before:size-[14px] data-[state=checked]:before:translate-x-[10px]",
         large:
-          "h-[24px] w-[36px] before:size-[18px] before:data-[state=checked]:translate-x-3",
+          "h-[24px] w-[36px] before:size-[18px] data-[state=checked]:before:translate-x-3",
       },
     },
     defaultVariants: {
