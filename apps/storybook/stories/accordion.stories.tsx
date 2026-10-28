@@ -58,12 +58,12 @@ const meta = {
     layout: "padded",
   },
   argTypes: {
-    asChild: {
+    render: {
       control: false,
       description:
-        "Change the default rendered element for the one passed as a child, merging their props and behavior.",
+        'Replaces the rendered element, e.g. `render={<a href="/" />}`.',
       table: {
-        type: { summary: "boolean" },
+        type: { summary: "ReactElement | (props, state) => ReactElement" },
         category: "Accordion Props",
       },
     },

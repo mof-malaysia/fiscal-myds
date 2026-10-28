@@ -1,6 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { writeJsonFile, readFileContent, type RegistryComponent } from "./utils";
+import {
+  writeJsonFile,
+  readFileContent,
+  REGISTRY_ITEM_SCHEMA,
+  type RegistryComponent,
+} from "./utils";
 
 /**
  * Generate Icons Registry (@myds-icon)
@@ -32,15 +37,16 @@ async function main() {
     const transformedContent = content;
 
     const registryComponent: RegistryComponent = {
+      $schema: REGISTRY_ITEM_SCHEMA,
       name: iconName,
-      type: "components:icon",
+      type: "registry:ui",
       dependencies: [],
       registryDependencies: [],
       files: [
         {
           path: `components/ui/icons/${iconName}.tsx`,
           content: transformedContent,
-          type: "components:icon",
+          type: "registry:ui",
         },
       ],
     };

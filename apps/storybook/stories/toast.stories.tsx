@@ -91,7 +91,10 @@ const DemoToast = (props: any) => {
  *
  * ### Usage
  * ```tsx
- * import { AutoToast, ToastRoot, ToastIcon, ToastProgress, ToastProvider, ToastViewport, ToastTitle, ToastDescription } from "@mof-malaysia/myds-react/toast";
+ * import { AutoToast } from "@mof-malaysia/myds-react/toast";
+ * import { useToast } from "@mof-malaysia/myds-react/hooks";
+ *
+ * const { toast } = useToast();
  *
  * <button
  *  onClick={() => {
@@ -103,41 +106,57 @@ const DemoToast = (props: any) => {
  * //* Simple usage
  * <AutoToast />
  *
- * //* Advanced usage
- * const { toasts, subscribe, unsubscribe } = useToast();
+ * //* Advanced usage (manual composition with Base UI's toast manager)
+ * import {
+ *   ToastProvider,
+ *   ToastViewport,
+ *   ToastRoot,
+ *   ToastIcon,
+ *   ToastTitle,
+ *   ToastDescription,
+ *   ToastClose,
+ *   ToastProgress,
+ *   useToastManager,
+ * } from "@mof-malaysia/myds-react/toast";
  *
- * useEffect(() => {
- *   subscribe();
- *   return () => {
- *     unsubscribe();
- *   };
- * }, []);
+ * const ToastList = () => {
+ *   // Must be rendered inside <ToastProvider>
+ *   const { toasts } = useToastManager();
+ *
+ *   return toasts.map((toast) => (
+ *     <ToastRoot key={toast.id} toast={toast}>
+ *       <ToastIcon />
+ *       <div className="space-y-1">
+ *         <ToastTitle />
+ *         {toast.description && <ToastDescription />}
+ *       </div>
+ *       <ToastClose />
+ *       <ToastProgress />
+ *     </ToastRoot>
+ *   ));
+ * };
+ *
+ * const AddToastButton = () => {
+ *   const toastManager = useToastManager();
+ *   return (
+ *     <button
+ *       onClick={() =>
+ *         toastManager.add({ type: "success", title: "Saved", description: "All changes saved" })
+ *       }
+ *     >
+ *       Save
+ *     </button>
+ *   );
+ * };
  *
  * return (
- *   <ToastProvider>
- *     {toasts.map((toast, index) => (
- *       <ToastRoot
- *         key={props.id || index}
- *         variant={toast.variant || "message"}
- *         {...props}
- *       >
- *         <ToastIcon />
- *         <div className="space-y-1">
- *           <ToastTitle>{toast.title}</ToastTitle>
- *           {toast.description && (
- *             <ToastDescription>{toast.description}</ToastDescription>
- *           )}
- *         </div>
- *         <ToastClose />
- *         <ToastProgress />
- *        </ToastRoot>
- *    ))}
- *
- *     <ToastViewport />
+ *   <ToastProvider timeout={5000} limit={3}>
+ *     <AddToastButton />
+ *     <ToastViewport>
+ *       <ToastList />
+ *     </ToastViewport>
  *   </ToastProvider>
  * );
- *
- *
  * ```
  */
 const meta = {

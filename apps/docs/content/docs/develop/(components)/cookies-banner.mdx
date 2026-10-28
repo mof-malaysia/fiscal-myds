@@ -30,7 +30,7 @@ import {
       CookieBannerPreferences,
       CookieBannerTitle,
       CookieBannerPreferencesTrigger,
-    } from "@mof-malaysia/myds-react/cookie-banner";
+    } from "@/components/ui/cookie-banner";
 
     const CookiesBannerPreview = () => {
       const [open, setOpen] = useState(false);
@@ -139,25 +139,29 @@ import {
             </CookieBannerPreferences>
 
             <CookieBannerAction>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Accept all cookies.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Accept All
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Accept all cookies.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Accept All
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Reject all cookies.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Reject All
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Reject all cookies.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Reject All
               </CookieBannerClose>
 
               <CookieBannerPreferencesTrigger>
@@ -166,25 +170,29 @@ import {
             </CookieBannerAction>
 
             <CookieBannerAction preferences>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Accept saved preferences.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Save preferences
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Accept saved preferences.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Save preferences
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Necessary cookies accepted.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Accept necessary cookies
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Necessary cookies accepted.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Accept necessary cookies
               </CookieBannerClose>
             </CookieBannerAction>
           </CookieBanner>
@@ -199,11 +207,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-cookiesbanner--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-cookiesbanner--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/cookie-banner.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/cookie-banner.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/cookie-banner.json
+```
 
 ## Usage
 
@@ -216,7 +232,7 @@ import {
   CookieBannerPreferences,
   CookieBannerTitle,
   CookieBannerPreferencesTrigger,
-} from "@mof-malaysia/myds-react/cookie-banner";
+} from "@/components/ui/cookie-banner";
 ```
 
 ```tsx copy title="Anatomy"
@@ -259,7 +275,7 @@ Below is an example of a **controlled Cookie Banner**.
       CookieBannerPreferences,
       CookieBannerTitle,
       CookieBannerPreferencesTrigger,
-    } from "@mof-malaysia/myds-react/cookie-banner";
+    } from "@/components/ui/cookie-banner";
 
     const CookiesBannerPreview = () => {
       const [open, setOpen] = useState(false);
@@ -368,25 +384,29 @@ Below is an example of a **controlled Cookie Banner**.
             </CookieBannerPreferences>
 
             <CookieBannerAction>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Accept all cookies.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Accept All
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Accept all cookies.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Accept All
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Reject all cookies.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Reject All
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Reject all cookies.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Reject All
               </CookieBannerClose>
 
               <CookieBannerPreferencesTrigger>
@@ -395,25 +415,29 @@ Below is an example of a **controlled Cookie Banner**.
             </CookieBannerAction>
 
             <CookieBannerAction preferences>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Accept saved preferences.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Save preferences
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Accept saved preferences.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Save preferences
               </CookieBannerClose>
-              <CookieBannerClose asChild>
-                <Button
-                  variant="primary-fill"
-                  size="medium"
-                  onClick={() => alert("Necessary cookies accepted.")}
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Accept necessary cookies
-                </Button>
+              <CookieBannerClose
+                render={
+                  <Button
+                    variant="primary-fill"
+                    size="medium"
+                    onClick={() => alert("Necessary cookies accepted.")}
+                    className="w-full justify-center sm:w-auto"
+                  />
+                }
+              >
+                Accept necessary cookies
               </CookieBannerClose>
             </CookieBannerAction>
           </CookieBanner>
@@ -472,25 +496,29 @@ Below is an example of a **controlled Cookie Banner**.
 
           {/* Default CTA */}
           <CookieBannerAction>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Accept all cookies.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Accept All
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Accept all cookies.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Accept All
             </CookieBannerClose>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Reject all cookies.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Reject All
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Reject all cookies.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Reject All
             </CookieBannerClose>
 
             <CookieBannerPreferencesTrigger>
@@ -501,15 +529,17 @@ Below is an example of a **controlled Cookie Banner**.
           {/* Preference CTA */}
           <CookieBannerAction preferences>
             <CookieBannerPreferencesTrigger>Back</CookieBannerPreferencesTrigger>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Necessary cookies accepted.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Accept necessary cookies
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Necessary cookies accepted.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Accept necessary cookies
             </CookieBannerClose>
           </CookieBannerAction>
         </CookieBanner>
@@ -586,9 +616,9 @@ Below is an example of a **controlled Cookie Banner**.
 
 <TypeTable
   type={{
-    asChild: {
-      type: "boolean",
-      description: "Overrides to use the child component as base DOM element.",
+    render: {
+      description: "Replaces the rendered element, e.g. `render={<a href=\"/\" />}`",
+      type: "ReactElement | (props, state) => ReactElement",
     },
     children: {
       type: "ReactNode",
@@ -613,9 +643,9 @@ Below is an example of a **controlled Cookie Banner**.
 
 <TypeTable
   type={{
-    asChild: {
-      type: "boolean",
-      description: "Overrides to use the child component as base DOM element.",
+    render: {
+      description: "Replaces the rendered element, e.g. `render={<a href=\"/\" />}`",
+      type: "ReactElement | (props, state) => ReactElement",
     },
     children: {
       type: "ReactNode",

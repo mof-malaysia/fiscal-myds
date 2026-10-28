@@ -93,7 +93,7 @@ export const Default: Story = createStory({
 });
 
 /**
- * To create a link that looks like a button, you can nest the link component in a Button and set the `asChild` parameter.
+ * To create a link that looks like a button, you can pass the link component to Button's `render` prop, e.g. `<Button render={<Link href="/" />}>`.
  */
 export const ButtonAsLink: Story = {
   args: {
@@ -105,11 +105,7 @@ export const ButtonAsLink: Story = {
       values: [{ name: "dark", value: "#18181B" }],
     },
   },
-  render: (args) => (
-    <Button asChild>
-      <Link {...args}>Ask a question</Link>
-    </Button>
-  ),
+  render: (args) => <Button render={<Link {...args} />}>Ask a question</Button>,
 };
 
 /**
@@ -127,13 +123,11 @@ export const Backlink: Story = {
     },
   },
   render: (args) => (
-    <Button asChild variant="unset">
-      <Link {...args}>
-        <ButtonIcon>
-          <ArrowBack />
-        </ButtonIcon>
-        Back
-      </Link>
+    <Button variant="unset" render={<Link {...args} />}>
+      <ButtonIcon>
+        <ArrowBack />
+      </ButtonIcon>
+      Back
     </Button>
   ),
 };
@@ -161,8 +155,8 @@ export const NavbarLink: Story = {
     },
   },
   render: (args) => (
-    <Button asChild variant="default-ghost">
-      <Link {...args}>Contact Us</Link>
+    <Button variant="default-ghost" render={<Link {...args} />}>
+      Contact Us
     </Button>
   ),
 };

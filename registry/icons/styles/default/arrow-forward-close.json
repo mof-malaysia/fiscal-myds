@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "arrow-forward-close",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/arrow-forward-close.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * ArrowForwardClose Icon\n * @param className\n * @returns ArrowForwardCloseIcon\n */\nexport const ArrowForwardCloseIcon: FunctionComponent<\n  SVGProps<SVGSVGElement>\n> = (props) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/arrow-forward-close\">\n        <path\n          id=\"Vector\"\n          d=\"M10.75 4.75L16.25 10M16.25 10L10.75 15.25M16.25 10H2.75M17.25 5V15.5\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

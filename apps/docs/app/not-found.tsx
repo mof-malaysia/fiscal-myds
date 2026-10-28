@@ -40,13 +40,17 @@ const NotFound: FunctionComponent = () => {
               <p className="text-txt-black-700 text-lg">பக்கம் காணப்படவில்லை</p>
             </div>
           </div>
-          <Button variant="default-outline" size="large" asChild>
-            <Link href="/" underline="none" className="mt-10 truncate">
-              <ButtonIcon>
-                <ArrowBackIcon />
-              </ButtonIcon>
-              Kembali ke Halaman Utama
-            </Link>
+          <Button
+            variant="default-outline"
+            size="large"
+            render={
+              <Link href="/" underline="none" className="mt-10 truncate" />
+            }
+          >
+            <ButtonIcon>
+              <ArrowBackIcon />
+            </ButtonIcon>
+            Kembali ke Halaman Utama
           </Button>
         </main>
       </HomeLayout>

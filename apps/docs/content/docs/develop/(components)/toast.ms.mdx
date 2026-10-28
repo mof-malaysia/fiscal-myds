@@ -26,75 +26,50 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </div>
   </Tab>
   <Tab value="Kod">
-  ```tsx 
-  import { AutoToast, 
-ToastRoot, 
-ToastIcon, 
-ToastProgress, 
-ToastProvider, 
-ToastViewport, 
-ToastTitle, 
-ToastDescription 
-}from "@mof-malaysia/myds-react/toast";
- 
-  <button
-   onClick={() => {
-     toast({ variant: "message", 
-     title: "Hello, world!", 
-     description: "this is a description" 
-     });
-   }}>
-     Message
-  </button>
- 
-  //* Simple usage
-  <AutoToast />
- 
-  //* Advanced usage
-  const { toasts, subscribe, unsubscribe } = useToast();
- 
-  useEffect(() => {
-    subscribe();
-    return () => {
-      unsubscribe();
-    };
-  }, []);
- 
-  return (
-    <ToastProvider>
-      {toasts.map((toast, index) => (
-        <ToastRoot
-          key={props.id || index}
-          variant={toast.variant || "message"}
-          {...props}
+    ```tsx
+    import { AutoToast } from "@/components/ui/toast";
+    import { useToast } from "@/lib/myds/hooks";
+
+    // Letakkan komponen ini di bahagian atas dalam DOM
+    <AutoToast />;
+
+    // Kemudian, terbitkan atau hantar peristiwa baru kepada Toast
+    export default () => {
+      const { toast } = useToast();
+      return (
+        <button
+          onClick={() => {
+            toast({
+              variant: "message",
+              title: "Hello, world!",
+              description: "this is a message toast description",
+            });
+          }}
         >
-          <ToastIcon />
-          <div className="space-y-1">
-            <ToastTitle>{toast.title}</ToastTitle>
-            {toast.description && (
-              <ToastDescription>{toast.description}</ToastDescription>
-            )}
-          </div>
-          <ToastClose />
-          <ToastProgress />
-         </ToastRoot>
-     ))}
- 
-      <ToastViewport />
-    </ToastProvider>
-  );
-  ```
+          Message
+        </button>
+      );
+    };
+    ```
   </Tab>
 </Tabs>
 
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-toast--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-toast--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/toast.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/toast.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/toast.json
+```
 
 ## Penggunaan
 
@@ -103,7 +78,7 @@ ToastDescription
 Untuk penggunaan mudah, `AutoToast` boleh digunakan secara terus untuk mengendalikan kes penggunaan biasa.
 
 ```tsx copy title="layout.tsx"
-import { AutoToast } from "@mof-malaysia/myds-react/toast";
+import { AutoToast } from "@/components/ui/toast";
 
 // Letakkan komponen ini di bahagian atas dalam DOM
 <AutoToast />;
@@ -111,25 +86,29 @@ import { AutoToast } from "@mof-malaysia/myds-react/toast";
 
 ```tsx copy title="Anatomi"
 // Kemudian, terbitkan atau hantar peristiwa baru kepada Toast
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
-export default () => (
+export default () => {
   const { toast } = useToast();
-<button
-  onClick={() => {
-    toast({ variant: "message",
-    title: "Hello, world!",
-    description: "this is a message toast description"
-    });
-  }}>
-    Message
-</button>
-);
+  return (
+    <button
+      onClick={() => {
+        toast({
+          variant: "message",
+          title: "Hello, world!",
+          description: "this is a message toast description",
+        });
+      }}
+    >
+      Message
+    </button>
+  );
+};
 ```
 
 ### Penggunaan Lanjutan
 
-Sebagai alternatif kepada penggunaan AutoToast, konstituensi komponen `Toast` boleh disusun secara manual.
+Sebagai alternatif kepada `AutoToast`, komponen `Toast` boleh disusun secara manual untuk kawalan yang lebih. Baca toast yang aktif dengan `useToastManager()` dan paparkan `ToastRoot` untuk setiap satu, dengan menghantar objek `toast`. `ToastTitle` dan `ToastDescription` memaparkan `title` dan `description` toast secara lalai.
 
 ```tsx copy
 import {
@@ -140,50 +119,63 @@ import {
   ToastViewport,
   ToastTitle,
   ToastDescription,
-} from "@mof-malaysia/myds-react/toast";
+  ToastClose,
+  useToastManager,
+} from "@/components/ui/toast";
 
-export default () => (
+// Memaparkan setiap toast yang aktif
+const Toasts = () => {
+  const { toasts } = useToastManager();
+
+  return toasts.map((toast) => (
+    <ToastRoot key={toast.id} toast={toast}>
+      <ToastIcon />
+      <div className="space-y-1">
+        <ToastTitle />
+        {toast.description && <ToastDescription />}
+      </div>
+      <ToastClose />
+      <ToastProgress />
+    </ToastRoot>
+  ));
+};
+
+// Letakkan provider di bahagian atas dalam DOM
+export default ({ children }: { children: React.ReactNode }) => (
   <ToastProvider>
-    {toasts.map((toast, index) => (
-      <ToastRoot
-        key={props.id || index}
-        variant={toast.variant || "message"}
-        {...props}
-      >
-        <ToastIcon />
-        <div className="space-y-1">
-          <ToastTitle>{toast.title}</ToastTitle>
-          {toast.description && (
-            <ToastDescription>{toast.description}</ToastDescription>
-          )}
-        </div>
-        <ToastClose />
-        <ToastProgress />
-      </ToastRoot>
-    ))}
-
-    <ToastViewport />
+    {children}
+    <ToastViewport>
+      <Toasts />
+    </ToastViewport>
   </ToastProvider>
 );
 ```
 
-```tsx copy title="Anatomi"
-// to publish or emit a new event to the Toast
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+Di dalam `ToastProvider` yang disusun secara manual, tambah toast dengan `useToastManager().add()`. Medan `type` menentukan varian. `useToast().toast()` hanya sampai kepada `AutoToast`.
 
-export default () => (
-  const { toast } = useToast();
-<button
-  onClick={() => {
-    toast({ variant: "message",
-    title: "Hello, world!",
-    description: "this is a message toast description"
-    });
-  }}>
-    Message
-</button>
-);
+```tsx copy title="Anatomi"
+import { useToastManager } from "@/components/ui/toast";
+
+// Tambah toast dari mana-mana komponen di dalam ToastProvider
+const SaveButton = () => {
+  const toastManager = useToastManager();
+  return (
+    <button
+      onClick={() =>
+        toastManager.add({
+          type: "success",
+          title: "Saved",
+          description: "Your changes have been saved.",
+        })
+      }
+    >
+      Save
+    </button>
+  );
+};
 ```
+
+Secara lalai, sehingga 3 toast dipaparkan pada satu masa. Tukar had ini dengan prop `limit` pada `ToastProvider`.
 
 ## Contoh
 
@@ -209,17 +201,15 @@ export default () => (
   </div>
   </Tab>
   <Tab value="Kod">
-  ```tsx 
-// autotoast for simple usage
-import { Button } from "@mof-malaysia/myds-react/button";
-import { AutoToast }from "@mof-malaysia/myds-react/toast";
+  ```tsx
+// autotoast untuk penggunaan mudah
+import { AutoToast } from "@/components/ui/toast";
 
-// put the component high up the layout tree
-
+// letakkan komponen ini di bahagian atas dalam layout
 <AutoToast />
 
-// to publish or emit a new event to the Toast
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+// terbitkan atau hantar peristiwa baru kepada Toast
+import { useToast } from "@/lib/myds/hooks";
 
 const { toast } = useToast();
 
@@ -234,7 +224,6 @@ const { toast } = useToast();
 >
   Message
 </button>
-
 ```
   </Tab>
 </Tabs>
@@ -242,24 +231,44 @@ const { toast } = useToast();
 ## Props
 
 ### ToastProvider
-`ToastProvider`  menggunakan `ToastProvider` dari komponen perpustakaan Radix UI. Sila rujuk kepada rujukan API dalam [documentasi ini](https://www.radix-ui.com/primitives/docs/components/toast#provider).
+`ToastProvider` dibina di atas `Toast.Provider` daripada Base UI. Gunakan `limit` untuk menetapkan bilangan toast yang dipaparkan pada satu masa (lalai `3`) dan `timeout` untuk menetapkan masa tutup automatik lalai. Sila rujuk kepada rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/toast#provider).
 
-### ToastViewport
-`ToastViewport` menggunakan `ToastViewport` dari komponen perpustakaan Radiux UI. Sila rujuk kepada rujukan API dalam  [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/toast#viewport).
-
-### ToastRoot
-`ToastRoot` menggunakan `ToastRoot` dari komponen perpustakaan Radiux UI. Sila rujuk kepada rujukan API dalam  [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/toast#root).
 <TypeTable
   type={{
+    limit: {
+      description: "Bilangan maksimum toast yang dipaparkan pada satu masa",
+      type: "number",
+      default: "3",
+    },
+    timeout: {
+      description: "Masa lalai (ms) sebelum toast ditutup",
+      type: "number",
+      default: "5000",
+    },
+  }}
+/>
+
+### ToastViewport
+`ToastViewport` dibina di atas `Toast.Viewport` daripada Base UI. Paparkan elemen `ToastRoot` anda sebagai anaknya. Sila rujuk kepada rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/toast#viewport).
+
+### ToastRoot
+`ToastRoot` dibina di atas `Toast.Root` daripada Base UI. Ia memerlukan objek `toast` yang dikembalikan oleh `useToastManager()`. Sila rujuk kepada rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/toast#root).
+
+<TypeTable
+  type={{
+    toast: {
+      description: "(Wajib) Objek toast daripada `useToastManager().toasts`",
+      type: "ToastObject",
+    },
     variant: {
-      description: "Style variant of the toast",
+      description: "Varian gaya toast. Lalai kepada `type` objek toast, kemudian `message`",
       type: "enum",
       typeDescription:
         "message | success | info | warning | error",
       default: "message",
     },
     duration: {
-      description: "Time (ms) before toast disappears",
+      description: "Tempoh (ms) yang ditunjukkan oleh bar kemajuan. Lalai kepada `timeout` objek toast",
       type: "number",
       default: "5000"
     },
@@ -267,11 +276,13 @@ const { toast } = useToast();
 />
 
 ### ToastTitle
-`ToastTitle` menggunakan `ToastTitle` dari komponen perpustakaan Radiux UI. Sila rujuk kepada rujukan API dalam  [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/toast#title).
+`ToastTitle` dibina di atas `Toast.Title` daripada Base UI. Sila rujuk kepada rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/toast#title).
 
 ### ToastDescription
-`ToastDescription` menggunakan `ToastDescription` dari komponen perpustakaan Radiux UI. Sila rujuk kepada rujukan API dalam  [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/toast#description).
-
+`ToastDescription` dibina di atas `Toast.Description` daripada Base UI. Sila rujuk kepada rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/toast#description).
 
 ### ToastClose
-`ToastClose` menggunakan `ToastClose` dari komponen perpustakaan Radiux UI. Sila rujuk kepada rujukan API dalam  [dokumentasi ini](https://www.radix-ui.com/primitives/docs/components/toast#close).
+`ToastClose` dibina di atas `Toast.Close` daripada Base UI. Sila rujuk kepada rujukan API dalam [dokumentasi ini](https://base-ui.com/react/components/toast#close).
+
+### useToastManager
+`useToastManager()` mengembalikan `{ toasts, add, close, update, promise }`. Ia mesti dipanggil di dalam `ToastProvider`.

@@ -72,7 +72,7 @@ export const getMYDSConfig = (lang: "en" | "ms"): MYDSConfig => {
       title: t("menu.storybook"),
       text: t("menu.storybook"),
       description: t("storybook.description"),
-      url: `https://myds-storybook.vercel.app/`,
+      url: `https://mof-malaysia.github.io/fiscal-myds/storybook/`,
       icon: <DocumentIcon />,
       active: "nested-url",
     },

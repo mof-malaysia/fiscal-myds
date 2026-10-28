@@ -51,7 +51,7 @@ import {
   SiteLinkGroup,
   SiteLink,
   FooterLogo,
-} from "@mof-malaysia/myds-react/footer";
+} from "@/components/ui/footer";
 
 <Footer >
   <FooterSection>
@@ -181,11 +181,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-footer--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-footer--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/footer.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/footer.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/footer.json
+```
 
 ## Usage
 
@@ -197,7 +205,7 @@ import {
   SiteLinkGroup,
   SiteLink,
   FooterLogo,
-} from "@mof-malaysia/myds-react/footer";
+} from "@/components/ui/footer";
 ```
 
 ```tsx copy title="Anatomy"
@@ -239,10 +247,9 @@ export default () => (
   </Tab>
   <Tab value="Code">
   ```
-  import 
-  {
+  import {
   FooterSection,
-  } from "@mof-malaysia/myds-react/footer";
+  } from "@/components/ui/footer";
 
   <FooterSection className="text-txt-black-500 md:max-lg:gap-4.5 mx-auto flex w-full max-w-[1280px] flex-col justify-between border-none text-sm max-md:gap-4 lg:flex-row lg:gap-6">
     <div className="flex flex-col gap-3 lg:flex-row">
@@ -271,10 +278,9 @@ An `aside` HTML component designed to contain brand information, contact details
   </Tab>
   <Tab value="Code">
   ```
-  import 
-  {
+  import {
   SiteInfo,
-  } from "@mof-malaysia/myds-react/footer";
+  } from "@/components/ui/footer";
 
     <SiteInfo className="not-prose">
       <div className="text-txt-black-900 flex items-center gap-x-2.5">
@@ -357,7 +363,7 @@ A container that structures a collection of links (`SiteLink`) into a titled gro
 <Tab value="Code">
 ```
 
-import { SiteLinkGroup, SiteLink } from "@mof-malaysia/myds-react/footer";
+import { SiteLinkGroup, SiteLink } from "@/components/ui/footer";
 
   <SiteLinkGroup groupTitle="Super super long long long long long long long long title">
       <SiteLink href="#">
@@ -478,10 +484,10 @@ import { SiteLinkGroup, SiteLink } from "@mof-malaysia/myds-react/footer";
       description: "Content of the site link",
       type: "ReactNode",
     },
-    asChild: {
-      description: "Flag to inherit child component directly",
-      type: "boolean",
-      default: "false",
+    render: {
+      description:
+        'Replaces the rendered element, e.g. `render={<a href="/" />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
   }}
 />

@@ -8,12 +8,20 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
+## Pemasangan
+
+Hook MYDS dipasang bersama dalam item `hooks`, ke `lib/myds/hooks`. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/hooks.json
+```
+
 ## Penggunaan
 
 <Tabs items={["Hook", "Keperluan"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { useToast } from "@mof-malaysia/myds-react/hooks";
+    import { useToast } from "@/lib/myds/hooks";
 
     const { toast } = useToast();
 
@@ -30,7 +38,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
   <Tab value="Keperluan">
     ```tsx
     // Letakkan komponen ini di akar aplikasi anda
-    import { AutoToast } from "@mof-malaysia/myds-react/toast";
+    import { AutoToast } from "@/components/ui/toast";
 
     <AutoToast />
     ```
@@ -41,7 +49,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Quicklinks
   links={{
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/hooks/use-toast.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/hooks/use-toast.tsx",
   }}
 />
 
@@ -63,7 +71,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 Acara toast boleh dicetuskan dengan memanggil kaedah `toast` dari hook `useToast`. Tentukan objek `ToastEvent` dengan sifat yang diperlukan dan serahkannya kepada kaedah `toast`.
 
 ```ts title="Contoh"
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 //... dalam komponen anda
 const { toast } = useToast();
@@ -83,7 +91,7 @@ Hook `useToast` menyediakan pengendali yang diperlukan untuk mendengar acara toa
 
 ```ts title="Toast.tsx"
 import { useEffect } from "react";
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 //... dalam komponen anda
 const { subscribe, unsubscribe } = useToast();
@@ -101,7 +109,7 @@ useEffect(() => {
 Toast boleh diakses melalui objek `toasts` yang disediakan oleh hook `useToast`. Objek ini mengandungi array acara toast aktif.
 
 ```ts title="Contoh"
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 const { toasts } = useToast();
 console.log(toasts);

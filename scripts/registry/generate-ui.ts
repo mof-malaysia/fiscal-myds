@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 import {
   getComponentFiles,
@@ -7,6 +8,10 @@ import {
   getComponentName,
   writeJsonFile,
   mapToRegistryDependency,
+  expandIconBarrelImports,
+  getIconExportMap,
+  registryItemUrl,
+  REGISTRY_ITEM_SCHEMA,
   type RegistryComponent,
 } from "./utils";
 
@@ -21,40 +26,41 @@ const COMPONENTS_DIR = path.join(
 );
 const UTILS_DIR = path.join(__dirname, "../../packages/react/src/utils");
 const HOOKS_DIR = path.join(__dirname, "../../packages/react/src/hooks");
+const ICONS_DIR = path.join(__dirname, "../../packages/react/src/icons");
 const REGISTRY_OUTPUT = path.join(__dirname, "../../registry/ui/styles/default");
 
 const EXCLUDED_COMPONENTS = new Set(["index"]);
 
 const KNOWN_NPM_DEPENDENCIES: Record<string, string[]> = {
-  button: ["class-variance-authority", "@radix-ui/react-slot"],
-  accordion: ["@radix-ui/react-accordion"],
-  "alert-dialog": ["@radix-ui/react-alert-dialog"],
-  checkbox: ["@radix-ui/react-checkbox"],
-  dialog: ["@radix-ui/react-dialog"],
-  dropdown: ["@radix-ui/react-dropdown-menu"],
-  popover: ["@radix-ui/react-popover"],
-  radio: ["@radix-ui/react-radio-group"],
-  select: ["@radix-ui/react-select"],
-  sheet: ["@radix-ui/react-dialog"],
-  tabs: ["@radix-ui/react-tabs"],
-  toast: ["@radix-ui/react-toast"],
-  toggle: ["@radix-ui/react-toggle"],
-  tooltip: ["@radix-ui/react-tooltip"],
+  button: ["class-variance-authority"],
   "date-picker": ["react-day-picker"],
   "daterange-picker": ["react-day-picker"],
   calendar: ["react-day-picker"],
   "data-table": ["@tanstack/react-table"],
 };
 
-function transformImportsForMultiRegistry(content: string): string {
-  let transformed = transformImports(content);
+const iconMap = getIconExportMap(ICONS_DIR);
 
-  // Transform icon imports to use icons registry
-  // from "@/components/ui/icons/chevron-down"
-  // to "icons:chevron-down" (cross-registry reference)
-  // But for now, keep as-is since icons will be in same structure
+const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
+  readFileContent(path.join(__dirname, "../../packages/react/package.json"))
+).dependencies;
 
-  return transformed;
+/**
+ * Pin npm dependencies to the ranges MYDS is built against, so a project
+ * doesn't pull in a new major (e.g. @tanstack/react-table v9).
+ */
+function withVersions(deps: string[]): string[] {
+  return deps.map((dep) =>
+    PACKAGE_DEPENDENCIES[dep] ? `${dep}@${PACKAGE_DEPENDENCIES[dep]}` : dep
+  );
+}
+
+/** Relative import paths in a source file, e.g. "../utils", "./button" */
+function getLocalImports(content: string): string[] {
+  return Array.from(
+    content.matchAll(/from\s+["'](\.{1,2}\/[^"']+)["']/g),
+    (m) => m[1]
+  );
 }
 
 function generateComponentRegistry(
@@ -67,9 +73,9 @@ function generateComponentRegistry(
 
   console.log(`Processing: ${componentName}`);
 
-  const content = readFileContent(filePath);
-  const transformedContent = transformImportsForMultiRegistry(content);
-  const { npmDependencies, localDependencies } = extractImports(content);
+  const content = expandIconBarrelImports(readFileContent(filePath), iconMap);
+  const transformedContent = transformImports(content);
+  const { npmDependencies } = extractImports(content);
 
   const finalNpmDeps = Array.from(npmDependencies).filter(
     (dep) =>
@@ -96,92 +102,86 @@ function generateComponentRegistry(
     }
   }
 
-  // Map local dependencies, filtering out icon references for now
-  const registryDeps = Array.from(localDependencies)
-    .map(mapToRegistryDependency)
-    .filter((dep) => dep !== componentName)
-    .filter((dep) => !dep.includes("icon") && !dep.includes("chevron") && !dep.includes("check") && !dep.includes("cross"));
-
-  const componentType = componentName === "utils" || componentName === "hooks"
-    ? "components:lib"
-    : ["navbar", "footer", "masthead", "announce-bar"].includes(componentName)
-    ? "components:layout"
-    : "components:ui";
-
-  const registryPath = componentType === "components:lib"
-    ? `lib/${componentName}.ts`
-    : `components/ui/${componentName}.tsx`;
+  const registryDeps = Array.from(
+    new Set(
+      getLocalImports(content)
+        .map(mapToRegistryDependency)
+        .filter((dep): dep is string => dep !== null)
+        .filter((dep) => dep !== registryItemUrl("ui", componentName))
+    )
+  );
 
   const registryComponent: RegistryComponent = {
+    $schema: REGISTRY_ITEM_SCHEMA,
     name: componentName,
-    type: componentType,
-    dependencies: finalNpmDeps.sort(),
+    type: "registry:ui",
+    dependencies: withVersions(finalNpmDeps.sort()),
     registryDependencies: registryDeps.sort(),
     files: [
       {
-        path: registryPath,
+        path: `components/ui/${componentName}.tsx`,
         content: transformedContent,
-        type: componentType,
+        type: "registry:ui",
       },
     ],
   };
-
-  if (
-    content.includes("bg-") ||
-    content.includes("txt-") ||
-    content.includes("otl-")
-  ) {
-    registryComponent.tailwind = {
-      config: {
-        theme: {
-          extend: {
-            colors: {},
-          },
-        },
-      },
-    };
-  }
 
   return registryComponent;
 }
 
 function generateUtilsRegistry(): RegistryComponent {
-  const utilsPath = path.join(UTILS_DIR, "index.ts");
-  const content = readFileContent(utilsPath);
-  const transformedContent = content;
+  const content = readFileContent(path.join(UTILS_DIR, "index.ts"));
 
   return {
+    $schema: REGISTRY_ITEM_SCHEMA,
     name: "utils",
-    type: "components:lib",
-    dependencies: ["clsx", "tailwind-merge"],
+    type: "registry:lib",
+    dependencies: withVersions(["tailwind-merge"]),
     registryDependencies: [],
     files: [
       {
-        path: "lib/utils.ts",
-        content: transformedContent,
-        type: "components:lib",
+        path: "lib/myds/utils/index.ts",
+        content,
+        type: "registry:lib",
       },
     ],
   };
 }
 
+/**
+ * All hooks ship as one item (they are imported via the "../hooks" barrel).
+ * It also carries utils/events.ts, the toast event bus used by useToast.
+ */
 function generateHooksRegistry(): RegistryComponent {
-  const hooksPath = path.join(HOOKS_DIR, "index.ts");
-  const content = readFileContent(hooksPath);
-  const transformedContent = content;
+  const hookFiles = fs
+    .readdirSync(HOOKS_DIR)
+    .filter((file) => /\.tsx?$/.test(file))
+    .sort();
+
+  const files = hookFiles.map((file) => ({
+    path: `lib/myds/hooks/${file}`,
+    content: transformImports(readFileContent(path.join(HOOKS_DIR, file)), {
+      keepSameFolderImports: true,
+    }),
+    type: "registry:lib",
+  }));
+
+  files.push({
+    path: "lib/myds/utils/events.ts",
+    content: transformImports(
+      readFileContent(path.join(UTILS_DIR, "events.ts"))
+    ),
+    type: "registry:lib",
+  });
 
   return {
+    $schema: REGISTRY_ITEM_SCHEMA,
     name: "hooks",
-    type: "components:lib",
-    dependencies: [],
-    registryDependencies: [],
-    files: [
-      {
-        path: "lib/hooks.ts",
-        content: transformedContent,
-        type: "components:lib",
-      },
-    ],
+    type: "registry:lib",
+    dependencies: withVersions(["mitt"]),
+    // use-toast imports the ToastEvent type from the toast component
+    registryDependencies: [registryItemUrl("ui", "toast")],
+    files,
   };
 }
 
@@ -221,9 +221,8 @@ async function main() {
   console.log(`📁 Output: ${REGISTRY_OUTPUT}`);
 
   console.log("\n📊 Summary:");
-  console.log(`   - UI Components: ${components.filter((c) => c.type === "components:ui").length}`);
-  console.log(`   - Layout Components: ${components.filter((c) => c.type === "components:layout").length}`);
-  console.log(`   - Utilities: ${components.filter((c) => c.type === "components:lib").length}`);
+  console.log(`   - UI Components: ${components.filter((c) => c.type === "registry:ui").length}`);
+  console.log(`   - Utilities: ${components.filter((c) => c.type === "registry:lib").length}`);
 
   return components;
 }

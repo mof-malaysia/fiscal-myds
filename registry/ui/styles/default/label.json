@@ -1,25 +1,17 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "label",
-  "type": "components:ui",
+  "type": "registry:ui",
   "dependencies": [
-    "@radix-ui/react-slot",
-    "class-variance-authority"
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/label.tsx",
-      "content": "import { Slot } from \"@radix-ui/react-slot\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport React, { ComponentProps, ForwardRefExoticComponent } from \"react\";\n\nconst label_cva = cva(\n  [\n    \"inline-flex gap-1 text-txt-black-700\",\n    \"group-disabled:text-txt-black-disabled group-disabled:cursor-not-allowed group-disabled:shadow-none\",\n    \"peer-disabled:text-txt-black-disabled peer-disabled:cursor-not-allowed peer-disabled:shadow-none\",\n  ],\n  {\n    variants: {\n      size: {\n        small: \"text-body-sm\",\n        medium: \"text-body-md\",\n        large: \"text-body-lg\",\n      },\n    },\n    defaultVariants: {\n      size: \"medium\",\n    },\n  },\n);\n\ninterface LabelProps\n  extends ComponentProps<\"label\">,\n    VariantProps<typeof label_cva> {\n  asChild?: boolean;\n}\n\nconst Label: ForwardRefExoticComponent<LabelProps> = React.forwardRef(\n  ({ asChild, size, className, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"label\";\n    return (\n      <Comp className={label_cva({ size, className })} ref={ref} {...props} />\n    );\n  },\n);\nLabel.displayName = \"Label\";\n\nexport { Label };\n",
-      "type": "components:ui"
+      "content": "import { useRender } from \"@base-ui/react/use-render\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport React, { ForwardRefExoticComponent } from \"react\";\n\nconst label_cva = cva(\n  [\n    \"inline-flex gap-1 text-txt-black-700\",\n    \"group-disabled:text-txt-black-disabled group-disabled:cursor-not-allowed group-disabled:shadow-none\",\n    \"peer-disabled:text-txt-black-disabled peer-disabled:cursor-not-allowed peer-disabled:shadow-none\",\n  ],\n  {\n    variants: {\n      size: {\n        small: \"text-body-sm\",\n        medium: \"text-body-md\",\n        large: \"text-body-lg\",\n      },\n    },\n    defaultVariants: {\n      size: \"medium\",\n    },\n  },\n);\n\ninterface LabelProps\n  extends useRender.ComponentProps<\"label\">,\n    VariantProps<typeof label_cva> {}\n\nconst Label: ForwardRefExoticComponent<LabelProps> = React.forwardRef(\n  ({ render, size, className, ...props }, ref) => {\n    return useRender({\n      defaultTagName: \"label\",\n      render,\n      ref,\n      props: mergeProps<\"label\">(\n        { className: label_cva({ size, className }) },\n        props,\n      ),\n    });\n  },\n);\nLabel.displayName = \"Label\";\n\nexport { Label };\n",
+      "type": "registry:ui"
     }
-  ],
-  "tailwind": {
-    "config": {
-      "theme": {
-        "extend": {
-          "colors": {}
-        }
-      }
-    }
-  }
+  ]
 }

@@ -26,16 +26,24 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-pill--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-pill--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/pill.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/pill.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/pill.json
+```
 
 ## Usage
 
 ```ts copy title="Import"
-import { Pill } from "@mof-malaysia/myds-react/pill";
+import { Pill } from "@/components/ui/pill";
 ```
 
 ```tsx copy title="Anatomy"
@@ -56,7 +64,7 @@ Use the `size` prop to change the pill size.
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { Pill } from "@mof-malaysia/myds-react/pill";
+    import { Pill } from "@/components/ui/pill";
 
     <Pill size="small">small</Pill>;
     <Pill size="medium">medium</Pill>;
@@ -76,7 +84,7 @@ Pass a callback function to the `onDismiss` prop to show a trailing "x" button.
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { Pill } from "@mof-malaysia/myds-react/pill";
+    import { Pill } from "@/components/ui/pill";
 
     <Pill onDismiss={...}>With trailing "x" button</Pill>
     ```
@@ -95,7 +103,7 @@ Pill can be disabled by setting the `disabled` prop to `true`. When disabled, th
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { Pill } from "@mof-malaysia/myds-react/pill";
+    import { Pill } from "@/components/ui/pill";
 
     <Pill onDismiss={...}>Enabled</Pill>
     <Pill disabled onDismiss={...}>Disabled</Pill>

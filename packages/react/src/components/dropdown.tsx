@@ -1,15 +1,15 @@
 import {
   ComponentProps,
-  ComponentPropsWithoutRef,
-  ElementRef,
   forwardRef,
   ForwardRefExoticComponent,
   JSXElementConstructor,
   ReactElement,
+  RefAttributes,
 } from "react";
-import * as DropdownPrimitive from "@radix-ui/react-dropdown-menu";
+import { Menu as DropdownPrimitive } from "@base-ui/react/menu";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { cva, VariantProps } from "class-variance-authority";
-import { Slot } from "@radix-ui/react-slot";
 
 /**----------------------------------------------
  * *                   INFO
@@ -18,14 +18,18 @@ import { Slot } from "@radix-ui/react-slot";
  *
  *---------------------------------------------**/
 
-const Dropdown = DropdownPrimitive.Root;
+const Dropdown = (props: DropdownPrimitive.Root.Props) => (
+  <DropdownPrimitive.Root {...props} />
+);
 Dropdown.displayName = "Dropdown";
 
 const DropdownTrigger: ForwardRefExoticComponent<
-  ComponentProps<typeof DropdownPrimitive.Trigger>
-> = forwardRef((props, ref) => {
-  return <DropdownPrimitive.Trigger {...props} ref={ref} />;
-});
+  DropdownPrimitive.Trigger.Props & RefAttributes<HTMLButtonElement>
+> = forwardRef<HTMLButtonElement, DropdownPrimitive.Trigger.Props>(
+  (props, ref) => {
+    return <DropdownPrimitive.Trigger {...props} ref={ref} />;
+  },
+);
 DropdownTrigger.displayName = "DropdownTrigger";
 
 // const DropdownGroup = DropdownPrimitive.Group;
@@ -73,27 +77,63 @@ DropdownTrigger.displayName = "DropdownTrigger";
 // DropdownSubContent.displayName = DropdownPrimitive.SubContent.displayName;
 
 const dropdown_content_cva = cva([
-  "bg-bg-dialog border-otl-gray-200 shadow-context-menu z-50 min-w-[10rem] overflow-hidden rounded-md border p-[5px]",
-  "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+  "bg-bg-dialog border-otl-gray-200 shadow-context-menu min-w-[10rem] overflow-hidden rounded-md border p-[5px] outline-none",
+  "data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 ]);
 
-const DropdownContent = forwardRef<
-  ElementRef<typeof DropdownPrimitive.Content>,
-  ComponentPropsWithoutRef<typeof DropdownPrimitive.Content>
->(
+interface DropdownContentProps
+  extends Omit<DropdownPrimitive.Popup.Props, "className">,
+    Pick<
+      DropdownPrimitive.Positioner.Props,
+      | "side"
+      | "sideOffset"
+      | "align"
+      | "alignOffset"
+      | "collisionPadding"
+      | "collisionBoundary"
+      | "sticky"
+      | "positionMethod"
+    > {
+  className?: string;
+  /** Element to portal the popup into. Defaults to `document.body`. */
+  container?: DropdownPrimitive.Portal.Props["container"];
+}
+
+const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
   (
-    { className, side = "bottom", align = "end", sideOffset = 4, ...props },
+    {
+      className,
+      side = "bottom",
+      align = "end",
+      sideOffset = 4,
+      alignOffset,
+      collisionPadding,
+      collisionBoundary,
+      sticky,
+      positionMethod,
+      container,
+      ...props
+    },
     ref,
   ) => (
-    <DropdownPrimitive.Portal>
-      <DropdownPrimitive.Content
-        ref={ref}
-        sideOffset={sideOffset}
+    <DropdownPrimitive.Portal container={container}>
+      <DropdownPrimitive.Positioner
+        className="z-50 outline-none"
         side={side}
         align={align}
-        className={dropdown_content_cva({ className })}
-        {...props}
-      />
+        sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        collisionPadding={collisionPadding}
+        collisionBoundary={collisionBoundary}
+        sticky={sticky}
+        positionMethod={positionMethod}
+      >
+        <DropdownPrimitive.Popup
+          ref={ref}
+          className={dropdown_content_cva({ className })}
+          {...props}
+        />
+      </DropdownPrimitive.Positioner>
     </DropdownPrimitive.Portal>
   ),
 );
@@ -109,8 +149,8 @@ const dropdown_item_cva = cva(
     variants: {
       variant: {
         default:
-          "text-txt-black-700 focus:text-txt-black-900 focus:bg-bg-washed-active ",
-        danger: "text-txt-danger focus:bg-bg-danger-50 ",
+          "text-txt-black-700 data-[highlighted]:text-txt-black-900 data-[highlighted]:bg-bg-washed-active ",
+        danger: "text-txt-danger data-[highlighted]:bg-bg-danger-50 ",
       },
     },
     defaultVariants: {
@@ -119,17 +159,21 @@ const dropdown_item_cva = cva(
   },
 );
 
-const DropdownItem = forwardRef<
-  ElementRef<typeof DropdownPrimitive.Item>,
-  ComponentPropsWithoutRef<typeof DropdownPrimitive.Item> &
-    VariantProps<typeof dropdown_item_cva>
->(({ className, variant, ...props }, ref) => (
-  <DropdownPrimitive.Item
-    ref={ref}
-    className={dropdown_item_cva({ variant, className })}
-    {...props}
-  />
-));
+interface DropdownItemProps
+  extends Omit<DropdownPrimitive.Item.Props, "className">,
+    VariantProps<typeof dropdown_item_cva> {
+  className?: string;
+}
+
+const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
+  ({ className, variant, ...props }, ref) => (
+    <DropdownPrimitive.Item
+      ref={ref}
+      className={dropdown_item_cva({ variant, className })}
+      {...props}
+    />
+  ),
+);
 DropdownItem.displayName = "DropdownItem";
 
 const dropdown_item_icon_cva = cva(
@@ -142,15 +186,14 @@ interface DropdownItemIconProps extends ComponentProps<"div"> {
 
 const DropdownItemIcon: ForwardRefExoticComponent<DropdownItemIconProps> =
   forwardRef(({ children, className, ...props }, ref) => {
-    return (
-      <Slot
-        ref={ref}
-        className={dropdown_item_icon_cva({ className })}
-        {...props}
-      >
-        {children}
-      </Slot>
-    );
+    return useRender({
+      render: children,
+      ref,
+      props: mergeProps<"div">(
+        { className: dropdown_item_icon_cva({ className }) },
+        props,
+      ),
+    });
   });
 
 DropdownItemIcon.displayName = "DropdownItemIcon";

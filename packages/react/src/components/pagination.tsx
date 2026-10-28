@@ -11,7 +11,7 @@ import { EllipsisIcon } from "../icons/ellipsis";
 import { Button, ButtonIcon } from "./button";
 import { ChevronLeftIcon } from "../icons/chevron-left";
 import { ChevronRightIcon } from "../icons/chevron-right";
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
 import { usePagination } from "../hooks/use-pagination";
 
 /**
@@ -96,8 +96,8 @@ const PaginationItem: ForwardRefExoticComponent<ComponentProps<"li">> =
 PaginationItem.displayName = "PaginationItem";
 
 const PaginationPrevious: ForwardRefExoticComponent<
-  ComponentProps<"button"> & { asChild?: boolean }
-> = forwardRef(({ asChild, children, ...props }, ref) => {
+  useRender.ComponentProps<"button">
+> = forwardRef(({ render, children, ...props }, ref) => {
   const { page, onPageChange } = useContext(PaginationContext);
   const disabled = page <= 1;
   const handlePreviousPage = () => {
@@ -106,12 +106,14 @@ const PaginationPrevious: ForwardRefExoticComponent<
     }
   };
 
-  if (asChild)
-    return (
-      <Slot ref={ref} {...props}>
-        {children}
-      </Slot>
-    );
+  // With `render`, the custom element is rendered as-is (no built-in styling or page handling).
+  const custom = useRender({
+    enabled: render !== undefined,
+    render,
+    ref,
+    props: { ...props, children },
+  });
+  if (custom) return custom;
 
   return (
     <Button
@@ -135,8 +137,8 @@ const PaginationPrevious: ForwardRefExoticComponent<
 PaginationPrevious.displayName = "PaginationPrevious";
 
 const PaginationNext: ForwardRefExoticComponent<
-  ComponentProps<"button"> & { asChild?: boolean }
-> = forwardRef(({ asChild, children, ...props }, ref) => {
+  useRender.ComponentProps<"button">
+> = forwardRef(({ render, children, ...props }, ref) => {
   const { page, totalPages, onPageChange } = useContext(PaginationContext);
   const disabled = page === totalPages;
   const handleNextPage = () => {
@@ -144,12 +146,14 @@ const PaginationNext: ForwardRefExoticComponent<
       onPageChange(page + 1);
     }
   };
-  if (asChild)
-    return (
-      <Slot ref={ref} {...props}>
-        {children}
-      </Slot>
-    );
+  // With `render`, the custom element is rendered as-is (no built-in styling or page handling).
+  const custom = useRender({
+    enabled: render !== undefined,
+    render,
+    ref,
+    props: { ...props, children },
+  });
+  if (custom) return custom;
 
   return (
     <Button

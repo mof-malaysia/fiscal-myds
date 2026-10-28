@@ -37,7 +37,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@/components/ui/button";
 
 <Button variant="primary-fill" size="small" onClick={...}>
   Jana Pantun
@@ -49,11 +49,21 @@ import { Button } from "@mof-malaysia/myds-react/button";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-button--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-button--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/button.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/button.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
+```
+
+`--overwrite` menggantikan `components/ui/button.tsx` yang dicipta oleh `shadcn init`.
 
 ## Penggunaan
 
@@ -62,7 +72,7 @@ import {
   Button,
   ButtonIcon,
   ButtonCounter,
-} from "@mof-malaysia/myds-react/button";
+} from "@/components/ui/button";
 ```
 
 ```tsx copy title="Anatomi" title="Anatomi"
@@ -150,7 +160,7 @@ Gunakan prop `variant` untuk menukar gaya butang!
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@/components/ui/button";
 
 /** Varian: Primary **/
 
@@ -203,7 +213,7 @@ Gunakan prop `size` untuk menukar saiz butang!
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@/components/ui/button";
 
 /** Saiz **/
 
@@ -242,11 +252,9 @@ Gunakan `<ButtonIcon>` untuk menambah ikon tindakan pada butang.
   </Tab>
   <Tab value="Kod">
 ```tsx 
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
-import {
-  ArrowForwardIcon,
-  ArrowBackIcon,
-} from "@mof-malaysia/myds-react/icon";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { ArrowForwardIcon } from "@/components/ui/icons/arrow-forward";
+import { ArrowBackIcon } from "@/components/ui/icons/arrow-back";
 
 /** Dengan Ikon; Posisi: Mula **/
 
@@ -299,12 +307,10 @@ Untuk Butang dengan ikon sahaja - gunakan hanya `<ButtonIcon>` sebagai anak.
   </Tab>
   <Tab value="Kod">
 ```tsx 
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
-import {
-  UploadIcon,
-  CopyIcon,
-  TrashIcon,
-} from "@mof-malaysia/myds-react/icon";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { UploadIcon } from "@/components/ui/icons/upload";
+import { CopyIcon } from "@/components/ui/icons/copy";
+import { TrashIcon } from "@/components/ui/icons/trash";
 
 <Button variant="primary-fill" size="small">
   <ButtonIcon>
@@ -361,7 +367,7 @@ Gunakan `<ButtonCounter>` untuk menambah maklumat berangka pada butang.
   </Tab>
   <Tab value="Kod">
 ```tsx
-import { Button, ButtonCounter } from "@mof-malaysia/myds-react/button";
+import { Button, ButtonCounter } from "@/components/ui/button";
 
 <Button variant="primary-fill" size="medium">
   Tapisan
@@ -410,7 +416,7 @@ import { Button, ButtonCounter } from "@mof-malaysia/myds-react/button";
   type={{
     children: {
       description:
-        "Import mana-mana komponen ikon dari @mof-malaysia/myds-react/icon",
+        "Mana-mana komponen ikon dari registri ikon MYDS (@/components/ui/icons/*)",
       type: "ReactNode",
     },
   }}

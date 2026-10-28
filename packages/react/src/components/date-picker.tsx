@@ -57,16 +57,18 @@ const DatePicker: FC<DatePickerProps> = ({
     <>
       {/* Mobile */}
       <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            variant="default-outline"
-            size={size}
-            className="flex lg:hidden"
-            disabled={disabled === true}
-          >
-            <ButtonIcon>{icon ?? <CalendarIcon />}</ButtonIcon>
-            {date ? formatDate(date) : placeholder}
-          </Button>
+        <DialogTrigger
+          disabled={disabled === true}
+          render={
+            <Button
+              variant="default-outline"
+              size={size}
+              className="flex lg:hidden"
+            />
+          }
+        >
+          <ButtonIcon>{icon ?? <CalendarIcon />}</ButtonIcon>
+          {date ? formatDate(date) : placeholder}
         </DialogTrigger>
         <DialogBody hideClose className="sm:w-fit">
           <DialogContent className="p-0">
@@ -86,16 +88,18 @@ const DatePicker: FC<DatePickerProps> = ({
 
       {/* Desktop */}
       <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant="default-outline"
-            size={size}
-            className="hidden lg:flex"
-            disabled={disabled === true}
-          >
-            <ButtonIcon>{icon ?? <CalendarIcon />}</ButtonIcon>
-            {date ? formatDate(date) : placeholder}
-          </Button>
+        <PopoverTrigger
+          disabled={disabled === true}
+          render={
+            <Button
+              variant="default-outline"
+              size={size}
+              className="hidden lg:flex"
+            />
+          }
+        >
+          <ButtonIcon>{icon ?? <CalendarIcon />}</ButtonIcon>
+          {date ? formatDate(date) : placeholder}
         </PopoverTrigger>
         <PopoverContent className="w-[304px] p-0" align="start">
           <Calendar

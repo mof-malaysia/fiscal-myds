@@ -53,9 +53,9 @@ export const items = {
         Yes, we are open source. You can find the source code on our GitHub{" "}
         <a
           className="text-txt-primary"
-          href="https://github.com/govtechmy/myds"
+          href="https://github.com/mof-malaysia/fiscal-myds"
         >
-          (@govtechmy)
+          (mof-malaysia/fiscal-myds)
         </a>{" "}
         repository.
       </AccordionContent>
@@ -85,9 +85,9 @@ export const items = {
         Yes, we are open source. You can find the source code on our GitHub{" "}
         <a
           className="text-txt-primary"
-          href="https://github.com/govtechmy/myds"
+          href="https://github.com/mof-malaysia/fiscal-myds"
         >
-          (@govtechmy)
+          (mof-malaysia/fiscal-myds)
         </a>{" "}
         repository.
       </AccordionContent>
@@ -111,7 +111,7 @@ import {
   AccordionContent,
   Accordion,
   AccordionItem,
-} from "@mof-malaysia/myds-react/accordion";
+} from "@/components/ui/accordion";
     
     <Accordion type="single" defaultValue="item-1" collapsible>
       <AccordionItem key="item-1" value="item-1">
@@ -135,8 +135,8 @@ import {
         <AccordionTrigger>Is it open source?</AccordionTrigger>
         <AccordionContent>
           Yes, we are open source. You can find the source code on our GitHub{" "}
-          <a className="text-txt-primary" href="https://github.com/govtechmy/myds">
-            (@govtechmy)
+          <a className="text-txt-primary" href="https://github.com/mof-malaysia/fiscal-myds">
+            (mof-malaysia/fiscal-myds)
           </a>
           repository.
         </AccordionContent>
@@ -149,11 +149,19 @@ import {
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-accordion--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-accordion--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/accordion.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/accordion.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/accordion.json
+```
 
 ## Usage
 
@@ -163,7 +171,7 @@ import {
   AccordionTrigger,
   AccordionContent,
   AccordionItem,
-} from "@mof-malaysia/myds-react/accordion";
+} from "@/components/ui/accordion";
 ```
 
 ```tsx copy title="Anatomy"
@@ -219,9 +227,9 @@ Use the `type` prop to change how the content should be displayed!
           Yes, we are open source. You can find the source code on our GitHub{" "}
           <a
             className="text-txt-primary"
-            href="https://github.com/govtechmy/myds"
+            href="https://github.com/mof-malaysia/fiscal-myds"
           >
-            (@govtechmy)
+            (mof-malaysia/fiscal-myds)
           </a>
           repository.
         </AccordionContent>
@@ -266,8 +274,8 @@ Use the `collapsible` prop to determine whether all the accordion is collapsible
       <AccordionTrigger>Is it open source?</AccordionTrigger>
       <AccordionContent>
         Yes, we are open source. You can find the source code on our GitHub{" "}
-        <a className="text-txt-primary" href="https://github.com/govtechmy/myds">
-          (@govtechmy)
+        <a className="text-txt-primary" href="https://github.com/mof-malaysia/fiscal-myds">
+          (mof-malaysia/fiscal-myds)
         </a>
         repository.
       </AccordionContent>
@@ -315,9 +323,9 @@ Setting `disabled` to `true` in `Accordion` will disable all the `AccordionItem`
           Yes, we are open source. You can find the source code on our GitHub{" "}
           <a
             className="text-txt-primary"
-            href="https://github.com/govtechmy/myds"
+            href="https://github.com/mof-malaysia/fiscal-myds"
           >
-            (@govtechmy)
+            (mof-malaysia/fiscal-myds)
           </a>
           repository.
         </AccordionContent>
@@ -334,33 +342,49 @@ Setting `disabled` to `true` in `Accordion` will disable all the `AccordionItem`
 <TypeTable
   type={{
     type: {
+      description: "Whether one or many items can be open at the same time.",
       type: "enum",
       typeDescription: "single | multiple",
+      default: "single",
     },
     value: {
       description:
         "The controlled value of the item to expand. Must be used in conjunction with onValueChange.",
-      type: "string|string[]",
+      type: "string | string[]",
     },
     defaultValue: {
       description:
         "The value of the item to expand when initially rendered. Use when you do not need to control the state of the items.",
-      type: "string|string[]",
+      type: "string | string[]",
     },
     onValueChange: {
       description:
-        "Event handler called when the expanded state of an item changes and type is 'single'.",
-      type: "string|string[]",
+        "Event handler called when the expanded state of an item changes.",
+      type: "(value: string | string[]) => void",
     },
     collapsible: {
       description:
         "When type is 'single', allows closing content when clicking trigger for an open item.",
-      type: "string|string[]",
+      type: "boolean",
+      default: "false",
     },
     disabled: {
       description:
         "When true, prevents the user from interacting with the accordion and all its items.",
-      type: "string|string[]",
+      type: "boolean",
+      default: "false",
+    },
+    hiddenUntilFound: {
+      description:
+        "Allows the browser's built-in page search to find and expand the content of closed items.",
+      type: "boolean",
+      default: "false",
+    },
+    keepMounted: {
+      description:
+        "Whether to keep the content of closed items mounted in the DOM.",
+      type: "boolean",
+      default: "false",
     },
   }}
 />
@@ -369,21 +393,21 @@ Setting `disabled` to `true` in `Accordion` will disable all the `AccordionItem`
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "The controlled value of the item to expand. Must be used in conjunction with onValueChange.",
-      type: "boolean",
-      default: "false",
+        'Replaces the rendered element, e.g. `render={<section />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
     value: {
       description:
-        "The controlled value of the item to expand. Must be used in conjunction with onValueChange.",
-      type: "string|string[]",
+        "A unique value that identifies this accordion item.",
+      type: "string",
     },
     disabled: {
       description:
-        "When true, prevents the user from interacting with the accordion and all its items.",
-      type: "string|string[]",
+        "When true, prevents the user from interacting with the item.",
+      type: "boolean",
+      default: "false",
     },
   }}
 />
@@ -392,11 +416,10 @@ Setting `disabled` to `true` in `Accordion` will disable all the `AccordionItem`
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "The controlled value of the item to expand. Must be used in conjunction with onValueChange.",
-      type: "boolean",
-      default: "false",
+        'Replaces the rendered element, e.g. `render={<section />}`',
+      type: "ReactElement | (props, state) => ReactElement",
     },
   }}
 />
@@ -405,9 +428,20 @@ Setting `disabled` to `true` in `Accordion` will disable all the `AccordionItem`
 
 <TypeTable
   type={{
-    asChild: {
+    render: {
       description:
-        "The controlled value of the item to expand. Must be used in conjunction with onValueChange.",
+        'Replaces the rendered element, e.g. `render={<section />}`',
+      type: "ReactElement | (props, state) => ReactElement",
+    },
+    hiddenUntilFound: {
+      description:
+        "Allows the browser's built-in page search to find and expand the content.",
+      type: "boolean",
+      default: "false",
+    },
+    keepMounted: {
+      description:
+        "Whether to keep the content mounted in the DOM while closed.",
       type: "boolean",
       default: "false",
     },
@@ -416,5 +450,5 @@ Setting `disabled` to `true` in `Accordion` will disable all the `AccordionItem`
 
 <small>
   For more in-depth customization, you can refer to API references in this
-  [documentation](https://www.radix-ui.com/primitives/docs/components/accordion#api-reference)
+  [documentation](https://base-ui.com/react/components/accordion#api-reference)
 </small>

@@ -4,6 +4,7 @@ import React, {
   forwardRef,
   ForwardRefExoticComponent,
   ReactNode,
+  isValidElement,
   useContext,
   useState,
 } from "react";
@@ -12,7 +13,8 @@ import { clx } from "../utils";
 import { CheckCircleIcon } from "../icons/check-circle";
 import { CrossIcon, InfoIcon, WarningCircleIcon, WarningIcon } from "../icons";
 import { Button, ButtonIcon } from "./button";
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 type CalloutVariant = "success" | "warning" | "info" | "danger";
 
@@ -160,14 +162,32 @@ const CalloutAction: ForwardRefExoticComponent<CalloutActionProps> = forwardRef(
 );
 CalloutAction.displayName = "CalloutAction";
 
-const CalloutClose: ForwardRefExoticComponent<ComponentProps<typeof Slot>> =
-  forwardRef((props, ref) => {
-    const { handleDismiss } = useContext(CalloutContext);
+/**
+ * Dismisses the parent Callout on click. Renders its single child element (e.g. a `Button`)
+ * with the dismiss handler merged in, or the element passed via `render`.
+ */
+const CalloutClose: ForwardRefExoticComponent<
+  useRender.ComponentProps<"button">
+> = forwardRef(({ render, children, ...props }, ref) => {
+  const { handleDismiss } = useContext(CalloutContext);
+  const childIsElement = !render && isValidElement(children);
 
-    if (!handleDismiss)
-      throw new Error("CalloutClose must be used within a Callout component");
-    return <Slot ref={ref} onClick={handleDismiss} {...props} />;
+  const element = useRender({
+    defaultTagName: "button",
+    render: render ?? (childIsElement ? children : undefined),
+    ref,
+    props: mergeProps<"button">(
+      { onClick: handleDismiss },
+      childIsElement ? props : { ...props, children },
+    ),
   });
+
+  if (!handleDismiss)
+    throw new Error("CalloutClose must be used within a Callout component");
+  // Like the previous Slot-based version, render nothing without a child or `render`.
+  if (!render && children == null) return null;
+  return element;
+});
 CalloutClose.displayName = "CalloutClose";
 
 export { Callout, CalloutTitle, CalloutContent, CalloutAction, CalloutClose };

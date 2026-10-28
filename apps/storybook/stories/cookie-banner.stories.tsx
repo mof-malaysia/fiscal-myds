@@ -145,25 +145,29 @@ const meta = {
           </CookieBannerPreferences>
 
           <CookieBannerAction>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Accept all cookies.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Accept All
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Accept all cookies.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Accept All
             </CookieBannerClose>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Reject all cookies.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Reject All
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Reject all cookies.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Reject All
             </CookieBannerClose>
 
             <CookieBannerPreferencesTrigger>
@@ -172,25 +176,29 @@ const meta = {
           </CookieBannerAction>
 
           <CookieBannerAction preferences>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Accept saved preferences.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Save preferences
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Accept saved preferences.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Save preferences
             </CookieBannerClose>
-            <CookieBannerClose asChild>
-              <Button
-                variant="primary-fill"
-                size="medium"
-                onClick={() => alert("Necessary cookies accepted.")}
-                className="w-full justify-center sm:w-auto"
-              >
-                Accept necessary cookies
-              </Button>
+            <CookieBannerClose
+              render={
+                <Button
+                  variant="primary-fill"
+                  size="medium"
+                  onClick={() => alert("Necessary cookies accepted.")}
+                  className="w-full justify-center sm:w-auto"
+                />
+              }
+            >
+              Accept necessary cookies
             </CookieBannerClose>
           </CookieBannerAction>
         </CookieBanner>

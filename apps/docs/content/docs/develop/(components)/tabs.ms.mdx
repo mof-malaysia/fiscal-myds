@@ -82,11 +82,19 @@ import { Tab, Tabs as FumaTabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-tabs--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-tabs--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/tabs.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/tabs.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```bash
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/tabs.json
+```
 
 ## Penggunaan
 
@@ -97,7 +105,7 @@ import {
   TabsTrigger,
   TabsContent,
   TabsCounter,
-} from "@mof-malaysia/myds-react/tabs";
+} from "@/components/ui/tabs";
 ```
 
 ```tsx copy title="Anatomi"
@@ -598,9 +606,7 @@ Ikon ("leading icon") berfungsi sebagai penunjuk visual yang diletakkan di tab, 
            Tabs,
            TabsContent,
        } from "@/components/myds";
-       import {
-           ArrowForwardIcon
-       } from "@mof-malaysia/myds-react/icon";
+       import { ArrowForwardIcon } from "@/components/ui/icons/arrow-forward";
 
        <Tabs
            defaultValue="1"
@@ -749,3 +755,62 @@ Pembilang ("Counter") muncul sebagai penunjuk berangka selepas label tab, member
 
    </Tab>
 </FumaTabs>
+
+## Props
+
+### Tabs
+
+Bekas utama yang menggabungkan semua komponen tab, mengurus keadaan dan interaksi antara pencetus dan panel kandungannya. Ia dibina di atas `Tabs.Root` Base UI.
+
+<TypeTable
+  type={{
+    variant: {
+      description: "Variasi gaya tab",
+      type: "enum",
+      typeDescription: "pill | enclosed | line",
+      default: "line",
+    },
+    size: {
+      description: "Saiz tab",
+      type: "enum",
+      typeDescription: "small | medium",
+      default: "small",
+    },
+  }}
+/>
+
+### TabsList
+
+Bekas yang menempatkan dan menyusun semua pencetus tab, menyediakan susun atur yang konsisten untuk elemen navigasi. Ia dibina di atas `Tabs.List` Base UI.
+
+<TypeTable
+  type={{
+    width: {
+      description: "Lebar TabList",
+      type: "enum",
+      typeDescription: "full | fit",
+      default: "fit",
+    },
+  }}
+/>
+
+### TabsTrigger
+
+Elemen interaktif yang memaparkan panel tab yang sepadan apabila dipilih. Ia dibina di atas `Tabs.Tab` Base UI.
+
+### TabsContent
+
+Panel yang memaparkan kandungan apabila pencetus yang sepadan dipilih, dan disembunyikan apabila tab lain diaktifkan. Ia dibina di atas `Tabs.Panel` Base UI.
+
+### TabsIcon
+
+`TabsIcon` ialah komponen pembalut yang menerapkan gaya dan saiz yang konsisten kepada ikon dalam `TabsTrigger`, menggunakan variasi saiz berdasarkan konteks (`small` atau `medium`).
+
+### TabsCounter
+
+`TabsCounter` ialah komponen yang memaparkan penunjuk angka atau lencana dalam `TabsTrigger`, melaraskan saiz teksnya berdasarkan konteks tab induk (`small` atau `medium`).
+
+<small>
+  Untuk penyesuaian yang lebih mendalam, anda boleh merujuk kepada rujukan API
+  dalam [dokumentasi](https://base-ui.com/react/components/tabs#api-reference) ini.
+</small>

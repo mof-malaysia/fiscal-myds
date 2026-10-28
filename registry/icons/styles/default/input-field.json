@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-field",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/input-field.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * InputField Icon\n * @param className\n * @returns InputFieldIcon\n */\nexport const InputFieldIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/forms-field\">\n        <path\n          id=\"Vector\"\n          d=\"M4.5 6.5H4C2.89543 6.5 2 7.39543 2 8.5V11.5C2 12.6046 2.89543 13.5 4 13.5H4.5M11.5 6.5H16C17.1046 6.5 18 7.39543 18 8.5V11.5C18 12.6046 17.1046 13.5 16 13.5H11.5M8 16V4M8 16H6M8 16H10M8 4H6.00001M8 4H10\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

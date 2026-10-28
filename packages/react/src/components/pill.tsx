@@ -1,4 +1,5 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ComponentProps, ForwardRefExoticComponent } from "react";
 import { CrossIcon } from "../icons/cross";
@@ -26,26 +27,27 @@ const pill_cva = cva(
 );
 
 interface PillProps
-  extends ComponentProps<"div">,
+  extends useRender.ComponentProps<"div">,
     VariantProps<typeof pill_cva> {
-  asChild?: boolean;
   disabled?: boolean;
   onDismiss?: ComponentProps<typeof Button>["onClick"];
 }
 
 export const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(
   (
-    { asChild, children, disabled, size, className, onDismiss, ...props },
+    { render, children, disabled, size, className, onDismiss, ...props },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "div";
-    return (
-      <Comp
-        className={pill_cva({ size, disabled, className })}
-        ref={ref}
-        {...props}
-      >
-        <Slottable>{children}</Slottable>
+    return useRender({
+      defaultTagName: "div",
+      render,
+      ref,
+      props: mergeProps<"div">(
+        {
+          className: pill_cva({ size, disabled, className }),
+          children: (
+            <>
+              {children}
         {onDismiss && !disabled && (
           <Button
             variant="default-ghost"
@@ -58,8 +60,12 @@ export const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(
             </ButtonIcon>
           </Button>
         )}
-      </Comp>
-    );
+            </>
+          ),
+        },
+        props,
+      ),
+    });
   },
 );
 Pill.displayName = "Pill";

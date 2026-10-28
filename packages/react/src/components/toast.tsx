@@ -1,5 +1,7 @@
+"use client";
+
 import * as React from "react";
-import * as ToastPrimitives from "@radix-ui/react-toast";
+import { Toast as ToastPrimitives } from "@base-ui/react/toast";
 import { clx } from "../utils";
 import { cva, VariantProps } from "class-variance-authority";
 import { FunctionComponent, ReactNode, useEffect } from "react";
@@ -8,7 +10,7 @@ import { InfoIcon } from "../icons/info";
 import { WarningCircleIcon } from "../icons/warning-circle";
 import { WarningIcon } from "../icons/warning";
 import { CrossIcon } from "../icons/cross";
-import { useToast } from "../hooks";
+import { emitter } from "../utils/events";
 
 /*========================================================================================================================*/
 
@@ -31,72 +33,82 @@ const ToastProvider = ToastPrimitives.Provider;
 
 const ToastContext = React.createContext<{
   variant: ToastEvent["variant"];
-  isHover: boolean;
   duration: number;
 }>({
   variant: "message",
-  isHover: false,
   duration: 5000,
 });
 
 /*========================================================================================================================*/
 
 interface ToastViewportProps
-  extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport> {}
+  extends Omit<ToastPrimitives.Viewport.Props, "className"> {
+  className?: string;
+}
 
 const toast_viewport_cva = cva([
-  "fixed flex max-h-screen w-full overflow-hidden flex-col-reverse gap-1",
-  "p-4.5 sm:p-6 bottom-0 right-0 sm:top-auto sm:flex-col md:max-w-sm z-[99]",
+  "fixed flex max-h-screen w-full overflow-hidden flex-col gap-1",
+  "p-4.5 sm:p-6 bottom-0 right-0 sm:top-auto sm:flex-col-reverse md:max-w-sm z-[99]",
 ]);
 
-const ToastViewport = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Viewport>,
-  ToastViewportProps
->(({ className, ...props }, ref) => (
-  <ToastPrimitives.Viewport
-    ref={ref}
-    className={clx(toast_viewport_cva({ className }))}
-    {...props}
-  />
-));
-ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
+const ToastViewport = React.forwardRef<HTMLDivElement, ToastViewportProps>(
+  ({ className, ...props }, ref) => (
+    <ToastPrimitives.Portal>
+      <ToastPrimitives.Viewport
+        ref={ref}
+        className={clx(toast_viewport_cva({ className }))}
+        {...props}
+      />
+    </ToastPrimitives.Portal>
+  ),
+);
+ToastViewport.displayName = "ToastViewport";
 
 /*========================================================================================================================*/
 
 interface ToastRootProps
-  extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>,
+  extends Omit<ToastPrimitives.Root.Props, "className">,
     VariantProps<typeof toast_cva> {
-  variant: "message" | "success" | "info" | "warning" | "error";
+  className?: string;
+  /** Defaults to the toast object's `type`, then "message". */
+  variant?: "message" | "success" | "info" | "warning" | "error";
+  /**
+   * Auto-dismiss duration (ms), used for the progress bar. The dismiss timer itself comes from
+   * the toast object's `timeout` (or ToastProvider's `timeout`).
+   */
+  duration?: number;
 }
 
 const toast_cva = cva([
   "group pointer-events-auto relative bg-bg-dialog-active z-[99] p-3 flex w-full items-start gap-2 outline-none",
-  "overflow-hidden rounded-md border shadow-card border-bg-washed-active transition-all data-[swipe=cancel]:translate-x-0 ",
-  "data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]",
-  "data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out",
-  "data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full",
-  "data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
+  "overflow-hidden rounded-md border shadow-card border-bg-washed-active transition-all duration-300 ease-out",
+  "translate-x-[var(--toast-swipe-movement-x)] translate-y-[var(--toast-swipe-movement-y)] data-[swiping]:transition-none",
+  "data-[starting-style]:translate-x-full data-[starting-style]:opacity-0",
+  "data-[ending-style]:translate-x-full data-[ending-style]:opacity-0",
+  "data-[limited]:hidden",
 ]);
 
-const ToastRoot = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Root>,
-  ToastRootProps
->(({ className, variant = "message", duration = 5000, ...props }, ref) => {
-  const [isHover, setIsHover] = React.useState(false);
-  return (
-    <ToastContext.Provider value={{ variant, isHover, duration }}>
-      <ToastPrimitives.Root
-        ref={ref}
-        className={toast_cva({ className })}
-        onPause={() => setIsHover(true)}
-        onResume={() => setIsHover(false)}
-        duration={duration}
-        {...props}
-      />
-    </ToastContext.Provider>
-  );
-});
-ToastRoot.displayName = ToastPrimitives.Root.displayName;
+const ToastRoot = React.forwardRef<HTMLDivElement, ToastRootProps>(
+  ({ className, variant, duration, toast, ...props }, ref) => {
+    const resolvedVariant =
+      variant ?? (toast.type as ToastRootProps["variant"]) ?? "message";
+    const resolvedDuration = duration ?? toast.timeout ?? 5000;
+    return (
+      <ToastContext.Provider
+        value={{ variant: resolvedVariant, duration: resolvedDuration }}
+      >
+        <ToastPrimitives.Root
+          ref={ref}
+          toast={toast}
+          className={toast_cva({ className })}
+          swipeDirection="right"
+          {...props}
+        />
+      </ToastContext.Provider>
+    );
+  },
+);
+ToastRoot.displayName = "ToastRoot";
 
 /*========================================================================================================================*/
 
@@ -132,8 +144,8 @@ const toast_close_cva = cva([
   "focus:outline-none",
 ]);
 const ToastClose = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Close>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
+  HTMLButtonElement,
+  Omit<ToastPrimitives.Close.Props, "className"> & { className?: string }
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Close
     ref={ref}
@@ -144,7 +156,7 @@ const ToastClose = React.forwardRef<
     <CrossIcon className="size-5 shrink-0" />
   </ToastPrimitives.Close>
 ));
-ToastClose.displayName = ToastPrimitives.Close.displayName;
+ToastClose.displayName = "ToastClose";
 
 /*========================================================================================================================*/
 
@@ -161,8 +173,8 @@ const toast_title_cva = cva(["text-body-sm font-semibold"], {
 });
 
 const ToastTitle = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Title>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
+  HTMLHeadingElement,
+  Omit<ToastPrimitives.Title.Props, "className"> & { className?: string }
 >(({ className, ...props }, ref) => {
   const { variant } = React.useContext(ToastContext);
   return (
@@ -173,13 +185,15 @@ const ToastTitle = React.forwardRef<
     />
   );
 });
-ToastTitle.displayName = ToastPrimitives.Title.displayName;
+ToastTitle.displayName = "ToastTitle";
 
 /*========================================================================================================================*/
 
 const ToastDescription = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Description>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
+  HTMLParagraphElement,
+  Omit<ToastPrimitives.Description.Props, "className"> & {
+    className?: string;
+  }
 >(({ className, ...props }, ref) => {
   return (
     <ToastPrimitives.Description
@@ -189,7 +203,7 @@ const ToastDescription = React.forwardRef<
     />
   );
 });
-ToastDescription.displayName = ToastPrimitives.Description.displayName;
+ToastDescription.displayName = "ToastDescription";
 
 /*========================================================================================================================*/
 
@@ -253,7 +267,7 @@ const ToastProgress = React.forwardRef<
     <div
       role="progressbar"
       ref={ref}
-      className="animate-expire group-hover:paused absolute bottom-0 left-0 w-full group-hover:transition-none"
+      className="animate-expire absolute bottom-0 left-0 w-full group-hover:transition-none group-data-[expanded]:[animation-play-state:paused]"
       style={{ animationDuration: `${duration}ms` }}
       {...props}
     >
@@ -261,45 +275,67 @@ const ToastProgress = React.forwardRef<
     </div>
   );
 });
+ToastProgress.displayName = "ToastProgress";
 
 /*========================================================================================================================*/
 
-const AutoToast: FunctionComponent<
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>
-> = (props) => {
-  const { toasts, subscribe, unsubscribe } = useToast();
+/**
+ * Forwards `useToast().toast({...})` events (mitt emitter) to Base UI's toast manager.
+ */
+const ToastEventBridge: FunctionComponent = () => {
+  const toastManager = ToastPrimitives.useToastManager();
 
   useEffect(() => {
-    subscribe();
-    return () => {
-      unsubscribe();
+    const handleAddToast = (event: ToastEvent) => {
+      toastManager.add({
+        type: event.variant || "message",
+        title: event.title,
+        description: event.description,
+      });
     };
-  }, []);
+    emitter.on("toast.add", handleAddToast);
+    return () => {
+      emitter.off("toast.add", handleAddToast);
+    };
+  }, [toastManager]);
 
+  return null;
+};
+
+const AutoToastList: FunctionComponent<AutoToastProps> = ({
+  duration,
+  ...props
+}) => {
+  const { toasts } = ToastPrimitives.useToastManager();
+
+  return toasts.map((toast) => (
+    <ToastRoot key={toast.id} toast={toast} duration={duration} {...props}>
+      <ToastIcon />
+      <div className="space-y-1">
+        <ToastTitle />
+        {toast.description && <ToastDescription />}
+      </div>
+      <ToastClose />
+      <ToastProgress />
+    </ToastRoot>
+  ));
+};
+
+type AutoToastProps = Omit<ToastRootProps, "toast" | "variant">;
+
+const AutoToast: FunctionComponent<AutoToastProps> = (props) => {
   return (
-    <ToastProvider>
-      {toasts.map((toast, index) => (
-        <ToastRoot
-          key={props.id || index}
-          variant={toast.variant || "message"}
-          {...props}
-        >
-          <ToastIcon />
-          <div className="space-y-1">
-            <ToastTitle>{toast.title}</ToastTitle>
-            {toast.description && (
-              <ToastDescription>{toast.description}</ToastDescription>
-            )}
-          </div>
-          <ToastClose />
-          <ToastProgress />
-        </ToastRoot>
-      ))}
-
-      <ToastViewport />
+    <ToastProvider timeout={props.duration ?? 5000}>
+      <ToastEventBridge />
+      <ToastViewport>
+        <AutoToastList {...props} />
+      </ToastViewport>
     </ToastProvider>
   );
 };
+
+/** Base UI toast manager: `{ toasts, add, close, update, promise }`. Must be used inside ToastProvider. */
+const useToastManager = ToastPrimitives.useToastManager;
 
 export {
   ToastProvider,
@@ -308,5 +344,9 @@ export {
   ToastTitle,
   ToastDescription,
   ToastClose,
+  ToastIcon,
+  ToastProgress,
   AutoToast,
+  useToastManager,
 };
+export type { ToastRootProps, ToastViewportProps, AutoToastProps };

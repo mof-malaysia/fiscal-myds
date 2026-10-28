@@ -1,9 +1,11 @@
-import { Slot } from "@radix-ui/react-slot";
-import { ComponentProps, forwardRef, ForwardRefExoticComponent } from "react";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
+import { forwardRef, ForwardRefExoticComponent } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
-interface LinkProps extends ComponentProps<"a">, VariantProps<typeof link_cva> {
-  asChild?: boolean;
+interface LinkProps
+  extends useRender.ComponentProps<"a">,
+    VariantProps<typeof link_cva> {
   newTab?: boolean;
 }
 
@@ -30,8 +32,7 @@ const link_cva = cva("transition-colors", {
 const Link: ForwardRefExoticComponent<LinkProps> = forwardRef(
   (
     {
-      asChild,
-      children,
+      render,
       className,
       href,
       newTab = false,
@@ -41,19 +42,19 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef(
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "a";
-
-    return (
-      <Comp
-        ref={ref}
-        href={href}
-        className={link_cva({ primary, underline, className })}
-        target={newTab ? "_blank" : "_self"}
-        {...props}
-      >
-        {children}
-      </Comp>
-    );
+    return useRender({
+      defaultTagName: "a",
+      render,
+      ref,
+      props: mergeProps<"a">(
+        {
+          href,
+          className: link_cva({ primary, underline, className }),
+          target: newTab ? "_blank" : "_self",
+        },
+        props,
+      ),
+    });
   },
 );
 Link.displayName = "Link";

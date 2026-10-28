@@ -87,11 +87,19 @@ import { Tab, Tabs as FumaTabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-tabs--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-tabs--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/tabs.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/tabs.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```bash
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/tabs.json
+```
 
 ## Usage
 
@@ -102,7 +110,7 @@ import {
   TabsTrigger,
   TabsContent,
   TabsCounter,
-} from "@mof-malaysia/myds-react/tabs";
+} from "@/components/ui/tabs";
 ```
 
 ```tsx copy title="Anatomy"
@@ -824,7 +832,7 @@ Counters appear as numerical indicators after tab labels, providing at-a-glance 
 
 ### Tabs
 
-The primary container that composes all tab components together, managing state and interactions between triggers and their content panels. It is being built on top of `TabsPrimitive.Root`.
+The primary container that composes all tab components together, managing state and interactions between triggers and their content panels. It is built on top of Base UI's `Tabs.Root`.
 
 <TypeTable
   type={{
@@ -845,7 +853,7 @@ The primary container that composes all tab components together, managing state 
 
 ### TabsList
 
-A container that houses and aligns all tab triggers, providing a consistent layout for navigation elements. It is being built on top of `TabsPrimitive.List`.
+A container that houses and aligns all tab triggers, providing a consistent layout for navigation elements. It is built on top of Base UI's `Tabs.List`.
 
 <TypeTable
   type={{
@@ -860,11 +868,11 @@ A container that houses and aligns all tab triggers, providing a consistent layo
 
 ### TabsTrigger
 
-Interactive element that toggles visibility of its corresponding tab panel when selected. It is being built on top of `TabsPrimitive.Trigger`.
+Interactive element that toggles visibility of its corresponding tab panel when selected. It is built on top of Base UI's `Tabs.Tab`.
 
 ### TabsContent
 
-The panel that displays content when its corresponding trigger is selected, hiding when another tab is activated. It is being built on top of `TabsPrimitive.Content`.
+The panel that displays content when its corresponding trigger is selected, hiding when another tab is activated. It is built on top of Base UI's `Tabs.Panel`.
 
 ### TabsIcon
 
@@ -876,5 +884,5 @@ The `TabsCounter` is a component that displays numerical indicators or badges wi
 
 <small>
   For more in-depth customization, you can refer to API references in this
-  [documentation](https://www.radix-ui.com/primitives/docs/components/tabs#api-reference)
+  [documentation](https://base-ui.com/react/components/tabs#api-reference)
 </small>

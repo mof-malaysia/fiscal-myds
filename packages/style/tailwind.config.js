@@ -250,18 +250,18 @@ module.exports = {
         },
         "accordion-slide-down": {
           from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "var(--accordion-panel-height)" },
         },
         "accordion-slide-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
+          from: { height: "var(--accordion-panel-height)" },
           to: { height: "0" },
         },
         "collapsible-slide-down": {
           from: { height: "0" },
-          to: { height: "var(--radix-collapsible-content-height)" },
+          to: { height: "var(--collapsible-panel-height)" },
         },
         "collapsible-slide-up": {
-          from: { height: "var(--radix-collapsible-content-height)" },
+          from: { height: "var(--collapsible-panel-height)" },
           to: { height: "0" },
         },
         "slide-up": {
@@ -288,7 +288,7 @@ module.exports = {
         shimmer: "shimmer 1200ms linear infinite",
       },
       transformOrigin: {
-        "tooltip-origin": "var(--radix-tooltip-content-transform-origin)",
+        "tooltip-origin": "var(--transform-origin)",
       },
     },
     boxShadow: {

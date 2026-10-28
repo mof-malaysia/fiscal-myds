@@ -6,18 +6,20 @@ import React, {
   FunctionComponent,
   useContext,
 } from "react";
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
+import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { clx } from "../utils";
 
 type RadioSize = "small" | "medium" | "large";
 const DEFAULT_SIZE = "medium";
 
 /**
- * Extends Radix UI's RadioGroup.Root props.
- * @see https://www.radix-ui.com/primitives/docs/components/radio-group#root
+ * Extends Base UI's RadioGroup props.
+ * @see https://base-ui.com/react/components/radio#radiogroup
  */
 export interface RadioProps
-  extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> {
+  extends Omit<RadioGroupPrimitive.Props<string>, "className"> {
+  className?: string;
   size?: RadioSize;
 }
 
@@ -35,16 +37,13 @@ const RadioItemContext = createContext<
 >({ disabled: false });
 
 /**
- * Uses RadixUI's RadioGroup.Root API.
- * @see https://www.radix-ui.com/primitives/docs/components/radio-group#api-reference
+ * Uses Base UI's RadioGroup API.
+ * @see https://base-ui.com/react/components/radio#api-reference
  */
-const Radio = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Root>,
-  RadioProps
->(({ className, size = DEFAULT_SIZE, disabled = false, ...props }, ref) => {
+const Radio = React.forwardRef<HTMLDivElement, RadioProps>(({ className, size = DEFAULT_SIZE, disabled = false, ...props }, ref) => {
   return (
     <RadioContext.Provider value={{ size, disabled }}>
-      <RadioGroupPrimitive.Root
+      <RadioGroupPrimitive
         className={clx("grid gap-3", className)}
         disabled={disabled}
         ref={ref}
@@ -70,24 +69,24 @@ const RadioItem: FunctionComponent<
 RadioItem.displayName = "RadioItem";
 
 /**
- * Uses RadixUI's RadioGroup.Item API.
- * @see https://www.radix-ui.com/primitives/docs/components/radio-group#item
+ * Uses Base UI's Radio.Root API.
+ * @see https://base-ui.com/react/components/radio#root
  */
 const RadioButton = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+  HTMLElement,
+  Omit<RadioPrimitive.Root.Props<string>, "className"> & { className?: string }
 >(({ className, ...props }, ref) => {
   const { size } = useContext(RadioContext);
   const { disabled } = useContext(RadioItemContext);
   return (
-    <RadioGroupPrimitive.Item
+    <RadioPrimitive.Root
       ref={ref}
       className={clx(
-        "shadow-button hover:border-otl-gray-300 border-otl-gray-200 aspect-square rounded-full border",
+        "shadow-button hover:border-otl-gray-300 border-otl-gray-200 inline-flex aspect-square shrink-0 rounded-full border",
         "focus-visible:ring-fr-primary focus:outline-none focus-visible:ring-4 focus-visible:ring-opacity-40",
-        "disabled:bg-bg-washed disabled:cursor-not-allowed",
-        "data-[state=checked]:bg-primary-600 data-[state=checked]:border-none",
-        "data-[state=checked]:disabled:bg-primary-600 data-[state=checked]:disabled:opacity-30",
+        "data-[disabled]:bg-bg-washed data-[disabled]:cursor-not-allowed",
+        "data-[checked]:bg-primary-600 data-[checked]:border-none",
+        "data-[checked]:data-[disabled]:bg-primary-600 data-[checked]:data-[disabled]:opacity-30",
         size === "small" && "w-4",
         size === "medium" && "w-5",
         size === "large" && "w-5",
@@ -96,13 +95,13 @@ const RadioButton = React.forwardRef<
       disabled={props.disabled ?? disabled}
       {...props}
     >
-      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+      <RadioPrimitive.Indicator className="flex size-full items-center justify-center">
         <div
           className="bg-bg-white aspect-square w-2/5 rounded-full"
           aria-hidden="true"
         />
-      </RadioGroupPrimitive.Indicator>
-    </RadioGroupPrimitive.Item>
+      </RadioPrimitive.Indicator>
+    </RadioPrimitive.Root>
   );
 });
 RadioButton.displayName = "RadioButton";

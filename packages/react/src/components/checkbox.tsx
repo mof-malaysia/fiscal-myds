@@ -1,22 +1,21 @@
-import {
-  Checkbox as CheckboxRoot,
-  CheckboxIndicator,
-} from "@radix-ui/react-checkbox";
+"use client";
+
+import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { CheckIcon } from "../icons/check";
 import { MinusIcon } from "../icons/minus";
 import { clx } from "../utils";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ComponentProps, forwardRef, ForwardRefExoticComponent } from "react";
+import { forwardRef, ForwardRefExoticComponent, useState } from "react";
 
 const checkbox_cva = cva(
   [
     "outline-none flex items-center justify-center",
     "border border-otl-gray-200 hover:border-otl-gray-300 shadow-button bg-bg-white",
-    "data-[state=checked]:bg-primary-600 data-[state=checked]:border-none data-[state=checked]:hover:border-primary-700 data-[state=checked]:hover:bg-primary-700",
-    "data-[state=indeterminate]:bg-primary-600 data-[state=indeterminate]:border-none data-[state=indeterminate]:hover:border-primary-700 data-[state=indeterminate]:hover:bg-primary-700",
+    "data-[checked]:bg-primary-600 data-[checked]:border-none data-[checked]:hover:border-primary-700 data-[checked]:hover:bg-primary-700",
+    "data-[indeterminate]:bg-primary-600 data-[indeterminate]:border-none data-[indeterminate]:hover:border-primary-700 data-[indeterminate]:hover:bg-primary-700",
     "focus-visible:ring-[3px] focus-visible:ring-fr-primary",
     "focus:ring-[3px] focus:ring-fr-primary",
-    "disabled:opacity-30 disabled:cursor-not-allowed disabled:bg-bg-washed data-[state=checked]:disabled:bg-primary-600",
+    "data-[disabled]:opacity-30 data-[disabled]:cursor-not-allowed data-[disabled]:bg-bg-washed data-[checked]:data-[disabled]:bg-primary-600 data-[indeterminate]:data-[disabled]:bg-primary-600",
   ],
   {
     variants: {
@@ -37,8 +36,8 @@ const checkbox_icon_cva = cva(
     "flex items-center justify-center text-white",
     "[&_.minus-icon]:hidden",
     "[&_.checked-icon]:hidden",
-    "[&[data-state=checked]_.checked-icon]:inline-block",
-    "[&[data-state=indeterminate]_.minus-icon]:inline-block",
+    "[&[data-checked]_.checked-icon]:inline-block",
+    "[&[data-indeterminate]_.minus-icon]:inline-block",
   ],
   {
     variants: {
@@ -54,24 +53,75 @@ const checkbox_icon_cva = cva(
   },
 );
 
-interface CheckboxProps
-  extends ComponentProps<typeof CheckboxRoot>,
-    VariantProps<typeof checkbox_cva> {}
+/**
+ * Checked state. `"indeterminate"` maps to Base UI's `indeterminate` prop.
+ */
+type CheckedState = boolean | "indeterminate";
 
-const Checkbox: ForwardRefExoticComponent<CheckboxProps> = forwardRef(
-  ({ className, size, ...props }, ref) => {
+interface CheckboxProps
+  extends Omit<
+      CheckboxPrimitive.Root.Props,
+      "checked" | "defaultChecked" | "onCheckedChange" | "className"
+    >,
+    VariantProps<typeof checkbox_cva> {
+  className?: string;
+  checked?: CheckedState;
+  defaultChecked?: CheckedState;
+  // Base UI never reports "indeterminate" here; a user change always settles on true/false.
+  onCheckedChange?: (
+    checked: boolean,
+    eventDetails: CheckboxPrimitive.Root.ChangeEventDetails,
+  ) => void;
+}
+
+const Checkbox: ForwardRefExoticComponent<CheckboxProps> = forwardRef<
+  HTMLElement,
+  CheckboxProps
+>(
+  (
+    {
+      className,
+      size,
+      checked,
+      defaultChecked,
+      indeterminate,
+      onCheckedChange,
+      ...props
+    },
+    ref,
+  ) => {
+    // Uncontrolled `defaultChecked="indeterminate"` stays indeterminate until the first change.
+    const [defaultIndeterminate, setDefaultIndeterminate] = useState(
+      defaultChecked === "indeterminate",
+    );
+
+    const isIndeterminate =
+      indeterminate ??
+      (checked === undefined
+        ? defaultIndeterminate
+        : checked === "indeterminate");
+
     return (
-      <CheckboxRoot
+      <CheckboxPrimitive.Root
         ref={ref}
         className={clx(checkbox_cva({ size }), className)}
-        role="checkbox"
+        checked={checked === undefined ? undefined : checked === true}
+        defaultChecked={defaultChecked === true}
+        indeterminate={isIndeterminate}
+        onCheckedChange={(next, eventDetails) => {
+          setDefaultIndeterminate(false);
+          onCheckedChange?.(next, eventDetails);
+        }}
         {...props}
       >
-        <CheckboxIndicator className={checkbox_icon_cva({ size })}>
+        <CheckboxPrimitive.Indicator
+          className={checkbox_icon_cva({ size })}
+          keepMounted
+        >
           <MinusIcon className="minus-icon" />
           <CheckIcon className="checked-icon" />
-        </CheckboxIndicator>
-      </CheckboxRoot>
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
     );
   },
 );
@@ -79,3 +129,4 @@ const Checkbox: ForwardRefExoticComponent<CheckboxProps> = forwardRef(
 Checkbox.displayName = "Checkbox";
 
 export { Checkbox };
+export type { CheckboxProps, CheckedState };

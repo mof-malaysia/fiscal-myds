@@ -1,6 +1,12 @@
 import fs from "fs";
 import path from "path";
-import { readFileContent, writeJsonFile, type RegistryComponent } from "./utils";
+import {
+  readFileContent,
+  writeJsonFile,
+  registryItemUrl,
+  REGISTRY_ITEM_SCHEMA,
+  type RegistryComponent,
+} from "./utils";
 
 /**
  * Generate style registry components
@@ -112,6 +118,21 @@ function generateThemeConfigComponent(): RegistryComponent {
 }
 
 /**
+ * Return the block starting at `header` up to its matching closing brace.
+ */
+function extractCssBlock(css: string, header: string): string {
+  const start = css.indexOf(header);
+  if (start === -1) throw new Error(`"${header}" not found in input.tailwind.css`);
+
+  let depth = 0;
+  for (let i = css.indexOf("{", start); i < css.length; i++) {
+    if (css[i] === "{") depth++;
+    if (css[i] === "}" && --depth === 0) return css.slice(start, i + 1);
+  }
+  throw new Error(`Unclosed "${header}" block in input.tailwind.css`);
+}
+
+/**
  * Generate base-styles component - base CSS layers and utilities
  */
 function generateBaseStylesComponent(): RegistryComponent {
@@ -121,25 +142,13 @@ function generateBaseStylesComponent(): RegistryComponent {
     path.join(STYLE_SOURCE_DIR, "input.tailwind.css")
   );
 
-  // Extract only the parts we need (fonts import, @layer base, @layer utilities)
-  const lines = fullContent.split("\n");
-
-  // Find Google Fonts import (line 7)
-  const fontsImport = lines[6] || "";
-
-  // Extract @layer base (lines 11-26)
-  const layerBaseStart = lines.findIndex(line => line.includes("@layer base"));
-  const layerBaseEnd = layerBaseStart + 16; // roughly 15 lines for @layer base
-  const layerBase = lines.slice(layerBaseStart, layerBaseEnd).join("\n");
-
-  // Extract @layer utilities (lines 29-34)
-  const layerUtilitiesStart = lines.findIndex(line => line.includes("@layer utilities"));
-  const layerUtilitiesEnd = layerUtilitiesStart + 5; // roughly 5 lines for @layer utilities
-  const layerUtilities = lines.slice(layerUtilitiesStart, layerUtilitiesEnd).join("\n");
+  // Extract only the @layer base and @layer utilities blocks.
+  // The Google Fonts @import is left out: an @import url() must come before
+  // all other rules, so projects add it at the top of their global CSS.
+  const layerBase = extractCssBlock(fullContent, "@layer base");
+  const layerUtilities = extractCssBlock(fullContent, "@layer utilities");
 
   const content = `/* MYDS Base Styles */
-${fontsImport}
-
 ${layerBase}
 
 ${layerUtilities}`;
@@ -172,9 +181,8 @@ function generateMYDSInitComponent(
   log("Generating myds-init component...");
 
   // Combine all content in the correct order
-  const combinedContent = `@import "tailwindcss";
-
-${colors.files[0].content}
+  // Imported from the project's global CSS, after @import "tailwindcss"
+  const combinedContent = `${colors.files[0].content}
 
 ${themeLight.files[0].content}
 
@@ -188,21 +196,40 @@ ${baseStyles.files[0].content}`;
     name: "myds-init",
     type: "components:style",
     dependencies: [],
-    registryDependencies: [
-      "colors",
-      "theme-light",
-      "theme-dark",
-      "theme-config",
-      "base-styles",
-    ],
+    // Self-contained: combinedContent already includes every style item
+    registryDependencies: [],
     files: [
       {
-        path: "app/globals.css",
+        path: "styles/myds.css",
         content: combinedContent,
         type: "components:style",
       },
     ],
   };
+}
+
+/**
+ * Convert a style item to a shadcn `registry:file` item. Each item writes its
+ * own CSS file at the project root (`~/`), so installing several never
+ * overwrites another; myds-init writes the combined styles/myds.css.
+ */
+function toRegistryFileItem(component: RegistryComponent) {
+  const filePath =
+    component.name === "myds-init"
+      ? "styles/myds.css"
+      : `styles/myds/${component.name}.css`;
+
+  component.$schema = REGISTRY_ITEM_SCHEMA;
+  component.type = "registry:file";
+  component.registryDependencies = component.registryDependencies.map((dep) =>
+    registryItemUrl("style", dep)
+  );
+  component.files = component.files.map((file) => ({
+    ...file,
+    path: filePath,
+    type: "registry:file",
+    target: `~/${filePath}`,
+  }));
 }
 
 /**
@@ -242,6 +269,7 @@ async function main() {
   ];
 
   for (const component of components) {
+    toRegistryFileItem(component);
     const outputPath = path.join(REGISTRY_OUTPUT_DIR, `${component.name}.json`);
     writeJsonFile(outputPath, component);
     log(`✓ Generated ${component.name}.json`);

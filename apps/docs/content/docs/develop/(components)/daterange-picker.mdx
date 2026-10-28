@@ -31,16 +31,24 @@ export const DEFAULT_DATERANGE = { from: YESTERDAY, to: TOMORROW };
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-daterangepicker--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-daterangepicker--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/daterange-picker.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/daterange-picker.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/daterange-picker.json
+```
 
 ## Usage
 
 ```ts copy title="Import"
-import { DateRangePicker } from "@mof-malaysia/myds-react/date-picker";
+import { DateRangePicker } from "@/components/ui/date-picker";
 ```
 
 ```tsx copy title="Anatomy"
@@ -281,13 +289,13 @@ Default value is `en`. To switch to Bahasa Melayu, pass `ms`.
     },
     defaultValue: {
       description: "Initial state of the daterange picker (uncontrolled)",
-      type: "boolean | indeterminate",
-      default: "false",
+      type: "DateRange",
+      default: "undefined",
     },
     value: {
       description: "State of the daterange picker (controlled)",
-      type: "boolean | indeterminate",
-      default: "false",
+      type: "DateRange",
+      default: "undefined",
     },
     onValueChange: {
       description: "Change event listener (controlled)",

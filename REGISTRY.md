@@ -10,37 +10,37 @@ MYDS now supports a **shadcn-compatible registry** system that allows users to c
 
 ```
 /registry/
-├── index.json              # Master component list with metadata
-├── schema.json             # JSON schema for validation
-└── styles/
-    └── default/            # Component definitions
-        ├── utils.json      # Utility functions
-        ├── hooks.json      # Custom React hooks
-        ├── button.json     # Button component
-        ├── accordion.json  # Accordion component
-        └── ...             # All other components (42 total)
+├── index.json                    # Root index of the three registries
+├── ui/
+│   ├── index.json                # UI catalog
+│   └── styles/default/*.json     # 40 components + utils + hooks
+├── icons/
+│   ├── index.json
+│   └── styles/default/*.json     # One item per icon
+└── style/
+    ├── index.json
+    └── styles/default/*.json     # myds-init + colors, theme-light, theme-dark, theme-config, base-styles
 ```
+
+Items are fetched by full URL: `https://mof-malaysia.github.io/fiscal-myds/registry/<ui|icons|style>/styles/default/<name>.json`.
 
 ## Available Components
 
 ### Statistics
 - **Total Components**: 42
-- **UI Components**: 36
-- **Layout Components**: 4
+- **UI Components**: 40
 - **Utilities**: 2
 
 ### Component List
 
 **UI Components:**
+- announce-bar, footer, masthead, navbar
 - accordion, alert-dialog, breadcrumb, button, calendar, callout, checkbox
 - cookie-banner, data-table, date-field, date-picker, daterange-picker
 - dialog, dropdown, input-otp, input, label, link, pagination, pill
 - popover, radio, search-bar, select, sheet, skiplink, spinner
 - summary-list, table, tabs, tag, textarea, theme-switch, toast
 - toggle, tooltip
-
-**Layout Components:**
-- announce-bar, footer, masthead, navbar
 
 **Utilities:**
 - utils (clx utility function)
@@ -56,71 +56,40 @@ MYDS now supports a **shadcn-compatible registry** system that allows users to c
 npx shadcn@latest init
 ```
 
-#### 2. Configure your `components.json`
+Keep the default Base UI component library: MYDS components are built on Base UI.
 
-Add the MYDS registry URL to your configuration:
-
-```json
-{
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "tailwind.config.ts",
-    "css": "app/globals.css",
-    "baseColor": "slate",
-    "cssVariables": true
-  },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils"
-  },
-  "registry": "https://your-registry-url/registry"
-}
-```
-
-For local testing, use:
-```json
-{
-  "registry": "file:///absolute/path/to/myds/registry"
-}
-```
-
-#### 3. Install the MYDS style package
-
-The components rely on MYDS CSS variables and styles:
+#### 2. Install the MYDS styles
 
 ```bash
-npm install @mof-malaysia/myds-style
-# or
-pnpm add @mof-malaysia/myds-style
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
 ```
 
-#### 4. Import MYDS styles in your global CSS
+#### 3. Import MYDS styles in your global CSS
 
 ```css
-@import "@mof-malaysia/myds-style/color.css";
-@import "@mof-malaysia/myds-style/light.css";
-@import "@mof-malaysia/myds-style/dark.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+@import "tailwindcss";
+@import "../styles/myds.css";
 ```
 
-#### 5. Add components to your project
+#### 4. Add components to your project
+
+Pass the item's full URL. The shadcn CLI has no `--registry` flag, and bare names resolve to shadcn's own registry.
 
 ```bash
-# Using shadcn CLI with MYDS registry
-npx shadcn@latest add button --registry=https://your-registry-url/registry
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
 
-# For local testing
-npx shadcn@latest add button --registry=file:///$(pwd)/registry
+# For local testing: serve the repo root and point at it
+python3 -m http.server 8765
+npx shadcn@latest add http://localhost:8765/registry/ui/styles/default/button.json
 ```
 
 This will:
 - Copy the component source code to your project
-- Install npm dependencies (@radix-ui packages, etc.)
-- Install registry dependencies (utils, hooks, etc.)
+- Install npm dependencies (`@base-ui/react`, etc.), pinned to the ranges MYDS is built against
+- Install registry dependencies (utils, hooks, icons, other components) via their full URLs
 
-#### 6. Use the component
+#### 5. Use the component
 
 ```tsx
 import { Button } from "@/components/ui/button"
@@ -140,18 +109,17 @@ Components have two types of dependencies:
 
 #### npm Dependencies
 External packages that will be installed via npm/pnpm/yarn:
-- `@radix-ui/*` - Primitive components
+- `@base-ui/react` - Primitive components
 - `class-variance-authority` - Variant management
-- `clsx` - Classname utility
 - `tailwind-merge` - Tailwind class merging
 - `react-day-picker` - Date picker
-- `@tanstack/react-table` - Data table
+- `@tanstack/react-table` - Data table (v8)
 
 #### Registry Dependencies
-Other MYDS components from the registry:
+Other MYDS items, referenced by full URL:
 - `utils` - Utility functions (clx)
 - `hooks` - Custom React hooks
-- Other UI components (e.g., button, dropdown, etc.)
+- Icons and other UI components (e.g., button, dropdown, etc.)
 
 The shadcn CLI automatically installs all dependencies when you add a component.
 
@@ -166,10 +134,7 @@ The shadcn CLI automatically installs all dependencies when you add a component.
 ### Build Commands
 
 ```bash
-# Generate registry JSON files for all components
-pnpm registry:generate
-
-# Build complete registry (generate + index.json)
+# Build the complete registry (all generators + index.json catalogs)
 pnpm registry:build
 
 # Clean registry files
@@ -178,136 +143,93 @@ pnpm registry:clean
 
 ### Build Process
 
-The registry build process consists of two main steps:
+`pnpm registry:build` runs `scripts/registry/build-multi.ts`, which runs the three generators and then writes the `index.json` catalogs:
 
-#### 1. Generate Component JSON Files
+- `generate-ui.ts` reads `packages/react/src/components`, `hooks` and `utils`:
+  - Rewrites relative imports to the paths files are installed at:
+    - `"../utils"` → `"@/lib/myds/utils"`, `"../hooks"` → `"@/lib/myds/hooks"`
+    - `"../icons/chevron-down"` → `"@/components/ui/icons/chevron-down"` (barrel `"../icons"` imports are split per icon)
+    - `"./button"` → `"@/components/ui/button"`
+  - Turns those imports into `registryDependencies` as full item URLs.
+  - Pins npm `dependencies` to the ranges in `packages/react/package.json`.
+- `generate-icons.ts` writes one item per file in `packages/react/src/icons`.
+- `generate-style.ts` reads `packages/style/styles` and writes `myds-init` (combined `styles/myds.css`) plus the granular style items (`styles/myds/<name>.css`).
 
-The generator (`scripts/registry/generate.ts`) processes each component:
-- Reads source files from `packages/react/src/components/`
-- Extracts npm dependencies from import statements
-- Identifies registry dependencies (utils, hooks, other components)
-- Transforms relative imports to alias-based imports:
-  - `"../utils"` → `"@/lib/utils"`
-  - `"../icons/chevron-down"` → `"@/components/ui/icons/chevron-down"`
-- Generates JSON file for each component in `registry/styles/default/`
-
-#### 2. Build Index
-
-The build script (`scripts/registry/build.ts`):
-- Runs the generator
-- Collects all component JSON files
-- Creates master `index.json` with component metadata
-- Generates `schema.json` for validation
+Registry dependency URLs use `https://mof-malaysia.github.io/fiscal-myds/registry` by default. Set `MYDS_REGISTRY_URL` to build against another host (e.g. a local server for testing). Always rebuild with the default before committing the `registry/` output.
 
 ### Registry File Format
 
-Each component JSON file follows this structure:
+Items follow shadcn's [registry-item schema](https://ui.shadcn.com/schema/registry-item.json):
 
 ```json
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
-  "type": "components:ui",
-  "dependencies": [
-    "@radix-ui/react-slot",
-    "class-variance-authority"
-  ],
+  "type": "registry:ui",
+  "dependencies": ["@base-ui/react@^1.9.0", "class-variance-authority@^0.7.1"],
   "registryDependencies": [
-    "utils"
+    "https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/utils.json"
   ],
   "files": [
     {
       "path": "components/ui/button.tsx",
       "content": "...source code...",
-      "type": "components:ui"
+      "type": "registry:ui"
     }
-  ],
-  "tailwind": {
-    "config": {
-      "theme": {
-        "extend": {}
-      }
-    }
-  }
+  ]
 }
 ```
 
-### Component Types
+### Item Types
 
-- `components:ui` - UI components (buttons, inputs, etc.)
-- `components:layout` - Layout components (navbar, footer, etc.)
-- `components:lib` - Utilities and hooks
+- `registry:ui` - UI components and icons
+- `registry:lib` - `utils` and `hooks` (installed under `lib/myds/`)
+- `registry:file` - Styles, with an explicit `target` (`~/styles/...`)
 
 ## Testing Locally
 
-### 1. Build the registry
+### 1. Build the registry against a local server
 
 ```bash
-pnpm registry:build
+MYDS_REGISTRY_URL=http://localhost:8765/registry pnpm registry:build
+python3 -m http.server 8765   # from the repo root
 ```
 
 ### 2. Create a test project
 
 ```bash
-mkdir test-myds-registry
+npx shadcn@latest init -t next -n test-myds-registry
 cd test-myds-registry
-npm create next-app@latest .
 ```
 
-### 3. Configure for local registry
-
-Create `components.json`:
-
-```json
-{
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "tailwind.config.ts",
-    "css": "app/globals.css",
-    "baseColor": "slate",
-    "cssVariables": true
-  },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils"
-  },
-  "registry": "file:///absolute/path/to/myds/registry"
-}
-```
-
-### 4. Install MYDS styles
+### 3. Install MYDS styles and components
 
 ```bash
-pnpm add @mof-malaysia/myds-style
+npx shadcn@latest add http://localhost:8765/registry/style/styles/default/myds-init.json
+npx shadcn@latest add http://localhost:8765/registry/ui/styles/default/button.json --overwrite
 ```
 
-### 5. Import styles in `app/globals.css`
+### 4. Import styles in `app/globals.css`
 
 ```css
-@import "@mof-malaysia/myds-style/color.css";
-@import "@mof-malaysia/myds-style/light.css";
-@import "@mof-malaysia/myds-style/dark.css";
-
 @import "tailwindcss";
+@import "../styles/myds.css";
 ```
 
-### 6. Add a component
-
-```bash
-npx shadcn@latest add button
-```
-
-### 7. Test the component
+### 5. Test the component
 
 Create a test page and verify:
 - Component files are copied correctly
 - Dependencies are installed
-- Imports resolve properly
-- TypeScript compiles
-- Styles apply correctly
+- Imports resolve properly (`npx tsc --noEmit`)
+- Styles apply correctly (`npx next build`)
 - Component renders and functions as expected
+
+### 6. Rebuild for production
+
+```bash
+pnpm registry:build
+```
 
 ## Dependency Graph
 
@@ -316,56 +238,39 @@ Some components depend on other components from the registry:
 ```
 button → utils
 accordion → utils, icons
-navbar → button, dropdown, theme-switch, utils
-dropdown → button, popover, utils
+navbar → button, link, icons, utils
+toast → hooks, icons, utils
+hooks → toast
 alert-dialog → dialog, icons, utils
-data-table → utils, icons (pagination, sorting, etc.)
+data-table → table, button, checkbox, icons, utils
 ```
 
 The shadcn CLI automatically resolves and installs these dependencies.
 
-## Key Differences from npm Package
-
-| Aspect | npm Package | Registry |
-|--------|-------------|----------|
-| **Installation** | `npm install @mof-malaysia/myds-react` | `npx shadcn add button` |
-| **Location** | `node_modules/` | `components/ui/` in your project |
-| **Ownership** | External dependency | Full ownership in your codebase |
-| **Customization** | Fork or wrapper required | Direct modification |
-| **Updates** | `npm update` (overwrites) | Re-add and review diff |
-| **Bundle Size** | Entire package | Only components you use |
-| **Type Safety** | Package types | TypeScript in your project |
 
 ## Troubleshooting
 
 ### Component not found
 
-If you get "component not found" errors:
-1. Verify registry URL is correct in `components.json`
-2. Check that `index.json` exists in the registry
-3. Ensure the component name matches exactly
+If you get "was not found" errors:
+1. Check the full item URL opens in a browser
+2. Ensure the component name matches a file in `registry/<ui|icons|style>/styles/default/`
 
 ### Import errors
 
 If imports don't resolve:
-1. Check that aliases are configured in `components.json`
-2. Verify `tsconfig.json` has correct path mappings:
-   ```json
-   {
-     "compilerOptions": {
-       "paths": {
-         "@/*": ["./*"]
-       }
-     }
-   }
-   ```
+1. Check that aliases are configured in `components.json` (`npx shadcn@latest init` sets them up)
+2. Verify `tsconfig.json` maps `@/*` to your source root
+
+### Type errors mentioning `render` or `asChild`
+
+MYDS is built on Base UI. Make sure `components.json` uses a Base UI style (e.g. `base-nova`), i.e. `npx shadcn@latest init` with the default `base` library, not `--base radix`.
 
 ### Missing styles
 
 If components don't look correct:
-1. Ensure `@mof-malaysia/myds-style` is installed
-2. Verify CSS imports in your global CSS file
-3. Check that Tailwind is configured properly
+1. Ensure `styles/myds.css` exists (`myds-init` was added)
+2. Verify it is imported right after `@import "tailwindcss";` in your global CSS
 
 ### Dependency issues
 
@@ -378,7 +283,6 @@ If npm dependencies aren't installing:
 
 - [ ] Add versioning support for registry
 - [ ] Create visual component browser
-- [ ] Add migration scripts from npm to registry
 - [ ] Support multiple style variants
 - [ ] Add automated testing for registry
 - [ ] Create CI/CD pipeline for automatic deployment

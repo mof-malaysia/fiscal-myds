@@ -19,7 +19,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Kod">
     ```tsx
-    import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+    import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
     <Toggle>
       <ToggleThumb />
@@ -32,16 +32,24 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-toggle--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-toggle--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/toggle.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/toggle.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/toggle.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 ```
 
 ```tsx copy title="Anatomi"
@@ -76,7 +84,7 @@ Gunakan prop `size` untuk menukar saiz toggle!
   </Tab>
   <Tab value="Kod">
   ```tsx 
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
 <Toggle size="small">
   <ToggleThumb />
@@ -116,7 +124,7 @@ Gunakan prop `disabled` untuk menukar kepada gaya dinyahaktifkan!
   </Tab>
   <Tab value="Kod">
 ```tsx
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
 <Toggle disabled = {true}>
     <ToggleThumb />
@@ -145,7 +153,7 @@ Toggle boleh dikendalikan menggunakan Kaedah Terkawal
   </Tab>
   <Tab value="Kod">
 ```tsx
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
 const ControlledToggle = () => {
 const [isChecked, setIsChksecked] = React.useState(false);
@@ -182,7 +190,7 @@ Toggle boleh dikendalikan secara dalaman
   </Tab>
   <Tab value="Kod">
 ```tsx
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Toggle, ToggleThumb } from "@/components/ui/toggle";
 
 <p className="">Toggle ini menguruskan statusnya sendiri secara dalaman.</p>
 <Toggle defaultChecked={false}>

@@ -62,11 +62,19 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-select--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-select--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/select.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/select.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/select.json
+```
 
 ## Penggunaan
 
@@ -83,7 +91,7 @@ import {
   SelectFooter,
   SelectItem,
   SelectSeparator,
-} from "@mof-malaysia/myds-react/select";
+} from "@/components/ui/select";
 ```
 
 ```tsx copy title="Anatomi"
@@ -620,7 +628,11 @@ Anda boleh menyesuaikan paparan nilai dengan menggunakan komponen `SelectValue`.
     },
     onValueChange: {
       description: "Pendengar acara perubahan (terkawal)",
-      type: "(string | string[]) => void",
+      type: "(value: string | string[], eventDetails) => void",
+    },
+    items: {
+      description: "(Pilihan) Peta nilai item kepada label, supaya label `defaultValue` / `value` dipaparkan sebelum pilihan dibuka buat kali pertama",
+      type: "Record<string, ReactNode>",
     },
     disabled: {
       description: "Keadaan dinonaktifkan untuk pencetus pilihan",

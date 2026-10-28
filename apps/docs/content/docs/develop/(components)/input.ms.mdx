@@ -24,16 +24,24 @@ import { Input, InputIcon, InputAddon } from "@/components/myds";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-input--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-input--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/input.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/input.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/input.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { Input } from "@mof-malaysia/myds-react/input";
+import { Input } from "@/components/ui/input";
 ```
 
 ```tsx copy title="Anatomi"

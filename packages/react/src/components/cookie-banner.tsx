@@ -1,5 +1,7 @@
-import React, {
+import {
   ComponentProps,
+  ReactNode,
+  RefAttributes,
   createContext,
   forwardRef,
   ForwardRefExoticComponent,
@@ -8,16 +10,10 @@ import React, {
   useState,
 } from "react";
 import { Button } from "./button";
-import {
-  Dialog,
-  DialogContent,
-  DialogClose,
-  DialogDescription,
-  DialogTitle,
-  DialogPortal,
-} from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { clx } from "../utils";
-import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { CrossIcon } from "../icons/cross";
 
@@ -31,21 +27,23 @@ const CookieBannerContext = createContext<CookieBannerContextValue>({
   setShowPreferences: () => {},
 });
 
-type CookieBannerProps = ComponentProps<typeof Dialog> & {
+type CookieBannerProps = Omit<DialogPrimitive.Root.Props, "children"> & {
   className?: string;
+  children?: ReactNode;
 };
 
 const cookie_content_cva = cva([
   "bg-bg-white p-4.5 shadow-card border-otl-gray-200 fixed bottom-0 right-0 z-30 max-w-[500px]",
   "space-y-1 rounded-lg border transition-all outline-none",
-  "data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-full data-[state=open]:fade-in data-[state=open]:duration-400",
-  "data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom-full data-[state=closed]:fade-out data-[state=closed]:duration-200",
+  "data-[open]:animate-in data-[open]:slide-in-from-bottom-full data-[open]:fade-in data-[open]:duration-400",
+  "data-[closed]:animate-out data-[closed]:slide-out-to-bottom-full data-[closed]:fade-out data-[closed]:duration-200",
   "sm:mb-4 sm:mr-4 sm:p-6",
 ]);
 
 const CookieBanner: FunctionComponent<CookieBannerProps> = ({
   className,
   children,
+  onOpenChange,
   ...props
 }) => {
   const [showPreferences, setShowPreferences] = useState(false);
@@ -55,20 +53,28 @@ const CookieBanner: FunctionComponent<CookieBannerProps> = ({
     <CookieBannerContext.Provider
       value={{ showPreferences, setShowPreferences }}
     >
-      <Dialog {...props}>
-        <DialogPortal>
-          <DialogContent
+      <DialogPrimitive.Root
+        onOpenChange={(open, eventDetails) => {
+          if (
+            eventDetails.reason === "outside-press" ||
+            eventDetails.reason === "focus-out"
+          )
+            resetPreferences();
+          onOpenChange?.(open, eventDetails);
+        }}
+        {...props}
+      >
+        <DialogPrimitive.Portal>
+          <DialogPrimitive.Popup
             className={clx(cookie_content_cva(), className)}
-            onInteractOutside={resetPreferences}
-            {...props}
           >
-            <DialogClose className="ring-fr-primary absolute right-0 top-0 mr-4 mt-4 rounded-md p-1.5 outline-none transition-all focus:ring">
+            <DialogPrimitive.Close className="ring-fr-primary absolute top-0 right-0 mt-4 mr-4 rounded-md p-1.5 transition-all outline-none focus:ring">
               <CrossIcon className="size-4 shrink-0" />
-            </DialogClose>
+            </DialogPrimitive.Close>
             {children}
-          </DialogContent>
-        </DialogPortal>
-      </Dialog>
+          </DialogPrimitive.Popup>
+        </DialogPrimitive.Portal>
+      </DialogPrimitive.Root>
     </CookieBannerContext.Provider>
   );
 };
@@ -88,34 +94,43 @@ const cookie_action_cva = cva(
   },
 );
 
-const CookieBannerTitle: ForwardRefExoticComponent<
-  ComponentProps<typeof DialogTitle>
-> = forwardRef(({ className, ...props }, ref) => {
-  return (
-    <DialogTitle
-      ref={ref}
-      className={clx(
-        "text-body-md font-body text-txt-black-900 font-semibold",
-        className,
-      )}
-      {...props}
-    />
-  );
-});
-const CookieBannerDescription: ForwardRefExoticComponent<
-  ComponentProps<typeof DialogDescription>
-> = forwardRef(({ className, ...props }, ref) => {
-  return (
-    <DialogDescription
-      ref={ref}
-      className={clx(
-        "text-body-sm font-body text-txt-black-900 font-normal",
-        className,
-      )}
-      {...props}
-    />
-  );
-});
+type CookieBannerTitleProps = Omit<DialogPrimitive.Title.Props, "className"> & {
+  className?: string;
+} & RefAttributes<HTMLHeadingElement>;
+
+type CookieBannerDescriptionProps = Omit<
+  DialogPrimitive.Description.Props,
+  "className"
+> & {
+  className?: string;
+} & RefAttributes<HTMLParagraphElement>;
+
+const CookieBannerTitle: ForwardRefExoticComponent<CookieBannerTitleProps> =
+  forwardRef(({ className, ...props }, ref) => {
+    return (
+      <DialogPrimitive.Title
+        ref={ref}
+        className={clx(
+          "text-body-md font-body text-txt-black-900 font-semibold",
+          className,
+        )}
+        {...props}
+      />
+    );
+  });
+const CookieBannerDescription: ForwardRefExoticComponent<CookieBannerDescriptionProps> =
+  forwardRef(({ className, ...props }, ref) => {
+    return (
+      <DialogPrimitive.Description
+        ref={ref}
+        className={clx(
+          "text-body-sm font-body text-txt-black-900 font-normal",
+          className,
+        )}
+        {...props}
+      />
+    );
+  });
 
 const CookieBannerAction: ForwardRefExoticComponent<
   ComponentProps<"div"> & { preferences?: boolean }
@@ -139,55 +154,62 @@ const CookieBannerAction: ForwardRefExoticComponent<
   );
 });
 
-const CookieBannerPreferences: ForwardRefExoticComponent<
-  ComponentProps<typeof DialogDescription>
-> = forwardRef(({ children, className, ...props }, ref) => {
-  const context = useContext(CookieBannerContext);
+const CookieBannerPreferences: ForwardRefExoticComponent<CookieBannerDescriptionProps> =
+  forwardRef(({ children, className, ...props }, ref) => {
+    const context = useContext(CookieBannerContext);
 
-  if (!context)
-    throw new Error("CookieBannerPreferences must be used within CookieBanner");
-  if (!context.showPreferences) return null;
+    if (!context)
+      throw new Error(
+        "CookieBannerPreferences must be used within CookieBanner",
+      );
+    if (!context.showPreferences) return null;
 
-  return (
-    <DialogDescription
-      ref={ref}
-      className={clx("flex flex-col gap-2 px-0 py-3", className)}
-      {...props}
-    >
-      {children}
-    </DialogDescription>
-  );
-});
+    return (
+      <DialogPrimitive.Description
+        ref={ref}
+        className={clx("flex flex-col gap-2 px-0 py-3", className)}
+        {...props}
+      >
+        {children}
+      </DialogPrimitive.Description>
+    );
+  });
 
 const CookieBannerPreferencesTrigger: ForwardRefExoticComponent<
   ComponentProps<typeof Button>
-> = forwardRef(({ children, className, asChild = false, ...props }, ref) => {
-  const context = useContext(CookieBannerContext);
-  if (!context)
-    throw new Error(
-      "CookieBannerPreferencesTrigger must be used within CookieBanner",
-    );
+> = forwardRef(
+  ({ className, render, variant, size, iconOnly, ...props }, ref) => {
+    const context = useContext(CookieBannerContext);
+    if (!context)
+      throw new Error(
+        "CookieBannerPreferencesTrigger must be used within CookieBanner",
+      );
 
-  const togglePreferences = () => {
-    context.setShowPreferences(!context.showPreferences);
-  };
+    const togglePreferences = () => {
+      context.setShowPreferences(!context.showPreferences);
+    };
 
-  const Comp = asChild ? Slot : Button;
-  return (
-    <Comp
-      variant="primary-outline"
-      size="medium"
-      className={clx("w-full justify-center sm:w-auto", className)}
-      onClick={togglePreferences}
-      {...props}
-      ref={ref}
-    >
-      {children}
-    </Comp>
-  );
-});
+    return useRender({
+      render: render ?? (
+        <Button
+          variant={variant ?? "primary-outline"}
+          size={size ?? "medium"}
+          iconOnly={iconOnly}
+        />
+      ),
+      ref,
+      props: mergeProps<"button">(
+        {
+          className: clx("w-full justify-center sm:w-auto", className),
+          onClick: togglePreferences,
+        },
+        props,
+      ),
+    });
+  },
+);
 
-const CookieBannerClose = DialogClose;
+const CookieBannerClose = DialogPrimitive.Close;
 CookieBanner.displayName = "CookieBanner";
 CookieBannerAction.displayName = "CookieBannerAction";
 CookieBannerDescription.displayName = "CookieBannerDescription";

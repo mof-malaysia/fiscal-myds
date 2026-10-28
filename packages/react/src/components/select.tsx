@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { clx } from "../utils";
 import { cva } from "class-variance-authority";
 import { ChevronDownFillIcon } from "../icons/chevron-down-fill";
@@ -7,8 +7,8 @@ import { CheckCircleFillIcon } from "../icons/check-circle-fill";
 import { Checkbox } from "./checkbox";
 
 type SelectBase = Omit<
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>,
-  "value" | "defaultValue" | "onValueChange"
+  SelectPrimitive.Root.Props<string, boolean>,
+  "value" | "defaultValue" | "onValueChange" | "multiple"
 > & {
   variant: "outline" | "ghost" | null;
   size: "small" | "medium" | "large" | null;
@@ -18,101 +18,124 @@ type SelectSingle = SelectBase & {
   multiple?: false;
   value?: string;
   defaultValue?: string;
-  onValueChange?: (value: string) => void;
+  onValueChange?: (
+    value: string,
+    eventDetails: SelectPrimitive.Root.ChangeEventDetails,
+  ) => void;
 };
 
 type SelectMultiple = SelectBase & {
   multiple: true;
   value?: string[];
   defaultValue?: string[];
-  onValueChange?: (value: string[]) => void;
+  onValueChange?: (
+    value: string[],
+    eventDetails: SelectPrimitive.Root.ChangeEventDetails,
+  ) => void;
 };
 
-const isMultiple = (props: SelectProps): props is SelectMultiple =>
+const isMultiple = (props: { multiple?: boolean }): boolean =>
   Boolean(props.multiple);
 
 type SelectProps = SelectSingle | SelectMultiple;
 
-type SelectInternalProps = {
-  _handleClose: (open: boolean) => void;
-  _value: string | string[];
+type SelectContextProps = {
+  multiple: boolean;
+  variant: SelectBase["variant"];
+  size: SelectBase["size"];
+  /** Current value. `null` when nothing is selected (single), `[]` (multiple). */
+  value: string | string[] | null;
+  /** Items register their rendered label so `<SelectValue>` can display it instead of the raw value. */
+  registerLabel: (value: string, label: React.ReactNode) => void;
 };
 
-const SelectContext = React.createContext<SelectProps & SelectInternalProps>({
-  _value: "",
-  _handleClose: () => {},
+const SelectContext = React.createContext<SelectContextProps>({
   multiple: false,
-  value: "",
-  defaultValue: "",
-  onValueChange: () => {},
   variant: "outline",
   size: "small",
+  value: null,
+  registerLabel: () => {},
 });
 
-const Select: React.ForwardRefExoticComponent<SelectProps> = React.forwardRef(
-  (props, ref) => {
-    const [_value, _setValue] = React.useState(
-      isMultiple(props)
-        ? props.value || props.defaultValue || []
-        : props.value || props.defaultValue || "",
-    );
-    const [_open, _setOpen] = React.useState<boolean | undefined>(
-      props.open || false,
-    );
+const useIsoLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
-    React.useEffect(() => {
-      if (props.multiple && !Array.isArray(_value)) _setValue([]);
-      if (!props.multiple && Array.isArray(_value)) _setValue("");
-    }, [props.multiple]);
+/** Normalise MYDS values ("" = empty) to Base UI values (`null` = empty). */
+const normalise = (
+  value: string | string[] | undefined | null,
+  multiple: boolean,
+): string | string[] | null => {
+  if (multiple) return Array.isArray(value) ? value : [];
+  if (Array.isArray(value) || !value) return null;
+  return value;
+};
 
-    React.useEffect(() => {
-      if (props.value) _setValue(props.value);
-    }, [props.value]);
+const Select: React.FunctionComponent<SelectProps> = (props) => {
+  const {
+    multiple: _multiple,
+    value: valueProp,
+    defaultValue,
+    onValueChange,
+    variant,
+    size,
+    items,
+    ...rest
+  } = props;
+  const multiple = isMultiple(props);
 
-    React.useEffect(() => {
-      _setOpen(props.open);
-    }, [props.open]);
+  const [uncontrolledValue, setUncontrolledValue] = React.useState<
+    string | string[] | null
+  >(() => normalise(defaultValue, multiple));
+  const [labels, setLabels] = React.useState<Record<string, React.ReactNode>>(
+    {},
+  );
 
-    const handleValueChange = (value: string | undefined | null) => {
-      if (value === undefined || value === null) return;
+  const value = normalise(
+    valueProp !== undefined ? valueProp : uncontrolledValue,
+    multiple,
+  );
 
-      if (isMultiple(props)) {
-        let temp = [];
-        if (!_value.includes(value)) temp = [..._value, value];
-        else temp = (_value as string[]).filter((v) => v !== value);
+  const registerLabel = React.useCallback(
+    (itemValue: string, label: React.ReactNode) => {
+      setLabels((prev) =>
+        prev[itemValue] === label ? prev : { ...prev, [itemValue]: label },
+      );
+    },
+    [],
+  );
 
-        _setValue(temp);
-        props.onValueChange?.(temp);
-      } else {
-        _setValue(value);
-        props.onValueChange?.(value);
-      }
-    };
+  const handleValueChange = (
+    next: string | string[] | null,
+    eventDetails: SelectPrimitive.Root.ChangeEventDetails,
+  ) => {
+    if (multiple) {
+      const nextValue = Array.isArray(next) ? next : [];
+      setUncontrolledValue(nextValue);
+      (onValueChange as SelectMultiple["onValueChange"])?.(
+        nextValue,
+        eventDetails,
+      );
+    } else {
+      if (next === undefined || next === null || Array.isArray(next)) return;
+      setUncontrolledValue(next);
+      (onValueChange as SelectSingle["onValueChange"])?.(next, eventDetails);
+    }
+  };
 
-    const handleClose = (open: boolean) => {
-      if (isMultiple(props) && !open) return;
-      _setOpen(open);
-      props.onOpenChange?.(open);
-    };
-
-    return (
-      <SelectContext.Provider
-        value={{ ...props, _value, _handleClose: _setOpen }}
-      >
-        <SelectPrimitive.Root
-          ref={ref}
-          {...props}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          /* @ts-expect-error */
-          value={_value}
-          onValueChange={handleValueChange}
-          open={_open}
-          onOpenChange={handleClose}
-        />
-      </SelectContext.Provider>
-    );
-  },
-);
+  return (
+    <SelectContext.Provider
+      value={{ multiple, variant, size, value, registerLabel }}
+    >
+      <SelectPrimitive.Root<string, boolean>
+        {...rest}
+        items={items ?? labels}
+        multiple={multiple}
+        value={value}
+        onValueChange={handleValueChange}
+      />
+    </SelectContext.Provider>
+  );
+};
 Select.displayName = "Select";
 
 const SelectGroup = SelectPrimitive.Group;
@@ -131,19 +154,28 @@ const select_icon_cva = cva(["text-txt-black-900"], {
 
 interface SelectValueProps
   extends Omit<
-    React.ComponentProps<typeof SelectPrimitive.Value>,
-    "children" | "asChild"
+    SelectPrimitive.Value.Props,
+    "children" | "render" | "className"
   > {
+  className?: string;
   label?: React.ReactNode;
   icon?: React.JSXElementConstructor<any>;
-  children?: (value: string | string[]) => React.ReactNode | React.ReactNode;
+  children?: (value: string | string[]) => React.ReactNode;
 }
-const SelectValue: React.ForwardRefExoticComponent<SelectValueProps> =
-  React.forwardRef(({ label, icon, children, className, ...props }, ref) => {
+const SelectValue: React.ForwardRefExoticComponent<
+  SelectValueProps & React.RefAttributes<HTMLSpanElement>
+> = React.forwardRef<HTMLSpanElement, SelectValueProps>(
+  ({ label, icon, children, className, placeholder, ...props }, ref) => {
     const rootProps = React.useContext(SelectContext);
     const Icon = icon || ChevronDownFillIcon;
 
-    if (!isMultiple(rootProps))
+    const icon_node = (
+      <SelectPrimitive.Icon className="flex shrink-0">
+        <Icon className={select_icon_cva({ size: rootProps.size })} />
+      </SelectPrimitive.Icon>
+    );
+
+    if (!rootProps.multiple)
       return (
         <>
           {typeof label === "string" ? (
@@ -153,16 +185,17 @@ const SelectValue: React.ForwardRefExoticComponent<SelectValueProps> =
           )}
           <SelectPrimitive.Value
             ref={ref}
+            placeholder={placeholder}
             {...props}
             className={clx("text-inherit", className)}
           >
-            {children && children(rootProps._value)}
+            {children}
           </SelectPrimitive.Value>
-          <SelectPrimitive.Icon asChild>
-            <Icon className={select_icon_cva({ size: rootProps.size })} />
-          </SelectPrimitive.Icon>
+          {icon_node}
         </>
       );
+
+    const selected = Array.isArray(rootProps.value) ? rootProps.value : [];
 
     return (
       <>
@@ -172,17 +205,17 @@ const SelectValue: React.ForwardRefExoticComponent<SelectValueProps> =
           {...props}
           className={clx("text-inherit", className)}
         >
-          {children && children(rootProps._value)}
+          {children ??
+            ((value: string[]) => (value?.length ? null : placeholder))}
         </SelectPrimitive.Value>
 
-        {!children && <SelectCounter>{rootProps._value?.length}</SelectCounter>}
+        {!children && <SelectCounter>{selected.length}</SelectCounter>}
 
-        <SelectPrimitive.Icon asChild>
-          <Icon className={select_icon_cva({ size: rootProps.size })} />
-        </SelectPrimitive.Icon>
+        {icon_node}
       </>
     );
-  });
+  },
+);
 SelectValue.displayName = "SelectValue";
 
 /*========================================================================================================================*/
@@ -192,6 +225,7 @@ const select_counter_cva = cva(
     "flex aspect-square shrink-0 leading-none items-center justify-center bg-primary-600",
     "rounded-full px-1 leading-none text-white",
     "group-disabled:bg-bg-white-disabled group-disabled:text-inherit",
+    "group-data-[disabled]:bg-bg-white-disabled group-data-[disabled]:text-inherit",
   ],
   {
     variants: {
@@ -232,6 +266,7 @@ const select_trigger_cva = cva(
     "group inline-flex select-none items-center gap-1.5 outline-none rounded-md w-fit text-txt-black-900",
     "focus:ring focus:ring-fr-primary",
     "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:border-transparent disabled:cursor-not-allowed",
+    "data-[disabled]:bg-bg-white-disabled data-[disabled]:text-txt-black-disabled data-[disabled]:border-transparent data-[disabled]:cursor-not-allowed",
   ],
   {
     variants: {
@@ -255,26 +290,33 @@ const select_trigger_cva = cva(
   },
 );
 
-const SelectTrigger: React.ForwardRefExoticComponent<
-  React.ComponentProps<typeof SelectPrimitive.Trigger>
-> = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { variant, size } = React.useContext(SelectContext);
+interface SelectTriggerProps
+  extends Omit<SelectPrimitive.Trigger.Props, "className"> {
+  className?: string;
+}
 
-  return (
-    <SelectPrimitive.Trigger
-      ref={ref}
-      className={select_trigger_cva({
-        variant,
-        size,
-        className,
-      })}
-      {...props}
-    >
-      {children}
-    </SelectPrimitive.Trigger>
-  );
-});
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
+const SelectTrigger: React.ForwardRefExoticComponent<
+  SelectTriggerProps & React.RefAttributes<HTMLButtonElement>
+> = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
+  ({ className, children, ...props }, ref) => {
+    const { variant, size } = React.useContext(SelectContext);
+
+    return (
+      <SelectPrimitive.Trigger
+        ref={ref}
+        className={select_trigger_cva({
+          variant,
+          size,
+          className,
+        })}
+        {...props}
+      >
+        {children}
+      </SelectPrimitive.Trigger>
+    );
+  },
+);
+SelectTrigger.displayName = "SelectTrigger";
 
 /*========================================================================================================================*/
 
@@ -314,64 +356,108 @@ SelectLabel.displayName = "SelectLabel";
 
 const select_content_cva = cva(
   [
-    "bg-bg-dialog relative z-50 py-1 max-h-64 min-w-[8rem] overflow-hidden ",
+    "bg-bg-dialog relative py-1 max-h-64 min-w-[max(8rem,var(--anchor-width))] overflow-y-auto outline-none",
     "rounded-md border border-otl-gray-200 shadow-context-menu",
-    "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+    "data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   ],
   {
     variants: {
-      position: {
-        popper:
-          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-        "item-aligned": "",
-      },
       size: {
         small: "max-h-64",
         medium: "max-h-72",
         large: "max-h-80",
       },
     },
-    defaultVariants: { position: "popper", size: "small" },
+    defaultVariants: { size: "small" },
   },
 );
 
+interface SelectContentProps
+  extends Omit<SelectPrimitive.Popup.Props, "className">,
+    Pick<
+      SelectPrimitive.Positioner.Props,
+      | "side"
+      | "sideOffset"
+      | "align"
+      | "alignOffset"
+      | "collisionPadding"
+      | "collisionBoundary"
+      | "sticky"
+      | "positionMethod"
+    > {
+  className?: string;
+  /**
+   * `popper` (default) positions the popup below the trigger.
+   * `item-aligned` overlaps the trigger so the selected item aligns with the trigger value.
+   */
+  position?: "popper" | "item-aligned";
+  /** Element to portal the popup into. Defaults to `document.body`. */
+  container?: SelectPrimitive.Portal.Props["container"];
+}
+
 const SelectContent: React.ForwardRefExoticComponent<
-  React.ComponentProps<typeof SelectPrimitive.Content>
-> = React.forwardRef(
-  ({ className, children, position = "popper", ...props }, ref) => {
-    const { _handleClose, size } = React.useContext(SelectContext);
+  SelectContentProps & React.RefAttributes<HTMLDivElement>
+> = React.forwardRef<HTMLDivElement, SelectContentProps>(
+  (
+    {
+      className,
+      children,
+      position = "popper",
+      side = "bottom",
+      sideOffset = 4,
+      align = "start",
+      alignOffset,
+      collisionPadding,
+      collisionBoundary,
+      sticky,
+      positionMethod,
+      container,
+      ...props
+    },
+    ref,
+  ) => {
+    const { size } = React.useContext(SelectContext);
     return (
-      <SelectPrimitive.Portal>
-        <SelectPrimitive.Content
-          ref={ref}
-          className={select_content_cva({ position, size, className })}
-          position={position}
-          {...props}
-          onPointerDownOutside={() => _handleClose?.(false)}
+      <SelectPrimitive.Portal container={container}>
+        <SelectPrimitive.Positioner
+          className="z-50 outline-none"
+          alignItemWithTrigger={position === "item-aligned"}
+          side={side}
+          sideOffset={sideOffset}
+          align={align}
+          alignOffset={alignOffset}
+          collisionPadding={collisionPadding}
+          collisionBoundary={collisionBoundary}
+          sticky={sticky}
+          positionMethod={positionMethod}
         >
-          <SelectPrimitive.Viewport
-            className={clx(
-              position === "popper" &&
-                "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
-            )}
+          <SelectPrimitive.Popup
+            ref={ref}
+            className={select_content_cva({ size, className })}
+            {...props}
           >
             {children}
-          </SelectPrimitive.Viewport>
-        </SelectPrimitive.Content>
+          </SelectPrimitive.Popup>
+        </SelectPrimitive.Positioner>
       </SelectPrimitive.Portal>
     );
   },
 );
-SelectContent.displayName = SelectPrimitive.Content.displayName;
+SelectContent.displayName = "SelectContent";
 
 /*========================================================================================================================*/
 
+interface SelectGroupTitleProps
+  extends Omit<SelectPrimitive.GroupLabel.Props, "className"> {
+  className?: string;
+}
+
 const SelectGroupTitle = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+  HTMLDivElement,
+  SelectGroupTitleProps
 >(({ className, ...props }, ref) => (
   <SelectXPad>
-    <SelectPrimitive.Label
+    <SelectPrimitive.GroupLabel
       ref={ref}
       className={clx(
         "text-body-xs px-2.5 py-1.5 font-semibold text-gray-400",
@@ -381,7 +467,7 @@ const SelectGroupTitle = React.forwardRef<
     />
   </SelectXPad>
 ));
-SelectGroupTitle.displayName = SelectPrimitive.Label.displayName;
+SelectGroupTitle.displayName = "SelectGroupTitle";
 
 /*========================================================================================================================*/
 
@@ -410,79 +496,106 @@ const select_item_cva = cva(
   },
 );
 
+interface SelectItemProps
+  extends Omit<SelectPrimitive.Item.Props, "className" | "value"> {
+  className?: string;
+  value: string;
+}
+
 const SelectItem: React.ForwardRefExoticComponent<
-  React.ComponentProps<typeof SelectPrimitive.Item>
-> = React.forwardRef(({ className, children, disabled, ...props }, ref) => {
-  const rootProps = React.useContext(SelectContext);
-  if (!isMultiple(rootProps))
+  SelectItemProps & React.RefAttributes<HTMLDivElement>
+> = React.forwardRef<HTMLDivElement, SelectItemProps>(
+  ({ className, children, disabled, value, ...props }, ref) => {
+    const rootProps = React.useContext(SelectContext);
+    const { registerLabel } = rootProps;
+
+    useIsoLayoutEffect(() => {
+      registerLabel(value, children);
+    }, [registerLabel, value, children]);
+
+    if (!rootProps.multiple)
+      return (
+        <SelectXPad>
+          <SelectPrimitive.Item
+            ref={ref}
+            value={value}
+            disabled={disabled}
+            className={clx(
+              select_item_cva({
+                size: rootProps.size,
+                multiple: false,
+                disabled,
+              }),
+              className,
+            )}
+            {...props}
+          >
+            <span className="absolute right-4 flex h-3.5 w-3.5 items-center justify-center">
+              <SelectPrimitive.ItemIndicator>
+                <CheckCircleFillIcon
+                  data-size={rootProps.size}
+                  className="text-primary-600 size-5 data-[size=small]:size-4"
+                />
+              </SelectPrimitive.ItemIndicator>
+            </span>
+            <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+          </SelectPrimitive.Item>
+        </SelectXPad>
+      );
+
+    const checked =
+      Array.isArray(rootProps.value) && rootProps.value.includes(value);
+
     return (
       <SelectXPad>
         <SelectPrimitive.Item
           ref={ref}
+          value={value}
+          disabled={disabled}
           className={clx(
             select_item_cva({
               size: rootProps.size,
-              multiple: false,
+              multiple: true,
               disabled,
             }),
             className,
           )}
           {...props}
         >
-          <span className="absolute right-4 flex h-3.5 w-3.5 items-center justify-center">
-            <SelectPrimitive.ItemIndicator>
-              <CheckCircleFillIcon
-                data-size={rootProps.size}
-                className="text-primary-600 size-5 data-[size=small]:size-4"
-              />
-            </SelectPrimitive.ItemIndicator>
-          </span>
-          {children}
-          <SelectPrimitive.ItemText asChild>
-            {children}
-          </SelectPrimitive.ItemText>
+          <Checkbox
+            checked={checked}
+            disabled={disabled}
+            tabIndex={-1}
+            aria-hidden
+            className="pointer-events-none"
+          />
+          <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
         </SelectPrimitive.Item>
       </SelectXPad>
     );
-
-  const checked = rootProps._value.includes(props.value);
-
-  return (
-    <SelectXPad>
-      <SelectPrimitive.Item
-        ref={ref}
-        className={clx(
-          select_item_cva({
-            size: rootProps.size,
-            multiple: true,
-            disabled,
-            className,
-          }),
-          className,
-        )}
-        {...props}
-        data-state={checked ? "checked" : "unchecked"}
-      >
-        <Checkbox checked={checked} />
-        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-      </SelectPrimitive.Item>
-    </SelectXPad>
-  );
-});
-SelectItem.displayName = SelectPrimitive.Item.displayName;
+  },
+);
+SelectItem.displayName = "SelectItem";
 
 /*========================================================================================================================*/
 
+interface SelectSeparatorProps
+  extends Omit<SelectPrimitive.Separator.Props, "className"> {
+  className?: string;
+}
+
 const SelectSeparator: React.ForwardRefExoticComponent<
-  React.ComponentProps<typeof SelectPrimitive.Separator>
-> = React.forwardRef(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator
-    ref={ref}
-    className={clx("bg-otl-divider -mx-1 my-1 h-px", className)}
-    {...props}
-  />
-));
-SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
+  SelectSeparatorProps & React.RefAttributes<HTMLDivElement>
+> = React.forwardRef<HTMLDivElement, SelectSeparatorProps>(
+  ({ className, ...props }, ref) => (
+    <SelectPrimitive.Separator
+      ref={ref}
+      className={clx("bg-otl-divider -mx-1 my-1 h-px", className)}
+      {...props}
+    />
+  ),
+);
+SelectSeparator.displayName = "SelectSeparator";
 
 /*========================================================================================================================*/
 

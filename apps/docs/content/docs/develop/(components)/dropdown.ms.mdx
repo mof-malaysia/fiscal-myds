@@ -25,9 +25,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton" className="not-prose flex justify-center">
     <Dropdown>
-      <DropdownTrigger asChild>
-        <Button variant="default-outline">Menu Dropdown</Button>
-      </DropdownTrigger>
+      <DropdownTrigger render={<Button variant="default-outline" />}>Menu Dropdown</DropdownTrigger>
       <DropdownContent>
         <DropdownItem>Profil</DropdownItem>
         <DropdownItem>Bil</DropdownItem>
@@ -39,9 +37,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   <Tab value="Kod">
     ```tsx
     <Dropdown>
-      <DropdownTrigger asChild>
-        <Button variant="default-outline">Menu Dropdown</Button>
-      </DropdownTrigger>
+      <DropdownTrigger render={<Button variant="default-outline" />}>Menu Dropdown</DropdownTrigger>
       <DropdownContent>
         <DropdownItem>Profil</DropdownItem>
         <DropdownItem>Pengebilan</DropdownItem>
@@ -56,11 +52,19 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-dropdown--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-dropdown--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/dropdown.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/dropdown.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/dropdown.json
+```
 
 ## Penggunaan
 
@@ -71,7 +75,7 @@ import {
   DropdownItem,
   DropdownItemIcon,
   DropdownTrigger,
-} from "@mof-malaysia/myds-react/dropdown";
+} from "@/components/ui/dropdown";
 ```
 
 ```tsx copy title="Anatomi"
@@ -91,15 +95,13 @@ export default () => (
 
 ### Pencetus
 
-Gunakan `DropdownTrigger` untuk membungkus elemen pencetus yang membuka menu dropdown.
+Gunakan `DropdownTrigger` untuk membuka menu dropdown. Hantar elemen anda sendiri melalui prop `render`, contohnya `render={<Button />}`, untuk menggunakannya sebagai pencetus.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
     <div className="not-prose flex flex-col items-center gap-3">
     <Dropdown>
-      <DropdownTrigger asChild>
-        <Button variant="primary-fill">Menu Dropdown</Button>
-      </DropdownTrigger>
+      <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown</DropdownTrigger>
       <DropdownContent>
         <DropdownItem>Profil</DropdownItem>
         <DropdownItem>Pengebilan</DropdownItem>
@@ -113,9 +115,7 @@ Gunakan `DropdownTrigger` untuk membungkus elemen pencetus yang membuka menu dro
   <Tab value="Kod">
     ```tsx
      <Dropdown>
-      <DropdownTrigger asChild>
-        <Button variant="primary-fill">Menu Dropdown</Button>
-      </DropdownTrigger>
+      <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown</DropdownTrigger>
       <DropdownContent>
         <DropdownItem>Profil</DropdownItem>
         <DropdownItem>Pengebilan</DropdownItem>
@@ -140,9 +140,7 @@ Untuk menggunakan menu dropdown dalam keadaan terkawal, gunakan prop `open` dan 
         <div>
             Tidak Terkawal
              <Dropdown defaultOpen={false}>
-                <DropdownTrigger asChild>
-                    <Button variant="primary-fill">Menu Dropdown</Button>
-                </DropdownTrigger>
+                <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown</DropdownTrigger>
                 <DropdownContent>
                     <DropdownItem>Profil</DropdownItem>
                     <DropdownItem>Pengebilan</DropdownItem>
@@ -154,9 +152,7 @@ Untuk menggunakan menu dropdown dalam keadaan terkawal, gunakan prop `open` dan 
         <div>
             Terkawal
             <Dropdown open={false}>
-                <DropdownTrigger asChild>
-                    <Button variant="primary-fill">Menu Dropdown</Button>
-                </DropdownTrigger>
+                <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown</DropdownTrigger>
                 <DropdownContent>
                     <DropdownItem>Profil</DropdownItem>
                     <DropdownItem>Pengebilan</DropdownItem>
@@ -172,9 +168,7 @@ Untuk menggunakan menu dropdown dalam keadaan terkawal, gunakan prop `open` dan 
     ```tsx
     // Keadaan tidak terkawal
     <Dropdown defaultOpen={false}>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Menu Dropdown</Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown</DropdownTrigger>
         <DropdownContent>
             <DropdownItem>Profil</DropdownItem>
             <DropdownItem>Pengebilan</DropdownItem>
@@ -185,9 +179,7 @@ Untuk menggunakan menu dropdown dalam keadaan terkawal, gunakan prop `open` dan 
 
     // Keadaan terkawal
     <Dropdown open={false}>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Menu Dropdown</Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown</DropdownTrigger>
         <DropdownContent>
             <DropdownItem>Profil</DropdownItem>
             <DropdownItem>Pengebilan</DropdownItem>
@@ -208,9 +200,7 @@ Anda boleh menambah ikon pada `DropdownItem` untuk memberikan petunjuk visual ke
   <Tab value="Pratonton">
     <div className="not-prose space-y-2 flex flex-col items-center">
         <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Menu Dropdown + Ikon</Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown + Ikon</DropdownTrigger>
             <DropdownContent side="bottom" align="end">
                 <DropdownItem>
                 <DropdownItemIcon>
@@ -244,9 +234,7 @@ Anda boleh menambah ikon pada `DropdownItem` untuk memberikan petunjuk visual ke
   <Tab value="Kod">
     ```tsx
     <Dropdown>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Menu Dropdown + Ikon</Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Menu Dropdown + Ikon</DropdownTrigger>
         <DropdownContent side="bottom" align="end">
             <DropdownItem>
                 <DropdownItemIcon>
@@ -287,9 +275,7 @@ Anda boleh menetapkan prop `variant` kepada `danger` pada `DropdownItem` untuk m
   <Tab value="Pratonton">
     <div className="not-prose flex justify-center">
       <Dropdown>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Dengan Varian: Bahaya </Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Dengan Varian: Bahaya</DropdownTrigger>
         <DropdownContent side="bottom" align="end">
             <DropdownItem variant="danger">
                 <DropdownItemIcon>
@@ -305,9 +291,7 @@ Anda boleh menetapkan prop `variant` kepada `danger` pada `DropdownItem` untuk m
   <Tab value="Kod">
     ```tsx
     <Dropdown>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Dengan Varian: Bahaya </Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Dengan Varian: Bahaya</DropdownTrigger>
         <DropdownContent side="bottom" align="end">
             <DropdownItem variant="danger">
                 <DropdownItemIcon>
@@ -330,9 +314,7 @@ Anda boleh menetapkan prop `variant` kepada `danger` pada `DropdownItem` untuk m
   <Tab value="Pratonton">
     <div className="not-prose flex justify-center">
     <Dropdown>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Dengan Item Dinonaktifkan </Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Dengan Item Dinonaktifkan</DropdownTrigger>
         <DropdownContent>
             <DropdownItem disabled>
                 <DropdownItemIcon>
@@ -348,9 +330,7 @@ Anda boleh menetapkan prop `variant` kepada `danger` pada `DropdownItem` untuk m
   <Tab value="Kod">
     ```tsx
     <Dropdown>
-        <DropdownTrigger asChild>
-            <Button variant="primary-fill">Dengan Item Dinonaktifkan </Button>
-        </DropdownTrigger>
+        <DropdownTrigger render={<Button variant="primary-fill" />}>Dengan Item Dinonaktifkan</DropdownTrigger>
         <DropdownContent>
             <DropdownItem disabled>
                 <DropdownItemIcon>
@@ -367,7 +347,7 @@ Anda boleh menetapkan prop `variant` kepada `danger` pada `DropdownItem` untuk m
 
 ### Penjajaran
 
-Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana paparan kandungan harus bermula berkenaan dengan **elemen pencetus**. Secara lalai, penjajaran ditetapkan kepada `end`. Anda juga boleh menetapkan penjajaran kepada `start` atau `center`.
+Anda boleh menetapkan `align` pada `DropdownContent` untuk menjajarkan di mana paparan kandungan harus bermula berkenaan dengan **elemen pencetus**. Secara lalai, penjajaran ditetapkan kepada `end`. Anda juga boleh menetapkan penjajaran kepada `start` atau `center`.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
@@ -375,9 +355,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
       <div>
         Mula
         <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Penjajaran: Mula </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Penjajaran: Mula</DropdownTrigger>
             <DropdownContent align="start">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -388,9 +366,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
       <div>
         Tengah
        <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Penjajaran: Tengah </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Penjajaran: Tengah</DropdownTrigger>
             <DropdownContent align="center">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -401,9 +377,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
       <div>
         Akhir
        <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Penjajaran: Akhir </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Penjajaran: Akhir</DropdownTrigger>
             <DropdownContent align="end">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -418,9 +392,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
 ```tsx
 // Mula
 <Dropdown>
-    <DropdownTrigger asChild>
-        <Button variant="primary-fill">Penjajaran: Mula </Button>
-    </DropdownTrigger>
+    <DropdownTrigger render={<Button variant="primary-fill" />}>Penjajaran: Mula</DropdownTrigger>
     <DropdownContent align="start">
         <DropdownItem>Pilihan 1</DropdownItem>
         <DropdownItem>Pilihan 2</DropdownItem>
@@ -431,9 +403,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
 // Tengah
 
 <Dropdown>
-  <DropdownTrigger asChild>
-    <Button variant="primary-fill">Penjajaran: Tengah </Button>
-  </DropdownTrigger>
+  <DropdownTrigger render={<Button variant="primary-fill" />}>Penjajaran: Tengah</DropdownTrigger>
   <DropdownContent align="center">
     <DropdownItem>Pilihan 1</DropdownItem>
     <DropdownItem>Pilihan 2</DropdownItem>
@@ -444,9 +414,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
 // Akhir
 
 <Dropdown>
-  <DropdownTrigger asChild>
-    <Button variant="primary-fill">Penjajaran: Akhir </Button>
-  </DropdownTrigger>
+  <DropdownTrigger render={<Button variant="primary-fill" />}>Penjajaran: Akhir</DropdownTrigger>
   <DropdownContent align="end">
     <DropdownItem>Pilihan 1</DropdownItem>
     <DropdownItem>Pilihan 2</DropdownItem>
@@ -460,7 +428,7 @@ Anda boleh menetapkan `align` pada `DialogContent` untuk menjajarkan di mana pap
 
 ### Sisi
 
-Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana paparan kandungan harus dipaparkan berkenaan dengan **elemen pencetus**. Secara lalai, sisi ditetapkan kepada `bottom`. Anda juga boleh menetapkan sisi kepada `left`, `right` & `top`.
+Anda boleh menetapkan `side` pada `DropdownContent` untuk meletakkan di mana paparan kandungan harus dipaparkan berkenaan dengan **elemen pencetus**. Secara lalai, sisi ditetapkan kepada `bottom`. Anda juga boleh menetapkan sisi kepada `left`, `right` & `top`.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
@@ -468,9 +436,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
       <div>
         Bawah
         <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Sisi: Bawah </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Bawah</DropdownTrigger>
             <DropdownContent side="bottom">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -481,9 +447,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
       <div>
         Atas
        <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Sisi: Atas </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Atas</DropdownTrigger>
             <DropdownContent side="top">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -494,9 +458,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
       <div>
         Kiri
        <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Sisi: Kiri </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Kiri</DropdownTrigger>
             <DropdownContent side="left">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -507,9 +469,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
       <div>
         Kanan
        <Dropdown>
-            <DropdownTrigger asChild>
-                <Button variant="primary-fill">Sisi: Kanan </Button>
-            </DropdownTrigger>
+            <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Kanan</DropdownTrigger>
             <DropdownContent side="right">
                 <DropdownItem>Pilihan 1</DropdownItem>
                 <DropdownItem>Pilihan 2</DropdownItem>
@@ -524,9 +484,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
 ```tsx
 // Bawah
  <Dropdown>
-    <DropdownTrigger asChild>
-        <Button variant="primary-fill">Sisi: Bawah </Button>
-    </DropdownTrigger>
+    <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Bawah</DropdownTrigger>
     <DropdownContent side="bottom">
         <DropdownItem>Pilihan 1</DropdownItem>
         <DropdownItem>Pilihan 2</DropdownItem>
@@ -537,9 +495,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
 // Atas
 
 <Dropdown>
-  <DropdownTrigger asChild>
-    <Button variant="primary-fill">Sisi: Atas </Button>
-  </DropdownTrigger>
+  <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Atas</DropdownTrigger>
   <DropdownContent side="top">
     <DropdownItem>Pilihan 1</DropdownItem>
     <DropdownItem>Pilihan 2</DropdownItem>
@@ -550,9 +506,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
 // Kiri
 
 <Dropdown>
-  <DropdownTrigger asChild>
-    <Button variant="primary-fill">Sisi: Kiri </Button>
-  </DropdownTrigger>
+  <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Kiri</DropdownTrigger>
   <DropdownContent side="left">
     <DropdownItem>Pilihan 1</DropdownItem>
     <DropdownItem>Pilihan 2</DropdownItem>
@@ -563,9 +517,7 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
 // Kanan
 
 <Dropdown>
-  <DropdownTrigger asChild>
-    <Button variant="primary-fill">Sisi: Kanan </Button>
-  </DropdownTrigger>
+  <DropdownTrigger render={<Button variant="primary-fill" />}>Sisi: Kanan</DropdownTrigger>
   <DropdownContent side="right">
     <DropdownItem>Pilihan 1</DropdownItem>
     <DropdownItem>Pilihan 2</DropdownItem>
@@ -604,10 +556,9 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
 
 <TypeTable
   type={{
-    asChild: {
-      description: "Suis untuk mewarisi komponen anak secara langsung",
-      type: "boolean",
-      default: "false",
+    render: {
+      description: "Menggantikan elemen yang dipaparkan, contohnya `render={<a href=\"/\" />}`",
+      type: "ReactElement | (props, state) => ReactElement",
     },
   }}
 />
@@ -645,9 +596,9 @@ Anda boleh menetapkan `side` pada `DialogContent` untuk meletakkan di mana papar
       type: "default | danger",
       default: "default",
     },
-    onSelect: {
-      description: "Pendengar acara apabila item dropdown dipilih",
-      type: "(event: Event) => void",
+    onClick: {
+      description: "Pendengar acara apabila item dropdown diklik",
+      type: "(event: MouseEvent) => void",
     },
   }}
 />

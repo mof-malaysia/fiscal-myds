@@ -31,16 +31,24 @@ export const DEFAULT_DATERANGE = { from: YESTERDAY, to: TOMORROW };
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-daterangepicker--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-daterangepicker--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/daterange-picker.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/daterange-picker.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/daterange-picker.json
+```
 
 ## Penggunaan
 
 ```ts copy title="Import"
-import { DateRangePicker } from "@mof-malaysia/myds-react/date-picker";
+import { DateRangePicker } from "@/components/ui/date-picker";
 ```
 
 ```tsx copy title="Anatomi"
@@ -281,13 +289,13 @@ Nilai lalai adalah `en` untuk English. Untuk menukar kepada Bahasa Melayu, tetap
     },
     defaultValue: {
       description: "Keadaan awal pemilih julat tarikh (tidak terkawal)",
-      type: "boolean | indeterminate",
-      default: "false",
+      type: "DateRange",
+      default: "undefined",
     },
     value: {
       description: "Keadaan pemilih julat tarikh (terkawal)",
-      type: "boolean | indeterminate",
-      default: "false",
+      type: "DateRange",
+      default: "undefined",
     },
     onValueChange: {
       description: "Pendengar acara perubahan (terkawal)",

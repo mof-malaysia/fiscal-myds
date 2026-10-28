@@ -32,7 +32,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@mof-malaysia/myds-react/callout";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/callout";
 
 <Breadcrumb>
     <BreadcrumbItem>
@@ -54,11 +54,19 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, Breadc
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-breadcrumb--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-breadcrumb--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/breadcrumb.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/breadcrumb.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/breadcrumb.json
+```
 
 ## Usage
 
@@ -69,7 +77,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
-} from "@mof-malaysia/myds-react/breadcrumb";
+} from "@/components/ui/breadcrumb";
 ```
 
 ```tsx copy title="Anatomy"

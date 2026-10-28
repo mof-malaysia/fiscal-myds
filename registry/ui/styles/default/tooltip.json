@@ -1,27 +1,19 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tooltip",
-  "type": "components:ui",
+  "type": "registry:ui",
   "dependencies": [
-    "@radix-ui/react-tooltip",
-    "class-variance-authority"
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [
-    "utils"
+    "https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/utils.json"
   ],
   "files": [
     {
       "path": "components/ui/tooltip.tsx",
-      "content": "import {\n  ComponentProps,\n  ComponentPropsWithoutRef,\n  forwardRef,\n  ForwardRefExoticComponent,\n  FunctionComponent,\n} from \"react\";\nimport {\n  Tooltip as Root,\n  TooltipProvider,\n  TooltipTrigger,\n  TooltipContent as Content,\n  TooltipPortal as Portal,\n  TooltipArrow as Arrow,\n} from \"@radix-ui/react-tooltip\";\nimport { clx } from \"@/lib/utils\";\nimport { cva } from \"class-variance-authority\";\n\nconst Tooltip: FunctionComponent<ComponentProps<typeof Root>> = (props) => {\n  return (\n    <TooltipProvider delayDuration={200}>\n      <Root {...props} />\n    </TooltipProvider>\n  );\n};\nTooltip.displayName = TooltipProvider.displayName;\n\ninterface TooltipContentProps\n  extends ComponentProps<typeof Content>,\n    ComponentPropsWithoutRef<typeof Portal> {}\n\nconst tooltip_content_cva = cva([\n  \"bg-bg-black-900 border-bg-black-900 shadow-context-menu text-txt-white z-50 min-w-[50px] max-w-[250px] rounded-sm border px-3 py-2 text-xs \",\n  \"animate-in fade-in duration-200 origin-tooltip-origin\",\n  \"data-[side=top]:-mb-1 data-[side=top]:-translate-y-1\",\n  \"data-[side=bottom]:-mt-1 data-[side=bottom]:translate-y-1\",\n  \"data-[side=right]:-ml-1 data-[side=right]:translate-x-1\",\n  \"data-[side=left]:-mr-1 data-[side=left]:-translate-x-1\",\n]);\n\nconst TooltipContent: ForwardRefExoticComponent<TooltipContentProps> =\n  forwardRef(\n    (\n      // eslint-disable-next-line  @typescript-eslint/no-unused-vars\n      { className, asChild, children, container, forceMount, ...props },\n      ref,\n    ) => (\n      <Portal container={container} forceMount={forceMount}>\n        <Content\n          ref={ref}\n          className={clx(tooltip_content_cva(), className)}\n          {...props}\n        >\n          {children}\n          <TooltipArrow />\n        </Content>\n      </Portal>\n    ),\n  );\n\nTooltipContent.displayName = Content.displayName;\n\nconst TooltipArrow: ForwardRefExoticComponent<ComponentProps<typeof Arrow>> =\n  forwardRef(({ className, ...props }, ref) => (\n    <Arrow\n      ref={ref}\n      className={clx(\"fill-bg-black-900\", className)}\n      {...props}\n    />\n  ));\nTooltipArrow.displayName = Arrow.displayName;\n\nexport { Tooltip, TooltipContent, TooltipTrigger };\n",
-      "type": "components:ui"
+      "content": "import {\n  forwardRef,\n  ForwardRefExoticComponent,\n  FunctionComponent,\n  ReactNode,\n  RefAttributes,\n} from \"react\";\nimport { Tooltip as TooltipPrimitive } from \"@base-ui/react/tooltip\";\nimport { clx } from \"@/lib/myds/utils\";\nimport { cva } from \"class-variance-authority\";\n\ninterface TooltipProps extends Omit<TooltipPrimitive.Root.Props, \"children\"> {\n  children?: ReactNode;\n  /** How long to wait before opening the tooltip on hover, in milliseconds. */\n  delayDuration?: number;\n}\n\nconst Tooltip: FunctionComponent<TooltipProps> = ({\n  delayDuration = 200,\n  ...props\n}) => {\n  return (\n    <TooltipPrimitive.Provider delay={delayDuration}>\n      <TooltipPrimitive.Root {...props} />\n    </TooltipPrimitive.Provider>\n  );\n};\nTooltip.displayName = \"Tooltip\";\n\nconst TooltipTrigger = TooltipPrimitive.Trigger;\n\ntype TooltipPositionerProps = Pick<\n  TooltipPrimitive.Positioner.Props,\n  | \"side\"\n  | \"align\"\n  | \"sideOffset\"\n  | \"alignOffset\"\n  | \"anchor\"\n  | \"collisionAvoidance\"\n  | \"collisionPadding\"\n  | \"sticky\"\n  | \"positionMethod\"\n  | \"arrowPadding\"\n>;\n\ninterface TooltipContentProps\n  extends Omit<TooltipPrimitive.Popup.Props, \"className\">,\n    TooltipPositionerProps,\n    Pick<TooltipPrimitive.Portal.Props, \"container\" | \"keepMounted\"> {\n  className?: string;\n}\n\nconst tooltip_content_cva = cva([\n  \"bg-bg-black-900 border-bg-black-900 shadow-context-menu text-txt-white z-50 min-w-[50px] max-w-[250px] rounded-sm border px-3 py-2 text-xs \",\n  \"animate-in fade-in duration-200 origin-[var(--transform-origin)]\",\n  \"data-[side=top]:-mb-1 data-[side=top]:-translate-y-1\",\n  \"data-[side=bottom]:-mt-1 data-[side=bottom]:translate-y-1\",\n  \"data-[side=right]:-ml-1 data-[side=right]:translate-x-1\",\n  \"data-[side=left]:-mr-1 data-[side=left]:-translate-x-1\",\n]);\n\n/**\n * Renders `Portal` → `Positioner` → `Popup` (with an arrow). Positioning props (`side`, `align`, `sideOffset`,\n * `alignOffset`, ...) are forwarded to the Positioner.\n */\nconst TooltipContent: ForwardRefExoticComponent<\n  TooltipContentProps & RefAttributes<HTMLDivElement>\n> = forwardRef(\n  (\n    {\n      className,\n      children,\n      container,\n      keepMounted,\n      side,\n      align,\n      sideOffset,\n      alignOffset,\n      anchor,\n      collisionAvoidance,\n      collisionPadding,\n      sticky,\n      positionMethod,\n      arrowPadding,\n      ...props\n    },\n    ref,\n  ) => (\n    <TooltipPrimitive.Portal container={container} keepMounted={keepMounted}>\n      <TooltipPrimitive.Positioner\n        className=\"z-50\"\n        side={side}\n        align={align}\n        sideOffset={sideOffset}\n        alignOffset={alignOffset}\n        anchor={anchor}\n        collisionAvoidance={collisionAvoidance}\n        collisionPadding={collisionPadding}\n        sticky={sticky}\n        positionMethod={positionMethod}\n        arrowPadding={arrowPadding}\n      >\n        <TooltipPrimitive.Popup\n          ref={ref}\n          className={clx(tooltip_content_cva(), className)}\n          {...props}\n        >\n          {children}\n          <TooltipArrow />\n        </TooltipPrimitive.Popup>\n      </TooltipPrimitive.Positioner>\n    </TooltipPrimitive.Portal>\n  ),\n);\n\nTooltipContent.displayName = \"TooltipContent\";\n\nconst TooltipArrow: ForwardRefExoticComponent<\n  Omit<TooltipPrimitive.Arrow.Props, \"className\"> & {\n    className?: string;\n  } & RefAttributes<HTMLDivElement>\n> = forwardRef(({ className, ...props }, ref) => (\n  <TooltipPrimitive.Arrow\n    ref={ref}\n    className={clx(\n      \"bg-bg-black-900 size-2.5 rotate-45\",\n      \"data-[side=bottom]:-top-[5px] data-[side=top]:-bottom-[5px]\",\n      \"data-[side=left]:-right-[5px] data-[side=right]:-left-[5px]\",\n      className,\n    )}\n    {...props}\n  />\n));\nTooltipArrow.displayName = \"TooltipArrow\";\n\nexport { Tooltip, TooltipContent, TooltipTrigger };\n",
+      "type": "registry:ui"
     }
-  ],
-  "tailwind": {
-    "config": {
-      "theme": {
-        "extend": {
-          "colors": {}
-        }
-      }
-    }
-  }
+  ]
 }

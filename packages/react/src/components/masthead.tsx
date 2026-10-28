@@ -3,16 +3,14 @@ import {
   FunctionComponent,
   ReactNode,
   MouseEvent,
+  isValidElement,
 } from "react";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@radix-ui/react-collapsible";
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { ChevronDownIcon } from "../icons/chevron-down";
 import { MalaysiaFlagIcon } from "../icons/malaysia-flag";
 import { clx } from "../utils";
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 const Masthead: FunctionComponent<ComponentProps<"div">> = ({
   children,
@@ -46,7 +44,7 @@ const Masthead: FunctionComponent<ComponentProps<"div">> = ({
   // }, []);
 
   return (
-    <Collapsible>
+    <CollapsiblePrimitive.Root>
       <div
         id="masthead"
         className={clx("bg-bg-washed print:hidden", className)}
@@ -57,7 +55,7 @@ const Masthead: FunctionComponent<ComponentProps<"div">> = ({
           {children}
         </div>
       </div>
-    </Collapsible>
+    </CollapsiblePrimitive.Root>
   );
 };
 
@@ -109,7 +107,7 @@ const MastheadTrigger: FunctionComponent<ComponentProps<"button">> = ({
   };
 
   return (
-    <CollapsibleTrigger
+    <CollapsiblePrimitive.Trigger
       className="text-txt-primary focus:ring-fr-primary bg-otl-gray-200 group flex items-center gap-0.5 rounded-md p-1 px-1 focus:outline-none focus:ring focus:ring-inset sm:bg-transparent sm:pl-1.5 xl:rounded-sm"
       aria-label="Toggle masthead"
       tabIndex={0}
@@ -119,21 +117,22 @@ const MastheadTrigger: FunctionComponent<ComponentProps<"button">> = ({
       <span className="text-txt-primary hidden select-none tracking-[-0.01em] sm:block">
         {children}
       </span>
-      <ChevronDownIcon className="size-4 transform transition-transform group-data-[state=closed]:rotate-0 group-data-[state=open]:rotate-180" />
-    </CollapsibleTrigger>
+      <ChevronDownIcon className="size-4 transform transition-transform rotate-0 group-data-[panel-open]:rotate-180" />
+    </CollapsiblePrimitive.Trigger>
   );
 };
 
 MastheadTrigger.displayName = "MastheadTrigger";
 
 const MastheadContent: FunctionComponent<
-  ComponentProps<typeof CollapsibleContent>
+  Omit<CollapsiblePrimitive.Panel.Props, "className"> & { className?: string }
 > = ({ children, className, ...props }) => {
   return (
-    <CollapsibleContent
+    <CollapsiblePrimitive.Panel
       className={clx(
-        "data-[state=open]:animate-collapsible-slide-down data-[state=closed]:animate-collapsible-slide-up overflow-hidden",
-        "motion-reduce:animate-none",
+        "h-[var(--collapsible-panel-height)] overflow-hidden transition-[height] duration-300 ease-out",
+        "data-[ending-style]:h-0 data-[starting-style]:h-0",
+        "motion-reduce:transition-none",
         className,
       )}
       {...props}
@@ -141,7 +140,7 @@ const MastheadContent: FunctionComponent<
       <div className="px-4.5 gap-4.5 flex flex-col pb-6 pt-3 sm:grid-cols-2 sm:flex-row sm:pb-8 sm:pt-6 md:px-6">
         {children}
       </div>
-    </CollapsibleContent>
+    </CollapsiblePrimitive.Panel>
   );
 };
 
@@ -159,9 +158,20 @@ const MastheadSection: FunctionComponent<MastheadSectionProps> = ({
   className,
   ...props
 }) => {
+  const iconIsElement = isValidElement(icon);
+  // Merges the icon classes onto the `icon` element.
+  const iconElement = useRender({
+    defaultTagName: "span",
+    render: iconIsElement ? icon : undefined,
+    props: mergeProps<"span">(
+      { className: "text-txt-black-500 size-6 shrink-0" },
+      iconIsElement ? {} : { children: icon },
+    ),
+  });
+
   return (
     <div className={clx("flex w-full gap-3", className)} {...props}>
-      <Slot className="text-txt-black-500 size-6 shrink-0">{icon}</Slot>
+      {iconElement}
       <div className="space-y-1.5">
         <p className="text-txt-black-900 text-body-sm sm:text-body-md font-medium">
           {title}

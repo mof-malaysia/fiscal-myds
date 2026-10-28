@@ -9,9 +9,11 @@ export interface ComponentFile {
   path: string;
   content: string;
   type: string;
+  target?: string;
 }
 
 export interface RegistryComponent {
+  $schema?: string;
   name: string;
   type: string;
   dependencies: string[];
@@ -89,7 +91,7 @@ export function extractImports(content: string): {
       localDependencies.add(componentName);
     } else {
       // It's an npm package
-      // Handle scoped packages (@radix-ui/react-accordion)
+      // Handle scoped packages (@base-ui/react/dialog -> @base-ui/react)
       if (importPath.startsWith("@")) {
         const parts = importPath.split("/");
         const packageName = `${parts[0]}/${parts[1]}`;
@@ -106,54 +108,114 @@ export function extractImports(content: string): {
 }
 
 /**
- * Transform relative imports to alias-based imports
+ * Base URL the registries are served from. Override with MYDS_REGISTRY_URL
+ * (e.g. http://localhost:8080/registry) to test against a local build.
  */
-export function transformImports(content: string): string {
-  let transformed = content;
+export const REGISTRY_BASE_URL = (
+  process.env.MYDS_REGISTRY_URL ||
+  "https://mof-malaysia.github.io/fiscal-myds/registry"
+).replace(/\/$/, "");
 
-  // Transform local component imports
-  // Example: from "../utils" to "@/lib/utils"
-  transformed = transformed.replace(
-    /from\s+["']\.\.\/utils["']/g,
-    'from "@/lib/utils"'
-  );
+export const REGISTRY_ITEM_SCHEMA =
+  "https://ui.shadcn.com/schema/registry-item.json";
 
-  // Transform icon imports
-  // Example: from "../icons/chevron-down" to "@/components/ui/icons/chevron-down"
-  transformed = transformed.replace(
-    /from\s+["']\.\.\/icons\/([^"']+)["']/g,
-    'from "@/components/ui/icons/$1"'
-  );
-
-  // Transform component imports
-  // Example: from "../button" to "@/components/ui/button"
-  transformed = transformed.replace(
-    /from\s+["']\.\.\/([^"']+)["']/g,
-    'from "@/components/ui/$1"'
-  );
-
-  // Transform hooks imports
-  // Example: from "../hooks" to "@/lib/hooks"
-  transformed = transformed.replace(
-    /from\s+["']\.\.\/hooks["']/g,
-    'from "@/lib/hooks"'
-  );
-
-  return transformed;
+/**
+ * Full URL of a registry item, e.g. registryItemUrl("ui", "button").
+ * shadcn resolves bare names against its own registry, so cross-item
+ * dependencies must be full URLs.
+ */
+export function registryItemUrl(
+  registry: "ui" | "icons" | "style",
+  name: string
+): string {
+  return `${REGISTRY_BASE_URL}/${registry}/styles/default/${name}.json`;
 }
 
 /**
- * Map internal component names to registry dependency names
+ * Map of icon export name -> icon file name, e.g. ChevronDownIcon -> chevron-down
  */
-export function mapToRegistryDependency(localDep: string): string {
-  // Map common internal dependencies to their registry names
-  const mapping: Record<string, string> = {
-    utils: "utils",
-    hooks: "hooks",
-    index: "utils", // hooks/index or utils/index
-  };
+export function getIconExportMap(iconsDir: string): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const file of fs.readdirSync(iconsDir)) {
+    if (!file.endsWith(".tsx")) continue;
+    const content = fs.readFileSync(path.join(iconsDir, file), "utf-8");
+    for (const match of content.matchAll(/export const (\w+)/g)) {
+      map.set(match[1], file.replace(/\.tsx$/, ""));
+    }
+  }
+  return map;
+}
 
-  return mapping[localDep] || localDep;
+/**
+ * Split barrel imports (`import { A, B } from "../icons"`) into one import
+ * per icon file, since the icons registry has no barrel file.
+ */
+export function expandIconBarrelImports(
+  content: string,
+  iconMap: Map<string, string>
+): string {
+  return content.replace(
+    /import\s*\{([^}]+)\}\s*from\s*["']\.\.\/icons["'];?/g,
+    (_, names: string) =>
+      names
+        .split(",")
+        .map((n) => n.trim())
+        .filter(Boolean)
+        .map((n) => {
+          const file = iconMap.get(n.split(/\s+as\s+/)[0]);
+          if (!file) throw new Error(`Unknown icon in barrel import: ${n}`);
+          return `import { ${n} } from "../icons/${file}";`;
+        })
+        .join("\n")
+  );
+}
+
+/**
+ * Transform relative imports to the alias paths the files are installed at.
+ * MYDS helpers live under lib/myds/ so they don't overwrite shadcn's lib/utils.ts.
+ */
+export function transformImports(
+  content: string,
+  { keepSameFolderImports = false } = {}
+): string {
+  const rewrites: [RegExp, string][] = [
+    // "../utils/events" -> "@/lib/myds/utils/events", "../utils" -> "@/lib/myds/utils"
+    [/from\s+["']\.\.\/utils(\/[^"']+)?["']/g, 'from "@/lib/myds/utils$1"'],
+    // "../hooks", "../hooks/use-theme" -> "@/lib/myds/hooks..."
+    [/from\s+["']\.\.\/hooks(\/[^"']+)?["']/g, 'from "@/lib/myds/hooks$1"'],
+    // "../icons/chevron-down" -> "@/components/ui/icons/chevron-down"
+    [/from\s+["']\.\.\/icons\/([^"']+)["']/g, 'from "@/components/ui/icons/$1"'],
+    // "../components/toast" (from hooks/utils) -> "@/components/ui/toast"
+    [/from\s+["']\.\.\/components\/([^"']+)["']/g, 'from "@/components/ui/$1"'],
+  ];
+
+  // Same-folder component imports: "./button" -> "@/components/ui/button".
+  // Files that ship together in one folder (hooks) keep relative imports.
+  if (!keepSameFolderImports) {
+    rewrites.push([/from\s+["']\.\/([^"']+)["']/g, 'from "@/components/ui/$1"']);
+  }
+
+  return rewrites.reduce(
+    (acc, [pattern, replacement]) =>
+      acc.replace(pattern, (...args) =>
+        replacement.replace("$1", args[1] ?? "")
+      ),
+    content
+  );
+}
+
+/**
+ * Map a relative import in a component file to the registry item URL that
+ * provides it, or null if it isn't a registry item.
+ */
+export function mapToRegistryDependency(importPath: string): string | null {
+  if (importPath === "../utils") return registryItemUrl("ui", "utils");
+  if (importPath.startsWith("../hooks")) return registryItemUrl("ui", "hooks");
+  if (importPath.startsWith("../icons/"))
+    return registryItemUrl("icons", importPath.slice("../icons/".length));
+  if (importPath.startsWith("./"))
+    return registryItemUrl("ui", importPath.slice(2));
+  return null;
 }
 
 /**

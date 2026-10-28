@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ellipsis-vertical",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/ellipsis-vertical.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * EllipsisVertical Icon\n * @param className\n * @returns EllipsisVerticalIcon\n */\nexport const EllipsisVerticalIcon: FunctionComponent<\n  SVGProps<SVGSVGElement>\n> = (props) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/options-vertical\">\n        <g id=\"Vector\">\n          <path\n            d=\"M10 9C10.5523 9 11 9.44772 11 10C11 10.5523 10.5523 11 10 11C9.44772 11 9 10.5523 9 10C9 9.44772 9.44772 9 10 9Z\"\n            fill=\"currentColor\"\n          />\n          <path\n            d=\"M10 3C10.5523 3 11 3.44772 11 4C11 4.55228 10.5523 5 10 5C9.44772 5 9 4.55228 9 4C9 3.44772 9.44772 3 10 3Z\"\n            fill=\"currentColor\"\n          />\n          <path\n            d=\"M10 15C10.5523 15 11 15.4477 11 16C11 16.5523 10.5523 17 10 17C9.44772 17 9 16.5523 9 16C9 15.4477 9.44772 15 10 15Z\"\n            fill=\"currentColor\"\n          />\n          <path\n            d=\"M10 9C10.5523 9 11 9.44772 11 10C11 10.5523 10.5523 11 10 11C9.44772 11 9 10.5523 9 10C9 9.44772 9.44772 9 10 9Z\"\n            stroke=\"currentColor\"\n            strokeWidth=\"1.5\"\n          />\n          <path\n            d=\"M10 3C10.5523 3 11 3.44772 11 4C11 4.55228 10.5523 5 10 5C9.44772 5 9 4.55228 9 4C9 3.44772 9.44772 3 10 3Z\"\n            stroke=\"currentColor\"\n            strokeWidth=\"1.5\"\n          />\n          <path\n            d=\"M10 15C10.5523 15 11 15.4477 11 16C11 16.5523 10.5523 17 10 17C9.44772 17 9 16.5523 9 16C9 15.4477 9.44772 15 10 15Z\"\n            stroke=\"currentColor\"\n            strokeWidth=\"1.5\"\n          />\n        </g>\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

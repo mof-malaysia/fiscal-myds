@@ -4,9 +4,6 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "turbo build --filter=@mof-malaysia/myds-style && changeset publish --no-git-tag",
     "lint": "turbo lint",
     "start": "turbo start",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -22,8 +19,6 @@
     "deploy:clean": "rm -rf deploy"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.2",
-    "@changesets/cli": "^2.29.7",
     "@types/node": "^24.10.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",

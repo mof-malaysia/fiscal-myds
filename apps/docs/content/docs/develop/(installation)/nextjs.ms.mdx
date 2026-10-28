@@ -12,20 +12,11 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 <Steps>
   <Step>
     #### Bina projek Next.js
-    ```sh title="terminal"
-    npx create-next-app@latest nama-projek
-    ```
-    Anda akan ditanya beberapa soalan. Pilih pilihan berikut:
 
-    ```sh title="terminal"
-    ✔ Would you like to use TypeScript? … Yes
-    ✔ Would you like to use ESLint? … Yes
-    ✔ Would you like to use Tailwind CSS?
-    ✔ Would you like your code inside a `src/` directory? … No
-    ✔ Would you like to use App Router? (recommended) … Yes
-    ✔ Would you like to use Turbopack for `next dev`? … No
-    ✔ Would you like to customize the import alias (`@/*` by default)? … No
-    ✔ What import alias would you like configured? … @/* … Yes
+    CLI shadcn boleh membina projek Next.js yang telah ditetapkan dengan Tailwind CSS v4, alias import `@/` dan Base UI.
+
+    ```package-install
+    npx shadcn@latest init -t next -n nama-projek
     ```
 
     Selepas projek dibuat, pergi ke induk projek:
@@ -33,42 +24,55 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
     cd nama-projek
     ```
 
+    Sudah mempunyai projek Next.js dengan Tailwind CSS? Jalankan `npx shadcn@latest init` di induk projek tersebut.
+
   </Step>
-  
+
   <Step>
-    #### Pasang pakej
+    #### Pasang gaya MYDS
 
     ```package-install
-    npm i @mof-malaysia/myds-react @mof-malaysia/myds-style
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
     ```
 
+    Arahan ini mencipta `styles/myds.css` di induk projek.
+
   </Step>
-  
+
   <Step>
     #### Konfigurasi stylesheet CSS
 
-    Anda boleh menetapkan gaya melalui salah satu daripada dua (2) kaedah yang disenaraikan di bawah.
+    Tambah fon MYDS di bahagian paling atas `app/globals.css`, dan import `styles/myds.css` sejurus selepas Tailwind.
 
-    __1. Import CSS__
-
-    ```css title="app/global.css"
-    @import "@mof-malaysia/myds-style/full.css";
+    ```css title="app/globals.css"
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"); /* [!code ++] */
+    @import "tailwindcss";
+    @import "../styles/myds.css"; /* [!code ++] */
     ```
-
-    __2. Tailwind CSS__
 
     Sila baca [Konfigurasi Gaya](./style-configuration) untuk konfigurasi lanjutan.
 
-    </Step>
+  </Step>
+
+  <Step>
+    #### Tambah komponen
+
+    ```package-install
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
+    ```
+
+    `--overwrite` menggantikan `components/ui/button.tsx` yang dicipta oleh `shadcn init` dengan butang MYDS. Komponen lain hanya memerlukan URL, contohnya `.../registry/ui/styles/default/dialog.json`.
+
+  </Step>
 
   <Step>
     #### Mula menggunakan komponen!
 
     Cubalah `<Button />` untuk memulakan membina dengan MYDS!
 
-    ```tsx title="components/button.tsx"
+    ```tsx title="components/hello-button.tsx"
     "use client"; // [!code highlight] Untuk Next App Router, mesti sertakan baris ini
-    import { Button } from "@mof-malaysia/myds-react/button";
+    import { Button } from "@/components/ui/button";
 
     export default () => {
       return <Button variant="primary-fill">Hello MYDS</Button>;
@@ -88,12 +92,12 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
     </Callout>
 
     ```tsx title="app/page.tsx"
-    import Button from "../components/button";
+    import HelloButton from "@/components/hello-button";
 
     export default function Home() {
       return (
         <div>
-          <Button />
+          <HelloButton />
         </div>
       );
     }

@@ -26,75 +26,50 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </div>
   </Tab>
   <Tab value="Code">
-  ```tsx 
-  import { AutoToast, 
-ToastRoot, 
-ToastIcon, 
-ToastProgress, 
-ToastProvider, 
-ToastViewport, 
-ToastTitle, 
-ToastDescription 
-}from "@mof-malaysia/myds-react/toast";
- 
-  <button
-   onClick={() => {
-     toast({ variant: "message", 
-     title: "Hello, world!", 
-     description: "this is a description" 
-     });
-   }}>
-     Message
-  </button>
- 
-  //* Simple usage
-  <AutoToast />
- 
-  //* Advanced usage
-  const { toasts, subscribe, unsubscribe } = useToast();
- 
-  useEffect(() => {
-    subscribe();
-    return () => {
-      unsubscribe();
-    };
-  }, []);
- 
-  return (
-    <ToastProvider>
-      {toasts.map((toast, index) => (
-        <ToastRoot
-          key={props.id || index}
-          variant={toast.variant || "message"}
-          {...props}
+    ```tsx
+    import { AutoToast } from "@/components/ui/toast";
+    import { useToast } from "@/lib/myds/hooks";
+
+    // Put the component high up in the DOM tree
+    <AutoToast />;
+
+    // Then, publish or emit a new event to the Toast
+    export default () => {
+      const { toast } = useToast();
+      return (
+        <button
+          onClick={() => {
+            toast({
+              variant: "message",
+              title: "Hello, world!",
+              description: "this is a message toast description",
+            });
+          }}
         >
-          <ToastIcon />
-          <div className="space-y-1">
-            <ToastTitle>{toast.title}</ToastTitle>
-            {toast.description && (
-              <ToastDescription>{toast.description}</ToastDescription>
-            )}
-          </div>
-          <ToastClose />
-          <ToastProgress />
-         </ToastRoot>
-     ))}
- 
-      <ToastViewport />
-    </ToastProvider>
-  );
-  ```
+          Message
+        </button>
+      );
+    };
+    ```
   </Tab>
 </Tabs>
 
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-toast--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-toast--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/toast.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/toast.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/toast.json
+```
 
 ## Usage
 
@@ -103,7 +78,7 @@ ToastDescription
 For simple usage, `AutoToast` can be used directly. It is a pre-assembled, simplified version of the `Toast` that handles common use cases.
 
 ```tsx copy title="layout.tsx"
-import { AutoToast } from "@mof-malaysia/myds-react/toast";
+import { AutoToast } from "@/components/ui/toast";
 
 // Put the component high up in the DOM tree
 <AutoToast />;
@@ -111,7 +86,7 @@ import { AutoToast } from "@mof-malaysia/myds-react/toast";
 
 ```tsx copy title="Anatomy"
 // Then, publish or emit a new event to the Toast
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 export default () => {
   const { toast } = useToast();
@@ -133,7 +108,7 @@ export default () => {
 
 ### Advanced Usage
 
-Instead of using `AutoToast`, the `Toast` component can be assembled manually for more control.
+Instead of using `AutoToast`, the `Toast` component can be assembled manually for more control. Read the active toasts with `useToastManager()` and render a `ToastRoot` for each one, passing the `toast` object. `ToastTitle` and `ToastDescription` render the toast's `title` and `description` by default.
 
 ```tsx copy
 import {
@@ -144,32 +119,63 @@ import {
   ToastViewport,
   ToastTitle,
   ToastDescription,
-} from "@mof-malaysia/myds-react/toast";
+  ToastClose,
+  useToastManager,
+} from "@/components/ui/toast";
 
-export default () => (
+// Renders every active toast
+const Toasts = () => {
+  const { toasts } = useToastManager();
+
+  return toasts.map((toast) => (
+    <ToastRoot key={toast.id} toast={toast}>
+      <ToastIcon />
+      <div className="space-y-1">
+        <ToastTitle />
+        {toast.description && <ToastDescription />}
+      </div>
+      <ToastClose />
+      <ToastProgress />
+    </ToastRoot>
+  ));
+};
+
+// Put the provider high up in the DOM tree
+export default ({ children }: { children: React.ReactNode }) => (
   <ToastProvider>
-    {toasts.map((toast, index) => (
-      <ToastRoot
-        key={props.id || index}
-        variant={toast.variant || "message"}
-        {...props}
-      >
-        <ToastIcon />
-        <div className="space-y-1">
-          <ToastTitle>{toast.title}</ToastTitle>
-          {toast.description && (
-            <ToastDescription>{toast.description}</ToastDescription>
-          )}
-        </div>
-        <ToastClose />
-        <ToastProgress />
-      </ToastRoot>
-    ))}
-
-    <ToastViewport />
+    {children}
+    <ToastViewport>
+      <Toasts />
+    </ToastViewport>
   </ToastProvider>
 );
 ```
+
+Inside a manually assembled `ToastProvider`, add toasts with `useToastManager().add()`. The `type` field selects the variant. `useToast().toast()` only reaches `AutoToast`.
+
+```tsx copy title="Anatomy"
+import { useToastManager } from "@/components/ui/toast";
+
+// Add a toast from any component inside ToastProvider
+const SaveButton = () => {
+  const toastManager = useToastManager();
+  return (
+    <button
+      onClick={() =>
+        toastManager.add({
+          type: "success",
+          title: "Saved",
+          description: "Your changes have been saved.",
+        })
+      }
+    >
+      Save
+    </button>
+  );
+};
+```
+
+By default, up to 3 toasts are visible at once. Change this with the `limit` prop on `ToastProvider`.
 
 ## Examples
 
@@ -195,17 +201,15 @@ export default () => (
   </div>
   </Tab>
   <Tab value="Code">
-  ```tsx 
+  ```tsx
 // autotoast for simple usage
-import { Button } from "@mof-malaysia/myds-react/button";
-import { AutoToast }from "@mof-malaysia/myds-react/toast";
+import { AutoToast } from "@/components/ui/toast";
 
 // put the component high up the layout tree
-
 <AutoToast />
 
 // to publish or emit a new event to the Toast
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+import { useToast } from "@/lib/myds/hooks";
 
 const { toast } = useToast();
 
@@ -220,7 +224,6 @@ const { toast } = useToast();
 >
   Message
 </button>
-
 ```
   </Tab>
 </Tabs>
@@ -228,24 +231,44 @@ const { toast } = useToast();
 ## Props
 
 ### ToastProvider
-`ToastProvider` is abstracted from Radix UI's `ToastProvider`. Please refer to the API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/toast#provider).
+`ToastProvider` is built on Base UI's `Toast.Provider`. Use `limit` to set how many toasts are visible at once (default `3`) and `timeout` to set the default auto-dismiss time. Please refer to the API references in this [documentation](https://base-ui.com/react/components/toast#provider).
 
-### ToastViewport
-`ToastViewport` is abstracted from Radix UI's `ToastViewport`. Please refer to the API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/toast#viewport).
-
-### ToastRoot
-`ToastRoot` is abstracted from Radix UI's `ToastRoot`. Please refer to the API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/toast#root).
 <TypeTable
   type={{
+    limit: {
+      description: "Maximum number of toasts visible at once",
+      type: "number",
+      default: "3",
+    },
+    timeout: {
+      description: "Default time (ms) before a toast is dismissed",
+      type: "number",
+      default: "5000",
+    },
+  }}
+/>
+
+### ToastViewport
+`ToastViewport` is built on Base UI's `Toast.Viewport`. Render your `ToastRoot` elements as its children. Please refer to the API references in this [documentation](https://base-ui.com/react/components/toast#viewport).
+
+### ToastRoot
+`ToastRoot` is built on Base UI's `Toast.Root`. It requires the `toast` object returned by `useToastManager()`. Please refer to the API references in this [documentation](https://base-ui.com/react/components/toast#root).
+
+<TypeTable
+  type={{
+    toast: {
+      description: "(Required) Toast object from `useToastManager().toasts`",
+      type: "ToastObject",
+    },
     variant: {
-      description: "Style variant of the toast",
+      description: "Style variant of the toast. Defaults to the toast object's `type`, then `message`",
       type: "enum",
       typeDescription:
         "message | success | info | warning | error",
       default: "message",
     },
     duration: {
-      description: "Time (ms) before toast disappears",
+      description: "Duration (ms) shown by the progress bar. Defaults to the toast object's `timeout`",
       type: "number",
       default: "5000"
     },
@@ -253,11 +276,13 @@ const { toast } = useToast();
 />
 
 ### ToastTitle
-`ToastTitle` is abstracted from Radix UI's `ToastTitle`. Please refer to the API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/toast#title).
+`ToastTitle` is built on Base UI's `Toast.Title`. Please refer to the API references in this [documentation](https://base-ui.com/react/components/toast#title).
 
 ### ToastDescription
-`ToastDescription` is abstracted from Radix UI's `ToastDescription`. Please refer to the API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/toast#description).
-
+`ToastDescription` is built on Base UI's `Toast.Description`. Please refer to the API references in this [documentation](https://base-ui.com/react/components/toast#description).
 
 ### ToastClose
-`ToastClose` is abstracted from Radix UI's `ToastClose`. Please refer to the API references in this [documentation](https://www.radix-ui.com/primitives/docs/components/toast#close).
+`ToastClose` is built on Base UI's `Toast.Close`. Please refer to the API references in this [documentation](https://base-ui.com/react/components/toast#close).
+
+### useToastManager
+`useToastManager()` returns `{ toasts, add, close, update, promise }`. It must be called inside `ToastProvider`.

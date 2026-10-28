@@ -1,47 +1,25 @@
-import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { useRender } from "@base-ui/react/use-render";
 import {
   ForwardRefExoticComponent,
   ComponentProps,
   forwardRef,
+  FunctionComponent,
   ReactElement,
   JSXElementConstructor,
   ReactNode,
+  Ref,
+  RefAttributes,
   createContext,
+  isValidElement,
   useContext,
-  LegacyRef,
+  useEffect,
+  useRef,
 } from "react";
 import { CrossIcon } from "../icons/cross";
 import { clx } from "../utils";
 import { Button } from "./button";
 import { cva } from "class-variance-authority";
-import { Slot } from "@radix-ui/react-slot";
-
-const Dialog = DialogPrimitive.Root;
-
-/*========================================================================================================================*/
-
-const DialogTrigger: ForwardRefExoticComponent<
-  ComponentProps<typeof DialogPrimitive.Trigger>
-> = forwardRef((props, ref) => {
-  return <DialogPrimitive.Trigger ref={ref} {...props} asChild />;
-});
-
-/*========================================================================================================================*/
-
-const DialogClose: ForwardRefExoticComponent<
-  ComponentProps<typeof DialogPrimitive.Close>
-> = forwardRef((props, ref) => {
-  const { onDismiss } = useContext(DialogBodyContext);
-
-  return (
-    <DialogPrimitive.Close
-      ref={ref}
-      {...props}
-      asChild
-      onClick={onDismiss && onDismiss}
-    />
-  );
-});
 
 /*========================================================================================================================*/
 
@@ -49,9 +27,95 @@ interface DialogBodyContextProps {
   dismissible?: boolean;
   onDismiss?: () => void;
 }
+
+/**
+ * Holds the dismiss settings of the mounted `DialogBody`, so the root can honour them
+ * when Base UI requests to close the dialog on an outside press.
+ */
+const DialogRootContext = createContext<{
+  current: DialogBodyContextProps;
+} | null>(null);
+
+interface DialogProps extends DialogPrimitive.Root.Props {}
+
+const Dialog: FunctionComponent<DialogProps> = ({ onOpenChange, ...props }) => {
+  const bodyRef = useRef<DialogBodyContextProps>({ dismissible: true });
+
+  return (
+    <DialogRootContext.Provider value={bodyRef}>
+      <DialogPrimitive.Root
+        onOpenChange={(open, eventDetails) => {
+          if (
+            !open &&
+            (eventDetails.reason === "outside-press" ||
+              eventDetails.reason === "focus-out")
+          ) {
+            const { dismissible = true, onDismiss } = bodyRef.current;
+            if (!dismissible) {
+              eventDetails.cancel();
+              return;
+            }
+            onDismiss?.();
+          }
+          onOpenChange?.(open, eventDetails);
+        }}
+        {...props}
+      />
+    </DialogRootContext.Provider>
+  );
+};
+
+/*========================================================================================================================*/
+
+/**
+ * Renders the trigger with Base UI's `render` prop, e.g. `<DialogTrigger render={<Button />}>Open</DialogTrigger>`.
+ * For backward compatibility, when `render` is omitted and the only child is an element, that child is used as the
+ * rendered element.
+ */
+const DialogTrigger: ForwardRefExoticComponent<
+  DialogPrimitive.Trigger.Props & RefAttributes<HTMLButtonElement>
+> = forwardRef(({ render, children, ...props }, ref) => {
+  const childAsRender = !render && isValidElement(children);
+  return (
+    <DialogPrimitive.Trigger
+      ref={ref}
+      render={childAsRender ? (children as ReactElement) : render}
+      {...props}
+    >
+      {childAsRender ? undefined : children}
+    </DialogPrimitive.Trigger>
+  );
+});
+
+/*========================================================================================================================*/
+
+const DialogClose: ForwardRefExoticComponent<
+  DialogPrimitive.Close.Props & RefAttributes<HTMLButtonElement>
+> = forwardRef(({ render, children, onClick, ...props }, ref) => {
+  const { onDismiss } = useContext(DialogBodyContext);
+  const childAsRender = !render && isValidElement(children);
+
+  return (
+    <DialogPrimitive.Close
+      ref={ref}
+      render={childAsRender ? (children as ReactElement) : render}
+      onClick={(e) => {
+        onClick?.(e);
+        onDismiss?.();
+      }}
+      {...props}
+    >
+      {childAsRender ? undefined : children}
+    </DialogPrimitive.Close>
+  );
+});
+
+/*========================================================================================================================*/
+
 interface DialogBodyProps
-  extends ComponentProps<typeof DialogPrimitive.Content>,
+  extends Omit<DialogPrimitive.Popup.Props, "className">,
     DialogBodyContextProps {
+  className?: string;
   hideClose?: boolean;
 }
 
@@ -60,7 +124,9 @@ const DialogBodyContext = createContext<DialogBodyContextProps>({
   onDismiss: () => {},
 });
 
-const DialogBody: ForwardRefExoticComponent<DialogBodyProps> = forwardRef(
+const DialogBody: ForwardRefExoticComponent<
+  DialogBodyProps & RefAttributes<HTMLDivElement>
+> = forwardRef(
   (
     {
       className,
@@ -72,36 +138,41 @@ const DialogBody: ForwardRefExoticComponent<DialogBodyProps> = forwardRef(
     },
     ref,
   ) => {
+    const rootRef = useContext(DialogRootContext);
+
+    useEffect(() => {
+      if (!rootRef) return;
+      rootRef.current = { dismissible, onDismiss };
+      return () => {
+        rootRef.current = { dismissible: true };
+      };
+    }, [rootRef, dismissible, onDismiss]);
+
     return (
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay
+        <DialogPrimitive.Backdrop
           className={clx(
             "fixed inset-0 z-[900]",
             "h-full w-full",
             "bg-gray-700/60",
-            "data-[state=open]:animate-in data-[state=open]:fade-in-0",
-            "data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+            "data-[open]:animate-in data-[open]:fade-in-0",
+            "data-[closed]:animate-out data-[closed]:fade-out-0",
           )}
         />
-        <DialogPrimitive.Content
+        <DialogPrimitive.Popup
           ref={ref}
           className={clx(
-            "fixed left-[50%] top-[50%] z-[1000] box-border translate-x-[-50%] translate-y-[-50%]",
-            "w-full min-w-[300px] max-w-[calc(100dvw-36px)] sm:max-w-lg",
+            "fixed top-[50%] left-[50%] z-[1000] box-border translate-x-[-50%] translate-y-[-50%]",
+            "w-full max-w-[calc(100dvw-36px)] min-w-[300px] sm:max-w-lg",
             "flex flex-col items-start",
             "rounded-lg shadow-lg",
             "border-otl-gray-200 border",
             "bg-bg-white",
-            "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
-            "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
+            "data-[open]:animate-in data-[open]:fade-in-0 data-[open]:zoom-in-95 data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-[48%]",
+            "data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-[48%]",
             "duration-200",
             className,
           )}
-          onInteractOutside={
-            !dismissible
-              ? (e) => e.preventDefault()
-              : () => onDismiss && onDismiss()
-          }
           {...props}
         >
           <DialogBodyContext.Provider value={{ dismissible, onDismiss }}>
@@ -109,20 +180,21 @@ const DialogBody: ForwardRefExoticComponent<DialogBodyProps> = forwardRef(
             {!hideClose && (
               <DialogClose
                 className={clx(
-                  "absolute right-4 top-4",
+                  "absolute top-4 right-4",
                   "grid place-content-center",
                   "text-txt-black-900",
                   "disabled:pointer-events-none",
                 )}
+                render={
+                  <Button variant="default-outline" size={"small"} iconOnly />
+                }
               >
-                <Button variant="default-outline" size={"small"} iconOnly>
-                  <CrossIcon className="size-5 stroke-current" />
-                  <span className="sr-only">Close</span>
-                </Button>
+                <CrossIcon className="size-5 stroke-current" />
+                <span className="sr-only">Close</span>
               </DialogClose>
             )}
           </DialogBodyContext.Provider>
-        </DialogPrimitive.Content>
+        </DialogPrimitive.Popup>
       </DialogPrimitive.Portal>
     );
   },
@@ -239,7 +311,9 @@ const DialogFooter: ForwardRefExoticComponent<DialogFooterProps> = forwardRef(
 /*========================================================================================================================*/
 
 interface DialogTitleProps
-  extends ComponentProps<typeof DialogPrimitive.Title> {}
+  extends Omit<ComponentProps<typeof DialogPrimitive.Title>, "className"> {
+  className?: string;
+}
 
 const DialogTitle: ForwardRefExoticComponent<DialogTitleProps> = forwardRef(
   ({ className, ...props }, ref) => (
@@ -256,7 +330,12 @@ const DialogTitle: ForwardRefExoticComponent<DialogTitleProps> = forwardRef(
 
 /*========================================================================================================================*/
 interface DialogDescriptionProps
-  extends ComponentProps<typeof DialogPrimitive.Description> {}
+  extends Omit<
+    ComponentProps<typeof DialogPrimitive.Description>,
+    "className"
+  > {
+  className?: string;
+}
 
 const DialogDescription: ForwardRefExoticComponent<DialogDescriptionProps> =
   forwardRef(({ className, ...props }, ref) => (
@@ -298,16 +377,16 @@ interface DialogIconProps {
   variant: "default" | "primary" | "success" | "warning" | "danger";
   children: ReactElement<any, string | JSXElementConstructor<any>>;
   className?: string;
-  ref?: LegacyRef<HTMLElement>;
+  ref?: Ref<HTMLElement>;
 }
 
 const DialogIcon: ForwardRefExoticComponent<DialogIconProps> = forwardRef(
   ({ variant, children, className }, ref) => {
-    return (
-      <Slot ref={ref} className={clx(dialog_icon_cva({ variant }), className)}>
-        {children}
-      </Slot>
-    );
+    return useRender({
+      render: children,
+      ref,
+      props: { className: clx(dialog_icon_cva({ variant }), className) },
+    });
   },
 );
 
@@ -316,12 +395,13 @@ const DialogIcon: ForwardRefExoticComponent<DialogIconProps> = forwardRef(
 DialogBody.displayName = "DialogBody";
 DialogHeader.displayName = "DialogHeader";
 DialogFooter.displayName = "DialogFooter";
-DialogTitle.displayName = DialogPrimitive.Title.displayName;
-DialogDescription.displayName = DialogPrimitive.Description.displayName;
+DialogTitle.displayName = "DialogTitle";
+DialogDescription.displayName = "DialogDescription";
 DialogIcon.displayName = "DialogIcon";
-DialogClose.displayName = DialogPrimitive.Close.displayName;
-DialogContent.displayName = DialogPrimitive.Content.displayName;
-DialogTrigger.displayName = DialogPrimitive.Trigger.displayName;
+DialogClose.displayName = "DialogClose";
+DialogContent.displayName = "DialogContent";
+DialogTrigger.displayName = "DialogTrigger";
+Dialog.displayName = "Dialog";
 
 /*========================================================================================================================*/
 
@@ -336,4 +416,15 @@ export {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+};
+
+export type {
+  DialogProps,
+  DialogBodyProps,
+  DialogHeaderProps,
+  DialogContentProps,
+  DialogFooterProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
+  DialogIconProps,
 };

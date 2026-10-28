@@ -30,7 +30,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   </Tab>
   <Tab value="Code">
   ```tsx 
-import { Callout, CalloutAction, CalloutTitle, CalloutContent } from "@mof-malaysia/myds-react/callout";
+import { Callout, CalloutAction, CalloutTitle, CalloutContent } from "@/components/ui/callout";
 
 <Callout>
     <CalloutTitle>Title</CalloutTitle>
@@ -48,11 +48,19 @@ import { Callout, CalloutAction, CalloutTitle, CalloutContent } from "@mof-malay
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-callout--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-callout--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/callout.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/callout.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/callout.json
+```
 
 ## Usage
 
@@ -62,7 +70,7 @@ import {
   CalloutAction,
   CalloutTitle,
   CalloutContent,
-} from "@mof-malaysia/myds-react/callout";
+} from "@/components/ui/callout";
 ```
 
 ```tsx copy title="Anatomy"
@@ -233,7 +241,7 @@ while callouts with all three elements (**title**, **content** & **action**) wil
 If the callout is dismissible, you can display a **close button** on the top right corner by declaring the `dismissible` prop.
 To capture the dismiss event, you may use the `onDismiss` prop.
 
-To dismiss the callout via event listener, simply wrap the target element with `CalloutClose`. `CalloutClose` will also trigger the onDismiss event, if defined.
+To dismiss the callout via event listener, use `CalloutClose` and pass the target element through its `render` prop. `CalloutClose` will also trigger the onDismiss event, if defined.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
@@ -246,7 +254,7 @@ To dismiss the callout via event listener, simply wrap the target element with `
       <DismissibleCalloutExample
         type="action"
         title="Action - Dismiss Callout via CalloutClose"
-        description="You can attach closing functionality of the Callout by wrapping the target element"
+        description="You can attach closing functionality of the Callout by passing the target element to its render prop"
       />
     </div>
   </Tab>
@@ -281,8 +289,8 @@ To dismiss the callout via event listener, simply wrap the target element with `
         A description to explain the success, warning, info or error event
       </CalloutContent>
       <CalloutAction>
-        <CalloutClose>
-          <Button variant="default-outline">Call to Action</Button>
+        <CalloutClose render={<Button variant="default-outline" />}>
+          Call to Action
         </CalloutClose>
       </CalloutAction>
     </Callout>

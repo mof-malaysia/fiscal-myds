@@ -1,13 +1,14 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "desktop",
-  "type": "components:icon",
+  "type": "registry:ui",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
       "path": "components/ui/icons/desktop.tsx",
       "content": "import React from \"react\";\nimport { FunctionComponent, SVGProps } from \"react\";\n\n/**\n * Desktop Icon\n * @param className\n * @returns DesktopIcon\n */\nexport const DesktopIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (\n  props,\n) => {\n  return (\n    <svg\n      width=\"20\"\n      height=\"20\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      {...props}\n    >\n      <g id=\"Icon/desktop\">\n        <path\n          id=\"Vector\"\n          d=\"M7.77778 14.5V14.7455C7.77778 15.8293 7.19319 16.8288 6.24856 17.3602L6 17.5H14L13.7514 17.3602C12.8068 16.8288 12.2222 15.8293 12.2222 14.7455V14.5M3.5 2.5H16.5C17.3284 2.5 18 3.17157 18 4V13C18 13.8284 17.3284 14.5 16.5 14.5H3.5C2.67157 14.5 2 13.8284 2 13V4C2 3.17157 2.67157 2.5 3.5 2.5Z\"\n          stroke=\"currentColor\"\n          strokeWidth=\"1.5\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        />\n      </g>\n    </svg>\n  );\n};\n",
-      "type": "components:icon"
+      "type": "registry:ui"
     }
   ]
 }

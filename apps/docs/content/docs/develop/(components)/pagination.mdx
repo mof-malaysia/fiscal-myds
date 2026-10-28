@@ -33,7 +33,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
     </div>
   </Tab>
   <Tab value="Code">
-    ```tsx import {AutoPagination} from "@mof-malaysia/myds-react/pagination";
+    ```tsx import {AutoPagination} from "@/components/ui/pagination";
     <AutoPagination
       page={1}
       limit={10}
@@ -49,11 +49,19 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=/docs/govtechmy-myds-react-pagination--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/mof-malaysia-myds-react-pagination--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/pagination.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/pagination.tsx",
   }}
 />
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/pagination.json
+```
 
 ## Usage
 
@@ -62,7 +70,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 For simple usage, `AutoPagination` can be used directly. It is a pre-assembled component that handles common pagination use cases.
 
 ```ts copy title="Import"
-import { AutoPagination } from "@mof-malaysia/myds-react/pagination";
+import { AutoPagination } from "@/components/ui/pagination";
 ```
 
 ```tsx copy title="Anatomy"
@@ -143,7 +151,7 @@ Use the `type` props to change the type of the `AutoPagination` component. Examp
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { AutoPagination } from "@mof-malaysia/myds-react/pagination";
+    import { AutoPagination } from "@/components/ui/pagination";
 
     // default type
     <AutoPagination
@@ -197,7 +205,7 @@ Opting into using `AutoPagination` or manual assembly of pagination subcomponent
   </Tab>
   <Tab value="Code">
     ```tsx 
-    import { AutoPagination } from "@mof-malaysia/myds-react/pagination";
+    import { AutoPagination } from "@/components/ui/pagination";
 
     // simple type
     <AutoPagination
@@ -344,11 +352,11 @@ A wrapper component rendered as a list item `li` that contains individual pagina
 
 ### PaginationNext
 
-A button component that handles navigaton to the next page. The underlying component can be substituted by using the `asChild` props.
+A button component that handles navigaton to the next page. The underlying element can be substituted by using the `render` prop, e.g. `render={<a href="/page/2" />}`.
 
 ### PaginationPrevious
 
-A button component that handles navigaton to the previous page. The underlying component can be substituted by using the `asChild` props.
+A button component that handles navigaton to the previous page. The underlying element can be substituted by using the `render` prop, e.g. `render={<a href="/page/1" />}`.
 
 ### PaginationLabel
 

@@ -5,31 +5,17 @@ import {
   useContext,
   ReactNode,
   ComponentProps,
-  useRef,
   useId,
-  useEffect,
-  RefObject,
 } from "react";
 import { clx } from "../utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@radix-ui/react-navigation-menu";
-import {
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverPortal,
-} from "@radix-ui/react-popover";
+import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+import { useRender } from "@base-ui/react/use-render";
 import { Button } from "./button";
 import { Link } from "./link";
 import { ChevronDownIcon, CrossIcon, HamburgerMenuIcon } from "../icons";
 import { cva } from "class-variance-authority";
-import { RemoveScroll } from "react-remove-scroll";
-import { Root, Slot } from "@radix-ui/react-slot";
 
 interface NavbarProps extends ComponentProps<"header"> {}
 
@@ -63,7 +49,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
         data-nosnippet
         {...props}
       >
-        <div className="px-4.5 relative mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-4 max-md:h-14 md:px-6">
+        <div className="relative mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-4 px-4.5 max-md:h-14 md:px-6">
           {children}
         </div>
       </header>
@@ -134,28 +120,50 @@ interface NavigationMenuProps {
   classNameNavMobile?: string;
 }
 
+/** `true` when rendered inside the tablet / mobile menu panel. */
+const NavbarMobileContext = createContext(false);
+
 const NavbarMenu: FunctionComponent<NavigationMenuProps> = ({
   children,
   classNameNavDesktop,
   classNameNavMobile,
 }) => {
   return (
-    <NavigationMenu className="grow">
+    <NavigationMenuPrimitive.Root className="grow">
       {/* Desktop */}
-      <NavigationMenuList
+      <NavigationMenuPrimitive.List
         className={clx(
           "hidden xl:flex xl:justify-start xl:gap-1",
           classNameNavDesktop,
         )}
       >
         {children}
-      </NavigationMenuList>
+      </NavigationMenuPrimitive.List>
+
+      <NavigationMenuPrimitive.Portal>
+        <NavigationMenuPrimitive.Positioner
+          className="z-50 outline-none"
+          side="bottom"
+          align="start"
+          sideOffset={8}
+        >
+          <NavigationMenuPrimitive.Popup
+            className={clx(
+              "bg-bg-white shadow-context-menu min-w-[220px] rounded-md p-1.5 outline-none",
+              "data-[open]:animate-in data-[open]:fade-in-0",
+              "data-[closed]:animate-out data-[closed]:fade-out-0",
+            )}
+          >
+            <NavigationMenuPrimitive.Viewport className="relative" />
+          </NavigationMenuPrimitive.Popup>
+        </NavigationMenuPrimitive.Positioner>
+      </NavigationMenuPrimitive.Portal>
 
       {/* Tablet / Mobile */}
       <NavbarMobileMenu className={clx(classNameNavMobile)}>
         {children}
       </NavbarMobileMenu>
-    </NavigationMenu>
+    </NavigationMenuPrimitive.Root>
   );
 };
 
@@ -164,76 +172,84 @@ interface NavbarMobileMenuProps {
   className?: string;
 }
 
-type Measurable = {
-  getBoundingClientRect: () => DOMRect;
-};
-
 const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
   children,
   className,
 }) => {
   const { id, show, setShow } = useContext(NavbarContext);
 
-  const virtualRef = useRef<Measurable | null>(null);
-
-  useEffect(() => {
-    const node = document.getElementById(id);
-
-    if (node) {
-      virtualRef.current = node;
-    }
-  }, [id]);
-
-  if (!show) {
-    return null;
-  }
-
   return (
-    <RemoveScroll as={Root} allowPinchZoom enabled>
-      <Popover open={show} onOpenChange={setShow}>
-        <PopoverAnchor virtualRef={virtualRef as RefObject<Measurable>} />
-        <PopoverPortal>
-          <PopoverContent
-            sideOffset={0}
-            align="start"
-            className={clx("absolute top-full z-40 h-dvh xl:hidden", className)}
+    <PopoverPrimitive.Root
+      open={show}
+      modal
+      onOpenChange={(open, eventDetails) => {
+        // Let the header's own toggle button handle presses inside the header.
+        const target = eventDetails.event?.target;
+        if (
+          !open &&
+          eventDetails.reason === "outside-press" &&
+          target instanceof Node &&
+          document.getElementById(id)?.contains(target)
+        )
+          return;
+        setShow(open);
+      }}
+    >
+      <PopoverPrimitive.Portal>
+        <PopoverPrimitive.Positioner
+          anchor={() => document.getElementById(id)}
+          side="bottom"
+          sideOffset={0}
+          align="start"
+          className="z-40 xl:hidden"
+        >
+          <PopoverPrimitive.Popup
+            className={clx(
+              "group absolute top-full h-dvh outline-none",
+              className,
+            )}
           >
             <div
               className={clx(
-                "absolute h-dvh w-[var(--radix-popper-anchor-width)]",
+                "absolute h-dvh w-[var(--anchor-width)]",
                 "bg-gray-700/60",
-                "data-[state=open]:animate-in data-[state=open]:fade-in-0",
-                "data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+                "group-data-[open]:animate-in group-data-[open]:fade-in-0",
+                "group-data-[closed]:animate-out group-data-[closed]:fade-out-0",
               )}
               aria-hidden
               onClick={() => setShow(false)}
             />
             <ul
               className={clx(
-                "absolute max-h-[80dvh] w-[var(--radix-popper-anchor-width)] overflow-y-auto p-3",
+                "absolute max-h-[80dvh] w-[var(--anchor-width)] overflow-y-auto p-3",
                 "border-otl-gray-200 rounded-md rounded-t-none border border-t-0 outline-none",
                 "bg-bg-dialog text-txt-black-900 shadow-context-menu",
-                "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-2",
-                "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2",
+                "group-data-[open]:animate-in group-data-[open]:fade-in-0 group-data-[open]:slide-in-from-top-2",
+                "group-data-[closed]:animate-out group-data-[closed]:fade-out-0 group-data-[closed]:slide-out-to-top-2",
               )}
             >
-              {children}
+              <NavbarMobileContext.Provider value={true}>
+                {children}
+              </NavbarMobileContext.Provider>
             </ul>
-          </PopoverContent>
-        </PopoverPortal>
-      </Popover>
-    </RemoveScroll>
+          </PopoverPrimitive.Popup>
+        </PopoverPrimitive.Positioner>
+      </PopoverPrimitive.Portal>
+    </PopoverPrimitive.Root>
   );
 };
 
 NavbarMenu.displayName = "NavbarMenu";
 
 interface NavbarMenuItemProps
-  extends ComponentProps<typeof NavigationMenuItem> {
+  extends Omit<ComponentProps<"li">, "children" | "className"> {
   children: ReactNode;
   href: string;
   className?: string;
-  asChild?: boolean;
+  /**
+   * Replaces the rendered `<a>` element, e.g. `render={<NextLink href="/x" />}` for client-side routing.
+   */
+  render?: useRender.RenderProp;
 }
 
 const navbar_menu_item_cva = cva(
@@ -256,20 +272,51 @@ const NavbarMenuItem: FunctionComponent<NavbarMenuItemProps> = ({
   className,
   children,
   href,
-  asChild,
+  render,
   ...props
 }) => {
   const is_from_dropdown = useContext(NavbarMenuDropdownContext);
-  const Comp = asChild ? Slot : Link;
-  return (
-    <NavigationMenuItem
-      className={clx(navbar_menu_item_cva({ is_from_dropdown }), className)}
-      {...props}
+  const is_mobile = useContext(NavbarMobileContext);
+  const item_className = clx(
+    navbar_menu_item_cva({ is_from_dropdown }),
+    className,
+  );
+  const link = (
+    <Link href={href} underline="none" className="w-full" render={render}>
+      {children}
+    </Link>
+  );
+
+  // Tablet / mobile panel: plain list item
+  if (is_mobile)
+    return (
+      <li className={item_className} {...props}>
+        {link}
+      </li>
+    );
+
+  const nav_link = (
+    <NavigationMenuPrimitive.Link
+      render={
+        <Link href={href} underline="none" className="w-full" render={render} />
+      }
     >
-      <Comp href={href} underline="none" className="w-full">
-        {children}
-      </Comp>
-    </NavigationMenuItem>
+      {children}
+    </NavigationMenuPrimitive.Link>
+  );
+
+  // Desktop dropdown content
+  if (is_from_dropdown)
+    return (
+      <li className={item_className} {...props}>
+        {nav_link}
+      </li>
+    );
+
+  return (
+    <NavigationMenuPrimitive.Item className={item_className} {...props}>
+      {nav_link}
+    </NavigationMenuPrimitive.Item>
   );
 };
 
@@ -288,32 +335,61 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
   title,
   className,
 }) => {
+  const is_mobile = useContext(NavbarMobileContext);
+
+  const trigger_className = clx(
+    navbar_menu_item_cva({ is_from_dropdown: false }),
+    "group w-full select-none bg-transparent transition-colors xl:w-max",
+  );
+  const chevron_className =
+    "relative top-px ml-1.5 size-4 transition motion-reduce:transition-none";
+
+  // Tablet / mobile panel: expands inline
+  if (is_mobile)
+    return (
+      <NavbarMenuDropdownContext.Provider value={true}>
+        <CollapsiblePrimitive.Root
+          render={<li />}
+          className="relative list-none"
+        >
+          <CollapsiblePrimitive.Trigger
+            className={clx(trigger_className, "data-[panel-open]:bg-bg-washed")}
+          >
+            {title}
+            <ChevronDownIcon
+              className={clx(
+                chevron_className,
+                "group-data-[panel-open]:rotate-180",
+              )}
+              aria-hidden="true"
+            />
+          </CollapsiblePrimitive.Trigger>
+          <CollapsiblePrimitive.Panel className={clx("w-full", className)}>
+            <ul>{children}</ul>
+          </CollapsiblePrimitive.Panel>
+        </CollapsiblePrimitive.Root>
+      </NavbarMenuDropdownContext.Provider>
+    );
+
   return (
     <NavbarMenuDropdownContext.Provider value={true}>
-      <NavigationMenuItem key="desktop-dropdown" className="relative list-none">
-        <NavigationMenuTrigger
-          className={clx(
-            navbar_menu_item_cva({ is_from_dropdown: false }),
-            "data-[state=open]:bg-bg-washed group w-full select-none bg-transparent transition-colors xl:w-max",
-          )}
+      <NavigationMenuPrimitive.Item className="relative list-none">
+        <NavigationMenuPrimitive.Trigger
+          className={clx(trigger_className, "data-[popup-open]:bg-bg-washed")}
         >
           {title}
           <ChevronDownIcon
-            className="relative top-px ml-1.5 size-4 transition group-data-[state=open]:rotate-180 motion-reduce:transition-none"
+            className={clx(
+              chevron_className,
+              "group-data-[popup-open]:rotate-180",
+            )}
             aria-hidden="true"
           />
-        </NavigationMenuTrigger>
-        <NavigationMenuContent
-          className={clx(
-            "xl:absolute xl:left-0 xl:top-full xl:mt-2 xl:min-w-[220px]",
-            "xl:bg-bg-white xl:shadow-context-menu xl:list-none xl:rounded-md xl:p-1.5",
-            "w-full xl:w-fit",
-            className,
-          )}
-        >
+        </NavigationMenuPrimitive.Trigger>
+        <NavigationMenuPrimitive.Content className={clx("w-full", className)}>
           <ul>{children}</ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
+        </NavigationMenuPrimitive.Content>
+      </NavigationMenuPrimitive.Item>
     </NavbarMenuDropdownContext.Provider>
   );
 };

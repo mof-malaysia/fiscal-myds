@@ -10,54 +10,65 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 
 <Steps>
   <Step>
-   #### Create a Vite project
-    
+    #### Create a Vite project
+
+    The shadcn CLI can create a Vite + React + TypeScript project with Tailwind CSS v4, the `@/` import alias and Base UI already configured.
+
     ```package-install
-    npm init vite@latest
+    npx shadcn@latest init -t vite -n project-name
     ```
 
-    You will be prompted with a series of questions. Select the following options:
-
+    After the project is created, head to the project root:
     ```sh title="terminal"
-    ✔ Project name: … project-name
-    ✔ Select a framework: › React
-    ✔ Select a variant: › TypeScript
+    cd project-name
     ```
 
   </Step>
-  
-   <Step>
-    #### Install packages
+
+  <Step>
+    #### Install the MYDS styles
+
     ```package-install
-    npm i @mof-malaysia/myds-react @mof-malaysia/myds-style 
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
     ```
+
+    This creates `styles/myds.css` in the project root.
+
   </Step>
-  
-  
+
   <Step>
     #### Configure CSS stylesheet
 
-    You may configure the MYDS styling through one of (2) methods listed below.
+    Add the MYDS fonts at the very top of `src/index.css`, and import `styles/myds.css` right after Tailwind.
 
-    __1. CSS import__
-
-    ```css title="src/App.css"
-    @import "@mof-malaysia/myds-style/full.css";
+    ```css title="src/index.css"
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"); /* [!code ++] */
+    @import "tailwindcss";
+    @import "../styles/myds.css"; /* [!code ++] */
     ```
-
-    __2. Tailwind CSS__
 
     Please read the [Style Configuration](./style-configuration) for more advanced configuration.
 
-    </Step>
+  </Step>
 
-    <Step>
+  <Step>
+    #### Add components
+
+    ```package-install
+    npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
+    ```
+
+    `--overwrite` replaces the `src/components/ui/button.tsx` that `shadcn init` created with the MYDS button.
+
+  </Step>
+
+  <Step>
     #### Start using the components!
 
     Here is a `<Button />` for you to get started!
 
     ```tsx title="src/App.tsx"
-    import { Button } from "@mof-malaysia/myds-react/button";
+    import { Button } from "@/components/ui/button";
 
     function App() {
       return (

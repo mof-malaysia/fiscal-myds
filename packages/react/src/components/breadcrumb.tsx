@@ -1,4 +1,5 @@
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { ComponentProps, ForwardRefExoticComponent, forwardRef } from "react";
 import { clx } from "../utils";
 import { cva, VariantProps } from "class-variance-authority";
@@ -45,25 +46,28 @@ const BreadcrumbItem: ForwardRefExoticComponent<ComponentProps<"li">> =
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink: ForwardRefExoticComponent<
-  ComponentProps<"a"> & { asChild?: boolean }
-> = forwardRef(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a";
-
-  return (
-    <Comp
-      ref={ref}
-      className={clx(
-        "hover:text-txt-black-900 text-txt-black-500 transition-colors hover:underline",
-        className,
-      )}
-      {...props}
-      title={
-        props.title || typeof props.children === "string"
-          ? (props.children as string)
-          : undefined
-      }
-    />
-  );
+  useRender.ComponentProps<"a">
+> = forwardRef(({ render, className, ...props }, ref) => {
+  return useRender({
+    defaultTagName: "a",
+    render,
+    ref,
+    props: mergeProps<"a">(
+      {
+        className: clx(
+          "hover:text-txt-black-900 text-txt-black-500 transition-colors hover:underline",
+          className,
+        ),
+      },
+      props,
+      {
+        title:
+          props.title || typeof props.children === "string"
+            ? (props.children as string)
+            : undefined,
+      },
+    ),
+  });
 });
 BreadcrumbLink.displayName = "BreadcrumbLink";
 

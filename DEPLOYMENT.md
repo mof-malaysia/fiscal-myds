@@ -7,12 +7,11 @@ This guide explains how to deploy MYDS Storybook and Component Registry to GitHu
 The deployment creates a unified GitHub Pages site with:
 
 ```
-https://username.github.io/myds/
+https://mof-malaysia.github.io/fiscal-myds/
 ├── /                           → Registry landing page
 ├── /registry/                  → Component registry JSON files
-│   ├── index.json             → Master component list
-│   ├── schema.json            → JSON schema
-│   └── styles/default/*.json  → Individual components
+│   ├── index.json             → Root index of the registries
+│   └── ui|icons|style/        → index.json, schema.json, styles/default/*.json
 └── /storybook/                 → Storybook component browser
 ```
 
@@ -44,9 +43,9 @@ The GitHub Actions workflow will automatically:
 ### 3. Access Your Deployment
 
 After deployment completes (usually 2-5 minutes):
-- **Landing Page**: `https://username.github.io/myds/`
-- **Storybook**: `https://username.github.io/myds/storybook`
-- **Registry**: `https://username.github.io/myds/registry/index.json`
+- **Landing Page**: `https://mof-malaysia.github.io/fiscal-myds/`
+- **Storybook**: `https://mof-malaysia.github.io/fiscal-myds/storybook`
+- **Registry**: `https://mof-malaysia.github.io/fiscal-myds/registry/index.json`
 
 ## Manual Deployment
 
@@ -81,7 +80,7 @@ git add .
 git commit -m "Deploy to GitHub Pages"
 
 # Push to gh-pages branch (replace 'origin' with your remote name)
-git remote add origin https://github.com/username/myds.git
+git remote add origin https://github.com/mof-malaysia/fiscal-myds.git
 git push -f origin gh-pages
 ```
 
@@ -96,10 +95,10 @@ git push -f origin gh-pages
 
 ### 1. Configure DNS
 
-Add a CNAME record pointing to `username.github.io`:
+Add a CNAME record pointing to `mof-malaysia.github.io`:
 
 ```
-CNAME    myds    username.github.io
+CNAME    myds    mof-malaysia.github.io
 ```
 
 ### 2. Update Deployment Script
@@ -238,13 +237,14 @@ myds/
 │       ├── dist/                  # Build output
 │       └── package.json           # build:gh-pages script
 ├── registry/
-│   ├── index.json                 # Generated registry index
-│   ├── schema.json                # Generated schema
-│   └── styles/default/*.json      # Generated components
+│   ├── index.json                 # Generated root index
+│   └── ui|icons|style/            # Generated catalogs + styles/default/*.json
 ├── scripts/
 │   ├── registry/
-│   │   ├── generate.ts           # Registry generator
-│   │   ├── build.ts              # Registry builder
+│   │   ├── build-multi.ts        # Registry builder (pnpm registry:build)
+│   │   ├── generate-ui.ts        # UI components, hooks, utils
+│   │   ├── generate-icons.ts     # Icons
+│   │   ├── generate-style.ts     # Styles (myds-init, ...)
 │   │   └── utils.ts              # Utilities
 │   └── deploy/
 │       └── prepare-gh-pages.ts   # Deployment prep script
@@ -261,12 +261,12 @@ myds/
 
 ### Default GitHub Pages URLs
 
-Replace `username` with your GitHub username and `myds` with your repo name:
+For `mof-malaysia/fiscal-myds`:
 
-- **Landing**: `https://username.github.io/myds/`
-- **Storybook**: `https://username.github.io/myds/storybook/`
-- **Registry Index**: `https://username.github.io/myds/registry/index.json`
-- **Component**: `https://username.github.io/myds/registry/styles/default/button.json`
+- **Landing**: `https://mof-malaysia.github.io/fiscal-myds/`
+- **Storybook**: `https://mof-malaysia.github.io/fiscal-myds/storybook/`
+- **Registry Index**: `https://mof-malaysia.github.io/fiscal-myds/registry/index.json`
+- **Component**: `https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json`
 
 ### Custom Domain URLs
 
@@ -278,26 +278,18 @@ If using custom domain `myds.yourdomain.com`:
 
 ## Using the Registry
 
-Once deployed, users can install components:
+Once deployed, users install items by their full URL (the shadcn CLI has no `--registry` flag):
 
 ```bash
-# Configure components.json
+# Set up shadcn with Base UI (the default)
 npx shadcn@latest init
 
-# Add MYDS registry URL
-{
-  "registry": "https://username.github.io/myds/registry"
-}
-
-# Install components
-npx shadcn@latest add button
+# Install MYDS styles and components
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/button.json --overwrite
 ```
 
-Or specify registry inline:
-
-```bash
-npx shadcn@latest add button --registry=https://username.github.io/myds/registry
-```
+See [REGISTRY.md](./REGISTRY.md) for the full guide.
 
 ## Continuous Deployment
 

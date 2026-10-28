@@ -55,8 +55,10 @@ import {
   MastheadTitle,
   MastheadTrigger,
   MastheadSection,
-} from "@mof-malaysia/myds-react/masthead";
-import { PutrajayaIcon, Lock2Icon, LockFillIcon } from "@mof-malaysia/myds-react/icon";
+} from "@/components/ui/masthead";
+import { PutrajayaIcon } from "@/components/ui/icons/putrajaya";
+import { Lock2Icon } from "@/components/ui/icons/lock-2";
+import { LockFillIcon } from "@/components/ui/icons/lock-fill";
 
 <Masthead>
   <MastheadHeader>
@@ -89,11 +91,19 @@ import { PutrajayaIcon, Lock2Icon, LockFillIcon } from "@mof-malaysia/myds-react
 <Quicklinks
   links={{
     storybook:
-      "https://myds-storybook.vercel.app/?path=%2Fdocs%2Fgovtechmy-myds-react-masthead--docs",
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=%2Fdocs%2Fmof-malaysia-myds-react-masthead--docs",
     source:
-      "https://github.com/govtechmy/myds/blob/main/packages/react/src/components/masthead.tsx",
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/masthead.tsx",
   }}
 />
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan awal.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/ui/styles/default/masthead.json
+```
 
 ## Penggunaan
 
@@ -105,7 +115,7 @@ import {
   MastheadTitle,
   MastheadTrigger,
   MastheadSection,
-} from "@mof-malaysia/myds-react/masthead";
+} from "@/components/ui/masthead";
 ```
 
 ```tsx copy title="Anatomi"
