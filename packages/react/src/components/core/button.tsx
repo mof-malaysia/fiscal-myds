@@ -45,13 +45,15 @@ const button_cva = cva(
           "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:border-transparent",
         ],
         "danger-fill": [
-          "bg-danger-600 border border-danger-600 text-white",
-          "hover:bg-danger-700",
-          "disabled:bg-bg-danger-disabled disabled:text-white-disabled disabled:border-bg-danger-disabled",
+          // Theme tokens: Danger Fill with white text in light, a lighter red with
+          // Dark Sheet text in dark
+          "bg-bg-danger-600 border border-transparent text-txt-white",
+          "hover:bg-bg-danger-700",
+          "disabled:bg-bg-danger-disabled disabled:text-txt-white-disabled",
         ],
         "danger-outline": [
           "bg-bg-danger-50 border border-transparent text-txt-danger",
-          "hover:bg-danger-100",
+          "hover:bg-bg-danger-100",
           "disabled:bg-bg-white-disabled disabled:text-txt-danger-disabled disabled:border-transparent",
         ],
         "danger-ghost": [
@@ -60,13 +62,15 @@ const button_cva = cva(
           "disabled:bg-bg-white-disabled disabled:text-txt-danger-disabled disabled:border-transparent",
         ],
         "primary-fill": [
-          "bg-primary-600 border border-primary-600 text-white",
-          "hover:bg-primary-700",
-          "disabled:bg-bg-primary-disabled disabled:text-white-disabled disabled:border-bg-primary-disabled",
+          // Theme tokens (DESIGN.md, Dark theme): MYDS Blue with white text in light,
+          // Dark MYDS Blue with Dark Sheet text in dark
+          "bg-bg-primary-600 border border-transparent text-txt-white",
+          "hover:bg-bg-primary-700",
+          "disabled:bg-bg-primary-disabled disabled:text-txt-white-disabled",
         ],
         "primary-outline": [
           "bg-bg-primary-50 border border-transparent text-txt-primary",
-          "hover:bg-primary-100",
+          "hover:bg-bg-primary-100",
           "disabled:bg-bg-white-disabled disabled:text-txt-primary-disabled disabled:border-transparent",
         ],
         "primary-ghost": [
@@ -179,8 +183,9 @@ const button_counter_cva = cva(
   {
     variants: {
       variant: {
-        "primary-fill": ["bg-white text-primary-600"],
-        "danger-fill": ["bg-white text-danger-600"],
+        // The counter inverts the fill: on-colour pill, coloured number
+        "primary-fill": ["bg-txt-white text-txt-primary"],
+        "danger-fill": ["bg-txt-white text-txt-danger"],
         "default-outline": "",
         "default-ghost": "",
         "danger-outline": "",
