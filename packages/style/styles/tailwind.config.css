@@ -305,3 +305,105 @@
   --animate-collapsible-slide-up: collapsible-slide-up 300ms ease-out;
   --animate-shimmer: shimmer 1200ms linear infinite;
 }
+
+/**
+ * Densities (DESIGN.md, Overview): comfortable for citizen services (default),
+ * compact for officer tools. Set `data-density="compact"` on any element to
+ * switch everything inside it; component `size` props stay relative to it.
+ */
+:root,
+[data-density="comfortable"] {
+  --ctl-h-sm: 44px;
+  --ctl-h-md: 48px;
+  --ctl-h-lg: 56px;
+  --ctl-px-sm: 16px;
+  --ctl-px-md: 20px;
+  --ctl-px-lg: 24px;
+  --ctl-label-sm: 0.875rem;
+  --ctl-label-md: 0.875rem;
+  --ctl-label-lg: 1rem;
+  --ctl-field-sm: 1rem;
+  --ctl-field-md: 1rem;
+  --ctl-field-lg: 1.125rem;
+  --content-text: 1rem;
+  --content-leading: 1.5rem;
+  --cell-py: 12px;
+}
+
+[data-density="compact"] {
+  --ctl-h-sm: 32px;
+  --ctl-h-md: 36px;
+  --ctl-h-lg: 40px;
+  --ctl-px-sm: 12px;
+  --ctl-px-md: 14px;
+  --ctl-px-lg: 16px;
+  --ctl-label-sm: 0.875rem;
+  --ctl-label-md: 0.875rem;
+  --ctl-label-lg: 1rem;
+  --ctl-field-sm: 0.875rem;
+  --ctl-field-md: 0.875rem;
+  --ctl-field-lg: 1rem;
+  --content-text: 0.875rem;
+  --content-leading: 1.25rem;
+  --cell-py: 8px;
+}
+
+/* Control box: height and horizontal padding for each size step */
+@utility control-sm {
+  height: var(--ctl-h-sm);
+  padding-inline: var(--ctl-px-sm);
+}
+@utility control-md {
+  height: var(--ctl-h-md);
+  padding-inline: var(--ctl-px-md);
+}
+@utility control-lg {
+  height: var(--ctl-h-lg);
+  padding-inline: var(--ctl-px-lg);
+}
+
+/* Square controls (icon-only buttons) */
+@utility control-square-sm {
+  height: var(--ctl-h-sm);
+  width: var(--ctl-h-sm);
+}
+@utility control-square-md {
+  height: var(--ctl-h-md);
+  width: var(--ctl-h-md);
+}
+@utility control-square-lg {
+  height: var(--ctl-h-lg);
+  width: var(--ctl-h-lg);
+}
+
+/* Type on controls: labels (buttons, tabs) and field values (inputs, selects) */
+@utility text-label-sm {
+  font-size: var(--ctl-label-sm);
+  line-height: 1.43;
+}
+@utility text-label-md {
+  font-size: var(--ctl-label-md);
+  line-height: 1.43;
+}
+@utility text-label-lg {
+  font-size: var(--ctl-label-lg);
+  line-height: 1.5;
+}
+@utility text-field-sm {
+  font-size: var(--ctl-field-sm);
+  line-height: 1.5;
+}
+@utility text-field-md {
+  font-size: var(--ctl-field-md);
+  line-height: 1.5;
+}
+@utility text-field-lg {
+  font-size: var(--ctl-field-lg);
+  line-height: 1.5;
+}
+
+/* Reading text inside components (table cells, panels) */
+@utility text-content {
+  font-size: var(--content-text);
+  line-height: var(--content-leading);
+}

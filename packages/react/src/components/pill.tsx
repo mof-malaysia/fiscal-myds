@@ -3,7 +3,7 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ComponentProps, ForwardRefExoticComponent } from "react";
 import { CrossIcon } from "../icons/cross";
-import { Button, ButtonIcon } from "./button";
+import { Button } from "./button";
 
 const pill_cva = cva(
   "rounded-full font-medium text-txt-black-700 inline-flex justify-between items-center",
@@ -45,20 +45,20 @@ export const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(
       props: mergeProps<"div">(
         {
           className: pill_cva({ size, disabled, className }),
+          "aria-disabled": disabled || undefined,
           children: (
             <>
               {children}
               {onDismiss && !disabled && (
-                <Button
-                  variant="default-ghost"
-                  size="small"
-                  className="p-0"
+                // Inline control: sized to the pill, not to the density's control height
+                <button
+                  type="button"
+                  aria-label="Remove"
+                  className="text-txt-black-500 hover:bg-bg-washed-active hover:text-txt-black-900 focus-visible:outline-fr-primary rounded-full p-0.5 transition outline-none focus-visible:outline-2"
                   onClick={onDismiss}
                 >
-                  <ButtonIcon aria-label="close button">
-                    <CrossIcon className="text-txt-black-500 size-4" />
-                  </ButtonIcon>
-                </Button>
+                  <CrossIcon className="size-4" aria-hidden />
+                </button>
               )}
             </>
           ),

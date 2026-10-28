@@ -77,13 +77,14 @@ const button_cva = cva(
       },
 
       size: {
-        small: "py-1.5 px-2.5 text-body-sm",
-        medium: "py-2 px-3 text-body-md",
-        large: "py-2.5 px-4 text-body-lg",
+        // Height, padding and type follow data-density (comfortable / compact)
+        small: "control-sm text-label-sm",
+        medium: "control-md text-label-md",
+        large: "control-lg text-label-lg",
       },
 
       iconOnly: {
-        true: "aspect-square rounded-md",
+        true: "aspect-square justify-center rounded-md px-0",
         false: "",
       },
     },
@@ -91,17 +92,17 @@ const button_cva = cva(
       {
         iconOnly: true,
         size: "small",
-        className: "p-2",
+        className: "control-square-sm",
       },
       {
         iconOnly: true,
         size: "medium",
-        className: "p-2.5",
+        className: "control-square-md",
       },
       {
         iconOnly: true,
         size: "large",
-        className: "p-3",
+        className: "control-square-lg",
       },
     ],
     defaultVariants: {

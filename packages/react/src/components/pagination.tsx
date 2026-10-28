@@ -192,7 +192,7 @@ const PaginationNumber: ForwardRefExoticComponent<
       size={"medium"}
       className={clx(
         isActive && "bg-bg-washed-active",
-        "h-10 w-10 items-center justify-center",
+        "control-square-md w-(--ctl-h-md) items-center justify-center px-0",
       )}
       {...props}
       aria-label={`page ${number}`}

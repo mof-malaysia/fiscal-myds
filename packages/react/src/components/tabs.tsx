@@ -72,8 +72,7 @@ const tabs_list_cva = cva(
   },
 );
 
-interface TabsListProps
-  extends WithStringClassName<TabsPrimitive.List.Props> {
+interface TabsListProps extends WithStringClassName<TabsPrimitive.List.Props> {
   width?: "fit" | "full";
 }
 
@@ -113,8 +112,8 @@ const tabs_trigger_cva = cva(
         line: "rounded-md before:h-0.5 before:content-[''] before:absolute before:-bottom-2.5 before:left-0 before:right-0 data-[active]:before:bg-primary-600 before:transition-all before:duration-200",
       },
       size: {
-        small: "text-body-sm py-1.5 px-2.5",
-        medium: "text-body-md py-2 px-3",
+        small: "text-label-sm py-1.5 px-2.5",
+        medium: "text-label-md py-2 px-3",
       },
     },
     compoundVariants: [

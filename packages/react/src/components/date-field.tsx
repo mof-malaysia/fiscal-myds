@@ -10,9 +10,9 @@ const datefield_container_cva = cva(
   {
     variants: {
       size: {
-        small: "px-[10px] py-[6px] text-sm",
-        medium: "px-[12px] py-[8px] text-base",
-        large: "px-[14px] py-[10px] text-lg",
+        small: "control-sm text-field-sm",
+        medium: "control-md text-field-md",
+        large: "control-lg text-field-lg",
       },
       disabled: {
         true: "bg-bg-washed text-txt-black-500 cursor-not-allowed",

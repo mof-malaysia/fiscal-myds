@@ -11,9 +11,9 @@ const text_area_cva = cva(
   {
     variants: {
       size: {
-        small: "min-h-[100px] p-2.5 text-body-sm placeholder:text-body-sm",
-        medium: "min-h-[120px] p-3 text-body-md placeholder:text-body-md",
-        large: "min-h-[150px] p-3.5 text-body-lg placeholder:text-body-lg",
+        small: "min-h-[100px] p-2.5 text-field-sm",
+        medium: "min-h-[120px] p-3 text-field-md",
+        large: "min-h-[150px] p-3.5 text-field-lg",
       },
     },
     defaultVariants: {

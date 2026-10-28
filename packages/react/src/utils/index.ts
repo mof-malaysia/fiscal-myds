@@ -1,6 +1,6 @@
 import { ClassNameValue, extendTailwindMerge } from "tailwind-merge";
 
-const twMergeConfig = extendTailwindMerge({
+const twMergeConfig = extendTailwindMerge<"control">({
   extend: {
     classGroups: {
       "font-size": [
@@ -15,6 +15,23 @@ const twMergeConfig = extendTailwindMerge({
         "text-body-md",
         "text-body-sm",
         "text-body-xs",
+        // Density-aware type (packages/style tailwind.config.css)
+        "text-label-sm",
+        "text-label-md",
+        "text-label-lg",
+        "text-field-sm",
+        "text-field-md",
+        "text-field-lg",
+        "text-content",
+      ],
+      // Density-aware control box (height + horizontal padding)
+      control: [
+        "control-sm",
+        "control-md",
+        "control-lg",
+        "control-square-sm",
+        "control-square-md",
+        "control-square-lg",
       ],
     },
   },

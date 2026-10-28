@@ -75,7 +75,6 @@ export const Disabled: Story = {
     children: "Label",
     disabled: true,
   }),
-  tags: ["skip"],
 };
 
 export const Dark: Story = createStory(
@@ -84,7 +83,6 @@ export const Dark: Story = createStory(
     children: "Label",
   },
   "dark",
-  // Skip the a11y test runner on this story
 );
 
 /**
@@ -108,6 +106,4 @@ export const DisabledDark: Story = {
     },
     "dark",
   ),
-  tags: ["skip"],
-  // Skip the a11y test runner on this story
 };
