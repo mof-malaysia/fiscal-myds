@@ -19,7 +19,7 @@ const checkbox_cva = cva(
     "border-[1.5px] border-otl-control hover:border-otl-control-hover",
     "transition-colors duration-150 motion-reduce:transition-none focus-ring",
     // Same red stroke as Input when its Field is invalid
-    "data-[invalid]:border-danger-600",
+    "data-[invalid]:border-bg-danger-600",
     "data-[checked]:bg-bg-primary-600 data-[checked]:border-transparent data-[checked]:hover:bg-bg-primary-700",
     "data-[indeterminate]:bg-bg-primary-600 data-[indeterminate]:border-transparent data-[indeterminate]:hover:bg-bg-primary-700",
     "data-[disabled]:cursor-not-allowed data-[disabled]:bg-bg-washed data-[disabled]:border-otl-gray-200",

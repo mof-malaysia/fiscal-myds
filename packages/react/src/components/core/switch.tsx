@@ -22,7 +22,7 @@ const switch_cva = cva(
   [
     "relative inline-flex shrink-0 cursor-pointer items-center rounded-full p-[3px] outline-none",
     "bg-otl-control hover:bg-otl-control-hover transition-colors duration-200 ease-standard",
-    "data-[checked]:bg-primary-600 data-[checked]:hover:bg-primary-700",
+    "data-[checked]:bg-bg-primary-600 data-[checked]:hover:bg-bg-primary-700",
     "focus-ring",
     "data-[invalid]:outline-solid data-[invalid]:outline-2 data-[invalid]:outline-offset-2 data-[invalid]:outline-fr-danger",
     "data-[disabled]:cursor-not-allowed data-[disabled]:bg-bg-washed data-[disabled]:data-[checked]:bg-bg-primary-disabled",

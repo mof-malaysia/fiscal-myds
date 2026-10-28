@@ -635,7 +635,7 @@ const SelectRowRadio = <TData extends Record<string, any>>({
       className={clx(
         // Matches Checkbox: Control Edge stroke, MYDS Blue when checked
         "border-otl-control hover:border-otl-control-hover bg-bg-white block size-4 shrink-0 cursor-pointer appearance-none rounded-full border-[1.5px]",
-        "checked:border-primary-600 checked:hover:border-primary-700 checked:border-[5px]",
+        "checked:border-bg-primary-600 checked:hover:border-bg-primary-700 checked:border-[5px]",
         "transition-[border] duration-150 motion-reduce:transition-none",
         "focus-visible:ring-fr-primary outline-none focus-visible:ring-[3px]",
         "disabled:bg-bg-washed disabled:cursor-not-allowed disabled:opacity-30",

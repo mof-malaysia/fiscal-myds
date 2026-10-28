@@ -83,7 +83,7 @@ const Input: ForwardRefExoticComponent<
         className={clx(
           "border-otl-control relative rounded-md border outline-none",
           // Inside an invalid Field (DESIGN.md: error stroke turns Danger)
-          "has-[input[data-invalid]]:border-danger-600",
+          "has-[input[data-invalid]]:border-bg-danger-600",
           className,
         )}
       >

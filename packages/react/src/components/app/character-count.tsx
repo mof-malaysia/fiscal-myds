@@ -185,7 +185,7 @@ const CharacterCount = forwardRef<HTMLTextAreaElement, CharacterCountProps>(
             onChange?.(event);
           }}
           data-over-limit={status === "over" ? "" : undefined}
-          className={clx("data-[over-limit]:border-danger-600", className)}
+          className={clx("data-[over-limit]:border-bg-danger-600", className)}
           {...props}
         />
         {/* Joins the field's aria-describedby, so the count is read on focus */}

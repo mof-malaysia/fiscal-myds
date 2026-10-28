@@ -135,10 +135,10 @@ const stepper_circle_cva = cva(
   {
     variants: {
       state: {
-        complete: "bg-primary-600 text-txt-white",
+        complete: "bg-bg-primary-600 text-txt-white",
         // Ring of MYDS Blue on its wash: selected, not filled (DESIGN.md: One Blue Rule)
         current:
-          "bg-bg-primary-50 text-txt-primary ring-2 ring-inset ring-primary-600",
+          "bg-bg-primary-50 text-txt-primary ring-2 ring-inset ring-bg-primary-600",
         upcoming: "bg-bg-washed-active text-txt-black-700",
       },
     },
@@ -222,7 +222,7 @@ const StepperItem = forwardRef<HTMLLIElement, StepperItemProps>(
           aria-hidden
           className={clx(
             "h-0.5 min-w-4 flex-1 rounded-full group-last/step:hidden",
-            state === "complete" ? "bg-primary-600" : "bg-bg-track",
+            state === "complete" ? "bg-bg-primary-600" : "bg-bg-track",
           )}
         />
       </li>

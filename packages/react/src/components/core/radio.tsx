@@ -88,7 +88,7 @@ const RadioButton = React.forwardRef<
         // On MYDS Blue dot (theme tokens, so dark mode follows); disabled is a Well circle with a Hairline
         "bg-bg-white border-otl-control hover:border-otl-control-hover inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border-[1.5px]",
         "focus-ring transition-colors duration-150 motion-reduce:transition-none",
-        "data-[invalid]:border-danger-600",
+        "data-[invalid]:border-bg-danger-600",
         "data-[checked]:bg-bg-primary-600 data-[checked]:hover:bg-bg-primary-700 data-[checked]:border-transparent",
         "data-[disabled]:bg-bg-washed data-[disabled]:border-otl-gray-200 data-[disabled]:cursor-not-allowed",
         "data-[checked]:data-[disabled]:bg-bg-primary-disabled",

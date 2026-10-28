@@ -28,23 +28,25 @@ import {
 
 const PreviewCard = PreviewCardPrimitive.Root;
 
-type PreviewCardTriggerProps = WithClassName<PreviewCardPrimitive.Trigger.Props>;
+type PreviewCardTriggerProps =
+  WithClassName<PreviewCardPrimitive.Trigger.Props>;
 
 /** The link. Renders an `<a>`, styled as an inline link. */
-const PreviewCardTrigger = forwardRef<HTMLAnchorElement, PreviewCardTriggerProps>(
-  ({ className, ...props }, ref) => (
-    <PreviewCardPrimitive.Trigger
-      ref={ref}
-      className={clx(
-        "text-txt-primary font-medium underline decoration-1 underline-offset-2 rounded-xs",
-        "hover:text-primary-700 data-[popup-open]:text-primary-700",
-        "outline-none focus-ring",
-        className,
-      )}
-      {...props}
-    />
-  ),
-);
+const PreviewCardTrigger = forwardRef<
+  HTMLAnchorElement,
+  PreviewCardTriggerProps
+>(({ className, ...props }, ref) => (
+  <PreviewCardPrimitive.Trigger
+    ref={ref}
+    className={clx(
+      "text-txt-primary rounded-xs font-medium underline decoration-1 underline-offset-2",
+      "hover:text-bg-primary-700 data-[popup-open]:text-bg-primary-700",
+      "focus-ring outline-none",
+      className,
+    )}
+    {...props}
+  />
+));
 PreviewCardTrigger.displayName = "PreviewCardTrigger";
 
 interface PreviewCardContentProps

@@ -10,7 +10,7 @@ const text_area_cva = cva(
     "placeholder:text-txt-black-500 text-txt-black-700 transition-colors font-body placeholder:font-body",
     "focus:outline-none focus-visible:ring focus-visible:ring-fr-primary focus-visible:border-otl-primary-300",
     "disabled:bg-bg-washed disabled:cursor-not-allowed disabled:text-txt-black-disabled",
-    "data-[invalid]:border-danger-600",
+    "data-[invalid]:border-bg-danger-600",
   ],
   {
     variants: {

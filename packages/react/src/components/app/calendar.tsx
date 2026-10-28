@@ -107,24 +107,24 @@ const Calendar: FC<CalendarProps> = ({
         day_button: clx(
           buttonVariants({ variant: "default-ghost" }),
           "aspect-square h-full w-full font-normal justify-center disabled:bg-transparent",
-          "[.selected:not(.in-range)_&]:bg-primary-600 [.selected:not(.in-range)_&]:text-white",
-          "[.today:not(.selected)_&]:text-txt-primary [.today:selected)_&]:text-white",
+          "[.selected:not(.in-range)_&]:bg-bg-primary-600 [.selected:not(.in-range)_&]:text-txt-white",
+          "[.today:not(.selected)_&]:text-txt-primary [.today.selected_&]:text-txt-white",
         ),
         selected: clx(
           "selected",
           props.mode === "single"
-            ? "*:bg-primary-600 *:text-white *:hover:bg-primary-600 *:hover:text-white *:focus:bg-primary-600 *:focus:text-white"
+            ? "*:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white"
             : "",
         ),
         today: "today",
         outside: "text-txt-black-900 opacity-50",
         disabled: "",
         range_start:
-          "rounded-l-md bg-bg-primary-100 *:bg-primary-600 *:text-white *:hover:bg-primary-600 *:hover:text-white *:focus:bg-primary-600 *:focus:text-white",
+          "rounded-l-md bg-bg-primary-100 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
         range_middle:
           "in-range bg-bg-primary-100 *:hover:bg-bg-primary-200 *:focus:bg-bg-primary-200",
         range_end:
-          "rounded-r-md bg-bg-primary-100 *:bg-primary-600 *:text-white *:hover:bg-primary-600 *:hover:text-white *:focus:bg-primary-600 *:focus:text-white",
+          "rounded-r-md bg-bg-primary-100 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
         hidden: "invisible",
         ...classNames,
       }}

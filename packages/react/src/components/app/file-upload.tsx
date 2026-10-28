@@ -354,7 +354,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
             // Drag-over: the drop target lights up (a state, not decoration)
             "data-[dragging]:border-otl-primary-300 data-[dragging]:bg-bg-primary-50",
             // Inside an invalid Field
-            "has-[input[data-invalid]]:border-danger-600",
+            "has-[input[data-invalid]]:border-bg-danger-600",
             // The hidden input owns focus; show the ring on the zone
             "has-[input:focus-visible]:outline-fr-primary has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-2 has-[input:focus-visible]:outline-solid",
             "data-[disabled]:cursor-not-allowed",

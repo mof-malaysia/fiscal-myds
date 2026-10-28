@@ -36,9 +36,9 @@ const datefield_cva = cva([
   "[&::-webkit-calendar-picker-indicator]:hidden",
   "[&::-webkit-datetime-edit]:max-w-fit",
   "[&::-webkit-datetime-edit-text]:mx-[2px]",
-  "[&::-webkit-datetime-edit-day-field:focus]:bg-primary-500 [&::-webkit-datetime-edit-day-field:focus]:text-txt-white",
-  "[&::-webkit-datetime-edit-month-field:focus]:bg-primary-500 [&::-webkit-datetime-edit-month-field:focus]:text-txt-white ",
-  "[&::-webkit-datetime-edit-year-field:focus]:bg-primary-500 [&::-webkit-datetime-edit-year-field:focus]:text-txt-white",
+  "[&::-webkit-datetime-edit-day-field:focus]:bg-bg-primary-600 [&::-webkit-datetime-edit-day-field:focus]:text-txt-white",
+  "[&::-webkit-datetime-edit-month-field:focus]:bg-bg-primary-600 [&::-webkit-datetime-edit-month-field:focus]:text-txt-white ",
+  "[&::-webkit-datetime-edit-year-field:focus]:bg-bg-primary-600 [&::-webkit-datetime-edit-year-field:focus]:text-txt-white",
 ]);
 
 const icon_cva = cva([], {

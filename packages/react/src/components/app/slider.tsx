@@ -49,13 +49,13 @@ interface SliderProps<
 
 const thumb_class = clx(
   // 20px visual, 28px hit area via the pseudo-element (≥ 24px target)
-  "relative block size-5 rounded-full border border-otl-control bg-white outline-none",
+  "relative block size-5 rounded-full border border-otl-control bg-bg-white outline-none",
   "after:absolute after:-inset-1 after:rounded-full after:content-['']",
   "cursor-grab data-[dragging]:cursor-grabbing",
   "transition-[border-color] duration-150 ease-standard motion-reduce:transition-none",
   "hover:border-otl-control-hover",
   "has-[:focus-visible]:outline-solid has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-fr-primary",
-  "data-[invalid]:border-danger-600",
+  "data-[invalid]:border-bg-danger-600",
   "data-[disabled]:cursor-not-allowed data-[disabled]:border-otl-gray-300",
 );
 
@@ -86,7 +86,7 @@ function SliderInner<Value extends number | readonly number[]>(
       <SliderPrimitive.Control className="flex h-6 w-full items-center data-[disabled]:cursor-not-allowed">
         {/* Well track: washed-active keeps it visible on the dark Sheet */}
         <SliderPrimitive.Track className="bg-bg-track relative h-1.5 w-full rounded-full">
-          <SliderPrimitive.Indicator className="bg-primary-600 data-[disabled]:bg-bg-primary-disabled rounded-full" />
+          <SliderPrimitive.Indicator className="bg-bg-primary-600 data-[disabled]:bg-bg-primary-disabled rounded-full" />
           {Array.from({ length: thumbCount }, (_, i) => (
             <SliderPrimitive.Thumb
               key={i}

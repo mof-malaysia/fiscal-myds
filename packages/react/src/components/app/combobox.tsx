@@ -84,7 +84,7 @@ const combobox_field_box_class = clx(
   "transition-colors duration-150 motion-reduce:transition-none",
   "focus-visible:border-otl-primary-300 focus-visible:ring focus-visible:ring-fr-primary",
   // Inside an invalid Field (DESIGN.md: error stroke turns Danger)
-  "data-[invalid]:border-danger-600",
+  "data-[invalid]:border-bg-danger-600",
   "data-[disabled]:bg-bg-washed data-[disabled]:text-txt-black-disabled data-[disabled]:cursor-not-allowed",
 );
 
@@ -94,7 +94,7 @@ const combobox_input_group_cva = cva(
     "relative flex w-full items-center rounded-md border border-otl-control bg-bg-white transition-colors",
     "has-[input:focus-visible]:border-otl-primary-300 has-[input:focus-visible]:ring has-[input:focus-visible]:ring-fr-primary",
     // Inside an invalid Field (DESIGN.md: error stroke turns Danger)
-    "data-[invalid]:border-danger-600 has-[input[data-invalid]]:border-danger-600",
+    "data-[invalid]:border-bg-danger-600 has-[input[data-invalid]]:border-bg-danger-600",
     "data-[disabled]:bg-bg-washed data-[disabled]:border-transparent data-[disabled]:cursor-not-allowed",
   ],
   {
@@ -461,7 +461,7 @@ const combobox_chips_cva = cva(
   [
     "relative flex w-full flex-wrap items-center gap-1 rounded-md border border-otl-control bg-bg-white px-1.5 py-1 transition-colors",
     "has-[input:focus-visible]:border-otl-primary-300 has-[input:focus-visible]:ring has-[input:focus-visible]:ring-fr-primary",
-    "has-[input[data-invalid]]:border-danger-600",
+    "has-[input[data-invalid]]:border-bg-danger-600",
     "has-[input:disabled]:bg-bg-washed has-[input:disabled]:border-transparent",
   ],
   {

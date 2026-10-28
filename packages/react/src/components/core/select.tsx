@@ -330,7 +330,7 @@ const select_trigger_cva = cva(
     "focus-visible:ring focus-visible:ring-fr-primary focus-visible:border-otl-primary-300",
     "data-[popup-open]:border-otl-primary-300",
     // Inside an invalid Field (DESIGN.md: error stroke turns Danger)
-    "data-[invalid]:border-danger-600",
+    "data-[invalid]:border-bg-danger-600",
     // Disabled: Well, Ink Tertiary, stroke removed
     "data-[disabled]:bg-bg-washed data-[disabled]:text-txt-black-disabled data-[disabled]:border-transparent data-[disabled]:cursor-not-allowed",
     "[&>svg]:shrink-0",

@@ -211,7 +211,7 @@ const Kbd = forwardRef<HTMLSpanElement, KbdProps>(
                     // Label Compact: the Floor Rule's 13px minimum
                     "font-body text-label-compact leading-none font-medium",
                     inverse
-                      ? "text-txt-white border-white/30 bg-white/15"
+                      ? "text-txt-white border-current/30 bg-current/10"
                       : "border-otl-gray-300 bg-bg-white text-txt-black-700",
                   )}
                 >

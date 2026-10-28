@@ -237,7 +237,7 @@ const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
               className={clx(
                 "absolute inset-x-0 top-0 h-dvh bg-gray-900/40",
                 "ease-standard transition-opacity duration-200 motion-reduce:transition-none",
-                "group-data-[starting-style]:opacity-0 group-data-[ending-style]:opacity-0",
+                "group-data-[ending-style]:opacity-0 group-data-[starting-style]:opacity-0",
               )}
               aria-hidden
               onClick={() => setShow(false)}
@@ -273,7 +273,7 @@ NavbarMenu.displayName = "NavbarMenu";
 const navbar_current_class = [
   "relative text-txt-black-900",
   // Inside the item's box: items truncate (overflow hidden), so it can't hang below
-  "xl:after:absolute xl:after:inset-x-2.5 xl:after:bottom-0 xl:after:h-0.5 xl:after:rounded-full xl:after:bg-primary-600",
+  "xl:after:absolute xl:after:inset-x-2.5 xl:after:bottom-0 xl:after:h-0.5 xl:after:rounded-full xl:after:bg-bg-primary-600",
 ];
 
 interface NavbarMenuItemProps
@@ -531,7 +531,12 @@ const NavbarMenuFeature: FunctionComponent<NavbarMenuFeatureProps> = ({
   );
 
   return is_mobile ? (
-    <Link href={href} underline="none" className={feature_className} render={render}>
+    <Link
+      href={href}
+      underline="none"
+      className={feature_className}
+      render={render}
+    >
       {content}
     </Link>
   ) : (
@@ -578,7 +583,12 @@ const NavbarMenuFooterLink: FunctionComponent<NavbarMenuFooterLinkProps> = ({
   );
 
   return is_mobile ? (
-    <Link href={href} underline="hover" className={link_className} render={render}>
+    <Link
+      href={href}
+      underline="hover"
+      className={link_className}
+      render={render}
+    >
       {content}
     </Link>
   ) : (
@@ -645,7 +655,10 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
           className="relative list-none"
         >
           <CollapsiblePrimitive.Trigger
-            className={clx(trigger_className, "data-[panel-open]:bg-bg-washed-active")}
+            className={clx(
+              trigger_className,
+              "data-[panel-open]:bg-bg-washed-active",
+            )}
           >
             {title}
             <ChevronDownIcon
@@ -662,7 +675,9 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
             <ul className="flex flex-col">{children}</ul>
             {feature != null && <div className="ml-3">{feature}</div>}
             {footer != null && (
-              <div className="ml-3 flex min-h-11 items-center px-2.5">{footer}</div>
+              <div className="ml-3 flex min-h-11 items-center px-2.5">
+                {footer}
+              </div>
             )}
           </CollapsiblePrimitive.Panel>
         </CollapsiblePrimitive.Root>
@@ -673,7 +688,10 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
     <NavbarMenuDropdownContext.Provider value={true}>
       <NavigationMenuPrimitive.Item className="relative list-none">
         <NavigationMenuPrimitive.Trigger
-          className={clx(trigger_className, "data-[popup-open]:bg-bg-washed-active")}
+          className={clx(
+            trigger_className,
+            "data-[popup-open]:bg-bg-washed-active",
+          )}
         >
           {title}
           <ChevronDownIcon
@@ -689,7 +707,7 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
             "w-max max-w-[min(56rem,calc(100vw-2rem))]",
             // Slide in from the side of the trigger the pointer came from
             "ease-standard transition-[opacity,translate] duration-200 motion-reduce:transition-none",
-            "data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
+            "data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
             "data-[starting-style]:data-[activation-direction=left]:-translate-x-6 data-[starting-style]:data-[activation-direction=right]:translate-x-6",
             "data-[ending-style]:data-[activation-direction=left]:translate-x-6 data-[ending-style]:data-[activation-direction=right]:-translate-x-6",
             className,
