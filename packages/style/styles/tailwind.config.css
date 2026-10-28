@@ -1,41 +1,44 @@
 /**
  * Tailwind CSS 4.0 Configuration
  * This file contains all theme customizations converted from tailwind.config.js
+ *
+ * `inline` makes utilities use the token's value (e.g. rgb(var(--bg-white)))
+ * instead of var(--color-bg-white), so `.dark` on any element switches colors.
  */
 
-@theme {
+@theme inline {
   /* === Spacing === */
   --spacing-2\.5: 0.625rem;
   --spacing-4\.5: 1.125rem;
   --spacing-10\.5: 2.625rem;
 
   /* === Font Sizes === */
-  --font-size-default: 0.875rem;
-  --font-size-default--line-height: 1.25rem;
+  --text-default: 0.875rem;
+  --text-default--line-height: 1.25rem;
 
-  --font-size-heading-xl: 3.75rem;
-  --font-size-heading-xl--line-height: 4.5rem;
-  --font-size-heading-lg: 3rem;
-  --font-size-heading-lg--line-height: 3.75rem;
-  --font-size-heading-md: 2.25rem;
-  --font-size-heading-md--line-height: 2.75rem;
-  --font-size-heading-sm: 1.875rem;
-  --font-size-heading-sm--line-height: 2.375rem;
-  --font-size-heading-xs: 1.5rem;
-  --font-size-heading-xs--line-height: 2rem;
-  --font-size-heading-2xs: 1.25rem;
-  --font-size-heading-2xs--line-height: 1.75rem;
+  --text-heading-xl: 3.75rem;
+  --text-heading-xl--line-height: 4.5rem;
+  --text-heading-lg: 3rem;
+  --text-heading-lg--line-height: 3.75rem;
+  --text-heading-md: 2.25rem;
+  --text-heading-md--line-height: 2.75rem;
+  --text-heading-sm: 1.875rem;
+  --text-heading-sm--line-height: 2.375rem;
+  --text-heading-xs: 1.5rem;
+  --text-heading-xs--line-height: 2rem;
+  --text-heading-2xs: 1.25rem;
+  --text-heading-2xs--line-height: 1.75rem;
 
-  --font-size-body-xl: 1.25rem;
-  --font-size-body-xl--line-height: 1.875rem;
-  --font-size-body-lg: 1.125rem;
-  --font-size-body-lg--line-height: 1.625rem;
-  --font-size-body-md: 1rem;
-  --font-size-body-md--line-height: 1.5rem;
-  --font-size-body-sm: 0.875rem;
-  --font-size-body-sm--line-height: 1.25rem;
-  --font-size-body-xs: 0.75rem;
-  --font-size-body-xs--line-height: 1.125rem;
+  --text-body-xl: 1.25rem;
+  --text-body-xl--line-height: 1.875rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.625rem;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-body-xs: 0.75rem;
+  --text-body-xs--line-height: 1.125rem;
 
   /* === Border Radius === */
   --radius-xs: 4px;
@@ -47,9 +50,10 @@
   --radius-full: 9999px;
 
   /* === Font Families === */
-  --font-family-body: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-heading: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* === Colors (using CSS variables from color.css) === */
   /* White */
@@ -57,71 +61,71 @@
   --color-white-disabled: rgba(var(--_white) / 0.4);
 
   /* Gray scale */
-  --color-gray-50: rgba(var(--_gray-50) / <alpha-value>);
-  --color-gray-100: rgba(var(--_gray-100) / <alpha-value>);
-  --color-gray-200: rgba(var(--_gray-200) / <alpha-value>);
-  --color-gray-300: rgba(var(--_gray-300) / <alpha-value>);
-  --color-gray-400: rgba(var(--_gray-400) / <alpha-value>);
-  --color-gray-500: rgba(var(--_gray-500) / <alpha-value>);
-  --color-gray-600: rgba(var(--_gray-600) / <alpha-value>);
-  --color-gray-700: rgba(var(--_gray-700) / <alpha-value>);
-  --color-gray-800: rgba(var(--_gray-800) / <alpha-value>);
-  --color-gray-850: rgba(var(--_gray-850) / <alpha-value>);
-  --color-gray-900: rgba(var(--_gray-900) / <alpha-value>);
-  --color-gray-930: rgba(var(--_gray-930) / <alpha-value>);
-  --color-gray-950: rgba(var(--_gray-950) / <alpha-value>);
+  --color-gray-50: rgb(var(--_gray-50));
+  --color-gray-100: rgb(var(--_gray-100));
+  --color-gray-200: rgb(var(--_gray-200));
+  --color-gray-300: rgb(var(--_gray-300));
+  --color-gray-400: rgb(var(--_gray-400));
+  --color-gray-500: rgb(var(--_gray-500));
+  --color-gray-600: rgb(var(--_gray-600));
+  --color-gray-700: rgb(var(--_gray-700));
+  --color-gray-800: rgb(var(--_gray-800));
+  --color-gray-850: rgb(var(--_gray-850));
+  --color-gray-900: rgb(var(--_gray-900));
+  --color-gray-930: rgb(var(--_gray-930));
+  --color-gray-950: rgb(var(--_gray-950));
 
   /* Primary */
-  --color-primary-50: rgba(var(--_primary-50) / <alpha-value>);
-  --color-primary-100: rgba(var(--_primary-100) / <alpha-value>);
-  --color-primary-200: rgba(var(--_primary-200) / <alpha-value>);
-  --color-primary-300: rgba(var(--_primary-300) / <alpha-value>);
-  --color-primary-400: rgba(var(--_primary-400) / <alpha-value>);
-  --color-primary-500: rgba(var(--_primary-500) / <alpha-value>);
-  --color-primary-600: rgba(var(--_primary-600) / <alpha-value>);
-  --color-primary-700: rgba(var(--_primary-700) / <alpha-value>);
-  --color-primary-800: rgba(var(--_primary-800) / <alpha-value>);
-  --color-primary-900: rgba(var(--_primary-900) / <alpha-value>);
-  --color-primary-950: rgba(var(--_primary-950) / <alpha-value>);
+  --color-primary-50: rgb(var(--_primary-50));
+  --color-primary-100: rgb(var(--_primary-100));
+  --color-primary-200: rgb(var(--_primary-200));
+  --color-primary-300: rgb(var(--_primary-300));
+  --color-primary-400: rgb(var(--_primary-400));
+  --color-primary-500: rgb(var(--_primary-500));
+  --color-primary-600: rgb(var(--_primary-600));
+  --color-primary-700: rgb(var(--_primary-700));
+  --color-primary-800: rgb(var(--_primary-800));
+  --color-primary-900: rgb(var(--_primary-900));
+  --color-primary-950: rgb(var(--_primary-950));
 
   /* Danger */
-  --color-danger-50: rgba(var(--_danger-50) / <alpha-value>);
-  --color-danger-100: rgba(var(--_danger-100) / <alpha-value>);
-  --color-danger-200: rgba(var(--_danger-200) / <alpha-value>);
-  --color-danger-300: rgba(var(--_danger-300) / <alpha-value>);
-  --color-danger-400: rgba(var(--_danger-400) / <alpha-value>);
-  --color-danger-500: rgba(var(--_danger-500) / <alpha-value>);
-  --color-danger-600: rgba(var(--_danger-600) / <alpha-value>);
-  --color-danger-700: rgba(var(--_danger-700) / <alpha-value>);
-  --color-danger-800: rgba(var(--_danger-800) / <alpha-value>);
-  --color-danger-900: rgba(var(--_danger-900) / <alpha-value>);
-  --color-danger-950: rgba(var(--_danger-950) / <alpha-value>);
+  --color-danger-50: rgb(var(--_danger-50));
+  --color-danger-100: rgb(var(--_danger-100));
+  --color-danger-200: rgb(var(--_danger-200));
+  --color-danger-300: rgb(var(--_danger-300));
+  --color-danger-400: rgb(var(--_danger-400));
+  --color-danger-500: rgb(var(--_danger-500));
+  --color-danger-600: rgb(var(--_danger-600));
+  --color-danger-700: rgb(var(--_danger-700));
+  --color-danger-800: rgb(var(--_danger-800));
+  --color-danger-900: rgb(var(--_danger-900));
+  --color-danger-950: rgb(var(--_danger-950));
 
   /* Success */
-  --color-success-50: rgba(var(--_success-50) / <alpha-value>);
-  --color-success-100: rgba(var(--_success-100) / <alpha-value>);
-  --color-success-200: rgba(var(--_success-200) / <alpha-value>);
-  --color-success-300: rgba(var(--_success-300) / <alpha-value>);
-  --color-success-400: rgba(var(--_success-400) / <alpha-value>);
-  --color-success-500: rgba(var(--_success-500) / <alpha-value>);
-  --color-success-600: rgba(var(--_success-600) / <alpha-value>);
-  --color-success-700: rgba(var(--_success-700) / <alpha-value>);
-  --color-success-800: rgba(var(--_success-800) / <alpha-value>);
-  --color-success-900: rgba(var(--_success-900) / <alpha-value>);
-  --color-success-950: rgba(var(--_success-950) / <alpha-value>);
+  --color-success-50: rgb(var(--_success-50));
+  --color-success-100: rgb(var(--_success-100));
+  --color-success-200: rgb(var(--_success-200));
+  --color-success-300: rgb(var(--_success-300));
+  --color-success-400: rgb(var(--_success-400));
+  --color-success-500: rgb(var(--_success-500));
+  --color-success-600: rgb(var(--_success-600));
+  --color-success-700: rgb(var(--_success-700));
+  --color-success-800: rgb(var(--_success-800));
+  --color-success-900: rgb(var(--_success-900));
+  --color-success-950: rgb(var(--_success-950));
 
   /* Warning */
-  --color-warning-50: rgba(var(--_warning-50) / <alpha-value>);
-  --color-warning-100: rgba(var(--_warning-100) / <alpha-value>);
-  --color-warning-200: rgba(var(--_warning-200) / <alpha-value>);
-  --color-warning-300: rgba(var(--_warning-300) / <alpha-value>);
-  --color-warning-400: rgba(var(--_warning-400) / <alpha-value>);
-  --color-warning-500: rgba(var(--_warning-500) / <alpha-value>);
-  --color-warning-600: rgba(var(--_warning-600) / <alpha-value>);
-  --color-warning-700: rgba(var(--_warning-700) / <alpha-value>);
-  --color-warning-800: rgba(var(--_warning-800) / <alpha-value>);
-  --color-warning-900: rgba(var(--_warning-900) / <alpha-value>);
-  --color-warning-950: rgba(var(--_warning-950) / <alpha-value>);
+  --color-warning-50: rgb(var(--_warning-50));
+  --color-warning-100: rgb(var(--_warning-100));
+  --color-warning-200: rgb(var(--_warning-200));
+  --color-warning-300: rgb(var(--_warning-300));
+  --color-warning-400: rgb(var(--_warning-400));
+  --color-warning-500: rgb(var(--_warning-500));
+  --color-warning-600: rgb(var(--_warning-600));
+  --color-warning-700: rgb(var(--_warning-700));
+  --color-warning-800: rgb(var(--_warning-800));
+  --color-warning-900: rgb(var(--_warning-900));
+  --color-warning-950: rgb(var(--_warning-950));
 
   /* Semantic background colors */
   --color-bg-white: rgb(var(--bg-white));

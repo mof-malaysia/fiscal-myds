@@ -195,7 +195,8 @@ ${baseStyles.files[0].content}`;
   return {
     name: "myds-init",
     type: "components:style",
-    dependencies: [],
+    // Components use tw-animate-css classes (animate-in, fade-in-0, ...)
+    dependencies: ["tw-animate-css@^1.4.0"],
     // Self-contained: combinedContent already includes every style item
     registryDependencies: [],
     files: [

@@ -69,6 +69,7 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 ```css
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "../styles/myds.css";
 ```
 
@@ -213,6 +214,7 @@ npx shadcn@latest add http://localhost:8765/registry/ui/styles/default/button.js
 
 ```css
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "../styles/myds.css";
 ```
 
@@ -270,7 +272,7 @@ MYDS is built on Base UI. Make sure `components.json` uses a Base UI style (e.g.
 
 If components don't look correct:
 1. Ensure `styles/myds.css` exists (`myds-init` was added)
-2. Verify it is imported right after `@import "tailwindcss";` in your global CSS
+2. Verify it is imported after `@import "tailwindcss";` and `@import "tw-animate-css";` in your global CSS
 
 ### Dependency issues
 
