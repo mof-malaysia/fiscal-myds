@@ -35,5 +35,5 @@ export const Maintenance = { render: () => <MaintenancePage /> };
 /** The Profile page at phone width. */
 export const ProfileMobile = {
   render: () => <ProfilePage />,
-  parameters: { viewport: { defaultViewport: "mobile1" } },
+  globals: { viewport: { value: "mobile1", isRotated: false } },
 };

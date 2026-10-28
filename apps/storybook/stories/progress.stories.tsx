@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   Progress,
@@ -44,12 +44,19 @@ export const Default = createRender(Examples);
 const Live = () => {
   const [value, setValue] = useState(10);
   useEffect(() => {
-    const id = setInterval(() => setValue((v) => (v >= 100 ? 10 : v + 15)), 1000);
+    const id = setInterval(
+      () => setValue((v) => (v >= 100 ? 10 : v + 15)),
+      1000,
+    );
     return () => clearInterval(id);
   }, []);
   return (
     <div className="w-96">
-      <Progress value={Math.min(value, 100)} label="Processing batch" successOnComplete />
+      <Progress
+        value={Math.min(value, 100)}
+        label="Processing batch"
+        successOnComplete
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   PageHeader,
@@ -60,10 +60,12 @@ const Record = () => (
       </Breadcrumb>
     </PageHeaderNav>
     <PageHeaderContent>
-      <PageHeaderTitle size="headline">Application MOF-2026-0412</PageHeaderTitle>
+      <PageHeaderTitle size="headline">
+        Application MOF-2026-0412
+      </PageHeaderTitle>
       <PageHeaderDescription>
-        Grant application submitted by Syarikat Maju Jaya Sdn. Bhd. for the 2027 SME
-        digitalisation programme.
+        Grant application submitted by Syarikat Maju Jaya Sdn. Bhd. for the 2027
+        SME digitalisation programme.
       </PageHeaderDescription>
     </PageHeaderContent>
     <PageHeaderActions>
@@ -85,7 +87,8 @@ const Landing = () => (
     <PageHeaderContent>
       <PageHeaderTitle>Pay your income tax</PageHeaderTitle>
       <PageHeaderDescription>
-        Check what you owe for assessment year 2025 and pay online. It takes about 5 minutes.
+        Check what you owe for assessment year 2025 and pay online. It takes
+        about 5 minutes.
       </PageHeaderDescription>
     </PageHeaderContent>
     <PageHeaderActions>

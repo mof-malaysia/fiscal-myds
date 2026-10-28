@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { Testimonial } from "@mof-malaysia/myds-react/testimonial";
 
@@ -51,13 +51,9 @@ const items = [
   },
 ];
 
-export const Single = createRender(() => (
-  <Testimonial items={[items[0]!]} />
-));
+export const Single = createRender(() => <Testimonial items={[items[0]!]} />);
 
-const Grid = () => (
-  <Testimonial title="What people say" items={items} />
-);
+const Grid = () => <Testimonial title="What people say" items={items} />;
 export const Default = createRender(Grid);
 
 export const Two = createRender(() => (

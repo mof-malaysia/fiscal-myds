@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createRender, createStory } from "../utils";
 import { Switch } from "@mof-malaysia/myds-react/switch";
 
@@ -26,7 +26,7 @@ const meta: Meta<typeof Switch> = {
     defaultChecked: { control: "boolean" },
   },
   render: (args) => (
-    <label className="text-txt-black-900 flex items-center gap-3 text-body-md">
+    <label className="text-txt-black-900 text-body-md flex items-center gap-3">
       <Switch {...args} />
       Email me about deadlines
     </label>
@@ -37,8 +37,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = createStory({ size: "medium" });
-export const Checked: Story = createStory({ size: "medium", defaultChecked: true });
-export const Disabled: Story = createStory({ disabled: true, defaultChecked: true });
+export const Checked: Story = createStory({
+  size: "medium",
+  defaultChecked: true,
+});
+export const Disabled: Story = createStory({
+  disabled: true,
+  defaultChecked: true,
+});
 
 const Sizes = () => (
   <div className="flex items-center gap-4">

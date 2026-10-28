@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   Field,
@@ -83,7 +83,9 @@ const WithForm = () => {
           <Field name="email">
             <FieldLabel>Email address</FieldLabel>
             <Input type="email" required />
-            <FieldError match="valueMissing">Enter your email address</FieldError>
+            <FieldError match="valueMissing">
+              Enter your email address
+            </FieldError>
             <FieldError match="typeMismatch">
               Enter an email address in the format name@example.com
             </FieldError>
@@ -98,7 +100,9 @@ const WithForm = () => {
         </Button>
       </Form>
       {submitted && (
-        <p className="text-txt-black-700 mt-4 text-body-sm">Submitted: {submitted}</p>
+        <p className="text-txt-black-700 text-body-sm mt-4">
+          Submitted: {submitted}
+        </p>
       )}
     </div>
   );

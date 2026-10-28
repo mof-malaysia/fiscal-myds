@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   TaskList,
@@ -38,12 +38,16 @@ const Basic = () => (
     <TaskList>
       <TaskListItem>
         <TaskListItemTitle href="#">Company details</TaskListItemTitle>
-        <TaskListItemHint>Registration number, address and directors</TaskListItemHint>
+        <TaskListItemHint>
+          Registration number, address and directors
+        </TaskListItemHint>
         <TaskListItemStatus status="completed" />
       </TaskListItem>
       <TaskListItem>
         <TaskListItemTitle href="#">Financial statements</TaskListItemTitle>
-        <TaskListItemHint>Audited accounts for the last 2 years</TaskListItemHint>
+        <TaskListItemHint>
+          Audited accounts for the last 2 years
+        </TaskListItemHint>
         <TaskListItemStatus status="in-progress" />
       </TaskListItem>
       <TaskListItem>
@@ -52,7 +56,9 @@ const Basic = () => (
       </TaskListItem>
       <TaskListItem>
         <TaskListItemTitle>Check and submit</TaskListItemTitle>
-        <TaskListItemHint>Available once every section is complete</TaskListItemHint>
+        <TaskListItemHint>
+          Available once every section is complete
+        </TaskListItemHint>
         <TaskListItemStatus status="cannot-start" />
       </TaskListItem>
     </TaskList>
@@ -63,7 +69,9 @@ export const Default = createRender(Basic);
 const Grouped = () => (
   <div className="flex max-w-2xl flex-col gap-8">
     <section className="flex flex-col gap-3">
-      <h2 className="text-txt-black-900 m-0 text-lg font-semibold">1. About your company</h2>
+      <h2 className="text-txt-black-900 m-0 text-lg font-semibold">
+        1. About your company
+      </h2>
       <TaskList>
         <TaskListItem>
           <TaskListItemTitle href="#">Company details</TaskListItemTitle>
@@ -80,7 +88,9 @@ const Grouped = () => (
       <TaskList>
         <TaskListItem>
           <TaskListItemTitle href="#">Supporting documents</TaskListItemTitle>
-          <TaskListItemStatus status="not-started">Belum mula</TaskListItemStatus>
+          <TaskListItemStatus status="not-started">
+            Belum mula
+          </TaskListItemStatus>
         </TaskListItem>
         <TaskListItem>
           <TaskListItemTitle>Declaration</TaskListItemTitle>

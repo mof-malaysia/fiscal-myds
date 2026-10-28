@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { LogoCloud } from "@mof-malaysia/myds-react/logo-cloud";
 
@@ -30,19 +30,28 @@ const wordmark = (text: string, color: string) =>
   )}`;
 
 const logos = [
-  { src: wordmark("LHDN", "#2563EB"), alt: "Lembaga Hasil Dalam Negeri", href: "#" },
-  { src: wordmark("JKDM", "#15803D"), alt: "Jabatan Kastam Diraja Malaysia", href: "#" },
-  { src: wordmark("ANM", "#B91C1C"), alt: "Jabatan Akauntan Negara Malaysia", href: "#" },
+  {
+    src: wordmark("LHDN", "#2563EB"),
+    alt: "Lembaga Hasil Dalam Negeri",
+    href: "#",
+  },
+  {
+    src: wordmark("JKDM", "#15803D"),
+    alt: "Jabatan Kastam Diraja Malaysia",
+    href: "#",
+  },
+  {
+    src: wordmark("ANM", "#B91C1C"),
+    alt: "Jabatan Akauntan Negara Malaysia",
+    href: "#",
+  },
   { src: wordmark("JPJ", "#A16207"), alt: "Jabatan Pengangkutan Jalan" },
   { src: wordmark("KWAP", "#1D4ED8"), alt: "Kumpulan Wang Persaraan" },
   { src: wordmark("BNM", "#3F3F46"), alt: "Bank Negara Malaysia" },
 ];
 
 const Standard = () => (
-  <LogoCloud
-    title="Agencies using this service"
-    logos={logos}
-  />
+  <LogoCloud title="Agencies using this service" logos={logos} />
 );
 export const Default = createRender(Standard);
 

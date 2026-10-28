@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   Drawer,
@@ -48,19 +48,29 @@ const Filters = ({ side, label }: { side?: DrawerSide; label: string }) => {
   const id = React.useId();
   return (
     <Drawer side={side}>
-      <DrawerTrigger render={<Button variant="default-outline" size="medium" />}>
+      <DrawerTrigger
+        render={<Button variant="default-outline" size="medium" />}
+      >
         {label}
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Filter applications</DrawerTitle>
-          <DrawerDescription>Show only the applications you need to act on.</DrawerDescription>
+          <DrawerDescription>
+            Show only the applications you need to act on.
+          </DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
           <fieldset className="flex flex-col gap-3">
-            <legend className="text-txt-black-900 mb-2 font-medium">Status</legend>
+            <legend className="text-txt-black-900 mb-2 font-medium">
+              Status
+            </legend>
             {statuses.map((status, i) => (
-              <label key={status} htmlFor={`${id}-${i}`} className="flex items-center gap-3">
+              <label
+                key={status}
+                htmlFor={`${id}-${i}`}
+                className="flex items-center gap-3"
+              >
                 <Checkbox id={`${id}-${i}`} defaultChecked={i === 0} />
                 {status}
               </label>
@@ -68,7 +78,9 @@ const Filters = ({ side, label }: { side?: DrawerSide; label: string }) => {
           </fieldset>
         </DrawerBody>
         <DrawerFooter>
-          <DrawerClose render={<Button variant="default-outline" size="medium" />}>
+          <DrawerClose
+            render={<Button variant="default-outline" size="medium" />}
+          >
             Cancel
           </DrawerClose>
           <DrawerClose render={<Button variant="primary-fill" size="medium" />}>
@@ -80,7 +92,9 @@ const Filters = ({ side, label }: { side?: DrawerSide; label: string }) => {
   );
 };
 
-export const Default = createRender(() => <Filters label="Open bottom drawer" />);
+export const Default = createRender(() => (
+  <Filters label="Open bottom drawer" />
+));
 
 export const Sides = createRender(() => (
   <div className="flex flex-wrap gap-3">
@@ -96,14 +110,20 @@ const ControlledDrawer = () => {
   const [open, setOpen] = React.useState(false);
   return (
     <div className="flex flex-col items-center gap-3">
-      <Button variant="default-outline" size="medium" onClick={() => setOpen(true)}>
+      <Button
+        variant="default-outline"
+        size="medium"
+        onClick={() => setOpen(true)}
+      >
         View case details
       </Button>
       <Drawer side="right" open={open} onOpenChange={setOpen}>
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>LHDN-2024-0192</DrawerTitle>
-            <DrawerDescription>Refund claim, submitted 3 March 2025.</DrawerDescription>
+            <DrawerDescription>
+              Refund claim, submitted 3 March 2025.
+            </DrawerDescription>
           </DrawerHeader>
           <DrawerBody>
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">

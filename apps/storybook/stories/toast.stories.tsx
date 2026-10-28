@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { AutoToast } from "@mof-malaysia/myds-react/toast";
 import { useToast } from "@mof-malaysia/myds-react/hooks";

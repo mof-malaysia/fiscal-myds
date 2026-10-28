@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   AutoPagination,
@@ -258,9 +258,9 @@ export const CustomizedButtonAndLabel: Story = createStory({
 export const ServerSidePagination: Story = {
   parameters: {
     query: { page: "6" },
-    backgrounds: {
-      default: "light",
-    },
+  },
+  globals: {
+    backgrounds: { value: "light" },
   },
   render: () => {
     const urlParams = new URLSearchParams(document.location.search);

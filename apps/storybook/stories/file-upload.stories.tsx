@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   FileUpload,
@@ -84,7 +84,11 @@ export const Uploaded = createRender(WithFiles);
 const Progress = () => {
   const [files, setFiles] = useState<FileUploadFile[]>([
     { id: "p", file: sample("audited-accounts-2025.pdf", 2400), progress: 10 },
-    { id: "u", file: sample("director-ic.jpg", 800, "image/jpeg"), uploading: true },
+    {
+      id: "u",
+      file: sample("director-ic.jpg", 800, "image/jpeg"),
+      uploading: true,
+    },
   ]);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -136,10 +140,16 @@ export const DisabledState = createRender(Disabled);
 
 const Previous = () => (
   <div className="flex max-w-xl flex-col gap-2">
-    <h2 className="text-txt-black-900 m-0 text-base font-semibold">Previously uploaded</h2>
+    <h2 className="text-txt-black-900 m-0 text-base font-semibold">
+      Previously uploaded
+    </h2>
     <ul className="m-0 flex list-none flex-col gap-2 p-0">
-      <FileUploadItem file={{ name: "ssm-certificate-2024.pdf", size: 512000 }} />
-      <FileUploadItem file={{ name: "tax-clearance-letter.pdf", size: 98000 }} />
+      <FileUploadItem
+        file={{ name: "ssm-certificate-2024.pdf", size: 512000 }}
+      />
+      <FileUploadItem
+        file={{ name: "tax-clearance-letter.pdf", size: 98000 }}
+      />
     </ul>
   </div>
 );

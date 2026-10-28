@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   Command,
@@ -53,7 +53,9 @@ const Items = ({ onSelect }: { onSelect?: () => void }) => (
   <>
     <CommandInput placeholder="Search pages and actions" />
     <CommandList>
-      <CommandEmpty>Nothing matches. Try a case reference or a page name.</CommandEmpty>
+      <CommandEmpty>
+        Nothing matches. Try a case reference or a page name.
+      </CommandEmpty>
       <CommandGroup heading="Pages">
         <CommandItem onSelect={onSelect}>
           <HomeIcon />
@@ -113,7 +115,11 @@ const PaletteDialog = () => {
 
   return (
     <>
-      <Button variant="default-outline" size="medium" onClick={() => setOpen(true)}>
+      <Button
+        variant="default-outline"
+        size="medium"
+        onClick={() => setOpen(true)}
+      >
         <SearchIcon aria-hidden className="size-4" />
         Search
         <span className="text-txt-black-700 ml-2 text-sm">⌘K</span>

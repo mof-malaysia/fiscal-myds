@@ -69,5 +69,5 @@ export const DarkTheme = {
       <OfficerApp initial="case" />
     </div>
   ),
-  parameters: { backgrounds: { default: "dark" } },
+  globals: { backgrounds: { value: "dark" } },
 };

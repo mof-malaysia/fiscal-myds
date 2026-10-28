@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { Spinner } from "@mof-malaysia/myds-react/spinner";
 import { Button } from "@mof-malaysia/myds-react/button";

@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import SignInPage from "./components/app/sign-in-page";
 import StaffSignInPage from "./components/app/staff-sign-in-page";
 import SignUpPage from "./components/app/sign-up-page";

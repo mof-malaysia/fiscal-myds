@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { StatsBand } from "@mof-malaysia/myds-react/stats-band";
 
@@ -48,10 +48,13 @@ export const ThreeWithoutTitle = createRender(() => (
 ));
 
 export const Two = createRender(() => (
-  <StatsBand title="Bajet 2027" stats={[
-    { value: "RM 421 bil", label: "Jumlah peruntukan" },
-    { value: "RM 335 bil", label: "Perbelanjaan mengurus" },
-  ]} />
+  <StatsBand
+    title="Bajet 2027"
+    stats={[
+      { value: "RM 421 bil", label: "Jumlah peruntukan" },
+      { value: "RM 335 bil", label: "Perbelanjaan mengurus" },
+    ]}
+  />
 ));
 
 export const Compact = createRender(() => (

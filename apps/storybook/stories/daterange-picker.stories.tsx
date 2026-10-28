@@ -1,6 +1,6 @@
 import { DateRangePicker } from "@mof-malaysia/myds-react/daterange-picker";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 import { createStory } from "../utils";
 
 /**

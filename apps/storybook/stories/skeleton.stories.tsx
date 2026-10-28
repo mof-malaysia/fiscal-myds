@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { Skeleton } from "@mof-malaysia/myds-react/skeleton";
 
@@ -23,7 +23,10 @@ const meta: Meta<typeof Skeleton> = {
 export default meta;
 
 const Example = () => (
-  <div aria-busy="true" className="bg-bg-white flex w-96 flex-col gap-6 rounded-lg p-6">
+  <div
+    aria-busy="true"
+    className="bg-bg-white flex w-96 flex-col gap-6 rounded-lg p-6"
+  >
     <span className="sr-only">Loading applications</span>
     {[0, 1, 2].map((i) => (
       <div key={i} className="flex items-center gap-3">

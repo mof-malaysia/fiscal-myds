@@ -1,4 +1,4 @@
-import { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react-vite";
 import { createElement } from "react";
 import "./global.css";
 
@@ -20,6 +20,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     density: "comfortable",
+    backgrounds: { value: "light" },
   },
   decorators: [
     (Story, context) => {
@@ -27,9 +28,9 @@ const preview: Preview = {
         context.globals.density ?? "comfortable";
       return Story();
     },
-    // Dark stories set `backgrounds.default` to "dark" (see utils/createStory).
+    // Dark stories set the `backgrounds` global to "dark" (see utils/createStory).
     (Story, context) => {
-      const isDark = context.parameters.backgrounds?.default === "dark";
+      const isDark = context.globals.backgrounds?.value === "dark";
 
       // A Docs page renders every story into one document, so a class on <html>
       // would turn the light stories dark too. Scope dark to this story instead.
@@ -38,7 +39,9 @@ const preview: Preview = {
         return isDark
           ? createElement(
               "div",
-              { className: "dark bg-bg-white text-txt-black-900 rounded-md p-4" },
+              {
+                className: "dark bg-bg-white text-txt-black-900 rounded-md p-4",
+              },
               Story(),
             )
           : Story();
@@ -52,11 +55,15 @@ const preview: Preview = {
   ],
   parameters: {
     backgrounds: {
-      default: "light",
-      values: [
-        { name: "light", value: "#FFFFFF" },
-        { name: "dark", value: "#18181B" },
-      ],
+      options: {
+        light: { name: "light", value: "#FFFFFF" },
+        dark: { name: "dark", value: "#18181B" },
+      },
+    },
+    options: {
+      storySort: {
+        order: ["Introduction", "Core", "App", "Marketing", "Examples"],
+      },
     },
     deepControls: { enabled: true },
     controls: {

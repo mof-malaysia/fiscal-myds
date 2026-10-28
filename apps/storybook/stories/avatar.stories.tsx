@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   Avatar,
@@ -67,7 +67,10 @@ const Sizes = () => (
 export const Default = createRender(Sizes);
 
 const Group = () => (
-  <AvatarGroup role="group" aria-label="Reviewers: Aminah, Lim, Rajesh and 2 more">
+  <AvatarGroup
+    role="group"
+    aria-label="Reviewers: Aminah, Lim, Rajesh and 2 more"
+  >
     <Avatar>
       <AvatarImage src={photo} alt="" />
       <AvatarFallback>AY</AvatarFallback>
@@ -79,7 +82,9 @@ const Group = () => (
       <AvatarFallback>RK</AvatarFallback>
     </Avatar>
     <Avatar>
-      <AvatarFallback className="bg-bg-washed text-txt-black-700">+2</AvatarFallback>
+      <AvatarFallback className="bg-bg-washed text-txt-black-700">
+        +2
+      </AvatarFallback>
     </Avatar>
   </AvatarGroup>
 );

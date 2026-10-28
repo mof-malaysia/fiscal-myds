@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
 import { Button } from "@mof-malaysia/myds-react/button";

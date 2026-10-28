@@ -1,7 +1,7 @@
 import { DatePicker } from "@mof-malaysia/myds-react/date-picker";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 /**
  * ### Overview

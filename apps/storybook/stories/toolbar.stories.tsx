@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   Toolbar,
@@ -61,13 +61,19 @@ const Formatting = ({ variant }: { variant?: "plain" | "well" }) => (
     </ToolbarGroup>
     <ToolbarSeparator />
     <ToggleGroup aria-label="Alignment" defaultValue={["left"]}>
-      <ToolbarButton render={<Toggle value="left" iconOnly aria-label="Align left" />}>
+      <ToolbarButton
+        render={<Toggle value="left" iconOnly aria-label="Align left" />}
+      >
         <AlignLeftIcon />
       </ToolbarButton>
-      <ToolbarButton render={<Toggle value="center" iconOnly aria-label="Align centre" />}>
+      <ToolbarButton
+        render={<Toggle value="center" iconOnly aria-label="Align centre" />}
+      >
         <AlignCenterIcon />
       </ToolbarButton>
-      <ToolbarButton render={<Toggle value="right" iconOnly aria-label="Align right" />}>
+      <ToolbarButton
+        render={<Toggle value="right" iconOnly aria-label="Align right" />}
+      >
         <AlignRightIcon />
       </ToolbarButton>
     </ToggleGroup>
@@ -87,7 +93,11 @@ export const Well = createRender(() => <Formatting variant="well" />);
 
 const BulkActions = () => (
   <Toolbar aria-label="Case actions">
-    <ToolbarInput aria-label="Filter cases" placeholder="Filter by reference" className="w-56" />
+    <ToolbarInput
+      aria-label="Filter cases"
+      placeholder="Filter by reference"
+      className="w-56"
+    />
     <ToolbarSeparator />
     <ToolbarButton>Assign</ToolbarButton>
     <ToolbarButton>

@@ -9,7 +9,7 @@ import {
 } from "@mof-malaysia/myds-react/alert-dialog";
 import { Button } from "@mof-malaysia/myds-react/button";
 import { DialogBody } from "@mof-malaysia/myds-react/dialog";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 import { createStory } from "../utils";
 

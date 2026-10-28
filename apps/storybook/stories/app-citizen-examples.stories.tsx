@@ -39,5 +39,5 @@ export const DashboardEmpty = { render: () => <DashboardPage empty /> };
 
 export const DashboardMobile = {
   render: () => <DashboardPage />,
-  parameters: { viewport: { defaultViewport: "mobile1" } },
+  globals: { viewport: { value: "mobile1", isRotated: false } },
 };

@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { Faq } from "@mof-malaysia/myds-react/faq";
 import { Link } from "@mof-malaysia/myds-react/link";

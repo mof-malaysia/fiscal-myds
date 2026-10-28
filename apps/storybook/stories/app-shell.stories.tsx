@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   AppShell,
@@ -75,7 +75,7 @@ const Nav = () => (
       <div className="flex h-9 items-center gap-2 px-1">
         <span
           aria-hidden
-          className="bg-primary-600 text-white grid size-7 shrink-0 place-content-center rounded-md text-sm font-semibold"
+          className="bg-primary-600 grid size-7 shrink-0 place-content-center rounded-md text-sm font-semibold text-white"
         >
           F
         </span>
@@ -95,7 +95,11 @@ const Nav = () => (
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton render={<a href="#cases" />} isActive tooltip="Cases">
+            <SidebarMenuButton
+              render={<a href="#cases" />}
+              isActive
+              tooltip="Cases"
+            >
               <FolderIcon />
               <span>Cases</span>
             </SidebarMenuButton>
@@ -132,13 +136,19 @@ const Nav = () => (
         <SidebarGroupLabel>Administration</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton render={<a href="#officers" />} tooltip="Officers">
+            <SidebarMenuButton
+              render={<a href="#officers" />}
+              tooltip="Officers"
+            >
               <UserGroupIcon />
               <span>Officers</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton render={<a href="#settings" />} tooltip="Settings">
+            <SidebarMenuButton
+              render={<a href="#settings" />}
+              tooltip="Settings"
+            >
               <SettingIcon />
               <span>Settings</span>
             </SidebarMenuButton>
@@ -171,10 +181,12 @@ const Frame = (props: AppShellProps) => (
       </Button>
     </AppShellHeader>
     <AppShellMain>
-      <h1 className="text-txt-black-900 text-heading-2xs font-semibold">Cases</h1>
+      <h1 className="text-txt-black-900 text-heading-2xs font-semibold">
+        Cases
+      </h1>
       <p className="text-txt-black-700 text-content mt-2 max-w-prose">
-        128 open cases, 12 due this week. Use the button in the top bar to collapse the
-        sidebar to icons; hover an icon to see its label.
+        128 open cases, 12 due this week. Use the button in the top bar to
+        collapse the sidebar to icons; hover an icon to see its label.
       </p>
     </AppShellMain>
   </AppShell>
@@ -192,14 +204,18 @@ export const IconRail = createRender(() => <Frame defaultOpen={false} />);
 export const OffCanvas = createRender(() => <Frame collapsible="offcanvas" />);
 
 /** Below `mobileBreakpoint` the sidebar becomes a drawer. Forced here with a large breakpoint. */
-export const NarrowScreen = createRender(() => <Frame mobileBreakpoint={100000} />);
+export const NarrowScreen = createRender(() => (
+  <Frame mobileBreakpoint={100000} />
+));
 
 /** Controlled: the expanded state lives in the parent. */
 const ControlledShell = () => {
   const [open, setOpen] = React.useState(true);
   return (
     <div className="flex flex-col">
-      <p className="text-txt-black-700 p-3 text-sm">Sidebar is {open ? "expanded" : "collapsed"}.</p>
+      <p className="text-txt-black-700 p-3 text-sm">
+        Sidebar is {open ? "expanded" : "collapsed"}.
+      </p>
       <Frame open={open} onOpenChange={setOpen} />
     </div>
   );

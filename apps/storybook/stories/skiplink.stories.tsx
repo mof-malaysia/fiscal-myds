@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
 import { clx } from "@mof-malaysia/myds-react/utils";

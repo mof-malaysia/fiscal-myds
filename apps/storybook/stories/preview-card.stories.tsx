@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   PreviewCard,
@@ -34,7 +34,9 @@ const Officer = () => (
   <p className="text-txt-black-700 text-content max-w-md">
     Assigned to{" "}
     <PreviewCard>
-      <PreviewCardTrigger href="#officer-1024">Nur Aisyah binti Rahman</PreviewCardTrigger>
+      <PreviewCardTrigger href="#officer-1024">
+        Nur Aisyah binti Rahman
+      </PreviewCardTrigger>
       <PreviewCardContent>
         <div className="flex gap-3">
           <span
@@ -44,8 +46,12 @@ const Officer = () => (
             NA
           </span>
           <div className="flex min-w-0 flex-col gap-0.5">
-            <span className="text-txt-black-900 font-semibold">Nur Aisyah binti Rahman</span>
-            <span className="text-txt-black-700">Senior Assistant Director</span>
+            <span className="text-txt-black-900 font-semibold">
+              Nur Aisyah binti Rahman
+            </span>
+            <span className="text-txt-black-700">
+              Senior Assistant Director
+            </span>
             <span className="text-txt-black-700">Budget Division</span>
           </div>
         </div>
@@ -53,7 +59,9 @@ const Officer = () => (
           <dt className="text-txt-black-700">Open cases</dt>
           <dd className="text-txt-black-900 font-medium tabular-nums">14</dd>
           <dt className="text-txt-black-700">Extension</dt>
-          <dd className="text-txt-black-900 font-medium tabular-nums">03-8882 3000</dd>
+          <dd className="text-txt-black-900 font-medium tabular-nums">
+            03-8882 3000
+          </dd>
         </dl>
       </PreviewCardContent>
     </PreviewCard>{" "}

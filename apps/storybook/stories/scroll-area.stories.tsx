@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { ScrollArea } from "@mof-malaysia/myds-react/scroll-area";
 
@@ -21,7 +21,10 @@ const meta: Meta<typeof ScrollArea> = {
 
 export default meta;
 
-const agencies = Array.from({ length: 30 }, (_, i) => `Agency ${String(i + 1).padStart(2, "0")}`);
+const agencies = Array.from(
+  { length: 30 },
+  (_, i) => `Agency ${String(i + 1).padStart(2, "0")}`,
+);
 
 const Vertical = () => (
   <ScrollArea
@@ -38,7 +41,11 @@ const Vertical = () => (
 export const Default = createRender(Vertical);
 
 const Horizontal = () => (
-  <ScrollArea className="bg-bg-white w-96 rounded-lg" viewportClassName="p-4" scrollbars="horizontal">
+  <ScrollArea
+    className="bg-bg-white w-96 rounded-lg"
+    viewportClassName="p-4"
+    scrollbars="horizontal"
+  >
     <div className="flex w-max gap-3">
       {agencies.slice(0, 12).map((a) => (
         <div

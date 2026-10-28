@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   EmptyState,
@@ -41,8 +41,8 @@ const NoData = () => (
     </EmptyStateIcon>
     <EmptyStateTitle>No applications yet</EmptyStateTitle>
     <EmptyStateDescription>
-      Applications you start will appear here, so you can come back to them and track their
-      progress.
+      Applications you start will appear here, so you can come back to them and
+      track their progress.
     </EmptyStateDescription>
     <EmptyStateActions>
       <Button>Start an application</Button>
@@ -78,7 +78,9 @@ const Minimal = () => (
   <div className="bg-bg-white rounded-lg">
     <EmptyState>
       <EmptyStateTitle>Nothing to review</EmptyStateTitle>
-      <EmptyStateDescription>New submissions will appear here.</EmptyStateDescription>
+      <EmptyStateDescription>
+        New submissions will appear here.
+      </EmptyStateDescription>
     </EmptyState>
   </div>
 );

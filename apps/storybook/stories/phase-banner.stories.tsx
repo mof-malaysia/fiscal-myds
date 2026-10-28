@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import {
   PhaseBanner,
@@ -29,7 +29,8 @@ export default meta;
 const Basic = () => (
   <PhaseBanner phase="Beta">
     This is a new service. Your{" "}
-    <PhaseBannerLink href="#">feedback</PhaseBannerLink> will help us improve it.
+    <PhaseBannerLink href="#">feedback</PhaseBannerLink> will help us improve
+    it.
   </PhaseBanner>
 );
 export const Default = createRender(Basic);
@@ -42,7 +43,8 @@ const Phases = () => (
     </PhaseBanner>
     <PhaseBanner phase="Public beta">
       This service is open to everyone. Your{" "}
-      <PhaseBannerLink href="#">feedback</PhaseBannerLink> will help us improve it.
+      <PhaseBannerLink href="#">feedback</PhaseBannerLink> will help us improve
+      it.
     </PhaseBanner>
     <PhaseBanner phase="Maintenance" tagVariant="warning">
       Some features are unavailable until 10 pm tonight while we make updates.

@@ -15,7 +15,7 @@ import {
   type DialogFooterProps,
   type DialogHeaderProps,
 } from "@mof-malaysia/myds-react/dialog";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 
 /**

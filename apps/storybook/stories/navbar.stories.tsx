@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender, createStory } from "../utils";
 import {
   Navbar,
@@ -572,7 +572,6 @@ export const MobileMenu = {
   globals: { viewport: { value: "mobile2", isRotated: false } },
   parameters: {
     layout: "fullscreen",
-    viewport: { defaultViewport: "mobile2" },
   },
 };
 
@@ -591,7 +590,6 @@ export const AgencySiteDark = {
     "dark",
   ),
   parameters: {
-    ...createRender(() => null, "dark").parameters,
     layout: "fullscreen",
   },
 };

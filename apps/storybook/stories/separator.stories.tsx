@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { Separator } from "@mof-malaysia/myds-react/separator";
 
@@ -26,7 +26,9 @@ export default meta;
 const Example = () => (
   <div className="font-body text-txt-black-900 w-80">
     <p className="text-body-md font-medium">Payment history</p>
-    <p className="text-body-sm text-txt-black-700">Your last 12 months of payments.</p>
+    <p className="text-body-sm text-txt-black-700">
+      Your last 12 months of payments.
+    </p>
     <Separator className="my-4" />
     <div className="text-body-sm text-txt-black-700 flex h-5 items-center gap-3">
       <span>Receipts</span>

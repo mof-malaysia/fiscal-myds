@@ -1,5 +1,5 @@
-import { fn } from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory, createRender } from "../utils";
 import { Label } from "@mof-malaysia/myds-react/label";
 import { Checkbox } from "@mof-malaysia/myds-react/checkbox";

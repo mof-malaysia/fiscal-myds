@@ -1,6 +1,6 @@
 import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
 import { Link } from "@mof-malaysia/myds-react/link";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import ArrowBack from "../react/arrow-back";
 import { createStory } from "../utils";
 
@@ -100,10 +100,8 @@ export const ButtonAsLink: Story = {
     href: "https://design.digital.gov.my",
     underline: "none",
   },
-  parameters: {
-    backgrounds: {
-      default: "light",
-    },
+  globals: {
+    backgrounds: { value: "light" },
   },
   render: (args) => <Button render={<Link {...args} />}>Ask a question</Button>,
 };
@@ -117,10 +115,8 @@ export const Backlink: Story = {
     primary: true,
     underline: "hover",
   },
-  parameters: {
-    backgrounds: {
-      default: "light",
-    },
+  globals: {
+    backgrounds: { value: "light" },
   },
   render: (args) => (
     <Button variant="unset" render={<Link {...args} />}>
@@ -149,10 +145,8 @@ export const NavbarLink: Story = {
     href: "https://design.digital.gov.my",
     underline: "none",
   },
-  parameters: {
-    backgrounds: {
-      default: "light",
-    },
+  globals: {
+    backgrounds: { value: "light" },
   },
   render: (args) => (
     <Button variant="default-ghost" render={<Link {...args} />}>

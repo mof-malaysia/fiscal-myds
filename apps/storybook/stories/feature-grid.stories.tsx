@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
 import { FeatureGrid } from "@mof-malaysia/myds-react/feature-grid";
 import {
@@ -36,13 +36,15 @@ const features = [
   {
     icon: <MoneyIcon />,
     title: "Pay online",
-    description: "FPX, debit and credit cards, and e-wallets. No queue, no cheque.",
+    description:
+      "FPX, debit and credit cards, and e-wallets. No queue, no cheque.",
     href: "#",
   },
   {
     icon: <DocumentIcon />,
     title: "Official receipts",
-    description: "Every payment gets a receipt you can download, print or share.",
+    description:
+      "Every payment gets a receipt you can download, print or share.",
     href: "#",
   },
   {
@@ -63,7 +65,8 @@ const features = [
   {
     icon: <ChatBubbleIcon />,
     title: "Help when you need it",
-    description: "Guidance in BM and English, and a person to talk to if you are stuck.",
+    description:
+      "Guidance in BM and English, and a person to talk to if you are stuck.",
     href: "#",
   },
 ];
