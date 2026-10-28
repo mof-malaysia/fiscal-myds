@@ -4,7 +4,7 @@ import { FunctionComponent, SVGProps } from "react";
 /**
  * RSS Icon
  * @param className
- * @returns RssIcon
+ * @returns RSSIcon
  */
 export const RSSIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (props) => {
   return (

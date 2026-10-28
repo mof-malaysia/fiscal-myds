@@ -4,7 +4,7 @@ import { FunctionComponent, SVGProps } from "react";
 /**
  * MiniBookMOE Icon
  * @param className
- * @returns MiniBookMoeIcon
+ * @returns MiniBookMOEIcon
  */
 export const MiniBookMOEIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (
   props,

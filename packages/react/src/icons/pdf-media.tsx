@@ -2,9 +2,9 @@ import React from "react";
 import { FunctionComponent, SVGProps } from "react";
 
 /**
- * PdfMedia Icon
+ * PDFMedia Icon
  * @param className
- * @returns PdfMediaIcon
+ * @returns PDFMediaIcon
  */
 export const PDFMediaIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (
   props,

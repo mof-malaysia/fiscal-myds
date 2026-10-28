@@ -18,7 +18,7 @@ If you open a pull request for a new feature, we're likely to close it not becau
 
 ## Turborepo
 
-MYDS is largely managed by [Turborepo](https://turbo.build/). If you would like contribute via code, we recommend learning to utilise the features of Turborepo to make your life easier, from running multiple dev servers, scope installs, using codegens and many more.
+MYDS is largely managed by [Turborepo](https://turbo.build/). If you would like contribute via code, we recommend learning to utilise the features of Turborepo to make your life easier, from running multiple dev servers to scoped installs and many more.
 
 ## Coding standards
 
@@ -29,6 +29,16 @@ pnpm run lint        # oxlint, fails on any warning
 pnpm run lint:fix    # apply safe autofixes
 pnpm run typecheck   # tsc --noEmit in every package, via Turborepo
 ```
+
+## Icons
+
+Icons are generated from SVGs. Add or edit a file in [packages/react/src/svg/icons](./packages/react/src/svg/icons) (dash-case, e.g. `arrow-back.svg`), then run:
+
+```sh
+pnpm run icons:generate
+```
+
+This rewrites `packages/react/src/icons/*.tsx` and its `index.ts`, so don't edit those files by hand. `#18181B` fills and strokes become `currentColor`.
 
 ## Git hooks
 

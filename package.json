@@ -18,7 +18,8 @@
     "registry:generate:components": "tsx scripts/registry/generate-components.ts",
     "components:sync-exports": "tsx scripts/registry/sync-exports.ts",
     "typecheck": "turbo typecheck",
-    "lint:fix": "oxlint --fix"
+    "lint:fix": "oxlint --fix",
+    "icons:generate": "tsx scripts/icons/generate.ts"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
