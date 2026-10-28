@@ -52,12 +52,12 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "dependencies": [
-        "@base-ui/react@^1.9.0",
-        "class-variance-authority@^0.7.1"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json"
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/ellipsis.json"
       ],
       "files": [
         "styles/default/breadcrumb.json"
