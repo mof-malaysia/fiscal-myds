@@ -55,6 +55,7 @@ const Toggle: React.FC<ToggleProps> = ({
   className = "",
   children,
 }) => {
+  const generatedId = useId();
   const [_checked, set_checked] = React.useState(
     checked || defaultChecked || false,
   );
@@ -78,7 +79,7 @@ const Toggle: React.FC<ToggleProps> = ({
         disabled,
         size,
         onChange: handleChange,
-        id: id || useId(),
+        id: id || generatedId,
       }}
     >
       <div

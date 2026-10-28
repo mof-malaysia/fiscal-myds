@@ -51,6 +51,7 @@ const Link: ForwardRefExoticComponent<LinkProps> = forwardRef(
           href,
           className: link_cva({ primary, underline, className }),
           target: newTab ? "_blank" : "_self",
+          rel: newTab ? "noopener noreferrer" : undefined,
         },
         props,
       ),

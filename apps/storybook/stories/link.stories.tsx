@@ -97,6 +97,7 @@ export const Default: Story = createStory({
  */
 export const ButtonAsLink: Story = {
   args: {
+    href: "https://design.digital.gov.my",
     underline: "none",
   },
   parameters: {
@@ -112,6 +113,7 @@ export const ButtonAsLink: Story = {
  */
 export const Backlink: Story = {
   args: {
+    href: "https://design.digital.gov.my",
     primary: true,
     underline: "hover",
   },
@@ -144,6 +146,7 @@ export const FooterLink: Story = createStory({
  */
 export const NavbarLink: Story = {
   args: {
+    href: "https://design.digital.gov.my",
     underline: "none",
   },
   parameters: {
