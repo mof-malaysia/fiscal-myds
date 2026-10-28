@@ -44,10 +44,10 @@ importers:
       '@aws-sdk/client-ses':
         specifier: ^3.857.0
         version: 3.933.0
-      '@civictechmy/myds-react':
+      '@mof-malaysia/myds-react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@civictechmy/myds-style':
+      '@mof-malaysia/myds-style':
         specifier: workspace:*
         version: link:../../packages/style
       '@hookform/resolvers':
@@ -114,10 +114,10 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@civictechmy/myds-react':
+      '@mof-malaysia/myds-react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@civictechmy/myds-style':
+      '@mof-malaysia/myds-style':
         specifier: workspace:*
         version: link:../../packages/style
       '@vitejs/plugin-react':

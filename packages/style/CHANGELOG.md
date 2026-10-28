@@ -1,4 +1,4 @@
-# @civictechmy/myds-style
+# @mof-malaysia/myds-style
 
 ## 1.0.0
 

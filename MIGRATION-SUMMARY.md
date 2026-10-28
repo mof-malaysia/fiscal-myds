@@ -15,7 +15,7 @@ This document summarizes the changes made to convert MYDS from an npm package-ba
 **Before:**
 ```json
 {
-  "name": "@civictechmy/myds-react",
+  "name": "@mof-malaysia/myds-react",
   "version": "1.0.2",
   "scripts": {
     "build": "tsup"
@@ -26,7 +26,7 @@ This document summarizes the changes made to convert MYDS from an npm package-ba
 **After:**
 ```json
 {
-  "name": "@civictechmy/myds-react",
+  "name": "@mof-malaysia/myds-react",
   "version": "1.0.2",
   "private": true,
   "description": "DEPRECATED: Use registry at https://username.github.io/myds/registry",
@@ -37,17 +37,17 @@ This document summarizes the changes made to convert MYDS from an npm package-ba
 ```
 
 #### 1.2 Root Package (`package.json`)
-- ✅ Removed `@civictechmy/myds-react` from release script
-- ✅ Only `@civictechmy/myds-style` is published now
+- ✅ Removed `@mof-malaysia/myds-react` from release script
+- ✅ Only `@mof-malaysia/myds-style` is published now
 
 **Before:**
 ```json
-"release": "turbo build --filter=@civictechmy/myds-react --filter=@civictechmy/myds-style && changeset publish"
+"release": "turbo build --filter=@mof-malaysia/myds-react --filter=@mof-malaysia/myds-style && changeset publish"
 ```
 
 **After:**
 ```json
-"release": "turbo build --filter=@civictechmy/myds-style && changeset publish"
+"release": "turbo build --filter=@mof-malaysia/myds-style && changeset publish"
 ```
 
 ### Phase 2: Storybook Migration
@@ -68,7 +68,7 @@ This document summarizes the changes made to convert MYDS from an npm package-ba
 - 2 Utilities (utils, hooks)
 
 #### 2.3 Dependencies Update
-- ✅ Removed `@civictechmy/myds-react` workspace dependency
+- ✅ Removed `@mof-malaysia/myds-react` workspace dependency
 - ✅ Added required npm dependencies:
   - All @radix-ui packages
   - class-variance-authority
@@ -80,15 +80,15 @@ This document summarizes the changes made to convert MYDS from an npm package-ba
 **Before:**
 ```json
 "dependencies": {
-  "@civictechmy/myds-react": "workspace:*",
-  "@civictechmy/myds-style": "workspace:*"
+  "@mof-malaysia/myds-react": "workspace:*",
+  "@mof-malaysia/myds-style": "workspace:*"
 }
 ```
 
 **After:**
 ```json
 "dependencies": {
-  "@civictechmy/myds-style": "workspace:*",
+  "@mof-malaysia/myds-style": "workspace:*",
   "@radix-ui/react-accordion": "^1.2.12",
   "@radix-ui/react-checkbox": "^1.3.3",
   // ... all other required dependencies
@@ -104,8 +104,8 @@ This document summarizes the changes made to convert MYDS from an npm package-ba
 
 **Before:**
 ```tsx
-import { Button } from "@civictechmy/myds-react/button";
-import { clx } from "@civictechmy/myds-react/utils";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { clx } from "@mof-malaysia/myds-react/utils";
 ```
 
 **After:**
@@ -156,8 +156,8 @@ import { clx } from "@/lib/utils";
 
 **Old Way (npm package):**
 ```bash
-npm install @civictechmy/myds-react
-import { Button } from "@civictechmy/myds-react/button"
+npm install @mof-malaysia/myds-react
+import { Button } from "@mof-malaysia/myds-react/button"
 ```
 
 **New Way (registry):**
@@ -186,14 +186,14 @@ import { Button } from "@/components/ui/button"
 ## ⚠️ Important Notes
 
 ### What Still Works
-- ✅ Style package (`@civictechmy/myds-style`) still published to npm
+- ✅ Style package (`@mof-malaysia/myds-style`) still published to npm
 - ✅ All components functional via registry
 - ✅ Storybook browses components normally
 - ✅ Registry deployment to GitHub Pages
 
 ### What Changed
 - ❌ Can't install components via npm package anymore
-- ❌ `@civictechmy/myds-react` won't be published
+- ❌ `@mof-malaysia/myds-react` won't be published
 - ✅ Must use shadcn CLI with registry URL
 - ✅ Users get full control over component code
 
@@ -232,7 +232,7 @@ If you're using the old npm package, migrate with these steps:
 4. **Update imports in your code:**
    ```tsx
    // Before
-   import { Button } from "@civictechmy/myds-react/button"
+   import { Button } from "@mof-malaysia/myds-react/button"
 
    // After
    import { Button } from "@/components/ui/button"
@@ -240,7 +240,7 @@ If you're using the old npm package, migrate with these steps:
 
 5. **Uninstall old package:**
    ```bash
-   npm uninstall @civictechmy/myds-react
+   npm uninstall @mof-malaysia/myds-react
    ```
 
 ### For New Users

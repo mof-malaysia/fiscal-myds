@@ -7,17 +7,17 @@ import {
   NavbarMenuItem,
   NavbarMenu,
   NavbarMenuDropdown,
-} from "@civictechmy/myds-react/navbar";
+} from "@mof-malaysia/myds-react/navbar";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@civictechmy/myds-react/select";
-import { GlobeIcon, SearchIcon } from "@civictechmy/myds-react/icon";
-import { Button, ButtonIcon } from "@civictechmy/myds-react/button";
-import { ThemeSwitch } from "@civictechmy/myds-react/theme-switch";
+} from "@mof-malaysia/myds-react/select";
+import { GlobeIcon, SearchIcon } from "@mof-malaysia/myds-react/icon";
+import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
+import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
 
 /**
  * ### Overview
@@ -110,7 +110,7 @@ import { ThemeSwitch } from "@civictechmy/myds-react/theme-switch";
  */
 
 const meta = {
-  title: "@civictechmy/myds-react/Navbar",
+  title: "@mof-malaysia/myds-react/Navbar",
   component: Navbar,
   tags: ["autodocs"],
   parameters: {

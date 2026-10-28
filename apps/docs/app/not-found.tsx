@@ -3,7 +3,7 @@ import { Link, Button, ButtonIcon } from "@/components/myds";
 import { getMYDSConfig } from "@/app/[lang]/layout.config";
 import { HomeLayout } from "fumadocs-ui/home-layout";
 import Masthead from "@/components/Masthead";
-import { ArrowBackIcon } from "@civictechmy/myds-react/icon";
+import { ArrowBackIcon } from "@mof-malaysia/myds-react/icon";
 import { getRosetta } from "@/locales/_server";
 
 /**

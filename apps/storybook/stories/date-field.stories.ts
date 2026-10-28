@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
-import { DateField } from "@civictechmy/myds-react/date-field";
+import { DateField } from "@mof-malaysia/myds-react/date-field";
 
 /**
  * ### Overview
@@ -11,7 +11,7 @@ import { DateField } from "@civictechmy/myds-react/date-field";
  *
  * ### Usage
  * ```tsx
- * import DateField from "@civictechmy/myds-react/date-field";
+ * import DateField from "@mof-malaysia/myds-react/date-field";
  *
  * const [date, setDate] = useState("1957-08-31")
  *
@@ -19,7 +19,7 @@ import { DateField } from "@civictechmy/myds-react/date-field";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/DateField",
+  title: "@mof-malaysia/myds-react/DateField",
   component: DateField,
   tags: ["autodocs"],
   parameters: {

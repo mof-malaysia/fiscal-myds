@@ -5,7 +5,7 @@ description: Menguruskan keadaan dan tindakan penomboran untuk senarai dan jadua
 
 import { Quicklinks } from "@/components/quicklinks";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 ## Penggunaan
@@ -13,7 +13,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Tabs items={["Hook", "Keperluan"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { usePagination } from "@civictechmy/myds-react/hooks";
+    import { usePagination } from "@mof-malaysia/myds-react/hooks";
 
     const { visiblePages, max } = usePagination({ count: 10, page: 1, limit: 10, maxDisplay: 4 });
     ```
@@ -41,7 +41,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 Hook `usePagination` menyediakan pengendali yang diperlukan untuk menguruskan keadaan dan tindakan penomboran untuk komponen senarai dan jadual. Ini boleh dilihat dalam [Konfigurasi Penomboran](/docs/develop/pagination#pagination-configurations) dokumentasi Penomboran.
 
 ```tsx title="Contoh"
-import { usePagination } from "@civictechmy/myds-react/hooks";
+import { usePagination } from "@mof-malaysia/myds-react/hooks";
 
 //... dalam komponen anda
 const { visiblePages } = usePagination();

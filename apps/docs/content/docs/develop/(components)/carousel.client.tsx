@@ -10,7 +10,7 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
-} from "@civictechmy/myds-react/dialog";
+} from "@mof-malaysia/myds-react/dialog";
 
 interface Feature {
   id: number;

@@ -73,7 +73,7 @@ function generateComponentRegistry(
 
   const finalNpmDeps = Array.from(npmDependencies).filter(
     (dep) =>
-      !dep.includes("@civictechmy") &&
+      !dep.includes("@mof-malaysia") &&
       (dep !== "class-variance-authority" ||
         KNOWN_NPM_DEPENDENCIES[componentName]?.includes(dep))
   );

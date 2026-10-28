@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
-import { Skiplink } from "@civictechmy/myds-react/skiplink";
-import { clx } from "@civictechmy/myds-react/utils";
+import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
+import { clx } from "@mof-malaysia/myds-react/utils";
 
 /**
  * ### Overview
@@ -14,7 +14,7 @@ import { clx } from "@civictechmy/myds-react/utils";
  *
  * ### Usage
  * ```ts
- * import Skiplink from "@civictechmy/myds-react/skiplink";
+ * import Skiplink from "@mof-malaysia/myds-react/skiplink";
  *
  * <Skiplink href="#main-content">
  * <span>Skip to main content</span>
@@ -22,7 +22,7 @@ import { clx } from "@civictechmy/myds-react/utils";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/Skiplink",
+  title: "@mof-malaysia/myds-react/Skiplink",
   component: Skiplink,
   decorators: [
     (Story, context) => {

@@ -1,5 +1,5 @@
-import { ClockIcon } from "@civictechmy/myds-react/icon";
-import { clx } from "@civictechmy/myds-react/utils";
+import { ClockIcon } from "@mof-malaysia/myds-react/icon";
+import { clx } from "@mof-malaysia/myds-react/utils";
 // import exampleImage from "../assets/addon-library.png";
 
 export default function Article() {

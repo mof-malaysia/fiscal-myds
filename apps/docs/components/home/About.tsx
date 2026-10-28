@@ -1,5 +1,5 @@
 import { Paragraph } from "@/components/Paragraph";
-import { clx } from "@civictechmy/myds-react/utils";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import Section from "../section";
 import { getRosetta } from "@/locales/_server";
 import Image from "next/image";

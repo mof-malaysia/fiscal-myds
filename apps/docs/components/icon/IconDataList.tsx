@@ -1,4 +1,4 @@
-import * as Icons from "@civictechmy/myds-react/icon";
+import * as Icons from "@mof-malaysia/myds-react/icon";
 import { ReactNode } from "react";
 
 export type IconType =

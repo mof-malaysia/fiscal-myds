@@ -5,7 +5,7 @@ import { glob } from "glob";
 /**
  * Update all Storybook story imports from npm package to registry paths
  * Example:
- *   import { Button } from "@civictechmy/myds-react/button"
+ *   import { Button } from "@mof-malaysia/myds-react/button"
  *   → import { Button } from "@/components/ui/button"
  */
 
@@ -29,28 +29,28 @@ async function updateStoryImports() {
     const originalContent = content;
 
     // Update component imports from npm package to registry
-    // Pattern: import { Component } from "@civictechmy/myds-react/component"
+    // Pattern: import { Component } from "@mof-malaysia/myds-react/component"
     // Replace: import { Component } from "@/components/ui/component"
     content = content.replace(
-      /from\s+["']@civictechmy\/myds-react\/([^"']+)["']/g,
+      /from\s+["']@mof-malaysia\/myds-react\/([^"']+)["']/g,
       'from "@/components/ui/$1"'
     );
 
     // Update utils imports
     content = content.replace(
-      /from\s+["']@civictechmy\/myds-react\/utils["']/g,
+      /from\s+["']@mof-malaysia\/myds-react\/utils["']/g,
       'from "@/lib/utils"'
     );
 
     // Update hooks imports
     content = content.replace(
-      /from\s+["']@civictechmy\/myds-react\/hooks["']/g,
+      /from\s+["']@mof-malaysia\/myds-react\/hooks["']/g,
       'from "@/lib/hooks"'
     );
 
     // Update icon imports
     content = content.replace(
-      /from\s+["']@civictechmy\/myds-react\/icon["']/g,
+      /from\s+["']@mof-malaysia\/myds-react\/icon["']/g,
       'from "@/components/ui/icons"'
     );
 

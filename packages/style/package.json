@@ -1,8 +1,8 @@
 {
-  "name": "@civictechmy/myds-style",
+  "name": "@mof-malaysia/myds-style",
   "version": "1.0.0",
   "private": true,
-  "deprecated": "This package is deprecated. Use MYDS v2 via shadcn registry instead: npx shadcn@latest add myds-init --registry=https://civictechmy.github.io/myds/registry/style",
+  "deprecated": "This package is deprecated. Use MYDS v2 via shadcn registry instead: npx shadcn@latest add myds-init --registry=https://mof-malaysia.github.io/fiscal-myds/registry/style",
   "scripts": {
     "dev": "tailwindcss --input ./styles/input.tailwind.css --output ./styles/output.tailwind.css --watch",
     "build": "tailwindcss --input ./styles/input.tailwind.css --output ./dist/index.css --minify"

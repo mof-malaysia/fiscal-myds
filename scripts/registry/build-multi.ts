@@ -171,7 +171,7 @@ async function buildRootIndex(uiCount: number, iconsCount: number, styleCount: n
   );
 
   const rootIndex = {
-    name: "@civictechmy/myds",
+    name: "@mof-malaysia/myds",
     version: packageJson.version || "2.0.0",
     description: "Malaysia Design System - Multi-registry component library",
     registries: {

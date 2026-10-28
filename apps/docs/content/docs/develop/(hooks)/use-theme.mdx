@@ -5,7 +5,7 @@ description: Provides access to the current theme and method to switch themes.
 
 import { Quicklinks } from "@/components/quicklinks";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 ## Usage
@@ -13,7 +13,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 <Tabs items={["Hook", "Requirement"]} defaultValue="Hook">
   <Tab value="Hook" className="not-prose">
     ```ts
-    import { useTheme } from "@civictechmy/myds-react/hooks";
+    import { useTheme } from "@mof-malaysia/myds-react/hooks";
 
     const { theme, setTheme } = useTheme();
     ```
@@ -21,7 +21,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
   </Tab>
   <Tab value="Requirement">
     ```tsx
-    import { ThemeProvider } from "@civictechmy/myds-react/hooks";
+    import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
 
     const Layout = () => {
       return (
@@ -63,7 +63,7 @@ The `useTheme` hook provides an easy way to manage theme states within your appl
 <Tabs items={["Toggle", "Select"]} defaultValue="Toggle">
   <Tab value="Toggle" className="not-prose">
     ```tsx title="theme-toggle.tsx"
-    import { useTheme } from "@civictechmy/myds-react/hooks";
+    import { useTheme } from "@mof-malaysia/myds-react/hooks";
 
     const ThemeToggle = () => {
       const { theme, setTheme } = useTheme();
@@ -81,7 +81,7 @@ The `useTheme` hook provides an easy way to manage theme states within your appl
   </Tab>
   <Tab value="Select">
     ```tsx title="theme-select.tsx"
-    import { Select } from "@civictechmy/myds-react/select";
+    import { Select } from "@mof-malaysia/myds-react/select";
   
     const ThemeSelect = () => {
       const { theme, setTheme } = useTheme();

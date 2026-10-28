@@ -8,10 +8,10 @@ import {
   CookieBannerAction,
   CookieBannerPreferences,
   CookieBannerTitle,
-} from "@civictechmy/myds-react/cookie-banner";
+} from "@mof-malaysia/myds-react/cookie-banner";
 import { useEffect, useState } from "react";
-import { Button } from "@civictechmy/myds-react/button";
-import { Checkbox } from "@civictechmy/myds-react/checkbox";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
 
 /**
  * ### Overview
@@ -40,7 +40,7 @@ import { Checkbox } from "@civictechmy/myds-react/checkbox";
  */
 
 const meta = {
-  title: "@civictechmy/myds-react/CookiesBanner",
+  title: "@mof-malaysia/myds-react/CookiesBanner",
   component: (args: React.ComponentProps<typeof CookieBanner>) => {
     const [open, setOpen] = useState(false);
     const [preferences, setPreferences] = useState({

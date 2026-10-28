@@ -5,7 +5,7 @@ description: Konfigurasi lanjutan untuk stylesheet & TailwindCSS
 
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 
 Stylesheet MYDS terdiri daripada pelbagai komponen untuk memenuhi pelbagai kegunaan.
@@ -37,7 +37,7 @@ MYDS menyokong 2 jenis fon: `Poppins` & `Inter`. Kami mengesyorkan anda untuk me
 Kami mentakrifkan setiap warna dalam Bahasa Reka Bentuk MYDS sebagai pembolehubah CSS, yang kemudiannya menjadi blok binaan untuk membina tema!
 
 ```css
-@import "@civictechmy/myds-style/color.css";
+@import "@mof-malaysia/myds-style/color.css";
 ```
 
 ### Tema
@@ -47,10 +47,10 @@ Oleh itu, anda boleh mengabaikan import tema yang tidak diingini dari projek and
 
 ```css
 /* Import tema terang */
-@import "@civictechmy/myds-style/light.css";
+@import "@mof-malaysia/myds-style/light.css";
 
 /* Import tema gelap */
-@import "@civictechmy/myds-style/dark.css";
+@import "@mof-malaysia/myds-style/dark.css";
 ```
 
 <Callout
@@ -79,12 +79,12 @@ Sebelum kita mula, pastikan anda telah memasang pakej TailwindCSS dalam projek a
 Setelah TailwindCSS dipasang, anda boleh mengimport preset MYDS ke dalam projek anda sendiri! Kita juga perlu memastikan TailwindCSS 'sedar' tentang pustaka komponen dari MYDS.
 
 ```ts title="tailwind.config.ts"
-import { preset } from "@civictechmy/myds-style";
+import { preset } from "@mof-malaysia/myds-style";
 
 export default {
   content: [
     "src/**/*.{js,jsx,ts,tsx}", // Fail sumber projek anda sendiri
-    "node_modules/@civictechmy/myds-react/dist/**/*.{js,jsx,ts,tsx}",
+    "node_modules/@mof-malaysia/myds-react/dist/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [preset],
 };

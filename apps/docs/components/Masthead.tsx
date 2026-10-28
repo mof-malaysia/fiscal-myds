@@ -12,7 +12,7 @@ import {
   MastheadSection,
   MastheadTitle,
   MastheadTrigger,
-} from "@civictechmy/myds-react/masthead";
+} from "@mof-malaysia/myds-react/masthead";
 
 const MastheadExample = (props: { lang: "en" | "ms" }) => {
   const { t } = getRosetta(props.lang);

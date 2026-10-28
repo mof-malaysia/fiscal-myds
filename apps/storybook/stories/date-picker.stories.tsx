@@ -1,4 +1,4 @@
-import { DatePicker } from "@civictechmy/myds-react/date-picker";
+import { DatePicker } from "@mof-malaysia/myds-react/date-picker";
 import type { Meta, StoryObj } from "@storybook/react";
 import { createStory } from "../utils";
 import { fn } from "@storybook/test";
@@ -10,7 +10,7 @@ import { fn } from "@storybook/test";
  * ### Usage
  * ```ts
  * import * as React from "react"
- * import DatePicker from "@civictechmy/myds-react/date-picker";
+ * import DatePicker from "@mof-malaysia/myds-react/date-picker";
  *
  * export function DatePickerDemo() {
  *    const [date, setDate] = React.useState<Date>();
@@ -23,7 +23,7 @@ import { fn } from "@storybook/test";
  * ```
  */
 const meta = {
-  title: "@civictechmy/myds-react/DatePicker",
+  title: "@mof-malaysia/myds-react/DatePicker",
   component: DatePicker,
   tags: ["autodocs"],
   parameters: {

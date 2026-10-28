@@ -37,8 +37,8 @@
 #       - name: Install dependencies
 #         run: pnpm install --frozen-lockfile
 
-#       - name: Build @civictechmy/myds-react
-#         run: pnpm build --filter=@civictechmy/myds-react
+#       - name: Build @mof-malaysia/myds-react
+#         run: pnpm build --filter=@mof-malaysia/myds-react
 
 #       - name: Create PR to Publish stable package
 #         id: changeset

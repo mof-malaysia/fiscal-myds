@@ -54,7 +54,7 @@ async function buildIndex(): Promise<void> {
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
 
   const index: RegistryIndex = {
-    name: "@civictechmy/myds",
+    name: "@mof-malaysia/myds",
     version: packageJson.version || "2.0.0",
     components,
   };

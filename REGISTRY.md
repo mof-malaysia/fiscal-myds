@@ -92,17 +92,17 @@ For local testing, use:
 The components rely on MYDS CSS variables and styles:
 
 ```bash
-npm install @civictechmy/myds-style
+npm install @mof-malaysia/myds-style
 # or
-pnpm add @civictechmy/myds-style
+pnpm add @mof-malaysia/myds-style
 ```
 
 #### 4. Import MYDS styles in your global CSS
 
 ```css
-@import "@civictechmy/myds-style/color.css";
-@import "@civictechmy/myds-style/light.css";
-@import "@civictechmy/myds-style/dark.css";
+@import "@mof-malaysia/myds-style/color.css";
+@import "@mof-malaysia/myds-style/light.css";
+@import "@mof-malaysia/myds-style/dark.css";
 ```
 
 #### 5. Add components to your project
@@ -280,15 +280,15 @@ Create `components.json`:
 ### 4. Install MYDS styles
 
 ```bash
-pnpm add @civictechmy/myds-style
+pnpm add @mof-malaysia/myds-style
 ```
 
 ### 5. Import styles in `app/globals.css`
 
 ```css
-@import "@civictechmy/myds-style/color.css";
-@import "@civictechmy/myds-style/light.css";
-@import "@civictechmy/myds-style/dark.css";
+@import "@mof-malaysia/myds-style/color.css";
+@import "@mof-malaysia/myds-style/light.css";
+@import "@mof-malaysia/myds-style/dark.css";
 
 @import "tailwindcss";
 ```
@@ -328,7 +328,7 @@ The shadcn CLI automatically resolves and installs these dependencies.
 
 | Aspect | npm Package | Registry |
 |--------|-------------|----------|
-| **Installation** | `npm install @civictechmy/myds-react` | `npx shadcn add button` |
+| **Installation** | `npm install @mof-malaysia/myds-react` | `npx shadcn add button` |
 | **Location** | `node_modules/` | `components/ui/` in your project |
 | **Ownership** | External dependency | Full ownership in your codebase |
 | **Customization** | Fork or wrapper required | Direct modification |
@@ -363,7 +363,7 @@ If imports don't resolve:
 ### Missing styles
 
 If components don't look correct:
-1. Ensure `@civictechmy/myds-style` is installed
+1. Ensure `@mof-malaysia/myds-style` is installed
 2. Verify CSS imports in your global CSS file
 3. Check that Tailwind is configured properly
 

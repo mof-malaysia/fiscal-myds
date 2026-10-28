@@ -4,9 +4,9 @@ import path from "path";
 /**
  * Update Storybook story imports to use workspace package instead of local components
  * Changes:
- * - @/components/ui/[component] -> @civictechmy/myds-react/[component]
- * - @/lib/utils -> @civictechmy/myds-react/utils
- * - @/components/ui/icon -> @civictechmy/myds-react/icon
+ * - @/components/ui/[component] -> @mof-malaysia/myds-react/[component]
+ * - @/lib/utils -> @mof-malaysia/myds-react/utils
+ * - @/components/ui/icon -> @mof-malaysia/myds-react/icon
  */
 
 const STORIES_DIR = path.join(__dirname, "../apps/storybook/stories");
@@ -20,19 +20,19 @@ function updateStoryFile(filePath: string): boolean {
   let updated = content;
   let hasChanges = false;
 
-  // Update component imports from @/components/ui/[component] to @civictechmy/myds-react/[component]
+  // Update component imports from @/components/ui/[component] to @mof-malaysia/myds-react/[component]
   const componentImportRegex = /from\s+["']@\/components\/ui\/([^"']+)["']/g;
   if (componentImportRegex.test(content)) {
     updated = updated.replace(
       /from\s+["']@\/components\/ui\/([^"']+)["']/g,
-      'from "@civictechmy/myds-react/$1"'
+      'from "@mof-malaysia/myds-react/$1"'
     );
     hasChanges = true;
   }
 
-  // Update utils imports from @/lib/utils to @civictechmy/myds-react/utils
+  // Update utils imports from @/lib/utils to @mof-malaysia/myds-react/utils
   if (content.includes("@/lib/utils")) {
-    updated = updated.replace(/from\s+["']@\/lib\/utils["']/g, 'from "@civictechmy/myds-react/utils"');
+    updated = updated.replace(/from\s+["']@\/lib\/utils["']/g, 'from "@mof-malaysia/myds-react/utils"');
     hasChanges = true;
   }
 
@@ -41,7 +41,7 @@ function updateStoryFile(filePath: string): boolean {
   if (commentImportRegex.test(updated)) {
     updated = updated.replace(
       /from\s+["']@\/components\/ui\/([^"']+)["']/g,
-      'from "@civictechmy/myds-react/$1"'
+      'from "@mof-malaysia/myds-react/$1"'
     );
   }
 

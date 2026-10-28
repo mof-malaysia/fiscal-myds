@@ -5,7 +5,7 @@ description: Advanced configuration for stylesheet & TailwindCSS
 
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
-import { InfoIcon } from "@civictechmy/myds-react/icon";
+import { InfoIcon } from "@mof-malaysia/myds-react/icon";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 
 MYDS stylesheet is composed of various components to cater to a wide range of use cases.
@@ -37,7 +37,7 @@ MYDS supports 2 typefaces: `Poppins` & `Inter`. We recommend you to import via a
 We define each color in the MYDS Design Language as a CSS variable, which later becomes the building block to build themes!
 
 ```css
-@import "@civictechmy/myds-style/color.css";
+@import "@mof-malaysia/myds-style/color.css";
 ```
 
 ### Theme
@@ -47,10 +47,10 @@ So, you can omit importing the unwanted theme from your project!
 
 ```css
 /* Import Light theme */
-@import "@civictechmy/myds-style/light.css";
+@import "@mof-malaysia/myds-style/light.css";
 
 /* Import Dark theme */
-@import "@civictechmy/myds-style/dark.css";
+@import "@mof-malaysia/myds-style/dark.css";
 ```
 
 <Callout
@@ -78,12 +78,12 @@ Before we start, make sure you have installed Tailwind CSS in your project. Refe
 Once TailwindCSS is installed, you can import the MYDS presets to your own project! Also we need to make sure the TailwindCSS is 'aware' of the components from the library.
 
 ```ts title="tailwind.config.ts"
-import { preset } from "@civictechmy/myds-style";
+import { preset } from "@mof-malaysia/myds-style";
 
 export default {
   content: [
     "src/**/*.{js,jsx,ts,tsx}", // Your own project source files
-    "node_modules/@civictechmy/myds-react/dist/**/*.{js,jsx,ts,tsx}",
+    "node_modules/@mof-malaysia/myds-react/dist/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [preset],
 };

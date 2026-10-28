@@ -21,7 +21,7 @@ import {
   StarIcon,
   TrophyIcon,
   UserIcon,
-} from "@civictechmy/myds-react/icon";
+} from "@mof-malaysia/myds-react/icon";
 
 const notableMalaysians = [
   // Arts

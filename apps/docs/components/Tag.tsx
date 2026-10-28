@@ -1,4 +1,4 @@
-import { clx } from "@civictechmy/myds-react/utils";
+import { clx } from "@mof-malaysia/myds-react/utils";
 import { ReactNode } from "react";
 
 type Props = {
