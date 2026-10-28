@@ -5,7 +5,12 @@ import { format } from "date-fns";
 import { useControllableState } from "../../hooks";
 import { Button, button_cva } from "../core/button";
 import { Calendar } from "./calendar";
-import { Dialog, DialogBody, DialogContent, DialogTrigger } from "../core/dialog";
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogTrigger,
+} from "../core/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "../core/popover";
 import { VariantProps } from "class-variance-authority";
 
@@ -87,7 +92,7 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
               : placeholder}
           </DialogTrigger>
           <DialogBody className="w-fit min-w-fit" hideClose>
-            <DialogContent className="w-[304px] p-0">
+            <DialogContent className="w-fit p-0">
               <Calendar
                 disabled={
                   selectedDateRange?.to
@@ -132,7 +137,7 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
               : placeholder}
           </DialogTrigger>
           <DialogBody className="w-fit min-w-fit" hideClose>
-            <DialogContent className="w-[304px] p-0">
+            <DialogContent className="w-fit p-0">
               <Calendar
                 disabled={
                   selectedDateRange?.from
@@ -176,7 +181,7 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
               ? formatDate(selectedDateRange.from)
               : placeholder}
           </PopoverTrigger>
-          <PopoverContent className="w-[304px] p-0" align="start">
+          <PopoverContent className="w-fit p-0" align="start">
             <Calendar
               disabled={
                 selectedDateRange?.to
@@ -219,7 +224,7 @@ const DateRangePicker: FC<DateRangePickerProps> = ({
               ? formatDate(selectedDateRange.to)
               : placeholder}
           </PopoverTrigger>
-          <PopoverContent className="w-[304px] p-0" align="end">
+          <PopoverContent className="w-fit p-0" align="end">
             <Calendar
               disabled={
                 selectedDateRange?.from

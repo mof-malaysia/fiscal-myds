@@ -29,7 +29,7 @@ import {
 import { ChevronLeftIcon } from "../../icons/chevron-left";
 import { ChevronRightIcon } from "../../icons/chevron-right";
 import { clx } from "../../utils";
-import { Button, button_cva as buttonVariants } from "../core/button";
+import { Button } from "../core/button";
 
 type CalendarProps = DayPickerProps & {
   maxYear?: number;
@@ -37,6 +37,24 @@ type CalendarProps = DayPickerProps & {
   yearOrder?: "asc" | "desc";
   daterange?: "from" | "to";
 };
+
+/**
+ * The same day in another month or year, clamped to that month's length, so the 31st
+ * becomes 28 or 29 Feb instead of rolling over into March.
+ */
+const dateIn = (year: number, monthIndex: number, day: number) =>
+  new Date(
+    year,
+    monthIndex,
+    Math.min(day, new Date(year, monthIndex + 1, 0).getDate()),
+  );
+
+/** Month navigation: quiet Well squares sized to the calendar, not to the density's controls. */
+const calendar_nav_button = clx(
+  "bg-bg-washed text-txt-black-900 hover:bg-bg-washed-active inline-flex size-8 cursor-pointer items-center justify-center rounded-md",
+  "transition-colors duration-150 motion-reduce:transition-none focus-ring",
+  "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
+);
 
 const Calendar: FC<CalendarProps> = ({
   className,
@@ -78,8 +96,11 @@ const Calendar: FC<CalendarProps> = ({
       month={month}
       onMonthChange={setMonth}
       className={clx(
-        "w-full p-3 pb-4.5",
-        view === "day" ? "sm:w-fit" : "h-[342px]",
+        // The calendar owns its size: one cell is 40px comfortable, 32px compact, and
+        // the width is seven cells plus padding, so popovers can wrap it with w-fit
+        "[--cal-cell:2.5rem] in-data-[density=compact]:[--cal-cell:2rem]",
+        "w-[calc(var(--cal-cell)*7+1.5rem)] max-w-full p-3 pb-4.5",
+        view !== "day" && "h-[342px]",
         className,
       )}
       classNames={{
@@ -88,25 +109,19 @@ const Calendar: FC<CalendarProps> = ({
         month_caption: "",
         caption_label: "text-sm font-medium",
         nav: "absolute right-0 flex gap-2 items-center",
-        button_previous: buttonVariants({
-          variant: "default-outline",
-          iconOnly: true,
-          className: "size-8",
-        }),
-        button_next: buttonVariants({
-          variant: "default-outline",
-          iconOnly: true,
-          className: "size-8",
-        }),
+        button_previous: calendar_nav_button,
+        button_next: calendar_nav_button,
         chevron: "size-4",
         month_grid: "w-full border-collapse space-y-1",
         weekdays: "",
-        weekday: "text-txt-black-500 font-normal sm:w-10 text-body-xs py-2",
+        weekday:
+          "text-txt-black-700 text-label-compact w-(--cal-cell) py-2 font-normal",
         week: "w-full mt-1.5",
         day: "aspect-square p-0",
         day_button: clx(
-          buttonVariants({ variant: "default-ghost" }),
-          "aspect-square h-full w-full font-normal justify-center disabled:bg-transparent",
+          "text-txt-black-900 text-label-sm inline-flex size-(--cal-cell) cursor-pointer items-center justify-center rounded-md",
+          "hover:bg-bg-washed transition-colors duration-150 motion-reduce:transition-none focus-ring",
+          "disabled:text-txt-black-disabled disabled:cursor-not-allowed disabled:bg-transparent",
           "[.selected:not(.in-range)_&]:bg-bg-primary-600 [.selected:not(.in-range)_&]:text-txt-white",
           "[.today:not(.selected)_&]:text-txt-primary [.today.selected_&]:text-txt-white",
         ),
@@ -183,7 +198,9 @@ const Calendar: FC<CalendarProps> = ({
 
                       const i = row_index * 3 + col_index;
 
-                      date.setFullYear(year, i, selected_date.getDate());
+                      date.setTime(
+                        dateIn(year, i, selected_date.getDate()).getTime(),
+                      );
 
                       const isSelected =
                         month.getMonth() === i && month.getFullYear() === year;
@@ -268,10 +285,12 @@ const Calendar: FC<CalendarProps> = ({
                               props.daterange,
                             );
 
-                          date.setFullYear(
-                            displayYear,
-                            selected_date.getMonth(),
-                            selected_date.getDate(),
+                          date.setTime(
+                            dateIn(
+                              displayYear,
+                              selected_date.getMonth(),
+                              selected_date.getDate(),
+                            ).getTime(),
                           );
 
                           return (
@@ -291,8 +310,13 @@ const Calendar: FC<CalendarProps> = ({
                                 }
                                 onClick={(e) => {
                                   setYear(displayYear);
-                                  month.setFullYear(displayYear);
-                                  setMonth(month);
+                                  setMonth(
+                                    dateIn(
+                                      displayYear,
+                                      month.getMonth(),
+                                      month.getDate(),
+                                    ),
+                                  );
                                   setView("month");
 
                                   if (
@@ -339,7 +363,8 @@ const Calendar: FC<CalendarProps> = ({
         },
         NextMonthButton(props) {
           return view === "day" ? (
-            <Button
+            <button
+              type="button"
               {...props}
               onClick={() => {
                 const date = addMonths(month, 1);
@@ -349,7 +374,8 @@ const Calendar: FC<CalendarProps> = ({
               disabled={addMonths(month, 1).getFullYear() > maxYear}
             />
           ) : view === "month" ? (
-            <Button
+            <button
+              type="button"
               {...props}
               aria-label="Go to the Next Year"
               onClick={() => {
@@ -365,7 +391,8 @@ const Calendar: FC<CalendarProps> = ({
         },
         PreviousMonthButton(props) {
           return view === "day" ? (
-            <Button
+            <button
+              type="button"
               {...props}
               onClick={() => {
                 const date = subMonths(month, 1);
@@ -375,7 +402,8 @@ const Calendar: FC<CalendarProps> = ({
               disabled={subMonths(month, 1).getFullYear() < minYear}
             />
           ) : view === "month" ? (
-            <Button
+            <button
+              type="button"
               {...props}
               aria-label="Go to the Previous Year"
               onClick={() => {

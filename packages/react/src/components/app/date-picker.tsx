@@ -6,7 +6,12 @@ import { useControllableState } from "../../hooks";
 import { CalendarIcon } from "../../icons/calendar";
 import { Button, button_cva, ButtonIcon } from "../core/button";
 import { Calendar } from "./calendar";
-import { Dialog, DialogBody, DialogContent, DialogTrigger } from "../core/dialog";
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogTrigger,
+} from "../core/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "../core/popover";
 import { VariantProps } from "class-variance-authority";
 
@@ -101,7 +106,7 @@ const DatePicker: FC<DatePickerProps> = ({
           <ButtonIcon>{icon ?? <CalendarIcon />}</ButtonIcon>
           {date ? formatDate(date) : placeholder}
         </PopoverTrigger>
-        <PopoverContent className="w-[304px] p-0" align="start">
+        <PopoverContent className="w-fit p-0" align="start">
           <Calendar
             disabled={disabled}
             locale={_locale}
