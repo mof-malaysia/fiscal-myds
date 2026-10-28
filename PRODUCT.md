@@ -23,7 +23,7 @@ Success looks like: a citizen finishes a payment or application and feels sure i
 
 **Calm, capable, humane.**
 
-- **Calm:** quiet surfaces, nothing competing for attention, colour used only when it means something. The interface lowers the stakes of a stressful task.
+- **Calm:** quiet surfaces, nothing competing for attention, colour used only when it means something. The national MYDS colours stay bright and confident; calm comes from restraint, not from muting them. The interface lowers the stakes of a stressful task.
 - **Capable:** precise and well-made. Alignment, spacing and states are exact, so the system feels like a competent institution handling your money.
 - **Humane:** plain language in BM and English, readable sizes, reassurance at the moments that matter (submitting, paying, deleting). Never cold or bureaucratic.
 
@@ -31,7 +31,7 @@ The reference for craft is Linear: restraint, soft surfaces instead of outlines,
 
 ## Anti-references
 
-- **Generic Tailwind starter.** Stock zinc greys, `blue-600`, every element outlined with a 1px grey border. This is what Fiscal MYDS looks like today, and the main thing to move away from.
+- **Generic Tailwind starter.** Every element outlined with a 1px grey border, boxes inside boxes, the same weight on everything. Fiscal MYDS keeps the national MYDS palette; the generic look came from the outlines and flat hierarchy, not the colours.
 - **Old government portals.** Dense banners, crests and logos everywhere, gradients, tiny text, 2010-era layouts.
 - **Flashy fintech.** Neon accents, dark gradient heroes, glassmorphism, crypto-app energy.
 - **Stiff corporate banking.** Navy and gold, heavy serif headings, formal and distant.

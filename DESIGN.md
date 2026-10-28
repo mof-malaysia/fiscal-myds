@@ -2,45 +2,45 @@
 name: Fiscal MYDS
 description: The Ministry of Finance's design system for calm, capable, humane government services.
 colors:
-  steady-blue: "#1D5AB0"
-  steady-blue-deep: "#104A97"
-  steady-blue-wash: "#E7F1FF"
-  focus-blue: "#4D86D9"
-  paper: "#F9FAFC"
-  sheet: "#FCFDFF"
-  well: "#F1F4F7"
-  hover-mist: "#EAEDF2"
-  hairline: "#DEE2E6"
-  control-edge: "#878D95"
-  ink: "#161B22"
-  ink-secondary: "#484E55"
-  ink-tertiary: "#646971"
-  on-steady-blue: "#FAFCFE"
-  danger: "#B02A2D"
-  danger-wash: "#FEEDEC"
-  success: "#296A3B"
-  success-wash: "#E7F7E9"
-  warning: "#7D4F1B"
-  warning-wash: "#FEF2D9"
-  dark-steady-blue: "#6EA0E8"
-  dark-steady-blue-bright: "#85B3F7"
-  dark-steady-blue-wash: "#18273C"
-  dark-paper: "#0D1014"
-  dark-sheet: "#14171C"
-  dark-well: "#090B0F"
-  dark-hover-mist: "#1D2126"
-  dark-hairline: "#272C31"
-  dark-control-edge: "#6F757D"
-  dark-ink: "#ECEFF2"
-  dark-ink-secondary: "#B3B8BE"
-  dark-ink-tertiary: "#9399A0"
-  dark-on-steady-blue: "#0D1014"
-  dark-danger: "#F07F77"
-  dark-danger-wash: "#3B1C1A"
-  dark-success: "#6FC082"
-  dark-success-wash: "#15291A"
-  dark-warning: "#E3B667"
-  dark-warning-wash: "#32230E"
+  myds-blue: "#2563EB"
+  myds-blue-deep: "#1D4ED8"
+  myds-blue-wash: "#EFF6FF"
+  focus-blue: "#3A75F6"
+  paper: "#FAFAFA"
+  sheet: "#FFFFFF"
+  well: "#F4F4F5"
+  hover-mist: "#F4F4F5"
+  hairline: "#E4E4E7"
+  control-edge: "#898990"
+  ink: "#18181B"
+  ink-secondary: "#3F3F46"
+  ink-tertiary: "#6B6B74"
+  on-myds-blue: "#FFFFFF"
+  danger: "#B91C1C"
+  danger-fill: "#DC2626"
+  danger-wash: "#FEF2F2"
+  success: "#15803D"
+  success-wash: "#F0FDF4"
+  warning: "#A16207"
+  warning-wash: "#FEFCE8"
+  dark-myds-blue: "#6394FF"
+  dark-myds-blue-wash: "#172554"
+  dark-paper: "#161619"
+  dark-sheet: "#18181B"
+  dark-well: "#1D1D21"
+  dark-hover-mist: "#27272A"
+  dark-hairline: "#27272A"
+  dark-control-edge: "#6B6B74"
+  dark-ink: "#FFFFFF"
+  dark-ink-secondary: "#D4D4D8"
+  dark-ink-tertiary: "#A1A1AA"
+  dark-on-myds-blue: "#18181B"
+  dark-danger: "#F87171"
+  dark-danger-wash: "#450A0A"
+  dark-success: "#22C55E"
+  dark-success-wash: "#052E16"
+  dark-warning: "#EAB308"
+  dark-warning-wash: "#422006"
 typography:
   display:
     fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
@@ -100,18 +100,18 @@ spacing:
   "12": "48px"
 components:
   button-primary:
-    backgroundColor: "{colors.steady-blue}"
-    textColor: "{colors.on-steady-blue}"
+    backgroundColor: "{colors.myds-blue}"
+    textColor: "{colors.on-myds-blue}"
     typography: "{typography.label}"
     rounded: "{rounded.control}"
     padding: "0 20px"
     height: "44px"
   button-primary-hover:
-    backgroundColor: "{colors.steady-blue-deep}"
-    textColor: "{colors.on-steady-blue}"
+    backgroundColor: "{colors.myds-blue-deep}"
+    textColor: "{colors.on-myds-blue}"
   button-primary-compact:
-    backgroundColor: "{colors.steady-blue}"
-    textColor: "{colors.on-steady-blue}"
+    backgroundColor: "{colors.myds-blue}"
+    textColor: "{colors.on-myds-blue}"
     typography: "{typography.label-compact}"
     rounded: "{rounded.control}"
     padding: "0 12px"
@@ -137,8 +137,8 @@ components:
     backgroundColor: "{colors.well}"
     textColor: "{colors.ink}"
   button-danger:
-    backgroundColor: "{colors.danger}"
-    textColor: "{colors.on-steady-blue}"
+    backgroundColor: "{colors.danger-fill}"
+    textColor: "{colors.on-myds-blue}"
     typography: "{typography.label}"
     rounded: "{rounded.control}"
     padding: "0 20px"
@@ -158,8 +158,8 @@ components:
     padding: "0 10px"
     height: "32px"
   badge-info:
-    backgroundColor: "{colors.steady-blue-wash}"
-    textColor: "{colors.steady-blue}"
+    backgroundColor: "{colors.myds-blue-wash}"
+    textColor: "{colors.myds-blue}"
     typography: "{typography.label-compact}"
     rounded: "{rounded.pill}"
     padding: "2px 10px"
@@ -208,13 +208,13 @@ components:
 
 Fiscal MYDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.
 
-The system is quiet by construction. Surfaces are soft, tinted neutrals that sit almost still; structure comes from spacing and gentle tonal steps rather than lines; one calm blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.
+The system is quiet by construction. Surfaces are white and soft neutral greys; structure comes from spacing and gentle tonal steps rather than lines; one clear MYDS blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.
 
-It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (stock zinc and `blue-600`, every element outlined in grey), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).
+It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (every element outlined in grey, boxes inside boxes), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).
 
 **Key Characteristics:**
-- Tinted neutral surfaces with almost no borders; spacing and tone do the grouping.
-- One calm, deep blue used sparingly for action, selection and focus.
+- Neutral surfaces with almost no borders; spacing and tone do the grouping.
+- The national MYDS blue, used sparingly for action, selection and focus.
 - A single typeface (Inter) with a real hierarchy and tabular figures for money.
 - Two densities from the same tokens: comfortable for citizens, compact for officers.
 - Flat at rest; shadows only for things that genuinely float.
@@ -224,39 +224,38 @@ It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailw
 
 **Motion.** State changes only: hover, press, open, close, expand. 150–200ms with an ease-out curve (`cubic-bezier(0.16, 1, 0.3, 1)`). No entrance choreography, no bounce, and everything respects `prefers-reduced-motion`.
 
-## 2. Colors: The Still Water Palette
+## 2. Colors: The MYDS Palette
 
-A restrained palette of cool, faintly blue-tinted neutrals with one deep, calm blue; semantic colours appear as soft washes, never as loud fills.
+The national MYDS palette: a clear, confident blue on neutral zinc greys and white surfaces, with semantic colours as soft washes. The calm comes from how sparingly colour is used, not from muting it.
 
 ### Primary
-- **Steady Blue** (#1D5AB0): the primary action button, links, the selected tab or nav item, checked checkboxes and radios. A deeper, quieter evolution of national MYDS blue (`blue-600`), so the family resemblance stays while the glare goes. 6.4:1 on Paper.
-- **Steady Blue Deep** (#104A97): hover and pressed state of primary buttons and links.
-- **Steady Blue Wash** (#E7F1FF): selected rows, the active item in a menu, info badges and callouts. Steady Blue text on it reads at 5.9:1.
-- **Focus Blue** (#4D86D9): the focus ring only. 3.5:1 against Paper, so keyboard focus is always visible.
+- **MYDS Blue** (#2563EB): the primary action button, links, the selected tab or nav item, checked checkboxes and radios. The national MYDS blue, kept so Fiscal MYDS stays recognisably part of the family. White text on it reads at 5.2:1; as text on Paper, 5.0:1.
+- **MYDS Blue Deep** (#1D4ED8): hover and pressed state of primary buttons and links.
+- **MYDS Blue Wash** (#EFF6FF): selected rows, the active item in a menu, info badges and callouts. MYDS Blue text on it reads at 4.8:1.
+- **Focus Blue** (#3A75F6): the focus ring only, drawn solid (never translucent) so it measures 4.0:1 against Paper.
 
 ### Neutral
-- **Paper** (#F9FAFC): the page canvas. Never pure white.
-- **Sheet** (#FCFDFF): raised content that needs to separate from Paper: dialogs, popovers, input fields, the main content panel in a layout.
-- **Well** (#F1F4F7): recessed or grouped areas (secondary buttons, filter bars, the sidebar, code and summary blocks) and the row hover in tables.
-- **Hover Mist** (#EAEDF2): hover state on Well-coloured controls.
-- **Hairline** (#DEE2E6): the only decorative line colour. Used for table row dividers and the single rule under a top bar. Nowhere else by default.
-- **Control Edge** (#878D95): the stroke on inputs, selects, checkboxes and radios, the only places a border is required to identify a control. 3.3:1 against Sheet (WCAG 1.4.11).
-- **Ink** (#161B22): primary text and headings. 16.6:1 on Paper.
-- **Ink Secondary** (#484E55): supporting text, hints, table headers, inactive tabs, breadcrumb parents. 8.1:1 on Paper: secondary text is still comfortably readable for older eyes.
-- **Ink Tertiary** (#646971): placeholders and disabled-adjacent meta text only. 5.4:1 on Sheet. Never for anything the user must read to complete a task.
+- **Paper** (#FAFAFA): the page canvas.
+- **Sheet** (#FFFFFF): raised content that needs to separate from Paper: dialogs, popovers, input fields, the main content panel in a layout.
+- **Well** (#F4F4F5): recessed or grouped areas (secondary buttons, filter bars, the sidebar, summary blocks) and the row hover in tables.
+- **Hairline** (#E4E4E7): the only decorative line colour. Used for table row dividers and the single rule under a top bar. Nowhere else by default.
+- **Control Edge** (#898990, gray-500 at 80%): the stroke on inputs, selects, checkboxes, radios and switch tracks, the only places a border is required to identify a control. 3.5:1 against Sheet (WCAG 1.4.11).
+- **Ink** (#18181B): primary text and headings. 17:1 on Paper.
+- **Ink Secondary** (#3F3F46): supporting text, hints, table headers, inactive tabs, breadcrumb parents. 10:1 on Paper.
+- **Ink Tertiary** (#6B6B74): placeholders and meta text. 5.3:1 on Sheet. Never for anything the user must read to complete a task.
 
 ### Semantic
-- **Danger** (#B02A2D) on **Danger Wash** (#FEEDEC): errors, destructive actions, overdue amounts.
-- **Success** (#296A3B) on **Success Wash** (#E7F7E9): completed payments, approved status.
-- **Warning** (#7D4F1B) on **Warning Wash** (#FEF2D9): upcoming deadlines, incomplete information.
+- **Danger** (#B91C1C text) on **Danger Wash** (#FEF2F2), with **Danger Fill** (#DC2626) for destructive buttons: errors, destructive actions, overdue amounts.
+- **Success** (#15803D) on **Success Wash** (#F0FDF4): completed payments, approved status.
+- **Warning** (#A16207) on **Warning Wash** (#FEFCE8): upcoming deadlines, incomplete information.
 
-Every semantic pair reads at 5.7:1 or better. Status is always carried by text or an icon as well as colour.
+Every semantic pair reads at 4.75:1 or better. Status is always carried by text or an icon as well as colour.
 
 ### Dark theme
-Dark mode is a first-class theme for officers in long sessions, not an inversion. It uses the `dark-` tokens: Dark Paper (#0D1014) canvas, Dark Sheet (#14171C) for raised content, Dark Ink (#ECEFF2) text, Dark Ink Secondary (#B3B8BE) at 9.6:1, and Dark Steady Blue (#6EA0E8) as the accent with Dark Paper text on primary buttons. The same rules apply: tone, not lines.
+Dark mode is a first-class theme for officers in long sessions, not an inversion. It uses the `dark-` tokens: Dark Paper (#161619) canvas, Dark Sheet (#18181B) for raised content, Dark Ink (#FFFFFF) text, Dark Ink Secondary (#D4D4D8) at 12:1, and Dark MYDS Blue (#6394FF) as the accent with Dark Sheet text on primary buttons (6.1:1). The same rules apply: tone, not lines.
 
 ### Named Rules
-**The One Blue Rule.** Steady Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.
+**The One Blue Rule.** MYDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.
 
 **The Dark-Enough Rule.** Text the user needs to read is Ink or Ink Secondary, never lighter. Light-grey hint text is forbidden.
 
@@ -307,11 +306,11 @@ In the dark theme, floating layers use Dark Sheet plus a 1px Dark Hairline edge 
 ### Buttons
 Calm and decisive: a clear primary, quiet everything else.
 - **Shape:** gently rounded corners (8px).
-- **Primary:** Steady Blue fill, On Steady Blue text, Label type, no border, no shadow. Comfortable 44px tall with 20px horizontal padding; compact 32px with 12px.
-- **Hover / Focus:** hover deepens to Steady Blue Deep over 150ms. Focus shows a 2px Focus Blue ring offset 2px from the button. Pressed scales nothing; it simply holds the deep colour.
+- **Primary:** MYDS Blue fill, On MYDS Blue text, Label type, no border, no shadow. Comfortable 44px tall with 20px horizontal padding; compact 32px with 12px.
+- **Hover / Focus:** hover deepens to MYDS Blue Deep over 150ms. Focus shows a 2px Focus Blue ring offset 2px from the button. Pressed scales nothing; it simply holds the deep colour.
 - **Secondary:** Well fill with Ink text and no border; hover moves to Hover Mist. This replaces every outlined button.
 - **Ghost:** transparent with Ink Secondary text; hover shows a Well fill. For tertiary actions, toolbars and icon buttons (icon buttons are never boxed).
-- **Danger:** Danger fill with On Steady Blue text, used only for the final confirmation of a destructive action.
+- **Danger:** Danger Fill (#DC2626) with white text, used only for the final confirmation of a destructive action.
 
 ### Badges and Tags
 - **Style:** a wash background with matching coloured text, pill-shaped (9999px), Label Compact type, no border.
@@ -326,20 +325,20 @@ Calm and decisive: a clear primary, quiet everything else.
 
 ### Inputs / Fields
 - **Style:** Sheet background, 1px Control Edge stroke, 8px radius; 44px tall comfortable, 32px compact. Labels sit above in Label type and Ink; hints sit below in Ink Secondary.
-- **Focus:** the stroke turns Steady Blue and a 2px Focus Blue ring appears outside it.
+- **Focus:** the stroke turns MYDS Blue and a 2px Focus Blue ring appears outside it.
 - **Error:** stroke and message turn Danger; the message always says what to do, not just what's wrong.
 - **Disabled:** Well background, Ink Tertiary text, stroke removed.
-- **Checkbox and radio:** 1.5px Control Edge stroke; checked fills Steady Blue with an On Steady Blue mark.
+- **Checkbox and radio:** 1.5px Control Edge stroke; checked fills MYDS Blue with an On MYDS Blue mark.
 
 ### Navigation
-- **Top bar:** Paper background with a single Hairline rule beneath. Items in Label type and Ink Secondary; hover moves to Ink; the current item is Ink with a 2px Steady Blue underline.
+- **Top bar:** Paper background with a single Hairline rule beneath. Items in Label type and Ink Secondary; hover moves to Ink; the current item is Ink with a 2px MYDS Blue underline.
 - **Tabs:** one style across the system: the same underline treatment as the top bar. The three tab variants collapse into this one.
 - **Mobile:** the menu opens as a full-width Sheet panel with comfortable-density rows (44px), no dividers between items.
 
 ### Data Table (signature component)
 The officer's home screen, built to be looked at all day.
 - **No outer border or box.** Header row is Paper with Label Compact text in Ink Secondary.
-- **Rows:** 48px tall in comfortable density and 40px in compact (52px in comfortable when a row holds actions), content text, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with Steady Blue Wash.
+- **Rows:** 48px tall in comfortable density and 40px in compact (52px in comfortable when a row holds actions), content text, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with MYDS Blue Wash.
 - **Amounts:** Amount type, right-aligned.
 - **Status:** wash badges, never outlined.
 - **Row actions:** ghost buttons or a single overflow menu, never a column of outlined "Edit" buttons.
@@ -353,8 +352,8 @@ The officer's home screen, built to be looked at all day.
 
 ### Do:
 - **Do** separate groups with spacing (16–24px comfortable, 8–12px compact) and tone (Paper, Sheet, Well) before reaching for any line.
-- **Do** keep Steady Blue (#1D5AB0) to the primary action, current selection and links: no more than 10% of a screen.
-- **Do** use Ink (#161B22) or Ink Secondary (#484E55) for any text a user must read; Ink Secondary still measures 8.1:1.
+- **Do** keep MYDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.
+- **Do** use Ink (#18181B) or Ink Secondary (#3F3F46) for any text a user must read; Ink Secondary measures 10:1.
 - **Do** ship every component in both densities: comfortable (16px text, 44px controls) for citizens and compact (14px text, 32px controls) for officers.
 - **Do** set every amount in tabular figures and right-align it in columns.
 - **Do** show status with a wash badge plus text or an icon; colour is never the only signal.
@@ -362,7 +361,7 @@ The officer's home screen, built to be looked at all day.
 - **Do** confirm high-stakes moments (payment, submission, deletion) with plain language and a visible result.
 
 ### Don't:
-- **Don't** look like a **generic Tailwind starter**: no stock zinc greys, no `blue-600`, and no 1px grey outline on every button, tag, card and row.
+- **Don't** look like a **generic Tailwind starter**: no 1px grey outline on every button, tag, card and row, and no boxes inside boxes.
 - **Don't** look like an **old government portal**: no crests and banners on every screen, no gradients, no tiny text, no 2010-era layouts.
 - **Don't** look like **flashy fintech**: no neon accents, no dark gradient heroes, no glassmorphism.
 - **Don't** look like **stiff corporate banking**: no navy and gold, no heavy serif headings, no formal distance.
