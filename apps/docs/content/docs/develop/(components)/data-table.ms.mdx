@@ -73,6 +73,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -99,7 +100,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -203,6 +204,7 @@ Komponen `DataTable` terutamanya ditakrifkan oleh 2 prop penting: `data` dan `co
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -229,7 +231,7 @@ Komponen `DataTable` terutamanya ditakrifkan oleh 2 prop penting: `data` dan `co
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -258,7 +260,7 @@ Komponen `DataTable` terutamanya ditakrifkan oleh 2 prop penting: `data` dan `co
 
 Anda boleh mengembangkan saiz sel dalam lajur dengan menetapkan sifat `expandable` kepada `true` dalam objek `meta` definisi lajur.
 
-Untuk menunjukkan ini, kami telah menetapkan sifat `expandable` kepada `true` untuk lajur `Nama` dan `Jawatan`. Anda boleh mengklik ikon pengembangan untuk melihat kandungan penuh sel.
+Untuk menunjukkan ini, kami telah menetapkan sifat `expandable` kepada `true` untuk lajur `Nama` dan `Jawatan`. Tuding pada tajuk lajur untuk memaparkan butang togol, kemudian klik butang tersebut untuk melihat kandungan penuh sel.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
@@ -317,6 +319,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `expandable` kepada `true` un
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -343,7 +346,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `expandable` kepada `true` un
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -418,6 +421,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `tooltip` kepada lajur `Umur`
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -444,7 +448,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `tooltip` kepada lajur `Umur`
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -460,7 +464,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `tooltip` kepada lajur `Umur`
 
 Anda boleh mengisih data dalam jadual dengan menetapkan sifat `sortable` kepada `true` dalam objek `meta` definisi lajur.
 
-Untuk menunjukkan ini, kami telah menetapkan sifat `sortable` kepada lajur `Jawatan`. Klik ikon pengisihan untuk menukar pengisihan yang tersedia.
+Untuk menunjukkan ini, kami telah menetapkan sifat `sortable` kepada lajur `Jawatan`. Klik label tajuk lajur untuk mengisih; klik sekali lagi untuk menterbalikkan susunan. Anak panah di sebelah label menunjukkan arah isihan, dan tajuk lajur membawa `aria-sort` untuk pembaca skrin.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
  <Tab value="Pratonton">
@@ -519,6 +523,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `sortable` kepada lajur `Jawa
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -545,7 +550,7 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `sortable` kepada lajur `Jawa
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -554,6 +559,30 @@ Untuk menunjukkan ini, kami telah menetapkan sifat `sortable` kepada lajur `Jawa
     />
     ```
 
+  </Tab>
+</Tabs>
+
+### Amaun
+
+Tetapkan `numeric` kepada `true` dalam objek `meta` bagi lajur amaun atau bilangan. Tajuk dan sel lajur tersebut dijajarkan ke kanan dengan angka tabular, supaya digit sejajar dan mudah dibandingkan. Dalam contoh di halaman ini, lajur `Umur` ialah lajur numerik.
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton">
+    <div className="not-prose flex flex-col gap-3 items-center">
+    <DataTable data={DataTableData} columns={DataTableColumns} />
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    {
+      accessorKey: "age",
+      header: "Umur",
+      id: "age",
+      meta: {
+        numeric: true,
+      },
+    }
+    ```
   </Tab>
 </Tabs>
 
@@ -619,6 +648,7 @@ Anda boleh mengaktifkan prop `loading` untuk mencetuskan keadaan pemuatan rangka
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -645,7 +675,7 @@ Anda boleh mengaktifkan prop `loading` untuk mencetuskan keadaan pemuatan rangka
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -687,6 +717,7 @@ Menghantar array kosong kepada prop `data` akan memaparkan keadaan kosong untuk 
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -713,7 +744,7 @@ Menghantar array kosong kepada prop `data` akan memaparkan keadaan kosong untuk 
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -731,7 +762,10 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
 
 - `mode`: Jenis pemilihan. Boleh sama ada `checkbox` atau `radio`.
 - `onSelectionChange`: Fungsi panggilan balik yang dicetuskan apabila pemilihan berubah.
-- `rowId`: Pengenal unik untuk setiap baris dalam jadual.
+- `id_by`: Kunci dalam objek setiap baris yang mengenal pasti baris tersebut secara unik. `onSelectionChange` melaporkan baris yang dipilih menggunakan nilai ini.
+- `enableRowSelection` (pilihan): `false`, atau fungsi yang menerima baris, untuk menghalang sesetengah baris daripada dipilih.
+
+Baris yang dipilih diisi dengan Blue Wash, dan setiap baris diserlahkan dengan Well apabila dituding.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
@@ -798,6 +832,7 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -824,7 +859,7 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -836,7 +871,7 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
           onSelectionChange: (id: string) => {
             console.log("Baris Terpilih: ", id);
           },
-          rowId: "id",
+          id_by: "id",
         }
       }
     />
@@ -890,6 +925,7 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -916,7 +952,7 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -928,7 +964,7 @@ Aktifkan mod pemilihan dengan menghantar prop `selection` kepada komponen `DataT
           onSelectionChange: (id: string) => {
             console.log("Baris Terpilih: ", id);
           },
-          rowId: "id",
+          id_by: "id",
         }
       }
     />
@@ -1006,6 +1042,7 @@ Berikut adalah contoh jadual dengan lajur berkumpulan:
 
               meta: {
                 expandable: false,
+                numeric: true,
               },
             },
             {
@@ -1037,7 +1074,7 @@ Berikut adalah contoh jadual dengan lajur berkumpulan:
               id: "action",
               header: "Tindakan",
               cell: () => {
-                return <Button variant="default-outline">Edit</Button>;
+                return <Button variant="default-ghost">Edit</Button>;
               },
             },
           ],
@@ -1120,6 +1157,7 @@ Untuk menunjukkan tajuk melekat, mari tetapkan ketinggian tetap untuk jadual. Ha
 
               meta: {
                 expandable: false,
+                numeric: true,
               },
             },
             {
@@ -1151,7 +1189,7 @@ Untuk menunjukkan tajuk melekat, mari tetapkan ketinggian tetap untuk jadual. Ha
               id: "action",
               header: "Tindakan",
               cell: () => {
-                return <Button variant="default-outline">Edit</Button>;
+                return <Button variant="default-ghost">Edit</Button>;
               },
             },
           ],
@@ -1320,6 +1358,7 @@ Untuk menunjukkan tajuk melekat, mari tetapkan ketinggian tetap untuk jadual. Ha
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -1346,7 +1385,7 @@ Untuk menunjukkan tajuk melekat, mari tetapkan ketinggian tetap untuk jadual. Ha
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -1364,6 +1403,8 @@ Anda boleh menyangkut lajur ke kiri atau kanan jadual dengan menetapkan sifat `p
 
 - `left`: Array ID lajur untuk disangkut ke kiri.
 - `right`: Array ID lajur untuk disangkut ke kanan.
+
+Satu Hairline menandakan sempadan antara lajur yang disangkut dengan lajur yang boleh ditatal.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
  <Tab value="Pratonton">
@@ -1422,6 +1463,7 @@ Anda boleh menyangkut lajur ke kiri atau kanan jadual dengan menetapkan sifat `p
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -1448,7 +1490,7 @@ Anda boleh menyangkut lajur ke kiri atau kanan jadual dengan menetapkan sifat `p
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -1522,6 +1564,7 @@ Anda boleh menambah kaki per lajur dengan menetapkan `footer` dalam objek **Colu
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Umur pekerja",
           },
         },
@@ -1548,7 +1591,7 @@ Anda boleh menambah kaki per lajur dengan menetapkan `footer` dalam objek **Colu
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Tindakan",
           id: "action",
@@ -1558,6 +1601,51 @@ Anda boleh menambah kaki per lajur dengan menetapkan `footer` dalam objek **Colu
     />
     ```
 
+  </Tab>
+</Tabs>
+
+### Label
+
+Kawalan jadual (kotak semak pilihan, togol lebar lajur dan togol baris bersarang) mempunyai nama boleh akses dalam bahasa Inggeris secara lalai. Hantar prop `labels` untuk menterjemahkannya, contohnya ke dalam Bahasa Melayu. Label yang tidak dinyatakan akan kekal dengan nilai lalai bahasa Inggeris.
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton">
+    <div className="not-prose flex flex-col gap-3 items-center">
+    <DataTable
+      data={DataTableData}
+      columns={DataTableColumns}
+      selection={DataTableCheckbox}
+      labels={{
+        selection: "Pilihan",
+        selectAll: "Pilih semua baris",
+        selectRow: "Pilih baris",
+        clearSelection: "Kosongkan pilihan",
+        widenColumn: "Tunjuk teks penuh",
+        narrowColumn: "Pendekkan teks",
+        expandRow: "Tunjuk baris bersarang",
+        collapseRow: "Sembunyikan baris bersarang",
+      }}
+    />
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    <DataTable
+      data={data}
+      columns={columns}
+      selection={{ mode: "checkbox", id_by: "id" }}
+      labels={{
+        selection: "Pilihan",
+        selectAll: "Pilih semua baris",
+        selectRow: "Pilih baris",
+        clearSelection: "Kosongkan pilihan",
+        widenColumn: "Tunjuk teks penuh",
+        narrowColumn: "Pendekkan teks",
+        expandRow: "Tunjuk baris bersarang",
+        collapseRow: "Sembunyikan baris bersarang",
+      }}
+    />
+    ```
   </Tab>
 </Tabs>
 
@@ -1584,6 +1672,23 @@ Anda boleh menambah kaki per lajur dengan menetapkan `footer` dalam objek **Colu
       description:
         "Menentukan lajur yang hendak disangkut. ID lajur harus dihantar sebagai array",
       type: "{ left: Array<string>, right: Array<string> }",
+    },
+    selection: {
+      description: "Mengaktifkan pemilihan baris. `id_by` ialah kunci yang mengenal pasti setiap baris",
+      type: '{ mode: "checkbox" | "radio", id_by: keyof T, onSelectionChange?: (ids: string[]) => void, enableRowSelection?: boolean | (row) => boolean }',
+    },
+    loading: {
+      description: "Memaparkan baris skeleton sebagai ganti data",
+      type: "boolean",
+      default: "false",
+    },
+    emptyState: {
+      description: "Kandungan yang dipaparkan apabila `data` kosong",
+      type: "ReactNode",
+    },
+    labels: {
+      description: "Nama boleh akses bagi kawalan jadual. Label yang tidak dinyatakan kekal dengan nilai lalai bahasa Inggeris",
+      type: "Partial<{ selection, selectAll, selectRow, clearSelection, widenColumn, narrowColumn, expandRow, collapseRow }>",
     },
   }}
 />
@@ -1621,12 +1726,20 @@ Anda boleh menambah kaki per lajur dengan menetapkan `footer` dalam objek **Colu
       type: "(context) => ReactNode",
     },
     "meta.expandable": {
-      description: "Lajur boleh dikembangkan",
+      description: "Lajur dipendekkan yang boleh dipaparkan sepenuhnya melalui togol yang muncul apabila tajuk dituding",
       type: "boolean",
     },
     "meta.sortable": {
-      description: "Lajur boleh diisih",
+      description: "Lajur boleh diisih. Label tajuk menjadi butang yang menukar isihan, dengan `aria-sort` pada tajuk",
       type: "boolean",
+    },
+    "meta.numeric": {
+      description: "Menjajarkan lajur ke kanan dengan angka tabular, untuk amaun dan bilangan",
+      type: "boolean",
+    },
+    "meta.className": {
+      description: "Kelas tambahan untuk tajuk dan sel lajur",
+      type: "{ header?: string, cell?: string }",
     },
     "meta.tooltip": {
       description: "Tooltip untuk tajuk lajur",

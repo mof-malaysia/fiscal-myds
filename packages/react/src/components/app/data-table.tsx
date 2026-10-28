@@ -34,22 +34,37 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useId,
   useMemo,
   useState,
 } from "react";
 import { ColumnCollapseIcon } from "../../icons/column-collapse";
 import { ColumnExpandIcon } from "../../icons/column-expand";
 import { clx, pick } from "../../utils";
-import { Button, ButtonIcon } from "../core/button";
 import {
+  ArrowDownIcon,
+  ArrowUpIcon,
   ChevronRightIcon,
-  FilterAscIcon,
-  FilterDescIcon,
-  FilterIcon,
-  ReloadIcon,
+  CrossIcon,
 } from "../../icons";
 import { Checkbox } from "../core/checkbox";
 import { cva } from "class-variance-authority";
+
+/**
+ * DataTable is the officer's home screen, built to be looked at all day (DESIGN.md,
+ * Data Table). It renders `Table` from TanStack Table column definitions and adds:
+ *
+ * - Sorting (`meta.sortable`): the header label is the button; an arrow shows the
+ *   direction, and the header carries `aria-sort`.
+ * - Row hover in Well and selection (`selection.mode`) in the Blue Wash.
+ * - Amounts (`meta.numeric`): right-aligned in tabular figures.
+ * - Truncated columns (`meta.expandable`) that widen on demand, header help
+ *   (`meta.tooltip`), nested rows (`nest` with `Cell.Expand`), pinned columns, a
+ *   footer, and loading and empty states.
+ *
+ * Accessible names default to English; pass `labels` for Bahasa Melayu.
+ */
+
 /**
  * Way to define the ColumnMeta type in @tanstack/react-table
  * @see https://tanstack.com/table/v8/docs/api/core/column-def#meta
@@ -63,9 +78,41 @@ declare module "@tanstack/react-table" {
     };
     sortable?: boolean;
     expandable?: boolean;
+    /** Right-aligns the column in tabular figures, for amounts and counts. */
+    numeric?: boolean;
     tooltip?: ReactNode;
   }
 }
+
+interface DataTableLabels {
+  /** Name of the selection column's header. */
+  selection: string;
+  /** The header checkbox. */
+  selectAll: string;
+  /** Each row's checkbox or radio. */
+  selectRow: string;
+  /** The header button that clears a radio selection. */
+  clearSelection: string;
+  /** The header button that shows a truncated column in full. */
+  widenColumn: string;
+  /** The header button that truncates a widened column again. */
+  narrowColumn: string;
+  /** The row button that shows nested rows. */
+  expandRow: string;
+  /** The row button that hides nested rows. */
+  collapseRow: string;
+}
+
+const DEFAULT_LABELS: DataTableLabels = {
+  selection: "Selection",
+  selectAll: "Select all rows",
+  selectRow: "Select row",
+  clearSelection: "Clear selection",
+  widenColumn: "Show full text",
+  narrowColumn: "Truncate text",
+  expandRow: "Show nested rows",
+  collapseRow: "Hide nested rows",
+};
 
 interface DataTableProps<TData extends Record<string, any>> {
   className?: string;
@@ -87,54 +134,59 @@ interface DataTableProps<TData extends Record<string, any>> {
     id_by: keyof TData;
   };
   emptyState?: ReactNode;
+  /** Accessible names for the table's controls. */
+  labels?: Partial<DataTableLabels>;
 }
 
-const pin_cva = cva(["bg-bg-white"], {
+// Pinned cells need an opaque fill that follows the row's hover and selection
+const pin_cva = cva("", {
   variants: {
+    // Each pinned cell paints 1px past its edge in its own fill, covering the sub-pixel
+    // seam left when the browser rounds column widths away from the sticky offsets
     pin_direction: {
-      left: "sticky z-10",
-      right: "sticky z-10 pl-2",
+      left: "sticky z-10 before:absolute before:inset-y-0 before:-left-px before:w-px before:bg-inherit before:content-['']",
+      right:
+        "sticky z-10 after:absolute after:inset-y-0 after:-right-px after:w-px after:bg-inherit after:content-['']",
       false: "",
     },
     pin_last: {
       true: "",
       false: "",
     },
+    body: {
+      true: "",
+      false: "",
+    },
   },
   compoundVariants: [
     {
-      pin_direction: ["left"],
-      pin_last: true,
+      pin_direction: ["left", "right"],
+      body: true,
       className:
-        "before:right-0 before:border-none before:outline-none before:bottom-0 before:pointer-events-none before:contents-[''] before:absolute top-0 before:w-1 before:bg-transparent before:h-full before:py-0 before:shadow-[inset_3px_0_8px_-8px]",
+        "bg-bg-white group-hover/row:bg-bg-washed group-data-[selected]/row:bg-bg-primary-50",
+    },
+    // A Hairline marks where pinned columns meet the scrolling ones
+    {
+      pin_direction: "left",
+      pin_last: true,
+      className: "border-r border-r-otl-gray-200",
     },
     {
-      pin_direction: ["right"],
+      pin_direction: "right",
       pin_last: true,
-      className:
-        "before:left-0 before:border-none before:outline-none before:bottom-0 before:pointer-events-none before:contents-[''] before:absolute top-0 before:w-1 before:bg-transparent before:h-full before:py-0 before:shadow-[inset_-3px_0_8px_-8px]",
+      className: "border-l border-l-otl-gray-200",
     },
   ],
 });
-
-const th_cva = cva(
-  ["group transition data-[expanded=true]:border-otl-primary-300"],
-  {
-    variants: {
-      expandable: {
-        true: "hover:border-otl-primary-300",
-      },
-      sortable: {
-        true: "hover:border-otl-primary-300",
-      },
-    },
-  },
-);
 
 const cell_cva = cva([
   "md:whitespace-nowrap whitespace-normal break-words",
   "data-[expanded=false]:truncate data-[expanded=false]:max-w-[230px]",
 ]);
+
+/** Quiet icon button for header and row controls: unboxed, Well on hover. */
+const icon_button =
+  "text-txt-black-700 hover:text-txt-black-900 hover:bg-bg-washed-active inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors duration-150 motion-reduce:transition-none focus-ring [&>svg]:size-4";
 
 interface DataTableContextProps<TData extends Record<string, any>> {
   table: TTable<TData> | null;
@@ -142,12 +194,17 @@ interface DataTableContextProps<TData extends Record<string, any>> {
   toggleColumnWidth: (columnId: string) => void;
   loading?: DataTableProps<TData>["loading"];
   emptyState?: DataTableProps<TData>["emptyState"];
+  labels: DataTableLabels;
+  /** Names the radio group so arrow keys move between rows. */
+  radioName: string;
 }
 
 const DataTableContext = createContext<DataTableContextProps<any>>({
   table: null,
   expandableColumns: {},
   toggleColumnWidth: () => {},
+  labels: DEFAULT_LABELS,
+  radioName: "",
 });
 
 interface DataTableProviderProps<TData extends Record<string, any>>
@@ -157,9 +214,12 @@ interface DataTableProviderProps<TData extends Record<string, any>>
 const DataTableProvider = <TData extends Record<string, any>>({
   children,
   className,
+  labels: labelsProp,
   ...props
 }: DataTableProviderProps<TData>) => {
-  const { columns, data, selection, pin, nest } = props;
+  const { columns, data, selection, pin, nest, loading } = props;
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
+  const radioName = useId();
   const [expandableColumns, setExpandableColumns] = useState(
     pick(columns, "id", () => false),
   );
@@ -220,10 +280,18 @@ const DataTableProvider = <TData extends Record<string, any>>({
 
   return (
     <DataTableContext.Provider
-      value={{ table, expandableColumns, toggleColumnWidth, ...props }}
+      value={{
+        table,
+        expandableColumns,
+        toggleColumnWidth,
+        labels,
+        radioName,
+        ...props,
+      }}
     >
       <Table
         className={className}
+        aria-busy={loading || undefined}
         style={{
           width: props.pin ? table.getTotalSize() : undefined,
         }}
@@ -234,8 +302,13 @@ const DataTableProvider = <TData extends Record<string, any>>({
   );
 };
 
+const ariaSort = {
+  asc: "ascending",
+  desc: "descending",
+} as const;
+
 const DataTableHeader: FunctionComponent = () => {
-  const { table, expandableColumns, toggleColumnWidth } =
+  const { table, expandableColumns, toggleColumnWidth, labels } =
     useContext(DataTableContext);
 
   if (!table) return null;
@@ -246,80 +319,117 @@ const DataTableHeader: FunctionComponent = () => {
         return (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
-              const { tooltip, expandable, sortable } =
+              const { tooltip, expandable, sortable, numeric } =
                 header.column.columnDef.meta || {};
+              const sorted = header.column.getIsSorted();
+              const isSelection =
+                header.column.id === "_checkbox" ||
+                header.column.id === "_radio";
+              const label = flexRender(
+                header.column.columnDef.header,
+                header.getContext(),
+              );
+              const SortIcon = sorted === "desc" ? ArrowDownIcon : ArrowUpIcon;
+              const pinning = pin_cva({
+                pin_direction: header.column.getIsPinned(),
+                pin_last: header.column.getIsLastColumn(
+                  header.column.getIsPinned(),
+                ),
+                body: false,
+              });
+
+              // A grouped header's filler above an ungrouped column: a cell, not an empty header
+              if (header.isPlaceholder)
+                return (
+                  <td
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    className={clx("bg-bg-gray-50", pinning)}
+                    style={{ ...getCommonPinningStyles(header.column) }}
+                  />
+                );
+
               return (
                 <TableHead
                   id={header.id}
                   key={header.id}
                   colSpan={header.colSpan}
+                  numeric={numeric}
+                  aria-sort={
+                    sortable ? (sorted ? ariaSort[sorted] : "none") : undefined
+                  }
                   data-expanded={expandableColumns[header.id]}
                   data-pinned={header.column.getIsPinned()}
                   className={clx(
-                    th_cva({ expandable, sortable }),
-                    pin_cva({
-                      pin_direction: header.column.getIsPinned(),
-                      pin_last: header.column.getIsLastColumn(
-                        header.column.getIsPinned(),
-                      ),
-                    }),
+                    "group/head",
+                    pinning,
                     header.column.columnDef.meta?.className?.header,
                   )}
                   style={{ ...getCommonPinningStyles(header.column) }}
                 >
-                  <span className="sr-only">
-                    {(header.column.columnDef.id == "_checkbox" ||
-                      header.column.columnDef.id == "_radio") &&
-                      "selection-column"}
-                  </span>
-                  {header.isPlaceholder ? null : (
-                    <div className="flex w-full items-center justify-between gap-2 whitespace-nowrap">
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-
-                      <div className="flex justify-end gap-1">
-                        {/* Expand */}
-                        {expandable && (
-                          <Button
-                            size="small"
-                            variant={"primary-outline"}
-                            onClick={() => toggleColumnWidth(header.id)}
-                            className="invisible hidden rounded-md px-1 py-0 group-hover:visible data-[expanded=true]:visible lg:block"
-                            data-expanded={expandableColumns[header.id]}
-                          >
-                            {expandableColumns[header.id] ? (
-                              <ColumnCollapseIcon className="text-txt-primary size-4" />
-                            ) : (
-                              <ColumnExpandIcon className="text-txt-primary size-4" />
-                            )}
-                          </Button>
-                        )}
-
-                        {/* Sortable */}
-                        {sortable && (
-                          <Button
-                            size="small"
-                            variant={"primary-outline"}
-                            onClick={header.column.getToggleSortingHandler()}
-                            className="invisible hidden rounded-md px-1 py-0 group-hover:visible data-[sorted=true]:visible lg:block"
-                            data-sorted={Boolean(header.column.getIsSorted())}
-                          >
-                            {{
-                              desc: <FilterDescIcon className="size-4" />,
-                              asc: <FilterAscIcon className="size-4" />,
-                            }[header.column.getIsSorted() as string] ?? (
-                              <FilterIcon className="size-4" />
-                            )}
-                          </Button>
-                        )}
-
-                        {/* Tooltip */}
-                        {tooltip && <TableTooltip>{tooltip}</TableTooltip>}
-                      </div>
-                    </div>
+                  {isSelection && (
+                    <span className="sr-only">{labels.selection}</span>
                   )}
+                  <div
+                    className={clx(
+                      "flex w-full items-center gap-1 whitespace-nowrap",
+                      numeric && "justify-end",
+                    )}
+                  >
+                    {sortable ? (
+                      <button
+                        type="button"
+                        onClick={header.column.getToggleSortingHandler()}
+                        data-sorted={sorted || undefined}
+                        className={clx(
+                          "-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 font-medium",
+                          "hover:text-txt-black-900 data-[sorted]:text-txt-black-900 focus-ring transition-colors duration-150 motion-reduce:transition-none",
+                          numeric && "flex-row-reverse",
+                        )}
+                      >
+                        {label}
+                        <SortIcon
+                          aria-hidden
+                          className={clx(
+                            "size-3.5 shrink-0 transition-opacity duration-150 motion-reduce:transition-none",
+                            sorted
+                              ? "opacity-100"
+                              : "opacity-0 group-focus-within/head:opacity-60 group-hover/head:opacity-60",
+                          )}
+                        />
+                      </button>
+                    ) : (
+                      label
+                    )}
+
+                    {tooltip && <TableTooltip>{tooltip}</TableTooltip>}
+
+                    {expandable && (
+                      <button
+                        type="button"
+                        aria-label={
+                          expandableColumns[header.id]
+                            ? labels.narrowColumn
+                            : labels.widenColumn
+                        }
+                        aria-pressed={Boolean(expandableColumns[header.id])}
+                        onClick={() => toggleColumnWidth(header.id)}
+                        className={clx(
+                          icon_button,
+                          !numeric && "ml-auto",
+                          "max-lg:hidden",
+                          // Shown on hover or focus; stays reachable by keyboard
+                          "opacity-0 group-hover/head:opacity-100 focus-visible:opacity-100 aria-pressed:opacity-100",
+                        )}
+                      >
+                        {expandableColumns[header.id] ? (
+                          <ColumnCollapseIcon />
+                        ) : (
+                          <ColumnExpandIcon />
+                        )}
+                      </button>
+                    )}
+                  </div>
                 </TableHead>
               );
             })}
@@ -352,12 +462,20 @@ const DataTableBody: FunctionComponent = () => {
       ) : table?.getRowModel()?.rows?.length > 0 ? (
         table.getRowModel().rows.map((row) => {
           return (
-            <TableRow key={row.id}>
+            <TableRow
+              key={row.id}
+              data-selected={row.getIsSelected() || undefined}
+              className={clx(
+                "group/row hover:bg-bg-washed transition-colors duration-100 motion-reduce:transition-none",
+                "data-[selected]:hover:bg-bg-primary-50",
+              )}
+            >
               {row.getVisibleCells().map((cell) => {
                 return (
                   <TableCell
                     id={cell.id}
                     key={cell.id}
+                    numeric={cell.column.columnDef.meta?.numeric}
                     data-expanded={expandableColumns[cell.column.id]}
                     data-pinned={cell.column.getIsPinned()}
                     className={clx(
@@ -367,6 +485,7 @@ const DataTableBody: FunctionComponent = () => {
                         pin_last: cell.column.getIsLastColumn(
                           cell.column.getIsPinned(),
                         ),
+                        body: true,
                       }),
                       cell.column.columnDef.meta?.className?.cell,
                     )}
@@ -413,6 +532,7 @@ const DataTableFooter: FunctionComponent = () => {
             <TableCell
               key={header.id}
               colSpan={header.colSpan}
+              numeric={header.column.columnDef.meta?.numeric}
               data-expanded={expandableColumns[header.column.id]}
               data-pinned={header.column.getIsPinned()}
               className={clx(
@@ -422,6 +542,7 @@ const DataTableFooter: FunctionComponent = () => {
                   pin_last: header.column.getIsLastColumn(
                     header.column.getIsPinned(),
                   ),
+                  body: true,
                 }),
                 header.column.columnDef.meta?.className?.cell,
               )}
@@ -441,33 +562,96 @@ const DataTableFooter: FunctionComponent = () => {
   );
 };
 
+const SelectAllCheckbox = <TData extends Record<string, any>>({
+  table,
+}: {
+  table: TTable<TData>;
+}) => {
+  const { labels } = useContext(DataTableContext);
+  return (
+    <Checkbox
+      checked={
+        table.getIsAllRowsSelected() ||
+        (table.getIsSomeRowsSelected() && "indeterminate")
+      }
+      aria-label={labels.selectAll}
+      onClick={table.getToggleAllRowsSelectedHandler()}
+    />
+  );
+};
+
+const SelectRowCheckbox = <TData extends Record<string, any>>({
+  row,
+}: {
+  row: Row<TData>;
+}) => {
+  const { labels } = useContext(DataTableContext);
+  return (
+    <Checkbox
+      checked={row.getIsSelected()}
+      value={row.id}
+      disabled={!row.getCanSelect()}
+      aria-label={labels.selectRow}
+      onClick={row.getToggleSelectedHandler()}
+    />
+  );
+};
+
+const ClearSelectionButton = <TData extends Record<string, any>>({
+  table,
+}: {
+  table: TTable<TData>;
+}) => {
+  const { labels } = useContext(DataTableContext);
+  const hasSelection = table.getIsSomeRowsSelected();
+  return (
+    <button
+      type="button"
+      aria-label={labels.clearSelection}
+      onClick={() => table.resetRowSelection(false)}
+      // Nothing to clear: hidden and out of the tab order
+      className={clx(icon_button, !hasSelection && "invisible")}
+    >
+      <CrossIcon aria-hidden />
+    </button>
+  );
+};
+
+const SelectRowRadio = <TData extends Record<string, any>>({
+  row,
+}: {
+  row: Row<TData>;
+}) => {
+  const { labels, radioName } = useContext(DataTableContext);
+  return (
+    <input
+      type="radio"
+      name={radioName}
+      aria-label={labels.selectRow}
+      value={row.id}
+      checked={row.getIsSelected()}
+      disabled={!row.getCanSelect()}
+      onChange={() => row.toggleSelected(true)}
+      className={clx(
+        // Matches Checkbox: Control Edge stroke, MYDS Blue when checked
+        "border-otl-control hover:border-otl-control-hover bg-bg-white block size-4 shrink-0 cursor-pointer appearance-none rounded-full border-[1.5px]",
+        "checked:border-primary-600 checked:hover:border-primary-700 checked:border-[5px]",
+        "transition-[border] duration-150 motion-reduce:transition-none",
+        "focus-visible:ring-fr-primary outline-none focus-visible:ring-[3px]",
+        "disabled:bg-bg-washed disabled:cursor-not-allowed disabled:opacity-30",
+      )}
+    />
+  );
+};
+
 const CheckboxColumn = <TData extends Record<string, any>>() => {
   const columnHelper = createColumnHelper<TData>();
   return columnHelper.display({
     id: "_checkbox",
     size: 46,
     enableResizing: true,
-    header: ({ table }) => (
-      <Checkbox
-        key="checkbox-all"
-        checked={
-          table.getIsAllRowsSelected() ||
-          (table.getIsSomeRowsSelected() && "indeterminate")
-        }
-        aria-label="checkbox"
-        onClick={table.getToggleAllRowsSelectedHandler()}
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        key={`checkbox-${row.id}`}
-        checked={row.getIsSelected()}
-        value={row.id}
-        disabled={!row.getCanSelect()}
-        aria-label="checkbox"
-        onClick={row.getToggleSelectedHandler()}
-      />
-    ),
+    header: ({ table }) => <SelectAllCheckbox table={table} />,
+    cell: ({ row }) => <SelectRowCheckbox row={row} />,
   });
 };
 
@@ -477,70 +661,54 @@ const RadioColumn = <TData extends Record<string, any>>() => {
     id: "_radio",
     size: 46,
     enableResizing: false,
-    header: ({ table }) => (
-      <div className="flex items-center gap-1">
-        <Button
-          size="small"
-          variant="default-ghost"
-          onClick={() => table.resetRowSelection(false)}
-          className="invisible px-1 py-0 transition data-[selected=true]:visible"
-          data-selected={table.getIsSomeRowsSelected()}
-        >
-          <ReloadIcon className="text-txt-black-500 size-4 rotate-45" />
-        </Button>
-      </div>
-    ),
-    cell: ({ row }) => (
-      <div
-        className={clx(
-          "hover:border-otl-control-hover border-otl-control flex aspect-square size-4 items-center justify-center rounded-full border",
-          "focus-within:ring-fr-primary focus-within:ring-opacity-40 focus-within:ring-4 focus:outline-none",
-          "has-[:checked]:bg-primary-600 has-[:disabled]:has-[:checked]::bg-primary-600 has-[:checked]:border-none has-[:disabled]:opacity-30",
-        )}
-      >
-        <input
-          type="radio"
-          aria-label="radio"
-          id={row.id}
-          value={row.id}
-          checked={row.getIsSelected()}
-          disabled={!row.getCanSelect()}
-          onClick={row.getToggleSelectedHandler()}
-          className={clx(
-            "disabled:bg-bg-washed relative h-full w-full disabled:cursor-not-allowed",
-            "before:bg-bg-white before:contents-[''] appearance-none before:absolute before:top-[5px] before:left-[5px] before:size-[6px] before:rounded-full",
-          )}
-        />
-      </div>
-    ),
+    header: ({ table }) => <ClearSelectionButton table={table} />,
+    cell: ({ row }) => <SelectRowRadio row={row} />,
   });
 };
 
+const ExpandToggle = <TData extends Record<string, any>>({
+  row,
+}: {
+  row: Row<TData>;
+}) => {
+  const { labels } = useContext(DataTableContext);
+  const expanded = row.getIsExpanded();
+  return (
+    <button
+      type="button"
+      aria-label={expanded ? labels.collapseRow : labels.expandRow}
+      aria-expanded={expanded}
+      onClick={row.getToggleExpandedHandler()}
+      className={icon_button}
+    >
+      <ChevronRightIcon
+        aria-hidden
+        className={clx(
+          "transition-transform duration-150 motion-reduce:transition-none",
+          expanded && "rotate-90",
+        )}
+      />
+    </button>
+  );
+};
+
 const ExpandCell = <TData extends Record<string, any>>(
-  { row, getValue }: CellContext<TData, unknown>,
+  { row, getValue, table }: CellContext<TData, unknown>,
   cell?: ReactNode,
 ) => {
   const useDefault = !cell || JSON.stringify(cell) === JSON.stringify({});
   return (
     <div
-      className="flex gap-1"
-      style={{ paddingLeft: `calc(${row.depth}rem + 4px)` }}
+      className="flex items-center gap-1"
+      style={{ paddingLeft: `${row.depth * 1.75}rem` }}
     >
-      {row.getCanExpand() && (
-        <Button
-          size="small"
-          variant="default-ghost"
-          onClick={row.getToggleExpandedHandler()}
-          data-expanded={row.getIsExpanded()}
-        >
-          <ButtonIcon
-            data-expanded={row.getIsExpanded()}
-            className="transform transition-transform data-[expanded=true]:rotate-90"
-            aria-label="expand row"
-          >
-            <ChevronRightIcon />
-          </ButtonIcon>
-        </Button>
+      {row.getCanExpand() ? (
+        <ExpandToggle row={row} />
+      ) : (
+        // Keeps rows without children aligned with their siblings
+        table.getCanSomeRowsExpand() && (
+          <span aria-hidden className="size-6 shrink-0" />
+        )
       )}
       {useDefault ? (getValue() as string) : cell}
     </div>
@@ -586,4 +754,4 @@ const DataTable = <TData extends Record<string, any>>(
 };
 DataTable.displayName = "DataTable";
 
-export { DataTable, Cell, type ColumnDef };
+export { DataTable, Cell, type ColumnDef, type DataTableLabels };

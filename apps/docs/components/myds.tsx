@@ -483,6 +483,7 @@ export const DataTableColumns = [
     id: "age",
     meta: {
       expandable: false,
+      numeric: true,
       tooltip: "Age of the employee",
     },
   },
@@ -509,7 +510,7 @@ export const DataTableColumns = [
   },
   {
     cell: () => {
-      return <Button variant="default-outline">Edit</Button>;
+      return <Button variant="default-ghost">Edit</Button>;
     },
     header: "Action",
     id: "action",
@@ -538,6 +539,7 @@ export const DataTableFooterColumns: ColumnDef<Employee>[] = [
     id: "age",
     meta: {
       expandable: false,
+      numeric: true,
       tooltip: "Age of the employee",
     },
   },
@@ -564,7 +566,7 @@ export const DataTableFooterColumns: ColumnDef<Employee>[] = [
   },
   {
     cell: () => {
-      return <Button variant="default-outline">Edit</Button>;
+      return <Button variant="default-ghost">Edit</Button>;
     },
     header: "Action",
     id: "action",
@@ -587,6 +589,7 @@ export const DataTableNestedColumns = [
     accessorKey: "age",
     meta: {
       expandable: false,
+      numeric: true,
     },
   },
   {
@@ -612,7 +615,7 @@ export const DataTableNestedColumns = [
     id: "action",
     header: "Action",
     cell: () => {
-      return <Button variant="default-outline">Edit</Button>;
+      return <Button variant="default-ghost">Edit</Button>;
     },
   },
 ];
@@ -637,6 +640,7 @@ export const DataTableGroupedColumns = [
 
         meta: {
           expandable: false,
+          numeric: true,
         },
       },
       {
@@ -668,7 +672,7 @@ export const DataTableGroupedColumns = [
         id: "action",
         header: "Action",
         cell: () => {
-          return <Button variant="default-outline">Edit</Button>;
+          return <Button variant="default-ghost">Edit</Button>;
         },
       },
     ],
@@ -680,14 +684,14 @@ export const DataTableCheckbox = {
   onSelectionChange: (id: string) => {
     console.log("Selected Rows: ", id);
   },
-  rowId: "id",
+  id_by: "id",
 };
 export const DataTableRadio = {
   mode: "radio",
   onSelectionChange: (id: string) => {
     console.log("Selected Rows: ", id);
   },
-  rowId: "id",
+  id_by: "id",
 };
 
 interface PreviewSummaryList extends ComponentProps<typeof SummaryList> {}
