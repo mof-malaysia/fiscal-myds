@@ -161,6 +161,21 @@
       ]
     },
     {
+      "name": "site-search",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/input.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/search.json"
+      ],
+      "files": [
+        "styles/default/site-search.json"
+      ]
+    },
+    {
       "name": "stats-band",
       "type": "registry:block",
       "dependencies": [

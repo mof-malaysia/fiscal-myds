@@ -430,11 +430,6 @@
       "import": "./src/components/app/progress.tsx",
       "require": "./src/components/app/progress.tsx"
     },
-    "./search-bar": {
-      "type": "./src/components/app/search-bar.tsx",
-      "import": "./src/components/app/search-bar.tsx",
-      "require": "./src/components/app/search-bar.tsx"
-    },
     "./session-timeout": {
       "type": "./src/components/app/session-timeout.tsx",
       "import": "./src/components/app/session-timeout.tsx",
@@ -564,6 +559,11 @@
       "type": "./src/components/marketing/site-footer.tsx",
       "import": "./src/components/marketing/site-footer.tsx",
       "require": "./src/components/marketing/site-footer.tsx"
+    },
+    "./site-search": {
+      "type": "./src/components/marketing/site-search.tsx",
+      "import": "./src/components/marketing/site-search.tsx",
+      "require": "./src/components/marketing/site-search.tsx"
     },
     "./stats-band": {
       "type": "./src/components/marketing/stats-band.tsx",

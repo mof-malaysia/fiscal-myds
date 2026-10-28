@@ -7,8 +7,8 @@
 1. **@myds-style Registry** - Tailwind v4 styling system (6 style components)
 2. **Component registries**, one per tier:
    - **@myds-core** - 40 shared primitives and government chrome, plus utils and hooks
-   - **@myds-app** - 35 service and officer tools
-   - **@myds-marketing** - 6 agency site components and 7 page blocks
+   - **@myds-app** - 34 service and officer tools
+   - **@myds-marketing** - 7 agency site components and 7 page blocks
 3. **@myds-icon Registry** - 220+ icons
 4. **Storybook** - Interactive component browser
 
@@ -110,13 +110,13 @@ Plus `utils` (clx) and `hooks`.
 
 Service and officer tools: forms, data, workflows.
 
-app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, search-bar, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar
+app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar
 
-### Marketing components (6) and blocks (7) — `registry/marketing`
+### Marketing components (7) and blocks (7) — `registry/marketing`
 
 Agency and landing sites. Blocks are composed page sections (`registry:block`) installed to `components/blocks/`.
 
-- Components: accordion, announce-bar, carousel, navbar, section-heading, site-footer
+- Components: accordion, announce-bar, carousel, navbar, section-heading, site-footer, site-search
 - Blocks: cta-band, faq, feature-grid, hero, logo-cloud, stats-band, testimonial
 
 ### Icons (220)

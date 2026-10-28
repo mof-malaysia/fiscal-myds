@@ -658,24 +658,6 @@
       ]
     },
     {
-      "name": "search-bar",
-      "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority@^0.7.1",
-        "cmdk@^1.1.1"
-      ],
-      "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/search.json"
-      ],
-      "files": [
-        "styles/default/search-bar.json"
-      ]
-    },
-    {
       "name": "session-timeout",
       "type": "registry:block",
       "dependencies": [],

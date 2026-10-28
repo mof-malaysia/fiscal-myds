@@ -1,0 +1,156 @@
+---
+title: Carian Laman
+description: Kotak "cari dalam laman ini" untuk laman agensi dan halaman utama perkhidmatan. Medan carian berlabel dan satu butang Cari yang menghantar ke halaman hasil carian anda.
+---
+
+import { Quicklinks } from "@/components/quicklinks";
+import { SiteSearch } from "@/components/myds";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton" className="not-prose flex justify-center">
+    <div className="w-full max-w-xl">
+      <SiteSearch
+        action="#"
+        placeholder="Contohnya, cukai jalan"
+        labels={{ label: "Cari dalam laman ini", submit: "Cari" }}
+      />
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    <SiteSearch
+      action="/carian"
+      placeholder="Contohnya, cukai jalan"
+      labels={{ label: "Cari dalam laman ini", submit: "Cari" }}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+<Quicklinks
+  links={{
+    storybook:
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/marketing-sitesearch--docs",
+    source:
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/marketing/site-search.tsx",
+  }}
+/>
+
+## Pemasangan
+
+Tambah komponen ini ke projek anda dengan CLI shadcn. Lihat [Pemasangan](./install) untuk persediaan sekali sahaja.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/marketing/styles/default/site-search.json
+```
+
+## Penggunaan
+
+```ts copy title="Import"
+import { SiteSearch } from "@/components/ui/site-search";
+```
+
+```tsx copy title="Anatomi"
+export default () => <SiteSearch action="/carian" />;
+```
+
+SiteSearch memaparkan `<form role="search">` dengan label (tersembunyi kecuali `showLabel`), medan carian dan butang Cari. Secara lalai ia menghantar permintaan GET ke `action` dengan pertanyaan sebagai `?q=…`, jadi ia berfungsi sebelum JavaScript dimuatkan.
+
+### Carian mana yang patut digunakan
+
+- **Cari dalam laman ini** (hasil di halaman sendiri): `SiteSearch`.
+- **Cadangan semasa menaip**: gubah `Autocomplete`.
+- **Tapis senarai yang sudah dipaparkan** (jadual, grid ikon): `Input` carian dengan ikon carian, seperti `WorkQueue`.
+- **Pergi ke mana-mana dalam aplikasi pegawai**: palet `Command`, dibuka dengan ⌘K atau `DeskSearchTrigger`.
+
+## Contoh
+
+### Dikendalikan dalam halaman
+
+Hantar `onSearch` untuk mengendalikan pertanyaan sendiri, contohnya dengan penghala anda. Penghantaran borang dihalang.
+
+```tsx copy
+<SiteSearch onSearch={(query) => router.push(`/carian?q=${encodeURIComponent(query)}`)} />
+```
+
+### Saiz hero dan pintasan papan kekunci
+
+Gunakan `size="large"` dalam hero. `shortcut` membolehkan pengguna menekan <kbd>/</kbd> di mana-mana pada halaman untuk terus ke medan, dan menunjukkan kekunci semasa medan kosong.
+
+<Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
+  <Tab value="Pratonton" className="not-prose flex justify-center">
+    <div className="w-full max-w-2xl">
+      <SiteSearch
+        action="#"
+        size="large"
+        shortcut
+        showLabel
+        labels={{ label: "Cari dalam laman ini", submit: "Cari" }}
+      />
+    </div>
+  </Tab>
+  <Tab value="Kod">
+    ```tsx
+    <SiteSearch
+      action="/carian"
+      size="large"
+      shortcut
+      showLabel
+      labels={{ label: "Cari dalam laman ini", submit: "Cari" }}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+### SiteSearch
+
+<TypeTable
+  type={{
+    action: {
+      description: "URL halaman hasil carian anda. Pertanyaan dihantar sebagai parameter GET.",
+      type: "string",
+    },
+    name: {
+      description: "Nama parameter pertanyaan",
+      type: "string",
+      default: "q",
+    },
+    onSearch: {
+      description: "Mengendalikan carian dalam halaman dan bukannya menghantar borang",
+      type: "(query: string) => void",
+    },
+    size: {
+      description: "Saiz medan dan butang, relatif kepada kepadatan halaman",
+      type: "enum",
+      typeDescription: "small | medium | large",
+      default: "medium",
+    },
+    placeholder: {
+      description: "Contoh perkara untuk dicari",
+      type: "string",
+    },
+    defaultValue: {
+      description: "Pertanyaan permulaan, contohnya di halaman hasil carian",
+      type: "string",
+    },
+    showLabel: {
+      description: "Menunjukkan label di atas medan dan bukan hanya kepada pembaca skrin",
+      type: "boolean",
+      default: "false",
+    },
+    shortcut: {
+      description: 'Membolehkan "/" memfokus medan dari mana-mana pada halaman',
+      type: "boolean",
+      default: "false",
+    },
+    labels: {
+      description: "Label medan dan teks butang",
+      type: "{ label?: string; submit?: string }",
+      default: '{ label: "Search this site", submit: "Search" }',
+    },
+  }}
+/>

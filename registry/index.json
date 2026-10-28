@@ -18,13 +18,13 @@
       "name": "@myds-app",
       "description": "Service and officer tools: forms, data, workflows",
       "url": "/registry/app",
-      "components": 55
+      "components": 54
     },
     "marketing": {
       "name": "@myds-marketing",
       "description": "Agency and landing site components and blocks",
       "url": "/registry/marketing",
-      "components": 13
+      "components": 14
     },
     "icons": {
       "name": "@myds-icon",

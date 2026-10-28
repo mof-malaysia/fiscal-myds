@@ -35,23 +35,23 @@ Items are fetched by full URL: `https://mof-malaysia.github.io/fiscal-myds/regis
 A component goes in the lowest tier that every consumer of it belongs to. App and Marketing items may depend on Core; App and Marketing never depend on each other (the generator fails the build if they do). Every tier installs flat into `components/ui/`, so names are unique across tiers. Marketing blocks install into `components/blocks/`.
 
 - **Core (40)**: alert-dialog, avatar, backlink, breadcrumb, button, callout, card, checkbox, cookie-banner, details, dialog, field, fieldset, footer, form, input, inset-text, label, link, masthead, menu, phase-banner, pill, popover, radio, scroll-area, select, separator, skeleton, skiplink, spinner, switch, tabs, tag, textarea, theme-switch, toast, toggle, toggle-group, tooltip. Plus `utils` and `hooks`.
-- **App (35)**: app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, search-bar, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar.
-- **Marketing (13)**: accordion, announce-bar, carousel, navbar, section-heading, site-footer; blocks cta-band, faq, feature-grid, hero, logo-cloud, stats-band, testimonial.
+- **App (34)**: app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar.
+- **Marketing (14)**: accordion, announce-bar, carousel, navbar, section-heading, site-footer, site-search; blocks cta-band, faq, feature-grid, hero, logo-cloud, stats-band, testimonial.
 
 ## Migrating from 1.x
 
 The flat `registry/ui` registry is gone. Re-add components from their tier's URL. Renamed or replaced:
 
-| 1.x                                                                                                 | 2.0                                                                               |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `ui/toggle` (Toggle + ToggleThumb)                                                                  | `core/switch` (Switch, on Base UI Switch). `core/toggle` is now a pressed button. |
-| `ui/dropdown` (Dropdown\*)                                                                          | `core/menu` (Menu\*, with checkbox/radio items, groups, submenus)                 |
-| `ui/input-otp` (InputOTP, InputOTPSlot; `input-otp` package)                                        | `app/otp-field` (OTPField, OTPFieldSlot, OTPFieldSeparator; Base UI)              |
-| `ui/footer` (multi-column: Footer, SiteInfo, SiteLinkGroup, ...)                                    | `marketing/site-footer` (SiteFooter, SiteFooterInfo, SiteFooterLinkGroup, ...)    |
-| —                                                                                                   | `core/footer` is the plain mandatory government footer                            |
-| `ui/accordion`, `ui/announce-bar`, `ui/navbar`                                                      | `marketing/...`                                                                   |
-| `ui/calendar`, `data-table`, `date-*`, `pagination`, `search-bar`, `sheet`, `summary-list`, `table` | `app/...`                                                                         |
-| everything else                                                                                     | `core/...`                                                                        |
+| 1.x                                                                                   | 2.0                                                                               |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ui/toggle` (Toggle + ToggleThumb)                                                    | `core/switch` (Switch, on Base UI Switch). `core/toggle` is now a pressed button. |
+| `ui/dropdown` (Dropdown\*)                                                            | `core/menu` (Menu\*, with checkbox/radio items, groups, submenus)                 |
+| `ui/input-otp` (InputOTP, InputOTPSlot; `input-otp` package)                          | `app/otp-field` (OTPField, OTPFieldSlot, OTPFieldSeparator; Base UI)              |
+| `ui/footer` (multi-column: Footer, SiteInfo, SiteLinkGroup, ...)                      | `marketing/site-footer` (SiteFooter, SiteFooterInfo, SiteFooterLinkGroup, ...)    |
+| —                                                                                     | `core/footer` is the plain mandatory government footer                            |
+| `ui/accordion`, `ui/announce-bar`, `ui/navbar`                                        | `marketing/...`                                                                   |
+| `ui/calendar`, `data-table`, `date-*`, `pagination`, `sheet`, `summary-list`, `table` | `app/...`                                                                         |
+| everything else                                                                       | `core/...`                                                                        |
 
 ## How to Use
 
