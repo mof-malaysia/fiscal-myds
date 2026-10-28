@@ -153,22 +153,26 @@ InputAddon.displayName = "InputAddon";
 
 /*========================================================================================================================*/
 
-const input_icon_cva = cva(["absolute top-0 bottom-0 my-auto"], {
-  variants: {
-    size: {
-      small: "size-4.5",
-      medium: "size-5",
-      large: "size-6",
+// Ink Secondary, so icons follow the theme instead of inheriting the page's text colour
+const input_icon_cva = cva(
+  ["absolute top-0 bottom-0 my-auto text-txt-black-700"],
+  {
+    variants: {
+      size: {
+        small: "size-4.5",
+        medium: "size-5",
+        large: "size-6",
+      },
+      position: {
+        left: "left-3",
+        right: "right-3",
+      },
     },
-    position: {
-      left: "left-3",
-      right: "right-3",
+    defaultVariants: {
+      position: "left",
     },
   },
-  defaultVariants: {
-    position: "left",
-  },
-});
+);
 
 interface InputIconProps extends ComponentProps<"div"> {
   position: "left" | "right";
