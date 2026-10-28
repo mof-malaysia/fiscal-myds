@@ -611,7 +611,9 @@
     {
       "name": "payment-summary",
       "type": "registry:block",
-      "dependencies": [],
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
       "registryDependencies": [
         "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
         "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",

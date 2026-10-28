@@ -151,8 +151,7 @@ const DEFAULT_LABELS: WorkQueueLabels = {
 const fill = (template: string, values: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, key) => String(values[key] ?? ""));
 
-interface WorkQueueProps<T>
-  extends Omit<ComponentProps<"section">, "children"> {
+interface WorkQueueProps<T> extends Omit<ComponentProps<"div">, "children"> {
   /** The cases on the current page. */
   items: T[];
   getId: (item: T) => string;
@@ -239,7 +238,7 @@ const WorkQueueInner = <T,>(
     className,
     ...props
   }: WorkQueueProps<T>,
-  ref: React.ForwardedRef<HTMLElement>,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) => {
   const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const searchRef = useRef<HTMLInputElement>(null);
@@ -312,9 +311,10 @@ const WorkQueueInner = <T,>(
   const primary = columns.find((column) => column.primary);
 
   return (
-    <section
+    // Not a landmark: the page around the queue owns its region and heading; the
+    // table inside carries the queue's name
+    <div
       ref={ref}
-      aria-label={labels.table}
       className={clx("font-body flex min-w-0 flex-col gap-3", className)}
       {...props}
     >
@@ -604,13 +604,13 @@ const WorkQueueInner = <T,>(
           </Button>
         </nav>
       )}
-    </section>
+    </div>
   );
 };
 
 /** Generic over the case type; see the module docs. */
 const WorkQueue = forwardRef(WorkQueueInner) as (<T>(
-  props: WorkQueueProps<T> & { ref?: React.Ref<HTMLElement> },
+  props: WorkQueueProps<T> & { ref?: React.Ref<HTMLDivElement> },
 ) => ReturnType<typeof WorkQueueInner>) & { displayName?: string };
 WorkQueue.displayName = "WorkQueue";
 

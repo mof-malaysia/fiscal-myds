@@ -9,6 +9,7 @@ import React, {
   useId,
 } from "react";
 import { Button } from "../core/button";
+import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Field, FieldError } from "../core/field";
 import {
   Radio,
@@ -277,26 +278,29 @@ const PaymentSummary = forwardRef<HTMLFormElement, PaymentSummaryProps>(
             {methods.map((option, i) => {
               const optionId = i === 0 ? firstMethodId : `${id}-method-${i}`;
               return (
-                <RadioItem
-                  key={option.value}
-                  className="bg-bg-white border-otl-gray-200 has-[[data-checked]]:border-otl-primary-300 has-[[data-checked]]:bg-bg-primary-50 items-start gap-3 rounded-lg border p-4"
-                >
-                  <RadioButton
-                    value={option.value}
-                    id={optionId}
-                    className="mt-0.5"
-                  />
-                  <div className="grid gap-0.5">
-                    <RadioLabel htmlFor={optionId} className="cursor-pointer">
-                      {option.label}
-                    </RadioLabel>
-                    {option.description && (
-                      <RadioHintText htmlFor={optionId}>
-                        {option.description}
-                      </RadioHintText>
-                    )}
-                  </div>
-                </RadioItem>
+                // Field.Item scopes each option's label to its own radio; without it the
+                // Field gives every radio the same id and only the first gets a name
+                <FieldPrimitive.Item key={option.value}>
+                  <RadioItem className="bg-bg-white border-otl-gray-200 has-[[data-checked]]:border-otl-primary-300 has-[[data-checked]]:bg-bg-primary-50 items-start gap-3 rounded-lg border p-4">
+                    <RadioButton
+                      value={option.value}
+                      id={optionId}
+                      className="mt-0.5"
+                    />
+                    <div className="grid gap-0.5">
+                      <FieldPrimitive.Label
+                        render={<RadioLabel className="cursor-pointer" />}
+                      >
+                        {option.label}
+                      </FieldPrimitive.Label>
+                      {option.description && (
+                        <FieldPrimitive.Description render={<RadioHintText />}>
+                          {option.description}
+                        </FieldPrimitive.Description>
+                      )}
+                    </div>
+                  </RadioItem>
+                </FieldPrimitive.Item>
               );
             })}
           </Radio>
