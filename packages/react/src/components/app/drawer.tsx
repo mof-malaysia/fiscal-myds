@@ -74,7 +74,7 @@ const DrawerTrigger = DrawerPrimitive.Trigger;
 
 /*========================================================================================================================*/
 
-const drawer_viewport_cva = cva("fixed inset-0 z-[1000] flex", {
+const drawer_viewport_cva = cva("fixed inset-0 z-modal flex", {
   variants: {
     side: {
       bottom: "items-end justify-center",
@@ -160,7 +160,7 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
       <DrawerPrimitive.Portal container={container} keepMounted={keepMounted}>
         <DrawerPrimitive.Backdrop
           className={clx(
-            "bg-scrim fixed inset-0 z-[900] min-h-dvh",
+            "bg-scrim z-overlay fixed inset-0 min-h-dvh",
             "opacity-[calc(0.4*(1-var(--drawer-swipe-progress,0)))]",
             "ease-standard transition-opacity duration-200 motion-reduce:transition-none",
             "data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",

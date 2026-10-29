@@ -35,7 +35,7 @@ type CookieBannerProps = Omit<DialogPrimitive.Root.Props, "children"> & {
 };
 
 const cookie_content_cva = cva([
-  "bg-bg-white p-4.5 shadow-card border-otl-gray-200 fixed bottom-0 right-0 z-30 max-w-[500px]",
+  "bg-bg-white p-4.5 shadow-card border-otl-gray-200 fixed bottom-0 right-0 z-banner max-w-[500px]",
   "space-y-1 rounded-lg border transition-all outline-none",
   "data-[open]:animate-in data-[open]:slide-in-from-bottom-full data-[open]:fade-in data-[open]:duration-400",
   "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:slide-out-to-bottom-full data-[closed]:fade-out data-[closed]:duration-200",

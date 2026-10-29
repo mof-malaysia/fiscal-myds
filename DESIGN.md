@@ -318,6 +318,26 @@ In the dark theme, floating layers use Dark Sheet plus a 1px Dark Hairline edge 
 
 **The Floats-Only Rule.** If it doesn't float above the page and close, it doesn't get a shadow. `shadow-button` is retired.
 
+### Layers
+
+Anything that sits above the page uses a named layer, never a raw number. Each layer is a Tailwind `z-*` utility backed by a `--z-index-*` variable, lowest to highest:
+
+| Utility      | Default | Used by                                                            |
+| ------------ | ------- | ------------------------------------------------------------------ |
+| `z-sticky`   | 100     | Sticky headers (navbar) and panels attached to them                |
+| `z-banner`   | 200     | Page-level banners (cookie banner)                                 |
+| `z-overlay`  | 900     | Scrims behind dialogs, drawers and sheets                          |
+| `z-modal`    | 1000    | Dialogs, drawers, sheets                                           |
+| `z-popup`    | 1100    | Select lists, menus, popovers, tooltips, comboboxes, preview cards |
+| `z-toast`    | 1200    | Toasts                                                             |
+| `z-skiplink` | 1300    | The skip link, when focused                                        |
+
+Small values (`z-0`, `z-10`) stay for stacking inside a component, such as a sticky table header.
+
+**The Popups-Win Rule.** Popups sit above modals, so a select or menu inside a dialog always opens on top of it. Toasts sit above both, so feedback isn't hidden by an open dialog.
+
+To fit FTDS alongside another library's layers, move a whole layer by redefining its variable, e.g. `:root { --z-index-popup: 1500; }`.
+
 ## 5. Components
 
 ### Buttons

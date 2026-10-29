@@ -152,7 +152,7 @@ const DialogBody: ForwardRefExoticComponent<
       <DialogPrimitive.Portal>
         <DialogPrimitive.Backdrop
           className={clx(
-            "fixed inset-0 z-[900]",
+            "z-overlay fixed inset-0",
             "h-full w-full",
             "bg-scrim/40",
             "data-[open]:animate-in data-[open]:fade-in-0",
@@ -164,7 +164,7 @@ const DialogBody: ForwardRefExoticComponent<
         <DialogPrimitive.Popup
           ref={ref}
           className={clx(
-            "fixed top-[50%] left-[50%] z-[1000] box-border translate-x-[-50%] translate-y-[-50%]",
+            "z-modal fixed top-[50%] left-[50%] box-border translate-x-[-50%] translate-y-[-50%]",
             "w-full max-w-[calc(100dvw-36px)] min-w-[300px] sm:max-w-lg",
             "flex flex-col items-start",
             "rounded-lg",

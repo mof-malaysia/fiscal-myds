@@ -782,6 +782,21 @@
   --space-stack-sm: 8px;
 }
 
+/*
+ * Layers (DESIGN.md: Layers). Use z-sticky, z-popup... instead of raw numbers.
+ * Not `inline`: utilities read var(--z-index-*), so a project can move a whole
+ * layer by redefining the variable, e.g. :root { --z-index-popup: 1500; }
+ */
+@theme {
+  --z-index-sticky: 100;
+  --z-index-banner: 200;
+  --z-index-overlay: 900;
+  --z-index-modal: 1000;
+  --z-index-popup: 1100;
+  --z-index-toast: 1200;
+  --z-index-skiplink: 1300;
+}
+
 /* Control box: height and horizontal padding for each size step */
 @utility control-sm {
   height: var(--ctl-h-sm);

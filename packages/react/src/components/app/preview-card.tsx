@@ -68,12 +68,15 @@ const PreviewCardContent = forwardRef<HTMLDivElement, PreviewCardContentProps>(
     });
     return (
       <PreviewCardPrimitive.Portal container={container}>
-        <PreviewCardPrimitive.Positioner className="z-50" {...positionerProps}>
+        <PreviewCardPrimitive.Positioner
+          className="z-popup"
+          {...positionerProps}
+        >
           <PreviewCardPrimitive.Popup
             ref={ref}
             className={clx(
               floating_popup_class,
-              "text-txt-black-900 font-body text-content z-50 w-72 p-4",
+              "text-txt-black-900 font-body text-content w-72 p-4",
               className,
             )}
             {...popupProps}

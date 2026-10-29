@@ -77,7 +77,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     return (
       <MenuPrimitive.Portal container={container}>
         <MenuPrimitive.Positioner
-          className="z-50 outline-none"
+          className="z-popup outline-none"
           {...positionerProps}
         >
           <MenuPrimitive.Popup
@@ -209,7 +209,10 @@ const MenuSubmenuTrigger = forwardRef<
     {...props}
   >
     {children}
-    <ChevronRightIcon className="text-txt-black-700 ml-auto size-4" aria-hidden />
+    <ChevronRightIcon
+      className="text-txt-black-700 ml-auto size-4"
+      aria-hidden
+    />
   </MenuPrimitive.SubmenuTrigger>
 ));
 MenuSubmenuTrigger.displayName = "MenuSubmenuTrigger";
@@ -250,7 +253,7 @@ MenuSeparator.displayName = "MenuSeparator";
 const MenuShortcut = ({ className, ...props }: ComponentProps<"span">) => (
   <span
     className={clx(
-      "text-txt-black-500 ml-auto pl-4 text-label-compact font-normal tracking-wide",
+      "text-txt-black-500 text-label-compact ml-auto pl-4 font-normal tracking-wide",
       className,
     )}
     {...props}
