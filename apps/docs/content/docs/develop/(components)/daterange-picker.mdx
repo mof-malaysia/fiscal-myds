@@ -221,6 +221,10 @@ You can set the maximum and minimum year for the daterange picker by passing the
   </Tab>
 </Tabs>
 
+### Jump to a month or year
+
+Each month's name and year in the calendar are buttons. Choose one to switch that side of the calendar to a month grid (with arrows to step the year) or a year grid; picking a month brings the days back with it in place, so a month chosen on the right stays on the right. Escape steps back without closing the picker.
+
 ### Presets
 
 Pass `presets` to show quick ranges beside the calendar. `true` gives Today, Last 7 days, Last 30 days, This month, Last month and This year; or pass your own list of `{ label, range }`, where `range` is a function so relative ranges stay current. The preset matching the current value is highlighted.
@@ -335,7 +339,7 @@ Default value is `en`. To switch to Bahasa Melayu, pass `ms`.
       default: "d MMM yyyy",
     },
     labels: {
-      description: "Override any text: placeholder, clear, chooseStart, chooseEnd, days(count), presets",
+      description: "Override any text: placeholder, clear, chooseStart, chooseEnd, days(count), presets, chooseMonth, chooseYear, previousYear, nextYear, backToMonths",
       type: "Partial<DateRangePickerLabels>",
     },
     align: {

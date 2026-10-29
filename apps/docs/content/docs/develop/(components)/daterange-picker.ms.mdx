@@ -221,6 +221,10 @@ Anda boleh menetapkan tahun maksimum dan minimum untuk pemilih julat tarikh deng
   </Tab>
 </Tabs>
 
+### Lompat ke bulan atau tahun
+
+Nama bulan dan tahun pada setiap bulan dalam kalendar ialah butang. Pilih salah satu untuk menukar bahagian kalendar itu kepada grid bulan (dengan anak panah untuk menukar tahun) atau grid tahun; memilih bulan memaparkan semula hari dengan bulan itu di tempatnya, jadi bulan yang dipilih di sebelah kanan kekal di sebelah kanan. Escape kembali tanpa menutup pemilih.
+
 ### Julat Pantas
 
 Hantar `presets` untuk menunjukkan julat pantas di sebelah kalendar. `true` memberikan Hari ini, 7 hari lepas, 30 hari lepas, Bulan ini, Bulan lepas dan Tahun ini; atau hantar senarai anda sendiri `{ label, range }`, di mana `range` ialah fungsi supaya julat relatif sentiasa terkini. Julat yang sepadan dengan nilai semasa diserlahkan.
@@ -335,7 +339,7 @@ Nilai lalai adalah `en` untuk English. Untuk menukar kepada Bahasa Melayu, tetap
       default: "d MMM yyyy",
     },
     labels: {
-      description: "Tukar mana-mana teks: placeholder, clear, chooseStart, chooseEnd, days(count), presets",
+      description: "Tukar mana-mana teks: placeholder, clear, chooseStart, chooseEnd, days(count), presets, chooseMonth, chooseYear, previousYear, nextYear, backToMonths",
       type: "Partial<DateRangePickerLabels>",
     },
     align: {

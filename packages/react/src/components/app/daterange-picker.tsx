@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   DateRange,
   DayPicker,
@@ -9,6 +9,7 @@ import {
 } from "react-day-picker";
 import { enGB, ms } from "date-fns/locale";
 import {
+  addMonths,
   differenceInCalendarDays,
   endOfMonth,
   format,
@@ -62,6 +63,14 @@ interface DateRangePickerLabels {
   days: (count: number) => string;
   /** Accessible name of the presets list. */
   presets: string;
+  /** The caption button that opens the month grid. */
+  chooseMonth: string;
+  /** The caption button that opens the year grid, and its heading. */
+  chooseYear: string;
+  previousYear: string;
+  nextYear: string;
+  /** The year grid's way back to the months. */
+  backToMonths: string;
 }
 
 const LABELS: Record<"en" | "ms", DateRangePickerLabels> = {
@@ -72,6 +81,11 @@ const LABELS: Record<"en" | "ms", DateRangePickerLabels> = {
     chooseEnd: "Choose an end date",
     days: (count) => (count === 1 ? "1 day" : `${count} days`),
     presets: "Quick ranges",
+    chooseMonth: "Choose month",
+    chooseYear: "Choose year",
+    previousYear: "Previous year",
+    nextYear: "Next year",
+    backToMonths: "Back to months",
   },
   ms: {
     placeholder: "Pilih tarikh",
@@ -80,6 +94,11 @@ const LABELS: Record<"en" | "ms", DateRangePickerLabels> = {
     chooseEnd: "Pilih tarikh akhir",
     days: (count) => `${count} hari`,
     presets: "Julat pantas",
+    chooseMonth: "Pilih bulan",
+    chooseYear: "Pilih tahun",
+    previousYear: "Tahun sebelumnya",
+    nextYear: "Tahun seterusnya",
+    backToMonths: "Kembali ke bulan",
   },
 };
 
@@ -146,6 +165,33 @@ const preset_button = clx(
   "aria-pressed:bg-bg-primary-50 aria-pressed:text-txt-primary transition-colors duration-150 motion-reduce:transition-none focus-ring",
 );
 
+/** Month name and year in each caption: quiet buttons that open the jump grids. */
+const caption_button = clx(
+  "text-txt-black-900 text-label-md hover:bg-bg-washed inline-flex h-7 cursor-pointer items-center rounded-md px-1.5 font-semibold",
+  "transition-colors duration-150 motion-reduce:transition-none focus-ring",
+);
+
+/** A month or year in the jump grids; the month or year on show takes the Blue Wash. */
+const jump_cell = clx(
+  "text-txt-black-900 text-label-sm hover:bg-bg-washed flex min-h-9 cursor-pointer items-center justify-center rounded-md",
+  "aria-[current=true]:bg-bg-primary-50 aria-[current=true]:text-txt-primary aria-[current=true]:font-semibold",
+  "disabled:text-txt-black-disabled disabled:cursor-not-allowed disabled:bg-transparent",
+  "transition-colors duration-150 motion-reduce:transition-none focus-ring",
+);
+
+const jump_nav = clx(
+  "bg-bg-washed text-txt-black-900 hover:bg-bg-washed-active inline-flex size-8 cursor-pointer items-center justify-center rounded-md [&>svg]:size-4",
+  "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
+  "transition-colors duration-150 motion-reduce:transition-none focus-ring",
+);
+
+type Jump = {
+  view: "month" | "year";
+  /** Which of the shown months the jump replaces: 0 left, 1 right. */
+  index: number;
+  year: number;
+};
+
 const DateRangePicker = ({
   value,
   defaultValue,
@@ -182,6 +228,18 @@ const DateRangePicker = ({
   const [hovered, setHovered] = useState<Date>();
   const [month, setMonth] = useState<Date>(range?.from ?? new Date());
   const twoMonths = useMediaQuery("(min-width: 640px)");
+  // Month or year grid opened from a caption; the days stay underneath, inert
+  const [jump, setJump] = useState<Jump | null>(null);
+  // The month or year on show; focused when a grid opens
+  const currentCellRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!jump) return;
+    currentCellRef.current?.focus();
+    currentCellRef.current?.scrollIntoView({ block: "center" });
+    // Only when a grid opens or switches, not when the year arrows step
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jump?.view, jump?.index]);
 
   const presetList =
     presets === true ? defaultPresets(locale) : presets || undefined;
@@ -192,8 +250,27 @@ const DateRangePicker = ({
       setDraft(range);
       setHovered(undefined);
       setMonth(range?.from ?? new Date());
+      setJump(null);
     }
   };
+
+  // The month shown at `index` (the right one is a month after the left)
+  const shownMonth = (index: number) => addMonths(month, index);
+
+  const goToMonth = (year: number, monthIndex: number) => {
+    const target = new Date(year, monthIndex, 1);
+    // Picked from the right caption: keep the chosen month on the right
+    setMonth(jump?.index === 1 ? subMonths(target, 1) : target);
+    setJump(null);
+  };
+
+  const months = Array.from({ length: 12 }, (_, i) =>
+    format(new Date(2000, i, 1), "LLL", { locale: dateLocale }),
+  );
+  const years = Array.from(
+    { length: maxYear - minYear + 1 },
+    (_, i) => minYear + i,
+  );
 
   const commit = (next: DateRange) => {
     setDraft(next);
@@ -298,58 +375,229 @@ const DateRangePicker = ({
           )}
 
           <div className="flex flex-col">
-            <DayPicker
-              mode="range"
-              selected={draft}
-              // Selection is handled in onDayClick so a third click starts a new range
-              onSelect={() => {}}
-              onDayClick={onDayClick}
-              onDayMouseEnter={setHovered}
-              month={month}
-              onMonthChange={setMonth}
-              numberOfMonths={twoMonths ? 2 : 1}
-              showOutsideDays={!twoMonths}
-              startMonth={new Date(minYear, 0)}
-              endMonth={new Date(maxYear, 11)}
-              disabled={disabled}
-              locale={dateLocale}
-              modifiers={
-                preview ? { preview, preview_end: preview.to } : undefined
-              }
-              modifiersClassNames={{
-                preview: "preview",
-                preview_end: "preview-end",
-              }}
-              className="p-3"
-              classNames={{
-                ...calendar_day_classnames,
-                months: "relative flex gap-6",
-                month: "flex flex-col gap-y-1.5",
-                month_caption: "flex h-8 items-center justify-center",
-                caption_label: "text-txt-black-900 text-label-md font-semibold",
-                nav: "absolute inset-x-0 top-0 flex justify-between",
-                selected: "selected",
-                // The preview band: Well, rounded at the pointer
-                day: clx(
-                  calendar_day_classnames.day,
-                  "[&.preview:not(.selected)]:bg-bg-washed [&.preview-end]:rounded-r-md",
-                ),
-              }}
-              formatters={{
-                formatCaption: (date) =>
-                  format(date, "LLLL yyyy", { locale: dateLocale }),
-                formatWeekdayName: (date) =>
-                  format(date, "ccc", { locale: dateLocale }),
-              }}
-              components={{
-                Chevron: (props) =>
-                  props.orientation === "left" ? (
-                    <ChevronLeftIcon className={props.className} />
+            <div className="relative">
+              <div
+                inert={jump ? true : undefined}
+                className={clx(jump && "invisible")}
+              >
+                <DayPicker
+                  mode="range"
+                  selected={draft}
+                  // Selection is handled in onDayClick so a third click starts a new range
+                  onSelect={() => {}}
+                  onDayClick={onDayClick}
+                  onDayMouseEnter={setHovered}
+                  month={month}
+                  onMonthChange={setMonth}
+                  numberOfMonths={twoMonths ? 2 : 1}
+                  showOutsideDays={!twoMonths}
+                  startMonth={new Date(minYear, 0)}
+                  endMonth={new Date(maxYear, 11)}
+                  disabled={disabled}
+                  locale={dateLocale}
+                  modifiers={
+                    preview ? { preview, preview_end: preview.to } : undefined
+                  }
+                  modifiersClassNames={{
+                    preview: "preview",
+                    preview_end: "preview-end",
+                  }}
+                  className="p-3"
+                  classNames={{
+                    ...calendar_day_classnames,
+                    months: "relative flex gap-6",
+                    // Room for six weeks (caption 32 + gap 6 + weekdays 34 + six rows of cell + 6),
+                    // so the popup keeps its height from month to month
+                    month:
+                      "flex min-h-[calc(var(--cal-cell)*6+6.75rem)] flex-col gap-y-1.5",
+                    month_caption: "flex h-8 items-center justify-center",
+                    caption_label:
+                      "text-txt-black-900 text-label-md font-semibold",
+                    // Spans the caption row for the arrows; click-through so the captions work
+                    nav: "pointer-events-none absolute inset-x-0 top-0 flex justify-between [&>button]:pointer-events-auto",
+                    selected: "selected",
+                    // The preview band: Well, rounded at the pointer
+                    day: clx(
+                      calendar_day_classnames.day,
+                      "[&.preview:not(.selected)]:bg-bg-washed [&.preview-end]:rounded-r-md",
+                    ),
+                  }}
+                  formatters={{
+                    formatCaption: (date) =>
+                      format(date, "LLLL yyyy", { locale: dateLocale }),
+                    formatWeekdayName: (date) =>
+                      format(date, "ccc", { locale: dateLocale }),
+                  }}
+                  components={{
+                    Chevron: (props) =>
+                      props.orientation === "left" ? (
+                        <ChevronLeftIcon className={props.className} />
+                      ) : (
+                        <ChevronRightIcon className={props.className} />
+                      ),
+                    MonthCaption: ({
+                      calendarMonth,
+                      displayIndex,
+                      className,
+                      ...captionProps
+                    }) => {
+                      const date = calendarMonth.date;
+                      const open = (view: Jump["view"]) =>
+                        setJump({
+                          view,
+                          index: displayIndex,
+                          year: date.getFullYear(),
+                        });
+                      return (
+                        <div
+                          {...captionProps}
+                          className={clx(className, "gap-0.5")}
+                        >
+                          <button
+                            type="button"
+                            className={caption_button}
+                            aria-label={`${labels.chooseMonth}, ${format(date, "LLLL yyyy", { locale: dateLocale })}`}
+                            onClick={() => open("month")}
+                          >
+                            {format(date, "LLLL", { locale: dateLocale })}
+                          </button>
+                          <button
+                            type="button"
+                            className={caption_button}
+                            aria-label={`${labels.chooseYear}, ${date.getFullYear()}`}
+                            onClick={() => open("year")}
+                          >
+                            {date.getFullYear()}
+                          </button>
+                        </div>
+                      );
+                    },
+                  }}
+                />
+              </div>
+
+              {jump && (
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                <div
+                  role="group"
+                  aria-label={
+                    jump.view === "month"
+                      ? labels.chooseMonth
+                      : labels.chooseYear
+                  }
+                  className="absolute inset-0 flex flex-col gap-3 p-3"
+                  onKeyDown={(event) => {
+                    // Escape steps back to the days instead of closing the popup
+                    if (event.key !== "Escape") return;
+                    event.stopPropagation();
+                    if (jump.view === "year")
+                      setJump({ ...jump, view: "month" });
+                    else setJump(null);
+                  }}
+                >
+                  {jump.view === "month" ? (
+                    <>
+                      <div className="flex h-8 items-center justify-between">
+                        <button
+                          type="button"
+                          className={jump_nav}
+                          aria-label={labels.previousYear}
+                          disabled={jump.year <= minYear}
+                          onClick={() =>
+                            setJump({ ...jump, year: jump.year - 1 })
+                          }
+                        >
+                          <ChevronLeftIcon />
+                        </button>
+                        <button
+                          type="button"
+                          className={caption_button}
+                          aria-label={`${labels.chooseYear}, ${jump.year}`}
+                          onClick={() => setJump({ ...jump, view: "year" })}
+                        >
+                          {jump.year}
+                        </button>
+                        <button
+                          type="button"
+                          className={jump_nav}
+                          aria-label={labels.nextYear}
+                          disabled={jump.year >= maxYear}
+                          onClick={() =>
+                            setJump({ ...jump, year: jump.year + 1 })
+                          }
+                        >
+                          <ChevronRightIcon />
+                        </button>
+                      </div>
+                      <div
+                        role="group"
+                        aria-label={labels.chooseMonth}
+                        className="grid flex-1 grid-cols-3 gap-2"
+                      >
+                        {months.map((name, i) => {
+                          const shown = shownMonth(jump.index);
+                          const current =
+                            shown.getFullYear() === jump.year &&
+                            shown.getMonth() === i;
+                          return (
+                            <button
+                              key={name}
+                              type="button"
+                              ref={current ? currentCellRef : undefined}
+                              className={jump_cell}
+                              aria-current={current || undefined}
+                              onClick={() => goToMonth(jump.year, i)}
+                            >
+                              {name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </>
                   ) : (
-                    <ChevronRightIcon className={props.className} />
-                  ),
-              }}
-            />
+                    <>
+                      <div className="flex h-8 items-center justify-between">
+                        <button
+                          type="button"
+                          className={jump_nav}
+                          aria-label={labels.backToMonths}
+                          onClick={() => setJump({ ...jump, view: "month" })}
+                        >
+                          <ChevronLeftIcon />
+                        </button>
+                        <span className="text-txt-black-900 text-label-md font-semibold">
+                          {labels.chooseYear}
+                        </span>
+                        <span className="size-8" aria-hidden />
+                      </div>
+                      <div
+                        role="group"
+                        aria-label={labels.chooseYear}
+                        className="grid min-h-0 flex-1 auto-rows-[2.25rem] grid-cols-4 gap-2 overflow-y-auto"
+                      >
+                        {years.map((year) => {
+                          const current = year === jump.year;
+                          return (
+                            <button
+                              key={year}
+                              ref={current ? currentCellRef : undefined}
+                              type="button"
+                              className={jump_cell}
+                              aria-current={current || undefined}
+                              onClick={() =>
+                                setJump({ ...jump, view: "month", year })
+                              }
+                            >
+                              {year}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
 
             <div className="flex min-h-11 items-center justify-between gap-3 px-3 pb-3">
               <span
