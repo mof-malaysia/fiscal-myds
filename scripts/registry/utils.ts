@@ -43,16 +43,17 @@ export function extractImports(content: string): {
   const npmDependencies = new Set<string>();
   const localImports: string[] = [];
 
-  for (const [, specifier] of content.matchAll(
+  for (const match of content.matchAll(
     /^(?:import|export)\s[^;=]*?from\s+["']([^"']+)["']/gm,
   )) {
+    const specifier = match[1]!;
     if (specifier.startsWith(".")) {
       localImports.push(specifier);
     } else if (specifier !== "react" && specifier !== "react-dom") {
       // "@base-ui/react/dialog" -> "@base-ui/react", "date-fns/locale" -> "date-fns"
-      const parts = specifier.split("/");
+      const [scope, name] = specifier.split("/");
       npmDependencies.add(
-        specifier.startsWith("@") ? `${parts[0]}/${parts[1]}` : parts[0],
+        specifier.startsWith("@") ? `${scope}/${name}` : scope!,
       );
     }
   }
@@ -129,7 +130,7 @@ export function getIconExportMap(iconsDir: string): Map<string, string> {
     if (!file.endsWith(".tsx")) continue;
     const content = fs.readFileSync(path.join(iconsDir, file), "utf-8");
     for (const match of content.matchAll(/export const (\w+)/g)) {
-      map.set(match[1], file.replace(/\.tsx$/, ""));
+      map.set(match[1]!, file.replace(/\.tsx$/, ""));
     }
   }
   return map;
@@ -151,7 +152,7 @@ export function expandIconBarrelImports(
         .map((n) => n.trim())
         .filter(Boolean)
         .map((n) => {
-          const file = iconMap.get(n.split(/\s+as\s+/)[0]);
+          const file = iconMap.get(n.split(/\s+as\s+/)[0]!);
           if (!file) throw new Error(`Unknown icon in barrel import: ${n}`);
           return `import { ${n} } from "${prefix}icons/${file}";`;
         })
@@ -240,12 +241,12 @@ export function mapToRegistryDependency(
   if (/^(\.\.\/)+hooks/.test(importPath))
     return registryItemUrl("core", "hooks");
   const icon = importPath.match(/^(?:\.\.\/)+icons\/(.+)$/);
-  if (icon) return registryItemUrl("icons", icon[1]);
+  if (icon) return registryItemUrl("icons", icon[1]!);
   const crossTier = importPath.match(
     new RegExp(`^\\.\\.\\/(${TIER_PATTERN})\\/(.+)$`),
   );
   if (crossTier)
-    return registryItemUrl(crossTier[1] as ComponentTier, crossTier[2]);
+    return registryItemUrl(crossTier[1] as ComponentTier, crossTier[2]!);
   if (importPath.startsWith("./"))
     return registryItemUrl(fromTier, importPath.slice(2));
   return null;

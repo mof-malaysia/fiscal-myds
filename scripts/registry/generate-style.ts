@@ -189,15 +189,15 @@ function generateFTDSInitComponent(
 
   // Combine all content in the correct order
   // Imported from the project's global CSS, after @import "tailwindcss"
-  const combinedContent = `${colors.files[0].content}
-
-${themeLight.files[0].content}
-
-${themeDark.files[0].content}
-
-${themeConfig.files[0].content}
-
-${baseStyles.files[0].content}`;
+  const combinedContent = [
+    colors,
+    themeLight,
+    themeDark,
+    themeConfig,
+    baseStyles,
+  ]
+    .map((component) => component.files[0]!.content)
+    .join("\n\n");
 
   return {
     name: "ftds-init",

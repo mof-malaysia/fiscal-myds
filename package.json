@@ -17,7 +17,7 @@
     "deploy:clean": "rm -rf deploy",
     "registry:generate:components": "tsx scripts/registry/generate-components.ts",
     "components:sync-exports": "tsx scripts/registry/sync-exports.ts",
-    "typecheck": "turbo typecheck",
+    "typecheck": "turbo typecheck && tsc -p tsconfig.json",
     "lint:fix": "oxlint --fix",
     "icons:generate": "tsx scripts/icons/generate.ts"
   },
