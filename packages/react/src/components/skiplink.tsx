@@ -34,7 +34,7 @@ const Skiplink = forwardRef<HTMLAnchorElement, SkiplinkProps>(
               "[clip-path:inset(50%)]",
               // Focus state (visible)
               "focus:h-auto focus:w-auto",
-              "focus:left-4 focus:top-11",
+              "focus:top-11 focus:left-4",
               "focus:[clip-path:none]",
               "transition-all duration-500 ease-in-out",
               "opacity-0 focus:opacity-100",

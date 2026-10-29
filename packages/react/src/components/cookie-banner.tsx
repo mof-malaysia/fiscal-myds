@@ -36,7 +36,7 @@ const cookie_content_cva = cva([
   "bg-bg-white p-4.5 shadow-card border-otl-gray-200 fixed bottom-0 right-0 z-30 max-w-[500px]",
   "space-y-1 rounded-lg border transition-all outline-none",
   "data-[open]:animate-in data-[open]:slide-in-from-bottom-full data-[open]:fade-in data-[open]:duration-400",
-  "data-[closed]:animate-out data-[closed]:slide-out-to-bottom-full data-[closed]:fade-out data-[closed]:duration-200",
+  "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:slide-out-to-bottom-full data-[closed]:fade-out data-[closed]:duration-200",
   "sm:mb-4 sm:mr-4 sm:p-6",
 ]);
 
@@ -68,7 +68,7 @@ const CookieBanner: FunctionComponent<CookieBannerProps> = ({
           <DialogPrimitive.Popup
             className={clx(cookie_content_cva(), className)}
           >
-            <DialogPrimitive.Close className="ring-fr-primary absolute top-0 right-0 mt-4 mr-4 rounded-md p-1.5 transition-all outline-none focus:ring">
+            <DialogPrimitive.Close className="ring-fr-primary absolute top-0 right-0 mt-4 mr-4 rounded-md p-1.5 transition-all outline-none focus-visible:ring">
               <CrossIcon className="size-4 shrink-0" />
             </DialogPrimitive.Close>
             {children}

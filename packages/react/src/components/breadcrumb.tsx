@@ -45,30 +45,29 @@ const BreadcrumbItem: ForwardRefExoticComponent<ComponentProps<"li">> =
   ));
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
-const BreadcrumbLink: ForwardRefExoticComponent<
-  useRender.ComponentProps<"a">
-> = forwardRef(({ render, className, ...props }, ref) => {
-  return useRender({
-    defaultTagName: "a",
-    render,
-    ref,
-    props: mergeProps<"a">(
-      {
-        className: clx(
-          "hover:text-txt-black-900 text-txt-black-500 transition-colors hover:underline",
-          className,
-        ),
-      },
-      props,
-      {
-        title:
-          props.title || typeof props.children === "string"
-            ? (props.children as string)
-            : undefined,
-      },
-    ),
+const BreadcrumbLink: ForwardRefExoticComponent<useRender.ComponentProps<"a">> =
+  forwardRef(({ render, className, ...props }, ref) => {
+    return useRender({
+      defaultTagName: "a",
+      render,
+      ref,
+      props: mergeProps<"a">(
+        {
+          className: clx(
+            "hover:text-txt-black-900 text-txt-black-500 transition-colors hover:underline",
+            className,
+          ),
+        },
+        props,
+        {
+          title:
+            props.title || typeof props.children === "string"
+              ? (props.children as string)
+              : undefined,
+        },
+      ),
+    });
   });
-});
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
 const BreadcrumbPage: ForwardRefExoticComponent<ComponentProps<"span">> =

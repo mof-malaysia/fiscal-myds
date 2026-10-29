@@ -116,11 +116,11 @@ ToastRoot.displayName = "ToastRoot";
 //   extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action> {}
 
 // const toast_action_cva = cva([
-//   "hover:bg-secondary focus:ring-ring group-[.destructive]:border-muted/40",
+//   "hover:bg-secondary focus-visible:ring-ring group-[.destructive]:border-muted/40",
 //   "group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive",
-//   "group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
+//   "group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus-visible:ring-destructive",
 //   "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3",
-//   "text-body-sm font-medium transition-colors focus:outline-none focus:ring-1",
+//   "text-body-sm font-medium transition-colors focus:outline-none focus-visible:ring-1",
 //   "disabled:pointer-events-none disabled:opacity-50",
 // ]);
 

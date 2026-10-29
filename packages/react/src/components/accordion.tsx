@@ -104,7 +104,7 @@ const AccordionItem = React.forwardRef<
   <AccordionBase.Item
     className={clx(
       "border-otl-gray-200 bg-bg-white group mt-px overflow-hidden border-b first:mt-0",
-      "focus:ring-fr-primary outline-none focus-within:relative focus-within:z-10 focus-within:shadow-lg",
+      "outline-none",
       className,
     )}
     {...props}
@@ -122,8 +122,8 @@ const AccordionTrigger = React.forwardRef<
   <AccordionBase.Header className="flex">
     <AccordionBase.Trigger
       className={clx(
-        "text-txt-black-700 font-body bg-bg-white hover:text-txt-black-900 data-[panel-open]:text-txt-black-900 group flex flex-1 cursor-pointer items-center justify-between py-4 text-base font-medium leading-none hover:underline",
-        "outline-none focus-visible:underline",
+        "text-txt-black-700 font-body bg-bg-white hover:text-txt-black-900 data-[panel-open]:text-txt-black-900 group flex flex-1 cursor-pointer items-center justify-between py-4 text-base leading-none font-medium hover:underline",
+        "focus-visible:outline-fr-primary rounded-xs outline-none focus-visible:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-solid",
         "data-[disabled]:text-txt-black-disabled data-[disabled]:cursor-not-allowed data-[disabled]:hover:no-underline",
         className,
       )}
@@ -146,15 +146,15 @@ const AccordionContent = React.forwardRef<
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionBase.Panel
     className={clx(
-      "text-txt-black-700 font-body text-body-sm relative overflow-hidden font-normal",
+      "text-txt-black-700 font-body text-content relative overflow-hidden font-normal",
       "h-[var(--accordion-panel-height)] transition-[height,opacity] duration-300 ease-out",
-      "data-[starting-style]:h-0 data-[ending-style]:h-0",
-      "data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[open]:opacity-100",
+      "data-[ending-style]:h-0 data-[starting-style]:h-0",
+      "data-[ending-style]:opacity-0 data-[open]:opacity-100 data-[starting-style]:opacity-0",
     )}
     {...props}
     ref={forwardedRef}
   >
-    <div className={clx("overflow-hidden pb-4 pr-9", className)}>
+    <div className={clx("overflow-hidden pr-9 pb-4", className)}>
       {children}
     </div>
   </AccordionBase.Panel>

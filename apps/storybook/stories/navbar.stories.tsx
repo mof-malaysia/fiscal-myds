@@ -182,7 +182,7 @@ export const NavbarCustomMyds = createStory(
 
           {/* Select Language Toggle  : mobile hide if needed  */}
           <div className="hidden sm:block">
-            <Select defaultValue="EN" variant="outline" size="small">
+            <Select defaultValue="EN" variant="ghost" size="small">
               <SelectTrigger aria-label="language-selection">
                 <GlobeIcon className="h-4 w-4"></GlobeIcon>
                 <SelectValue />
@@ -261,7 +261,7 @@ export const NavbarCustomKementerianDigital = createStory(
 
           {/* Select Language Toggle : mobile hide if needed */}
           <div className="hidden sm:block">
-            <Select defaultValue="EN" variant="outline" size="medium">
+            <Select defaultValue="EN" variant="ghost" size="medium">
               <SelectTrigger aria-label="language-selection">
                 <GlobeIcon className="h-4 w-4"></GlobeIcon>
                 <SelectValue>{(value) => value || "EN"}</SelectValue>

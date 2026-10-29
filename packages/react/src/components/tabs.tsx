@@ -97,7 +97,7 @@ TabsList.displayName = "TabsList";
 const tabs_trigger_cva = cva(
   [
     "relative flex gap-1 items-center text-txt-black-500 hover:text-txt-black-900 data-[active]:text-txt-black-900 outline-none border border-transparent",
-    "focus:ring-2 focus:ring-fr-primary space",
+    "focus-visible:ring-2 focus-visible:ring-fr-primary space",
   ],
   {
     variants: {
