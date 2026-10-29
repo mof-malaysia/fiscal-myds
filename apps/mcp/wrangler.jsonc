@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ftds-mcp",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // public/fonts is copied in by `vite build`; assets are served before the Worker runs
+  "assets": { "directory": "./public" },
+  // The preview page (dist/view.html) is bundled as a string
+  "rules": [{ "type": "Text", "globs": ["**/*.html"], "fallthrough": true }],
+  "observability": { "enabled": true }
+}

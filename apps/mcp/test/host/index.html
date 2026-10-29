@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FTDS Playground: test host</title>
+    <style>
+      body { font: 14px system-ui, sans-serif; margin: 0; display: grid; grid-template-columns: 720px 1fr; height: 100vh; }
+      #chat { padding: 16px; overflow: auto; background: #f4f4f5; }
+      iframe { width: 100%; border: 1px solid #ddd; border-radius: 12px; background: white; }
+      #log { padding: 16px; overflow: auto; font: 12px ui-monospace, monospace; white-space: pre-wrap; border-left: 1px solid #ddd; }
+    </style>
+  </head>
+  <body>
+    <div id="chat">
+      <p>Plays the part of Claude: calls render_screen on the local Worker and shows its MCP App under the host CSP from the MCP Apps spec.</p>
+      <p>
+        <button data-screen="good">Render a screen</button>
+        <button data-screen="warn">Render one with warnings</button>
+        <button data-screen="bad">Render a broken screen</button>
+        <button data-screen="crash">Render one that throws</button>
+      </p>
+    </div>
+    <div id="log"></div>
+    <script type="module" src="./host.ts"></script>
+  </body>
+</html>

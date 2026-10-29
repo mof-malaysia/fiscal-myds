@@ -54,3 +54,9 @@ jobs:
 
       - name: Build docs
         run: pnpm --filter @mof-malaysia/ftds-docs-astro build
+
+      # The playground Worker: its checks, the preview page and a bundle (no deploy)
+      - name: Playground
+        run: |
+          pnpm --filter @mof-malaysia/ftds-mcp test
+          pnpm --filter @mof-malaysia/ftds-mcp build

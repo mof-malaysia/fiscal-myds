@@ -1,0 +1,5 @@
+# The preview loads Inter from here inside sandboxed frames (chat hosts, the
+# share page), whose origin is opaque or the host's; font loads need CORS.
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
