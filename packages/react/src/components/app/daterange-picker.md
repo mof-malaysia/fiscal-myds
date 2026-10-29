@@ -26,8 +26,13 @@ export function PaymentsFilter() {
   return (
     <div className="gap-stack-sm flex flex-col">
       <Field name="period">
-        <FieldLabel>Payment date</FieldLabel>
-        <DateRangePicker presets value={range} onValueChange={setRange} />
+        <FieldLabel htmlFor="paymentDate">Payment date</FieldLabel>
+        <DateRangePicker
+          id="paymentDate"
+          presets
+          value={range}
+          onValueChange={setRange}
+        />
       </Field>
       <p className="text-content text-txt-black-700">
         {range?.from && range.to
@@ -89,7 +94,7 @@ export function LeaveDates({
 
 ## Notes
 
-- It is not a form control: it doesn't join the surrounding `Field`, and neither `Form` nor a native form submits its value. Keep the range in state and submit it yourself. The `FieldLabel` is visible but not linked to the button.
+- It is a button, not an input, so it doesn't register with `Field` or `Form`. Give it an `id`, point `FieldLabel`'s `htmlFor` at it, keep the range in state, and pass `invalid` for the error style. With `name`, a native form post submits the range as an ISO 8601 interval (`2026-01-01/2026-03-31`), empty until both ends are chosen.
 - While choosing the end date, the days up to the pointer are previewed, and the footer says "Choose a start date", "Choose an end date", or the range and its length ("3 Mar 2026 – 7 Mar 2026 · 5 days"). It is a polite live region.
 - Clicking a day before the start, or after a finished range, starts a new range.
 - Two months show side by side from 640px wide; phones show one.

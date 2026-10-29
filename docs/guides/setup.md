@@ -67,7 +67,18 @@ FTDS leaves shadcn's own `lib/utils.ts` (`cn`) alone; FTDS components use `clx` 
 
 The dark theme switches on the `dark` class, on `<html>` for the whole page or on any element for a dark island. `ThemeProvider` holds the current theme, and `ThemeSwitch` lets people change it; the choice is saved in `localStorage` under `theme`.
 
-`ThemeProvider` does not restore the saved theme by itself, so apply it before the first paint (a blocking script in `<head>`) and start the provider from the same value:
+Wrap the app in `ThemeProvider`. On mount it restores the theme saved under `storageKey` (default `"theme"`), or applies `defaultTheme`; `setTheme` (and `ThemeSwitch`) changes the class and saves the choice.
+
+```tsx
+import type { ReactNode } from "react";
+import { ThemeProvider } from "@/lib/ftds/hooks";
+
+export function Providers({ children }: { children: ReactNode }) {
+  return <ThemeProvider defaultTheme="light">{children}</ThemeProvider>;
+}
+```
+
+The provider reads the saved theme after the page has rendered, so a returning dark-mode visitor briefly sees the light theme. To avoid that flash, also apply the saved class in a blocking script in `<head>`:
 
 ```html
 <script>
@@ -75,21 +86,6 @@ The dark theme switches on the `dark` class, on `<html>` for the whole page or o
     localStorage.getItem("theme") ?? "light",
   );
 </script>
-```
-
-```tsx
-import type { ReactNode } from "react";
-import { ThemeProvider } from "@/lib/ftds/hooks";
-
-function savedTheme(): string {
-  return typeof window === "undefined"
-    ? "light"
-    : (localStorage.getItem("theme") ?? "light");
-}
-
-export function Providers({ children }: { children: ReactNode }) {
-  return <ThemeProvider defaultTheme={savedTheme()}>{children}</ThemeProvider>;
-}
 ```
 
 In a server-rendered app, render the provider in a client component (`"use client"` in Next.js).

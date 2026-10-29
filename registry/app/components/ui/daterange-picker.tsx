@@ -180,6 +180,18 @@ export type DateRangePickerProps = {
   /** Popup alignment to the trigger. @default "start" */
   align?: "start" | "center" | "end";
   className?: string;
+  /** On the trigger button: point a `FieldLabel`'s `htmlFor` (or an `ErrorSummary` error) at it. */
+  id?: string;
+  /**
+   * Submits the range in a native form post under this name, as an ISO 8601
+   * interval: `2026-01-01/2026-03-31` (empty until both ends are chosen).
+   */
+  name?: string;
+  /** Shows the error style on the trigger. */
+  invalid?: boolean;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  "aria-describedby"?: string;
 };
 
 const preset_button = clx(
@@ -291,6 +303,12 @@ const DateRangePicker = ({
   size,
   align = "start",
   className,
+  id,
+  name,
+  invalid,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
+  "aria-describedby": ariaDescribedby,
 }: DateRangePickerProps) => {
   const labels = useMemo(
     () => ({
@@ -431,7 +449,16 @@ const DateRangePicker = ({
           <Button
             variant="default-outline"
             size={size}
-            className={clx("whitespace-nowrap", className)}
+            id={id}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            aria-describedby={ariaDescribedby}
+            aria-invalid={invalid || undefined}
+            className={clx(
+              "whitespace-nowrap",
+              invalid && "ring-fr-danger ring",
+              className,
+            )}
           />
         }
       >
@@ -666,6 +693,17 @@ const DateRangePicker = ({
           </div>
         </div>
       </PopoverContent>
+      {name && (
+        <input
+          type="hidden"
+          name={name}
+          value={
+            range?.from && range.to
+              ? `${format(range.from, "yyyy-MM-dd")}/${format(range.to, "yyyy-MM-dd")}`
+              : ""
+          }
+        />
+      )}
     </Popover>
   );
 };

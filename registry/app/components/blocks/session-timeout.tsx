@@ -137,7 +137,11 @@ const SessionTimeoutDialog = ({
     <AlertDialog
       variant="warning"
       open={open}
-      onOpenChange={(next) => onOpenChange?.(next)}
+      // Only the two buttons close it: ignore Esc and outside presses, so the
+      // countdown keeps running until the user chooses (or it expires)
+      onOpenChange={(next) => {
+        if (next) onOpenChange?.(true);
+      }}
     >
       <AlertDialogContent dismissible={false} hideClose>
         <AlertDialogTitle>{labels.title}</AlertDialogTitle>

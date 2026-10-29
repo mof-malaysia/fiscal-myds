@@ -148,6 +148,6 @@ export function SejarahKes({
 - Each event shows the actor's avatar (initials from `name` unless you pass `initials` or `avatarUrl`) with a small badge icon for its kind, so the kind never rests on colour alone.
 - Times show as relative text ("2 days ago") with the full date and time in the `title`, formatted with `locale` (the browser's by default). Relative times are worked out on render and don't tick; pass `now` for fixed output in tests.
 - The block doesn't sort `events` or add new ones: update `events` yourself after a note saves.
-- The composer submits on its button or Ctrl/⌘+Enter and ignores empty notes. It clears the text once `onAddNote` returns or its promise resolves, even when you then show a `noteError`; the text stays only if the promise rejects, and the block doesn't catch that rejection. Set `pending` while saving so the officer can't send the note twice.
+- The composer submits on its button or Ctrl/⌘+Enter and ignores empty notes. It clears the text once `onAddNote` resolves. When saving fails, reject or resolve to `false`: the note stays so the officer can try again, and `noteError` says why. Set `pending` while saving so the officer can't send the note twice.
 - Notes in the default placeholder are "visible to officers only"; change `labels.notePlaceholder` if yours are shared with the applicant.
 - The installed file is yours: edit it when you need something the props don't cover, such as more event kinds.

@@ -230,7 +230,7 @@ const OtpVerify = forwardRef<HTMLFormElement, OtpVerifyProps>(
           disabled={pending || code.length < length}
           className="w-full justify-center"
         >
-          {pending && <Spinner color="white" />}
+          {pending && <Spinner color="white" label={null} />}
           {pending ? labels.pending : labels.submit}
         </Button>
 

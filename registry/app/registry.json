@@ -364,9 +364,11 @@
       ],
       "type": "registry:ui",
       "dependencies": [
+        "@base-ui/react@^1.9.0",
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
+        "mof-malaysia/ftds/hooks",
         "mof-malaysia/ftds/icon-calendar"
       ],
       "files": [
@@ -395,7 +397,8 @@
         "mof-malaysia/ftds/dialog",
         "mof-malaysia/ftds/hooks",
         "mof-malaysia/ftds/icon-calendar",
-        "mof-malaysia/ftds/popover"
+        "mof-malaysia/ftds/popover",
+        "mof-malaysia/ftds/utils"
       ],
       "files": [
         {

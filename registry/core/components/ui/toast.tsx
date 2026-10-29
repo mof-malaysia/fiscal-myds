@@ -151,9 +151,11 @@ const ToastClose = React.forwardRef<
     ref={ref}
     className={clx(toast_close_cva({ className }))}
     toast-close=""
+    // Pass aria-label to translate it
+    aria-label="Close"
     {...props}
   >
-    <CrossIcon className="size-5 shrink-0" />
+    <CrossIcon className="size-5 shrink-0" aria-hidden />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = "ToastClose";

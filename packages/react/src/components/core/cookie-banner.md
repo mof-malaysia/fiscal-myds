@@ -119,8 +119,8 @@ export function CookieConsent() {
 
 - Make accepting and rejecting equally easy: same style, same size, side by side. Don't pre-tick optional cookies.
 - Load analytics scripts only after the user accepts, and read the saved choice on later visits before loading them.
-- The banner is a Base UI dialog without a scrim. It opens as a modal (focus moves into it), and Esc, a click outside and the built-in close button all close it without a choice. Treat that as "no consent yet" and keep the optional cookies off.
-- The built-in close button is an icon with no text label. Your choice buttons are the main way out, so keep them clearly labelled.
+- The banner is not modal: the page stays usable behind it, and a click elsewhere on the page doesn't close it. Esc and the built-in ✕ do, without a choice; treat that as "no consent yet" and keep the optional cookies off.
+- The ✕ button is named "Close cookie banner"; pass `closeLabel` to translate it.
 - `CookieBannerPreferences` renders only while the preferences view is open. It renders a `<p>` by default, so pass `render={<div />}` when it holds fields.
 - `CookieBannerPreferencesTrigger` toggles the view; it is a `Button` (default `primary-outline`, `medium`) and takes `Button` props.
 - Every piece of text is yours to pass, so the banner translates with the page. Link to the site's cookies page from the description when there is one.

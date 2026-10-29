@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { DateField } from "@mof-malaysia/ftds-react/date-field";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview
@@ -9,13 +15,19 @@ import { DateField } from "@mof-malaysia/ftds-react/date-field";
  *
  * _Based on [HTML's date input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date)_
  *
+ * Like `Input`, it joins the `Field` it sits in: the label, hint, error and
+ * validity are wired for you, and `Form` collects its value under the field's `name`.
+ *
  * ### Usage
  * ```tsx
- * import DateField from "@mof-malaysia/ftds-react/date-field";
+ * import { DateField } from "@/components/ui/date-field";
+ * import { Field, FieldLabel, FieldError } from "@/components/ui/field";
  *
- * const [date, setDate] = useState("1957-08-31")
- *
- * <DateField value={date} onChange={setDate} />
+ * <Field name="dob">
+ *   <FieldLabel>Date of birth</FieldLabel>
+ *   <DateField required />
+ *   <FieldError match="valueMissing">Enter your date of birth</FieldError>
+ * </Field>
  * ```
  */
 const meta = {
@@ -79,3 +91,25 @@ export const ErrorDark: Story = createStory(
   { invalid: true, className: "dark" },
   "dark",
 );
+
+/** In a `Field`: the label, hint and error are linked to the input, and an invalid Field turns its border red. */
+export const InField: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <Field name="dob">
+        <FieldLabel>Date of birth</FieldLabel>
+        <FieldDescription>For example, 01/01/1990</FieldDescription>
+        <DateField className="w-fit" />
+      </Field>
+      <Field name="registeredOn" invalid>
+        <FieldLabel>Date the business was registered</FieldLabel>
+        <DateField className="w-fit" />
+        <FieldError>Enter the date the business was registered</FieldError>
+      </Field>
+      <Field name="renewal" disabled>
+        <FieldLabel>Renewal date</FieldLabel>
+        <DateField className="w-fit" />
+      </Field>
+    </div>
+  ),
+};

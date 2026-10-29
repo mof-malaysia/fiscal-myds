@@ -138,7 +138,7 @@ const FileUploadItem = forwardRef<HTMLLIElement, FileUploadItemProps>(
       >
         <div className="flex min-w-0 items-center gap-3">
           {uploading ? (
-            <Spinner size="medium" className="shrink-0" aria-hidden />
+            <Spinner size="medium" className="shrink-0" label={null} />
           ) : (
             <DocumentIcon
               aria-hidden

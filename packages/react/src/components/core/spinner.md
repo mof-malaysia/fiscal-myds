@@ -32,23 +32,22 @@ export function SubmitReturn({
         if (!pending) onSubmit();
       }}
     >
-      <Spinner show={pending} color="white" aria-hidden />
+      <Spinner show={pending} color="white" label={null} />
       {pending ? "Submitting your return…" : "Submit return"}
     </Button>
   );
 }
 ```
 
-On its own, give it a role and a name so screen readers know something is loading:
+On its own, it is a `role="status"` region named "Loading"; pass `label` to say what is loading:
 
 ```tsx
 import { Spinner } from "@/components/ui/spinner";
 
 export function CheckingStatus() {
   return (
-    <div className="text-content text-txt-black-700 flex items-center gap-2">
-      <Spinner size="medium" role="status" aria-label="Loading" />
-      Checking your payment status
+    <div className="flex justify-center py-8">
+      <Spinner size="medium" label="Checking your payment status" />
     </div>
   );
 }
@@ -56,7 +55,7 @@ export function CheckingStatus() {
 
 ## Notes
 
-- The spinner renders no text, role or label of its own. Either put visible text next to it and add `aria-hidden`, or give it `role="status"` and an `aria-label`.
+- By itself the spinner is announced as `label` (default "Loading"). When visible text beside it already says what is happening, or it sits inside a button, pass `label={null}` to hide it from screen readers.
 - `show={false}` renders nothing, so you can leave it in place and toggle it.
 - `size` is `small` (16px, default), `medium` (20px) or `large` (24px). `color` is `gray` (default) or `white`.
 - `color="white"` is plain white in both themes. In dark mode, filled buttons have dark text, so check the contrast there.

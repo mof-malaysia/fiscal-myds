@@ -54,12 +54,14 @@ interface CalloutProps
     ComponentProps<"div"> {
   dismissible?: boolean;
   onDismiss?: () => void;
+  /** Accessible name of the ✕ button `dismissible` adds. @default "Dismiss" */
+  dismissLabel?: string;
 }
 
-const CalloutContext = createContext({
-  show: true,
-  handleDismiss: () => {},
-});
+const CalloutContext = createContext<{
+  show: boolean;
+  handleDismiss: () => void;
+} | null>(null);
 
 const Callout: ForwardRefExoticComponent<CalloutProps> = forwardRef(
   (
@@ -69,6 +71,7 @@ const Callout: ForwardRefExoticComponent<CalloutProps> = forwardRef(
       children,
       dismissible = false,
       onDismiss,
+      dismissLabel = "Dismiss",
       ...props
     },
     ref,
@@ -83,7 +86,8 @@ const Callout: ForwardRefExoticComponent<CalloutProps> = forwardRef(
         {show && (
           <div
             ref={ref}
-            role="alert"
+            // Danger interrupts; the rest are announced politely when they appear
+            role={variant === "danger" ? "alert" : "status"}
             className={calloutVariants({ variant, className })}
             {...props}
           >
@@ -97,10 +101,11 @@ const Callout: ForwardRefExoticComponent<CalloutProps> = forwardRef(
                 size="small"
                 className="text-txt-black-700 ml-2 p-0 hover:bg-transparent"
                 iconOnly
+                aria-label={dismissLabel}
                 onClick={handleDismiss}
               >
                 <ButtonIcon>
-                  <CrossIcon className="h-5 w-5" />
+                  <CrossIcon className="h-5 w-5" aria-hidden />
                 </ButtonIcon>
               </Button>
             )}
@@ -172,7 +177,10 @@ CalloutAction.displayName = "CalloutAction";
 const CalloutClose: ForwardRefExoticComponent<
   useRender.ComponentProps<"button">
 > = forwardRef(({ render, children, ...props }, ref) => {
-  const { handleDismiss } = useContext(CalloutContext);
+  const context = useContext(CalloutContext);
+  if (!context)
+    throw new Error("CalloutClose must be used within a Callout component");
+  const { handleDismiss } = context;
   const childIsElement = !render && isValidElement(children);
 
   const element = useRender({
@@ -185,8 +193,6 @@ const CalloutClose: ForwardRefExoticComponent<
     ),
   });
 
-  if (!handleDismiss)
-    throw new Error("CalloutClose must be used within a Callout component");
   // Like the previous Slot-based version, render nothing without a child or `render`.
   if (!render && children == null) return null;
   return element;

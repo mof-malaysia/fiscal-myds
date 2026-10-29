@@ -123,6 +123,7 @@ const Calendar: FC<CalendarProps> = ({
   const thisYear = _month?.getFullYear() ?? today.getFullYear();
   const [year, setYear] = useState<number>(thisYear);
 
+  const yearCount = maxYear - minYear + 1;
   const yearRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (view === "year")
@@ -241,8 +242,7 @@ const Calendar: FC<CalendarProps> = ({
                               setView("day");
 
                               if (props.mode !== undefined && props.onSelect) {
-                                if (props.mode === "single")
-                                  props.onSelect(date, date, {}, e);
+                                // Single mode: the month grid only navigates; the day is still to pick
                                 if (props.mode === "range") {
                                   if (props.selected) {
                                     const { from, to } = props.selected;
@@ -280,12 +280,15 @@ const Calendar: FC<CalendarProps> = ({
             <div className="overflow-y-auto">
               <table role="grid" className="w-full">
                 <tbody>
-                  {Array(Math.ceil((maxYear - minYear) / 3))
+                  {Array(Math.ceil(yearCount / 3))
                     .fill(null)
                     .map((_, row_index) => (
                       <tr key={row_index}>
                         {[0, 1, 2].map((col_index) => {
                           const i = row_index * 3 + col_index;
+                          // minYear to maxYear inclusive; pad the last row
+                          if (i >= yearCount)
+                            return <td key={`empty-${i}`} role="gridcell" />;
 
                           const displayYear =
                             yearOrder === "asc" ? minYear + i : maxYear - i;
@@ -341,8 +344,7 @@ const Calendar: FC<CalendarProps> = ({
                                     props.mode !== undefined &&
                                     props.onSelect
                                   ) {
-                                    if (props.mode === "single")
-                                      props.onSelect(date, date, {}, e);
+                                    // Single mode: the year grid only navigates; the day is still to pick
                                     if (props.mode === "range") {
                                       if (props.selected) {
                                         const { from, to } = props.selected;

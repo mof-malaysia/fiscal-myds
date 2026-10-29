@@ -398,7 +398,7 @@ const SignUpForm = forwardRef<HTMLFormElement, SignUpFormProps>(
           disabled={pending}
           className="w-full justify-center"
         >
-          {pending && <Spinner color="white" />}
+          {pending && <Spinner color="white" label={null} />}
           {pending ? labels.pending : labels.submit}
         </Button>
       </form>

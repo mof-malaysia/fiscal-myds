@@ -192,7 +192,10 @@ const SignInForm = forwardRef<HTMLDivElement, SignInFormProps>(
           className="w-full justify-center"
         >
           {isPending(method) ? (
-            <Spinner color={isPrimary(method) ? "white" : "gray"} />
+            <Spinner
+              color={isPrimary(method) ? "white" : "gray"}
+              label={null}
+            />
           ) : (
             icon
           )}
@@ -278,7 +281,10 @@ const SignInForm = forwardRef<HTMLDivElement, SignInFormProps>(
             className="w-full justify-center"
           >
             {isPending("password") && (
-              <Spinner color={isPrimary("password") ? "white" : "gray"} />
+              <Spinner
+                color={isPrimary("password") ? "white" : "gray"}
+                label={null}
+              />
             )}
             {isPending("password") ? labels.pending : labels.submit}
           </Button>

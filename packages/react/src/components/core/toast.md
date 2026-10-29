@@ -127,5 +127,5 @@ export function PaymentPage({ children }: { children: ReactNode }) {
 - `AutoToast`'s `duration` (default 5000ms) sets both how long toasts stay and the length of the progress bar along the bottom. Hovering over the toasts pauses them.
 - People can dismiss a toast with its close button or by swiping it to the right.
 - Keep the title to a few words that say what happened ("Draft saved"), and put any detail in `description`.
-- The close button in `AutoToast` is an icon with no text label. When you compose the parts yourself, give `ToastClose` an `aria-label`.
+- `ToastClose` is named "Close"; pass `aria-label` to translate it.
 - Toasts float, so they already have a shadow; don't add borders or shadows.

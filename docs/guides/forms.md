@@ -8,7 +8,7 @@ Government forms are where people get nervous. FTDS forms follow one pattern so 
 
 ## The parts
 
-- **`Field`** (`@/components/ui/field`) wraps one control with `FieldLabel`, an optional `FieldDescription` (hint) and `FieldError`. It wires `for`, `aria-describedby` and `aria-invalid` for you. Most FTDS controls (`Input`, `TextArea`, `Select`, `Checkbox`, `Radio`, `Switch`, `NumberField`, `Combobox`, ...) pick up the `Field` they sit in. `DateField`, `DatePicker` and `DateRangePicker` don't: wire their `id`, the label's `htmlFor` and `invalid` yourself, as their pages show. Give the `Field` a `name`: that is the key the value and errors use.
+- **`Field`** (`@/components/ui/field`) wraps one control with `FieldLabel`, an optional `FieldDescription` (hint) and `FieldError`. It wires `for`, `aria-describedby` and `aria-invalid` for you. Every FTDS input (`Input`, `TextArea`, `Select`, `Checkbox`, `Radio`, `Switch`, `NumberField`, `DateField`, `Combobox`, ...) picks up the `Field` it sits in. `DatePicker` and `DateRangePicker` are buttons that open a calendar, so they don't: give them an `id`, point `FieldLabel`'s `htmlFor` at it and keep their value in state, as their pages show. Give the `Field` a `name`: that is the key the value and errors use.
 - **`Fieldset`** groups related fields or a radio group under a `FieldsetLegend` ("Your address", "Do you have a spouse?").
 - **`Form`** (`@/components/ui/form`) collects the values of its fields on submit (`onFormSubmit`) and shows server-side `errors`, keyed by field `name`, on the right fields.
 - **`ErrorSummary`** (`@/components/ui/error-summary`, app tier) is the "There is a problem" box at the top of the form after a failed submit. Each error links to its control by `id` and the summary takes focus when it appears.
@@ -95,20 +95,20 @@ The control's `id` matches the error's `id`, so the summary link can focus it. `
 
 ## Choosing a control
 
-| Need                             | Use                                                                                      |
-| -------------------------------- | ---------------------------------------------------------------------------------------- |
-| Short text                       | `Input`                                                                                  |
-| Long text, with a limit          | `TextArea` with `CharacterCount`                                                         |
-| One choice of 2 to 6             | `Radio` in a `Fieldset`                                                                  |
-| One choice of 7 or more          | `Select`; `Combobox` when people need to search                                          |
-| Several choices                  | `CheckboxGroup`                                                                          |
-| On/off that applies immediately  | `Switch`; a `Checkbox` when it is submitted with the form                                |
-| A date people know (birth date)  | `DateField` (wired to `Field` by hand)                                                   |
-| A date people pick (appointment) | `DatePicker`; `DateRangePicker` for a range (not form controls: keep the value in state) |
-| Money and numbers                | `NumberField` (or `Input` with `inputMode="decimal"` and an "RM" prepend)                |
-| One-time code                    | `OTPField`                                                                               |
-| Password                         | `PasswordInput`                                                                          |
-| Files                            | `FileUpload`                                                                             |
+| Need                             | Use                                                                       |
+| -------------------------------- | ------------------------------------------------------------------------- |
+| Short text                       | `Input`                                                                   |
+| Long text, with a limit          | `TextArea` with `CharacterCount`                                          |
+| One choice of 2 to 6             | `Radio` in a `Fieldset`                                                   |
+| One choice of 7 or more          | `Select`; `Combobox` when people need to search                           |
+| Several choices                  | `CheckboxGroup`                                                           |
+| On/off that applies immediately  | `Switch`; a `Checkbox` when it is submitted with the form                 |
+| A date people know (birth date)  | `DateField`                                                               |
+| A date people pick (appointment) | `DatePicker`; `DateRangePicker` for a range (keep the value in state)     |
+| Money and numbers                | `NumberField` (or `Input` with `inputMode="decimal"` and an "RM" prepend) |
+| One-time code                    | `OTPField`                                                                |
+| Password                         | `PasswordInput`                                                           |
+| Files                            | `FileUpload`                                                              |
 
 ## Long forms and services
 

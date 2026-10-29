@@ -41,7 +41,7 @@ export function AppointmentDay() {
 }
 ```
 
-Month and weekday names come from a date-fns `locale`, for example Bahasa Melayu. `minYear` and `maxYear` (default 1900 and 2099) bound the year grid and navigation, and `yearOrder="desc"` lists the latest year first:
+Month and weekday names come from a date-fns `locale`, for example Bahasa Melayu. `minYear` and `maxYear` (default 1900 and 2099, both included) bound the year grid and navigation, and `yearOrder="desc"` lists the latest year first:
 
 ```tsx
 import { useState } from "react";
@@ -66,7 +66,7 @@ export function TarikhTemujanji() {
 
 ## Notes
 
-- Clicking the month or year in the caption opens a month grid or a year grid. In `single` mode, choosing a month or year there also calls `onSelect` with that month and year, keeping the selected day of the month (or today's, when nothing is selected yet). In `range` mode, set `daterange="from"` or `"to"` to say which end the grid changes.
+- Clicking the month or year in the caption opens a month grid or a year grid. In `single` mode they only move the calendar; the value changes when a day is picked. In `range` mode, set `daterange="from"` or `"to"` to say which end the grid changes.
 - `month` sets the month shown first; after that the calendar manages navigation itself.
 - Day cells are 40px in the comfortable density and 32px in compact; the width follows, so wrap it with `w-fit` in a popover.
 - Outside days are shown by default (`showOutsideDays`).

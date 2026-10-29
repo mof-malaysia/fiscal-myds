@@ -6,7 +6,7 @@ category: Forms and inputs
 
 ## When to use
 
-Put every form control in a `Field`: `Input`, `TextArea`, `Select`, `Combobox`, `NumberField`, `Checkbox`, `Switch` and the rest. The control picks up the label (`for`), hint and error (`aria-describedby`) and invalid state (`aria-invalid`) from the field it sits in, so you never wire ids by hand. The exceptions are `DateField`, `DatePicker` and `DateRangePicker`, which are plain inputs: give them an `id`, point `FieldLabel`'s `htmlFor` at it and pass `invalid` (see their pages).
+Put every form control in a `Field`: `Input`, `TextArea`, `Select`, `Combobox`, `NumberField`, `DateField`, `Checkbox`, `Switch` and the rest. The control picks up the label (`for`), hint and error (`aria-describedby`) and invalid state (`aria-invalid`) from the field it sits in, so you never wire ids by hand. The exceptions are `DatePicker` and `DateRangePicker`, which are buttons that open a calendar: give them an `id` and point `FieldLabel`'s `htmlFor` at it (see their pages).
 
 To group several fields or a set of radios under one question, put them in a `Fieldset`. To submit and validate several fields together, put them in a `Form`.
 

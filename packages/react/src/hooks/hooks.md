@@ -48,9 +48,7 @@ export function UploadReceipt({ onUpload }: { onUpload: () => Promise<void> }) {
 
 ### ThemeProvider and useTheme
 
-`ThemeProvider` holds the theme and, when it changes, swaps the class on `<html>` and saves it in `localStorage` under `storageKey` (default `"theme"`). `useTheme()` returns `{ theme, setTheme, defaultTheme }`.
-
-`ThemeProvider` does not restore the saved theme on load: start it from the saved value and apply the class before the first paint, as shown in the [setup guide](https://mof-malaysia.github.io/ftds/guides/setup.md) (section 5).
+`ThemeProvider` holds the theme and keeps the class on `<html>` in step with it. On mount it restores the theme saved in `localStorage` under `storageKey` (default `"theme"`), or applies `defaultTheme`; `setTheme` swaps the class (removing every theme in `themes`, default `["light", "dark"]`) and saves the choice. `useTheme()` returns `{ theme, setTheme, defaultTheme }`. To avoid a flash of the light theme for returning dark-mode visitors, also set the class in a blocking `<head>` script, as in the [setup guide](https://mof-malaysia.github.io/ftds/guides/setup.md) (section 5).
 
 ```tsx
 import { Switch } from "@/components/ui/switch";

@@ -86,8 +86,8 @@ export function MaintenanceNotice({ onDismiss }: { onDismiss: () => void }) {
 
 ## Notes
 
-- Every callout has `role="alert"`, so screen readers announce it as soon as it appears. Render it in response to something (a save, a failed check), and avoid stacking several on one page.
+- A `danger` callout has `role="alert"`, so screen readers announce it straight away; the other variants have `role="status"`, announced politely when they appear. Pass `role` to change it. Avoid stacking several on one page.
 - The icon is chosen by `variant`; the title and text must still say what happened, so the colour is never the only signal.
-- `dismissible` adds a ✕ button, but that button has no accessible name and its text can't be translated. Prefer `CalloutClose` with a labelled button, as above.
+- `dismissible` adds a ✕ button named "Dismiss"; pass `dismissLabel` to translate it. Use `CalloutClose` with your own button when the dismiss action needs visible text.
 - Dismissing hides the callout until it is mounted again (after a reload, for example). Save the choice in `onDismiss` if it should stay hidden.
 - The callout is a wash with no border and no side stripe. Don't add either.

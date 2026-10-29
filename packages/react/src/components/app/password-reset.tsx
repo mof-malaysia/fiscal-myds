@@ -198,7 +198,7 @@ const ForgotPasswordForm = forwardRef<HTMLDivElement, ForgotPasswordFormProps>(
             disabled={pending}
             className="w-full justify-center"
           >
-            {pending && <Spinner color="white" />}
+            {pending && <Spinner color="white" label={null} />}
             {pending ? labels.pending : labels.submit}
           </Button>
         </form>
@@ -302,7 +302,7 @@ const ResetPasswordForm = forwardRef<HTMLFormElement, ResetPasswordFormProps>(
           disabled={pending}
           className="w-full justify-center"
         >
-          {pending && <Spinner color="white" />}
+          {pending && <Spinner color="white" label={null} />}
           {pending ? labels.pending : labels.submit}
         </Button>
       </form>

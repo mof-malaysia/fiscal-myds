@@ -96,7 +96,7 @@ export function AmaranSesi({
 
 ## Notes
 
-- It is a warning `AlertDialog` that can't be dismissed by clicking outside and has no close button. "Stay signed in" is the primary button. Escape still closes it, calling `onOpenChange(false)` without `onStay` or `onSignOut`, and a closed dialog stops counting and won't call `onExpire`. Keep your own timer for the real expiry, or treat that close as "Stay signed in".
+- It is a warning `AlertDialog` that can't be dismissed by clicking outside and has no close button. "Stay signed in" is the primary button. Escape doesn't close it either: only the two buttons do, so the countdown keeps running until the user chooses or `onExpire` fires.
 - The countdown shows as mm:ss. Screen readers hear the warning when it opens and again at 30 and 10 seconds, not every second.
 - `expiresAt` takes precedence over `secondsRemaining`. With `secondsRemaining`, each opening starts a fresh countdown.
 - `onExpire` fires once when the countdown reaches zero. The dialog stays open at 0:00 until you close it or leave the page, so close it there and sign out.
