@@ -93,7 +93,9 @@ const RadioButton = React.forwardRef<
         "data-[checked]:bg-bg-primary-600 data-[checked]:hover:bg-bg-primary-700 data-[checked]:border-transparent",
         "data-[disabled]:bg-bg-washed data-[disabled]:border-otl-gray-200 data-[disabled]:cursor-not-allowed",
         "data-[checked]:data-[disabled]:bg-bg-primary-disabled",
-        size === "small" ? "size-4" : "size-5",
+        size === "small" && "size-4",
+        size === "medium" && "size-5",
+        size === "large" && "size-6",
         className,
       )}
       disabled={props.disabled ?? disabled}

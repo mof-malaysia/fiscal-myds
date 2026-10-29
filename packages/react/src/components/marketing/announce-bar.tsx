@@ -3,7 +3,9 @@ import { clx } from "../../utils";
 import { Tag } from "../core/tag";
 
 /**
- * AnnounceBar component description.
+ * AnnounceBar is a short notice across the top of an agency site: a status tag
+ * and one line of text, such as planned maintenance or a new service. For a
+ * service in alpha or beta, use PhaseBanner.
  * @component
  * @example
  * <AnnounceBar>

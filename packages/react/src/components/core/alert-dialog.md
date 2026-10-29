@@ -12,7 +12,7 @@ category: Overlays
 
 ## Usage
 
-`variant` is required on `AlertDialog`. It sets the icon and its colour:
+`variant` on `AlertDialog` (default `default`) sets the icon and its colour:
 
 | `variant` | Icon                  | Use for                                     |
 | --------- | --------------------- | ------------------------------------------- |

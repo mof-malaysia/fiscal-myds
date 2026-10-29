@@ -73,7 +73,11 @@ const meta = {
             This website uses cookies to improve user experience. We need your
             consent to use some of the cookies.
           </CookieBannerDescription>
-          <CookieBannerPreferences className="flex flex-col gap-2 py-3">
+          {/* A <div>, not the default <p>: it holds checkboxes and blocks */}
+          <CookieBannerPreferences
+            render={<div />}
+            className="flex flex-col gap-2 py-3"
+          >
             <div className="flex flex-row gap-2.5">
               <Checkbox
                 id="necessary"

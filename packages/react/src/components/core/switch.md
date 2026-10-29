@@ -74,5 +74,5 @@ export function ShowClosedCases() {
 - State: `defaultChecked` uncontrolled, or `checked` with `onCheckedChange`.
 - The label names the setting, not the state ("Email reminders", not "Turn on email reminders"). The switch itself shows on or off; don't add "On" and "Off" text next to it.
 - If saving can fail, put the switch back and say so (for example with a toast from `useToastManager`), so the screen never shows a setting that wasn't saved.
-- `size` is `small`, `medium` (default) or `large`. Inside an invalid `Field` it shows a red outline.
+- `size` is `small`, `medium` (default) or `large`. The sizes are the track (16, 20 or 24px tall), not a control box like `Input`'s, so the default is `medium`: `small` is hard to tap on its own. Inside an invalid `Field` it shows a red outline.
 - Don't put switches in a form that has a Submit button; use checkboxes there.

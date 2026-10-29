@@ -76,7 +76,12 @@ const Stepper = forwardRef<HTMLElement, StepperProps>(
     const items = Children.toArray(children).filter(isValidElement);
     const total = items.length;
     const index = Math.min(Math.max(current, 0), Math.max(total - 1, 0));
-    const currentItem = items[index] as
+    // The narrow summary follows a step marked `state="current"`, like the wide list
+    const overridden = items.findIndex(
+      (item) => (item.props as { state?: StepState }).state === "current",
+    );
+    const summaryIndex = overridden === -1 ? index : overridden;
+    const currentItem = items[summaryIndex] as
       | React.ReactElement<{ children?: ReactNode }>
       | undefined;
 
@@ -91,7 +96,7 @@ const Stepper = forwardRef<HTMLElement, StepperProps>(
         <div className="flex flex-col gap-2 @xl:hidden">
           <p className="font-body text-content text-txt-black-700">
             <span className="text-txt-black-900 font-medium">
-              {formatStep(index + 1, total)}
+              {formatStep(summaryIndex + 1, total)}
             </span>
             {currentItem?.props.children ? (
               <>: {currentItem.props.children}</>
@@ -103,7 +108,9 @@ const Stepper = forwardRef<HTMLElement, StepperProps>(
                 progress_indicator_base_class,
                 "bg-bg-primary-600",
               )}
-              style={{ width: total ? `${((index + 1) / total) * 100}%` : 0 }}
+              style={{
+                width: total ? `${((summaryIndex + 1) / total) * 100}%` : 0,
+              }}
             />
           </div>
         </div>

@@ -30,7 +30,7 @@ const checkbox_cva = cva(
       size: {
         small: "size-4 rounded-[4px]",
         medium: "size-5 rounded-[5px]",
-        large: "size-5 rounded-[5px]",
+        large: "size-6 rounded-[6px]",
       },
     },
     defaultVariants: {
@@ -52,7 +52,7 @@ const checkbox_icon_cva = cva(
       size: {
         small: "size-3 stroke-[1.5px]",
         medium: "size-4 stroke-[2px]",
-        large: "size-4 stroke-[2px]",
+        large: "size-5 stroke-[2px]",
       },
     },
     defaultVariants: {

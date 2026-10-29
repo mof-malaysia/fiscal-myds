@@ -55,7 +55,6 @@ import { createStory } from "../utils";
  *     </AlertDialog>
  * ```
  */
-// @ts-expect-error
 const meta: Meta = {
   title: "Core/AlertDialog",
   component: AlertDialog,

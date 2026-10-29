@@ -73,6 +73,6 @@ export function KemajuanPermohonan({
 - `href` only takes effect on complete steps; current and upcoming steps are never links.
 - The current step has `aria-current="step"`, and complete steps announce `completeLabel` (default "Completed") before their name.
 - The layout follows the width of the stepper's container, not the screen: below 36rem it shows the "Step 2 of 4: Your income" line and a progress bar.
-- `state` on a `StepperItem` (`complete`, `current` or `upcoming`) overrides the state worked out from `current`. It changes only the full list, not the narrow summary.
+- `state` on a `StepperItem` (`complete`, `current` or `upcoming`) overrides the state worked out from `current`. The narrow summary follows a step marked `current` too.
 - The stepper is a `nav` named "Progress" by default; pass `aria-label` to name it for the form.
 - Children must be `StepperItem`s; the name of the current one is shown in the narrow summary.

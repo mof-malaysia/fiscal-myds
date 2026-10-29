@@ -98,12 +98,12 @@ const SiteFooterInfo: ForwardRefExoticComponent<SiteFooterInfoProps> =
 interface SiteFooterLinkGroupProps extends ComponentProps<"div"> {
   /** A string renders an h2 that labels the group's nav. */
   groupTitle: ReactNode;
-  /** Maximum number of links shown. Defaults to 8. */
+  /** Show only the first `linkCount` links. All are shown by default. */
   linkCount?: number;
 }
 const SiteFooterLinkGroup: ForwardRefExoticComponent<SiteFooterLinkGroupProps> =
   forwardRef(
-    ({ children, className, groupTitle, linkCount = 8, ...props }, ref) => {
+    ({ children, className, groupTitle, linkCount, ...props }, ref) => {
       const titleId = useId();
       const hasTextTitle = typeof groupTitle === "string";
       const titleElement = hasTextTitle ? (

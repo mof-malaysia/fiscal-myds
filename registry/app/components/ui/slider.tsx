@@ -13,7 +13,7 @@ import { clx } from "@/lib/ftds/utils";
  * @example
  * <Field name="share">
  *   <FieldLabel>Your share of the property</FieldLabel>
- *   <Slider defaultValue={50} showValue format={{ style: "percent" }} ... />
+ *   <Slider defaultValue={0.5} max={1} step={0.05} showValue format={{ style: "percent" }} />
  * </Field>
  *
  * // Range

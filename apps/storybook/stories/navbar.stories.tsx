@@ -70,30 +70,30 @@ import { ThemeSwitch } from "@mof-malaysia/ftds-react/theme-switch";
  *
  *             <NavbarMenuDropdown title="Departments & Agencies">
  *                 <NavbarMenuItem href="/submenu1">
- *                     National Digital Department
+ *                     Inland Revenue Board of Malaysia
  *                 </NavbarMenuItem>
  *                 <NavbarMenuItem href="/submenu2">
- *                     Personal Data Protection Department
+ *                     Royal Malaysian Customs Department
  *                 </NavbarMenuItem>
  *                 <NavbarMenuItem href="/submenu3">
- *                     Cybersecurity Malaysia
+ *                     Accountant General's Department
  *                 </NavbarMenuItem>
  *                 <NavbarMenuItem href="/submenu4">
- *                     Digital Nasional Berhad
+ *                     Public Private Partnership Unit
  *                 </NavbarMenuItem>
  *                 <NavbarMenuItem href="/submenu5">
- *                     Malaysia Digital Economy Corporation (MDEC)
+ *                     Securities Commission Malaysia
  *                 </NavbarMenuItem>
  *                 <NavbarMenuItem href="/submenu6">
- *                     MyDIGITAL Corporation
+ *                     Bank Simpanan Nasional
  *                 </NavbarMenuItem>
  *                 <NavbarMenuItem href="/submenu6">
- *                     MYNIC Berhad
+ *                     Retirement Fund Incorporated (KWAP)
  *                 </NavbarMenuItem>
- *             </NavItemsDropdown>
+ *             </NavbarMenuDropdown>
  *         </NavbarMenu>
  *
- *     <NavbarAction showtitle={showMenu} settitle={setMenu}>
+ *     <NavbarAction>
  *         <Button variant="default-ghost" className="p-2">
  *             <SearchIcon></SearchIcon>
  *         </Button>
@@ -225,44 +225,46 @@ export const NavbarCustomFtds = createStory(
   "light",
 );
 
-export const NavbarCustomKementerianDigital = createStory(
+export const NavbarAgencySite = createStory(
   {
     children: (
       <>
         <NavbarLogo
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"
-          alt="Kementerian Digital"
+          alt="Kementerian Kewangan Malaysia"
         >
-          Ministry Of Digital
+          Ministry of Finance
         </NavbarLogo>
         <NavbarMenu>
           <NavbarMenuItem href="/menu1">Ministry Profile</NavbarMenuItem>
-          <NavbarMenuItem href="/menu2">Policy</NavbarMenuItem>
-          <NavbarMenuItem href="/menu3">Achievements</NavbarMenuItem>
+          <NavbarMenuItem href="/menu2">Budget</NavbarMenuItem>
+          <NavbarMenuItem href="/menu3">Tax</NavbarMenuItem>
           <NavbarMenuItem href="/menu4">Media</NavbarMenuItem>
           <NavbarMenuItem href="/menu5">Directory</NavbarMenuItem>
           <NavbarMenuItem href="/menu6">Contact Us</NavbarMenuItem>
 
           <NavbarMenuDropdown title="Departments & Agencies">
             <NavbarMenuItem href="/submenu1">
-              National Digital Department
+              Inland Revenue Board of Malaysia
             </NavbarMenuItem>
             <NavbarMenuItem href="/submenu2">
-              Personal Data Protection Department
+              Royal Malaysian Customs Department
             </NavbarMenuItem>
             <NavbarMenuItem href="/submenu3">
-              Cybersecurity Malaysia
+              Accountant General's Department
             </NavbarMenuItem>
             <NavbarMenuItem href="/submenu4">
-              Digital Nasional Berhad
+              Public Private Partnership Unit
             </NavbarMenuItem>
             <NavbarMenuItem href="/submenu5">
-              Malaysia Digital Economy Coroporation (MDEC)
+              Securities Commission Malaysia
             </NavbarMenuItem>
             <NavbarMenuItem href="/submenu6">
-              MyDIGITAL Corporation
+              Bank Simpanan Nasional
             </NavbarMenuItem>
-            <NavbarMenuItem href="/submenu6">MYNIC Berhad</NavbarMenuItem>
+            <NavbarMenuItem href="/submenu6">
+              Retirement Fund Incorporated (KWAP)
+            </NavbarMenuItem>
           </NavbarMenuDropdown>
         </NavbarMenu>
         <NavbarAction>

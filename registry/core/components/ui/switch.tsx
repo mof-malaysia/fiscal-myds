@@ -18,6 +18,8 @@ import { clx } from "@/lib/ftds/utils";
  * </label>
  */
 
+// Sizes are the track, not a control box: medium (20px) is the default, as
+// small (16px) is too small to tap comfortably on its own
 const switch_cva = cva(
   [
     "relative inline-flex shrink-0 cursor-pointer items-center rounded-full p-[3px] outline-none",

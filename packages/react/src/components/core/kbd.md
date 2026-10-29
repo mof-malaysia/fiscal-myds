@@ -65,5 +65,5 @@ export function SubmitWithShortcut() {
 - `mod` is ⌘ on macOS and Ctrl elsewhere; use it rather than `ctrl` or `cmd` so the shortcut suits each platform. `cmd`, `ctrl`, `alt`, `shift` and `meta` are also accepted; any other modifier throws an error.
 - Keys are `KeyboardEvent.key` names in lower case: `k`, `enter`, `escape`, `arrowdown`, `space`, `/`, `?`. Shift is implied for punctuation (`?` is Shift+/) but must be written for letters and named keys (`shift+a`).
 - Screen readers hear the shortcut as words ("Command K", "G then I"). `thenLabel` replaces "then" in sequences, for example `thenLabel="kemudian"`.
-- The platform is read once, when the module loads, and is not macOS on the server. A server-rendered `Kbd` with `mod` therefore shows the Windows form in the HTML and can cause a hydration mismatch on macOS; render it on the client only if that matters.
+- Server rendering and hydration use the Windows form (Ctrl); on macOS the key caps switch to ⌘ right after hydration, without a hydration mismatch.
 - The file also exports the helpers the shortcut layer uses: `parseCombo`, `eventStep`, `isModifierOnly` and `isMac`.

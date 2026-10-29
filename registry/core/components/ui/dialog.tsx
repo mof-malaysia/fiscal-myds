@@ -302,11 +302,7 @@ const DialogFooter: ForwardRefExoticComponent<DialogFooterProps> = forwardRef(
     return (
       <div className={clx(dialog_footer_cva({ border, align }), className)}>
         {action}
-        <div
-          ref={ref}
-          className={clx(dialog_action_cva({ align }), className)}
-          {...props}
-        />
+        <div ref={ref} className={dialog_action_cva({ align })} {...props} />
       </div>
     );
   },

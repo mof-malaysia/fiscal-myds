@@ -46,10 +46,10 @@ const AlertDialogContext = createContext<AlertDialogContextProps>({
 
 interface AlertDialogProps
   extends ComponentProps<typeof Dialog>,
-    AlertDialogContextProps {}
+    Partial<AlertDialogContextProps> {}
 
 const AlertDialog: FunctionComponent<AlertDialogProps> = ({
-  variant,
+  variant = "default",
   ...props
 }) => {
   return (
@@ -105,9 +105,12 @@ const AlertDialogContent: ForwardRefExoticComponent<
   return (
     <DialogBody ref={ref} {...props}>
       <DialogContent className="py-6">
-        <DialogIcon variant={map[variant].variant} className="mb-4">
-          {map[variant].icon}
-        </DialogIcon>
+        {/* The default variant has no icon */}
+        {variant !== "default" && (
+          <DialogIcon variant={map[variant].variant} className="mb-4">
+            {map[variant].icon}
+          </DialogIcon>
+        )}
         <div>{children}</div>
       </DialogContent>
     </DialogBody>

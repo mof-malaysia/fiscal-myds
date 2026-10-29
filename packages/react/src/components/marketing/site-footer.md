@@ -131,7 +131,7 @@ export function AgencyFooter() {
 
 - Give `Footer` `tone="well"` under a `SiteFooter`, so the two read as one band.
 - A string `groupTitle` renders an `h2` and names the group's `<nav>`; with a node instead, the nav has no name, so add your own heading and `aria-labelledby`.
-- `SiteFooterLinkGroup` shows at most `linkCount` links (8 by default) and silently drops the rest. Link to an index page instead of listing everything.
+- `SiteFooterLinkGroup` shows every link; pass `linkCount` to show only the first few. For long lists, link to an index page instead.
 - Four link groups fill the desktop row beside `SiteFooterInfo`. On mobile the groups sit two per row.
 - The logo image is decorative when `logoTitle` names the agency: give it `alt=""`. A string `logoTitle` renders as a paragraph, not a heading.
 - Icon-only social links need an `aria-label` naming the network.

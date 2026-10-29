@@ -116,7 +116,7 @@ export function RefundMethod() {
 
 - State lives on `Radio`: `defaultValue` uncontrolled, or `value` with `onValueChange`. Pass `value=""` to keep a controlled group with nothing chosen.
 - `disabled` on `Radio` disables every option; `disabled` on a `RadioItem` disables that option and greys its label and hint.
-- `size` is set once on `Radio` and applies to every button and label: `small` (16px button, 14px text), `medium` (default: 20px button, body text that follows the density) or `large` (20px button, 18px text).
+- `size` is set once on `Radio` and applies to every button and label: `small` (16px button, 14px text), `medium` (default: 20px button, body text that follows the density) or `large` (24px button, 18px text).
 - Without a `Fieldset`, name the group with `aria-label` or `aria-labelledby` on `Radio`, but a visible question is better.
 - Don't pre-select an option for a question about the person (marital status, residency); only pre-select a safe, common default such as a refund method.
 - Option labels are regular weight and full Ink, so the legend reads as the question and the options as answers.

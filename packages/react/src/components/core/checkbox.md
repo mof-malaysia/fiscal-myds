@@ -76,5 +76,5 @@ export function PostalAddress() {
 
 - `checked` and `defaultChecked` take `true`, `false` or `"indeterminate"` (a dash, for a parent whose children are partly ticked). `onCheckedChange` always reports `true` or `false`: a click settles the mixed state. For a real "Select all", use `CheckboxGroup` with a `parent` item, which manages the mixed state for you.
 - The stroke turns red when its `Field` is invalid; put the message in `FieldError`.
-- `size` is `small` (16px box, the default) or `medium` (20px). `large` is currently the same as `medium`.
+- `size` is `small` (16px box, the default), `medium` (20px) or `large` (24px).
 - Never use a checkbox without a visible label. Don't pre-tick consent or declaration boxes.

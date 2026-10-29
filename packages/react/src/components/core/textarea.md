@@ -40,7 +40,7 @@ export function AppealReason() {
 ## Notes
 
 - The text area joins its `Field` like `Input`: label, hint, error and invalid stroke are wired for you.
-- `size` is `small`, `medium` (default) or `large`; each sets a minimum height (100, 120 or 150px) and the text size. Set `rows` for a taller box.
+- `size` is `small` (default, like `Input` and `Select`), `medium` or `large`; each sets a minimum height (100, 120 or 150px) and the text size. Set `rows` for a taller box.
 - People can't drag to resize it. Size it to the length of answer you expect, so the box itself hints at how much to write.
 - Don't use `maxLength` to cap the answer: it silently cuts off pasted text. Use `CharacterCount`, which lets people go over and then asks them to shorten it.
 - The export is `TextArea` (capital A), from `@/components/ui/textarea`.

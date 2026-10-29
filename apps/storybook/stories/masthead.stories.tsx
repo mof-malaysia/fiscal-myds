@@ -29,7 +29,7 @@ import { createStory } from "../utils";
  * - Keyboard navigation support
  *
  * ### Accessibility
- * - Keyboard shortcut: Alt + Cmd/Ctrl + Enter to toggle panel
+ * - The trigger is a button named by its text, with its expanded state announced
  * - Screen reader friendly content structure
  * - High contrast text and icons
  *

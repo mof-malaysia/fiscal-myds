@@ -34,7 +34,7 @@ interface LogoCloudLogo {
 interface LogoCloudProps extends Omit<ComponentProps<"section">, "title"> {
   title?: ReactNode;
   logos: LogoCloudLogo[];
-  /** Show logos in full colour instead of muted. */
+  /** Show the logos greyed out until hovered; set `false` for full colour. @default true */
   muted?: boolean;
 }
 
