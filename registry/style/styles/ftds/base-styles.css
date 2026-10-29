@@ -1,0 +1,25 @@
+/* FTDS Base Styles */
+@layer base {
+  html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scroll-padding-top: 65px;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  :focus:not(:focus-visible) {
+    @apply outline-none;
+  }
+}
+
+@layer utilities {
+  .underline {
+    text-decoration: underline;
+    text-underline-position: from-font;
+  }
+}

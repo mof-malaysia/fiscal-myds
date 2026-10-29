@@ -1,0 +1,255 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-marketing",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "announce-bar",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/announce-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-chevron-left",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/icon-pause",
+        "mof-malaysia/ftds/icon-play",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "cta-band",
+      "type": "registry:block",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/cta-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/cta-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "faq",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/accordion",
+        "mof-malaysia/ftds/section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/faq.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/faq.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:block",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-arrow-forward",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/feature-grid.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/feature-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/section-heading",
+        "mof-malaysia/ftds/tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/hero.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/logo-cloud.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/logo-cloud.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-arrow-forward",
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-hamburger-menu",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "section-heading",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/section-heading.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "site-footer",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/footer",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/site-footer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "site-search",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-search",
+        "mof-malaysia/ftds/input",
+        "mof-malaysia/ftds/kbd",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/site-search.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:block",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/stats-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/stats-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonial",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/avatar",
+        "mof-malaysia/ftds/section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/testimonial.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/testimonial.tsx"
+        }
+      ]
+    }
+  ]
+}

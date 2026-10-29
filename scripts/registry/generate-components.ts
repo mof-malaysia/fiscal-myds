@@ -4,17 +4,18 @@ import {
   readFileContent,
   extractImports,
   transformImports,
-  writeJsonFile,
+  writeRegistry,
   mapToRegistryDependency,
   expandIconBarrelImports,
   getIconExportMap,
   listComponents,
-  registryItemUrl,
-  COMPONENT_TIERS,
+  registryItemRef,
   REGISTRY_ITEM_SCHEMA,
   type ComponentSource,
   type ComponentTier,
   type RegistryComponent,
+  type RegistryDependency,
+  COMPONENT_TIERS,
 } from "./utils";
 
 /**
@@ -32,7 +33,6 @@ const SRC_DIR = path.join(__dirname, "../../packages/react/src");
 const UTILS_DIR = path.join(SRC_DIR, "utils");
 const HOOKS_DIR = path.join(SRC_DIR, "hooks");
 const ICONS_DIR = path.join(SRC_DIR, "icons");
-const REGISTRY_DIR = path.join(__dirname, "../../registry");
 
 /** An app or marketing file that starts with this comment is a composed page section (`registry:block`). */
 const BLOCK_MARKER = /^(?:"use client";\s*)?\/\/ registry:block\b/;
@@ -56,11 +56,15 @@ function withVersions(deps: Iterable<string>): string[] {
 }
 
 /** App and marketing may depend on core; app and marketing never depend on each other. */
-function assertTierBoundary(item: RegistryComponent, tier: ComponentTier) {
-  for (const dep of item.registryDependencies) {
-    const depTier = COMPONENT_TIERS.find((t) => dep.includes(`/${t}/styles/`));
+function assertTierBoundary(
+  name: string,
+  tier: ComponentTier,
+  deps: RegistryDependency[],
+) {
+  for (const dep of deps) {
+    const depTier = COMPONENT_TIERS.find((t) => t === dep.registry);
     if (depTier && depTier !== tier && depTier !== "core") {
-      throw new Error(`${tier}/${item.name} depends on ${depTier}: ${dep}`);
+      throw new Error(`${tier}/${name} depends on ${depTier}: ${dep.name}`);
     }
   }
 }
@@ -73,19 +77,20 @@ function generateComponentItem({
   const content = expandIconBarrelImports(readFileContent(filePath), iconMap);
   const { npmDependencies, localImports } = extractImports(content);
 
-  const selfUrl = registryItemUrl(tier, name);
-  const registryDeps = new Set(
-    localImports
-      .map((importPath) => mapToRegistryDependency(importPath, tier))
-      .filter((dep): dep is string => dep !== null && dep !== selfUrl),
-  );
+  const deps = localImports
+    .map((importPath) => mapToRegistryDependency(importPath, tier))
+    .filter(
+      (dep): dep is RegistryDependency => dep !== null && dep.name !== name,
+    );
+  assertTierBoundary(name, tier, deps);
+  const registryDeps = new Set(deps.map((dep) => registryItemRef(dep.name)));
 
   const isBlock = tier !== "core" && BLOCK_MARKER.test(content);
   const target = isBlock
     ? `components/blocks/${name}.tsx`
     : `components/ui/${name}.tsx`;
 
-  const item: RegistryComponent = {
+  return {
     $schema: REGISTRY_ITEM_SCHEMA,
     name,
     type: isBlock ? "registry:block" : "registry:ui",
@@ -100,8 +105,6 @@ function generateComponentItem({
       },
     ],
   };
-  assertTierBoundary(item, tier);
-  return item;
 }
 
 function generateUtilsItem(): RegistryComponent {
@@ -152,7 +155,7 @@ function generateHooksItem(): RegistryComponent {
     type: "registry:lib",
     dependencies: withVersions(["mitt"]),
     // use-toast imports the ToastEvent type from the toast component
-    registryDependencies: [registryItemUrl("core", "toast")],
+    registryDependencies: [registryItemRef("toast")],
     files,
   };
 }
@@ -169,11 +172,7 @@ function main() {
   }
 
   for (const tier of COMPONENT_TIERS) {
-    const outDir = path.join(REGISTRY_DIR, tier, "styles/default");
-    fs.rmSync(path.join(REGISTRY_DIR, tier), { recursive: true, force: true });
-    for (const item of items[tier]) {
-      writeJsonFile(path.join(outDir, `${item.name}.json`), item);
-    }
+    writeRegistry(tier, items[tier]);
     console.log(`   - ${tier}: ${items[tier].length} items`);
   }
 }

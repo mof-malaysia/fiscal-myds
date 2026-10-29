@@ -1,10 +1,9 @@
-import fs from "fs";
 import path from "path";
 import {
   readFileContent,
-  writeJsonFile,
-  registryItemUrl,
-  REGISTRY_ITEM_SCHEMA,
+  registryItemRef,
+  writeRegistry,
+  REGISTRY_DIR,
   type RegistryComponent,
 } from "./utils";
 
@@ -14,10 +13,7 @@ import {
  */
 
 const STYLE_SOURCE_DIR = path.join(__dirname, "../../packages/style/styles");
-const REGISTRY_OUTPUT_DIR = path.join(
-  __dirname,
-  "../../registry/style/styles/default",
-);
+const REGISTRY_OUTPUT_DIR = path.join(REGISTRY_DIR, "style");
 
 function log(message: string) {
   console.log(`🎨 ${message}`);
@@ -227,11 +223,9 @@ function toRegistryFileItem(component: RegistryComponent) {
       ? "styles/ftds.css"
       : `styles/ftds/${component.name}.css`;
 
-  component.$schema = REGISTRY_ITEM_SCHEMA;
   component.type = "registry:file";
-  component.registryDependencies = component.registryDependencies.map((dep) =>
-    registryItemUrl("style", dep),
-  );
+  component.registryDependencies =
+    component.registryDependencies.map(registryItemRef);
   component.files = component.files.map((file) => ({
     ...file,
     path: filePath,
@@ -246,11 +240,6 @@ function toRegistryFileItem(component: RegistryComponent) {
 async function main() {
   console.log("🎨 Generating Style Registry Components\n");
   console.log("=".repeat(60) + "\n");
-
-  // Ensure output directory exists
-  if (!fs.existsSync(REGISTRY_OUTPUT_DIR)) {
-    fs.mkdirSync(REGISTRY_OUTPUT_DIR, { recursive: true });
-  }
 
   // Generate individual components
   const colors = generateColorsComponent();
@@ -278,10 +267,10 @@ async function main() {
 
   for (const component of components) {
     toRegistryFileItem(component);
-    const outputPath = path.join(REGISTRY_OUTPUT_DIR, `${component.name}.json`);
-    writeJsonFile(outputPath, component);
-    log(`✓ Generated ${component.name}.json`);
+    log(`✓ Generated ${component.name}`);
   }
+  writeRegistry("style", components);
+  log(`Output: ${REGISTRY_OUTPUT_DIR}`);
 
   console.log("\n" + "=".repeat(60));
   console.log(`✨ Style Registry Generation Complete!`);

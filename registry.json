@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "include": [
+    "registry/core/registry.json",
+    "registry/app/registry.json",
+    "registry/marketing/registry.json",
+    "registry/icons/registry.json",
+    "registry/style/registry.json"
+  ]
+}

@@ -1,0 +1,1074 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-app",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "activity-timeline",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/avatar",
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/icon-attachment",
+        "mof-malaysia/ftds/icon-chat-bubble",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-document",
+        "mof-malaysia/ftds/icon-swap",
+        "mof-malaysia/ftds/icon-user",
+        "mof-malaysia/ftds/textarea",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/activity-timeline.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/activity-timeline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/drawer",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-hamburger-menu",
+        "mof-malaysia/ftds/tooltip",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/app-shell.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "application-list",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/empty-state",
+        "mof-malaysia/ftds/icon-document",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/application-list.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/application-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "auth-layout",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/auth-layout.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/auth-layout.tsx"
+        }
+      ]
+    },
+    {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/combobox",
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/autocomplete.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "dependencies": [
+        "date-fns@^4.1.0",
+        "react-day-picker@^9.11.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-chevron-left",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "character-count",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/textarea",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/character-count.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "check-answers",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/error-summary",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/check-answers.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/check-answers.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "dependencies": [
+        "cmdk@^1.1.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/dialog",
+        "mof-malaysia/ftds/icon-search",
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "confirmation-panel",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-copy",
+        "mof-malaysia/ftds/icon-printer",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/confirmation-panel.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/confirmation-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "dependencies": [
+        "@tanstack/react-table@^8.21.3"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/icon-arrow-down",
+        "mof-malaysia/ftds/icon-arrow-up",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/icon-column-collapse",
+        "mof-malaysia/ftds/icon-column-expand",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/table",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/data-table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-field",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-calendar"
+      ],
+      "files": [
+        {
+          "path": "components/ui/date-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "date-fns@^4.1.0",
+        "react-day-picker@^9.11.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/calendar",
+        "mof-malaysia/ftds/dialog",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-calendar",
+        "mof-malaysia/ftds/popover"
+      ],
+      "files": [
+        {
+          "path": "components/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "daterange-picker",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "date-fns@^4.1.0",
+        "react-day-picker@^9.11.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/calendar",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-calendar",
+        "mof-malaysia/ftds/icon-chevron-left",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/popover",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/daterange-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "decision-panel",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/alert-dialog",
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/radio",
+        "mof-malaysia/ftds/textarea",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/decision-panel.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/decision-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "desk-shell",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/drawer",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-hamburger-menu",
+        "mof-malaysia/ftds/icon-search",
+        "mof-malaysia/ftds/kbd",
+        "mof-malaysia/ftds/shortcuts",
+        "mof-malaysia/ftds/tooltip",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/desk-shell.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/empty-state.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "error-page",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-copy",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/error-page.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/error-page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "error-summary",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/error-summary.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-document",
+        "mof-malaysia/ftds/icon-upload",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/progress",
+        "mof-malaysia/ftds/spinner",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/file-upload.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form-step",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/error-summary",
+        "mof-malaysia/ftds/icon-chevron-left",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/stepper",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/form-step.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/form-step.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/toggle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/progress",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/meter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "notification-list",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/empty-state",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-bell",
+        "mof-malaysia/ftds/icon-calendar",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-document",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-money",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/toggle",
+        "mof-malaysia/ftds/toggle-group",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/notification-list.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/notification-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/combobox",
+        "mof-malaysia/ftds/icon-minus",
+        "mof-malaysia/ftds/icon-plus",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/number-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "otp-field",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/combobox",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/otp-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "otp-verify",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/otp-field",
+        "mof-malaysia/ftds/spinner",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/otp-verify.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/otp-verify.tsx"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/page-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-chevron-left",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/icon-ellipsis",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "panel",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-cross-circle",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/panel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-eye-hide",
+        "mof-malaysia/ftds/icon-eye-show",
+        "mof-malaysia/ftds/input",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "password-reset",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/error-summary",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/icon-email",
+        "mof-malaysia/ftds/input",
+        "mof-malaysia/ftds/otp-verify",
+        "mof-malaysia/ftds/sign-up-form",
+        "mof-malaysia/ftds/spinner",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/password-reset.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/password-reset.tsx"
+        }
+      ]
+    },
+    {
+      "name": "payment-summary",
+      "type": "registry:block",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/error-summary",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-download",
+        "mof-malaysia/ftds/icon-lock-fill",
+        "mof-malaysia/ftds/icon-printer",
+        "mof-malaysia/ftds/radio",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/payment-summary.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/payment-summary.tsx"
+        }
+      ]
+    },
+    {
+      "name": "preview-card",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/popover",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/preview-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "session-timeout",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/alert-dialog",
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/session-timeout.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/session-timeout.tsx"
+        }
+      ]
+    },
+    {
+      "name": "settings-layout",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/settings-layout.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/settings-layout.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "shortcuts",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/command",
+        "mof-malaysia/ftds/dialog",
+        "mof-malaysia/ftds/kbd",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/shortcuts.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sign-in-form",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/error-summary",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/input",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/password-input",
+        "mof-malaysia/ftds/spinner",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/sign-in-form.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/sign-in-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sign-up-form",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/error-summary",
+        "mof-malaysia/ftds/field",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/input",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/password-input",
+        "mof-malaysia/ftds/spinner",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/sign-up-form.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/sign-up-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "split-pane",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/split-pane.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stat",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-arrow-down",
+        "mof-malaysia/ftds/icon-arrow-up",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/stat.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/progress",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/stepper.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "summary-list",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/summary-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-question-circle",
+        "mof-malaysia/ftds/skeleton",
+        "mof-malaysia/ftds/tooltip",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "task-list",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/task-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/combobox",
+        "mof-malaysia/ftds/toggle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "work-queue",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-chevron-left",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-download",
+        "mof-malaysia/ftds/icon-search",
+        "mof-malaysia/ftds/icon-user",
+        "mof-malaysia/ftds/input",
+        "mof-malaysia/ftds/kbd",
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/select",
+        "mof-malaysia/ftds/shortcuts",
+        "mof-malaysia/ftds/table",
+        "mof-malaysia/ftds/toggle",
+        "mof-malaysia/ftds/toggle-group",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/work-queue.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/work-queue.tsx"
+        }
+      ]
+    }
+  ]
+}

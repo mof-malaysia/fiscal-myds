@@ -1,0 +1,790 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-core",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": [
+        "tailwind-merge@^3.4.0"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "lib/ftds/utils/index.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "hooks",
+      "type": "registry:lib",
+      "dependencies": [
+        "mitt@^3.0.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/toast"
+      ],
+      "files": [
+        {
+          "path": "lib/ftds/hooks/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-callback-ref.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-controllable-state.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-copy.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-countdown.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-media-query.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-merged-refs.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-pagination.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-theme.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-toast.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/utils/events.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/dialog",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/icon-warning-diamond",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "backlink",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-arrow-back",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/backlink.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/icon-ellipsis",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "callout",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/callout.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-minus",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "cookie-banner",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/cookie-banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/details.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fieldset",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/fieldset.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/footer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/form.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "inset-text",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/inset-text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/link.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "masthead",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-malaysia-flag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/masthead.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "phase-banner",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/phase-banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pill",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skiplink",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skiplink.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "theme-switch",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-moon",
+        "mof-malaysia/ftds/icon-sun",
+        "mof-malaysia/ftds/select"
+      ],
+      "files": [
+        {
+          "path": "components/ui/theme-switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/toggle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

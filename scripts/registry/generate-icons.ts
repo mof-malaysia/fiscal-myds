@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
 import {
-  writeJsonFile,
+  iconItemName,
   readFileContent,
-  REGISTRY_ITEM_SCHEMA,
+  writeRegistry,
+  REGISTRY_DIR,
   type RegistryComponent,
 } from "./utils";
 
@@ -13,10 +14,7 @@ import {
  */
 
 const ICONS_DIR = path.join(__dirname, "../../packages/react/src/icons");
-const REGISTRY_OUTPUT = path.join(
-  __dirname,
-  "../../registry/icons/styles/default",
-);
+const REGISTRY_OUTPUT = path.join(REGISTRY_DIR, "icons");
 
 async function main() {
   console.log("🎨 Generating Icons Registry (@ftds-icon)...\n");
@@ -43,8 +41,7 @@ async function main() {
     const transformedContent = content;
 
     const registryComponent: RegistryComponent = {
-      $schema: REGISTRY_ITEM_SCHEMA,
-      name: iconName,
+      name: iconItemName(iconName),
       type: "registry:ui",
       dependencies: [],
       registryDependencies: [],
@@ -58,11 +55,10 @@ async function main() {
     };
 
     components.push(registryComponent);
-    const outputPath = path.join(REGISTRY_OUTPUT, `${iconName}.json`);
-    writeJsonFile(outputPath, registryComponent);
-
-    console.log(`✓ Generated: ${iconName}`);
+    console.log(`✓ Generated: ${registryComponent.name}`);
   }
+
+  writeRegistry("icons", components);
 
   console.log(`\n✅ Generated ${components.length} icon components`);
   console.log(`📁 Output: ${REGISTRY_OUTPUT}`);
