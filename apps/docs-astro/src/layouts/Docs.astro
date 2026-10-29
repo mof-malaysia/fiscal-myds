@@ -44,12 +44,12 @@ const next: NavLink | undefined = links[index + 1];
 <Base title={title} description={description} locale={locale}>
   <a
     href="#content"
-    class="focus-ring bg-bg-white text-txt-black-900 sr-only rounded-md px-3 py-2 text-sm font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50"
+    class="focus-ring bg-bg-white text-txt-black-900 sr-only rounded-md px-3 py-2 text-sm font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-skiplink"
   >
     Skip to content
   </a>
 
-  <header class="border-otl-gray-200 bg-bg-gray-50/90 sticky top-0 z-30 border-b backdrop-blur-sm">
+  <header class="border-otl-gray-200 bg-bg-gray-50/90 sticky top-0 z-sticky border-b backdrop-blur-sm">
     <div class="flex h-14 items-center gap-6 px-4 md:px-6">
       <Brand locale={locale} />
 

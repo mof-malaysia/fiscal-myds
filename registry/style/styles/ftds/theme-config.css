@@ -376,7 +376,7 @@
 /*
  * Layers (DESIGN.md: Layers). Use z-sticky, z-popup... instead of raw numbers.
  * Not `inline`: utilities read var(--z-index-*), so a project can move a whole
- * layer by redefining the variable, e.g. :root { --z-index-popup: 1500; }
+ * layer by redefining the variable (see DESIGN.md for an example).
  */
 @theme {
   --z-index-sticky: 100;

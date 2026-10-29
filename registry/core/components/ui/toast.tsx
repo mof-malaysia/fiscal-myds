@@ -80,7 +80,7 @@ interface ToastRootProps
 }
 
 const toast_cva = cva([
-  "group pointer-events-auto relative bg-bg-dialog-active z-toast p-3 flex w-full items-start gap-2 outline-none",
+  "group pointer-events-auto relative bg-bg-dialog-active p-3 flex w-full items-start gap-2 outline-none",
   "overflow-hidden rounded-md border shadow-card border-bg-washed-active transition-all duration-300 ease-out",
   "translate-x-[var(--toast-swipe-movement-x)] translate-y-[var(--toast-swipe-movement-y)] data-[swiping]:transition-none",
   "data-[starting-style]:translate-x-full data-[starting-style]:opacity-0",
