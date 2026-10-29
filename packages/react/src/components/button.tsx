@@ -27,29 +27,30 @@ const button_cva = cva(
     "group flex select-none items-center gap-1.5 rounded-md w-fit",
     "font-body font-medium outline-none transition disabled:cursor-not-allowed",
     "text-center active:translate-y-[0.5px]",
-    "focus:ring focus:ring-fr-primary",
+    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-primary",
   ],
   {
     variants: {
       variant: {
         "default-outline": [
-          "bg-bg-white border border-otl-gray-200 text-txt-black-700 shadow-button",
-          "hover:bg-bg-white-hover hover:border-otl-gray-300 hover:text-txt-black-900",
+          // Tonal, not outlined (DESIGN.md: separate with tone, not lines)
+          "bg-bg-washed border border-transparent text-txt-black-900",
+          "hover:bg-bg-washed-active",
           "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:border-transparent",
         ],
         "default-ghost": [
           "bg-transparent border border-transparent text-txt-black-700",
-          "hover:bg-bg-white-hover",
+          "hover:bg-bg-washed hover:text-txt-black-900",
           "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:border-transparent",
         ],
         "danger-fill": [
-          "bg-danger-600 border border-danger-600 text-white shadow-button",
+          "bg-danger-600 border border-danger-600 text-white",
           "hover:bg-danger-700",
           "disabled:bg-bg-danger-disabled disabled:text-white-disabled disabled:border-bg-danger-disabled",
         ],
         "danger-outline": [
-          "bg-bg-white border border-otl-danger-200 text-txt-danger shadow-button",
-          "hover:bg-bg-danger-50",
+          "bg-bg-danger-50 border border-transparent text-txt-danger",
+          "hover:bg-danger-100",
           "disabled:bg-bg-white-disabled disabled:text-txt-danger-disabled disabled:border-transparent",
         ],
         "danger-ghost": [
@@ -58,13 +59,13 @@ const button_cva = cva(
           "disabled:bg-bg-white-disabled disabled:text-txt-danger-disabled disabled:border-transparent",
         ],
         "primary-fill": [
-          "bg-primary-600 border border-primary-600 text-white shadow-button",
+          "bg-primary-600 border border-primary-600 text-white",
           "hover:bg-primary-700",
           "disabled:bg-bg-primary-disabled disabled:text-white-disabled disabled:border-bg-primary-disabled",
         ],
         "primary-outline": [
-          "bg-bg-white border border-otl-primary-200 text-txt-primary shadow-button",
-          "hover:bg-bg-primary-50",
+          "bg-bg-primary-50 border border-transparent text-txt-primary",
+          "hover:bg-primary-100",
           "disabled:bg-bg-white-disabled disabled:text-txt-primary-disabled disabled:border-transparent",
         ],
         "primary-ghost": [

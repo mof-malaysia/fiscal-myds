@@ -4,7 +4,7 @@ import { cva, VariantProps } from "class-variance-authority";
 
 const datefield_container_cva = cva(
   [
-    "flex items-center gap-2 border rounded-md text-txt-black-900 shadow-button focus:outline-none font-body font-normal",
+    "flex items-center gap-2 border rounded-md text-txt-black-900 focus:outline-none font-body font-normal",
     "focus-within:border-otl-primary-300 focus-within:ring focus-within:ring-fr-primary",
   ],
   {
@@ -20,7 +20,7 @@ const datefield_container_cva = cva(
       },
       invalid: {
         true: "border-otl-danger-300 ring-fr-danger ring",
-        false: "border-otl-gray-200",
+        false: "border-otl-control",
       },
     },
     defaultVariants: {

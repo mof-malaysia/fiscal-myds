@@ -43,7 +43,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
       <header
         id={id}
         className={clx(
-          "bg-bg-white border-otl-gray-200 shadow-button sticky top-0 z-50 h-16 w-full border-b max-md:h-14 print:hidden",
+          "bg-bg-white border-otl-gray-200 sticky top-0 z-50 h-16 w-full border-b max-md:h-14 print:hidden",
           className,
         )}
         data-nosnippet

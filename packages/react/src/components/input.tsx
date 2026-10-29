@@ -76,7 +76,7 @@ const Input: ForwardRefExoticComponent<InputProps> = forwardRef(
     return (
       <div
         className={clx(
-          "border-otl-gray-200 relative rounded-md border outline-none",
+          "border-otl-control relative rounded-md border outline-none",
           className,
         )}
       >

@@ -139,7 +139,7 @@ const FooterLogo: ForwardRefExoticComponent<FooterLogoProps> = forwardRef(
   ({ logoTitle, logo, className, ...props }, ref) => {
     const titleElement =
       typeof logoTitle === "string" ? (
-        <p className="font-poppins text-body-md font-semibold">{logoTitle}</p>
+        <p className="font-heading text-body-md font-semibold">{logoTitle}</p>
       ) : (
         logoTitle
       );

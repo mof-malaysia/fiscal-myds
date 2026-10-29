@@ -1,17 +1,17 @@
 :root {
   /* Background - White */
-  --bg-white: var(--_white);
-  --bg-white-hover: var(--_gray-50);
+  --bg-white: 252 253 255;
+  --bg-white-hover: 241 244 247;
   --bg-white-disabled: var(--_gray-100) / 0.4;
 
   /* Background - Washed */
-  --bg-washed: var(--_gray-100);
-  --bg-washed-active: var(--_gray-100);
-  --bg-contrast: var(--_white);
+  --bg-washed: 241 244 247;
+  --bg-washed-active: 234 237 242;
+  --bg-contrast: 252 253 255;
 
   /* Background - Dialog */
-  --bg-dialog: var(--_white);
-  --bg-dialog-active: var(--_white);
+  --bg-dialog: 252 253 255;
+  --bg-dialog-active: 252 253 255;
 
   /* Background - Black */
   --bg-black-50: var(--_gray-50);
@@ -28,30 +28,30 @@
   --bg-black-disabled: var(--_gray-900) / 0.4;
 
   /* Background - Gray */
-  --bg-gray-50: var(--_gray-50);
+  --bg-gray-50: 249 250 252;
 
   /* Background - Primary */
-  --bg-primary-50: var(--_primary-50);
+  --bg-primary-50: 231 241 255;
   --bg-primary-100: var(--_primary-100);
   --bg-primary-200: var(--_primary-200);
   --bg-primary-300: var(--_primary-300);
   --bg-primary-400: var(--_primary-400);
   --bg-primary-500: var(--_primary-500);
-  --bg-primary-600: var(--_primary-600);
-  --bg-primary-700: var(--_primary-700);
+  --bg-primary-600: 29 90 176;
+  --bg-primary-700: 16 74 151;
   --bg-primary-800: var(--_primary-800);
   --bg-primary-900: var(--_primary-900);
   --bg-primary-950: var(--_primary-950);
   --bg-primary-disabled: var(--_primary-200);
 
   /* Background - Danger */
-  --bg-danger-50: var(--_danger-50);
+  --bg-danger-50: 254 237 236;
   --bg-danger-100: var(--_danger-100);
   --bg-danger-200: var(--_danger-200);
   --bg-danger-300: var(--_danger-300);
   --bg-danger-400: var(--_danger-400);
   --bg-danger-500: var(--_danger-500);
-  --bg-danger-600: var(--_danger-600);
+  --bg-danger-600: 176 42 45;
   --bg-danger-700: var(--_danger-700);
   --bg-danger-800: var(--_danger-800);
   --bg-danger-900: var(--_danger-900);
@@ -59,7 +59,7 @@
   --bg-danger-disabled: var(--_danger-200);
 
   /* Background - Success */
-  --bg-success-50: var(--_success-50);
+  --bg-success-50: 231 247 233;
   --bg-success-100: var(--_success-100);
   --bg-success-200: var(--_success-200);
   --bg-success-300: var(--_success-300);
@@ -73,7 +73,7 @@
   --bg-success-disabled: var(--_success-200);
 
   /* Background - Warning */
-  --bg-warning-50: var(--_warning-50);
+  --bg-warning-50: 254 242 217;
   --bg-warning-100: var(--_warning-100);
   --bg-warning-200: var(--_warning-200);
   --bg-warning-300: var(--_warning-300);
@@ -87,36 +87,40 @@
   --bg-warning-disabled: var(--_warning-200);
 
   /* Text - White */
-  --txt-white: var(--_white);
+  --txt-white: 250 252 254;
   --txt-white-disabled: var(--_white) / 0.4;
 
   /* Text - Black */
-  --txt-black-900: var(--_gray-900);
-  --txt-black-700: var(--_gray-700);
-  --txt-black-500: var(--_gray-500);
+  --txt-black-900: 22 27 34;
+  --txt-black-700: 72 78 85;
+  --txt-black-500: 100 105 113;
   --txt-black-disabled: var(--_gray-600) / 0.4;
 
   /* Text - Primary */
-  --txt-primary: var(--_primary-600);
+  --txt-primary: 29 90 176;
   --txt-primary-disabled: var(--_primary-600) / 0.4;
 
   /* Text - Danger */
-  --txt-danger: var(--_danger-700);
+  --txt-danger: 176 42 45;
   --txt-danger-disabled: var(--_danger-600) / 0.4;
 
   /* Text - Success */
-  --txt-success: var(--_success-700);
+  --txt-success: 41 106 59;
   --txt-success-disabled: var(--_success-700) / 0.4;
 
   /* Text - Warning */
-  --txt-warning: var(--_warning-700);
+  --txt-warning: 125 79 27;
   --txt-warning-disabled: var(--_warning-700) / 0.4;
 
   /* Outline - Divider */
-  --otl-divider: var(--_gray-100);
-  --otl-gray-200: var(--_gray-200);
+  --otl-divider: 222 226 230;
+  --otl-gray-200: 222 226 230;
   --otl-gray-300: var(--_gray-300);
   /* --otl-gray-600-20: var(--_gray-600) / 0.2; */
+
+  /* Outline - Control: the stroke that identifies inputs, checkboxes, radios (WCAG 1.4.11, >= 3:1) */
+  --otl-control: 135 141 149;
+  --otl-control-hover: 94 100 108;
 
   /* Outline - Primary */
   --otl-primary-disabled: var(--_primary-200) / 0.4;
@@ -143,8 +147,8 @@
   /* --otl-warning-700-20: var(--_warning-700) / 0.2; */
 
   /* Ring - Primary */
-  --fr-primary: var(--_primary-300) / 0.4;
+  --fr-primary: 77 134 217;
 
   /* Ring - Danger */
-  --fr-danger: var(--_danger-300) / 0.4;
+  --fr-danger: 176 42 45;
 }

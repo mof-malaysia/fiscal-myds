@@ -6,7 +6,7 @@ import { CrossIcon } from "../icons/cross";
 import { Button, ButtonIcon } from "./button";
 
 const pill_cva = cva(
-  "rounded-sm border font-medium text-txt-black-700 shadow-button inline-flex justify-between items-center",
+  "rounded-full font-medium text-txt-black-700 inline-flex justify-between items-center",
   {
     variants: {
       size: {
@@ -15,8 +15,8 @@ const pill_cva = cva(
         large: "px-[10px] py-[4px] text-body-md gap-[4px]",
       },
       disabled: {
-        false: "border-otl-gray-300 bg-bg-dialog",
-        true: "border-otl-gray-200 bg-bg-white-disabled text-txt-black-disabled",
+        false: "bg-bg-washed",
+        true: "bg-bg-white-disabled text-txt-black-disabled",
       },
     },
     defaultVariants: {
@@ -48,18 +48,18 @@ export const Pill: ForwardRefExoticComponent<PillProps> = React.forwardRef(
           children: (
             <>
               {children}
-        {onDismiss && !disabled && (
-          <Button
-            variant="default-ghost"
-            size="small"
-            className="p-0"
-            onClick={onDismiss}
-          >
-            <ButtonIcon aria-label="close button">
-              <CrossIcon className="text-txt-black-500 size-4" />
-            </ButtonIcon>
-          </Button>
-        )}
+              {onDismiss && !disabled && (
+                <Button
+                  variant="default-ghost"
+                  size="small"
+                  className="p-0"
+                  onClick={onDismiss}
+                >
+                  <ButtonIcon aria-label="close button">
+                    <CrossIcon className="text-txt-black-500 size-4" />
+                  </ButtonIcon>
+                </Button>
+              )}
             </>
           ),
         },
