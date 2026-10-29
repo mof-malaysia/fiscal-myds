@@ -56,9 +56,25 @@ const calendar_nav_button = clx(
   "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
 );
 
+/** DayPicker's navigation chevrons, drawn with the MYDS icons. */
+const CalendarChevron = ({
+  orientation,
+  className,
+}: {
+  orientation?: "up" | "down" | "left" | "right";
+  className?: string;
+}) => {
+  const Icon = orientation === "left" ? ChevronLeftIcon : ChevronRightIcon;
+  return <Icon className={className} />;
+};
+
 /** One day cell: 40px comfortable, 32px compact. Set on the calendar's root. */
 const calendar_cell_size =
   "[--cal-cell:2.5rem] in-data-[density=compact]:[--cal-cell:2rem]";
+
+/** A range's first and last day: MYDS Blue on the Blue Wash band. */
+const range_cap =
+  "bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white";
 
 /** Day-grid styles shared by Calendar and the range picker's two-month calendar. */
 const calendar_day_classnames = {
@@ -81,12 +97,10 @@ const calendar_day_classnames = {
   today: "today",
   outside: "text-txt-black-900 opacity-50",
   disabled: "",
-  range_start:
-    "rounded-l-md bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
+  range_start: clx("rounded-l-md", range_cap),
   range_middle:
     "in-range bg-bg-primary-50 *:hover:bg-bg-primary-100 *:focus:bg-bg-primary-100",
-  range_end:
-    "rounded-r-md bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white",
+  range_end: clx("rounded-r-md", range_cap),
   hidden: "invisible",
 };
 
@@ -153,12 +167,7 @@ const Calendar: FC<CalendarProps> = ({
         ...classNames,
       }}
       components={{
-        Chevron(props) {
-          if (props.orientation === "left") {
-            return <ChevronLeftIcon {...props} />;
-          }
-          return <ChevronRightIcon {...props} />;
-        },
+        Chevron: CalendarChevron,
         CaptionLabel(props) {
           const toggle = (monthOrYear: "month" | "year", formatStr: string) => (
             <Button
@@ -436,7 +445,13 @@ const Calendar: FC<CalendarProps> = ({
 };
 Calendar.displayName = "Calendar";
 
-export { Calendar, calendar_cell_size, calendar_day_classnames };
+export {
+  Calendar,
+  CalendarChevron,
+  calendar_cell_size,
+  calendar_day_classnames,
+  calendar_nav_button,
+};
 
 function dateMatchers(
   view: "month" | "year",

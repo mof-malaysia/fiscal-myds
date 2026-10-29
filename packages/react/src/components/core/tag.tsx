@@ -53,16 +53,6 @@ const tag_cva = cva(
   },
 );
 
-const dot_cva = cva("inline-block shrink-0 rounded-full bg-current", {
-  variants: {
-    size: {
-      small: "size-1.5",
-      medium: "size-1.5",
-      large: "size-2",
-    },
-  },
-});
-
 interface TagProps extends ComponentProps<"span"> {
   /** Shows a dot in the tag's colour before the label. */
   dot?: boolean;
@@ -89,7 +79,15 @@ const Tag = forwardRef<HTMLSpanElement, TagProps>(
       className={clx(tag_cva({ variant, size }), className)}
       {...props}
     >
-      {dot && <span aria-hidden className={dot_cva({ size })} />}
+      {dot && (
+        <span
+          aria-hidden
+          className={clx(
+            "inline-block shrink-0 rounded-full bg-current",
+            size === "large" ? "size-2" : "size-1.5",
+          )}
+        />
+      )}
       {children}
     </span>
   ),

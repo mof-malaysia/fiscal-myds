@@ -27,6 +27,8 @@
   --_graphite-850: 28 28 32; /* Sheet */
   --_graphite-900: 19 19 22; /* Paper */
   --_graphite-950: 11 11 13;
+  /* The dark selection wash: calmer than primary-950 on Graphite surfaces */
+  --_graphite-primary-wash: 29 43 77;
 
   --_primary-50: 239 246 255;
   --_primary-100: 219 234 254;

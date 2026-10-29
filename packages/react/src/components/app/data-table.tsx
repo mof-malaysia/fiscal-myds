@@ -48,7 +48,6 @@ import {
   CrossIcon,
 } from "../../icons";
 import { Checkbox } from "../core/checkbox";
-import { cva } from "class-variance-authority";
 
 /**
  * DataTable is the officer's home screen, built to be looked at all day (DESIGN.md,
@@ -138,51 +137,44 @@ interface DataTableProps<TData extends Record<string, any>> {
   labels?: Partial<DataTableLabels>;
 }
 
-// Pinned cells need an opaque fill that follows the row's hover and selection
-const pin_cva = cva("", {
-  variants: {
-    // Each pinned cell paints 1px past its edge in its own fill, covering the sub-pixel
-    // seam left when the browser rounds column widths away from the sticky offsets
-    pin_direction: {
-      left: "sticky z-10 before:absolute before:inset-y-0 before:-left-px before:w-px before:bg-inherit before:content-['']",
-      right:
-        "sticky z-10 after:absolute after:inset-y-0 after:-right-px after:w-px after:bg-inherit after:content-['']",
-      false: "",
-    },
-    pin_last: {
-      true: "",
-      false: "",
-    },
-    body: {
-      true: "",
-      false: "",
-    },
-  },
-  compoundVariants: [
-    {
-      pin_direction: ["left", "right"],
-      body: true,
-      className:
+/**
+ * Pinned columns stick to their edge with an opaque fill that follows the row's hover
+ * and selection, and a Hairline where they meet the scrolling columns. Each pinned cell
+ * also paints 1px past its edge in its own fill, covering the sub-pixel seam left when
+ * the browser rounds column widths away from the sticky offsets.
+ */
+const pinning = <TData extends Record<string, any>>(
+  column: Column<TData>,
+  body: boolean,
+): { className?: string; style?: CSSProperties } => {
+  const side = column.getIsPinned();
+  if (!side) return {};
+  const last = column.getIsLastColumn(side);
+  return {
+    className: clx(
+      "sticky z-10",
+      side === "left"
+        ? "before:absolute before:inset-y-0 before:-left-px before:w-px before:bg-inherit before:content-['']"
+        : "after:absolute after:inset-y-0 after:-right-px after:w-px after:bg-inherit after:content-['']",
+      body &&
         "bg-bg-white group-hover/row:bg-bg-washed group-data-[selected]/row:bg-bg-primary-50",
+      last &&
+        (side === "left"
+          ? "border-r border-r-otl-gray-200"
+          : "border-l border-l-otl-gray-200"),
+    ),
+    style: {
+      left: side === "left" ? `${column.getStart("left")}px` : undefined,
+      right: side === "right" ? `${column.getAfter("right")}px` : undefined,
+      width: column.getSize(),
     },
-    // A Hairline marks where pinned columns meet the scrolling ones
-    {
-      pin_direction: "left",
-      pin_last: true,
-      className: "border-r border-r-otl-gray-200",
-    },
-    {
-      pin_direction: "right",
-      pin_last: true,
-      className: "border-l border-l-otl-gray-200",
-    },
-  ],
-});
+  };
+};
 
-const cell_cva = cva([
+const cell_class = clx(
   "md:whitespace-nowrap whitespace-normal break-words",
   "data-[expanded=false]:truncate data-[expanded=false]:max-w-[230px]",
-]);
+);
 
 /** Quiet icon button for header and row controls: unboxed, Well on hover. */
 const icon_button =
@@ -330,13 +322,7 @@ const DataTableHeader: FunctionComponent = () => {
                 header.getContext(),
               );
               const SortIcon = sorted === "desc" ? ArrowDownIcon : ArrowUpIcon;
-              const pinning = pin_cva({
-                pin_direction: header.column.getIsPinned(),
-                pin_last: header.column.getIsLastColumn(
-                  header.column.getIsPinned(),
-                ),
-                body: false,
-              });
+              const pin = pinning(header.column, false);
 
               // A grouped header's filler above an ungrouped column: a cell, not an empty header
               if (header.isPlaceholder)
@@ -344,8 +330,8 @@ const DataTableHeader: FunctionComponent = () => {
                   <td
                     key={header.id}
                     colSpan={header.colSpan}
-                    className={clx("bg-bg-gray-50", pinning)}
-                    style={{ ...getCommonPinningStyles(header.column) }}
+                    className={clx("bg-bg-gray-50", pin.className)}
+                    style={pin.style}
                   />
                 );
 
@@ -362,10 +348,10 @@ const DataTableHeader: FunctionComponent = () => {
                   data-pinned={header.column.getIsPinned()}
                   className={clx(
                     "group/head",
-                    pinning,
+                    pin.className,
                     header.column.columnDef.meta?.className?.header,
                   )}
-                  style={{ ...getCommonPinningStyles(header.column) }}
+                  style={pin.style}
                 >
                   {isSelection && (
                     <span className="sr-only">{labels.selection}</span>
@@ -479,17 +465,11 @@ const DataTableBody: FunctionComponent = () => {
                     data-expanded={expandableColumns[cell.column.id]}
                     data-pinned={cell.column.getIsPinned()}
                     className={clx(
-                      cell_cva(),
-                      pin_cva({
-                        pin_direction: cell.column.getIsPinned(),
-                        pin_last: cell.column.getIsLastColumn(
-                          cell.column.getIsPinned(),
-                        ),
-                        body: true,
-                      }),
+                      cell_class,
+                      pinning(cell.column, true).className,
                       cell.column.columnDef.meta?.className?.cell,
                     )}
-                    style={{ ...getCommonPinningStyles(cell.column) }}
+                    style={pinning(cell.column, true).style}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -536,17 +516,11 @@ const DataTableFooter: FunctionComponent = () => {
               data-expanded={expandableColumns[header.column.id]}
               data-pinned={header.column.getIsPinned()}
               className={clx(
-                cell_cva(),
-                pin_cva({
-                  pin_direction: header.column.getIsPinned(),
-                  pin_last: header.column.getIsLastColumn(
-                    header.column.getIsPinned(),
-                  ),
-                  body: true,
-                }),
+                cell_class,
+                pinning(header.column, true).className,
                 header.column.columnDef.meta?.className?.cell,
               )}
-              style={{ ...getCommonPinningStyles(header.column) }}
+              style={pinning(header.column, true).style}
             >
               {header.isPlaceholder
                 ? null
@@ -637,7 +611,7 @@ const SelectRowRadio = <TData extends Record<string, any>>({
         "border-otl-control hover:border-otl-control-hover bg-bg-white block size-4 shrink-0 cursor-pointer appearance-none rounded-full border-[1.5px]",
         "checked:border-bg-primary-600 checked:hover:border-bg-primary-700 checked:border-[5px]",
         "transition-[border] duration-150 motion-reduce:transition-none",
-        "focus-visible:ring-fr-primary outline-none focus-visible:ring-[3px]",
+        "focus-ring",
         "disabled:bg-bg-washed disabled:cursor-not-allowed disabled:opacity-30",
       )}
     />
@@ -713,17 +687,6 @@ const ExpandCell = <TData extends Record<string, any>>(
       {useDefault ? (getValue() as string) : cell}
     </div>
   );
-};
-
-const getCommonPinningStyles = <TData extends Record<string, any>>(
-  column: Column<TData>,
-): CSSProperties => {
-  const isPinned = column.getIsPinned();
-  return {
-    left: isPinned === "left" ? `${column.getStart("left")}px` : undefined,
-    right: isPinned === "right" ? `${column.getAfter("right")}px` : undefined,
-    width: isPinned ? column.getSize() : undefined,
-  };
 };
 
 /**

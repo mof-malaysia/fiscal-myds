@@ -221,8 +221,7 @@
       "name": "data-table",
       "type": "registry:ui",
       "dependencies": [
-        "@tanstack/react-table@^8.21.3",
-        "class-variance-authority@^0.7.1"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/table.json",
@@ -708,7 +707,8 @@
       "registryDependencies": [
         "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/command.json",
         "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/dialog.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json"
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json",
+        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/shortcuts.json"

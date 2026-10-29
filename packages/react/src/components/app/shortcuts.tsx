@@ -1,5 +1,7 @@
 "use client";
 
+import { isEditable } from "../../utils";
+
 import React, {
   ReactNode,
   createContext,
@@ -252,26 +254,6 @@ class CommandStore {
 }
 
 /*========================================================================================================================*/
-
-/** Whether keystrokes on `target` are text entry. */
-function isEditable(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) return false;
-  if (target.isContentEditable) return true;
-  if (target instanceof HTMLTextAreaElement) return true;
-  if (target instanceof HTMLSelectElement) return true;
-  if (target instanceof HTMLInputElement) {
-    return ![
-      "button",
-      "checkbox",
-      "radio",
-      "reset",
-      "submit",
-      "range",
-      "color",
-    ].includes(target.type);
-  }
-  return false;
-}
 
 /** An open dialog, menu or listbox owns the keyboard as much as a text field does. */
 const KEYBOARD_OWNERS =

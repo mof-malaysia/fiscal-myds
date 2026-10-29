@@ -12,7 +12,6 @@ import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { clx } from "../../utils";
 import { cva } from "class-variance-authority";
 import { useRender } from "@base-ui/react/use-render";
-import { mergeProps } from "@base-ui/react/merge-props";
 
 /**
  * Tabs switch between views of the same subject. There is one style (DESIGN.md,
@@ -121,7 +120,7 @@ const tabs_trigger_cva = cva(
     "text-txt-black-700 hover:text-txt-black-900 data-[active]:text-txt-black-900",
     "transition-colors duration-150 motion-reduce:transition-none",
     // Inset so the ring isn't clipped by the scrolling list
-    "outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[rgb(var(--fr-primary))]",
+    "focus-ring-inset",
     "data-[disabled]:text-txt-black-disabled data-[disabled]:cursor-not-allowed",
   ],
   {
@@ -174,10 +173,7 @@ const TabsIcon: FunctionComponent<TabsIconProps> = ({ children }) => {
 
   return useRender({
     render: children,
-    props: mergeProps<"svg">(
-      { className: tab_icon_cva({ size }), "aria-hidden": true },
-      {},
-    ),
+    props: { className: tab_icon_cva({ size }), "aria-hidden": true },
   });
 };
 TabsIcon.displayName = "TabsIcon";

@@ -1,10 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   DateRange,
   DayPicker,
   Matcher,
+  type MonthCaptionProps,
   rangeContainsModifiers,
 } from "react-day-picker";
 import { enGB, ms } from "date-fns/locale";
@@ -16,6 +24,7 @@ import {
   isAfter,
   isBefore,
   isSameDay,
+  type Locale,
   startOfDay,
   startOfMonth,
   startOfYear,
@@ -30,7 +39,12 @@ import { CalendarIcon } from "../../icons/calendar";
 import { ChevronLeftIcon } from "../../icons/chevron-left";
 import { ChevronRightIcon } from "../../icons/chevron-right";
 import { clx } from "../../utils";
-import { calendar_cell_size, calendar_day_classnames } from "./calendar";
+import {
+  CalendarChevron,
+  calendar_cell_size,
+  calendar_day_classnames,
+  calendar_nav_button,
+} from "./calendar";
 
 /**
  * DateRangePicker picks a start and an end date from one control: a single trigger that
@@ -102,38 +116,46 @@ const LABELS: Record<"en" | "ms", DateRangePickerLabels> = {
   },
 };
 
-const defaultPresets = (locale: "en" | "ms"): DateRangePreset[] => {
-  const today = () => startOfDay(new Date());
-  const en = locale === "en";
-  return [
-    {
-      label: en ? "Today" : "Hari ini",
-      range: () => ({ from: today(), to: today() }),
-    },
-    {
-      label: en ? "Last 7 days" : "7 hari lepas",
-      range: () => ({ from: subDays(today(), 6), to: today() }),
-    },
-    {
-      label: en ? "Last 30 days" : "30 hari lepas",
-      range: () => ({ from: subDays(today(), 29), to: today() }),
-    },
-    {
-      label: en ? "This month" : "Bulan ini",
-      range: () => ({ from: startOfMonth(today()), to: today() }),
-    },
-    {
-      label: en ? "Last month" : "Bulan lepas",
-      range: () => {
-        const last = subMonths(today(), 1);
-        return { from: startOfMonth(last), to: startOfDay(endOfMonth(last)) };
-      },
-    },
-    {
-      label: en ? "This year" : "Tahun ini",
-      range: () => ({ from: startOfYear(today()), to: today() }),
-    },
-  ];
+const PRESET_NAMES: Record<"en" | "ms", string[]> = {
+  en: [
+    "Today",
+    "Last 7 days",
+    "Last 30 days",
+    "This month",
+    "Last month",
+    "This year",
+  ],
+  ms: [
+    "Hari ini",
+    "7 hari lepas",
+    "30 hari lepas",
+    "Bulan ini",
+    "Bulan lepas",
+    "Tahun ini",
+  ],
+};
+
+const today = () => startOfDay(new Date());
+
+/** The default ranges, in PRESET_NAMES order; each is worked out when chosen. */
+const PRESET_RANGES: DateRangePreset["range"][] = [
+  () => ({ from: today(), to: today() }),
+  () => ({ from: subDays(today(), 6), to: today() }),
+  () => ({ from: subDays(today(), 29), to: today() }),
+  () => ({ from: startOfMonth(today()), to: today() }),
+  () => {
+    const last = subMonths(today(), 1);
+    return { from: startOfMonth(last), to: startOfDay(endOfMonth(last)) };
+  },
+  () => ({ from: startOfYear(today()), to: today() }),
+];
+
+const presetsFor = (locale: "en" | "ms"): DateRangePreset[] =>
+  PRESET_RANGES.map((range, i) => ({ label: PRESET_NAMES[locale][i]!, range }));
+
+const DEFAULT_PRESETS: Record<"en" | "ms", DateRangePreset[]> = {
+  en: presetsFor("en"),
+  ms: presetsFor("ms"),
 };
 
 export type DateRangePickerProps = {
@@ -179,17 +201,78 @@ const jump_cell = clx(
   "transition-colors duration-150 motion-reduce:transition-none focus-ring",
 );
 
-const jump_nav = clx(
-  "bg-bg-washed text-txt-black-900 hover:bg-bg-washed-active inline-flex size-8 cursor-pointer items-center justify-center rounded-md [&>svg]:size-4",
-  "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
-  "transition-colors duration-150 motion-reduce:transition-none focus-ring",
-);
+const jump_nav = clx(calendar_nav_button, "[&>svg]:size-4");
 
 type Jump = {
   view: "month" | "year";
   /** Which of the shown months the jump replaces: 0 left, 1 right. */
   index: number;
   year: number;
+};
+
+const range_classnames = {
+  ...calendar_day_classnames,
+  months: "relative flex gap-6",
+  // Room for six weeks (caption 32 + gap 6 + weekdays 34 + six rows of cell + 6),
+  // so the popup keeps its height from month to month
+  month: "flex min-h-[calc(var(--cal-cell)*6+6.75rem)] flex-col gap-y-1.5",
+  month_caption: "flex h-8 items-center justify-center gap-0.5",
+  // Spans the caption row for the arrows; click-through so the captions work
+  nav: "pointer-events-none absolute inset-x-0 top-0 flex justify-between [&>button]:pointer-events-auto",
+  selected: "selected",
+  // The preview band: Well, rounded at the pointer
+  day: clx(
+    calendar_day_classnames.day,
+    "[&.preview:not(.selected)]:bg-bg-washed [&.preview-end]:rounded-r-md",
+  ),
+};
+
+const range_modifier_classnames = {
+  preview: "preview",
+  preview_end: "preview-end",
+};
+
+/** What the captions need from the picker; a context so the caption can live at module scope. */
+const CaptionContext = createContext<{
+  openJump: (jump: Jump) => void;
+  labels: DateRangePickerLabels;
+  dateLocale: Locale;
+} | null>(null);
+
+/** Each month's caption: its name and year are buttons that open the jump grids. */
+const RangeMonthCaption = ({
+  calendarMonth,
+  displayIndex,
+  ...captionProps
+}: MonthCaptionProps) => {
+  const { openJump, labels, dateLocale } = useContext(CaptionContext)!;
+  const date = calendarMonth.date;
+  const year = date.getFullYear();
+  return (
+    <div {...captionProps}>
+      <button
+        type="button"
+        className={caption_button}
+        aria-label={`${labels.chooseMonth}, ${format(date, "LLLL yyyy", { locale: dateLocale })}`}
+        onClick={() => openJump({ view: "month", index: displayIndex, year })}
+      >
+        {format(date, "LLLL", { locale: dateLocale })}
+      </button>
+      <button
+        type="button"
+        className={caption_button}
+        aria-label={`${labels.chooseYear}, ${year}`}
+        onClick={() => openJump({ view: "year", index: displayIndex, year })}
+      >
+        {year}
+      </button>
+    </div>
+  );
+};
+
+const range_components = {
+  Chevron: CalendarChevron,
+  MonthCaption: RangeMonthCaption,
 };
 
 const DateRangePicker = ({
@@ -209,11 +292,14 @@ const DateRangePicker = ({
   align = "start",
   className,
 }: DateRangePickerProps) => {
-  const labels = {
-    ...LABELS[locale],
-    ...(placeholder ? { placeholder } : {}),
-    ...labelsProp,
-  };
+  const labels = useMemo(
+    () => ({
+      ...LABELS[locale],
+      ...(placeholder ? { placeholder } : {}),
+      ...labelsProp,
+    }),
+    [locale, placeholder, labelsProp],
+  );
   const dateLocale = locale === "ms" ? ms : enGB;
   const fmt = (date: Date) => format(date, formatStr, { locale: dateLocale });
 
@@ -242,7 +328,7 @@ const DateRangePicker = ({
   }, [jump?.view, jump?.index]);
 
   const presetList =
-    presets === true ? defaultPresets(locale) : presets || undefined;
+    presets === true ? DEFAULT_PRESETS[locale] : presets || undefined;
 
   const onOpenChange = (next: boolean) => {
     setOpen(next);
@@ -254,9 +340,6 @@ const DateRangePicker = ({
     }
   };
 
-  // The month shown at `index` (the right one is a month after the left)
-  const shownMonth = (index: number) => addMonths(month, index);
-
   const goToMonth = (year: number, monthIndex: number) => {
     const target = new Date(year, monthIndex, 1);
     // Picked from the right caption: keep the chosen month on the right
@@ -264,12 +347,31 @@ const DateRangePicker = ({
     setJump(null);
   };
 
-  const months = Array.from({ length: 12 }, (_, i) =>
-    format(new Date(2000, i, 1), "LLL", { locale: dateLocale }),
+  const months = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) =>
+        format(new Date(2000, i, 1), "LLL", { locale: dateLocale }),
+      ),
+    [dateLocale],
   );
-  const years = Array.from(
-    { length: maxYear - minYear + 1 },
-    (_, i) => minYear + i,
+  const years = useMemo(
+    () => Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i),
+    [minYear, maxYear],
+  );
+  const bounds = useMemo(
+    () => ({ start: new Date(minYear, 0), end: new Date(maxYear, 11) }),
+    [minYear, maxYear],
+  );
+  const formatters = useMemo(
+    () => ({
+      formatWeekdayName: (date: Date) =>
+        format(date, "ccc", { locale: dateLocale }),
+    }),
+    [dateLocale],
+  );
+  const captionContext = useMemo(
+    () => ({ openJump: setJump, labels, dateLocale }),
+    [labels, dateLocale],
   );
 
   const commit = (next: DateRange) => {
@@ -299,11 +401,18 @@ const DateRangePicker = ({
       ? { from: draft.from, to: hovered }
       : undefined;
 
-  const isActivePreset = (preset: DateRangePreset) => {
-    if (!range?.from || !range.to) return false;
-    const { from, to } = preset.range();
-    return isSameDay(from, range.from) && isSameDay(to, range.to);
-  };
+  // Worked out when the range changes, not on every hover
+  const activePreset = useMemo(() => {
+    if (!presetList || !range?.from || !range.to) return undefined;
+    const { from, to } = range;
+    return presetList.find((preset) => {
+      const r = preset.range();
+      return isSameDay(r.from, from) && isSameDay(r.to, to);
+    })?.label;
+  }, [presetList, range]);
+
+  // The month on show at the jump's side (the right one is a month after the left)
+  const jumpShown = jump ? addMonths(month, jump.index) : undefined;
 
   const summary =
     draft?.from && draft.to
@@ -354,13 +463,13 @@ const DateRangePicker = ({
             <div
               role="group"
               aria-label={labels.presets}
-              className="bg-bg-washed in-[.dark]:bg-bg-gray-50 flex min-w-0 gap-1 overflow-x-auto p-2 [scrollbar-width:none] sm:w-40 sm:flex-col sm:overflow-visible"
+              className="bg-bg-washed flex min-w-0 gap-1 overflow-x-auto p-2 [scrollbar-width:none] sm:w-40 sm:flex-col sm:overflow-visible"
             >
               {presetList.map((preset) => (
                 <button
                   key={preset.label}
                   type="button"
-                  aria-pressed={isActivePreset(preset)}
+                  aria-pressed={preset.label === activePreset}
                   className={preset_button}
                   onClick={() => {
                     const next = preset.range();
@@ -380,100 +489,36 @@ const DateRangePicker = ({
                 inert={jump ? true : undefined}
                 className={clx(jump && "invisible")}
               >
-                <DayPicker
-                  mode="range"
-                  selected={draft}
-                  // Selection is handled in onDayClick so a third click starts a new range
-                  onSelect={() => {}}
-                  onDayClick={onDayClick}
-                  onDayMouseEnter={setHovered}
-                  month={month}
-                  onMonthChange={setMonth}
-                  numberOfMonths={twoMonths ? 2 : 1}
-                  showOutsideDays={!twoMonths}
-                  startMonth={new Date(minYear, 0)}
-                  endMonth={new Date(maxYear, 11)}
-                  disabled={disabled}
-                  locale={dateLocale}
-                  modifiers={
-                    preview ? { preview, preview_end: preview.to } : undefined
-                  }
-                  modifiersClassNames={{
-                    preview: "preview",
-                    preview_end: "preview-end",
-                  }}
-                  className="p-3"
-                  classNames={{
-                    ...calendar_day_classnames,
-                    months: "relative flex gap-6",
-                    // Room for six weeks (caption 32 + gap 6 + weekdays 34 + six rows of cell + 6),
-                    // so the popup keeps its height from month to month
-                    month:
-                      "flex min-h-[calc(var(--cal-cell)*6+6.75rem)] flex-col gap-y-1.5",
-                    month_caption: "flex h-8 items-center justify-center",
-                    caption_label:
-                      "text-txt-black-900 text-label-md font-semibold",
-                    // Spans the caption row for the arrows; click-through so the captions work
-                    nav: "pointer-events-none absolute inset-x-0 top-0 flex justify-between [&>button]:pointer-events-auto",
-                    selected: "selected",
-                    // The preview band: Well, rounded at the pointer
-                    day: clx(
-                      calendar_day_classnames.day,
-                      "[&.preview:not(.selected)]:bg-bg-washed [&.preview-end]:rounded-r-md",
-                    ),
-                  }}
-                  formatters={{
-                    formatCaption: (date) =>
-                      format(date, "LLLL yyyy", { locale: dateLocale }),
-                    formatWeekdayName: (date) =>
-                      format(date, "ccc", { locale: dateLocale }),
-                  }}
-                  components={{
-                    Chevron: (props) =>
-                      props.orientation === "left" ? (
-                        <ChevronLeftIcon className={props.className} />
-                      ) : (
-                        <ChevronRightIcon className={props.className} />
-                      ),
-                    MonthCaption: ({
-                      calendarMonth,
-                      displayIndex,
-                      className,
-                      ...captionProps
-                    }) => {
-                      const date = calendarMonth.date;
-                      const open = (view: Jump["view"]) =>
-                        setJump({
-                          view,
-                          index: displayIndex,
-                          year: date.getFullYear(),
-                        });
-                      return (
-                        <div
-                          {...captionProps}
-                          className={clx(className, "gap-0.5")}
-                        >
-                          <button
-                            type="button"
-                            className={caption_button}
-                            aria-label={`${labels.chooseMonth}, ${format(date, "LLLL yyyy", { locale: dateLocale })}`}
-                            onClick={() => open("month")}
-                          >
-                            {format(date, "LLLL", { locale: dateLocale })}
-                          </button>
-                          <button
-                            type="button"
-                            className={caption_button}
-                            aria-label={`${labels.chooseYear}, ${date.getFullYear()}`}
-                            onClick={() => open("year")}
-                          >
-                            {date.getFullYear()}
-                          </button>
-                        </div>
-                      );
-                    },
-                  }}
-                />
+                <CaptionContext.Provider value={captionContext}>
+                  <DayPicker
+                    mode="range"
+                    selected={draft}
+                    // Selection is handled in onDayClick so a third click starts a new range
+                    onSelect={() => {}}
+                    onDayClick={onDayClick}
+                    // Only while choosing the end, and only when the day changes
+                    onDayMouseEnter={(day) => {
+                      if (draft?.from && !draft.to)
+                        setHovered((h) => (h && isSameDay(h, day) ? h : day));
+                    }}
+                    month={month}
+                    onMonthChange={setMonth}
+                    numberOfMonths={twoMonths ? 2 : 1}
+                    showOutsideDays={!twoMonths}
+                    startMonth={bounds.start}
+                    endMonth={bounds.end}
+                    disabled={disabled}
+                    locale={dateLocale}
+                    modifiers={
+                      preview ? { preview, preview_end: preview.to } : undefined
+                    }
+                    modifiersClassNames={range_modifier_classnames}
+                    className="p-3"
+                    classNames={range_classnames}
+                    formatters={formatters}
+                    components={range_components}
+                  />
+                </CaptionContext.Provider>
               </div>
 
               {jump && (
@@ -535,10 +580,9 @@ const DateRangePicker = ({
                         className="grid flex-1 grid-cols-3 gap-2"
                       >
                         {months.map((name, i) => {
-                          const shown = shownMonth(jump.index);
                           const current =
-                            shown.getFullYear() === jump.year &&
-                            shown.getMonth() === i;
+                            jumpShown?.getFullYear() === jump.year &&
+                            jumpShown.getMonth() === i;
                           return (
                             <button
                               key={name}

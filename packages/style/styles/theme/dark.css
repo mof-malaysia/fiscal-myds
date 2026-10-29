@@ -10,9 +10,10 @@
   --bg-contrast: var(--_graphite-900);
 
   /* bg - Dialog */
-  /* Floating layers sit one step above Sheet */
-  --bg-dialog: var(--_graphite-800);
-  --bg-dialog-active: var(--_graphite-750);
+  /* Floating layers are Sheet with a Hairline edge (DESIGN.md, Elevation), so Well
+     controls inside them (secondary buttons, rails, hover) still show */
+  --bg-dialog: var(--_graphite-850);
+  --bg-dialog-active: var(--_graphite-800);
   /* A surface lifted off a Well (pressed segment, hover on the sidebar) */
   --bg-raised: var(--_graphite-750);
   /* Unfilled part of progress, meter, slider and step connectors; visible on Sheet and Well */
@@ -36,8 +37,7 @@
   --bg-gray-50: var(--_graphite-900);
 
   /* bg - Primary */
-  /* A calmer selection wash than primary-950 on the Graphite surfaces */
-  --bg-primary-50: 29 43 77;
+  --bg-primary-50: var(--_graphite-primary-wash);
   --bg-primary-100: var(--_primary-900);
   --bg-primary-200: var(--_primary-800);
   --bg-primary-300: var(--_primary-700);

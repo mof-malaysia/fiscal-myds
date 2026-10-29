@@ -13,7 +13,7 @@ import { Button } from "../core/button";
 import { Input, InputIcon } from "../core/input";
 import { Kbd } from "../core/kbd";
 import { SearchIcon } from "../../icons/search";
-import { clx } from "../../utils";
+import { clx, isEditable } from "../../utils";
 
 /**
  * SiteSearch is the "search this site" box for agency sites and service landing pages:
@@ -63,11 +63,6 @@ interface SiteSearchProps
   labels?: Partial<SiteSearchLabels>;
 }
 
-const isTypingTarget = (target: EventTarget | null) =>
-  target instanceof HTMLElement &&
-  (target.isContentEditable ||
-    ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
-
 const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
   (
     {
@@ -79,7 +74,6 @@ const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
       shortcut = false,
       onSearch,
       labels: labelsProp,
-      method = "get",
       className,
       ...props
     },
@@ -89,7 +83,6 @@ const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
     const id = useId();
     const inputRef = useRef<HTMLInputElement>(null);
     const [query, setQuery] = useState(defaultValue ?? "");
-    const [focused, setFocused] = useState(false);
 
     useEffect(() => {
       if (!shortcut) return;
@@ -99,7 +92,7 @@ const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
           event.metaKey ||
           event.ctrlKey ||
           event.altKey ||
-          isTypingTarget(event.target)
+          isEditable(event.target)
         )
           return;
         event.preventDefault();
@@ -119,7 +112,6 @@ const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
       <form
         ref={ref}
         role="search"
-        method={method}
         onSubmit={onSubmit}
         className={clx("font-body flex w-full flex-col gap-2", className)}
         {...props}
@@ -143,8 +135,6 @@ const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
             placeholder={placeholder}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
             onKeyDown={(event) => {
               if (event.key === "Escape" && !query) event.currentTarget.blur();
             }}
@@ -153,8 +143,12 @@ const SiteSearch = forwardRef<HTMLFormElement, SiteSearchProps>(
             <InputIcon position="left">
               <SearchIcon aria-hidden />
             </InputIcon>
-            {shortcut && !focused && !query && (
-              <InputIcon position="right" className="max-sm:hidden">
+            {shortcut && !query && (
+              // Hidden while the field has focus: the key is only a hint for getting there
+              <InputIcon
+                position="right"
+                className="max-sm:hidden [div:focus-within>&]:hidden"
+              >
                 <Kbd combo="/" aria-hidden />
               </InputIcon>
             )}

@@ -461,3 +461,12 @@
     outline-offset: 2px;
   }
 }
+
+/* The same ring drawn inside the element, for controls in a clipping scroller (tabs) */
+@utility focus-ring-inset {
+  outline-color: rgb(var(--fr-primary));
+  &:focus-visible {
+    outline: 2px solid rgb(var(--fr-primary));
+    outline-offset: -2px;
+  }
+}
