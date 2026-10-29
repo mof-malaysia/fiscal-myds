@@ -13,6 +13,8 @@ import { buildJsonRegistry } from "../registry/build-json";
  *   r/v2/<name>.json       latest 2.x release
  *   r/latest/<name>.json   latest release
  *   r/versions.json        every published version and what each channel points to
+ *   llms.txt, llms-full.txt, components/*.md, guides/*.md, icons.md
+ *                          docs for coding agents, built from the checked-out ref
  *
  * Only release tags are published; main is never served as a registry. Each
  * deploy rebuilds every version from git, so the checkout needs its tags
@@ -198,7 +200,7 @@ function landingPage(releases: Release[], channels: Record<string, string>) {
 <main>
   <h1>FTDS Registry</h1>
   <p>FiscalTech Design System: components, icons and styles for Ministry of Finance services, installed with the shadcn CLI.${latest ? ` Latest release: <code>${escapeHtml(latest)}</code>.` : ""}</p>
-  <nav><a href="storybook/">Storybook</a><a href="https://github.com/mof-malaysia/ftds">GitHub</a><a href="https://github.com/mof-malaysia/ftds/releases">Releases</a></nav>
+  <nav><a href="storybook/">Storybook</a><a href="llms.txt">llms.txt</a><a href="https://github.com/mof-malaysia/ftds">GitHub</a><a href="https://github.com/mof-malaysia/ftds/releases">Releases</a></nav>
 
   <h2>Install from this site</h2>
   <p>Add the namespace to <code>components.json</code> once. <code>${major}</code> follows the latest ${major}.x release; use an exact version such as <code>${escapeHtml(pin)}</code> to pin, or <code>latest</code>.</p>
@@ -212,6 +214,9 @@ npx shadcn@latest add @ftds/button --overwrite</code></pre>
   <p>No configuration needed. Always pin a release tag: without one you get unreleased work from main.</p>
   <pre><code>npx shadcn@latest add mof-malaysia/ftds/button#${escapeHtml(pin)}</code></pre>
   <p>GitHub allows 60 unauthenticated API requests an hour per IP address, and the CLI makes one per file. Sign in with <code>gh auth login</code>, or use this site.</p>
+
+  <h2>For coding agents</h2>
+  <p>Point your coding agent at <a href="llms.txt"><code>${SITE_URL}/llms.txt</code></a>: the rules for writing FTDS code and a page per component with its props and checked examples. <a href="llms-full.txt"><code>llms-full.txt</code></a> has everything in one file.</p>
 
   <h2>Versions</h2>
   <ul>${versions}</ul>
@@ -234,6 +239,12 @@ function main() {
   if (!releases.length) log("No release tags yet: r/ holds only versions.json");
   buildRegistries(releases, channels);
   copyStorybook();
+  // The checked-out ref is the release being deployed, so the docs describe it
+  execFileSync(
+    path.join(ROOT_DIR, "node_modules/.bin/tsx"),
+    ["scripts/llms/build.ts", "--out", DEPLOY_DIR, "--site", SITE_URL],
+    { cwd: ROOT_DIR, stdio: "inherit" },
+  );
 
   const page = landingPage(releases, channels);
   fs.writeFileSync(path.join(DEPLOY_DIR, "index.html"), page);

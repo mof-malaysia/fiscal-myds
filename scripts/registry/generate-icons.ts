@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {
+  describeItem,
   iconItemName,
   readFileContent,
   writeRegistry,
@@ -40,7 +41,9 @@ async function main() {
     // Transform imports if needed
     const transformedContent = content;
 
-    const registryComponent: RegistryComponent = {
+    const exportName = content.match(/export const (\w+)/)?.[1] ?? iconName;
+    const registryComponent: RegistryComponent = describeItem(
+      {
       name: iconItemName(iconName),
       type: "registry:ui",
       dependencies: [],
@@ -52,7 +55,13 @@ async function main() {
           type: "registry:ui",
         },
       ],
-    };
+      },
+      {
+        title: `${iconName.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase())} icon`,
+        description: `The ${exportName} icon component, installed to components/ui/icons/${iconName}.tsx.`,
+        categories: ["icons"],
+      },
+    );
 
     components.push(registryComponent);
     console.log(`✓ Generated: ${registryComponent.name}`);

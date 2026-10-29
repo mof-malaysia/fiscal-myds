@@ -31,6 +31,10 @@ function generateColorsComponent(): RegistryComponent {
 
   return {
     name: "colors",
+    title: "Colours",
+    description:
+      "The base colour scales (white, grey, primary, danger, success, warning) as CSS variables. Part of ftds-init.",
+    categories: ["styles"],
     type: "components:style",
     dependencies: [],
     registryDependencies: [],
@@ -56,6 +60,10 @@ function generateThemeLightComponent(): RegistryComponent {
 
   return {
     name: "theme-light",
+    title: "Light theme",
+    description:
+      "The light theme semantic tokens (bg, txt, otl, fr) on top of the base colours. Part of ftds-init.",
+    categories: ["styles"],
     type: "components:style",
     dependencies: [],
     registryDependencies: ["colors"],
@@ -81,6 +89,10 @@ function generateThemeDarkComponent(): RegistryComponent {
 
   return {
     name: "theme-dark",
+    title: "Dark theme",
+    description:
+      "The dark theme semantic tokens, applied under the .dark class. Part of ftds-init.",
+    categories: ["styles"],
     type: "components:style",
     dependencies: [],
     registryDependencies: ["colors"],
@@ -106,6 +118,10 @@ function generateThemeConfigComponent(): RegistryComponent {
 
   return {
     name: "theme-config",
+    title: "Tailwind theme",
+    description:
+      "The Tailwind CSS v4 @theme: token utilities, type scale, radii, shadows, densities and control utilities. Part of ftds-init.",
+    categories: ["styles"],
     type: "components:style",
     dependencies: [],
     registryDependencies: ["colors", "theme-light", "theme-dark"],
@@ -158,6 +174,10 @@ ${layerUtilities}`;
 
   return {
     name: "base-styles",
+    title: "Base styles",
+    description:
+      "Base layer and utility CSS FTDS components rely on. Part of ftds-init.",
+    categories: ["styles"],
     type: "components:style",
     dependencies: [],
     registryDependencies: [],
@@ -197,6 +217,10 @@ function generateFTDSInitComponent(
 
   return {
     name: "ftds-init",
+    title: "FTDS styles",
+    description:
+      "Everything FTDS needs in one stylesheet (styles/ftds.css): colours, light and dark themes, the Tailwind theme and base styles. Install this first.",
+    categories: ["styles"],
     type: "components:style",
     // Components use tw-animate-css classes (animate-in, fade-in-0, ...)
     dependencies: ["tw-animate-css@^1.4.0"],

@@ -61,6 +61,21 @@ npx shadcn@latest add mof-malaysia/ftds/button#v2.1.0 --overwrite
 
 Each tag pins its dependencies to the same tag, so `button#v2.1.0` brings `utils#v2.1.0`. The CLI reads every file through the GitHub API, which allows 60 unauthenticated requests an hour per IP address; a team behind one office address runs out quickly. Sign in with `gh auth login` (or set `GH_TOKEN`), or use Option A.
 
+### For coding agents
+
+FTDS publishes documentation for coding agents (Claude Code, Cursor, Copilot and others), following [llms.txt](https://llmstxt.org):
+
+- [`llms.txt`](https://mof-malaysia.github.io/ftds/llms.txt): the rules for writing FTDS code and a link to a page for every guide, component and block.
+- [`llms-full.txt`](https://mof-malaysia.github.io/ftds/llms-full.txt): everything in one file.
+
+Each component page combines a hand-written guide (when to use it, examples that are typechecked against the source, pitfalls) with its exports and props, generated from the code. Tell your agent to read `llms.txt` before building UI, or add it to the project's `AGENTS.md` or `CLAUDE.md`.
+
+The registry items also carry titles and descriptions, so the [shadcn MCP server](https://ui.shadcn.com/docs/mcp) can search and install FTDS for an agent once the `@ftds` namespace is in `components.json`:
+
+```bash
+npx shadcn@latest mcp init --client claude   # or cursor, vscode, codex, opencode
+```
+
 ### Import the styles
 
 ```css
@@ -196,8 +211,10 @@ pnpm --filter @mof-malaysia/ftds-storybook dev # Storybook at http://localhost:6
 | `pnpm components:sync-exports` | Regenerate `packages/react/package.json` exports from the tiers |
 | `pnpm registry:build`          | Regenerate `registry.json` and everything under `registry/`     |
 | `pnpm registry:validate`       | Check the registry with `shadcn registry validate`              |
+| `pnpm llms:check`              | Typecheck every example in the component docs and guides        |
+| `pnpm llms:build`              | Build `llms.txt` and the agent docs into `deploy/`              |
 
-Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`. Commit the output of `pnpm registry:build` with any component, icon or style change: CI fails if `registry/` is out of date. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and [DEPLOYMENT.md](./DEPLOYMENT.md) for releasing.
+Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`. Commit the output of `pnpm registry:build` with any component, doc, icon or style change: CI fails if `registry/` is out of date. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and [DEPLOYMENT.md](./DEPLOYMENT.md) for releasing.
 
 ## Origins
 

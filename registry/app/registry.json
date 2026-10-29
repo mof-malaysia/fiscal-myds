@@ -5,6 +5,11 @@
   "items": [
     {
       "name": "activity-timeline",
+      "title": "Activity Timeline",
+      "description": "The history of a case, one event per line (who did what, when), with comments, attachments and an optional note composer. For officer case pages.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -30,6 +35,11 @@
     },
     {
       "name": "app-shell",
+      "title": "App Shell",
+      "description": "Frame of an officer tool with a labelled, grouped Sidebar that collapses to an icon rail and becomes a drawer on narrow screens, a top bar and a scrolling main area.",
+      "categories": [
+        "layout"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -53,6 +63,11 @@
     },
     {
       "name": "application-list",
+      "title": "Application List",
+      "description": "A citizen's applications on their dashboard, each with reference, date, a status tag in plain words and the next action. Shows an empty state when there are none.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -73,6 +88,11 @@
     },
     {
       "name": "auth-layout",
+      "title": "Auth Layout",
+      "description": "The frame of every sign-in, sign-up, password and verification screen. A full-height page with one centred panel holding the h1, a short description and the form.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -88,6 +108,11 @@
     },
     {
       "name": "autocomplete",
+      "title": "Autocomplete",
+      "description": "A free-text input that suggests matches as people type. The value is the text in the input; choosing a suggestion only fills it in.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -106,6 +131,11 @@
     },
     {
       "name": "calendar",
+      "title": "Calendar",
+      "description": "An always-visible month grid for choosing days, built on react-day-picker, with month and year jump grids. DatePicker and DateRangePicker use it.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "date-fns@^4.1.0",
@@ -126,6 +156,11 @@
     },
     {
       "name": "character-count",
+      "title": "Character Count",
+      "description": "A TextArea with a live limit (\"You have 12 characters remaining\"). Over the limit the field becomes invalid, but text is never cut off.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -145,6 +180,11 @@
     },
     {
       "name": "check-answers",
+      "title": "Check Answers",
+      "description": "The last page before submitting an application. Every answer by section with a Change link, an optional declaration to accept, and \"Accept and submit\".",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -165,6 +205,11 @@
     },
     {
       "name": "checkbox-group",
+      "title": "Checkbox Group",
+      "description": "A set of checkboxes that share one value, an array of the ticked values, under one question. Supports a \"Select all\" checkbox.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -184,6 +229,11 @@
     },
     {
       "name": "combobox",
+      "title": "Combobox",
+      "description": "Pick one or more values from a long list by typing to filter it. The value is always an item from the list, never free text.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -205,6 +255,11 @@
     },
     {
       "name": "command",
+      "title": "Command",
+      "description": "A searchable list of actions and destinations: type to filter, arrows to move, Enter to run. Shown inline or in a dialog as a \"jump to anything\" palette (built on cmdk).",
+      "categories": [
+        "navigation"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "cmdk@^1.1.1"
@@ -224,6 +279,11 @@
     },
     {
       "name": "confirmation-panel",
+      "title": "Confirmation Panel",
+      "description": "The page after a successful submission. A success panel with a large, copyable reference number, where the confirmation went, what happens next, and the ways out.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -246,6 +306,11 @@
     },
     {
       "name": "context-menu",
+      "title": "Context Menu",
+      "description": "A menu that opens at the pointer on right-click, or long-press on touch, inside an area such as a row in a case list. A shortcut only: its actions must be reachable another way.",
+      "categories": [
+        "overlays"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -263,6 +328,11 @@
     },
     {
       "name": "data-table",
+      "title": "Data Table",
+      "description": "Sortable, selectable table of records from TanStack Table column definitions, with amount columns, pinned columns, nested rows, loading and empty states. The officer's main list view.",
+      "categories": [
+        "data-display"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@tanstack/react-table@^8.21.3"
@@ -287,6 +357,11 @@
     },
     {
       "name": "date-field",
+      "title": "Date Field",
+      "description": "A typed date input with day, month and year segments, based on the native date input. Use it for dates people know, like a date of birth.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -303,6 +378,11 @@
     },
     {
       "name": "date-picker",
+      "title": "Date Picker",
+      "description": "A button that opens a calendar to pick one date: in a popover on large screens and a dialog on small ones. Use it for dates people choose, like appointments.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "class-variance-authority@^0.7.1",
@@ -326,6 +406,11 @@
     },
     {
       "name": "daterange-picker",
+      "title": "Date Range Picker",
+      "description": "Picks a start and end date from one button that opens two months side by side, with optional quick ranges such as \"Last 30 days\".",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "class-variance-authority@^0.7.1",
@@ -351,6 +436,11 @@
     },
     {
       "name": "decision-panel",
+      "title": "Decision Panel",
+      "description": "Records an officer's decision on a case (approve, return for changes or reject) with a reason, an option to notify the applicant, and a confirmation before rejecting.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -374,6 +464,11 @@
     },
     {
       "name": "desk-shell",
+      "title": "Desk Shell",
+      "description": "Dense, keyboard-first frame for an officer workstation: icon rail, top bar with tabs and ⌘K search, status bar. Always compact, with shortcuts built in.",
+      "categories": [
+        "layout"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -399,6 +494,11 @@
     },
     {
       "name": "drawer",
+      "title": "Drawer",
+      "description": "A panel that slides in from an edge and can be swiped away: filters as a bottom sheet on a phone, or a case's details in a side panel. Traps focus; Esc, scrim and close dismiss it.",
+      "categories": [
+        "overlays"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -418,6 +518,11 @@
     },
     {
       "name": "empty-state",
+      "title": "Empty State",
+      "description": "Fills the space where a table, list or search would show results but has none, with a short title, what to do next and at most two actions.",
+      "categories": [
+        "feedback-and-status"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -432,6 +537,11 @@
     },
     {
       "name": "error-page",
+      "title": "Error Page",
+      "description": "Whole-page message for a page that doesn't exist, an error on our side, a page the user can't access, or planned maintenance. Says what happened and what to do next.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -451,6 +561,11 @@
     },
     {
       "name": "error-summary",
+      "title": "Error Summary",
+      "description": "The \"There is a problem\" box at the top of a form after a failed submit. Lists each error as a link that focuses the field, and takes focus itself.",
+      "categories": [
+        "feedback-and-status"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -467,6 +582,11 @@
     },
     {
       "name": "file-upload",
+      "title": "File Upload",
+      "description": "Attach documents to a form with a \"Choose file\" button or by dropping files, then review the list with sizes, errors and remove buttons.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -491,6 +611,11 @@
     },
     {
       "name": "form-step",
+      "title": "Form Step",
+      "description": "One page of a multi-step application. Back link, progress, caption, the page's h1, your fields, an error summary, and Continue with \"Save and come back later\".",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -511,6 +636,11 @@
     },
     {
       "name": "menubar",
+      "title": "Menubar",
+      "description": "A row of menus (File, Edit, View) at the top of a desktop-style officer tool. Once one is open, moving to the next trigger opens that menu instead.",
+      "categories": [
+        "navigation"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -529,6 +659,11 @@
     },
     {
       "name": "meter",
+      "title": "Meter",
+      "description": "Shows a measured quantity within a known range, such as budget spent or storage used, turning Warning or Danger past thresholds you set.",
+      "categories": [
+        "feedback-and-status"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -548,6 +683,11 @@
     },
     {
       "name": "notification-list",
+      "title": "Notification List",
+      "description": "An inbox of updates grouped by day, with an icon per kind, unread markers, an All/Unread filter and \"Mark all as read\". For a citizen's or officer's notifications page.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -575,6 +715,11 @@
     },
     {
       "name": "number-field",
+      "title": "Number Field",
+      "description": "Takes a number, formatted as people type, with min, max, step, arrow keys and optional steppers. CurrencyField is the preset for ringgit amounts.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -594,6 +739,11 @@
     },
     {
       "name": "otp-field",
+      "title": "OTP Field",
+      "description": "Takes a one-time code in single-character slots. Pasting fills every slot and SMS autofill works. Use it to verify a phone number or sign-in.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -611,6 +761,11 @@
     },
     {
       "name": "otp-verify",
+      "title": "OTP Verify",
+      "description": "Asks for the one-time code just sent by SMS or email. Names where it went, takes the code, verifies on the last digit, and offers a new code after a countdown.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -632,6 +787,11 @@
     },
     {
       "name": "page-header",
+      "title": "Page Header",
+      "description": "Opens a page with an optional breadcrumb, the page's one h1, a short description, actions on the right and a meta row for status. Every page starts with one.",
+      "categories": [
+        "layout"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -648,6 +808,11 @@
     },
     {
       "name": "pagination",
+      "title": "Pagination",
+      "description": "Moves through a long list split into pages, below a table or list of results. Numbered pages, Previous and Next only, or a summary with Previous and Next.",
+      "categories": [
+        "navigation"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -669,6 +834,11 @@
     },
     {
       "name": "panel",
+      "title": "Panel",
+      "description": "The outcome at the top of a confirmation or result page, such as Payment received, with an icon and the reference number set large. Success, info, warning and danger.",
+      "categories": [
+        "feedback-and-status"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -690,6 +860,11 @@
     },
     {
       "name": "password-input",
+      "title": "Password Input",
+      "description": "A masked text input with a button to show the password, so people can check it before submitting. Use it for every password field.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -708,6 +883,11 @@
     },
     {
       "name": "password-reset",
+      "title": "Password Reset",
+      "description": "The two halves of resetting a password. ForgotPasswordForm asks for the email and shows \"Check your email\"; ResetPasswordForm sets the new password from the emailed link.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -731,6 +911,11 @@
     },
     {
       "name": "payment-summary",
+      "title": "Payment Summary",
+      "description": "The review step before paying (payee, line items, total, payment method and one \"Pay RM …\" button), and PaymentReceipt, the paid receipt that comes back.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -756,6 +941,11 @@
     },
     {
       "name": "preview-card",
+      "title": "Preview Card",
+      "description": "A short preview of what a link points to, shown on hover or focus, such as an officer's unit and contact details. The link must work on its own.",
+      "categories": [
+        "overlays"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -773,6 +963,11 @@
     },
     {
       "name": "progress",
+      "title": "Progress",
+      "description": "A bar showing how far a task has got, such as an upload or a batch being processed. Shows an animated sweep when the amount is unknown.",
+      "categories": [
+        "feedback-and-status"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -790,6 +985,11 @@
     },
     {
       "name": "session-timeout",
+      "title": "Session Timeout",
+      "description": "A dialog that warns the session is about to end for inactivity, with a live countdown, \"Stay signed in\" and \"Sign out now\". Exported as SessionTimeoutDialog.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -807,6 +1007,11 @@
     },
     {
       "name": "settings-layout",
+      "title": "Settings Layout",
+      "description": "The frame of an account or settings area. Section links beside the content (a scrolling row on phones), with SettingsSection forms and SettingsRow controls.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -825,6 +1030,11 @@
     },
     {
       "name": "sheet",
+      "title": "Sheet",
+      "description": "A plain modal panel fixed to one edge of the screen, built on Base UI Dialog. Minimal styling and no close button; prefer Drawer for new screens.",
+      "categories": [
+        "overlays"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -842,6 +1052,11 @@
     },
     {
       "name": "shortcuts",
+      "title": "Shortcuts",
+      "description": "Keyboard layer for officer tools: named commands with optional shortcuts, a ⌘K command palette, a ? cheat sheet, sequences like g c, and scoped keys such as j and k in a list.",
+      "categories": [
+        "utilities"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -859,6 +1074,11 @@
     },
     {
       "name": "sign-in-form",
+      "title": "Sign In Form",
+      "description": "The sign-in form with one or more ways in (MyDigital ID, email and password, or staff SSO) separated by an \"or\" rule. Put it inside AuthLayout.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -882,6 +1102,11 @@
     },
     {
       "name": "sign-up-form",
+      "title": "Sign Up Form",
+      "description": "Creates a citizen or business account. Full name, email, optional phone, a password with live rules, a confirmation and consent to the terms. Put it inside AuthLayout.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -906,6 +1131,11 @@
     },
     {
       "name": "slider",
+      "title": "Slider",
+      "description": "Picks a value, or a range with two thumbs, by dragging along a track. Use it where an approximate value is fine, such as a filter range.",
+      "categories": [
+        "forms-and-inputs"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -922,6 +1152,11 @@
     },
     {
       "name": "split-pane",
+      "title": "Split Pane",
+      "description": "A list beside its detail, with a divider the officer can drag or move with arrow keys. Remembers the width per browser. Use it inside AppShell or DeskShell.",
+      "categories": [
+        "layout"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -936,6 +1171,11 @@
     },
     {
       "name": "stat",
+      "title": "Stat",
+      "description": "A KPI tile for officer dashboards: a label, one large figure in tabular numerals, an optional change since the last period and a footnote.",
+      "categories": [
+        "data-display"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -954,6 +1194,11 @@
     },
     {
       "name": "stepper",
+      "title": "Stepper",
+      "description": "Shows where someone is in a multi-step form. Lists every step on wide containers and collapses to \"Step 2 of 4\" with a progress bar on narrow ones.",
+      "categories": [
+        "navigation"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -972,6 +1217,11 @@
     },
     {
       "name": "summary-list",
+      "title": "Summary List",
+      "description": "One record's details as rows of label and value, with an optional action per row such as \"Change\". Use it for application or case details.",
+      "categories": [
+        "data-display"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -986,6 +1236,11 @@
     },
     {
       "name": "table",
+      "title": "Table",
+      "description": "Plain table parts for a small, static table such as a fee schedule or a breakdown of amounts. No sorting or selection; FTDS styling with a Hairline between rows.",
+      "categories": [
+        "data-display"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -1003,6 +1258,11 @@
     },
     {
       "name": "task-list",
+      "title": "Task List",
+      "description": "Lists every part of a multi-part application with its status in words, so users can see what's done and what's left and open each part in any order.",
+      "categories": [
+        "data-display"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -1020,6 +1280,11 @@
     },
     {
       "name": "toolbar",
+      "title": "Toolbar",
+      "description": "Groups the controls that act on one thing, such as formatting above an editor or bulk actions above a table. Arrow keys move between controls; Tab leaves in one step.",
+      "categories": [
+        "actions"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -1039,6 +1304,11 @@
     },
     {
       "name": "work-queue",
+      "title": "Work Queue",
+      "description": "An officer's list of cases to work through. Search, status and assignee filters, a selectable table, bulk actions, paging and j/k keyboard navigation.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [

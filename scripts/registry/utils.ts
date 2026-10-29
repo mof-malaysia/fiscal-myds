@@ -15,6 +15,9 @@ export interface ComponentFile {
 export interface RegistryComponent {
   $schema?: string;
   name: string;
+  title?: string;
+  description?: string;
+  categories?: string[];
   type: string;
   dependencies: string[];
   registryDependencies: string[];
@@ -271,6 +274,26 @@ export function mapToRegistryDependency(
   if (importPath.startsWith("./"))
     return { registry: fromTier, name: importPath.slice(2) };
   return null;
+}
+
+/**
+ * Add a title, description and categories to an item, keeping them next to its
+ * name. `shadcn search`, `shadcn view` and the shadcn MCP server show them, so
+ * coding agents can find the right item.
+ */
+export function describeItem(
+  item: RegistryComponent,
+  meta: { title: string; description: string; categories?: string[] },
+): RegistryComponent {
+  const { $schema, name, ...rest } = item;
+  return {
+    ...($schema ? { $schema } : {}),
+    name,
+    title: meta.title,
+    description: meta.description,
+    ...(meta.categories?.length ? { categories: meta.categories } : {}),
+    ...rest,
+  };
 }
 
 /**

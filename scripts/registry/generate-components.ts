@@ -5,6 +5,7 @@ import {
   extractImports,
   transformImports,
   writeRegistry,
+  describeItem,
   mapToRegistryDependency,
   expandIconBarrelImports,
   getIconExportMap,
@@ -17,6 +18,7 @@ import {
   type RegistryDependency,
   COMPONENT_TIERS,
 } from "./utils";
+import { readDoc } from "../llms/content";
 
 /**
  * Generate the component registries, one per tier:
@@ -160,15 +162,41 @@ function generateHooksItem(): RegistryComponent {
   };
 }
 
+/**
+ * Title, description and category from the item's doc (<name>.md next to its
+ * source), which also feeds llms.txt. Items without a doc yet stay undescribed.
+ */
+function withDoc(item: RegistryComponent, docFile: string): RegistryComponent {
+  if (!fs.existsSync(docFile)) return item;
+  const doc = readDoc(docFile);
+  return describeItem(item, {
+    title: doc.title,
+    description: doc.description,
+    categories: [
+      item.type === "registry:block"
+        ? "blocks"
+        : (doc.category ?? "").toLowerCase().replace(/ /g, "-"),
+    ].filter(Boolean),
+  });
+}
+
 function main() {
   // Build every item first so a tier violation fails before anything is written.
   const items: Record<ComponentTier, RegistryComponent[]> = {
-    core: [generateUtilsItem(), generateHooksItem()],
+    core: [
+      withDoc(generateUtilsItem(), path.join(UTILS_DIR, "utils.md")),
+      withDoc(generateHooksItem(), path.join(HOOKS_DIR, "hooks.md")),
+    ],
     app: [],
     marketing: [],
   };
   for (const source of listComponents()) {
-    items[source.tier].push(generateComponentItem(source));
+    items[source.tier].push(
+      withDoc(
+        generateComponentItem(source),
+        source.filePath.replace(/\.tsx$/, ".md"),
+      ),
+    );
   }
 
   for (const tier of COMPONENT_TIERS) {

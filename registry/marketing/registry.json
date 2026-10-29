@@ -5,6 +5,11 @@
   "items": [
     {
       "name": "accordion",
+      "title": "Accordion",
+      "description": "A stack of sections that open and close under their headings. Use it when a page has several sections people need one at a time.",
+      "categories": [
+        "marketing"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -22,6 +27,11 @@
     },
     {
       "name": "announce-bar",
+      "title": "Announce Bar",
+      "description": "A one-line notice with a tag under the site's navigation, such as planned maintenance or a new feature. For a service's alpha or beta phase, use PhaseBanner.",
+      "categories": [
+        "marketing"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -37,6 +47,11 @@
     },
     {
       "name": "carousel",
+      "title": "Carousel",
+      "description": "A horizontal row of slides people scroll by touch, buttons, dots or arrow keys. Built on CSS scroll-snap; no autoplay unless you turn it on.",
+      "categories": [
+        "marketing"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -57,6 +72,11 @@
     },
     {
       "name": "cta-band",
+      "title": "CTA Band",
+      "description": "The closing call to action of a landing page: a title, short text, one primary action and an optional secondary one, on a Well or blue-wash band.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -75,6 +95,11 @@
     },
     {
       "name": "faq",
+      "title": "FAQ",
+      "description": "A frequently asked questions section: a heading and intro beside an accordion of questions and answers, with an optional \"still need help\" line.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -92,6 +117,11 @@
     },
     {
       "name": "feature-grid",
+      "title": "Feature Grid",
+      "description": "A section that introduces what a service offers: a heading and intro, then a grid of features, each with an icon, title, text and optional link.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -112,6 +142,11 @@
     },
     {
       "name": "hero",
+      "title": "Hero",
+      "description": "The opening section of an agency or landing page, with the page's only h1, supporting text, up to two actions and optional media beside the text.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -129,6 +164,11 @@
     },
     {
       "name": "logo-cloud",
+      "title": "Logo Cloud",
+      "description": "A quiet row of the agencies or partners that use a service, muted at rest and in full colour on hover or focus. Each logo needs alt text.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
@@ -144,6 +184,11 @@
     },
     {
       "name": "navbar",
+      "title": "Navbar",
+      "description": "The site's top navigation bar: logo, links and dropdown menus, and actions such as search, with a full-width menu panel on tablet and mobile.",
+      "categories": [
+        "government-chrome"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0",
@@ -167,6 +212,11 @@
     },
     {
       "name": "section-heading",
+      "title": "Section Heading",
+      "description": "The h2 title and intro paragraph used by the marketing blocks. Use it to give your own landing page sections the same heading style.",
+      "categories": [
+        "marketing"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -182,6 +232,11 @@
     },
     {
       "name": "site-footer",
+      "title": "Site Footer",
+      "description": "The large multi-column footer for agency and landing sites: agency name, address and social links, then groups of site links. Pair it with Footer.",
+      "categories": [
+        "government-chrome"
+      ],
       "type": "registry:ui",
       "dependencies": [
         "@base-ui/react@^1.9.0"
@@ -200,6 +255,11 @@
     },
     {
       "name": "site-search",
+      "title": "Site Search",
+      "description": "A labelled \"search this site\" field with a Search button, for agency sites and service landing pages. Submits a GET request, or calls onSearch.",
+      "categories": [
+        "marketing"
+      ],
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
@@ -218,6 +278,11 @@
     },
     {
       "name": "stats-band",
+      "title": "Stats Band",
+      "description": "Two to four headline figures on a Well band, each with a label and optional footnote, and a source line. For landing pages, not dashboards.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [
         "class-variance-authority@^0.7.1"
@@ -236,6 +301,11 @@
     },
     {
       "name": "testimonial",
+      "title": "Testimonial",
+      "description": "What people say about a service. One quote renders as a large centred pull quote; two or three render as a grid of Sheet panels.",
+      "categories": [
+        "blocks"
+      ],
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [

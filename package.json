@@ -15,6 +15,8 @@
     "registry:clean": "rm -rf registry registry.json",
     "registry:validate": "pnpm dlx shadcn@4.23.0 registry validate ./registry.json",
     "deploy:prepare": "tsx scripts/deploy/prepare-gh-pages.ts",
+    "llms:build": "tsx scripts/llms/build.ts",
+    "llms:check": "tsx scripts/llms/check-examples.ts",
     "deploy:clean": "rm -rf deploy",
     "registry:generate:components": "tsx scripts/registry/generate-components.ts",
     "components:sync-exports": "tsx scripts/registry/sync-exports.ts",
@@ -30,7 +32,8 @@
     "prettier-plugin-tailwindcss": "^0.7.1",
     "tsx": "^4.19.2",
     "turbo": "^2.6.1",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "typescript-api": "npm:typescript@6.0.3"
   },
   "packageManager": "pnpm@9.4.0",
   "engines": {

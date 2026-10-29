@@ -43,5 +43,11 @@ jobs:
 
       - run: pnpm registry:validate
 
+      # Every component has a doc for llms.txt, and every example in the docs typechecks
+      - name: Agent docs
+        run: |
+          pnpm llms:check
+          pnpm llms:build --out "$RUNNER_TEMP/llms"
+
       - name: Build Storybook
         run: pnpm --filter @mof-malaysia/ftds-storybook build

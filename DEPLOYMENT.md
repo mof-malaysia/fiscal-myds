@@ -39,6 +39,7 @@ Tags are permanent. Never move or reuse one: people pin them, and every `#v2.1.0
 https://mof-malaysia.github.io/ftds/
 ├── index.html, 404.html     Landing page
 ├── storybook/               Storybook, built from the latest release tag
+├── llms.txt, llms-full.txt  Docs for coding agents, with components/*.md, guides/*.md and icons.md
 └── r/
     ├── v2.1.0/<name>.json   Every release tag, built from that tag's own registry files
     ├── v2/<name>.json       Newest stable 2.x release

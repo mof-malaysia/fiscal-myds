@@ -40,6 +40,16 @@ pnpm run icons:generate
 
 This rewrites `packages/react/src/icons/*.tsx` and its `index.ts`, so don't edit those files by hand. `#18181B` fills and strokes become `currentColor`.
 
+## Component docs
+
+Every component, block, `utils` and `hooks` has a hand-written doc next to its source (`packages/react/src/components/<tier>/<name>.md`). The docs build `llms.txt` for coding agents and give each registry item its title and description. A doc has frontmatter (`title`, `description`, `category`) and three sections: **When to use**, **Usage** and **Notes**. The props table is generated from the TypeScript source, so don't write one. See `button.md` for the pattern.
+
+- Every ` ```tsx ` example is a complete module and must typecheck: `pnpm llms:check`.
+- `pnpm llms:build` fails if a component has no doc, or a doc names an export that doesn't exist.
+- Rebuild the registry after changing a doc's title or description: `pnpm registry:build`.
+
+Guides for agents live in `docs/guides/`, and the rules at the top of `llms.txt` in `docs/llms-intro.md`.
+
 ## Git hooks
 
 [Lefthook](https://lefthook.dev) installs the hooks when you run `pnpm install`. Before every commit it runs, in parallel:
