@@ -1,7 +1,7 @@
 export const createStory = (args: any, theme: "light" | "dark" = "light") => {
   return {
-    parameters: {
-      backgrounds: { default: theme },
+    globals: {
+      backgrounds: { value: theme },
     },
     args: args,
   };
@@ -12,8 +12,8 @@ export const createRender = (
   theme: "light" | "dark" = "light",
 ) => {
   return {
-    parameters: {
-      backgrounds: { default: theme },
+    globals: {
+      backgrounds: { value: theme },
     },
     render,
   };

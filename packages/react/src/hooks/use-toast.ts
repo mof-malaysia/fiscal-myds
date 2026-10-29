@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { emitter } from "../utils/events";
-import { ToastEvent } from "../components/toast";
+import { ToastEvent } from "../components/core/toast";
 /**
  * useToast Hook
  * @param {Object} initialState - The initial state for the hook.

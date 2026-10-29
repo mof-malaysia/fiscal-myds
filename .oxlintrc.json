@@ -1,0 +1,58 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "warn",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      { "controlComponents": ["Switch", "Checkbox", "Radio", "Input"] }
+    ],
+    "typescript/no-explicit-any": "off",
+    // Components set ARIA roles deliberately (carousel region, grid cells, toast progressbar)
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "jsx-a11y/no-redundant-roles": "off",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+    // Base UI `render={<a />}` receives its label from the parent's children, which the rule cannot see
+    "jsx-a11y/control-has-associated-label": "off",
+    // React Compiler rules; the codebase does not target the compiler
+    "react/purity": "off",
+    "react/refs": "off",
+    "react/set-state-in-effect": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      // Storybook argTypes mappings are static arrays of slot elements, never reordered
+      "files": ["apps/storybook/stories/**"],
+      "rules": {
+        "react/jsx-key": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    // The docs site is being deprecated
+    "apps/docs/**",
+    "registry/**",
+    "deploy/**",
+    "**/storybook-static/**",
+    "**/.source/**",
+    "**/*.d.ts"
+  ]
+}

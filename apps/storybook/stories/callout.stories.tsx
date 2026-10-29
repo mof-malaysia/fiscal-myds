@@ -1,5 +1,4 @@
-import { fn } from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   Callout,
@@ -42,7 +41,7 @@ const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Callout",
+  title: "Core/Callout",
   component: CalloutDemo,
   tags: ["autodocs"],
   parameters: {

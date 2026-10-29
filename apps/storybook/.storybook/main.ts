@@ -1,4 +1,5 @@
-import { join, dirname } from "path";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
@@ -9,18 +10,16 @@ const config: StorybookConfig = {
   staticDirs: ["../stories/assets"],
 
   addons: [
-    // "storybook-tailwind-dark-mode",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
-    "@storybook/addon-queryparams",
-    "storybook-addon-deep-controls",
-    "@storybook/addon-a11y",
+    getAbsolutePath("@storybook/addon-onboarding"),
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@chromatic-com/storybook"),
+    getAbsolutePath("@storybook/addon-queryparams"),
+    getAbsolutePath("storybook-addon-deep-controls"),
+    getAbsolutePath("@storybook/addon-a11y"),
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
   swc: () => ({
@@ -44,3 +43,8 @@ const config: StorybookConfig = {
   },
 };
 export default config;
+
+// Resolve addons to absolute paths so they load correctly in the pnpm monorepo.
+function getAbsolutePath(value: string): any {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}

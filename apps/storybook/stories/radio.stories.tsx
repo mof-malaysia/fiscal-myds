@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   Radio,
@@ -40,7 +40,7 @@ import {
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Radio",
+  title: "Core/Radio",
   component: Radio,
   render: ({ ...props }) => {
     return (
@@ -97,7 +97,10 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  args: {},
+  args: {
+    "aria-label": "How should we contact you?",
+    defaultValue: "email",
+  },
   argTypes: {
     size: {
       control: "inline-radio",
@@ -141,3 +144,33 @@ export const DisabledDark: Story = createStory(
   },
   "dark",
 );
+
+/** `size` steps the button and text; `medium` text follows the density toolbar. */
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6">
+      {(["small", "medium", "large"] as const).map((size) => (
+        <Radio
+          key={size}
+          size={size}
+          aria-label={`${size} example`}
+          defaultValue="yes"
+        >
+          <RadioItem>
+            <RadioButton value="yes" id={`${size}-yes`} />
+            <div className="grid">
+              <RadioLabel htmlFor={`${size}-yes`}>Yes ({size})</RadioLabel>
+              <RadioHintText htmlFor={`${size}-yes`}>
+                We'll use the address on your MyKad.
+              </RadioHintText>
+            </div>
+          </RadioItem>
+          <RadioItem>
+            <RadioButton value="no" id={`${size}-no`} />
+            <RadioLabel htmlFor={`${size}-no`}>No</RadioLabel>
+          </RadioItem>
+        </Radio>
+      ))}
+    </div>
+  ),
+};

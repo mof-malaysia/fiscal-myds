@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/separator.tsx",
+      "content": "\"use client\";\n\nimport React, { ComponentRef, forwardRef } from \"react\";\nimport { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\";\nimport { clx } from \"@/lib/myds/utils\";\n\n/**\n * Separator draws a single Hairline between two groups of content, horizontal or\n * vertical, and is announced to screen readers as a separator.\n *\n * Lines must earn their place (DESIGN.md: separate with space and tone, not lines).\n * Reach for spacing or a tonal surface (Paper, Sheet, Well) first. A Separator is\n * right for the single rule under a top bar, between toolbar groups, or between\n * menu sections; it is wrong between cards, inside cards, or between every list item.\n *\n * Pass `decorative` when the line only repeats a split that is already obvious, so\n * screen readers skip it.\n *\n * @example\n * <div className=\"flex h-5 items-center gap-3\">\n *   <span>Draft</span>\n *   <Separator orientation=\"vertical\" />\n *   <span>Updated 3 May 2026</span>\n * </div>\n */\n\ninterface SeparatorProps\n  extends Omit<SeparatorPrimitive.Props, \"className\"> {\n  className?: string;\n  /** Hide the line from assistive technology when it is purely visual. */\n  decorative?: boolean;\n}\n\nconst Separator = forwardRef<ComponentRef<typeof SeparatorPrimitive>, SeparatorProps>(\n  ({ className, orientation = \"horizontal\", decorative = false, ...props }, ref) => {\n    return (\n      <SeparatorPrimitive\n        ref={ref}\n        orientation={orientation}\n        aria-hidden={decorative || undefined}\n        className={clx(\n          \"bg-otl-gray-200 shrink-0\",\n          orientation === \"vertical\" ? \"w-px self-stretch\" : \"h-px w-full\",\n          className,\n        )}\n        {...props}\n      />\n    );\n  },\n);\nSeparator.displayName = \"Separator\";\n\nexport { Separator };\nexport type { SeparatorProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

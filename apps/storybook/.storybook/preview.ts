@@ -1,4 +1,5 @@
-import { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react-vite";
+import { createElement } from "react";
 import "./global.css";
 
 const preview: Preview = {
@@ -19,6 +20,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     density: "comfortable",
+    backgrounds: { value: "light" },
   },
   decorators: [
     (Story, context) => {
@@ -26,22 +28,42 @@ const preview: Preview = {
         context.globals.density ?? "comfortable";
       return Story();
     },
-    // Dark stories set `backgrounds.default` to "dark" (see utils/createStory).
-    // Put `.dark` on <html> so portaled content (dialogs, menus, tooltips)
-    // switches theme too, not just the story root.
+    // Dark stories set the `backgrounds` global to "dark" (see utils/createStory).
     (Story, context) => {
-      const isDark = context.parameters.backgrounds?.default === "dark";
+      const isDark = context.globals.backgrounds?.value === "dark";
+
+      // A Docs page renders every story into one document, so a class on <html>
+      // would turn the light stories dark too. Scope dark to this story instead.
+      if (context.viewMode === "docs") {
+        document.documentElement.classList.remove("dark");
+        return isDark
+          ? createElement(
+              "div",
+              {
+                className: "dark bg-bg-white text-txt-black-900 rounded-md p-4",
+              },
+              Story(),
+            )
+          : Story();
+      }
+
+      // On a story page, put `.dark` on <html> so portaled content (dialogs,
+      // menus, tooltips) switches theme too, not just the story root.
       document.documentElement.classList.toggle("dark", isDark);
       return Story();
     },
   ],
   parameters: {
     backgrounds: {
-      default: "light",
-      values: [
-        { name: "light", value: "#FFFFFF" },
-        { name: "dark", value: "#18181B" },
-      ],
+      options: {
+        light: { name: "light", value: "#FFFFFF" },
+        dark: { name: "dark", value: "#131316" },
+      },
+    },
+    options: {
+      storySort: {
+        order: ["Introduction", "Core", "App", "Marketing", "Examples"],
+      },
     },
     deepControls: { enabled: true },
     controls: {

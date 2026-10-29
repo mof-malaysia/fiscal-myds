@@ -7,7 +7,7 @@ import {
   RadioItem,
   RadioLabel,
 } from "@/components/myds";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
 
 export function RadioExample(props: ComponentProps<typeof Radio>) {
   return (

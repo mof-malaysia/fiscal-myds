@@ -1,0 +1,251 @@
+import { Meta, Source, Unstyled } from "@storybook/addon-docs/blocks";
+import { Button } from "@mof-malaysia/myds-react/button";
+import { Tag } from "@mof-malaysia/myds-react/tag";
+
+<Meta title="Introduction" />
+
+export const Section = ({ title, children }) => (
+  <section className="mt-12">
+    <h2 className="text-txt-black-900 mb-4 text-lg font-semibold tracking-tight">
+      {title}
+    </h2>
+    {children}
+  </section>
+);
+
+export const TierCard = ({ name, count, href, children, examples }) => (
+  <a
+    href={href}
+    target="_top"
+    className="bg-bg-washed hover:bg-bg-washed-active group flex flex-col gap-2 rounded-xl p-5 no-underline transition-colors"
+  >
+    <div className="flex items-baseline justify-between">
+      <span className="text-txt-black-900 font-semibold">{name}</span>
+      <span className="text-txt-black-500 text-sm tabular-nums">
+        {count} stories
+      </span>
+    </div>
+    <p className="text-txt-black-700 text-sm leading-relaxed">{children}</p>
+    <p className="text-txt-black-500 mt-auto pt-2 text-xs">{examples}</p>
+  </a>
+);
+
+export const Principle = ({ index, title, children }) => (
+  <li className="flex gap-4">
+    <span className="text-txt-primary w-5 shrink-0 font-semibold tabular-nums">
+      {index}
+    </span>
+    <div>
+      <p className="text-txt-black-900 font-medium">{title}</p>
+      <p className="text-txt-black-700 mt-1 text-sm leading-relaxed">
+        {children}
+      </p>
+    </div>
+  </li>
+);
+
+export const Tip = ({ title, children }) => (
+  <div className="bg-bg-washed rounded-xl p-4">
+    <p className="text-txt-black-900 text-sm font-medium">{title}</p>
+    <p className="text-txt-black-700 mt-1 text-sm leading-relaxed">{children}</p>
+  </div>
+);
+
+{/* The page lives in an export so MDX leaves its JSX alone: in the MDX body,
+    text lines become markdown paragraphs and <a> becomes Storybook's docs link. */}
+
+export const story = (path) => `./?path=${path}`;
+
+export const LinkButton = ({ href, external, ...props }) => (
+  <Button
+    {...props}
+    render={
+      external ? (
+        <a href={href} target="_blank" rel="noreferrer" />
+      ) : (
+        <a href={href} target="_top" />
+      )
+    }
+  />
+);
+
+export const IntroPage = () => (
+  <div className="text-txt-black-900 mx-auto max-w-3xl px-6 py-12 font-sans">
+    <header>
+      <p className="text-txt-primary text-sm font-medium">
+        Ministry of Finance Malaysia
+      </p>
+      <h1 className="mt-2 text-4xl font-semibold tracking-tight">
+        Fiscal MYDS
+      </h1>
+      <p className="text-txt-black-700 mt-4 max-w-2xl text-lg leading-relaxed">
+        The component library MOF teams use to build calm, capable, humane
+        government services, so every service feels like one trustworthy
+        institution and teams spend their effort on the service, not the
+        styling.
+      </p>
+      <div className="mt-5 flex flex-wrap gap-2">
+        <Tag variant="primary">Tailwind v4</Tag>
+        <Tag>Base UI</Tag>
+        <Tag>shadcn registry</Tag>
+        <Tag variant="success">WCAG 2.2 AA</Tag>
+        <Tag>BM / EN</Tag>
+      </div>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <LinkButton href={story("/docs/core-button--docs")}>
+          Browse components
+        </LinkButton>
+        <LinkButton
+          variant="default-outline"
+          href="https://github.com/mof-malaysia/fiscal-myds"
+          external
+        >
+          View on GitHub
+        </LinkButton>
+      </div>
+    </header>
+    <Section title="Who it's for">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Tip title="Citizens and businesses">
+          Checking obligations, applying, paying, tracking a submission. Often
+          anxious, sometimes not confident online. They need certainty that they
+          did it right.
+        </Tip>
+        <Tip title="MOF officers">
+          Reviewing tables, processing forms and reading dashboards all day.
+          Their problem is fatigue, not unfamiliarity, so visual noise has a
+          real cost.
+        </Tip>
+      </div>
+    </Section>
+    <Section title="What's inside">
+      <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
+        Components are grouped into three tiers. Each tier is published as its
+        own registry, and <strong className="font-medium">Blocks</strong>{" "}
+        inside a tier are ready-made sections composed from its components.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-3">
+        <TierCard
+          name="Core"
+          count={37}
+          href={story("/docs/core-button--docs")}
+          examples="Button, Field, Select, Dialog, Masthead"
+        >
+          Shared primitives and government chrome used by every service.
+        </TierCard>
+        <TierCard
+          name="App"
+          count={52}
+          href={story("/docs/app-datatable--docs")}
+          examples="DataTable, DeskShell, Stepper, PaymentSummary"
+        >
+          Service screens and officer tools: forms, tables, dashboards, flows.
+        </TierCard>
+        <TierCard
+          name="Marketing"
+          count={12}
+          href={story("/docs/marketing-blocks-hero--docs")}
+          examples="Navbar, Hero, FAQ, SiteFooter"
+        >
+          Agency sites and public pages. Secondary to service screens.
+        </TierCard>
+      </div>
+      <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
+        To see them working together, open the full-page{" "}
+        <a className="text-txt-primary underline" href={story("/story/examples-app-citizen--application")} target="_top">
+          citizen
+        </a>{" "}
+        and{" "}
+        <a className="text-txt-primary underline" href={story("/story/examples-app-officer--dashboard")} target="_top">
+          officer
+        </a>{" "}
+        examples.
+      </p>
+    </Section>
+    <Section title="Design principles">
+      <ol className="flex flex-col gap-5">
+        <Principle index="1" title="Quiet by default, loud on purpose">
+          Most of the screen is calm neutrals. Colour, weight and motion are
+          kept for the primary action, the current state, and what the user
+          must notice: errors, amounts, deadlines.
+        </Principle>
+        <Principle index="2" title="Separate with space and surface, not lines">
+          Group with spacing and tonal backgrounds first. A border has to earn
+          its place.
+        </Principle>
+        <Principle index="3" title="Two densities, one language">
+          Comfortable for citizen-facing services, compact for officer tools.
+          Same tokens and components; only spacing and type size shift.
+        </Principle>
+        <Principle index="4" title="Certainty at high-stakes moments">
+          Payments, submissions and destructive actions get clear confirmation,
+          visible status and plain reassurance.
+        </Principle>
+        <Principle index="5" title="Readable before refined">
+          When polish and legibility conflict, legibility wins. Body text never
+          drops below what an older citizen can read comfortably.
+        </Principle>
+      </ol>
+    </Section>
+    <Section title="Using this Storybook">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Tip title="Switch density">
+          Use the Density menu in the toolbar to flip every story between
+          Comfortable (citizens) and Compact (officers).
+        </Tip>
+        <Tip title="Check dark mode">
+          Stories prefixed with Dark render in the dark theme. Dark mode is a
+          first-class theme, not an afterthought.
+        </Tip>
+        <Tip title="Tweak props live">
+          The Controls panel edits a story's props in place. Each Docs page
+          shows usage notes and copyable source.
+        </Tip>
+        <Tip title="Check accessibility">
+          The Accessibility panel runs axe against the current story. Aim for
+          zero violations before shipping a component.
+        </Tip>
+      </div>
+    </Section>
+    <Section title="Install">
+      <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
+        MYDS is a shadcn registry: the CLI copies the source into your project,
+        so there is no npm package to install. Start from shadcn's default
+        Base UI setup with Tailwind v4.
+      </p>
+      <Source
+        language="bash"
+        dark
+        code={`# 1. Initialise shadcn (Tailwind v4, @/ alias, Base UI)
+npx shadcn@latest init
+
+# 2. Add the MYDS styles (creates styles/myds.css)
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
+
+# 3. Add components; dependencies, icons and hooks come along
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json --overwrite`}
+      />
+      <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
+        Then import the styles in your global CSS:
+      </p>
+      <Source
+        language="css"
+        dark
+        code={`@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/myds.css";`}
+      />
+      <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
+        Every item lives at{" "}
+        <code className="bg-bg-washed rounded px-1 py-0.5 text-xs">
+          registry/&lt;core|app|marketing|icons|style&gt;/styles/default/&lt;name&gt;.json
+        </code>
+        . The README in the repository covers the full setup and style options.
+      </p>
+    </Section>
+  </div>
+);
+
+<Unstyled>
+  <IntroPage />
+</Unstyled>

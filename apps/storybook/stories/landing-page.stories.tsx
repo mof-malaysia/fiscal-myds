@@ -1,8 +1,7 @@
-import { fn } from "@storybook/test";
 import LandingPage from "./components/landingPage";
 
 export default {
-  title: "@mof-malaysia/examples/LandingPage",
+  title: "Examples/LandingPage",
   component: LandingPage,
   // remove the automatic documentation for Layout
   tags: ["!autodocs"],
@@ -12,25 +11,19 @@ export default {
 };
 
 export const Mobile = {
-  parameters: {
-    viewport: {
-      defaultViewport: "mobile1",
-    },
+  globals: {
+    viewport: { value: "mobile1", isRotated: false },
   },
 };
 
 export const Tablet = {
-  parameters: {
-    viewport: {
-      defaultViewport: "tablet",
-    },
+  globals: {
+    viewport: { value: "tablet", isRotated: false },
   },
 };
 
 export const Desktop = {
-  parameters: {
-    viewport: {
-      defaultViewport: "desktop",
-    },
+  globals: {
+    viewport: { value: "desktop", isRotated: false },
   },
 };

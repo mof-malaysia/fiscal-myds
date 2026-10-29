@@ -1,6 +1,6 @@
 ---
 title: Pemilih Julat Tarikh
-description: Membolehkan pengguna memilih julat tarikh dari kalendar interaktif.
+description: Pilih tarikh mula dan tarikh akhir daripada satu kawalan, dengan dua bulan bersebelahan dan julat pantas pilihan.
 ---
 
 import { Quicklinks } from "@/components/quicklinks";
@@ -221,29 +221,31 @@ Anda boleh menetapkan tahun maksimum dan minimum untuk pemilih julat tarikh deng
   </Tab>
 </Tabs>
 
-### Susunan Tahun
+### Lompat ke bulan atau tahun
 
-Anda boleh menetapkan susunan pengisihan tahun dalam dropdown tahun dengan menghantar prop `yearOrder`.
+Nama bulan dan tahun pada setiap bulan dalam kalendar ialah butang. Pilih salah satu untuk menukar bahagian kalendar itu kepada grid bulan (dengan anak panah untuk menukar tahun) atau grid tahun; memilih bulan memaparkan semula hari dengan bulan itu di tempatnya, jadi bulan yang dipilih di sebelah kanan kekal di sebelah kanan. Escape kembali tanpa menutup pemilih.
+
+### Julat Pantas
+
+Hantar `presets` untuk menunjukkan julat pantas di sebelah kalendar. `true` memberikan Hari ini, 7 hari lepas, 30 hari lepas, Bulan ini, Bulan lepas dan Tahun ini; atau hantar senarai anda sendiri `{ label, range }`, di mana `range` ialah fungsi supaya julat relatif sentiasa terkini. Julat yang sepadan dengan nilai semasa diserlahkan.
 
 <Tabs items={["Pratonton", "Kod"]} defaultValue="Pratonton">
   <Tab value="Pratonton">
-    <div className="not-prose flex justify-center gap-3">
-      <div>
-        Menaik
-        <DateRangePicker defaultValue={DEFAULT_DATERANGE} yearOrder="asc" />
-      </div>
-      <div>
-        Menurun
-        <DateRangePicker defaultValue={DEFAULT_DATERANGE} yearOrder="desc" />
-      </div>
+    <div className="flex justify-center">
+      <DateRangePicker presets locale="ms" />
     </div>
   </Tab>
   <Tab value="Kod">
-```tsx
-<DatePicker defaultValue={{ from: new Date(/* semalam */), to: new Date(/* esok */) }} yearOrder="asc" />
+    ```tsx
+    <DateRangePicker presets locale="ms" />
 
-<DatePicker defaultValue={{ from: new Date(/* semalam */), to: new Date(/* esok */) }} yearOrder="desc" />
-```
+    <DateRangePicker
+      presets={[
+        { label: "Suku ini", range: () => ({ from: startOfQuarter(new Date()), to: new Date() }) },
+        { label: "Tahun taksiran 2025", range: () => ({ from: new Date(2025, 0, 1), to: new Date(2025, 11, 31) }) },
+      ]}
+    />
+    ```
   </Tab>
 </Tabs>
 
@@ -299,12 +301,12 @@ Nilai lalai adalah `en` untuk English. Untuk menukar kepada Bahasa Melayu, tetap
     },
     onValueChange: {
       description: "Pendengar acara perubahan (terkawal)",
-      type: "(date: Date ) => void",
+      type: "(range: DateRange | undefined) => void",
     },
     placeholder: {
       description: "Teks pemegang tempat untuk pemilih julat tarikh",
       type: "string",
-      default: "dd / mm / yyyy",
+      default: '"Select dates" (en), "Pilih tarikh" (ms)',
     },
     disabled: {
       description: "Keadaan dilumpuhkan untuk pemilih julat tarikh",
@@ -321,10 +323,29 @@ Nilai lalai adalah `en` untuk English. Untuk menukar kepada Bahasa Melayu, tetap
       type: "number",
       default: "1900",
     },
-    yearOrder: {
-      description: "Susunan pengisihan untuk pemilihan tahun",
-      type: "asc | desc",
-      default: "asc",
+    presets: {
+      description: "Julat pantas di sebelah kalendar: true untuk lalai, atau senarai anda sendiri",
+      type: "boolean | { label: string; range: () => { from: Date; to: Date } }[]",
+      default: "false",
+    },
+    excludeDisabled: {
+      description: "Mulakan semula julat apabila ia merangkumi hari yang dilumpuhkan",
+      type: "boolean",
+      default: "false",
+    },
+    formatStr: {
+      description: "Format date-fns untuk pencetus dan pengaki",
+      type: "string",
+      default: "d MMM yyyy",
+    },
+    labels: {
+      description: "Tukar mana-mana teks: placeholder, clear, chooseStart, chooseEnd, days(count), presets, chooseMonth, chooseYear, previousYear, nextYear, backToMonths",
+      type: "Partial<DateRangePickerLabels>",
+    },
+    align: {
+      description: "Penjajaran pop timbul kepada pencetus",
+      type: "start | center | end",
+      default: "start",
     },
     locale: {
       description: "Bahasa untuk pemilih julat tarikh",

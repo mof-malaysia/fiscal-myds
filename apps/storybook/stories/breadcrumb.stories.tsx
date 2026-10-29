@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbPage,
@@ -11,111 +12,114 @@ import React from "react";
 
 /**
  * ### Overview
- * A navigation aid that helps users understand their current location within a website or application and allows them to easily navigate back to previous levels.
+ * Breadcrumb shows where the current page sits and links back up the trail. It is quiet
+ * navigation: Label type, parent pages in Ink Secondary, the current page in Ink, small
+ * chevrons between them, and no container around the trail.
  *
- * > Ke pasar pagi beli selasih,
- * > Singgah sebentar di kedai rempah;
- * > Navigasi mudah, langkah tersisih,
- * > Breadcrumb penunjuk, jalan terarah. -- ChatGPT
+ * Long names truncate at 200px and keep the full name in a tooltip. For deep trails, keep
+ * the first and the last two levels and collapse the middle into `BreadcrumbEllipsis`.
  *
  * ### Usage
- * ```ts
+ * ```tsx
  * import {
- *    Breadcrumb,
- *    BreadcrumbItem,
- *    BreadcrumbLink,
- *    BreadcrumbPage,
- *    BreadcrumbSeparator,
- *    BreadcrumbEllipsis,
- *  } from "@mof-malaysia/myds-react/breadcrumb";
+ *   Breadcrumb,
+ *   BreadcrumbItem,
+ *   BreadcrumbLink,
+ *   BreadcrumbPage,
+ *   BreadcrumbSeparator,
+ * } from "@mof-malaysia/myds-react/breadcrumb";
  *
  * <Breadcrumb>
- *    <BreadcrumbItem>
- *      <BreadcrumbLink href={routes.home}>
- *          Home
- *       </BreadcrumbLink>
- *     </BreadcrumbItem>
- *    <BreadcrumbSeparator />
- *     <BreadcrumbItem>
- *       <BreadcrumbPage>
- *        Your Page
- *       </BreadcrumbPage>
- *     </BreadcrumbItem>
+ *   <BreadcrumbItem>
+ *     <BreadcrumbLink href="/">Home</BreadcrumbLink>
+ *   </BreadcrumbItem>
+ *   <BreadcrumbSeparator />
+ *   <BreadcrumbItem>
+ *     <BreadcrumbPage>Applications</BreadcrumbPage>
+ *   </BreadcrumbItem>
  * </Breadcrumb>
  * ```
  */
-const meta: Meta = {
-  title: "@mof-malaysia/myds-react/Breadcrumb",
+const meta = {
+  title: "Core/Breadcrumb",
   component: Breadcrumb,
   parameters: {
     layout: "centered",
   },
   args: {
-    variant: "default",
     children: "basic",
   },
   argTypes: {
-    variant: {
-      table: {
-        type: {
-          summary: "enum",
-        },
-        category: "myds API",
-      },
-      description: "Available variants",
-      control: "inline-radio",
-      options: ["default", "fill"],
-    },
     children: {
       type: "string",
       control: "select",
-      options: ["basic", "alternative", "long-text"],
-      description: "Select different scenario to breadcrumb",
+      options: ["basic", "deep", "long-text", "collapsed"],
+      description: "Trail scenario",
       mapping: {
         basic: (
           <>
             <BreadcrumbItem>
-              <BreadcrumbLink>Home</BreadcrumbLink>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Your Page</BreadcrumbPage>
+              <BreadcrumbPage>Applications</BreadcrumbPage>
             </BreadcrumbItem>
           </>
         ),
-        alternative: (
+        deep: (
           <>
             <BreadcrumbItem>
-              <BreadcrumbLink>Home</BreadcrumbLink>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Google</BreadcrumbLink>
+              <BreadcrumbLink href="#">Tax</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink>Project A</BreadcrumbLink>
+              <BreadcrumbLink href="#">Applications</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Task</BreadcrumbPage>
+              <BreadcrumbPage>APP-2025-00418</BreadcrumbPage>
             </BreadcrumbItem>
           </>
         ),
         "long-text": (
           <>
             <BreadcrumbItem>
-              <BreadcrumbLink>Home</BreadcrumbLink>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink>Category</BreadcrumbLink>
+              <BreadcrumbLink href="#">Grants</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>
-                A really really long page name here
+                Application for the Small and Medium Enterprise Digitalisation
+                Matching Grant
               </BreadcrumbPage>
+            </BreadcrumbItem>
+          </>
+        ),
+        collapsed: (
+          <>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbEllipsis />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Applications</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>APP-2025-00418</BreadcrumbPage>
             </BreadcrumbItem>
           </>
         ),
@@ -127,113 +131,24 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/**
- * This story represents the breadcrumb component with default variant.
- * This is the most basic implementation of breadcrumb
- */
-export const Basic: Story = createStory({
-  variant: "default",
-  children: "basic",
-});
+/** A parent page and the current page. */
+export const Basic: Story = createStory({ children: "basic" });
 
-/**
- * This story represents the breadcrumb component with the "fill" variant. The breadcrumb come with a solid background color wrapping it
- *
- */
-export const SimpleFill: Story = createStory({
-  variant: "fill",
-  children: "basic",
-});
-/**
- * This story represents the breadcrumb component with the "fill" variant in different child variation
- *
- */
-export const Fill: Story = createStory({
-  variant: "fill",
-  children: "alternative",
-});
+/** Every parent level is a link; only the current page is Ink. */
+export const Deep: Story = createStory({ children: "deep" });
 
-/**
- * This story represents the breadcrumb component with very long text in the current page
- *
- */
-export const LongText: Story = createStory({
-  variant: "default",
-  children: "long-text",
-});
-/**
- * This story represents the breadcrumb component with very long text in the current page in "fill" variant.
- *
- */
-export const LongTextFill: Story = createStory({
-  variant: "fill",
-  children: "long-text",
-});
+/** Long names truncate at 200px; hover shows the full name. */
+export const LongText: Story = createStory({ children: "long-text" });
 
-/**
- * This story represents the breadcrumb component with default variant.
- * This is the most basic implementation of breadcrumb
- * Version: Dark Mode
- */
-export const DarkBasic: Story = createStory(
-  {
-    variant: "default",
-    children: "basic",
-    className: "dark",
-  },
+/** Deep trails keep the first and last two levels and collapse the middle. */
+export const Collapsed: Story = createStory({ children: "collapsed" });
+
+export const DarkDeep: Story = createStory(
+  { children: "deep", className: "dark" },
   "dark",
 );
 
-/**
- * This story represents the breadcrumb component with the "fill" variant. The breadcrumb come with a solid background color wrapping it
- * Version: Dark Mode
- *
- */
-export const DarkSimpleFill: Story = createStory(
-  {
-    variant: "fill",
-    children: "basic",
-    className: "dark",
-  },
-  "dark",
-);
-/**
- * This story represents the breadcrumb component with the "fill" variant. The breadcrumb come with a solid background color wrapping it
- * Version: Dark Mode
- *
- */
-export const DarkFill: Story = createStory(
-  {
-    variant: "fill",
-    children: "alternative",
-    className: "dark",
-  },
-  "dark",
-);
-
-/**
- * This story represents the breadcrumb component with long text
- * Version: Dark Mode
- *
- */
 export const DarkLongText: Story = createStory(
-  {
-    variant: "default",
-    children: "long-text",
-    className: "dark",
-  },
-  "dark",
-);
-/**
- * This story represents the breadcrumb component with the "fill" variant. The breadcrumb come with a solid background color wrapping it
- * Version: Dark Mode
- *
- */
-export const DarkLongTextFill: Story = createStory(
-  {
-    variant: "fill",
-    children: "long-text",
-    className: "dark",
-  },
+  { children: "long-text", className: "dark" },
   "dark",
 );

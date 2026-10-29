@@ -1,5 +1,5 @@
 import mitt from "mitt";
-import type { ToastEvent } from "../components/toast";
+import type { ToastEvent } from "../components/core/toast";
 /*========================================================================================================================*/
 
 type Events = {

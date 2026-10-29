@@ -7,10 +7,11 @@ import React, {
   forwardRef,
 } from "react";
 import { Button } from "@mof-malaysia/myds-react/button";
-export * from "@mof-malaysia/myds-react/toggle";
+export * from "@mof-malaysia/myds-react/switch";
 export * from "@mof-malaysia/myds-react/button";
 export * from "@mof-malaysia/myds-react/link";
 export * from "@mof-malaysia/myds-react/skiplink";
+export * from "@mof-malaysia/myds-react/site-search";
 export * from "@mof-malaysia/myds-react/accordion";
 export * from "@mof-malaysia/myds-react/alert-dialog";
 export * from "@mof-malaysia/myds-react/announce-bar";
@@ -23,17 +24,16 @@ export * from "@mof-malaysia/myds-react/date-field";
 export * from "@mof-malaysia/myds-react/date-picker";
 export * from "@mof-malaysia/myds-react/daterange-picker";
 export * from "@mof-malaysia/myds-react/dialog";
-export * from "@mof-malaysia/myds-react/dropdown";
+export * from "@mof-malaysia/myds-react/menu";
 export * from "@mof-malaysia/myds-react/pill";
 export * from "@mof-malaysia/myds-react/select";
 export * from "@mof-malaysia/myds-react/input";
 export * from "@mof-malaysia/myds-react/table";
 export * from "@mof-malaysia/myds-react/data-table";
-export * from "@mof-malaysia/myds-react/search-bar";
 export * from "@mof-malaysia/myds-react/masthead";
 export * from "@mof-malaysia/myds-react/navbar";
 export * from "@mof-malaysia/myds-react/radio";
-export * from "@mof-malaysia/myds-react/input-otp";
+export * from "@mof-malaysia/myds-react/otp-field";
 export * from "@mof-malaysia/myds-react/tabs";
 export * from "@mof-malaysia/myds-react/navbar";
 export * from "@mof-malaysia/myds-react/summary-list";
@@ -80,7 +80,7 @@ import {
 } from "@mof-malaysia/myds-react/select";
 import { Tag } from "@mof-malaysia/myds-react/tag";
 import { Cell, ColumnDef } from "@mof-malaysia/myds-react/data-table";
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Switch } from "@mof-malaysia/myds-react/switch";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -107,14 +107,15 @@ import {
   PaginationNumber,
   PaginationPrevious,
 } from "@mof-malaysia/myds-react/pagination";
+// 2.0 moved the multi-column footer to the marketing tier as site-footer
 import {
-  Footer,
-  FooterLogo,
-  FooterSection,
-  SiteInfo,
-  SiteLink,
-  SiteLinkGroup,
-} from "@mof-malaysia/myds-react/footer";
+  SiteFooter as Footer,
+  SiteFooterLogo as FooterLogo,
+  SiteFooterSection as FooterSection,
+  SiteFooterInfo as SiteInfo,
+  SiteFooterLink as SiteLink,
+  SiteFooterLinkGroup as SiteLinkGroup,
+} from "@mof-malaysia/myds-react/site-footer";
 import { Link } from "@mof-malaysia/myds-react/link";
 
 interface PreviewButtonProps extends ComponentProps<typeof Button> {
@@ -184,7 +185,7 @@ export const DismissibleCalloutExample: FunctionComponent<
   );
 };
 
-interface PreviewToggleProps extends ComponentProps<typeof Toggle> {}
+interface PreviewToggleProps extends ComponentProps<typeof Switch> {}
 
 export const ControlledToggle: FunctionComponent<PreviewToggleProps> = (
   props,
@@ -194,13 +195,11 @@ export const ControlledToggle: FunctionComponent<PreviewToggleProps> = (
   return (
     <div className="flex flex-col items-center justify-center">
       <p>State: {isChecked ? "On" : "Off"}</p>
-      <Toggle
+      <Switch
         checked={isChecked}
         onCheckedChange={(checked) => setIsChecked(checked)}
         {...props}
-      >
-        <ToggleThumb />
-      </Toggle>
+      />
     </div>
   );
 };
@@ -298,7 +297,7 @@ export const CustomValueSelect: FunctionComponent = () => {
   return (
     <Select multiple size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit">
+        <SelectValue>
           {(value) => (
             <div className="flex gap-1">
               {Array.isArray(value)
@@ -484,6 +483,7 @@ export const DataTableColumns = [
     id: "age",
     meta: {
       expandable: false,
+      numeric: true,
       tooltip: "Age of the employee",
     },
   },
@@ -500,7 +500,7 @@ export const DataTableColumns = [
   {
     cell: () => {
       return (
-        <Tag variant="success" size={"small"} mode="pill">
+        <Tag variant="success" size={"small"}>
           Success
         </Tag>
       );
@@ -510,7 +510,7 @@ export const DataTableColumns = [
   },
   {
     cell: () => {
-      return <Button variant="default-outline">Edit</Button>;
+      return <Button variant="default-ghost">Edit</Button>;
     },
     header: "Action",
     id: "action",
@@ -539,6 +539,7 @@ export const DataTableFooterColumns: ColumnDef<Employee>[] = [
     id: "age",
     meta: {
       expandable: false,
+      numeric: true,
       tooltip: "Age of the employee",
     },
   },
@@ -555,7 +556,7 @@ export const DataTableFooterColumns: ColumnDef<Employee>[] = [
   {
     cell: () => {
       return (
-        <Tag variant="success" size={"small"} mode="pill">
+        <Tag variant="success" size={"small"}>
           Success
         </Tag>
       );
@@ -565,7 +566,7 @@ export const DataTableFooterColumns: ColumnDef<Employee>[] = [
   },
   {
     cell: () => {
-      return <Button variant="default-outline">Edit</Button>;
+      return <Button variant="default-ghost">Edit</Button>;
     },
     header: "Action",
     id: "action",
@@ -588,6 +589,7 @@ export const DataTableNestedColumns = [
     accessorKey: "age",
     meta: {
       expandable: false,
+      numeric: true,
     },
   },
   {
@@ -603,7 +605,7 @@ export const DataTableNestedColumns = [
     header: "Status",
     cell: () => {
       return (
-        <Tag variant="success" size={"small"} mode="pill">
+        <Tag variant="success" size={"small"}>
           Success
         </Tag>
       );
@@ -613,7 +615,7 @@ export const DataTableNestedColumns = [
     id: "action",
     header: "Action",
     cell: () => {
-      return <Button variant="default-outline">Edit</Button>;
+      return <Button variant="default-ghost">Edit</Button>;
     },
   },
 ];
@@ -638,6 +640,7 @@ export const DataTableGroupedColumns = [
 
         meta: {
           expandable: false,
+          numeric: true,
         },
       },
       {
@@ -659,7 +662,7 @@ export const DataTableGroupedColumns = [
         header: "Status",
         cell: () => {
           return (
-            <Tag variant="success" size={"small"} mode="pill">
+            <Tag variant="success" size={"small"}>
               Success
             </Tag>
           );
@@ -669,7 +672,7 @@ export const DataTableGroupedColumns = [
         id: "action",
         header: "Action",
         cell: () => {
-          return <Button variant="default-outline">Edit</Button>;
+          return <Button variant="default-ghost">Edit</Button>;
         },
       },
     ],
@@ -681,14 +684,14 @@ export const DataTableCheckbox = {
   onSelectionChange: (id: string) => {
     console.log("Selected Rows: ", id);
   },
-  rowId: "id",
+  id_by: "id",
 };
 export const DataTableRadio = {
   mode: "radio",
   onSelectionChange: (id: string) => {
     console.log("Selected Rows: ", id);
   },
-  rowId: "id",
+  id_by: "id",
 };
 
 interface PreviewSummaryList extends ComponentProps<typeof SummaryList> {}
@@ -726,12 +729,7 @@ export const PreviewSummaryList: FunctionComponent<PreviewSummaryList> = () => {
         <SummaryListRow>
           <SummaryListTerm>Status</SummaryListTerm>
           <SummaryListDetail className="py-2">
-            <Tag
-              variant="warning"
-              size={"medium"}
-              className="h-fit"
-              mode={"default"}
-            >
+            <Tag variant="warning" size={"medium"} className="h-fit">
               Pending
             </Tag>
           </SummaryListDetail>
@@ -837,7 +835,7 @@ export const SiteInfoComponent = () => {
       <div className="text-txt-black-900 flex items-center gap-x-2.5">
         <FooterLogo
           logoTitle={
-            <p className="font-poppins text-body-md whitespace-nowrap font-semibold">
+            <p className="font-poppins text-body-md font-semibold whitespace-nowrap">
               Kementerian Digital
             </p>
           }

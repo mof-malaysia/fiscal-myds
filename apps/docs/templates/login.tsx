@@ -18,9 +18,14 @@ import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
 import { Link } from "@mof-malaysia/myds-react/link";
 import { clx } from "@mof-malaysia/myds-react/utils";
 
-export default function LoginTemplate({className}:{className?:string}) {
+export default function LoginTemplate({ className }: { className?: string }) {
   return (
-    <div className= {clx("border-otl-gray-200 shadow-card flex min-h-screen flex-col border",className)}>
+    <div
+      className={clx(
+        "border-otl-gray-200 shadow-card flex min-h-screen flex-col border",
+        className,
+      )}
+    >
       <HeaderLogin />
       <BodyLogin />
       <FooterLogin />
@@ -96,7 +101,7 @@ function HeaderLogin() {
         alt="Malaysian Government Design System"
       >
         <div className="text-lg font-semibold">MYDS</div>
-        <div className="text-bg-white bg-bg-black-900 font-body rounded-sm px-1.5 py-0.5 text-xs font-medium leading-[18px]">
+        <div className="text-bg-white bg-bg-black-900 font-body rounded-sm px-1.5 py-0.5 text-xs leading-[18px] font-medium">
           DASHBOARD
         </div>
       </NavbarLogo>
@@ -104,8 +109,11 @@ function HeaderLogin() {
         <ThemeSwitch />
         <div className="hidden sm:block">
           <Select defaultValue="EN" variant="outline" size="small">
-            <SelectTrigger aria-label="language-selection">
-              <GlobeIcon className="h-4 w-4"></GlobeIcon>
+            <SelectTrigger
+              aria-label="Language"
+              className="w-fit"
+              icon={<GlobeIcon />}
+            >
               <SelectValue />
             </SelectTrigger>
             <SelectContent align="end" className="font-body rounded-[4px] py-1">
@@ -122,7 +130,7 @@ function HeaderLogin() {
 function FooterLogin() {
   return (
     <div className="bg-bg-gray-50">
-      <div className="gap-4.5 hidden items-center py-1 pl-6 text-sm font-normal max-[430px]:flex">
+      <div className="hidden items-center gap-4.5 py-1 pl-6 text-sm font-normal max-[430px]:flex">
         <Navlinks />
       </div>
       <div
@@ -139,14 +147,14 @@ function FooterLogin() {
               <div className="font-heading font-semibold">
                 Government of Malaysia
               </div>
-              <div className="font-body text-txt-black-500 flex items-center pl-[10px] text-xs font-normal leading-[18px] max-sm:pl-0">
+              <div className="font-body text-txt-black-500 flex items-center pl-[10px] text-xs leading-[18px] font-normal max-sm:pl-0">
                 © 2024 Government of Malaysia
               </div>
             </div>
           </div>
         </div>
 
-        <div className="gap-4.5 flex items-center justify-center text-sm font-normal max-[430px]:hidden">
+        <div className="flex items-center justify-center gap-4.5 text-sm font-normal max-[430px]:hidden">
           <Navlinks />
         </div>
       </div>

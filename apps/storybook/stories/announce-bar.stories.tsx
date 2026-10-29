@@ -1,5 +1,4 @@
-import { fn } from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   AnnounceBar,
@@ -22,7 +21,7 @@ import { Link } from "@mof-malaysia/myds-react/link";
  * import { AnnounceBar, AnnounceBarDescription, AnnounceBarProps, AnnounceBarTag } from "@mof-malaysia/myds-react/announce-bar";
  *
  * <AnnounceBar {...args}>
- *       <AnnounceBarTag variant="primary" mode="pill">
+ *       <AnnounceBarTag variant="primary">
  *         Alpha
  *       </AnnounceBarTag>
  *       <AnnounceBarDescription>
@@ -32,7 +31,7 @@ import { Link } from "@mof-malaysia/myds-react/link";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/AnnounceBar",
+  title: "Marketing/AnnounceBar",
   component: AnnounceBar,
   tags: ["autodocs"],
   parameters: {
@@ -51,9 +50,7 @@ export const WithBorder: Story = {
   render: () => {
     return (
       <AnnounceBar border>
-        <AnnounceBarTag variant="primary" mode="pill">
-          Alpha
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="primary">Alpha</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             This is a new service. Help us improve it.{" "}
@@ -74,9 +71,7 @@ export const LightPrimary: Story = {
   render: () => {
     return (
       <AnnounceBar>
-        <AnnounceBarTag variant="primary" mode="pill">
-          Alpha
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="primary">Alpha</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             This is a new service. Help us improve it.{" "}
@@ -99,9 +94,7 @@ export const LightSuccess: Story = {
   render: () => {
     return (
       <AnnounceBar>
-        <AnnounceBarTag variant="success" mode="pill">
-          Public Beta
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="success">Public Beta</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             Welcome to Public Beta! Try out the service and share your feedback.{" "}
@@ -124,9 +117,7 @@ export const LightWarning: Story = {
   render: () => {
     return (
       <AnnounceBar>
-        <AnnounceBarTag variant="warning" mode="pill">
-          Maintenance
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="warning">Maintenance</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             This service is undergoing maintenance. Thank you for your patience.{" "}
@@ -149,9 +140,7 @@ export const LightDanger: Story = {
   render: () => {
     return (
       <AnnounceBar>
-        <AnnounceBarTag variant="danger" mode="pill">
-          Retired
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="danger">Retired</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>This service has been retired and is no longer available.</p>
         </AnnounceBarDescription>
@@ -168,9 +157,7 @@ export const DarkPrimary: Story = {
   render: ({ className }) => {
     return (
       <AnnounceBar className={className}>
-        <AnnounceBarTag variant="primary" mode="pill">
-          Alpha
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="primary">Alpha</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             This is a new service. Help us improve it.{" "}
@@ -193,9 +180,7 @@ export const DarkSuccess: Story = {
   render: ({ className }) => {
     return (
       <AnnounceBar className={className}>
-        <AnnounceBarTag variant="success" mode="pill">
-          Public Beta
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="success">Public Beta</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             Welcome to Public Beta! Try out the service and share your feedback.{" "}
@@ -217,9 +202,7 @@ export const DarkWarning: Story = {
   render: ({ className }) => {
     return (
       <AnnounceBar className={className}>
-        <AnnounceBarTag variant="warning" mode="pill">
-          Maintenance
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="warning">Maintenance</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>
             This service is undergoing maintenance. Thank you for your patience.{" "}
@@ -242,9 +225,7 @@ export const DarkDanger: Story = {
   render: ({ className }) => {
     return (
       <AnnounceBar className={className}>
-        <AnnounceBarTag variant="danger" mode="pill">
-          Retired
-        </AnnounceBarTag>
+        <AnnounceBarTag variant="danger">Retired</AnnounceBarTag>
         <AnnounceBarDescription>
           <p>This service has been retired and is no longer available.</p>
         </AnnounceBarDescription>

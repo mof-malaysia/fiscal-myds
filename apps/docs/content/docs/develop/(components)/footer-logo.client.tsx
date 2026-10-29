@@ -8,12 +8,13 @@ import {
   LinkedinIcon,
 } from "@mof-malaysia/myds-react/icon";
 
+// 2.0 moved the multi-column footer to the marketing tier as site-footer
 import {
-  Footer,
-  FooterSection,
-  FooterLogo,
-  SiteInfo,
-} from "@mof-malaysia/myds-react/footer";
+  SiteFooter as Footer,
+  SiteFooterSection as FooterSection,
+  SiteFooterLogo as FooterLogo,
+  SiteFooterInfo as SiteInfo,
+} from "@mof-malaysia/myds-react/site-footer";
 import { Link } from "@mof-malaysia/myds-react/link";
 
 export const FooterComponent = () => {
@@ -120,7 +121,7 @@ export const FooterComponent = () => {
           <SiteInfo></SiteInfo>
         </FooterSection>
 
-        <FooterSection className="text-txt-black-500 md:max-lg:gap-4.5 mx-auto flex w-full max-w-[1000px] justify-between border-none pt-8 text-sm max-lg:flex-col max-md:gap-4 lg:gap-6">
+        <FooterSection className="text-txt-black-500 mx-auto flex w-full max-w-[1000px] justify-between border-none pt-8 text-sm max-lg:flex-col max-md:gap-4 md:max-lg:gap-4.5 lg:gap-6">
           <div className="flex flex-col gap-3">
             <div className="flex flex-col items-start gap-3 md:flex-row md:items-center">
               <p className="text-xs md:text-sm">
@@ -135,7 +136,7 @@ export const FooterComponent = () => {
               >
                 <FacebookIcon
                   scale={32}
-                  className="md:scale-40 text-[#2563EB]"
+                  className="text-[#2563EB] md:scale-40"
                 />
               </Link>
               <Link
@@ -145,7 +146,7 @@ export const FooterComponent = () => {
               >
                 <TwitterXIcon
                   scale={32}
-                  className="md:scale-40 text-[#2563EB]"
+                  className="text-[#2563EB] md:scale-40"
                 />
               </Link>
               <Link
@@ -155,7 +156,7 @@ export const FooterComponent = () => {
               >
                 <InstagramIcon
                   scale={32}
-                  className="md:scale-40 text-[#2563EB]"
+                  className="text-[#2563EB] md:scale-40"
                 />
               </Link>
               <Link
@@ -163,7 +164,7 @@ export const FooterComponent = () => {
                 target="_blank"
                 className="bg-bg-washed flex h-8 w-8 items-center justify-center rounded-full bg-[#F1F5FF] p-2 hover:bg-gray-200 hover:shadow-md hover:shadow-gray-300 md:h-10 md:w-10"
               >
-                <TiktokIcon scale={32} className="md:scale-40 text-[#2563EB]" />
+                <TiktokIcon scale={32} className="text-[#2563EB] md:scale-40" />
               </Link>
               <Link
                 href={"#"}
@@ -172,7 +173,7 @@ export const FooterComponent = () => {
               >
                 <LinkedinIcon
                   scale={32}
-                  className="md:scale-40 text-[#2563EB]"
+                  className="text-[#2563EB] md:scale-40"
                 />
               </Link>
             </div>

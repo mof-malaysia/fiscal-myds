@@ -2,9 +2,9 @@ import React from "react";
 import { FunctionComponent, SVGProps } from "react";
 
 /**
- *  MalaysiaFlagIcon
+ * MalaysiaFlag Icon
  * @param className
- * @returns  MalaysiaFlagIcon
+ * @returns MalaysiaFlagIcon
  */
 export const MalaysiaFlagIcon: FunctionComponent<SVGProps<SVGSVGElement>> = (
   props,

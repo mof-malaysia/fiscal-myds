@@ -12,6 +12,10 @@
   /* Background - Dialog */
   --bg-dialog: var(--_white);
   --bg-dialog-active: var(--_white);
+  /* A surface lifted off a Well (pressed segment, hover on the sidebar) */
+  --bg-raised: var(--_white);
+  /* Unfilled part of progress, meter, slider and step connectors; visible on Sheet and Well */
+  --bg-track: var(--_gray-200);
 
   /* Background - Black */
   --bg-black-50: var(--_gray-50);

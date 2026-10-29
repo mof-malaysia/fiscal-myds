@@ -9,7 +9,7 @@ import {
 } from "@mof-malaysia/myds-react/alert-dialog";
 import { Button } from "@mof-malaysia/myds-react/button";
 import { DialogBody } from "@mof-malaysia/myds-react/dialog";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 import { createStory } from "../utils";
 
@@ -57,7 +57,7 @@ import { createStory } from "../utils";
  */
 // @ts-expect-error
 const meta: Meta = {
-  title: "@mof-malaysia/myds-react/AlertDialog",
+  title: "Core/AlertDialog",
   component: AlertDialog,
   render: ({ dismissible, align, variant }) => {
     return (

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   Tooltip,
@@ -33,7 +33,7 @@ import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Tooltip",
+  title: "Core/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
   parameters: {
@@ -134,7 +134,7 @@ export const Bottom: Story = createStory({
   children: "bottom",
 });
 
-const EdgeTooltipDemo = (props: any) => {
+const EdgeTooltipDemo = () => {
   return (
     <div className="flex h-[100vh] flex-col items-center justify-center gap-4 p-10">
       <div className="flex w-full">

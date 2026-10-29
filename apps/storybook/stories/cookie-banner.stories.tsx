@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   CookieBanner,
@@ -40,8 +40,10 @@ import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
  */
 
 const meta = {
-  title: "@mof-malaysia/myds-react/CookiesBanner",
-  component: (args: React.ComponentProps<typeof CookieBanner>) => {
+  title: "Core/CookiesBanner",
+  component: function CookieBannerDemo(
+    _args: React.ComponentProps<typeof CookieBanner>,
+  ) {
     const [open, setOpen] = useState(false);
     const [preferences, setPreferences] = useState({
       necessary: true,

@@ -50,7 +50,7 @@ import { Tag } from "@/components/ui/tag";
 ```tsx copy title="Anatomy"
 export default () => (
   <Tag size="medium" dot={true}>Default</Tag>
-  <Tag size="small" dot={false} variant="warning" mode="default">
+  <Tag size="small" dot={false} variant="warning">
     <span>Default</span>
   </Tag>
 );
@@ -106,7 +106,13 @@ import { Tag } from "@/components/ui/tag";
 </Tabs>
 
 ### Size
-Use the `size` props to change the size of the tag component. The current options supported are `small`, `medium`, and `large`.
+Use the `size` prop to change the size of the tag. Sizes follow the page density:
+
+- `small`: the 13px badge, for tables and dense lists in either density.
+- `medium` (default): 14px in comfortable density, the 13px badge in compact.
+- `large`: 16px for citizen-facing emphasis, 14px in compact.
+
+Tags are always pill-shaped, with a wash background and no border.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
@@ -131,34 +137,6 @@ import { Tag } from "@/components/ui/tag";
   </Tab>
 </Tabs>
 
-### Mode
-
-Use the `mode` props to change the type of the tag component. The `default` mode gives the tag a slightly rounded edges, while `pill` mode gives it a fully rounded appearance.
-
-<Tabs items={["Preview", "Code"]} defaultValue="Preview">
-  <Tab value="Preview">
-  <div className="space-y-2">
-  <div className="flex justify-center items-center h-fit gap-1">
-      <Tag size="medium" dot={true} variant="success" mode="default">Default</Tag>
-      <Tag size="medium" dot={true} variant="success" mode="pill">Pill</Tag>
-    </div>
-  </div>
-  </Tab>
-  <Tab value="Code">
-  ```tsx 
-import { Tag } from "@/components/ui/tag";
-
-<Tag size="medium" dot={true} variant="success" mode="default">
-  Default
-</Tag>
-<Tag size="medium" dot={true} variant="success" mode="pill">
-  Pill
-</Tag>
-
-````
-  </Tab>
-</Tabs>
-
 ### Dot
 The `dot` props to toggle the dot appearance. The optional status dot can act as visual indicator to represent the current state or status of an item.
 
@@ -166,8 +144,8 @@ The `dot` props to toggle the dot appearance. The optional status dot can act as
   <Tab value="Preview">
   <div className="space-y-2">
   <div className="flex justify-center items-center h-fit gap-1">
-      <Tag size="medium" dot={false} variant="warning" mode="default">No Dot</Tag>
-      <Tag size="medium" dot={true} variant="warning" mode="default">Dot</Tag>
+      <Tag size="medium" dot={false} variant="warning">No Dot</Tag>
+      <Tag size="medium" dot={true} variant="warning">Dot</Tag>
     </div>
   </div>
   </Tab>
@@ -175,8 +153,8 @@ The `dot` props to toggle the dot appearance. The optional status dot can act as
   ```tsx
 import { Tag } from "@/components/ui/tag";
 
-<Tag size="medium" dot={false} variant="warning" mode="default">No Dot</Tag>
-<Tag size="medium" dot={true} variant="warning" mode="default">Dot</Tag>
+<Tag size="medium" dot={false} variant="warning">No Dot</Tag>
+<Tag size="medium" dot={true} variant="warning">Dot</Tag>
 
 ````
 
@@ -199,18 +177,12 @@ import { Tag } from "@/components/ui/tag";
       description: "Sizes of the tag",
       type: "enum",
       typeDescription: "small | medium | large",
-      default: "small",
+      default: "medium",
     },
     dot: {
       description: "Whether to show a status dot in the tag",
       type: "boolean",
       default: "false",
-    },
-    mode: {
-      description: "The style of the tag (rounded or not)",
-      type: "enum",
-      typeDescription: "pill | default",
-      default: "pill",
     },
   }}
 />

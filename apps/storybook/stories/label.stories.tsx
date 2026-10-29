@@ -1,9 +1,9 @@
-import { fn } from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory, createRender } from "../utils";
 import { Label } from "@mof-malaysia/myds-react/label";
 import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
-import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
+import { Switch } from "@mof-malaysia/myds-react/switch";
 
 /**
  * ### Overview
@@ -28,7 +28,7 @@ import { Toggle, ToggleThumb } from "@mof-malaysia/myds-react/toggle";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Label",
+  title: "Core/Label",
   component: Label,
   tags: ["autodocs"],
   parameters: {
@@ -44,12 +44,10 @@ const meta = {
           <Checkbox id="checkbox" size={size}></Checkbox>
         </div>
         <div className="flex justify-between">
-          <Label htmlFor="toggle" size={size}>
+          <Label htmlFor="switch" size={size}>
             Enable 2FA security?
           </Label>
-          <Toggle id="toggle" size={size}>
-            <ToggleThumb />
-          </Toggle>
+          <Switch id="switch" size={size ?? undefined} />
         </div>
       </div>
     );
@@ -84,12 +82,10 @@ export const DefaultDark: Story = createRender(
         <Checkbox id="checkbox-dark" size={size}></Checkbox>
       </div>
       <div className="group flex justify-between">
-        <Label htmlFor="toggle-dark" size={size}>
+        <Label htmlFor="switch-dark" size={size}>
           Enable 2FA security?
         </Label>
-        <Toggle id="toggle-dark" size={size}>
-          <ToggleThumb />
-        </Toggle>
+        <Switch id="switch-dark" size={size ?? undefined} />
       </div>
     </div>
   ),

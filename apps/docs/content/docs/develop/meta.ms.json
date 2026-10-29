@@ -68,7 +68,7 @@
     "(components)/pagination",
     "(components)/pill",
     "(components)/radio",
-    "(components)/search-bar",
+    "(components)/site-search",
     "(components)/select",
     "(components)/skiplink",
     "(components)/spinner",

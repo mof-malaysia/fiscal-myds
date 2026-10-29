@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Masthead,
   MastheadHeader,
@@ -78,7 +78,7 @@ import { createStory } from "../utils";
  */
 
 const meta = {
-  title: "@mof-malaysia/myds-react/Masthead",
+  title: "Core/Masthead",
   component: Masthead,
   tags: ["autodocs"],
   parameters: {

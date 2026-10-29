@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
 import { clx } from "@mof-malaysia/myds-react/utils";
@@ -22,7 +22,7 @@ import { clx } from "@mof-malaysia/myds-react/utils";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Skiplink",
+  title: "Core/Skiplink",
   component: Skiplink,
   decorators: [
     (Story, context) => {
@@ -41,17 +41,17 @@ const meta = {
               <div className="text-txt-black-900 text-xl font-bold">Logo</div>
               <ul className="flex gap-6">
                 <li>
-                  <a href="#" className="text-txt-black-700">
+                  <a href="#home" className="text-txt-black-700">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-txt-black-700">
+                  <a href="#about" className="text-txt-black-700">
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-txt-black-700">
+                  <a href="#contact" className="text-txt-black-700">
                     Contact
                   </a>
                 </li>

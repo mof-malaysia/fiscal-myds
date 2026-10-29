@@ -1,37 +1,43 @@
 .dark {
   /* bg - White */
-  --bg-white: var(--_gray-900);
-  --bg-white-hover: var(--_gray-800);
-  --bg-white-disabled: var(--_gray-800) / 0.4;
+  --bg-white: var(--_graphite-850);
+  --bg-white-hover: var(--_graphite-750);
+  --bg-white-disabled: var(--_graphite-750) / 0.4;
 
   /* bg - Washed */
-  --bg-washed: var(--_gray-850);
-  --bg-washed-active: var(--_gray-800);
-  --bg-contrast: var(--_gray-930);
+  --bg-washed: var(--_graphite-800);
+  --bg-washed-active: var(--_graphite-750);
+  --bg-contrast: var(--_graphite-900);
 
   /* bg - Dialog */
-  --bg-dialog: var(--_gray-850);
-  --bg-dialog-active: var(--_gray-800);
+  /* Floating layers are Sheet with a Hairline edge (DESIGN.md, Elevation), so Well
+     controls inside them (secondary buttons, rails, hover) still show */
+  --bg-dialog: var(--_graphite-850);
+  --bg-dialog-active: var(--_graphite-800);
+  /* A surface lifted off a Well (pressed segment, hover on the sidebar) */
+  --bg-raised: var(--_graphite-750);
+  /* Unfilled part of progress, meter, slider and step connectors; visible on Sheet and Well */
+  --bg-track: var(--_graphite-750);
 
   /* bg - Black */
-  --bg-black-50: var(--_gray-950);
-  --bg-black-100: var(--_gray-900);
-  --bg-black-200: var(--_gray-800);
-  --bg-black-300: var(--_gray-700);
+  --bg-black-50: var(--_graphite-950);
+  --bg-black-100: var(--_graphite-900);
+  --bg-black-200: var(--_graphite-750);
+  --bg-black-300: var(--_graphite-700);
   --bg-black-400: var(--_gray-600);
   --bg-black-500: var(--_gray-500);
   --bg-black-600: var(--_gray-400);
   --bg-black-700: var(--_gray-300);
   --bg-black-800: var(--_gray-200);
-  --bg-black-900: var(--_white);
-  --bg-black-950: var(--_white);
-  --bg-black-disabled: var(--_white) / 0.4;
+  --bg-black-900: var(--_graphite-100);
+  --bg-black-950: var(--_graphite-100);
+  --bg-black-disabled: var(--_graphite-100) / 0.4;
 
   /* Background - Gray */
-  --bg-gray-50: var(--_gray-930);
+  --bg-gray-50: var(--_graphite-900);
 
   /* bg - Primary */
-  --bg-primary-50: var(--_primary-950);
+  --bg-primary-50: var(--_graphite-primary-wash);
   --bg-primary-100: var(--_primary-900);
   --bg-primary-200: var(--_primary-800);
   --bg-primary-300: var(--_primary-700);
@@ -87,14 +93,16 @@
   --bg-warning-disabled: var(--_warning-950);
 
   /* Text - White */
-  --txt-white: var(--_gray-900);
-  --txt-white-disabled: var(--_gray-900) / 0.4;
+  /* Text on MYDS Blue and other fills: the Paper tone */
+  --txt-white: var(--_graphite-900);
+  --txt-white-disabled: var(--_graphite-900) / 0.4;
 
   /* Text - Black */
-  --txt-black-900: var(--_white);
-  --txt-black-700: var(--_gray-300);
-  --txt-black-500: var(--_gray-400);
-  --txt-black-disabled: var(--_gray-400) / 0.4;
+  /* Off-white Ink: pure white on near-black glares over long sessions */
+  --txt-black-900: var(--_graphite-100);
+  --txt-black-700: var(--_graphite-300);
+  --txt-black-500: var(--_graphite-400);
+  --txt-black-disabled: var(--_graphite-400) / 0.4;
 
   /* Text - Primary */
   --txt-primary: var(--_primary-400);
@@ -113,14 +121,14 @@
   --txt-warning-disabled: var(--_warning-500) / 0.4;
 
   /* Outline - Divider */
-  --otl-divider: var(--_gray-850);
-  --otl-gray-200: var(--_gray-800);
-  --otl-gray-300: var(--_gray-700);
+  --otl-divider: var(--_graphite-800);
+  --otl-gray-200: var(--_graphite-750);
+  --otl-gray-300: var(--_graphite-700);
   /* --otl-gray-600-20: var(--_gray-600) / 0.2; */
 
   /* Outline - Control: the stroke that identifies inputs, checkboxes, radios (WCAG 1.4.11, >= 3:1) */
-  --otl-control: var(--_gray-500);
-  --otl-control-hover: var(--_gray-400);
+  --otl-control: var(--_graphite-500);
+  --otl-control-hover: var(--_graphite-400);
 
   /* Outline - Primary */
   --otl-primary-disabled: var(--_primary-800) / 0.4;

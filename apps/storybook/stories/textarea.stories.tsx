@@ -1,5 +1,4 @@
-import { fn } from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { TextArea } from "@mof-malaysia/myds-react/textarea";
 
@@ -22,7 +21,7 @@ import { TextArea } from "@mof-malaysia/myds-react/textarea";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/TextArea",
+  title: "Core/TextArea",
   component: TextArea,
   tags: ["autodocs"],
   parameters: {

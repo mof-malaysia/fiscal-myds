@@ -16,7 +16,6 @@ const DocsTab: FunctionComponent<DocsTabProps> = ({ menus }) => {
   return (
     <Tabs
       defaultValue={menus.find((menu) => pathname.includes(menu.url))?.url}
-      variant="enclosed"
       size="small"
       onValueChange={(value) => push(value)}
     >

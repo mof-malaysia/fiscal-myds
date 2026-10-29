@@ -21,6 +21,7 @@ import {
   AlertDialogTitle,
 } from "@mof-malaysia/myds-react/alert-dialog";
 import { Button } from "@mof-malaysia/myds-react/button";
+import { Field } from "@mof-malaysia/myds-react/field";
 import { useState } from "react";
 
 type Props = {
@@ -129,9 +130,7 @@ export default function CommunityForm({
       } else {
         // Handle duplicate email from backend if indicated
         // Prefer explicit code, then HTTP 409, then message heuristic
-        if (
-          result?.message?.toLowerCase() === "email already exists"
-        ) {
+        if (result?.message?.toLowerCase() === "email already exists") {
           setError("email", { type: "manual", message: errMsg.emailExists });
           setDuplicateWarning(errMsg.emailExistsDetail);
           return;
@@ -188,31 +187,38 @@ export default function CommunityForm({
             control={control}
             name="interest"
             render={({ field }) => (
-              <Select
-                key={field.value ?? "empty"}
-                size="small"
-                variant="outline"
-                onValueChange={field.onChange}
-                value={field.value}
-                disabled={isLoading}
-              >
-                <SelectTrigger
-                  id="interest"
-                  className={`w-full justify-between ${errors.interest ? "border-danger-600" : ""}`}
+              <Field invalid={!!errors.interest}>
+                <Select
+                  size="small"
+                  variant="outline"
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  disabled={isLoading}
+                  items={Object.entries(interestOptions).map(
+                    ([value, label]) => ({
+                      value,
+                      label,
+                    }),
+                  )}
                 >
-                  <SelectValue
-                    placeholder={selectPlaceholder}
-                    className="bg-danger-50"
-                  />
-                </SelectTrigger>
-                <SelectContent >
-                  <SelectGroup>
-                    <SelectItem value="uiux">{interestOptions.uiux}</SelectItem>
-                    <SelectItem value="frontend">{interestOptions.frontend}</SelectItem>
-                    <SelectItem value="operation">{interestOptions.operation}</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+                  <SelectTrigger id="interest">
+                    <SelectValue placeholder={selectPlaceholder} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="uiux">
+                        {interestOptions.uiux}
+                      </SelectItem>
+                      <SelectItem value="frontend">
+                        {interestOptions.frontend}
+                      </SelectItem>
+                      <SelectItem value="operation">
+                        {interestOptions.operation}
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </Field>
             )}
           />
           {errors.interest && (
@@ -298,7 +304,7 @@ export default function CommunityForm({
             {isLoading ? (
               <>
                 <svg
-                  className="-ml-1 mr-2 h-4 w-4 animate-spin text-white"
+                  className="mr-2 -ml-1 h-4 w-4 animate-spin text-white"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"

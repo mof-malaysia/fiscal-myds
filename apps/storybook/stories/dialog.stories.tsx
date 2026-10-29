@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "@mof-malaysia/myds-react/button";
 import {
   Dialog,
@@ -7,7 +7,6 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogIcon,
   DialogBody,
   DialogTitle,
   DialogTrigger,
@@ -16,7 +15,7 @@ import {
   type DialogFooterProps,
   type DialogHeaderProps,
 } from "@mof-malaysia/myds-react/dialog";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 
 /**
@@ -71,7 +70,7 @@ import { createStory } from "../utils";
  */
 // @ts-expect-error
 const meta: Meta = {
-  title: "@mof-malaysia/myds-react/Dialog",
+  title: "Core/Dialog",
   component: Dialog,
   render: ({ dismissible, border, align, border_header }) => {
     return (

@@ -1,8 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   AutoPagination,
-  Pagination,
   PaginationNext,
   PaginationPrevious,
 } from "@mof-malaysia/myds-react/pagination";
@@ -35,7 +34,7 @@ import ArrowBack from "../react/arrow-back";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Pagination",
+  title: "App/Pagination",
   component: AutoPagination,
   parameters: {
     layout: "centered",
@@ -259,11 +258,11 @@ export const CustomizedButtonAndLabel: Story = createStory({
 export const ServerSidePagination: Story = {
   parameters: {
     query: { page: "6" },
-    backgrounds: {
-      default: "light",
-    },
   },
-  render: (args, context) => {
+  globals: {
+    backgrounds: { value: "light" },
+  },
+  render: () => {
     const urlParams = new URLSearchParams(document.location.search);
     return (
       <AutoPagination

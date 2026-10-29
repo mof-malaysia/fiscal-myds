@@ -10,7 +10,6 @@ import {
   SelectGroupTitle,
   SelectValue,
   SelectTrigger,
-  SelectLabel,
   SelectContent,
   SelectHeader,
   SelectFooter,
@@ -30,7 +29,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   <Tab value="Preview" className="not-prose flex justify-center">
     <Select size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -45,7 +44,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
     ```tsx
     <Select size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -85,7 +84,6 @@ import {
   SelectGroupTitle,
   SelectValue,
   SelectTrigger,
-  SelectLabel,
   SelectContent,
   SelectHeader,
   SelectFooter,
@@ -124,7 +122,7 @@ Use the `size` prop to change the select size! Available sizes are `small`, `med
     <div className="not-prose flex flex-col items-center gap-3">
     <Select size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -137,7 +135,7 @@ Use the `size` prop to change the select size! Available sizes are `small`, `med
 
      <Select size="medium" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -150,7 +148,7 @@ Use the `size` prop to change the select size! Available sizes are `small`, `med
 
      <Select size="large" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -168,7 +166,7 @@ Use the `size` prop to change the select size! Available sizes are `small`, `med
     // Small
     <Select size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -182,7 +180,7 @@ Use the `size` prop to change the select size! Available sizes are `small`, `med
     // Medium
     <Select size="medium" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -197,7 +195,7 @@ Use the `size` prop to change the select size! Available sizes are `small`, `med
     // Large
     <Select size="large" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -221,7 +219,7 @@ Use the `variant` prop to change the variant select! Available variants are `out
     <div className="not-prose flex flex-col items-center gap-3">
     <Select size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -234,7 +232,7 @@ Use the `variant` prop to change the variant select! Available variants are `out
 
      <Select size="small" variant="ghost">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -251,7 +249,7 @@ Use the `variant` prop to change the variant select! Available variants are `out
     ```tsx
     <Select size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -264,7 +262,7 @@ Use the `variant` prop to change the variant select! Available variants are `out
 
     <Select size="small" variant="ghost">
       <SelectTrigger>
-        <SelectValue label="Fruit" placeholder="Select" />
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="apple">Apple</SelectItem>
@@ -292,7 +290,7 @@ For a finer control on which option to disable, you can define `disabled` to ind
         Disable the entire select
         <Select size="small" variant="outline" disabled>
             <SelectTrigger>
-                <SelectValue label="Fruit" placeholder="Select" />
+                <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent>
                 <SelectItem value="apple">Apple</SelectItem>
@@ -307,7 +305,7 @@ For a finer control on which option to disable, you can define `disabled` to ind
         Disable individual options
         <Select size="small" variant="outline">
             <SelectTrigger>
-                <SelectValue label="Fruit" placeholder="Select" />
+                <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent >
                 <SelectItem value="apple" disabled>Apple</SelectItem>
@@ -326,7 +324,7 @@ For a finer control on which option to disable, you can define `disabled` to ind
     // Disable the entire select
     <Select size="small" variant="outline" disabled>
         <SelectTrigger>
-            <SelectValue label="Fruit" placeholder="Select" />
+            <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
             <SelectItem value="apple">Apple</SelectItem>
@@ -340,7 +338,7 @@ For a finer control on which option to disable, you can define `disabled` to ind
     //  Disable individual options
     <Select size="small" variant="outline">
         <SelectTrigger>
-            <SelectValue label="Fruit" placeholder="Select" />
+            <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
             <SelectItem value="apple" disabled>Apple</SelectItem>
@@ -525,7 +523,7 @@ Select also supports multiple selection. To enable multiple selection, set the `
     <div className="not-prose flex justify-center gap-3">
         <Select multiple size="small" variant="outline">
             <SelectTrigger>
-                <SelectValue label="Fruit" placeholder="Multiple" />
+                <SelectValue placeholder="Multiple" />
             </SelectTrigger>
             <SelectContent>
                 <SelectItem value="apple">Apple</SelectItem>
@@ -542,7 +540,7 @@ Select also supports multiple selection. To enable multiple selection, set the `
     ```tsx
     <Select multiple size="small" variant="outline">
         <SelectTrigger>
-            <SelectValue label="Fruit" />
+            <SelectValue />
         </SelectTrigger>
         <SelectContent>
             <SelectItem value="apple">Apple</SelectItem>
@@ -571,7 +569,7 @@ You can customize the value display by using the `SelectValue` component. It all
     ```tsx
     <Select multiple size="small" variant="outline">
       <SelectTrigger>
-        <SelectValue label="Fruit">
+        <SelectValue>
           {(value) => (
             <div className="flex gap-1">
               {Array.isArray(value)
@@ -631,8 +629,22 @@ You can customize the value display by using the `SelectValue` component. It all
       type: "(value: string | string[], eventDetails) => void",
     },
     items: {
-      description: "(Optional) Map of item value to label, so the label of `defaultValue` / `value` is shown before the select is first opened",
-      type: "Record<string, ReactNode>",
+      description: "(Optional) The options. Without children, Select renders the trigger and the list from them",
+      type: "{ value: string; label: ReactNode; description?: ReactNode; disabled?: boolean; group?: string }[]",
+    },
+    placeholder: {
+      description: "With `items`: text shown while nothing is chosen",
+      type: "ReactNode",
+    },
+    clearable: {
+      description: "Shows a button that clears the value",
+      type: "boolean",
+      default: "false",
+    },
+    clearLabel: {
+      description: "Accessible name of the clear button",
+      type: "string",
+      default: '"Clear selection"',
     },
     disabled: {
       description: "Disabled state for select trigger",
@@ -646,9 +658,10 @@ You can customize the value display by using the `SelectValue` component. It all
 
 <TypeTable
   type={{
-    label: {
-      description: "Label of the select value",
+    moreLabel: {
+      description: "Multiple: text after the first choice; `{count}` is the number of others",
       type: "string",
+      default: '"+{count} more"',
     },
     children: {
       description: "(Optional) Custom value display",
@@ -669,6 +682,10 @@ You can customize the value display by using the `SelectValue` component. It all
       description: "Value of the select option. Returned when selected",
       type: "string",
       default: "string",
+    },
+    description: {
+      description: "(Optional) A second line under the label. Not shown in the trigger",
+      type: "ReactNode",
     },
     disabled: {
       description: "Whether the select option is disabled",

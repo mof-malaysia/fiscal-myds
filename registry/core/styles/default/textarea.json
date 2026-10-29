@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/ui/textarea.tsx",
+      "content": "\"use client\";\n\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport React, { forwardRef } from \"react\";\nimport { Field as FieldPrimitive } from \"@base-ui/react/field\";\n\nconst text_area_cva = cva(\n  [\n    \"w-full rounded border border-otl-control bg-bg-white resize-none\",\n    \"placeholder:text-txt-black-500 text-txt-black-700 transition-colors font-body placeholder:font-body\",\n    \"focus:outline-none focus-visible:ring focus-visible:ring-fr-primary focus-visible:border-otl-primary-300\",\n    \"disabled:bg-bg-washed disabled:cursor-not-allowed disabled:text-txt-black-disabled\",\n    \"data-[invalid]:border-bg-danger-600\",\n  ],\n  {\n    variants: {\n      size: {\n        small: \"min-h-[100px] p-2.5 text-field-sm\",\n        medium: \"min-h-[120px] p-3 text-field-md\",\n        large: \"min-h-[150px] p-3.5 text-field-lg\",\n      },\n    },\n    defaultVariants: {\n      size: \"medium\",\n    },\n  },\n);\n\ninterface TextAreaProps\n  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, \"size\">,\n    VariantProps<typeof text_area_cva> {}\n\nconst TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(\n  ({ className, size, ...props }, ref) => {\n    // Field.Control joins the surrounding Field: label, hint, error, validity\n    return (\n      <FieldPrimitive.Control\n        // Control is typed for <input>; the props it forwards are the same for <textarea>\n        {...(props as FieldPrimitive.Control.Props)}\n        ref={ref as React.Ref<HTMLInputElement>}\n        className={text_area_cva({ size, className })}\n        render={<textarea />}\n      />\n    );\n  },\n);\n\nTextArea.displayName = \"TextArea\";\n\nexport { TextArea };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

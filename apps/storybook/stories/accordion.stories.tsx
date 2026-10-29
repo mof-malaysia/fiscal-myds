@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   AccordionTrigger,
@@ -51,7 +51,7 @@ import React from "react";
  */
 
 const meta = {
-  title: "@mof-malaysia/myds-react/Accordion",
+  title: "Marketing/Accordion",
   component: Accordion,
   tags: ["autodocs"],
   parameters: {

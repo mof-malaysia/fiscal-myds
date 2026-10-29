@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/form.tsx",
+      "content": "\"use client\";\n\nimport React from \"react\";\nimport { Form as FormPrimitive } from \"@base-ui/react/form\";\nimport { clx } from \"@/lib/myds/utils\";\n\n/**\n * Form collects the values of the Fields inside it and validates them together.\n * Pass server-side `errors` keyed by field `name` to show them on the right fields.\n *\n * @example\n * <Form errors={errors} onFormSubmit={(values) => submit(values)}>\n *   <Field name=\"email\">...</Field>\n *   <Button type=\"submit\">Continue</Button>\n * </Form>\n */\n\ninterface FormProps<Values extends Record<string, any> = Record<string, any>>\n  extends Omit<FormPrimitive.Props<Values>, \"className\"> {\n  className?: string;\n  ref?: React.Ref<HTMLFormElement>;\n}\n\nfunction Form<Values extends Record<string, any> = Record<string, any>>({\n  className,\n  ...props\n}: FormProps<Values>) {\n  return (\n    <FormPrimitive<Values>\n      className={clx(\"gap-stack-lg flex w-full flex-col\", className)}\n      {...props}\n    />\n  );\n}\nForm.displayName = \"Form\";\n\nexport { Form };\nexport type { FormProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

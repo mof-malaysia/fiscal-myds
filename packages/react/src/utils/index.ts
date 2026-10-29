@@ -2,6 +2,11 @@ import { ClassNameValue, extendTailwindMerge } from "tailwind-merge";
 
 const twMergeConfig = extendTailwindMerge<"control">({
   extend: {
+    // Density-aware spacing and the standard easing (packages/style tailwind.config.css)
+    theme: {
+      spacing: ["surface", "stack-lg", "stack-md", "stack-sm"],
+      ease: ["standard"],
+    },
     classGroups: {
       "font-size": [
         "text-heading-xl",
@@ -23,6 +28,11 @@ const twMergeConfig = extendTailwindMerge<"control">({
         "text-field-md",
         "text-field-lg",
         "text-content",
+        // DESIGN.md type hierarchy
+        "text-display",
+        "text-headline",
+        "text-title",
+        "text-label-compact",
       ],
       // Density-aware control box (height + horizontal padding)
       control: [
@@ -36,6 +46,12 @@ const twMergeConfig = extendTailwindMerge<"control">({
     },
   },
 });
+
+/**
+ * Base UI accepts a function for `className`; MYDS components take a plain string.
+ * @example interface Props extends WithClassName<Popover.Popup.Props> {}
+ */
+export type WithClassName<P> = Omit<P, "className"> & { className?: string };
 
 /**
  * Conditional class joiner.
@@ -65,3 +81,67 @@ export const pick = <T = string>(
     return { ...previous, [_key as string]: _value };
   }, {});
 };
+
+const POSITIONER_KEYS = [
+  "side",
+  "sideOffset",
+  "align",
+  "alignOffset",
+  "anchor",
+  "collisionAvoidance",
+  "collisionBoundary",
+  "collisionPadding",
+  "sticky",
+  "positionMethod",
+  "arrowPadding",
+  "disableAnchorTracking",
+] as const;
+
+type PositionerKey = (typeof POSITIONER_KEYS)[number];
+
+/**
+ * The positioning props a `*Content` part forwards to its Base UI Positioner.
+ * @example interface Props extends WithClassName<Menu.Popup.Props>, PositionerProps<Menu.Positioner.Props> {}
+ */
+export type PositionerProps<P> = Pick<P, Extract<keyof P, PositionerKey>>;
+
+/**
+ * Splits a `*Content` part's props into Positioner props and the rest (for the Popup).
+ * `defaults` fill in positioner props that are `undefined`.
+ * @example const [positionerProps, popupProps] = splitPositionerProps(props, { align: "start", sideOffset: 4 });
+ */
+export const splitPositionerProps = <P extends object>(
+  props: P,
+  defaults: Partial<PositionerProps<P>> = {},
+): [PositionerProps<P>, Omit<P, PositionerKey>] => {
+  const positioner: Record<string, unknown> = { ...defaults };
+  const rest: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(props)) {
+    if ((POSITIONER_KEYS as readonly string[]).includes(key)) {
+      if (value !== undefined) positioner[key] = value;
+    } else {
+      rest[key] = value;
+    }
+  }
+  return [positioner as PositionerProps<P>, rest as Omit<P, PositionerKey>];
+};
+
+/** Whether keystrokes on `target` are text entry. */
+export function isEditable(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false;
+  if (target.isContentEditable) return true;
+  if (target instanceof HTMLTextAreaElement) return true;
+  if (target instanceof HTMLSelectElement) return true;
+  if (target instanceof HTMLInputElement) {
+    return ![
+      "button",
+      "checkbox",
+      "radio",
+      "reset",
+      "submit",
+      "range",
+      "color",
+    ].includes(target.type);
+  }
+  return false;
+}

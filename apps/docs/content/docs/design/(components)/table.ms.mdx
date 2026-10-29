@@ -8,11 +8,11 @@ import { s3 } from "@/lib/constant";
 ![table-anatomy.png](/design/table-anatomy.png)
 
 1. **Header**: Tajuk lajur yang menyediakan konteks jelas untuk data di bawahnya.
-2. **Butang Kembangkan Lajur**: Pada mulanya tersembunyi, butang ini muncul apabila pengguna melayangkan tetikus ke atas lajur. Klik untuk mengembangkan lajur secara mendatar, mendedahkan deskripsi lebih panjang untuk keterbacaan yang lebih baik.
+2. **Butang Kembangkan Lajur**: Pada mulanya tersembunyi, butang togol ini muncul apabila pengguna menuding pada tajuk lajur. Klik untuk mengembangkan lajur secara mendatar, mendedahkan deskripsi lebih panjang untuk keterbacaan yang lebih baik.
 3. **Tooltip**: Ikon untuk menampilkan tooltip apabila dilayangkan tetikus, berguna untuk menjelaskan peranan setiap lajur dalam jadual.
-4. **Butang Susun Lajur**: Pada mulanya tersembunyi, butang ini muncul apabila melayangkan tetikus ke atas lajur. Klik untuk menukar antara susunan menaik dan menurun bagi memudahkan pengurusan data.
+4. **Tajuk Boleh Disusun**: Label tajuk itu sendiri ialah butang susun. Klik untuk menukar antara susunan menaik dan menurun, dan anak panah di sebelah label menunjukkan arah susunan.
 5. **Sel untuk Teks**: Sel teks yang diselaraskan ke kiri secara lalai.
-6. **Sel untuk Butang**: Mengandungi butang tindakan yang diselaraskan ke kiri, membolehkan pengguna mengambil tindakan khusus bagi setiap baris.
+6. **Sel untuk Butang**: Mengandungi tindakan baris yang diselaraskan ke kiri, membolehkan pengguna mengambil tindakan khusus bagi setiap baris. Gunakan butang ghost (atau satu menu limpahan), bukan satu lajur butang outline.
 7. **Sel untuk Status Pil**: Menampilkan indikator status berwarna (pil) yang diselaraskan ke kiri, memberi rujukan visual pantas tentang status setiap baris.
 8. **Skeleton Loader**: Elemen pemuat animasi yang meniru susun atur kandungan semasa data dimuatkan, memberi isyarat visual bahawa kandungan sedang dalam perjalanan dan meningkatkan persepsi masa pemuatan.
 
@@ -21,7 +21,7 @@ import { s3 } from "@/lib/constant";
 ![table-usage.png](/design/table-usage.png)
 
 1. **Sel dengan teks diselaraskan tengah**: Digunakan untuk keseimbangan visual, biasanya untuk tajuk atau maklumat utama untuk menarik perhatian.
-2. **Sel dengan nombor diselaraskan kanan**: Menyelaraskan data berangka ke kanan untuk perbandingan mudah dan memastikan titik perpuluhan selaras, meningkatkan keterbacaan maklumat kewangan atau statistik.
+2. **Sel dengan nombor diselaraskan kanan**: Menyelaraskan data berangka ke kanan dengan angka tabular untuk perbandingan mudah dan memastikan titik perpuluhan selaras, meningkatkan keterbacaan maklumat kewangan atau statistik. Tandakan kedua-dua tajuk dan sel lajur tersebut sebagai numerik.
 3. **Sel dengan julat baris**: Menempati dua atau lebih baris secara menegak, menyatukan data yang berkaitan dan mengurangkan pengulangan. Sesuai untuk maklumat yang berkaitan dengan pelbagai baris, meningkatkan kejelasan jadual.
 
 ### Kembangkan Lajur
@@ -32,7 +32,7 @@ import { s3 } from "@/lib/constant";
   </video>
 </figure>
 
-Apabila dikembangkan, kekalkan header di bawah garisan dan tunjukkan butang kuncup (collapse).
+Apabila dikembangkan, kekalkan butang kuncup (collapse) kelihatan pada header.
 
 ### Susun Lajur
 
@@ -42,6 +42,10 @@ Apabila dikembangkan, kekalkan header di bawah garisan dan tunjukkan butang kunc
   </video>
 </figure>
 
-Laluan asal, klik pertama menyusun lajur dalam susunan menurun. Klik seterusnya akan menyusun dalam susunan menaik.
+Klik label tajuk untuk menyusun lajur, dan klik sekali lagi untuk menterbalikkan susunan.
 
-Apabila disusun, kekalkan header di bawah garisan dan tunjukkan butang susun.
+Apabila disusun, label tajuk bertukar kepada Ink dan anak panah kekal kelihatan untuk menunjukkan arah susunan.
+
+## Keadaan Baris
+
+Jadual biasa tidak menyerlahkan baris apabila dituding, kerana jadual statik sering merentasi beberapa baris. Jadual interaktif menyerlahkan baris yang dituding dengan Well, mengisi baris yang dipilih dengan Blue Wash, dan menandakan sempadan lajur yang disangkut dengan Hairline.

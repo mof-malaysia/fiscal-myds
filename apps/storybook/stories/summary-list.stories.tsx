@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import {
   SummaryList,
@@ -21,7 +21,7 @@ import { SwapIcon } from "@mof-malaysia/myds-react/icon";
  */
 
 const meta = {
-  title: "@mof-malaysia/myds-react/SummaryList",
+  title: "App/SummaryList",
   component: SummaryList,
   tags: ["autodocs"],
   parameters: {
@@ -77,12 +77,7 @@ export const SummaryListCustom: Story = {
           <SummaryListRow>
             <SummaryListTerm>Status</SummaryListTerm>
             <SummaryListDetail className="py-2">
-              <Tag
-                variant="warning"
-                size={"medium"}
-                className="h-fit"
-                mode={"default"}
-              >
+              <Tag variant="warning" size={"medium"} className="h-fit">
                 Pending
               </Tag>
             </SummaryListDetail>
@@ -152,12 +147,7 @@ export const SummaryListCustomDark: Story = {
           <SummaryListRow>
             <SummaryListTerm>Status</SummaryListTerm>
             <SummaryListDetail className="py-2">
-              <Tag
-                variant="warning"
-                size={"medium"}
-                className="h-fit"
-                mode={"default"}
-              >
+              <Tag variant="warning" size={"medium"} className="h-fit">
                 Pending
               </Tag>
             </SummaryListDetail>
@@ -236,12 +226,7 @@ export const SummaryListCustomWithAdditionalTab: Story = {
           <SummaryListRow>
             <SummaryListTerm>Status</SummaryListTerm>
             <SummaryListDetail className="py-2">
-              <Tag
-                variant="warning"
-                size={"medium"}
-                className="h-fit"
-                mode={"default"}
-              >
+              <Tag variant="warning" size={"medium"} className="h-fit">
                 Pending
               </Tag>
             </SummaryListDetail>

@@ -73,6 +73,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -89,7 +90,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
         {
           cell: () => {
             return (
-              <Tag variant="success" size={"small"} mode="pill">
+              <Tag variant="success" size={"small"}>
                 Success
               </Tag>
             );
@@ -99,7 +100,7 @@ import { InfoIcon } from "@mof-malaysia/myds-react/icon";
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -203,6 +204,7 @@ export default () => <DataTable />;
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -219,7 +221,7 @@ export default () => <DataTable />;
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -229,7 +231,7 @@ export default () => <DataTable />;
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -258,7 +260,7 @@ export default () => <DataTable />;
 
 You can expand the size of the cells in a column by setting the `expandable` property to `true` in the `meta` object of the column definition.
 
-To demonstrate this, we have set the `expandable` property to `true` for the `Name` and `Position` columns. You can click on the expand icon to view the full content of the cell.
+To demonstrate this, we have set the `expandable` property to `true` for the `Name` and `Position` columns. Hover over the column header to reveal a quiet toggle, then click it to show the full content of the cells.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
@@ -317,6 +319,7 @@ To demonstrate this, we have set the `expandable` property to `true` for the `Na
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -333,7 +336,7 @@ To demonstrate this, we have set the `expandable` property to `true` for the `Na
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -343,7 +346,7 @@ To demonstrate this, we have set the `expandable` property to `true` for the `Na
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -418,6 +421,7 @@ To demonstrate this, we have set the `tooltip` property to `Age` and `Position` 
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -434,7 +438,7 @@ To demonstrate this, we have set the `tooltip` property to `Age` and `Position` 
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -444,7 +448,7 @@ To demonstrate this, we have set the `tooltip` property to `Age` and `Position` 
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -460,7 +464,7 @@ To demonstrate this, we have set the `tooltip` property to `Age` and `Position` 
 
 You can sort the data in the table by setting the `sortable` property to `true` in the `meta` object of the column definition.
 
-To demonstrate this, we have set the `sortable` property to the `Position` column. Click the sort icon to toggle the sorts available.
+To demonstrate this, we have set the `sortable` property to the `Position` column. Click the header label to sort; click again to reverse the order. An arrow beside the label shows the direction, and the header carries `aria-sort` for screen readers.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
  <Tab value="Preview">
@@ -519,6 +523,7 @@ To demonstrate this, we have set the `sortable` property to the `Position` colum
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -535,7 +540,7 @@ To demonstrate this, we have set the `sortable` property to the `Position` colum
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -545,7 +550,7 @@ To demonstrate this, we have set the `sortable` property to the `Position` colum
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -554,6 +559,30 @@ To demonstrate this, we have set the `sortable` property to the `Position` colum
     />
     ```
 
+  </Tab>
+</Tabs>
+
+### Amounts
+
+Set `numeric` to `true` in the `meta` object of a column of amounts or counts. The header and cells are right-aligned in tabular figures, so the digits line up for comparison. In the examples on this page, the `Age` column is numeric.
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview">
+    <div className="not-prose flex flex-col gap-3 items-center">
+    <DataTable data={DataTableData} columns={DataTableColumns} />
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    {
+      accessorKey: "age",
+      header: "Age",
+      id: "age",
+      meta: {
+        numeric: true,
+      },
+    }
+    ```
   </Tab>
 </Tabs>
 
@@ -619,6 +648,7 @@ You can enable `loading` prop to trigger skeleton loading state for the table.
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -635,7 +665,7 @@ You can enable `loading` prop to trigger skeleton loading state for the table.
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -645,7 +675,7 @@ You can enable `loading` prop to trigger skeleton loading state for the table.
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -687,6 +717,7 @@ Passing an empty array to the `data` prop will render an empty state for the tab
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -703,7 +734,7 @@ Passing an empty array to the `data` prop will render an empty state for the tab
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -713,7 +744,7 @@ Passing an empty array to the `data` prop will render an empty state for the tab
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -731,7 +762,10 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
 
 - `mode`: The type of selection. Can be either `checkbox` or `radio`.
 - `onSelectionChange`: A callback function that is triggered when the selection changes.
-- `rowId`: The unique identifier for each row in the table.
+- `id_by`: The key in each row object that uniquely identifies it. `onSelectionChange` reports the selected rows by this value.
+- `enableRowSelection` (optional): `false`, or a function of the row, to stop some rows from being selected.
+
+Selected rows are filled with the Blue Wash, and every row is highlighted in Well on hover.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
   <Tab value="Preview">
@@ -798,6 +832,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -814,7 +849,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -824,7 +859,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -836,7 +871,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
           onSelectionChange: (id: string) => {
             console.log("Selected Rows: ", id);
           },
-          rowId: "id",
+          id_by: "id",
         }
       }
     />
@@ -890,6 +925,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -906,7 +942,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -916,7 +952,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -928,7 +964,7 @@ Enable selection mode by passing a `selection` prop to the `DataTable` component
           onSelectionChange: (id: string) => {
             console.log("Selected Rows: ", id);
           },
-          rowId: "id",
+          id_by: "id",
         }
       }
     />
@@ -1006,6 +1042,7 @@ Here is an example of a table with grouped columns:
 
               meta: {
                 expandable: false,
+                numeric: true,
               },
             },
             {
@@ -1027,7 +1064,7 @@ Here is an example of a table with grouped columns:
               header: "Status",
               cell: () => {
                 return (
-                  <Tag variant="success" size={"small"} mode="pill">
+                  <Tag variant="success" size={"small"}>
                     Success
                   </Tag>
                 );
@@ -1037,7 +1074,7 @@ Here is an example of a table with grouped columns:
               id: "action",
               header: "Action",
               cell: () => {
-                return <Button variant="default-outline">Edit</Button>;
+                return <Button variant="default-ghost">Edit</Button>;
               },
             },
           ],
@@ -1120,6 +1157,7 @@ To demonstrate the sticky header, lets set a fixed height for the table. Simply 
 
               meta: {
                 expandable: false,
+                numeric: true,
               },
             },
             {
@@ -1141,7 +1179,7 @@ To demonstrate the sticky header, lets set a fixed height for the table. Simply 
               header: "Status",
               cell: () => {
                 return (
-                  <Tag variant="success" size={"small"} mode="pill">
+                  <Tag variant="success" size={"small"}>
                     Success
                   </Tag>
                 );
@@ -1151,7 +1189,7 @@ To demonstrate the sticky header, lets set a fixed height for the table. Simply 
               id: "action",
               header: "Action",
               cell: () => {
-                return <Button variant="default-outline">Edit</Button>;
+                return <Button variant="default-ghost">Edit</Button>;
               },
             },
           ],
@@ -1320,6 +1358,7 @@ To demonstrate the sticky header, lets set a fixed height for the table. Simply 
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -1336,7 +1375,7 @@ To demonstrate the sticky header, lets set a fixed height for the table. Simply 
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -1346,7 +1385,7 @@ To demonstrate the sticky header, lets set a fixed height for the table. Simply 
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -1364,6 +1403,8 @@ You can pin columns to the left or right of the table by setting the `pin` prope
 
 - `left`: An array of column IDs to pin to the left.
 - `right`: An array of column IDs to pin to the right.
+
+A Hairline marks the edge where the pinned columns meet the columns that scroll.
 
 <Tabs items={["Preview", "Code"]} defaultValue="Preview">
  <Tab value="Preview">
@@ -1422,6 +1463,7 @@ You can pin columns to the left or right of the table by setting the `pin` prope
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -1438,7 +1480,7 @@ You can pin columns to the left or right of the table by setting the `pin` prope
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -1448,7 +1490,7 @@ You can pin columns to the left or right of the table by setting the `pin` prope
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -1522,6 +1564,7 @@ You can add footer per column by setting the `footer` in **ColumnDef** object of
           id: "age",
           meta: {
             expandable: false,
+            numeric: true,
             tooltip: "Age of the employee",
           },
         },
@@ -1538,7 +1581,7 @@ You can add footer per column by setting the `footer` in **ColumnDef** object of
         {
           cell: () => {
             return (
-                <Tag variant="success" size={"small"} mode="pill">
+                <Tag variant="success" size={"small"}>
                 Success
                 </Tag>
             );
@@ -1548,7 +1591,7 @@ You can add footer per column by setting the `footer` in **ColumnDef** object of
         },
         {
           cell: () => {
-            return <Button variant="default-outline">Edit</Button>;
+            return <Button variant="default-ghost">Edit</Button>;
           },
           header: "Action",
           id: "action",
@@ -1558,6 +1601,51 @@ You can add footer per column by setting the `footer` in **ColumnDef** object of
     />
     ```
 
+  </Tab>
+</Tabs>
+
+### Labels
+
+The table's controls (the selection checkboxes, the column width toggle and the nested row toggle) have accessible names in English by default. Pass `labels` to translate them, for example into Bahasa Melayu. Any label you leave out keeps its English default.
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview">
+    <div className="not-prose flex flex-col gap-3 items-center">
+    <DataTable
+      data={DataTableData}
+      columns={DataTableColumns}
+      selection={DataTableCheckbox}
+      labels={{
+        selection: "Pilihan",
+        selectAll: "Pilih semua baris",
+        selectRow: "Pilih baris",
+        clearSelection: "Kosongkan pilihan",
+        widenColumn: "Tunjuk teks penuh",
+        narrowColumn: "Pendekkan teks",
+        expandRow: "Tunjuk baris bersarang",
+        collapseRow: "Sembunyikan baris bersarang",
+      }}
+    />
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <DataTable
+      data={data}
+      columns={columns}
+      selection={{ mode: "checkbox", id_by: "id" }}
+      labels={{
+        selection: "Pilihan",
+        selectAll: "Pilih semua baris",
+        selectRow: "Pilih baris",
+        clearSelection: "Kosongkan pilihan",
+        widenColumn: "Tunjuk teks penuh",
+        narrowColumn: "Pendekkan teks",
+        expandRow: "Tunjuk baris bersarang",
+        collapseRow: "Sembunyikan baris bersarang",
+      }}
+    />
+    ```
   </Tab>
 </Tabs>
 
@@ -1584,6 +1672,23 @@ You can add footer per column by setting the `footer` in **ColumnDef** object of
       description:
         "Specifies which columns to pin. Column IDs should be passed as an array",
       type: "{ left: Array<string>, right: Array<string> }",
+    },
+    selection: {
+      description: "Enables row selection. `id_by` is the key that identifies each row",
+      type: '{ mode: "checkbox" | "radio", id_by: keyof T, onSelectionChange?: (ids: string[]) => void, enableRowSelection?: boolean | (row) => boolean }',
+    },
+    loading: {
+      description: "Shows skeleton rows in place of the data",
+      type: "boolean",
+      default: "false",
+    },
+    emptyState: {
+      description: "Content shown when `data` is empty",
+      type: "ReactNode",
+    },
+    labels: {
+      description: "Accessible names for the table's controls. Any label left out keeps its English default",
+      type: "Partial<{ selection, selectAll, selectRow, clearSelection, widenColumn, narrowColumn, expandRow, collapseRow }>",
     },
   }}
 />
@@ -1621,12 +1726,20 @@ You can add footer per column by setting the `footer` in **ColumnDef** object of
       type: "(context) => ReactNode",
     },
     "meta.expandable": {
-      description: "Expandable column",
+      description: "Truncated column that can be shown in full with a toggle that appears on header hover",
       type: "boolean",
     },
     "meta.sortable": {
-      description: "Sortable column",
+      description: "Sortable column. The header label becomes a button that toggles the sort, with `aria-sort` on the header",
       type: "boolean",
+    },
+    "meta.numeric": {
+      description: "Right-aligns the column in tabular figures, for amounts and counts",
+      type: "boolean",
+    },
+    "meta.className": {
+      description: "Extra classes for the column's header and cells",
+      type: "{ header?: string, cell?: string }",
     },
     "meta.tooltip": {
       description: "Tooltip for the column header",

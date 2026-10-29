@@ -1,0 +1,146 @@
+---
+title: Site Search
+description: The "search this site" box for agency sites and service landing pages. A labelled search field and one Search button that submits to your results page.
+---
+
+import { Quicklinks } from "@/components/quicklinks";
+import { SiteSearch } from "@/components/myds";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview" className="not-prose flex justify-center">
+    <div className="w-full max-w-xl">
+      <SiteSearch action="#" placeholder="For example, road tax" />
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <SiteSearch action="/search" placeholder="For example, road tax" />
+    ```
+  </Tab>
+</Tabs>
+
+<Quicklinks
+  links={{
+    storybook:
+      "https://mof-malaysia.github.io/fiscal-myds/storybook/?path=/docs/marketing-sitesearch--docs",
+    source:
+      "https://github.com/mof-malaysia/fiscal-myds/blob/main/packages/react/src/components/marketing/site-search.tsx",
+  }}
+/>
+
+## Installation
+
+Add this component to your project with the shadcn CLI. See [Installation](./install) for the one-time setup.
+
+```package-install
+npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/marketing/styles/default/site-search.json
+```
+
+## Usage
+
+```ts copy title="Import"
+import { SiteSearch } from "@/components/ui/site-search";
+```
+
+```tsx copy title="Anatomy"
+export default () => <SiteSearch action="/search" />;
+```
+
+SiteSearch renders a `<form role="search">` with a label (hidden unless `showLabel`), a search field and a Search button. By default it submits a GET request to `action` with the query as `?q=…`, so it works before JavaScript loads.
+
+### Which search to use
+
+- **Search this site** (results on their own page): `SiteSearch`.
+- **Suggestions while typing**: compose `Autocomplete`.
+- **Filter a list already on screen** (a table, a grid of icons): a search `Input` with a search icon, like `WorkQueue`.
+- **Go to anything in an officer app**: the `Command` palette, opened with ⌘K or `DeskSearchTrigger`.
+
+## Examples
+
+### Handled in the page
+
+Pass `onSearch` to handle the query yourself, for example with your router. The form's own submit is prevented.
+
+```tsx copy
+<SiteSearch onSearch={(query) => router.push(`/search?q=${encodeURIComponent(query)}`)} />
+```
+
+### Hero size and keyboard shortcut
+
+Use `size="large"` in a hero. `shortcut` lets people press <kbd>/</kbd> anywhere on the page to jump to the field, and shows the key while the field is empty.
+
+<Tabs items={["Preview", "Code"]} defaultValue="Preview">
+  <Tab value="Preview" className="not-prose flex justify-center">
+    <div className="w-full max-w-2xl">
+      <SiteSearch action="#" size="large" shortcut showLabel />
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <SiteSearch action="/search" size="large" shortcut showLabel />
+    ```
+  </Tab>
+</Tabs>
+
+### Bahasa Melayu
+
+```tsx copy
+<SiteSearch
+  action="/carian"
+  placeholder="Contohnya, cukai jalan"
+  labels={{ label: "Cari dalam laman ini", submit: "Cari" }}
+/>
+```
+
+## Props
+
+### SiteSearch
+
+<TypeTable
+  type={{
+    action: {
+      description: "URL of your results page. The query is sent as a GET parameter.",
+      type: "string",
+    },
+    name: {
+      description: "Name of the query parameter",
+      type: "string",
+      default: "q",
+    },
+    onSearch: {
+      description: "Handles the search in the page instead of submitting the form",
+      type: "(query: string) => void",
+    },
+    size: {
+      description: "Field and button size, relative to the page density",
+      type: "enum",
+      typeDescription: "small | medium | large",
+      default: "medium",
+    },
+    placeholder: {
+      description: "An example of what to search for",
+      type: "string",
+    },
+    defaultValue: {
+      description: "The starting query, for example on a results page",
+      type: "string",
+    },
+    showLabel: {
+      description: "Shows the label above the field instead of only to screen readers",
+      type: "boolean",
+      default: "false",
+    },
+    shortcut: {
+      description: 'Lets "/" focus the field from anywhere on the page',
+      type: "boolean",
+      default: "false",
+    },
+    labels: {
+      description: "The field's label and the button text",
+      type: "{ label?: string; submit?: string }",
+      default: '{ label: "Search this site", submit: "Search" }',
+    },
+  }}
+/>

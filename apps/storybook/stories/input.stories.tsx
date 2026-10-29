@@ -1,5 +1,5 @@
-import { fn } from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { Input, InputAddon, InputIcon } from "@mof-malaysia/myds-react/input";
 import ArrowBack from "../react/arrow-back";
@@ -35,7 +35,7 @@ import ArrowForward from "../react/arrow-forward";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/Input",
+  title: "Core/Input",
   component: Input,
   tags: ["autodocs"],
   parameters: {

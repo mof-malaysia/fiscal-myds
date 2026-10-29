@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
 import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
 import { createStory } from "../utils";
@@ -17,7 +17,7 @@ import { createStory } from "../utils";
  * ```
  */
 const meta = {
-  title: "@mof-malaysia/myds-react/ThemeSwitch",
+  title: "Core/ThemeSwitch",
   // tags: ["!dev"],
   component: ThemeSwitch,
   parameters: {
