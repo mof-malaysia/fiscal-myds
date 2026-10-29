@@ -57,6 +57,9 @@ const meta = {
   parameters: {
     layout: "padded",
   },
+  args: {
+    collapsible: true,
+  },
   argTypes: {
     render: {
       control: false,
@@ -104,7 +107,7 @@ const meta = {
       control: "boolean",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: "true" },
+        defaultValue: { summary: "false" },
         category: "Accordion Props",
       },
     },

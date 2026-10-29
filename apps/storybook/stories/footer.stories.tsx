@@ -155,7 +155,7 @@ export const Default: Story = {
             <SiteLink href="#">Link 3</SiteLink>
             <SiteLink href="#">Link 4</SiteLink>
           </SiteLinkGroup>
-          <SiteLinkGroup groupTitle="Super super long long long long long title">
+          <SiteLinkGroup groupTitle="About Us">
             <SiteLink href="#">
               Link 1 super super long super super long
             </SiteLink>
@@ -163,7 +163,7 @@ export const Default: Story = {
             <SiteLink href="#">Link 3</SiteLink>
             <SiteLink href="#">Link 4</SiteLink>
           </SiteLinkGroup>
-          <SiteLinkGroup groupTitle="Super super long long long long long title">
+          <SiteLinkGroup groupTitle="Quick Links">
             <SiteLink href="#">
               Link 1 super super long super super long
             </SiteLink>
@@ -171,7 +171,7 @@ export const Default: Story = {
             <SiteLink href="#">Link 3</SiteLink>
             <SiteLink href="#">Link 4</SiteLink>
           </SiteLinkGroup>
-          <SiteLinkGroup groupTitle="Super super long long long long long title">
+          <SiteLinkGroup groupTitle="Open Source">
             <SiteLink href="#">
               Link 1 super super long super super long
             </SiteLink>
@@ -206,13 +206,9 @@ export const Default: Story = {
  */
 
 export const CustomDark: Story = {
-  decorators: [
-    (Story) => (
-      <div className="dark">
-        <Story />
-      </div>
-    ),
-  ],
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
   render: (args) => {
     const date = new Date();
 
@@ -301,7 +297,7 @@ export const CustomDark: Story = {
             <SiteLink href="#">Link 3</SiteLink>
             <SiteLink href="#">Link 4</SiteLink>
           </SiteLinkGroup>
-          <SiteLinkGroup groupTitle="Super super long long long long long title">
+          <SiteLinkGroup groupTitle="About Us">
             <SiteLink href="#">
               Link 1 super super long super super long
             </SiteLink>
@@ -309,7 +305,7 @@ export const CustomDark: Story = {
             <SiteLink href="#">Link 3</SiteLink>
             <SiteLink href="#">Link 4</SiteLink>
           </SiteLinkGroup>
-          <SiteLinkGroup groupTitle="Super super long long long long long title">
+          <SiteLinkGroup groupTitle="Quick Links">
             <SiteLink href="#">
               Link 1 super super long super super long
             </SiteLink>
@@ -317,7 +313,7 @@ export const CustomDark: Story = {
             <SiteLink href="#">Link 3</SiteLink>
             <SiteLink href="#">Link 4</SiteLink>
           </SiteLinkGroup>
-          <SiteLinkGroup groupTitle="Super super long long long long long title">
+          <SiteLinkGroup groupTitle="Open Source">
             <SiteLink href="#">
               Link 1 super super long super super long
             </SiteLink>

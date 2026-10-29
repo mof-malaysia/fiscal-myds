@@ -97,12 +97,12 @@ export const Default: Story = createStory({
  */
 export const ButtonAsLink: Story = {
   args: {
+    href: "https://design.digital.gov.my",
     underline: "none",
   },
   parameters: {
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args) => <Button render={<Link {...args} />}>Ask a question</Button>,
@@ -113,13 +113,13 @@ export const ButtonAsLink: Story = {
  */
 export const Backlink: Story = {
   args: {
+    href: "https://design.digital.gov.my",
     primary: true,
     underline: "hover",
   },
   parameters: {
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args) => (
@@ -146,12 +146,12 @@ export const FooterLink: Story = createStory({
  */
 export const NavbarLink: Story = {
   args: {
+    href: "https://design.digital.gov.my",
     underline: "none",
   },
   parameters: {
     backgrounds: {
       default: "light",
-      values: [{ name: "dark", value: "#18181B" }],
     },
   },
   render: (args) => (
