@@ -117,7 +117,7 @@ export function CaseDesk({
 }
 ```
 
-Section tabs go in the top bar after the breadcrumb. `DeskTabs` is a `<nav>` of links (not a tablist), so give it an `aria-label`. A tab with a `combo` gets a tooltip with its key caps and a palette command; the command exists only while the tab is mounted.
+Section tabs go in the top bar after the breadcrumb. `DeskTabs` is a `<nav>` of links (not a tablist), named "Section tabs" by default (`labels.tabs` on `DeskShell`); give it its own `aria-label` when there is more than one. A tab with a `combo` gets a tooltip with its key caps and a palette command; the command exists only while the tab is mounted.
 
 ```tsx
 import { DeskTab, DeskTabs } from "@/components/ui/desk-shell";

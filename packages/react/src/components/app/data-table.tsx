@@ -100,6 +100,8 @@ interface DataTableLabels {
   expandRow: string;
   /** The row button that hides nested rows. */
   collapseRow: string;
+  /** The help icon a column's `meta.tooltip` adds. */
+  columnHelp: string;
 }
 
 const DEFAULT_LABELS: DataTableLabels = {
@@ -111,6 +113,7 @@ const DEFAULT_LABELS: DataTableLabels = {
   narrowColumn: "Truncate text",
   expandRow: "Show nested rows",
   collapseRow: "Hide nested rows",
+  columnHelp: "More information",
 };
 
 interface DataTableProps<TData extends Record<string, any>> {
@@ -282,7 +285,7 @@ const DataTableProvider = <TData extends Record<string, any>>({
       }}
     >
       <Table
-        className={className}
+        containerClassName={className}
         aria-busy={loading || undefined}
         style={{
           width: props.pin ? table.getTotalSize() : undefined,
@@ -388,7 +391,11 @@ const DataTableHeader: FunctionComponent = () => {
                       label
                     )}
 
-                    {tooltip && <TableTooltip>{tooltip}</TableTooltip>}
+                    {tooltip && (
+                      <TableTooltip label={labels.columnHelp}>
+                        {tooltip}
+                      </TableTooltip>
+                    )}
 
                     {expandable && (
                       <button

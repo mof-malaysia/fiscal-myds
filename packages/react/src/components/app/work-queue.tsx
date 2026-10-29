@@ -454,7 +454,7 @@ const WorkQueueInner = <T,>(
         </div>
       )}
 
-      <Table aria-label={labels.table} className="min-w-0">
+      <Table aria-label={labels.table} containerClassName="min-w-0">
         <TableHeader className="bg-bg-white z-10">
           <TableRow>
             {selectable && (

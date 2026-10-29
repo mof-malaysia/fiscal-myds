@@ -73,6 +73,7 @@ export function SahkanEmel({
 }) {
   return (
     <OtpVerify
+      expiresInMinutes={10}
       channel="email"
       destination="nur•••@example.com"
       onVerify={onVerify}
@@ -84,7 +85,8 @@ export function SahkanEmel({
         pending: "Menyemak kod…",
         resend: "Hantar kod baharu",
         resendWaiting: "Hantar kod baharu dalam {seconds}s",
-        noCode: "Kod tamat tempoh dalam 10 minit. Tidak menerimanya?",
+        noCode: "Tidak menerima kod?",
+        expiry: "Kod tamat tempoh dalam {minutes} minit.",
         otherMethod: "Gunakan cara lain untuk mengesahkan",
       }}
     />
@@ -97,7 +99,7 @@ export function SahkanEmel({
 - The code goes in an `OTPField`, so pasting and SMS autofill work. The Verify button stays disabled until every digit is entered, and nothing is verified while `pending`.
 - `length` sets the number of digits (6 by default) and fills `{length}` in the sentence above the field.
 - "Send a new code" is disabled with a visible countdown for `resendSeconds` (60 by default), starting when the block first renders and again after each press.
-- The default `noCode` text says "The code expires in 10 minutes". Change `labels.noCode` if your codes last a different time.
+- Pass `expiresInMinutes` to tell people how long the code works ("The code expires in 10 minutes."); without it, no duration is stated.
 - The block keeps the typed code after an `error`; the error shows under the field. It has no `ErrorSummary`, since there is only one field.
 - `renderLink` renders the "Use another way to verify" link; pass your router's link.
 - `ResendButton` takes `seconds`, `onResend`, `label` and `waitingLabel` (with `{seconds}`) plus `Button` props such as `variant` (`"default-ghost"` by default).

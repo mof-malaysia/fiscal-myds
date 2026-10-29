@@ -62,5 +62,5 @@ export function TemaPaparan() {
 - `ThemeProvider` restores the saved theme on mount, after the first render. To avoid a flash of the light theme, also set the class in a blocking `<head>` script, as in the [setup guide](https://mof-malaysia.github.io/ftds/guides/setup.md) (section 5).
 - Theme `value`s are class names added to `<html>`: FTDS styles `light` and `dark` only.
 - `onChange` receives the new theme value after it is applied, for example to save it to the user's profile.
-- In toggle mode, the button's accessible name is the current theme's `label` ("Light" or "Dark"); `label` only names the select.
+- `label` (default "Theme") names the control in both modes, followed by the current theme: "Theme: Light". Translate it with the theme labels.
 - Don't write `dark:` overrides for FTDS tokens; they already switch with the theme.

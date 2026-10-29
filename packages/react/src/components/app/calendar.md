@@ -70,5 +70,5 @@ export function TarikhTemujanji() {
 - `month` sets the month shown first; after that the calendar manages navigation itself.
 - Day cells are 40px in the comfortable density and 32px in compact; the width follows, so wrap it with `w-fit` in a popover.
 - Outside days are shown by default (`showOutsideDays`).
-- The previous and next year buttons in the month grid are named in English ("Go to the Previous Year", "Go to the Next Year") and can't be translated. react-day-picker's own accessible names can be translated with its `labels` prop.
+- The previous and next year buttons in the month grid are named "Previous year" and "Next year", or "Tahun sebelumnya" and "Tahun seterusnya" with a `ms` locale; `previousYearLabel` and `nextYearLabel` override them. react-day-picker's own accessible names can be translated with its `labels` prop.
 - It is not a form control: it doesn't join a `Field` and submits nothing. Keep the selected date in state and send it yourself.

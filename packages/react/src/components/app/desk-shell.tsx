@@ -85,6 +85,8 @@ interface DeskShellLabels {
   search: string;
   /** Builds the command title of a rail item or tab from its label. */
   goTo: string;
+  /** Accessible name of the `DeskTabs` landmark. */
+  tabs: string;
 }
 
 const DEFAULT_LABELS: DeskShellLabels = {
@@ -93,6 +95,7 @@ const DEFAULT_LABELS: DeskShellLabels = {
   navigationGroup: "Navigation",
   search: "Search…",
   goTo: "Go to {label}",
+  tabs: "Section tabs",
 };
 
 interface DeskShellContextValue {
@@ -545,16 +548,20 @@ DeskTopBar.displayName = "DeskTopBar";
 
 /** Section tabs in the top bar: navigation links, not a tablist. */
 const DeskTabs = forwardRef<HTMLElement, ComponentProps<"nav">>(
-  ({ className, ...props }, ref) => (
-    <nav
-      ref={ref}
-      className={clx(
-        "-mb-px flex min-w-0 gap-1 self-stretch overflow-x-auto",
-        className,
-      )}
-      {...props}
-    />
-  ),
+  ({ className, ...props }, ref) => {
+    const labels = useContext(DeskShellContext)?.labels ?? DEFAULT_LABELS;
+    return (
+      <nav
+        ref={ref}
+        aria-label={labels.tabs}
+        className={clx(
+          "-mb-px flex min-w-0 gap-1 self-stretch overflow-x-auto",
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
 );
 DeskTabs.displayName = "DeskTabs";
 

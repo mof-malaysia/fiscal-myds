@@ -79,6 +79,6 @@ export function TarikhBayaran({
 - Set `invalid` on both the `Field` (to show `FieldError`) and the `DatePicker` (for the trigger's error ring). An `ErrorSummary` error with the picker's `id` focuses the trigger.
 - The trigger shows the chosen date in `formatStr` (default `"dd MMM yyy"`, for example "31 Aug 1957"), or `placeholder` (default "dd / mm / yyyy") when there is none.
 - `disabled` takes react-day-picker matchers for days that can't be chosen (`{ before: new Date() }`, `{ dayOfWeek: [0, 6] }`); `disabled={true}` disables the whole picker.
-- `locale` is `"en"` (default) or `"ms"`; it sets the month and weekday names and the trigger text. Some calendar buttons keep English accessible names.
+- `locale` is `"en"` (default) or `"ms"`; it sets the month and weekday names, the trigger text and the calendar's year button names.
 - Choosing a day closes the popup and returns focus to the trigger. Choosing a month or year from the calendar's caption grids only moves the calendar; the date changes when a day is picked.
 - `minYear` and `maxYear` (default 1900 and 2099) bound the year grid; `yearOrder="desc"` lists the latest year first. `size` sizes the trigger like a `Button`.

@@ -71,9 +71,7 @@ export function MastheadBm() {
     <Masthead>
       <MastheadHeader>
         <MastheadTitle>Laman Web Rasmi Kerajaan Malaysia</MastheadTitle>
-        <MastheadTrigger aria-label="Buka atau tutup maklumat laman web rasmi">
-          Ini cara anda mengetahuinya
-        </MastheadTrigger>
+        <MastheadTrigger>Ini cara anda mengetahuinya</MastheadTrigger>
       </MastheadHeader>
       <MastheadContent>
         <MastheadSection
@@ -99,7 +97,7 @@ export function MastheadBm() {
 ## Notes
 
 - A bare `<Masthead />` renders an empty grey bar; always include the header and content.
-- The trigger toggles the panel. Its text is hidden on small screens, where only the chevron shows, and its accessible name is "Toggle masthead" in English; pass `aria-label` to translate it.
+- The trigger toggles the panel. Its text is its accessible name, so it translates with the page; on small screens the text is visually hidden and only the chevron shows.
 - The panel starts closed. `Masthead` doesn't take `open` or `defaultOpen`; its props go to the outer `<div>` (which has `id="masthead"`).
 - `MastheadSection` needs an `icon` and a `title`; its children are the explanation. The icon is sized and coloured for you.
 - The masthead is hidden when printing and excluded from search snippets.

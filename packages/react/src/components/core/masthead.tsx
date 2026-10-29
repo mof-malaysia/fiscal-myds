@@ -109,15 +109,18 @@ const MastheadTrigger: FunctionComponent<ComponentProps<"button">> = ({
   return (
     <CollapsiblePrimitive.Trigger
       className="text-txt-primary focus-visible:ring-fr-primary bg-otl-gray-200 group flex items-center gap-0.5 rounded-md p-1 px-1 focus:outline-none focus-visible:ring focus-visible:ring-inset sm:bg-transparent sm:pl-1.5 xl:rounded-sm"
-      aria-label="Toggle masthead"
       tabIndex={0}
       onClick={handleToggle}
       {...props}
     >
-      <span className="text-txt-primary hidden tracking-[-0.01em] select-none sm:block">
+      {/* The text names the button: read on phones, shown from sm up */}
+      <span className="text-txt-primary sr-only tracking-[-0.01em] select-none sm:not-sr-only">
         {children}
       </span>
-      <ChevronDownIcon className="size-4 rotate-0 transform transition-transform group-data-[panel-open]:rotate-180" />
+      <ChevronDownIcon
+        aria-hidden
+        className="size-4 rotate-0 transform transition-transform group-data-[panel-open]:rotate-180"
+      />
     </CollapsiblePrimitive.Trigger>
   );
 };

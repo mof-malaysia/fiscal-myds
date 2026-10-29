@@ -52,7 +52,7 @@ export function MaritalStatus() {
 }
 ```
 
-Controlled, with a hint under each option and one option disabled. Stack the label and the hint in a grid; `RadioHintText` is a `<label>` too, so point it at the same button:
+Controlled, with a hint under each option and one option disabled. Stack the label and the hint in a grid, give the hint an `id`, and point the button's `aria-describedby` at it so screen readers read the hint after the label:
 
 ```tsx
 import { useState } from "react";
@@ -92,13 +92,14 @@ export function RefundMethod() {
               <RadioButton
                 value={option.value}
                 id={`refund-${option.value}`}
+                aria-describedby={`refund-${option.value}-hint`}
                 className="mt-0.5"
               />
               <div className="grid gap-0.5">
                 <RadioLabel htmlFor={`refund-${option.value}`}>
                   {option.label}
                 </RadioLabel>
-                <RadioHintText htmlFor={`refund-${option.value}`}>
+                <RadioHintText id={`refund-${option.value}-hint`}>
                   {option.hint}
                 </RadioHintText>
               </div>

@@ -31,12 +31,20 @@ import { Skeleton } from "../core/skeleton";
  * </Table>
  */
 
-const Table: ForwardRefExoticComponent<ComponentProps<"table">> = forwardRef(
-  ({ className, ...props }, ref) => (
-    <div className={clx("relative w-full overflow-auto", className)}>
+interface TableProps extends ComponentProps<"table"> {
+  /** Classes for the scrolling wrapper around the table (height, max width). `className` goes to the `<table>`. */
+  containerClassName?: string;
+}
+
+const Table: ForwardRefExoticComponent<TableProps> = forwardRef(
+  ({ className, containerClassName, ...props }, ref) => (
+    <div className={clx("relative w-full overflow-auto", containerClassName)}>
       <table
         ref={ref}
-        className="font-body w-full caption-bottom border-separate border-spacing-0"
+        className={clx(
+          "font-body w-full caption-bottom border-separate border-spacing-0",
+          className,
+        )}
         {...props}
       />
     </div>
@@ -145,13 +153,18 @@ const TableCaption: ForwardRefExoticComponent<ComponentProps<"caption">> =
 TableCaption.displayName = "TableCaption";
 
 /** A help icon beside a header label; its content shows in a tooltip. */
-const TableTooltip: ForwardRefExoticComponent<ComponentProps<typeof Tooltip>> =
+const TableTooltip: ForwardRefExoticComponent<
+  ComponentProps<typeof Tooltip> & {
+    /** Accessible name of the help icon. @default "More information" */
+    label?: string;
+  }
+> =
   // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-  forwardRef(({ children, ...props }, ref) => {
+  forwardRef(({ children, label = "More information", ...props }, ref) => {
     return (
       <Tooltip {...props}>
         <TooltipTrigger
-          aria-label="More information"
+          aria-label={label}
           className="text-txt-black-500 hover:text-txt-black-900 focus-ring inline-flex cursor-help rounded-full transition-colors"
         >
           <QuestionCircleIcon className="size-4" aria-hidden />

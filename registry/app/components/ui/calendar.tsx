@@ -36,6 +36,10 @@ type CalendarProps = DayPickerProps & {
   minYear?: number;
   yearOrder?: "asc" | "desc";
   daterange?: "from" | "to";
+  /** Accessible name of the month grid's next-year button. Defaults to English, or Bahasa Melayu with a `ms` locale. */
+  nextYearLabel?: string;
+  /** Accessible name of the month grid's previous-year button. */
+  previousYearLabel?: string;
 };
 
 /**
@@ -113,8 +117,14 @@ const Calendar: FC<CalendarProps> = ({
   minYear = 1900,
   showOutsideDays = true,
   yearOrder = "asc",
+  nextYearLabel,
+  previousYearLabel,
   ...props
 }) => {
+  const malay = locale?.code?.startsWith("ms") ?? false;
+  const nextYear = nextYearLabel ?? (malay ? "Tahun seterusnya" : "Next year");
+  const previousYear =
+    previousYearLabel ?? (malay ? "Tahun sebelumnya" : "Previous year");
   const [view, setView] = useState<"day" | "month" | "year">("day");
 
   const today = new Date();
@@ -397,7 +407,7 @@ const Calendar: FC<CalendarProps> = ({
             <button
               type="button"
               {...props}
-              aria-label="Go to the Next Year"
+              aria-label={nextYear}
               onClick={() => {
                 const date = addYears(month, 1);
                 setMonth(date);
@@ -425,7 +435,7 @@ const Calendar: FC<CalendarProps> = ({
             <button
               type="button"
               {...props}
-              aria-label="Go to the Previous Year"
+              aria-label={previousYear}
               onClick={() => {
                 const date = subYears(month, 1);
                 setMonth(date);

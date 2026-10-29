@@ -58,10 +58,11 @@ Radio.displayName = "Radio";
 
 const RadioItem: FunctionComponent<
   ComponentProps<"div"> & { disabled?: boolean }
-> = ({ className, children, ...props }) => {
+> = ({ className, children, disabled: itemDisabled, ...props }) => {
   const { disabled } = useContext(RadioContext);
   return (
-    <RadioItemContext.Provider value={{ disabled: props.disabled ?? disabled }}>
+    // `disabled` reaches the RadioButton through context; a div has no disabled state
+    <RadioItemContext.Provider value={{ disabled: itemDisabled ?? disabled }}>
       <div className={clx("flex items-center gap-3", className)} {...props}>
         {children}
       </div>
@@ -139,11 +140,11 @@ const RadioHintText = ({
   className,
   children,
   ...props
-}: ComponentProps<"label">) => {
+}: ComponentProps<"p">) => {
   const { size } = useContext(RadioContext);
   const { disabled } = useContext(RadioItemContext);
   return (
-    <label
+    <p
       className={clx(
         // Hints are Ink Secondary (DESIGN.md: never lighter for text the user reads)
         "text-txt-black-700",
@@ -156,7 +157,7 @@ const RadioHintText = ({
       {...props}
     >
       {children}
-    </label>
+    </p>
   );
 };
 RadioHintText.displayName = "RadioHintText";

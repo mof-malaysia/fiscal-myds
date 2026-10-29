@@ -105,7 +105,7 @@ export function ChooseNewPassword({
 ## Notes
 
 - Neither form validates: they hold the values and hand them to `onSubmit`. The app checks them and passes `error` (forgot) or `errors` (reset) back; each shows under its field and in an `ErrorSummary` that takes focus.
-- The default sent message says the link "works for 30 minutes". Change `labels.sentBody` (it replaces `{email}`) if yours lasts a different time.
+- Pass `linkExpiresInMinutes` to add how long the link works to the sent message ("The link works for 30 minutes."); without it, no duration is stated.
 - The resend button waits `resendSeconds` (60 by default) before it can be pressed, and again after each press. "Use a different email address" shows only with `onChangeEmail`.
 - `ResetPasswordForm` ticks off the password rules as the user types: at least 8 characters, a letter and a number by default. Pass `passwordRules` (each `{ id, label, test }`) to match your policy, and check the same rules on the server.
 - Both forms render no heading of their own except "Check your email" (an `h2`) in the sent state; the page's `h1` comes from `AuthLayout`.

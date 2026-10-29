@@ -54,6 +54,8 @@ interface ForgotPasswordFormLabels {
   sentTitle: string;
   /** `{email}` is replaced with the address. */
   sentBody: string;
+  /** Added after `sentBody` when `linkExpiresInMinutes` is set; `{minutes}` is replaced. */
+  linkExpiry: string;
   sentHint: string;
   resend: string;
   resendWaiting: string;
@@ -68,7 +70,8 @@ const FORGOT_LABELS: ForgotPasswordFormLabels = {
   pending: "Sending…",
   sentTitle: "Check your email",
   sentBody:
-    "If {email} belongs to an account, we've sent a link to reset the password. The link works for 30 minutes.",
+    "If {email} belongs to an account, we've sent a link to reset the password.",
+  linkExpiry: "The link works for {minutes} minutes.",
   sentHint: "Not there? Check your spam or junk folder.",
   resend: "Send the link again",
   resendWaiting: "Send again in {seconds}s",
@@ -86,6 +89,8 @@ interface ForgotPasswordFormProps
   onChangeEmail?: () => void;
   /** Seconds before the link can be sent again. @default 60 */
   resendSeconds?: number;
+  /** How long the reset link works, stated in the sent message when set. */
+  linkExpiresInMinutes?: number;
   error?: ReactNode;
   pending?: boolean;
   defaultEmail?: string;
@@ -100,6 +105,7 @@ const ForgotPasswordForm = forwardRef<HTMLDivElement, ForgotPasswordFormProps>(
       onResend,
       onChangeEmail,
       resendSeconds = 60,
+      linkExpiresInMinutes,
       error,
       pending = false,
       defaultEmail = "",
@@ -139,6 +145,8 @@ const ForgotPasswordForm = forwardRef<HTMLDivElement, ForgotPasswordFormProps>(
               {sentTo}
             </span>
             {after}
+            {linkExpiresInMinutes !== undefined &&
+              ` ${labels.linkExpiry.replace("{minutes}", String(linkExpiresInMinutes))}`}
           </p>
           <p className="text-content text-txt-black-700">{labels.sentHint}</p>
           <div className="flex flex-wrap gap-2">

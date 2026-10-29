@@ -175,5 +175,5 @@ export function AgencyNavbar() {
 - `NavbarLogo` needs `src` and `alt`, and `href` defaults to `"/"`. A string title longer than `maxChars` (19 by default) is set smaller over two lines.
 - The bar is sticky at the top of the page. Put the `Skiplink` and `Masthead` above it, and keep only a few actions in `NavbarAction`; hide the less important ones on small screens with `className="hidden sm:block"` on a wrapper.
 - Props you pass to `NavbarAction` itself (`className`, `variant`, `aria-label`, `onClick`) go to the menu button, not to the wrapper around your actions. The button only shows below `xl`.
-- The menu button's accessible name is "Open navigation menu" or "Close navigation menu" in English; there is no `labels` prop. Passing `aria-label` to `NavbarAction` replaces it with one fixed name for both states.
+- The menu button is named "Menu" (`menuLabel` translates it) and says whether the menu is open with `aria-expanded`.
 - `NavbarMenuFeature` is text on a Well, never an image. Use one per dropdown at most.

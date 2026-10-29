@@ -26,11 +26,11 @@ import {
  *
  * <Radio>
  *   <RadioItem>
- *     <RadioButton value="apple" id="apple" />
+ *     <RadioButton value="apple" id="apple" aria-describedby="apple-hint" />
  *     <RadioLabel htmlFor="apple">Apple</RadioLabel>
  *   </RadioItem>
  *   <RadioItem>
- *     <RadioButton value="banana" id="banana" />
+ *     <RadioButton value="banana" id="banana" aria-describedby="banana-hint" />
  *     <div>
  *       <RadioLabel htmlFor="banana">Banana</RadioLabel>
  *       <RadioHelpText htmlFor="banana">Comes pre-packaged.</RadioHelpText>
@@ -46,37 +46,49 @@ const meta = {
     return (
       <Radio {...props}>
         <RadioItem>
-          <RadioButton value="email" id="email" />
+          <RadioButton value="email" id="email" aria-describedby="email-hint" />
           <div style={{ display: "grid" }}>
             <RadioLabel htmlFor="email">Email</RadioLabel>
-            <RadioHintText htmlFor="email">
+            <RadioHintText id="email-hint">
               We will send notifications to your registered email address.
             </RadioHintText>
           </div>
         </RadioItem>
         <RadioItem>
-          <RadioButton value="phone_call" id="phone_call" />
+          <RadioButton
+            value="phone_call"
+            id="phone_call"
+            aria-describedby="phone_call-hint"
+          />
           <div style={{ display: "grid" }}>
             <RadioLabel htmlFor="phone_call">Phone Call</RadioLabel>
-            <RadioHintText htmlFor="phone_call">
+            <RadioHintText id="phone_call-hint">
               Our representative will call you on your provided phone number.
             </RadioHintText>
           </div>
         </RadioItem>
         <RadioItem>
-          <RadioButton value="text_message" id="text_message" />
+          <RadioButton
+            value="text_message"
+            id="text_message"
+            aria-describedby="text_message-hint"
+          />
           <div style={{ display: "grid" }}>
             <RadioLabel htmlFor="text_message">Text Message</RadioLabel>
-            <RadioHintText htmlFor="text_message">
+            <RadioHintText id="text_message-hint">
               You will receive SMS updates on your mobile phone.
             </RadioHintText>
           </div>
         </RadioItem>
         <RadioItem disabled>
-          <RadioButton value="postal_mail" id="postal_mail" />
+          <RadioButton
+            value="postal_mail"
+            id="postal_mail"
+            aria-describedby="postal_mail-hint"
+          />
           <div style={{ display: "grid" }}>
             <RadioLabel htmlFor="postal_mail">Postal Mail</RadioLabel>
-            <RadioHintText htmlFor="postal_mail">
+            <RadioHintText id="postal_mail-hint">
               Not available at the moment.
             </RadioHintText>
           </div>
@@ -157,10 +169,14 @@ export const Sizes: Story = {
           defaultValue="yes"
         >
           <RadioItem>
-            <RadioButton value="yes" id={`${size}-yes`} />
+            <RadioButton
+              value="yes"
+              id={`${size}-yes`}
+              aria-describedby={`${size}-yes-hint`}
+            />
             <div className="grid">
               <RadioLabel htmlFor={`${size}-yes`}>Yes ({size})</RadioLabel>
-              <RadioHintText htmlFor={`${size}-yes`}>
+              <RadioHintText id={`${size}-yes-hint`}>
                 We'll use the address on your MyKad.
               </RadioHintText>
             </div>

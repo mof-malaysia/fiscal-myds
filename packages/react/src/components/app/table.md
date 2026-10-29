@@ -136,8 +136,8 @@ export function RecentPayments({
 
 - No outer border or card: put the table straight on the page or panel.
 - Set `numeric` on both the `TableHead` and the `TableCell`s of every amount column: it right-aligns in tabular figures.
-- `className` on `Table` goes to the scrolling wrapper `<div>`, not the `<table>`; other props go to the `<table>`. The wrapper scrolls sideways when the table is too wide, and `TableHeader` sticks to its top.
+- `className` and other props go to the `<table>`; `containerClassName` goes to the scrolling wrapper `<div>` (for a height or width limit). The wrapper scrolls sideways when the table is too wide, and `TableHeader` sticks to its top.
 - Row height follows the density: 48px comfortable, 40px compact. Rows don't highlight on hover; add `hover:bg-bg-washed` to body rows yourself if they are clickable. `data-selected` on a `TableRow` gives it the Blue Wash.
 - `TableEmpty` is a cell: put it inside a `TableRow`. It spans every column and shows "No data available" when it has no children; write a message that says why it is empty.
-- `TableTooltip`'s icon button is named "More information" in English; there is no prop to translate it.
+- `TableTooltip`'s icon button is named "More information"; pass `label` to translate it. In `DataTable`, use `labels.columnHelp`.
 - For status, use a wash `Tag` with text in the cell, never colour alone.

@@ -30,7 +30,10 @@ interface ThemeSwitch {
   as?: "toggle" | "select";
   themes?: Array<Theme>;
   onChange?: (value: string) => void;
-  /** Accessible name prefix for the select trigger, e.g. "Theme: Light". */
+  /**
+   * Names the control, with the current theme after it: "Theme: Light".
+   * @default "Theme"
+   */
   label?: string;
 }
 
@@ -98,7 +101,7 @@ const ThemeSwitch: FunctionComponent<ThemeSwitch> = ({
         className="aspect-square flex-shrink-0 rounded-md"
         onClick={() => handleChange()}
         size="small"
-        aria-label={themes[currentIndex]?.label}
+        aria-label={`${label}: ${themes[currentIndex]?.label ?? ""}`}
         iconOnly
       >
         {displayIcon(themes[currentIndex]?.value) ||

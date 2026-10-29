@@ -14,26 +14,57 @@ import { ChevronRightIcon } from "@/components/ui/icons/chevron-right";
 import { useRender } from "@base-ui/react/use-render";
 import { usePagination } from "@/lib/ftds/hooks/use-pagination";
 
-/**
- * Props for Pagination component.
- * @typedef PaginatorProps
- * @property {number} page - The current page number.
- * @property {number} limit - The number of items per page
- * @property {number} count - The total number of items
- * @property {"basic" | "basic-alternate" | "number"}  type - The variation of the pagination
- * @property {function} onPageChange - function which tracks the page
- */
+interface PaginationLabels {
+  /** Name of the navigation landmark. */
+  navigation: string;
+  /** Visible text of the previous and next buttons in the simple and full layouts. */
+  previous: string;
+  next: string;
+  /** Accessible names of the icon-only previous and next buttons. */
+  previousPage: string;
+  nextPage: string;
+  /** Accessible name of a page number; `{page}` is replaced. */
+  page: string;
+  /** The "Page 2 of 10" text; `{page}` and `{total}` are replaced. */
+  pageOf: string;
+  /** Read for the ellipsis between page numbers. */
+  morePages: string;
+}
+
+const DEFAULT_LABELS: PaginationLabels = {
+  navigation: "Pagination",
+  previous: "Previous",
+  next: "Next",
+  previousPage: "Previous page",
+  nextPage: "Next page",
+  page: "Page {page}",
+  pageOf: "Page {page} of {total}",
+  morePages: "More pages",
+};
+
 export interface PaginatorProps {
+  /** The current page, from 1. */
   page: number;
+  /** Items per page. */
   limit: number;
+  /** Total number of items. */
   count: number;
   onPageChange: (page: number) => void;
-  type: "simple" | "full" | "default";
+  /**
+   * `default`: previous, page numbers and next. `simple`: previous, "Page 2
+   * of 10" and next. `full`: "Page 2 of 10" on the left, previous and next on
+   * the right.
+   * @default "default"
+   */
+  type?: "simple" | "full" | "default";
+  /** Built-in text, for translation. Pass only the labels you change. */
+  labels?: Partial<PaginationLabels>;
 }
 
 const PaginationContext = createContext<
-  PaginatorProps & {
+  Omit<PaginatorProps, "labels"> & {
     totalPages: number;
+    labels: PaginationLabels;
   }
 >({
   page: 1,
@@ -41,32 +72,42 @@ const PaginationContext = createContext<
   limit: 6,
   totalPages: 0,
   type: "default",
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onPageChange: (page) => {},
+  labels: DEFAULT_LABELS,
+  onPageChange: () => {},
 });
 
 interface PaginationProps extends ComponentProps<"nav">, PaginatorProps {}
 
 /**
- * Component that allows users to navigate through a large set of content divided into discrete pages.
- * @component
+ * Pagination moves through a list split into pages. Compose the parts
+ * yourself, or use `AutoPagination` for the standard layouts.
  * @example
- * <Pagination propName="value" />
+ * <AutoPagination page={page} limit={20} count={total} onPageChange={setPage} />
  */
 const Pagination: ForwardRefExoticComponent<PaginationProps> = forwardRef(
   (
-    { count, limit, page, children, className, type, onPageChange, ...props },
+    {
+      count,
+      limit,
+      page,
+      children,
+      className,
+      type = "default",
+      onPageChange,
+      labels: labelsProp,
+      ...props
+    },
     ref,
   ) => {
     const totalPages = Math.ceil(count / limit);
+    const labels = { ...DEFAULT_LABELS, ...labelsProp };
     return (
       <PaginationContext.Provider
-        value={{ count, limit, page, totalPages, type, onPageChange }}
+        value={{ count, limit, page, totalPages, type, onPageChange, labels }}
       >
         <nav
           ref={ref}
-          role="navigation"
-          aria-label="pagination"
+          aria-label={labels.navigation}
           className={clx("text-body-md flex w-full justify-center", className)}
           {...props}
         >
@@ -98,7 +139,7 @@ PaginationItem.displayName = "PaginationItem";
 const PaginationPrevious: ForwardRefExoticComponent<
   useRender.ComponentProps<"button">
 > = forwardRef(({ render, children, ...props }, ref) => {
-  const { page, onPageChange } = useContext(PaginationContext);
+  const { page, onPageChange, labels } = useContext(PaginationContext);
   const disabled = page <= 1;
   const handlePreviousPage = () => {
     if (page > 1) {
@@ -123,8 +164,9 @@ const PaginationPrevious: ForwardRefExoticComponent<
       disabled={disabled}
       className={clx(disabled && "shadow-transparent")}
       onClick={handlePreviousPage}
+      // Visible text names the button; an icon-only one needs a name
+      aria-label={children ? undefined : labels.previousPage}
       {...props}
-      aria-label="previous page"
     >
       <ButtonIcon>
         <ChevronLeftIcon />
@@ -139,8 +181,9 @@ PaginationPrevious.displayName = "PaginationPrevious";
 const PaginationNext: ForwardRefExoticComponent<
   useRender.ComponentProps<"button">
 > = forwardRef(({ render, children, ...props }, ref) => {
-  const { page, totalPages, onPageChange } = useContext(PaginationContext);
-  const disabled = page === totalPages;
+  const { page, totalPages, onPageChange, labels } =
+    useContext(PaginationContext);
+  const disabled = page >= totalPages;
   const handleNextPage = () => {
     if (page < totalPages) {
       onPageChange(page + 1);
@@ -163,8 +206,8 @@ const PaginationNext: ForwardRefExoticComponent<
       disabled={disabled}
       className={clx(disabled && "shadow-transparent")}
       onClick={handleNextPage}
+      aria-label={children ? undefined : labels.nextPage}
       {...props}
-      aria-label="next page"
     >
       {children}
       <ButtonIcon>
@@ -179,7 +222,7 @@ PaginationNext.displayName = "PaginationNext";
 const PaginationNumber: ForwardRefExoticComponent<
   ComponentProps<"button"> & { number: number }
 > = forwardRef(({ number, ...props }, ref) => {
-  const { page, onPageChange } = useContext(PaginationContext);
+  const { page, onPageChange, labels } = useContext(PaginationContext);
   const isActive = page === number;
   const handleClickPage = () => {
     onPageChange(number);
@@ -194,8 +237,9 @@ const PaginationNumber: ForwardRefExoticComponent<
         isActive && "bg-bg-washed-active",
         "control-square-md w-(--ctl-h-md) items-center justify-center px-0",
       )}
+      aria-label={labels.page.replace("{page}", String(number))}
+      aria-current={isActive ? "page" : undefined}
       {...props}
-      aria-label={`page ${number}`}
     >
       {number}
     </Button>
@@ -207,10 +251,13 @@ PaginationNumber.displayName = "PaginationNumber";
 const PaginationLabel: ForwardRefExoticComponent<
   ComponentProps<"p"> & { content?: ReactNode }
 > = forwardRef(({ className, content, ...props }, ref) => {
-  const { page, totalPages, type } = useContext(PaginationContext);
+  const { page, totalPages, labels } = useContext(PaginationContext);
   return (
     <p ref={ref} className={clx("text-txt-black-700", className)} {...props}>
-      {content ? content : type === "full" && `Page ${page} of ${totalPages}`}
+      {content ??
+        labels.pageOf
+          .replace("{page}", String(page))
+          .replace("{total}", String(Math.max(totalPages, 1)))}
     </p>
   );
 });
@@ -220,16 +267,18 @@ PaginationLabel.displayName = "PaginationLabel";
 const PaginationEllipsis = ({
   className,
   ...props
-}: ComponentProps<"span">) => (
-  <span
-    aria-hidden
-    className={clx("flex size-8 items-center justify-center", className)}
-    {...props}
-  >
-    <EllipsisIcon className="text-txt-black-700 size-4" />
-    <span className="sr-only">More pages</span>
-  </span>
-);
+}: ComponentProps<"span">) => {
+  const { labels } = useContext(PaginationContext);
+  return (
+    <span
+      className={clx("flex size-8 items-center justify-center", className)}
+      {...props}
+    >
+      <EllipsisIcon className="text-txt-black-700 size-4" aria-hidden />
+      <span className="sr-only">{labels.morePages}</span>
+    </span>
+  );
+};
 PaginationEllipsis.displayName = "PaginationEllipsis";
 
 interface AutoPaginationProps extends ComponentProps<"nav">, PaginatorProps {
@@ -245,6 +294,7 @@ const AutoPagination: ForwardRefExoticComponent<AutoPaginationProps> =
       { type = "default", maxDisplay = 4, next, previous, fullText, ...props },
       ref,
     ) => {
+      const labels = { ...DEFAULT_LABELS, ...props.labels };
       const { visiblePages } = usePagination({
         count: props.count,
         limit: props.limit,
@@ -257,13 +307,15 @@ const AutoPagination: ForwardRefExoticComponent<AutoPaginationProps> =
           <Pagination ref={ref} type={type} {...props}>
             <PaginationContent>
               <PaginationItem>
-                {previous || <PaginationPrevious>Previous</PaginationPrevious>}
+                {previous || (
+                  <PaginationPrevious>{labels.previous}</PaginationPrevious>
+                )}
               </PaginationItem>
               <PaginationItem>
                 <PaginationLabel />
               </PaginationItem>
               <PaginationItem>
-                {next || <PaginationNext>Next</PaginationNext>}
+                {next || <PaginationNext>{labels.next}</PaginationNext>}
               </PaginationItem>
             </PaginationContent>
           </Pagination>
@@ -272,16 +324,18 @@ const AutoPagination: ForwardRefExoticComponent<AutoPaginationProps> =
       if (type === "full") {
         return (
           <Pagination ref={ref} type={type} {...props}>
-            <PaginationContent className="w-[512px]">
+            <PaginationContent className="w-full max-w-lg">
               <PaginationItem className="flex-1">
                 <PaginationLabel content={fullText} />
               </PaginationItem>
               <PaginationItem>
-                {previous || <PaginationPrevious>Previous</PaginationPrevious>}
+                {previous || (
+                  <PaginationPrevious>{labels.previous}</PaginationPrevious>
+                )}
               </PaginationItem>
 
               <PaginationItem>
-                {next || <PaginationNext>Next</PaginationNext>}
+                {next || <PaginationNext>{labels.next}</PaginationNext>}
               </PaginationItem>
             </PaginationContent>
           </Pagination>
@@ -316,10 +370,11 @@ export {
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
+  PaginationLabel,
   PaginationNext,
   PaginationNumber,
   PaginationPrevious,
   AutoPagination,
 };
 
-export type { AutoPaginationProps };
+export type { AutoPaginationProps, PaginationLabels };

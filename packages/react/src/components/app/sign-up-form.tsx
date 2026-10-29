@@ -354,7 +354,7 @@ const SignUpForm = forwardRef<HTMLFormElement, SignUpFormProps>(
           textField(
             "phone",
             <>
-              {labels.phone}
+              {labels.phone}{" "}
               <span className="text-txt-black-700 font-normal">
                 {labels.optional}
               </span>

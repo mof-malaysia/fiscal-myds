@@ -742,12 +742,15 @@ interface NavbarActionProps extends ComponentProps<typeof Button> {
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
+  /** Accessible name of the menu button; `aria-expanded` says whether it is open. @default "Menu" */
+  menuLabel?: string;
 }
 
 const NavbarAction: FunctionComponent<NavbarActionProps> = ({
   children,
   className,
   onClick,
+  menuLabel = "Menu",
   ...props
 }) => {
   const { show, setShow } = useContext(NavbarContext);
@@ -763,10 +766,11 @@ const NavbarAction: FunctionComponent<NavbarActionProps> = ({
         iconOnly
         className={clx("xl:hidden", className)}
         onClick={handleToggle}
-        aria-label={`${show ? "Close" : "Open"} navigation menu`}
+        aria-label={menuLabel}
+        aria-expanded={show}
         {...props}
       >
-        {show ? <CrossIcon /> : <HamburgerMenuIcon />}
+        {show ? <CrossIcon aria-hidden /> : <HamburgerMenuIcon aria-hidden />}
       </Button>
     </div>
   );
