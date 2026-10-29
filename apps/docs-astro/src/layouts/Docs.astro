@@ -2,11 +2,11 @@
 import type { MarkdownHeading } from "astro";
 import Base from "./Base.astro";
 import Sidebar from "~/components/Sidebar.astro";
+import Brand from "~/components/Brand.astro";
 import ThemeToggle from "~/components/ThemeToggle.astro";
 import Toc from "~/components/Toc.astro";
 import type { Locale } from "~/content.config";
 import { getSidebar, type NavLink, type NavSection } from "~/lib/nav";
-import { href } from "~/lib/url";
 
 interface Props {
   title: string;
@@ -51,12 +51,7 @@ const next: NavLink | undefined = links[index + 1];
 
   <header class="border-otl-gray-200 bg-bg-gray-50/90 sticky top-0 z-30 border-b backdrop-blur-sm">
     <div class="flex h-14 items-center gap-6 px-4 md:px-6">
-      <a href={href("/", locale)} class="focus-ring flex items-center gap-2 rounded-md">
-        <span class="bg-bg-primary-600 text-txt-white grid size-7 place-items-center rounded-md text-xs font-semibold">
-          M
-        </span>
-        <span class="text-txt-black-900 font-semibold">FTDS</span>
-      </a>
+      <Brand locale={locale} />
 
       <nav aria-label="Sections" class="hidden h-full items-stretch gap-5 md:flex">
         {

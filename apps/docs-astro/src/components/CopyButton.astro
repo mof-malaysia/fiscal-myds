@@ -1,13 +1,17 @@
 ---
 interface Props {
   class?: string;
+  /** What is copied, for the accessible name. */
+  label?: string;
 }
+
+const { label = "Copy code" } = Astro.props;
 ---
 
 <button
   type="button"
   data-copy
-  aria-label="Copy code"
+  aria-label={label}
   class:list={[
     "group/copy focus-ring text-txt-black-700 hover:bg-bg-raised hover:text-txt-black-900 grid size-8 place-items-center rounded-md transition-colors",
     Astro.props.class,

@@ -1,0 +1,104 @@
+---
+import Base from "~/layouts/Base.astro";
+import CopyButton from "~/components/CopyButton.astro";
+import Brand from "~/components/Brand.astro";
+import ThemeToggle from "~/components/ThemeToggle.astro";
+
+/**
+ * How to add the FTDS MCP server (apps/mcp) to Claude or ChatGPT, nothing
+ * else. Menu names follow each product's help pages as of October 2026.
+ */
+
+const MCP_URL =
+  import.meta.env.PUBLIC_FTDS_MCP_URL || "https://ftds-mcp.irfan-ismail96.workers.dev/mcp";
+
+const PROMPT =
+  "Mock up an officer dashboard for reviewing grant applications, with status filters and a table.";
+
+const apps = [
+  {
+    name: "Claude",
+    steps: [
+      "Open <b>Customize → Connectors</b>.",
+      "Click <b>+ Add</b>, then <b>Add custom connector</b>.",
+      "Name it <b>FTDS</b>, paste the URL and click <b>Continue</b>.",
+      "Choose <b>No sign in</b>, then click <b>Add</b>.",
+      "In a chat, click <b>+ → Connectors</b> and turn on <b>FTDS</b>.",
+    ],
+    note: "Works on every plan; Free allows one custom connector. On Team and Enterprise, an owner adds it under Organization settings → Connectors first.",
+  },
+  {
+    name: "ChatGPT",
+    steps: [
+      "Open <b>Settings → Apps → Advanced settings</b> and turn on <b>Developer mode</b>.",
+      "Click <b>Create app</b>.",
+      "Name it <b>FTDS</b>, paste the URL and set Authentication to <b>No authentication</b>.",
+      "Confirm you trust the app, then click <b>Create</b>.",
+      "In a chat, click <b>+ → Developer mode</b> and turn on <b>FTDS</b>.",
+    ],
+    note: "Needs Plus, Pro, Business, Enterprise or Edu, on chatgpt.com. On Business and Enterprise, an admin may need to allow developer mode first.",
+  },
+];
+---
+
+<Base
+  title="Use FTDS in Claude or ChatGPT"
+  description="Add the FTDS MCP server to Claude or ChatGPT and mock up screens with FTDS components."
+>
+  <header class="flex h-14 items-center justify-between px-4 md:px-6">
+    <Brand />
+    <ThemeToggle />
+  </header>
+
+  <main class="text-txt-black-900 mx-auto max-w-4xl px-4 pt-8 pb-20 md:pt-16">
+    <h1 class="text-headline font-semibold">Use FTDS in Claude or ChatGPT</h1>
+    <p class="text-txt-black-700 mt-3 max-w-2xl text-lg">
+      Describe a screen and your assistant builds it with FTDS components, right in the chat. Share what it
+      makes as a link.
+    </p>
+
+    <section class="mt-10" aria-labelledby="url">
+      <h2 id="url" class="font-semibold">1. Copy this URL</h2>
+      <div class="code-block bg-bg-white mt-3 flex items-center gap-2 rounded-lg py-2 pr-2 pl-4">
+        <pre class="min-w-0 flex-1 font-mono text-sm break-all whitespace-pre-wrap">{MCP_URL}</pre>
+        <CopyButton label="Copy URL" />
+      </div>
+    </section>
+
+    <section class="mt-10" aria-labelledby="add">
+      <h2 id="add" class="font-semibold">2. Add it to your assistant</h2>
+      <div class="mt-3 grid gap-4 md:grid-cols-2">
+        {
+          apps.map((app) => (
+            <div class="bg-bg-white rounded-lg p-6">
+              <h3 class="text-title font-semibold">{app.name}</h3>
+              <ol class="mt-4 space-y-3">
+                {app.steps.map((step, i) => (
+                  <li class="flex gap-3">
+                    <span class="bg-bg-washed text-txt-black-700 grid size-6 shrink-0 place-items-center rounded-full text-xs font-medium tabular-nums">
+                      {i + 1}
+                    </span>
+                    <span class="[&_b]:font-medium" set:html={step} />
+                  </li>
+                ))}
+              </ol>
+              <p class="text-txt-black-700 mt-5 text-sm">{app.note}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-10" aria-labelledby="ask">
+      <h2 id="ask" class="font-semibold">3. Ask for a screen</h2>
+      <div class="code-block bg-bg-white mt-3 flex items-center gap-2 rounded-lg py-2 pr-2 pl-4">
+        <pre class="min-w-0 flex-1 font-sans text-sm whitespace-pre-wrap">{PROMPT}</pre>
+        <CopyButton label="Copy prompt" />
+      </div>
+      <p class="text-txt-black-700 mt-3 text-sm">
+        The screen appears in the chat. Ask for changes in plain words, and use the link button above the screen to
+        share it.
+      </p>
+    </section>
+  </main>
+</Base>
