@@ -1,6 +1,6 @@
 {
   "name": "@mof-malaysia/ftds-style",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "FTDS styles source for the shadcn registry. Not published to npm.",
   "scripts": {

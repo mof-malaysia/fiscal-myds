@@ -214,7 +214,7 @@ Stop here if the view can't render reliably; fall back to share links only.
 
 - **Old share links after a release**: links carry the FTDS version they were
   made with, and the share page says when it renders with a newer one. Keep
-  per-release previews (`/s/v2.1.0`) so old links render exactly, or accept
+  per-release previews (`/s/v0.1.0`) so old links render exactly, or accept
   the notice.
 - **Domain**: `ftds-mcp.<account>.workers.dev` or a custom domain.
 - **Which Cloudflare account** owns it, and who holds the deploy token.

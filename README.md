@@ -19,16 +19,16 @@ Every item name is unique across the tiers, so you install `button` or `icon-sea
 
 FTDS is distributed as a shadcn registry: the CLI copies the source into your project. No npm package to install. Components are built on [Base UI](https://base-ui.com), so use shadcn's default Base UI setup.
 
-The whole repository has one version. Each release is a git tag (`v2.1.0`) and a matching folder on GitHub Pages; see [Releases](https://github.com/mof-malaysia/ftds/releases).
+The whole repository has one version. Each release is a git tag (`v0.1.0`) and a matching folder on GitHub Pages; see [Releases](https://github.com/mof-malaysia/ftds/releases).
 
 ### Option A: the `@ftds` namespace (recommended)
 
-Add the namespace to `components.json` once. `v2` follows the latest 2.x release; use an exact version (`v2.1.0`) to pin, or `latest`.
+Add the namespace to `components.json` once. `v0` follows the latest 0.x release, which can include breaking changes while FTDS is below 1.0, so pin an exact version (`v0.1.0`) for anything that ships; `latest` follows every release.
 
 ```json
 {
   "registries": {
-    "@ftds": "https://mof-malaysia.github.io/ftds/r/v2/{name}.json"
+    "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json"
   }
 }
 ```
@@ -55,11 +55,11 @@ Everything in one install comes from the same version: dependencies point inside
 No configuration. Always pin a release tag; without one you get unreleased work from `main`.
 
 ```bash
-npx shadcn@latest add mof-malaysia/ftds/ftds-init#v2.1.0
-npx shadcn@latest add mof-malaysia/ftds/button#v2.1.0 --overwrite
+npx shadcn@latest add mof-malaysia/ftds/ftds-init#v0.1.0
+npx shadcn@latest add mof-malaysia/ftds/button#v0.1.0 --overwrite
 ```
 
-Each tag pins its dependencies to the same tag, so `button#v2.1.0` brings `utils#v2.1.0`. The CLI reads every file through the GitHub API, which allows 60 unauthenticated requests an hour per IP address; a team behind one office address runs out quickly. Sign in with `gh auth login` (or set `GH_TOKEN`), or use Option A.
+Each tag pins its dependencies to the same tag, so `button#v0.1.0` brings `utils#v0.1.0`. The CLI reads every file through the GitHub API, which allows 60 unauthenticated requests an hour per IP address; a team behind one office address runs out quickly. Sign in with `gh auth login` (or set `GH_TOKEN`), or use Option A.
 
 ### For coding agents
 
@@ -88,7 +88,7 @@ npx shadcn@latest mcp init --client claude   # or cursor, vscode, codex, opencod
 
 `ftds-init` installs `tw-animate-css` for the component animations; import it before `ftds.css`.
 
-Browse the item names in [`registry.json`](./registry.json) and the files it includes, or in a release's catalog (`https://mof-malaysia.github.io/ftds/r/v2/registry.json`).
+Browse the item names in [`registry.json`](./registry.json) and the files it includes, or in a release's catalog (`https://mof-malaysia.github.io/ftds/r/v0/registry.json`).
 
 ### Style installation options
 

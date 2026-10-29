@@ -16,12 +16,12 @@ Keep the default `base` component library (Base UI). FTDS components don't work 
 
 ## 2. Add the `@ftds` namespace
 
-Add the registry to `components.json`. The URL picks the version: `v2` follows the newest 2.x release (recommended), `v2.1.0` pins an exact release, `latest` follows every release including majors.
+Add the registry to `components.json`. The URL picks the version: `v0.1.0` pins an exact release (recommended while FTDS is below 1.0, since 0.x releases can break), `v0` follows the newest 0.x release, `latest` follows every release including majors.
 
 ```json
 {
   "registries": {
-    "@ftds": "https://mof-malaysia.github.io/ftds/r/v2/{name}.json"
+    "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json"
   }
 }
 ```
@@ -35,7 +35,7 @@ npx shadcn@latest add @ftds/button @ftds/field @ftds/input --overwrite
 
 `--overwrite` replaces files shadcn's `init` created with the same name (such as `button.tsx`).
 
-Installing straight from GitHub also works and needs no namespace, but always pin a release tag, and sign in with `gh auth login` because GitHub limits anonymous API requests to 60 an hour: `npx shadcn@latest add mof-malaysia/ftds/button#v2.1.0`.
+Installing straight from GitHub also works and needs no namespace, but always pin a release tag, and sign in with `gh auth login` because GitHub limits anonymous API requests to 60 an hour: `npx shadcn@latest add mof-malaysia/ftds/button#v0.1.0`.
 
 ## 3. Import the styles
 

@@ -67,7 +67,7 @@ The flat `registry/ui` registry is gone. Re-add components from their tier's URL
 
 ### Versions
 
-The whole repository has one version. A release is a git tag (`v2.1.0`) and a folder on GitHub Pages (`r/v2.1.0/`), plus two moving channels: `r/v2/` (newest 2.x) and `r/latest/`. Within one install, every dependency comes from the same version. See [DEPLOYMENT.md](./DEPLOYMENT.md) for how releases are cut.
+The whole repository has one version. A release is a git tag (`v0.1.0`) and a folder on GitHub Pages (`r/v0.1.0/`), plus two moving channels: `r/v0/` (newest 0.x) and `r/latest/`. Within one install, every dependency comes from the same version. See [DEPLOYMENT.md](./DEPLOYMENT.md) for how releases are cut.
 
 ### For Users (Installing Components)
 
@@ -81,12 +81,12 @@ Keep the default Base UI component library: FTDS components are built on Base UI
 
 #### 2. Choose where to install from
 
-**The `@ftds` namespace (recommended).** Add it to `components.json`, choosing a channel (`v2`, `latest`) or an exact version (`v2.1.0`):
+**The `@ftds` namespace (recommended).** Add it to `components.json`, choosing a channel (`v0`, `latest`) or an exact version (`v0.1.0`):
 
 ```json
 {
   "registries": {
-    "@ftds": "https://mof-malaysia.github.io/ftds/r/v2/{name}.json"
+    "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json"
   }
 }
 ```
@@ -97,7 +97,7 @@ Keep the default Base UI component library: FTDS components are built on Base UI
 
 ```bash
 npx shadcn@latest add @ftds/ftds-init
-# or: npx shadcn@latest add mof-malaysia/ftds/ftds-init#v2.1.0
+# or: npx shadcn@latest add mof-malaysia/ftds/ftds-init#v0.1.0
 ```
 
 #### 4. Import FTDS styles in your global CSS
@@ -113,7 +113,7 @@ npx shadcn@latest add @ftds/ftds-init
 
 ```bash
 npx shadcn@latest add @ftds/button --overwrite
-# or: npx shadcn@latest add mof-malaysia/ftds/button#v2.1.0 --overwrite
+# or: npx shadcn@latest add mof-malaysia/ftds/button#v0.1.0 --overwrite
 ```
 
 This will:
@@ -201,7 +201,7 @@ pnpm registry:clean
 
 After adding, moving or renaming a component file, run `pnpm components:sync-exports` so `packages/react/package.json` exports match the tiers.
 
-Dependencies are unpinned on `main`. The Release workflow builds with `FTDS_REF=v2.1.0`, which appends `#v2.1.0` to every dependency, and tags that build; never commit a pinned build to `main` (CI fails, since it rebuilds without `FTDS_REF`).
+Dependencies are unpinned on `main`. The Release workflow builds with `FTDS_REF=v0.1.0`, which appends `#v0.1.0` to every dependency, and tags that build; never commit a pinned build to `main` (CI fails, since it rebuilds without `FTDS_REF`).
 
 `scripts/registry/build-json.ts` converts a registry source (this checkout or a release tag) into the JSON published on GitHub Pages: one `<name>.json` per item with the file contents inlined, and dependencies rewritten to URLs in the same folder. `pnpm deploy:prepare` runs it for every release tag.
 
@@ -219,7 +219,7 @@ Each `registry/<name>/registry.json` follows shadcn's [registry schema](https://
 }
 ```
 
-The Pages JSON for the same item is a [registry-item](https://ui.shadcn.com/schema/registry-item.json) with `content` inlined and `registryDependencies` as URLs (`https://mof-malaysia.github.io/ftds/r/v2/utils.json`).
+The Pages JSON for the same item is a [registry-item](https://ui.shadcn.com/schema/registry-item.json) with `content` inlined and `registryDependencies` as URLs (`https://mof-malaysia.github.io/ftds/r/v0/utils.json`).
 
 ### Item Types
 

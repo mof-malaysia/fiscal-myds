@@ -3,7 +3,7 @@ name: Release
 # Trunk-based release: tag a commit on main as v<version>.
 #
 # The tag points at a release commit on top of main that only pins every
-# registryDependency to the tag (mof-malaysia/ftds/utils#v2.1.0), because
+# registryDependency to the tag (mof-malaysia/ftds/utils#v0.1.0), because
 # shadcn does not pass a ref on to dependencies. main itself stays unpinned.
 # Pages is then redeployed so r/<tag>/, r/v<major>/ and r/latest/ pick it up.
 
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Version to release, without the v (2.1.0, or 2.2.0-rc.1 for a prerelease)
+        description: Version to release, without the v (0.1.0, or 0.2.0-rc.1 for a prerelease)
         required: true
         type: string
 
@@ -37,7 +37,7 @@ jobs:
             exit 1
           fi
           if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
-            echo "::error::'$VERSION' is not a version like 2.1.0 or 2.2.0-rc.1."
+            echo "::error::'$VERSION' is not a version like 0.1.0 or 0.2.0-rc.1."
             exit 1
           fi
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"

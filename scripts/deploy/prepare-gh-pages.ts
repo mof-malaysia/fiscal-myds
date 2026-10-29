@@ -10,8 +10,8 @@ import { buildJsonRegistry } from "../registry/build-json";
  *   index.html, docs/      apps/docs-astro build at the root (run `pnpm build`
  *                          there with FTDS_SITE_URL set first)
  *   storybook/             apps/storybook build (run `pnpm build:gh-pages` there first)
- *   r/v2.1.0/<name>.json   JSON registry of each release tag, built from its own files
- *   r/v2/<name>.json       latest 2.x release
+ *   r/v0.1.0/<name>.json   JSON registry of each release tag, built from its own files
+ *   r/v0/<name>.json       latest 0.x release
  *   r/latest/<name>.json   latest release
  *   r/versions.json        every published version and what each channel points to
  *   llms.txt, llms-full.txt, components/*.md, guides/*.md, icons.md

@@ -1,6 +1,6 @@
 {
   "name": "@mof-malaysia/ftds-react",
-  "version": "2.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "FTDS React component source for the shadcn registry. Not published to npm.",
   "scripts": {

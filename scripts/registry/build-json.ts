@@ -12,7 +12,7 @@ import {
  * registry served on GitHub Pages, one <name>.json per item with its file
  * contents inlined. Projects use it through a components.json namespace:
  *
- *   "registries": { "@ftds": "https://mof-malaysia.github.io/ftds/r/v2/{name}.json" }
+ *   "registries": { "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json" }
  *
  * Usage: tsx scripts/registry/build-json.ts <source dir> <out dir> <base url>
  *

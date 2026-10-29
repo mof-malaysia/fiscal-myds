@@ -31,7 +31,7 @@ import { REGISTRY_REPO } from "../registry/utils";
  * is for, examples, notes) with what the code says: exports, the props the
  * component declares with their exact types, dependencies and install paths.
  *
- * Usage: tsx scripts/llms/build.ts [--out deploy] [--site <url>] [--version v2.1.0] [--allow-missing]
+ * Usage: tsx scripts/llms/build.ts [--out deploy] [--site <url>] [--version v0.1.0] [--allow-missing]
  */
 
 const args = process.argv.slice(2);

@@ -73,7 +73,7 @@ export const REGISTRY_HOMEPAGE = `https://github.com/${REGISTRY_REPO}`;
 
 /**
  * Git ref written into every registryDependency. Unset on main; the release
- * workflow sets FTDS_REF=v2.1.0 so a tagged install never pulls from main
+ * workflow sets FTDS_REF=v0.1.0 so a tagged install never pulls from main
  * (shadcn does not pass a ref on to dependencies).
  */
 const REGISTRY_REF = process.env.FTDS_REF;

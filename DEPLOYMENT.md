@@ -2,7 +2,7 @@
 
 FTDS is published two ways from the same release:
 
-- **GitHub registry**: the repository itself. The shadcn CLI reads `registry.json` and the files under `registry/` straight from GitHub (`npx shadcn@latest add mof-malaysia/ftds/button#v2.1.0`). See the [shadcn docs](https://ui.shadcn.com/docs/registry/github).
+- **GitHub registry**: the repository itself. The shadcn CLI reads `registry.json` and the files under `registry/` straight from GitHub (`npx shadcn@latest add mof-malaysia/ftds/button#v0.1.0`). See the [shadcn docs](https://ui.shadcn.com/docs/registry/github).
 - **GitHub Pages**: `https://mof-malaysia.github.io/ftds/`, with a JSON registry per release for the `@ftds` namespace, plus the docs site and Storybook.
 
 The whole repository has one version, and a version is a git tag.
@@ -19,19 +19,19 @@ Development is trunk-based: short-lived branches merge into `main`, and releases
 ## Cutting a release
 
 1. Pull `main` and run the pre-push checks on it: `pnpm exec lefthook run pre-push --force`.
-2. Go to **Actions** → **Release** → **Run workflow**, keep the branch on `main` and enter the version without the `v`: `2.1.0`, or `2.2.0-rc.1` for a prerelease.
+2. Go to **Actions** → **Release** → **Run workflow**, keep the branch on `main` and enter the version without the `v`: `0.1.0`, or `0.2.0-rc.1` for a prerelease.
 
 The workflow:
 
 1. Refuses to run unless it is on `main`, the version is valid and the tag doesn't exist yet.
-2. Rebuilds the registry with `FTDS_REF=v2.1.0`, which pins every dependency to the tag (`mof-malaysia/ftds/utils#v2.1.0`). shadcn doesn't pass a ref on to dependencies, so without this a tagged install would pull its dependencies from `main`.
-3. Commits that as `release: v2.1.0` on top of `main` and pushes only the tag. The release commit is never merged back, so `main` stays unpinned.
+2. Rebuilds the registry with `FTDS_REF=v0.1.0`, which pins every dependency to the tag (`mof-malaysia/ftds/utils#v0.1.0`). shadcn doesn't pass a ref on to dependencies, so without this a tagged install would pull its dependencies from `main`.
+3. Commits that as `release: v0.1.0` on top of `main` and pushes only the tag. The release commit is never merged back, so `main` stays unpinned.
 4. Creates a GitHub release with generated notes (marked as a prerelease for `-rc` and similar).
 5. Runs the **Pages** workflow for the new tag.
 
-Pick the version by [semver](https://semver.org): a breaking change to a component's props, a renamed or removed item or a change to where files install is a major; a new item or prop is a minor; a fix is a patch.
+Pick the version by [semver](https://semver.org): a breaking change to a component's props, a renamed or removed item or a change to where files install is a major; a new item or prop is a minor; a fix is a patch. Below 1.0, a breaking change bumps the minor instead (`0.1.0` → `0.2.0`), so the `v0` channel can break; tell projects to pin a tag until 1.0.
 
-Tags are permanent. Never move or reuse one: people pin them, and every `#v2.1.0` dependency inside that release points at it. To undo a bad release, release a fix as the next patch.
+Tags are permanent. Never move or reuse one: people pin them, and every `#v0.1.0` dependency inside that release points at it. To undo a bad release, release a fix as the next patch.
 
 ## What GitHub Pages serves
 
@@ -41,21 +41,21 @@ https://mof-malaysia.github.io/ftds/
 ├── storybook/               Storybook, built from the latest release tag
 ├── llms.txt, llms-full.txt  Docs for coding agents, with components/*.md, guides/*.md and icons.md
 └── r/
-    ├── v2.1.0/<name>.json   Every release tag, built from that tag's own registry files
-    ├── v2/<name>.json       Newest stable 2.x release
+    ├── v0.1.0/<name>.json   Every release tag, built from that tag's own registry files
+    ├── v0/<name>.json       Newest stable 0.x release
     ├── latest/<name>.json   Newest stable release
     ├── <folder>/registry.json   Catalog of the items in that folder
     └── versions.json        Every published version and where each channel points
 ```
 
-Every deploy rebuilds `r/` from the git tags (`scripts/deploy/prepare-gh-pages.ts` extracts each tag's `registry/` with `git archive` and converts it with `scripts/registry/build-json.ts`). Dependencies in each folder point inside the same folder, so `@ftds/button` from `r/v2/` brings `utils` from `r/v2/`. Prereleases get their own `r/<tag>/` folder but never move `latest` or a major channel.
+Every deploy rebuilds `r/` from the git tags (`scripts/deploy/prepare-gh-pages.ts` extracts each tag's `registry/` with `git archive` and converts it with `scripts/registry/build-json.ts`). Dependencies in each folder point inside the same folder, so `@ftds/button` from `r/v0/` brings `utils` from `r/v0/`. Prereleases get their own `r/<tag>/` folder but never move `latest` or a major channel.
 
 Projects choose a folder in `components.json`:
 
 ```json
 {
   "registries": {
-    "@ftds": "https://mof-malaysia.github.io/ftds/r/v2/{name}.json"
+    "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json"
   }
 }
 ```

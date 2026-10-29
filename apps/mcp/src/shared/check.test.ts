@@ -89,7 +89,7 @@ test("design rules warn on raw colours, weights, shadows and hand-built controls
 
 test("a screen survives the share link round trip", () => {
   const screen: Screen = {
-    v: "v2.1.0",
+    v: "v0.1.0",
     title: "Permohonan geran",
     code: "export default () => <p>RM 1,250.00 — ✓</p>;",
     theme: "dark",

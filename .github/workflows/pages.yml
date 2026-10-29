@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: Release tag to build Storybook and the site from, e.g. v2.1.0
+        description: Release tag to build Storybook and the site from, e.g. v0.1.0
         required: true
         type: string
 
