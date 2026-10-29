@@ -1,0 +1,822 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T09:42:30+00:00",
+  "title": "Design System: Fiscal MYDS",
+  "extensions": {
+    "colorMeta": {
+      "steady-blue": {
+        "role": "primary",
+        "displayName": "Steady Blue",
+        "canonical": "oklch(48.0% 0.150 258)",
+        "tonalRamp": [
+          "#00072A",
+          "#012455",
+          "#154384",
+          "#2B64B6",
+          "#5389DA",
+          "#81B0F5",
+          "#ACD3FF",
+          "#D0F1FF"
+        ]
+      },
+      "steady-blue-deep": {
+        "role": "primary",
+        "displayName": "Steady Blue Deep",
+        "canonical": "oklch(42.0% 0.140 258)",
+        "tonalRamp": [
+          "#000828",
+          "#042452",
+          "#194380",
+          "#3165B1",
+          "#578AD4",
+          "#84B0F0",
+          "#AED3FF",
+          "#D2F1FF"
+        ]
+      },
+      "steady-blue-wash": {
+        "role": "primary",
+        "displayName": "Steady Blue Wash",
+        "canonical": "oklch(95.5% 0.022 258)",
+        "tonalRamp": [
+          "#080B10",
+          "#22272E",
+          "#3F454F",
+          "#5F6772",
+          "#828A95",
+          "#A8AEB9",
+          "#CCD1DA",
+          "#EAEFF6"
+        ]
+      },
+      "focus-blue": {
+        "role": "primary",
+        "displayName": "Focus Blue",
+        "canonical": "oklch(62.0% 0.140 258)",
+        "tonalRamp": [
+          "#000828",
+          "#042452",
+          "#194380",
+          "#3165B1",
+          "#578AD4",
+          "#84B0F0",
+          "#AED3FF",
+          "#D2F1FF"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(98.5% 0.003 255)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#262627",
+          "#444546",
+          "#656668",
+          "#88898B",
+          "#ADAEAF",
+          "#D0D1D2",
+          "#EEEEEF"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet",
+        "canonical": "oklch(99.5% 0.002 255)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#262627",
+          "#444546",
+          "#656667",
+          "#88898A",
+          "#ADAEAF",
+          "#D0D1D2",
+          "#EEEEEF"
+        ]
+      },
+      "well": {
+        "role": "neutral",
+        "displayName": "Well",
+        "canonical": "oklch(96.5% 0.005 255)",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#252628",
+          "#444547",
+          "#646669",
+          "#87898C",
+          "#ACAEB0",
+          "#D0D1D3",
+          "#EDEEF0"
+        ]
+      },
+      "hover-mist": {
+        "role": "neutral",
+        "displayName": "Hover Mist",
+        "canonical": "oklch(94.5% 0.007 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#252729",
+          "#434548",
+          "#64666A",
+          "#87898D",
+          "#ACAEB1",
+          "#CFD1D4",
+          "#EDEFF1"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(91.0% 0.007 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#252729",
+          "#434548",
+          "#64666A",
+          "#87898D",
+          "#ACAEB1",
+          "#CFD1D4",
+          "#EDEFF1"
+        ]
+      },
+      "control-edge": {
+        "role": "neutral",
+        "displayName": "Control Edge",
+        "canonical": "oklch(64.0% 0.014 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#23272B",
+          "#41454B",
+          "#61676E",
+          "#848A91",
+          "#AAAEB5",
+          "#CDD1D7",
+          "#EBEFF3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(22.0% 0.015 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#23272B",
+          "#41454C",
+          "#61676E",
+          "#848A91",
+          "#A9AEB5",
+          "#CDD1D7",
+          "#EBEFF4"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Ink Secondary",
+        "canonical": "oklch(42.0% 0.015 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#23272B",
+          "#41454C",
+          "#61676E",
+          "#848A91",
+          "#A9AEB5",
+          "#CDD1D7",
+          "#EBEFF4"
+        ]
+      },
+      "ink-tertiary": {
+        "role": "neutral",
+        "displayName": "Ink Tertiary",
+        "canonical": "oklch(52.0% 0.014 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#23272B",
+          "#41454B",
+          "#61676E",
+          "#848A91",
+          "#AAAEB5",
+          "#CDD1D7",
+          "#EBEFF3"
+        ]
+      },
+      "on-steady-blue": {
+        "role": "neutral",
+        "displayName": "On Steady Blue",
+        "canonical": "oklch(99.0% 0.004 255)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#262628",
+          "#444547",
+          "#656668",
+          "#88898B",
+          "#ADAEB0",
+          "#D0D1D2",
+          "#EDEEF0"
+        ]
+      },
+      "danger": {
+        "role": "semantic",
+        "displayName": "Danger",
+        "canonical": "oklch(50.0% 0.170 25)",
+        "tonalRamp": [
+          "#250000",
+          "#500006",
+          "#7E191C",
+          "#B03333",
+          "#D65E58",
+          "#F48C85",
+          "#FFB6AF",
+          "#FFD9D2"
+        ]
+      },
+      "danger-wash": {
+        "role": "semantic",
+        "displayName": "Danger Wash",
+        "canonical": "oklch(96.0% 0.018 25)",
+        "tonalRamp": [
+          "#0F0A09",
+          "#2C2424",
+          "#4D4241",
+          "#706361",
+          "#938684",
+          "#B6ABAA",
+          "#D8CECD",
+          "#F4ECEB"
+        ]
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Success",
+        "canonical": "oklch(47.0% 0.100 150)",
+        "tonalRamp": [
+          "#001002",
+          "#082F14",
+          "#20512D",
+          "#397548",
+          "#60996C",
+          "#8CBC95",
+          "#B5DDBC",
+          "#D8F9DD"
+        ]
+      },
+      "success-wash": {
+        "role": "semantic",
+        "displayName": "Success Wash",
+        "canonical": "oklch(96.0% 0.025 150)",
+        "tonalRamp": [
+          "#080D08",
+          "#212922",
+          "#3E483F",
+          "#5D6A5F",
+          "#808D82",
+          "#A6B1A8",
+          "#CAD4CC",
+          "#E9F1EA"
+        ]
+      },
+      "warning": {
+        "role": "semantic",
+        "displayName": "Warning",
+        "canonical": "oklch(47.0% 0.090 65)",
+        "tonalRamp": [
+          "#170600",
+          "#3A1F02",
+          "#5F3C16",
+          "#885B2C",
+          "#AB7F53",
+          "#CCA681",
+          "#EBCAAC",
+          "#FFE9D0"
+        ]
+      },
+      "warning-wash": {
+        "role": "semantic",
+        "displayName": "Warning Wash",
+        "canonical": "oklch(96.5% 0.035 85)",
+        "tonalRamp": [
+          "#0F0B04",
+          "#2C261A",
+          "#4C4434",
+          "#6F6551",
+          "#928874",
+          "#B6AD9C",
+          "#D7D0C2",
+          "#F4EEE2"
+        ]
+      },
+      "dark-steady-blue": {
+        "role": "primary",
+        "displayName": "Dark Steady Blue",
+        "canonical": "oklch(70.0% 0.120 258)",
+        "tonalRamp": [
+          "#000924",
+          "#0B254C",
+          "#224477",
+          "#3A66A6",
+          "#5F8ACA",
+          "#8AB0E7",
+          "#B4D3FF",
+          "#D6F1FF"
+        ]
+      },
+      "dark-steady-blue-bright": {
+        "role": "primary",
+        "displayName": "Dark Steady Blue Deep",
+        "canonical": "oklch(76.0% 0.110 258)",
+        "tonalRamp": [
+          "#000A22",
+          "#0E2649",
+          "#254573",
+          "#3E66A1",
+          "#638AC5",
+          "#8EB0E2",
+          "#B6D3FE",
+          "#D8F0FF"
+        ]
+      },
+      "dark-steady-blue-wash": {
+        "role": "primary",
+        "displayName": "Dark Steady Blue Wash",
+        "canonical": "oklch(27.0% 0.045 258)",
+        "tonalRamp": [
+          "#060B15",
+          "#1E2735",
+          "#394658",
+          "#57677F",
+          "#7A8AA2",
+          "#A1AFC4",
+          "#C6D2E3",
+          "#E5EFFE"
+        ]
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "Dark Paper",
+        "canonical": "oklch(17.0% 0.010 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#24272A",
+          "#424549",
+          "#62666C",
+          "#86898F",
+          "#ABAEB3",
+          "#CED1D5",
+          "#ECEFF2"
+        ]
+      },
+      "dark-sheet": {
+        "role": "neutral",
+        "displayName": "Dark Sheet",
+        "canonical": "oklch(20.5% 0.011 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#24272A",
+          "#42454A",
+          "#62666C",
+          "#858A8F",
+          "#AAAEB3",
+          "#CED1D5",
+          "#ECEFF2"
+        ]
+      },
+      "dark-well": {
+        "role": "neutral",
+        "displayName": "Dark Well",
+        "canonical": "oklch(15.0% 0.009 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#252729",
+          "#424549",
+          "#63666B",
+          "#86898E",
+          "#ABAEB2",
+          "#CFD1D5",
+          "#ECEFF1"
+        ]
+      },
+      "dark-hover-mist": {
+        "role": "neutral",
+        "displayName": "Dark Hover Mist",
+        "canonical": "oklch(24.5% 0.012 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#24272A",
+          "#42454A",
+          "#62666D",
+          "#858A90",
+          "#AAAEB4",
+          "#CED1D6",
+          "#ECEFF2"
+        ]
+      },
+      "dark-hairline": {
+        "role": "neutral",
+        "displayName": "Dark Hairline",
+        "canonical": "oklch(29.0% 0.012 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#24272A",
+          "#42454A",
+          "#62666D",
+          "#858A90",
+          "#AAAEB4",
+          "#CED1D6",
+          "#ECEFF2"
+        ]
+      },
+      "dark-control-edge": {
+        "role": "neutral",
+        "displayName": "Dark Control Edge",
+        "canonical": "oklch(56.0% 0.014 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#23272B",
+          "#41454B",
+          "#61676E",
+          "#848A91",
+          "#AAAEB5",
+          "#CDD1D7",
+          "#EBEFF3"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink",
+        "canonical": "oklch(95.0% 0.005 255)",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#252628",
+          "#444547",
+          "#646669",
+          "#87898C",
+          "#ACAEB0",
+          "#D0D1D3",
+          "#EDEEF0"
+        ]
+      },
+      "dark-ink-secondary": {
+        "role": "neutral",
+        "displayName": "Dark Ink Secondary",
+        "canonical": "oklch(78.0% 0.010 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#24272A",
+          "#424549",
+          "#62666C",
+          "#86898F",
+          "#ABAEB3",
+          "#CED1D5",
+          "#ECEFF2"
+        ]
+      },
+      "dark-ink-tertiary": {
+        "role": "neutral",
+        "displayName": "Dark Ink Tertiary",
+        "canonical": "oklch(68.0% 0.012 255)",
+        "tonalRamp": [
+          "#090B0E",
+          "#24272A",
+          "#42454A",
+          "#62666D",
+          "#858A90",
+          "#AAAEB4",
+          "#CED1D6",
+          "#ECEFF2"
+        ]
+      },
+      "dark-on-steady-blue": {
+        "role": "neutral",
+        "displayName": "Dark On Steady Blue",
+        "canonical": "oklch(17.0% 0.010 255)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#24272A",
+          "#424549",
+          "#62666C",
+          "#86898F",
+          "#ABAEB3",
+          "#CED1D5",
+          "#ECEFF2"
+        ]
+      },
+      "dark-danger": {
+        "role": "semantic",
+        "displayName": "Dark Danger",
+        "canonical": "oklch(72.0% 0.140 25)",
+        "tonalRamp": [
+          "#210000",
+          "#490C0D",
+          "#762624",
+          "#A5413D",
+          "#CA6862",
+          "#E9938C",
+          "#FFBCB5",
+          "#FFDDD7"
+        ]
+      },
+      "dark-danger-wash": {
+        "role": "semantic",
+        "displayName": "Dark Danger Wash",
+        "canonical": "oklch(27.0% 0.050 25)",
+        "tonalRamp": [
+          "#140706",
+          "#35201E",
+          "#593D3A",
+          "#7F5C58",
+          "#A37F7B",
+          "#C5A5A2",
+          "#E5CAC7",
+          "#FFE8E6"
+        ]
+      },
+      "dark-success": {
+        "role": "semantic",
+        "displayName": "Dark Success",
+        "canonical": "oklch(74.0% 0.120 150)",
+        "tonalRamp": [
+          "#001100",
+          "#003010",
+          "#125327",
+          "#2B7841",
+          "#559B66",
+          "#84BE90",
+          "#AFDFB8",
+          "#D3FBDA"
+        ]
+      },
+      "dark-success-wash": {
+        "role": "semantic",
+        "displayName": "Dark Success Wash",
+        "canonical": "oklch(26.0% 0.040 150)",
+        "tonalRamp": [
+          "#060E07",
+          "#1D2A20",
+          "#394A3C",
+          "#576D5B",
+          "#7A907E",
+          "#A1B4A4",
+          "#C6D6C9",
+          "#E6F3E8"
+        ]
+      },
+      "dark-warning": {
+        "role": "semantic",
+        "displayName": "Dark Warning",
+        "canonical": "oklch(80.0% 0.110 80)",
+        "tonalRamp": [
+          "#170700",
+          "#382100",
+          "#5D3E00",
+          "#855E03",
+          "#A8823D",
+          "#CAA971",
+          "#E9CD9F",
+          "#FFEBC6"
+        ]
+      },
+      "dark-warning-wash": {
+        "role": "semantic",
+        "displayName": "Dark Warning Wash",
+        "canonical": "oklch(27.0% 0.040 75)",
+        "tonalRamp": [
+          "#100A03",
+          "#2E2518",
+          "#4F4332",
+          "#73634E",
+          "#968671",
+          "#B9AC99",
+          "#DBCFC0",
+          "#F7EDE0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page titles on service landing screens; one per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles and high-stakes dialog titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card, panel and form-section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, comfortable density (citizens)."
+      },
+      "body-compact": {
+        "displayName": "Body Compact",
+        "purpose": "Reading text, compact density (officers)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, form labels, nav, tabs."
+      },
+      "label-compact": {
+        "displayName": "Label Compact",
+        "purpose": "Table headers, badges, captions; the 13px floor."
+      },
+      "amount": {
+        "displayName": "Amount",
+        "purpose": "Every currency value; tabular figures, right-aligned."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 1px 2px rgba(22, 27, 34, 0.06), 0 8px 24px rgba(22, 27, 34, 0.08)",
+        "purpose": "Menus, popovers, select lists, tooltips, toasts."
+      },
+      {
+        "name": "lift",
+        "value": "0 2px 4px rgba(22, 27, 34, 0.06), 0 24px 48px rgba(22, 27, 34, 0.14)",
+        "purpose": "Dialogs and sheets, over an Ink 40% scrim."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All state transitions."
+      },
+      {
+        "name": "duration-state",
+        "value": "150ms",
+        "purpose": "Hover, press, colour changes."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "200ms",
+        "purpose": "Open/close of menus, popovers, dialogs, accordions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ],
+    "densities": [
+      {
+        "name": "comfortable",
+        "bodySize": "16px",
+        "controlHeight": "44px",
+        "gap": "16-24px",
+        "use": "Citizen-facing services (default)."
+      },
+      {
+        "name": "compact",
+        "bodySize": "14px",
+        "controlHeight": "32px",
+        "gap": "8-12px",
+        "use": "Officer tools."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one next step on a screen.",
+      "html": "<button class=\"ds-btn-primary\">Bayar sekarang</button>",
+      "css": ".ds-btn-primary { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #1D5AB0; color: #FAFCFE; border: none; border-radius: 8px; height: 44px; padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #104A97; } .ds-btn-primary:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Every other action; a tonal fill instead of an outline.",
+      "html": "<button class=\"ds-btn-secondary\">Batal</button>",
+      "css": ".ds-btn-secondary { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #F1F4F7; color: #161B22; border: none; border-radius: 8px; height: 44px; padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-secondary:hover { background: #EAEDF2; } .ds-btn-secondary:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Tertiary actions, toolbars and unboxed icon buttons.",
+      "html": "<button class=\"ds-btn-ghost\">Lihat butiran</button>",
+      "css": ".ds-btn-ghost { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: transparent; color: #484E55; border: none; border-radius: 8px; height: 44px; padding: 0 12px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { background: #F1F4F7; color: #161B22; } .ds-btn-ghost:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Inputs keep a stroke: it is what identifies them as controls.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">No. Kad Pengenalan</span><input class=\"ds-input\" placeholder=\"900101-14-5678\" /><span class=\"ds-field-hint\">Tanpa sengkang juga diterima.</span></label>",
+      "css": ".ds-field { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 6px; width: 280px; } .ds-field-label { color: #161B22; font-size: 14px; font-weight: 500; } .ds-field-hint { color: #484E55; font-size: 14px; } .ds-input { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #FCFDFF; color: #161B22; border: 1px solid #878D95; border-radius: 8px; height: 44px; padding: 0 12px; font-size: 16px; transition: border-color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-input::placeholder { color: #646971; } .ds-input:focus-visible { border-color: #1D5AB0; outline: 2px solid #4D86D9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge-success",
+      "description": "Wash fill with coloured text; never outlined.",
+      "html": "<span class=\"ds-badge ds-badge-success\">Dibayar</span> <span class=\"ds-badge ds-badge-warning\">Tamat 3 hari</span> <span class=\"ds-badge ds-badge-danger\">Tertunggak</span>",
+      "css": ".ds-badge { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: inline-flex; align-items: center; border-radius: 9999px; padding: 2px 10px; font-size: 13px; font-weight: 500; line-height: 18px; } .ds-badge-success { background: #E7F7E9; color: #296A3B; } .ds-badge-warning { background: #FEF2D9; color: #7D4F1B; } .ds-badge-danger { background: #FEEDEC; color: #B02A2D; }"
+    },
+    {
+      "name": "Data Table Row",
+      "kind": "custom",
+      "refersTo": "table-row",
+      "description": "Officer tables: no box, hairline dividers, tabular amounts, wash status.",
+      "html": "<table class=\"ds-table\"><thead><tr><th>Pembayar</th><th class=\"ds-num\">Amaun (RM)</th><th>Status</th></tr></thead><tbody><tr><td>Syarikat Maju Sdn Bhd</td><td class=\"ds-num\">12,480.00</td><td><span class=\"ds-tb ds-tb-ok\">Dibayar</span></td></tr><tr><td>Aminah binti Yusof</td><td class=\"ds-num\">310.50</td><td><span class=\"ds-tb ds-tb-due\">Tertunggak</span></td></tr></tbody></table>",
+      "css": ".ds-table { font-family: Inter, ui-sans-serif, system-ui, sans-serif; border-collapse: collapse; width: 480px; background: #F9FAFC; } .ds-table th { text-align: left; color: #484E55; font-size: 13px; font-weight: 500; height: 40px; padding: 0 12px; border-bottom: 1px solid #DEE2E6; } .ds-table td { color: #161B22; font-size: 14px; height: 48px; padding: 0 12px; border-bottom: 1px solid #DEE2E6; } .ds-table tbody tr { transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-table tbody tr:hover { background: #F1F4F7; } .ds-table .ds-num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; } .ds-tb { border-radius: 9999px; padding: 2px 10px; font-size: 13px; font-weight: 500; } .ds-tb-ok { background: #E7F7E9; color: #296A3B; } .ds-tb-due { background: #FEEDEC; color: #B02A2D; }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Paper bar, one hairline below, underline for the current item.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-current\" href=\"#\">Utama</a><a class=\"ds-nav-item\" href=\"#\">Bayaran</a><a class=\"ds-nav-item\" href=\"#\">Permohonan</a></nav>",
+      "css": ".ds-nav { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; gap: 24px; background: #F9FAFC; border-bottom: 1px solid #DEE2E6; padding: 0 24px; } .ds-nav-item { color: #484E55; font-size: 14px; font-weight: 500; text-decoration: none; padding: 16px 0 14px; border-bottom: 2px solid transparent; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-nav-item:hover { color: #161B22; } .ds-nav-current { color: #161B22; border-bottom-color: #1D5AB0; } .ds-nav-item:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Steady Hand",
+    "overview": "Fiscal MYDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.\n\nThe system is quiet by construction. Surfaces are soft, tinted neutrals that sit almost still; structure comes from spacing and gentle tonal steps rather than lines; one calm blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.\n\nIt rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (stock zinc and `blue-600`, every element outlined in grey), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).",
+    "keyCharacteristics": [
+      "Tinted neutral surfaces with almost no borders; spacing and tone do the grouping.",
+      "One calm, deep blue used sparingly for action, selection and focus.",
+      "A single typeface (Inter) with a real hierarchy and tabular figures for money.",
+      "Two densities from the same tokens: comfortable for citizens, compact for officers.",
+      "Flat at rest; shadows only for things that genuinely float.",
+      "Light and dark themes designed as equals, both verified for contrast."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Steady Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Dark-Enough Rule",
+        "body": "Text the user needs to read is Ink or Ink Secondary, never lighter. Light-grey hint text is forbidden.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wash, Not Fill Rule",
+        "body": "Status colours appear as a wash with coloured text, never as a saturated block. The only saturated fills in the system are the primary and danger buttons.",
+        "section": "colors"
+      },
+      {
+        "name": "The Floor Rule",
+        "body": "Nothing is smaller than 13px, and 13px is only for labels in the compact density. Citizen-facing text starts at 16px.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Money Rule",
+        "body": "Every amount uses tabular figures and right-aligns in columns, so ringgit and sen line up and can be compared at a glance.",
+        "section": "typography"
+      },
+      {
+        "name": "The Three Weights Rule",
+        "body": "Only 400, 500 and 600. No bold 700, no light 300.",
+        "section": "typography"
+      },
+      {
+        "name": "The Floats-Only Rule",
+        "body": "If it doesn't float above the page and close, it doesn't get a shadow. `shadow-button` is retired.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** separate groups with spacing (16–24px comfortable, 8–12px compact) and tone (Paper, Sheet, Well) before reaching for any line.",
+      "**Do** keep Steady Blue (#1D5AB0) to the primary action, current selection and links: no more than 10% of a screen.",
+      "**Do** use Ink (#161B22) or Ink Secondary (#484E55) for any text a user must read; Ink Secondary still measures 8.1:1.",
+      "**Do** ship every component in both densities: comfortable (16px text, 44px controls) for citizens and compact (14px text, 32px controls) for officers.",
+      "**Do** set every amount in tabular figures and right-align it in columns.",
+      "**Do** show status with a wash badge plus text or an icon; colour is never the only signal.",
+      "**Do** design dark mode with the `dark-` tokens and check it as carefully as light.",
+      "**Do** confirm high-stakes moments (payment, submission, deletion) with plain language and a visible result."
+    ],
+    "donts": [
+      "**Don't** look like a **generic Tailwind starter**: no stock zinc greys, no `blue-600`, and no 1px grey outline on every button, tag, card and row.",
+      "**Don't** look like an **old government portal**: no crests and banners on every screen, no gradients, no tiny text, no 2010-era layouts.",
+      "**Don't** look like **flashy fintech**: no neon accents, no dark gradient heroes, no glassmorphism.",
+      "**Don't** look like **stiff corporate banking**: no navy and gold, no heavy serif headings, no formal distance.",
+      "**Don't** outline buttons, badges, cards or icon buttons. Borders are only for inputs, checkboxes, radios and the Hairline row divider.",
+      "**Don't** use light-grey hint text, or any text lighter than Ink Secondary for content the user needs.",
+      "**Don't** put a shadow on anything that doesn't float. Buttons, inputs, cards and rows are flat.",
+      "**Don't** use Poppins or any second typeface, and don't use weights other than 400, 500 and 600.",
+      "**Don't** go below 13px, and don't use 13px outside compact-density labels.",
+      "**Don't** use a coloured side-stripe (`border-left` wider than 1px) on callouts, alerts or list items; use a wash background and an icon.",
+      "**Don't** nest cards, and don't wrap content in a container that has no job.",
+      "**Audit test:** squint at the screen. If you can still see a grid of grey rectangles, there are too many lines."
+    ]
+  }
+}
