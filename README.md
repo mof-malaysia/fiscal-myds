@@ -1,15 +1,17 @@
-# Fiscal MYDS
+# FTDS
 
-> Multi-registry shadcn-compatible component library for Malaysian government-style applications
+> FiscalTech Design System: the Ministry of Finance's multi-registry, shadcn-compatible component library for Malaysian government services
+
+FTDS began as a fork of [MYDS](https://github.com/govtechmy/myds), the Malaysia Government Design System. It keeps the MYDS palette and much of its component foundation, and is maintained independently by MOF. See [Origins](#origins).
 
 ## What's inside?
 
-1. **@myds-style Registry** - Tailwind v4 styling system (6 style components)
+1. **@ftds-style Registry** - Tailwind v4 styling system (6 style components)
 2. **Component registries**, one per tier:
-   - **@myds-core** - 40 shared primitives and government chrome, plus utils and hooks
-   - **@myds-app** - 34 service and officer tools
-   - **@myds-marketing** - 7 agency site components and 7 page blocks
-3. **@myds-icon Registry** - 220+ icons
+   - **@ftds-core** - 40 shared primitives and government chrome, plus utils and hooks
+   - **@ftds-app** - 34 service and officer tools
+   - **@ftds-marketing** - 7 agency site components and 7 page blocks
+3. **@ftds-icon Registry** - 220+ icons
 4. **Storybook** - Interactive component browser
 
 **Total: 316 items across 5 registries**
@@ -18,21 +20,21 @@
 
 ### Quick Start
 
-MYDS is distributed as a shadcn registry: the CLI copies the source into your project. No npm package to install. Components are built on [Base UI](https://base-ui.com), so use shadcn's default Base UI setup.
+FTDS is distributed as a shadcn registry: the CLI copies the source into your project. No npm package to install. Components are built on [Base UI](https://base-ui.com), so use shadcn's default Base UI setup.
 
 ```bash
 # 1. Initialise shadcn (Tailwind v4, `@/` alias, Base UI). For a new project: npx shadcn@latest init -t next -n my-app
 npx shadcn@latest init
 
-# 2. Install MYDS styles -> creates styles/myds.css
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
+# 2. Install FTDS styles -> creates styles/ftds.css
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/style/styles/default/ftds-init.json
 
 # 3. Install UI components (dependencies, icons and hooks come along).
 #    --overwrite replaces the button.tsx that `shadcn init` created.
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json --overwrite
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json --overwrite
 
 # 4. Install a standalone icon
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-down.json
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-down.json
 ```
 
 Then import the styles in your global CSS:
@@ -42,18 +44,18 @@ Then import the styles in your global CSS:
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "../styles/myds.css";
+@import "../styles/ftds.css";
 ```
 
-`myds-init` installs `tw-animate-css` for the component animations; import it before `myds.css`.
+`ftds-init` installs `tw-animate-css` for the component animations; import it before `ftds.css`.
 
-Every item lives at `https://mof-malaysia.github.io/fiscal-myds/registry/<core|app|marketing|icons|style>/styles/default/<name>.json`. See the registry catalogs (`https://mof-malaysia.github.io/fiscal-myds/registry/core/index.json`, `.../app/index.json`, `.../marketing/index.json`, `.../icons/index.json`, `.../style/index.json`) for the names.
+Every item lives at `https://mof-malaysia.github.io/ftds/registry/<core|app|marketing|icons|style>/styles/default/<name>.json`. See the registry catalogs (`https://mof-malaysia.github.io/ftds/registry/core/index.json`, `.../app/index.json`, `.../marketing/index.json`, `.../icons/index.json`, `.../style/index.json`) for the names.
 
 ### Style Installation Options
 
 #### Option A: Quick Setup (Recommended)
 
-`myds-init` writes a single `styles/myds.css` with:
+`ftds-init` writes a single `styles/ftds.css` with:
 
 - Base color variables
 - Light theme semantic tokens
@@ -63,10 +65,10 @@ Every item lives at `https://mof-malaysia.github.io/fiscal-myds/registry/<core|a
 
 #### Option B: Granular Control
 
-Install the parts individually. Each is written to `styles/myds/<name>.css`; import the ones you need instead of `styles/myds.css`:
+Install the parts individually. Each is written to `styles/ftds/<name>.css`; import the ones you need instead of `styles/ftds.css`:
 
 ```bash
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/colors.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-light.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-dark.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/theme-config.json https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/base-styles.json
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/style/styles/default/colors.json https://mof-malaysia.github.io/ftds/registry/style/styles/default/theme-light.json https://mof-malaysia.github.io/ftds/registry/style/styles/default/theme-dark.json https://mof-malaysia.github.io/ftds/registry/style/styles/default/theme-config.json https://mof-malaysia.github.io/ftds/registry/style/styles/default/base-styles.json
 ```
 
 ### Where files go
@@ -76,9 +78,9 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 | Components (all tiers) | `components/ui/<name>.tsx`                               |
 | Marketing blocks       | `components/blocks/<name>.tsx`                           |
 | Icons                  | `components/ui/icons/<name>.tsx`                         |
-| `utils` (`clx`)        | `lib/myds/utils/` (leaves shadcn's `lib/utils.ts` alone) |
-| `hooks`                | `lib/myds/hooks/`                                        |
-| Styles                 | `styles/myds.css` or `styles/myds/*.css`                 |
+| `utils` (`clx`)        | `lib/ftds/utils/` (leaves shadcn's `lib/utils.ts` alone) |
+| `hooks`                | `lib/ftds/hooks/`                                        |
+| Styles                 | `styles/ftds.css` or `styles/ftds/*.css`                 |
 
 ### Requirements
 
@@ -91,7 +93,7 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 
 ### Style Components (6)
 
-- `myds-init` - Complete MYDS styling system (all-in-one)
+- `ftds-init` - Complete FTDS styling system (all-in-one)
 - `colors` - Base color variables
 - `theme-light` - Light mode semantic tokens
 - `theme-dark` - Dark mode semantic tokens
@@ -130,9 +132,9 @@ See [REGISTRY.md](./REGISTRY.md) for full component list and details.
 
 ## Documentation & Demo
 
-- **🎨 Live Demo**: [https://mof-malaysia.github.io/fiscal-myds](https://mof-malaysia.github.io/fiscal-myds)
-- **📚 Storybook**: [https://mof-malaysia.github.io/fiscal-myds/storybook](https://mof-malaysia.github.io/fiscal-myds/storybook)
-- **📦 Registry Catalog**: [https://mof-malaysia.github.io/fiscal-myds/registry](https://mof-malaysia.github.io/fiscal-myds/registry/index.json)
+- **🎨 Live Demo**: [https://mof-malaysia.github.io/ftds](https://mof-malaysia.github.io/ftds)
+- **📚 Storybook**: [https://mof-malaysia.github.io/ftds/storybook](https://mof-malaysia.github.io/ftds/storybook)
+- **📦 Registry Catalog**: [https://mof-malaysia.github.io/ftds/registry](https://mof-malaysia.github.io/ftds/registry/index.json)
 - **Registry Docs**: See [REGISTRY.md](./REGISTRY.md)
 - **Deployment Guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
 - **Design and product**: [DESIGN.md](./DESIGN.md), [PRODUCT.md](./PRODUCT.md), [COMPONENT-ROADMAP.md](./COMPONENT-ROADMAP.md)
@@ -147,7 +149,7 @@ apps/
   docs/             Legacy docs site (being deprecated; not linted)
 packages/
   react/            Component source, by tier: src/components/{core,app,marketing}
-  style/            Tailwind v4 tokens and themes (source for @myds-style)
+  style/            Tailwind v4 tokens and themes (source for @ftds-style)
   _typescript/      Shared tsconfig presets
 registry/           Generated registry JSON (committed, served by GitHub Pages)
 scripts/
@@ -162,7 +164,7 @@ Requires Node.js 18+ and pnpm 9 (pinned via `packageManager`).
 
 ```bash
 pnpm install                                   # also installs the lefthook git hooks
-pnpm --filter @mof-malaysia/myds-storybook dev # Storybook at http://localhost:6006
+pnpm --filter @mof-malaysia/ftds-storybook dev # Storybook at http://localhost:6006
 ```
 
 ### Common commands
@@ -178,4 +180,10 @@ pnpm --filter @mof-malaysia/myds-storybook dev # Storybook at http://localhost:6
 
 Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow.
 
-Made with ❤️ by MY tech folks
+## Origins
+
+FTDS is built on MYDS, the Malaysia Government Design System, originally developed by Unit Nukleus GovTech and released under the MIT licence. Its original copyright notice is kept in [LICENSE](./LICENSE). FTDS is maintained by the Ministry of Finance and is not an official MYDS release.
+
+## Licence
+
+MIT. See [LICENSE](./LICENSE).

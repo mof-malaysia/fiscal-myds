@@ -7,7 +7,7 @@ import {
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@mof-malaysia/myds-react/breadcrumb";
+} from "@mof-malaysia/ftds-react/breadcrumb";
 import React from "react";
 
 /**
@@ -27,7 +27,7 @@ import React from "react";
  *   BreadcrumbLink,
  *   BreadcrumbPage,
  *   BreadcrumbSeparator,
- * } from "@mof-malaysia/myds-react/breadcrumb";
+ * } from "@mof-malaysia/ftds-react/breadcrumb";
  *
  * <Breadcrumb>
  *   <BreadcrumbItem>

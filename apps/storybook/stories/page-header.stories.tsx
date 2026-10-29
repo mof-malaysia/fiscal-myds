@@ -9,16 +9,16 @@ import {
   PageHeaderMeta,
   PageHeaderNav,
   PageHeaderTitle,
-} from "@mof-malaysia/myds-react/page-header";
+} from "@mof-malaysia/ftds-react/page-header";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@mof-malaysia/myds-react/breadcrumb";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Tag } from "@mof-malaysia/myds-react/tag";
+} from "@mof-malaysia/ftds-react/breadcrumb";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
 
 /**
  * ### Overview

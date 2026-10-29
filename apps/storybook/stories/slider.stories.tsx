@@ -1,18 +1,18 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Slider } from "@mof-malaysia/myds-react/slider";
+import { Slider } from "@mof-malaysia/ftds-react/slider";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview
  * `Slider` picks a value, or a range with two thumbs. The track is a Well, the
- * filled part MYDS Blue, and the thumb has a 28px hit area. `showValue` prints the
+ * filled part FTDS Blue, and the thumb has a 28px hit area. `showValue` prints the
  * value in tabular figures. Built on Base UI Slider; joins a surrounding `Field`.
  *
  * ### Usage

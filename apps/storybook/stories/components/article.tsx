@@ -1,13 +1,13 @@
-import { ClockIcon } from "@mof-malaysia/myds-react/icon";
-import { clx } from "@mof-malaysia/myds-react/utils";
+import { ClockIcon } from "@mof-malaysia/ftds-react/icon";
+import { clx } from "@mof-malaysia/ftds-react/utils";
 // import exampleImage from "../assets/addon-library.png";
 
 export default function Article() {
   return (
     <div
       className={clx(
-        "w-full pb-16 pt-16",
-        "gap-4.5 px-4.5 grid grid-cols-4",
+        "w-full pt-16 pb-16",
+        "grid grid-cols-4 gap-4.5 px-4.5",
         "md:gap-6 md:px-6 md:max-lg:grid-cols-8",
         "lg:grid-cols-12",
         "font-body",
@@ -21,7 +21,7 @@ export default function Article() {
       >
         <div className="flex flex-col justify-start gap-3">
           <h5 className="text-txt-primary text-body-sm">Updates</h5>
-          <h1 className="text-txt-black-900 text-heading-sm text-balance font-semibold">
+          <h1 className="text-txt-black-900 text-heading-sm font-semibold text-balance">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti,
             esse.
           </h1>

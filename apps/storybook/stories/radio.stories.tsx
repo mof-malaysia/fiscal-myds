@@ -8,7 +8,7 @@ import {
   RadioItem,
   RadioLabel,
   RadioProps,
-} from "@mof-malaysia/myds-react/radio";
+} from "@mof-malaysia/ftds-react/radio";
 
 /**
  * ### Overview
@@ -22,7 +22,7 @@ import {
  *   RadioHintText,
  *   RadioItem,
  *   RadioLabel,
- * } from "@mof-malaysia/myds-react/radio";
+ * } from "@mof-malaysia/ftds-react/radio";
  *
  * <Radio>
  *   <RadioItem>

@@ -12,8 +12,8 @@ import {
   TableRow,
   TableSkeleton,
   TableTooltip,
-} from "@mof-malaysia/myds-react/table";
-import { Tag } from "@mof-malaysia/myds-react/tag";
+} from "@mof-malaysia/ftds-react/table";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
 
 /**
  * ### Overview
@@ -38,7 +38,7 @@ import { Tag } from "@mof-malaysia/myds-react/tag";
  *   TableHead,
  *   TableHeader,
  *   TableRow,
- * } from "@mof-malaysia/myds-react/table";
+ * } from "@mof-malaysia/ftds-react/table";
  *
  * <Table>
  *   <TableHeader>

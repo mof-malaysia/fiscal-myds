@@ -6,7 +6,7 @@ import {
   ProgressLabel,
   ProgressTrack,
   ProgressValue,
-} from "@mof-malaysia/myds-react/progress";
+} from "@mof-malaysia/ftds-react/progress";
 
 /**
  * ### Overview

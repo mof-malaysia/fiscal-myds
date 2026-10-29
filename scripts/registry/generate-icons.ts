@@ -8,22 +8,28 @@ import {
 } from "./utils";
 
 /**
- * Generate Icons Registry (@myds-icon)
+ * Generate Icons Registry (@ftds-icon)
  * Creates individual registry entries for each icon
  */
 
 const ICONS_DIR = path.join(__dirname, "../../packages/react/src/icons");
-const REGISTRY_OUTPUT = path.join(__dirname, "../../registry/icons/styles/default");
+const REGISTRY_OUTPUT = path.join(
+  __dirname,
+  "../../registry/icons/styles/default",
+);
 
 async function main() {
-  console.log("🎨 Generating Icons Registry (@myds-icon)...\n");
+  console.log("🎨 Generating Icons Registry (@ftds-icon)...\n");
 
   const components: RegistryComponent[] = [];
 
   // Read all icon files from src/icons/
   const iconFiles = fs
     .readdirSync(ICONS_DIR)
-    .filter((file) => file.endsWith(".tsx") && file !== "index.ts" && file !== "index.tsx");
+    .filter(
+      (file) =>
+        file.endsWith(".tsx") && file !== "index.ts" && file !== "index.tsx",
+    );
 
   console.log(`Found ${iconFiles.length} icon files\n`);
 

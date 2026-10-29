@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { ScrollArea } from "@mof-malaysia/myds-react/scroll-area";
+import { ScrollArea } from "@mof-malaysia/ftds-react/scroll-area";
 
 /**
  * ### Overview

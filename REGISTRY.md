@@ -1,10 +1,10 @@
-# MYDS Component Registry
+# FTDS Component Registry
 
-This document describes the MYDS shadcn-compatible component registry structure and how to use it.
+This document describes the FTDS shadcn-compatible component registry structure and how to use it.
 
 ## Overview
 
-MYDS is distributed as a **shadcn-compatible registry**: the shadcn CLI copies component source into your project instead of installing an npm package, so you own and can change the code.
+FTDS is distributed as a **shadcn-compatible registry**: the shadcn CLI copies component source into your project instead of installing an npm package, so you own and can change the code.
 
 ## Registry Structure
 
@@ -25,10 +25,10 @@ MYDS is distributed as a **shadcn-compatible registry**: the shadcn CLI copies c
 │   └── styles/default/*.json     # One item per icon
 └── style/
     ├── index.json
-    └── styles/default/*.json     # myds-init + colors, theme-light, theme-dark, theme-config, base-styles
+    └── styles/default/*.json     # ftds-init + colors, theme-light, theme-dark, theme-config, base-styles
 ```
 
-Items are fetched by full URL: `https://mof-malaysia.github.io/fiscal-myds/registry/<core|app|marketing|icons|style>/styles/default/<name>.json`.
+Items are fetched by full URL: `https://mof-malaysia.github.io/ftds/registry/<core|app|marketing|icons|style>/styles/default/<name>.json`.
 
 ## Tiers
 
@@ -63,21 +63,21 @@ The flat `registry/ui` registry is gone. Re-add components from their tier's URL
 npx shadcn@latest init
 ```
 
-Keep the default Base UI component library: MYDS components are built on Base UI.
+Keep the default Base UI component library: FTDS components are built on Base UI.
 
-#### 2. Install the MYDS styles
+#### 2. Install the FTDS styles
 
 ```bash
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/style/styles/default/ftds-init.json
 ```
 
-#### 3. Import MYDS styles in your global CSS
+#### 3. Import FTDS styles in your global CSS
 
 ```css
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "../styles/myds.css";
+@import "../styles/ftds.css";
 ```
 
 #### 4. Add components to your project
@@ -85,7 +85,7 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/
 Pass the item's full URL. The shadcn CLI has no `--registry` flag, and bare names resolve to shadcn's own registry.
 
 ```bash
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json --overwrite
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json --overwrite
 
 # For local testing: serve the repo root and point at it
 python3 -m http.server 8765
@@ -95,7 +95,7 @@ npx shadcn@latest add http://localhost:8765/registry/core/styles/default/button.
 This will:
 
 - Copy the component source code to your project
-- Install npm dependencies (`@base-ui/react`, etc.), pinned to the ranges MYDS is built against
+- Install npm dependencies (`@base-ui/react`, etc.), pinned to the ranges FTDS is built against
 - Install registry dependencies (utils, hooks, icons, other components) via their full URLs
 
 #### 5. Use the component
@@ -130,7 +130,7 @@ External packages that will be installed via npm/pnpm/yarn:
 
 #### Registry Dependencies
 
-Other MYDS items, referenced by full URL:
+Other FTDS items, referenced by full URL:
 
 - `utils` - Utility functions (clx)
 - `hooks` - Custom React hooks
@@ -162,7 +162,7 @@ pnpm registry:clean
 
 - `generate-components.ts` reads `packages/react/src/components/{core,app,marketing}`, `hooks` and `utils`, and writes one registry per tier (`utils` and `hooks` ship from core):
   - Rewrites relative imports to the paths files are installed at:
-    - `"../../utils"` → `"@/lib/myds/utils"`, `"../../hooks"` → `"@/lib/myds/hooks"`
+    - `"../../utils"` → `"@/lib/ftds/utils"`, `"../../hooks"` → `"@/lib/ftds/hooks"`
     - `"../../icons/chevron-down"` → `"@/components/ui/icons/chevron-down"` (barrel `"../../icons"` imports are split per icon)
     - `"./button"` and `"../core/button"` → `"@/components/ui/button"`
   - Turns those imports into `registryDependencies` as full item URLs in the right tier.
@@ -170,11 +170,11 @@ pnpm registry:clean
   - Emits the blocks listed in `MARKETING_BLOCKS` as `registry:block`.
   - Fails if an app item depends on marketing or vice versa.
 - `generate-icons.ts` writes one item per file in `packages/react/src/icons`. Those files are generated from `packages/react/src/svg/icons/*.svg` by `pnpm icons:generate`; run it first when the SVGs change.
-- `generate-style.ts` reads `packages/style/styles` and writes `myds-init` (combined `styles/myds.css`) plus the granular style items (`styles/myds/<name>.css`).
+- `generate-style.ts` reads `packages/style/styles` and writes `ftds-init` (combined `styles/ftds.css`) plus the granular style items (`styles/ftds/<name>.css`).
 
 After adding, moving or renaming a component file, run `pnpm components:sync-exports` so `packages/react/package.json` exports match the tiers.
 
-Registry dependency URLs use `https://mof-malaysia.github.io/fiscal-myds/registry` by default. Set `MYDS_REGISTRY_URL` to build against another host (e.g. a local server for testing). Always rebuild with the default before committing the `registry/` output.
+Registry dependency URLs use `https://mof-malaysia.github.io/ftds/registry` by default. Set `FTDS_REGISTRY_URL` to build against another host (e.g. a local server for testing). Always rebuild with the default before committing the `registry/` output.
 
 ### Registry File Format
 
@@ -187,7 +187,7 @@ Items follow shadcn's [registry-item schema](https://ui.shadcn.com/schema/regist
   "type": "registry:ui",
   "dependencies": ["@base-ui/react@^1.9.0", "class-variance-authority@^0.7.1"],
   "registryDependencies": [
-    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+    "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
   ],
   "files": [
     {
@@ -203,7 +203,7 @@ Items follow shadcn's [registry-item schema](https://ui.shadcn.com/schema/regist
 
 - `registry:ui` - Components and icons
 - `registry:block` - Marketing page sections (installed to `components/blocks/`)
-- `registry:lib` - `utils` and `hooks` (installed under `lib/myds/`)
+- `registry:lib` - `utils` and `hooks` (installed under `lib/ftds/`)
 - `registry:file` - Styles, with an explicit `target` (`~/styles/...`)
 
 ## Testing Locally
@@ -211,21 +211,21 @@ Items follow shadcn's [registry-item schema](https://ui.shadcn.com/schema/regist
 ### 1. Build the registry against a local server
 
 ```bash
-MYDS_REGISTRY_URL=http://localhost:8765/registry pnpm registry:build
+FTDS_REGISTRY_URL=http://localhost:8765/registry pnpm registry:build
 python3 -m http.server 8765   # from the repo root
 ```
 
 ### 2. Create a test project
 
 ```bash
-npx shadcn@latest init -t next -n test-myds-registry
-cd test-myds-registry
+npx shadcn@latest init -t next -n test-ftds-registry
+cd test-ftds-registry
 ```
 
-### 3. Install MYDS styles and components
+### 3. Install FTDS styles and components
 
 ```bash
-npx shadcn@latest add http://localhost:8765/registry/style/styles/default/myds-init.json
+npx shadcn@latest add http://localhost:8765/registry/style/styles/default/ftds-init.json
 npx shadcn@latest add http://localhost:8765/registry/core/styles/default/button.json --overwrite
 ```
 
@@ -234,7 +234,7 @@ npx shadcn@latest add http://localhost:8765/registry/core/styles/default/button.
 ```css
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "../styles/myds.css";
+@import "../styles/ftds.css";
 ```
 
 ### 5. Test the component
@@ -287,13 +287,13 @@ If imports don't resolve:
 
 ### Type errors mentioning `render` or `asChild`
 
-MYDS is built on Base UI. Make sure `components.json` uses a Base UI style (e.g. `base-nova`), i.e. `npx shadcn@latest init` with the default `base` library, not `--base radix`.
+FTDS is built on Base UI. Make sure `components.json` uses a Base UI style (e.g. `base-nova`), i.e. `npx shadcn@latest init` with the default `base` library, not `--base radix`.
 
 ### Missing styles
 
 If components don't look correct:
 
-1. Ensure `styles/myds.css` exists (`myds-init` was added)
+1. Ensure `styles/ftds.css` exists (`ftds-init` was added)
 2. Verify it is imported after `@import "tailwindcss";` and `@import "tw-animate-css";` in your global CSS
 
 ### Dependency issues
@@ -315,8 +315,8 @@ If npm dependencies aren't installing:
 
 For issues or questions:
 
-- File an issue at [mof-malaysia/fiscal-myds](https://github.com/mof-malaysia/fiscal-myds/issues)
-- Browse components in [Storybook](https://mof-malaysia.github.io/fiscal-myds/storybook)
+- File an issue at [mof-malaysia/ftds](https://github.com/mof-malaysia/ftds/issues)
+- Browse components in [Storybook](https://mof-malaysia.github.io/ftds/storybook)
 
 ---
 

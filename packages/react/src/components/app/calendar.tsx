@@ -56,7 +56,7 @@ const calendar_nav_button = clx(
   "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
 );
 
-/** DayPicker's navigation chevrons, drawn with the MYDS icons. */
+/** DayPicker's navigation chevrons, drawn with the FTDS icons. */
 const CalendarChevron = ({
   orientation,
   className,
@@ -72,7 +72,7 @@ const CalendarChevron = ({
 const calendar_cell_size =
   "[--cal-cell:2.5rem] in-data-[density=compact]:[--cal-cell:2rem]";
 
-/** A range's first and last day: MYDS Blue on the Blue Wash band. */
+/** A range's first and last day: FTDS Blue on the Blue Wash band. */
 const range_cap =
   "bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white";
 

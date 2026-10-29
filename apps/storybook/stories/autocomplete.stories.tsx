@@ -11,13 +11,13 @@ import {
   AutocompleteInput,
   AutocompleteItem,
   AutocompleteList,
-} from "@mof-malaysia/myds-react/autocomplete";
+} from "@mof-malaysia/ftds-react/autocomplete";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

@@ -4,9 +4,9 @@ import path from "path";
 /**
  * Update Storybook story imports to use workspace package instead of local components
  * Changes:
- * - @/components/ui/[component] -> @mof-malaysia/myds-react/[component]
- * - @/lib/utils -> @mof-malaysia/myds-react/utils
- * - @/components/ui/icon -> @mof-malaysia/myds-react/icon
+ * - @/components/ui/[component] -> @mof-malaysia/ftds-react/[component]
+ * - @/lib/utils -> @mof-malaysia/ftds-react/utils
+ * - @/components/ui/icon -> @mof-malaysia/ftds-react/icon
  */
 
 const STORIES_DIR = path.join(__dirname, "../apps/storybook/stories");
@@ -20,19 +20,22 @@ function updateStoryFile(filePath: string): boolean {
   let updated = content;
   let hasChanges = false;
 
-  // Update component imports from @/components/ui/[component] to @mof-malaysia/myds-react/[component]
+  // Update component imports from @/components/ui/[component] to @mof-malaysia/ftds-react/[component]
   const componentImportRegex = /from\s+["']@\/components\/ui\/([^"']+)["']/g;
   if (componentImportRegex.test(content)) {
     updated = updated.replace(
       /from\s+["']@\/components\/ui\/([^"']+)["']/g,
-      'from "@mof-malaysia/myds-react/$1"'
+      'from "@mof-malaysia/ftds-react/$1"',
     );
     hasChanges = true;
   }
 
-  // Update utils imports from @/lib/utils to @mof-malaysia/myds-react/utils
+  // Update utils imports from @/lib/utils to @mof-malaysia/ftds-react/utils
   if (content.includes("@/lib/utils")) {
-    updated = updated.replace(/from\s+["']@\/lib\/utils["']/g, 'from "@mof-malaysia/myds-react/utils"');
+    updated = updated.replace(
+      /from\s+["']@\/lib\/utils["']/g,
+      'from "@mof-malaysia/ftds-react/utils"',
+    );
     hasChanges = true;
   }
 
@@ -41,7 +44,7 @@ function updateStoryFile(filePath: string): boolean {
   if (commentImportRegex.test(updated)) {
     updated = updated.replace(
       /from\s+["']@\/components\/ui\/([^"']+)["']/g,
-      'from "@mof-malaysia/myds-react/$1"'
+      'from "@mof-malaysia/ftds-react/$1"',
     );
   }
 
@@ -56,7 +59,9 @@ function updateStoryFile(filePath: string): boolean {
 function main() {
   console.log("🔄 Updating Storybook story imports to use workspace package\n");
 
-  const files = fs.readdirSync(STORIES_DIR).filter((file) => file.endsWith(".stories.tsx"));
+  const files = fs
+    .readdirSync(STORIES_DIR)
+    .filter((file) => file.endsWith(".stories.tsx"));
 
   let updatedCount = 0;
 

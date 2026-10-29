@@ -5,8 +5,8 @@ import {
   CalloutAction,
   CalloutContent,
   CalloutTitle,
-} from "@mof-malaysia/myds-react/callout";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/callout";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import { ComponentProps } from "react";
 
 const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
@@ -28,8 +28,8 @@ const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
  *
  * ### Usage
  * ```tsx
- * import { Callout, CalloutTitle, CalloutDescription } from "@mof-malaysia/myds-react/callout";
- * import { Button } from "@mof-malaysia/myds-react/button";
+ * import { Callout, CalloutTitle, CalloutDescription } from "@mof-malaysia/ftds-react/callout";
+ * import { Button } from "@mof-malaysia/ftds-react/button";
  *
  * <Callout>
  *  <CalloutTitle>Title</CalloutTitle>

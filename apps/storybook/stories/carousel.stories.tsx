@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPlayToggle,
   CarouselPrevious,
-} from "@mof-malaysia/myds-react/carousel";
+} from "@mof-malaysia/ftds-react/carousel";
 
 /**
  * ### Overview

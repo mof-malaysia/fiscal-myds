@@ -15,8 +15,8 @@ import {
   MenuSubmenu,
   MenuSubmenuTrigger,
   MenuTrigger,
-} from "@mof-malaysia/myds-react/menu";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/menu";
+import { Button } from "@mof-malaysia/ftds-react/button";
 
 /**
  * ### Overview

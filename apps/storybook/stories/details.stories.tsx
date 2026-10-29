@@ -5,7 +5,7 @@ import {
   Details,
   DetailsContent,
   DetailsTrigger,
-} from "@mof-malaysia/myds-react/details";
+} from "@mof-malaysia/ftds-react/details";
 
 /**
  * ### Overview

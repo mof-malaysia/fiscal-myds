@@ -4,12 +4,12 @@ import { createRender } from "../utils";
 import {
   CheckAnswers,
   type CheckAnswersSection,
-} from "@mof-malaysia/myds-react/check-answers";
+} from "@mof-malaysia/ftds-react/check-answers";
 import {
   Callout,
   CalloutContent,
   CalloutTitle,
-} from "@mof-malaysia/myds-react/callout";
+} from "@mof-malaysia/ftds-react/callout";
 
 /**
  * ### Overview

@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Kbd } from "@mof-malaysia/myds-react/kbd";
+import { Kbd } from "@mof-malaysia/ftds-react/kbd";
 
 /**
  * ### Overview

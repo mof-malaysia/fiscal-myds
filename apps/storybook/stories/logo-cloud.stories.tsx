@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { LogoCloud } from "@mof-malaysia/myds-react/logo-cloud";
+import { LogoCloud } from "@mof-malaysia/ftds-react/logo-cloud";
 
 /**
  * ### Overview

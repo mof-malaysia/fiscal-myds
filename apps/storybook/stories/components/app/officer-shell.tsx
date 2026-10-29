@@ -11,21 +11,21 @@ import {
   DeskStatusBar,
   DeskStatusItem,
   DeskTopBar,
-} from "@mof-malaysia/myds-react/desk-shell";
+} from "@mof-malaysia/ftds-react/desk-shell";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@mof-malaysia/myds-react/breadcrumb";
-import { Tag } from "@mof-malaysia/myds-react/tag";
-import { AutoToast } from "@mof-malaysia/myds-react/toast";
+} from "@mof-malaysia/ftds-react/breadcrumb";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
+import { AutoToast } from "@mof-malaysia/ftds-react/toast";
 import {
   FolderIcon,
   HomeIcon,
   SettingIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 import { ME } from "./officer-data";
 
 export type OfficerPage = "dashboard" | "queue" | "case";

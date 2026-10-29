@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Toggle } from "@mof-malaysia/myds-react/toggle";
-import { ToggleGroup } from "@mof-malaysia/myds-react/toggle-group";
-import { BoldIcon } from "@mof-malaysia/myds-react/icon";
+import { Toggle } from "@mof-malaysia/ftds-react/toggle";
+import { ToggleGroup } from "@mof-malaysia/ftds-react/toggle-group";
+import { BoldIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

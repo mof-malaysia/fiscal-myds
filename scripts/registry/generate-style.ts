@@ -16,7 +16,7 @@ import {
 const STYLE_SOURCE_DIR = path.join(__dirname, "../../packages/style/styles");
 const REGISTRY_OUTPUT_DIR = path.join(
   __dirname,
-  "../../registry/style/styles/default"
+  "../../registry/style/styles/default",
 );
 
 function log(message: string) {
@@ -29,7 +29,9 @@ function log(message: string) {
 function generateColorsComponent(): RegistryComponent {
   log("Generating colors component...");
 
-  const content = readFileContent(path.join(STYLE_SOURCE_DIR, "theme/color.css"));
+  const content = readFileContent(
+    path.join(STYLE_SOURCE_DIR, "theme/color.css"),
+  );
 
   return {
     name: "colors",
@@ -39,7 +41,7 @@ function generateColorsComponent(): RegistryComponent {
     files: [
       {
         path: "app/globals.css",
-        content: `/* MYDS Base Colors */\n${content}`,
+        content: `/* FTDS Base Colors */\n${content}`,
         type: "components:style",
       },
     ],
@@ -52,7 +54,9 @@ function generateColorsComponent(): RegistryComponent {
 function generateThemeLightComponent(): RegistryComponent {
   log("Generating theme-light component...");
 
-  const content = readFileContent(path.join(STYLE_SOURCE_DIR, "theme/light.css"));
+  const content = readFileContent(
+    path.join(STYLE_SOURCE_DIR, "theme/light.css"),
+  );
 
   return {
     name: "theme-light",
@@ -62,7 +66,7 @@ function generateThemeLightComponent(): RegistryComponent {
     files: [
       {
         path: "app/globals.css",
-        content: `/* MYDS Light Theme */\n${content}`,
+        content: `/* FTDS Light Theme */\n${content}`,
         type: "components:style",
       },
     ],
@@ -75,7 +79,9 @@ function generateThemeLightComponent(): RegistryComponent {
 function generateThemeDarkComponent(): RegistryComponent {
   log("Generating theme-dark component...");
 
-  const content = readFileContent(path.join(STYLE_SOURCE_DIR, "theme/dark.css"));
+  const content = readFileContent(
+    path.join(STYLE_SOURCE_DIR, "theme/dark.css"),
+  );
 
   return {
     name: "theme-dark",
@@ -85,7 +91,7 @@ function generateThemeDarkComponent(): RegistryComponent {
     files: [
       {
         path: "app/globals.css",
-        content: `/* MYDS Dark Theme */\n${content}`,
+        content: `/* FTDS Dark Theme */\n${content}`,
         type: "components:style",
       },
     ],
@@ -99,7 +105,7 @@ function generateThemeConfigComponent(): RegistryComponent {
   log("Generating theme-config component...");
 
   const content = readFileContent(
-    path.join(STYLE_SOURCE_DIR, "tailwind.config.css")
+    path.join(STYLE_SOURCE_DIR, "tailwind.config.css"),
   );
 
   return {
@@ -110,7 +116,7 @@ function generateThemeConfigComponent(): RegistryComponent {
     files: [
       {
         path: "app/globals.css",
-        content: `/* MYDS Theme Configuration */\n${content}`,
+        content: `/* FTDS Theme Configuration */\n${content}`,
         type: "components:style",
       },
     ],
@@ -122,7 +128,8 @@ function generateThemeConfigComponent(): RegistryComponent {
  */
 function extractCssBlock(css: string, header: string): string {
   const start = css.indexOf(header);
-  if (start === -1) throw new Error(`"${header}" not found in input.tailwind.css`);
+  if (start === -1)
+    throw new Error(`"${header}" not found in input.tailwind.css`);
 
   let depth = 0;
   for (let i = css.indexOf("{", start); i < css.length; i++) {
@@ -139,7 +146,7 @@ function generateBaseStylesComponent(): RegistryComponent {
   log("Generating base-styles component...");
 
   const fullContent = readFileContent(
-    path.join(STYLE_SOURCE_DIR, "input.tailwind.css")
+    path.join(STYLE_SOURCE_DIR, "input.tailwind.css"),
   );
 
   // Extract only the @layer base and @layer utilities blocks.
@@ -148,7 +155,7 @@ function generateBaseStylesComponent(): RegistryComponent {
   const layerBase = extractCssBlock(fullContent, "@layer base");
   const layerUtilities = extractCssBlock(fullContent, "@layer utilities");
 
-  const content = `/* MYDS Base Styles */
+  const content = `/* FTDS Base Styles */
 ${layerBase}
 
 ${layerUtilities}`;
@@ -169,16 +176,16 @@ ${layerUtilities}`;
 }
 
 /**
- * Generate myds-init component - convenience component that installs everything
+ * Generate ftds-init component - convenience component that installs everything
  */
-function generateMYDSInitComponent(
+function generateFTDSInitComponent(
   colors: RegistryComponent,
   themeLight: RegistryComponent,
   themeDark: RegistryComponent,
   themeConfig: RegistryComponent,
-  baseStyles: RegistryComponent
+  baseStyles: RegistryComponent,
 ): RegistryComponent {
-  log("Generating myds-init component...");
+  log("Generating ftds-init component...");
 
   // Combine all content in the correct order
   // Imported from the project's global CSS, after @import "tailwindcss"
@@ -193,7 +200,7 @@ ${themeConfig.files[0].content}
 ${baseStyles.files[0].content}`;
 
   return {
-    name: "myds-init",
+    name: "ftds-init",
     type: "components:style",
     // Components use tw-animate-css classes (animate-in, fade-in-0, ...)
     dependencies: ["tw-animate-css@^1.4.0"],
@@ -201,7 +208,7 @@ ${baseStyles.files[0].content}`;
     registryDependencies: [],
     files: [
       {
-        path: "styles/myds.css",
+        path: "styles/ftds.css",
         content: combinedContent,
         type: "components:style",
       },
@@ -212,18 +219,18 @@ ${baseStyles.files[0].content}`;
 /**
  * Convert a style item to a shadcn `registry:file` item. Each item writes its
  * own CSS file at the project root (`~/`), so installing several never
- * overwrites another; myds-init writes the combined styles/myds.css.
+ * overwrites another; ftds-init writes the combined styles/ftds.css.
  */
 function toRegistryFileItem(component: RegistryComponent) {
   const filePath =
-    component.name === "myds-init"
-      ? "styles/myds.css"
-      : `styles/myds/${component.name}.css`;
+    component.name === "ftds-init"
+      ? "styles/ftds.css"
+      : `styles/ftds/${component.name}.css`;
 
   component.$schema = REGISTRY_ITEM_SCHEMA;
   component.type = "registry:file";
   component.registryDependencies = component.registryDependencies.map((dep) =>
-    registryItemUrl("style", dep)
+    registryItemUrl("style", dep),
   );
   component.files = component.files.map((file) => ({
     ...file,
@@ -251,12 +258,12 @@ async function main() {
   const themeDark = generateThemeDarkComponent();
   const themeConfig = generateThemeConfigComponent();
   const baseStyles = generateBaseStylesComponent();
-  const mydsInit = generateMYDSInitComponent(
+  const ftdsInit = generateFTDSInitComponent(
     colors,
     themeLight,
     themeDark,
     themeConfig,
-    baseStyles
+    baseStyles,
   );
 
   // Write all components to registry
@@ -266,7 +273,7 @@ async function main() {
     themeDark,
     themeConfig,
     baseStyles,
-    mydsInit,
+    ftdsInit,
   ];
 
   for (const component of components) {

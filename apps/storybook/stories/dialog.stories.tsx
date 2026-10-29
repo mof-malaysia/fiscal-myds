@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   Dialog,
   DialogClose,
@@ -14,7 +14,7 @@ import {
   type DialogBodyProps,
   type DialogFooterProps,
   type DialogHeaderProps,
-} from "@mof-malaysia/myds-react/dialog";
+} from "@mof-malaysia/ftds-react/dialog";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 
@@ -24,7 +24,7 @@ import { createStory } from "../utils";
  *
  * ### Usage
  * ```tsx
- * import { Button } from "@mof-malaysia/myds-react/button";
+ * import { Button } from "@mof-malaysia/ftds-react/button";
  * import {
  *   Dialog,
  *   DialogContent,
@@ -32,7 +32,7 @@ import { createStory } from "../utils";
  *   DialogHeader,
  *   DialogTitle,
  *   DialogTrigger,
- * } from "@mof-malaysia/myds-react/dialog";
+ * } from "@mof-malaysia/ftds-react/dialog";
  *
  *    <Dialog>
  *       <DialogTrigger render={<Button variant="danger-fill" size="medium" />}>

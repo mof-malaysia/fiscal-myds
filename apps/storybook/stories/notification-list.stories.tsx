@@ -5,7 +5,7 @@ import {
   NotificationList,
   type NotificationItem,
   type NotificationListProps,
-} from "@mof-malaysia/myds-react/notification-list";
+} from "@mof-malaysia/ftds-react/notification-list";
 import { NOTIFICATIONS, NOW } from "./components/app/account-data";
 
 /**

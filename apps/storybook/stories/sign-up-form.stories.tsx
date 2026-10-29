@@ -5,7 +5,7 @@ import {
   PasswordRules,
   SignUpForm,
   type SignUpFormProps,
-} from "@mof-malaysia/myds-react/sign-up-form";
+} from "@mof-malaysia/ftds-react/sign-up-form";
 import { validateSignUp, wait } from "./components/app/access-brand";
 
 /**

@@ -4,11 +4,11 @@ import {
   Cell,
   ColumnDef,
   DataTable,
-} from "@mof-malaysia/myds-react/data-table";
+} from "@mof-malaysia/ftds-react/data-table";
 import type { TypeWithDeepControls } from "storybook-addon-deep-controls";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Tag } from "@mof-malaysia/myds-react/tag";
-import { EllipsisIcon } from "@mof-malaysia/myds-react/icon";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
+import { EllipsisIcon } from "@mof-malaysia/ftds-react/icon";
 
 type Application = {
   ref: string;
@@ -42,7 +42,7 @@ type Application = {
  *
  * ### Usage
  * ```tsx
- * import { DataTable, type ColumnDef } from "@mof-malaysia/myds-react/data-table";
+ * import { DataTable, type ColumnDef } from "@mof-malaysia/ftds-react/data-table";
  *
  * const columns: ColumnDef<Application>[] = [
  *   { id: "ref", header: "Reference", accessorKey: "ref", meta: { sortable: true } },

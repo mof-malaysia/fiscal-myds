@@ -1,6 +1,6 @@
 import { Meta, Source, Unstyled } from "@storybook/addon-docs/blocks";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Tag } from "@mof-malaysia/myds-react/tag";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
 
 <Meta title="Introduction" />
 
@@ -76,7 +76,7 @@ export const IntroPage = () => (
         Ministry of Finance Malaysia
       </p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">
-        Fiscal MYDS
+        FTDS
       </h1>
       <p className="text-txt-black-700 mt-4 max-w-2xl text-lg leading-relaxed">
         The component library MOF teams use to build calm, capable, humane
@@ -97,7 +97,7 @@ export const IntroPage = () => (
         </LinkButton>
         <LinkButton
           variant="default-outline"
-          href="https://github.com/mof-malaysia/fiscal-myds"
+          href="https://github.com/mof-malaysia/ftds"
           external
         >
           View on GitHub
@@ -209,7 +209,7 @@ export const IntroPage = () => (
     </Section>
     <Section title="Install">
       <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
-        MYDS is a shadcn registry: the CLI copies the source into your project,
+        FTDS is a shadcn registry: the CLI copies the source into your project,
         so there is no npm package to install. Start from shadcn's default
         Base UI setup with Tailwind v4.
       </p>
@@ -219,11 +219,11 @@ export const IntroPage = () => (
         code={`# 1. Initialise shadcn (Tailwind v4, @/ alias, Base UI)
 npx shadcn@latest init
 
-# 2. Add the MYDS styles (creates styles/myds.css)
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
+# 2. Add the FTDS styles (creates styles/ftds.css)
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/style/styles/default/ftds-init.json
 
 # 3. Add components; dependencies, icons and hooks come along
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json --overwrite`}
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json --overwrite`}
       />
       <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
         Then import the styles in your global CSS:
@@ -233,7 +233,7 @@ npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/s
         dark
         code={`@import "tailwindcss";
 @import "tw-animate-css";
-@import "../styles/myds.css";`}
+@import "../styles/ftds.css";`}
       />
       <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
         Every item lives at{" "}

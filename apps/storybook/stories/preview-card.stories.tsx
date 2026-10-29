@@ -5,7 +5,7 @@ import {
   PreviewCard,
   PreviewCardContent,
   PreviewCardTrigger,
-} from "@mof-malaysia/myds-react/preview-card";
+} from "@mof-malaysia/ftds-react/preview-card";
 
 /**
  * ### Overview

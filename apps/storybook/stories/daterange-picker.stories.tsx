@@ -1,7 +1,7 @@
 import {
   DateRangePicker,
   type DateRange,
-} from "@mof-malaysia/myds-react/daterange-picker";
+} from "@mof-malaysia/ftds-react/daterange-picker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { fn } from "storybook/test";
@@ -22,7 +22,7 @@ import { createRender, createStory } from "../utils";
  *
  * ### Usage
  * ```tsx
- * import { DateRangePicker, type DateRange } from "@mof-malaysia/myds-react/daterange-picker";
+ * import { DateRangePicker, type DateRange } from "@mof-malaysia/ftds-react/daterange-picker";
  *
  * const [range, setRange] = useState<DateRange | undefined>();
  * <DateRangePicker presets value={range} onValueChange={setRange} />

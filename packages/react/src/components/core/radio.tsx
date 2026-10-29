@@ -84,8 +84,8 @@ const RadioButton = React.forwardRef<
     <RadioPrimitive.Root
       ref={ref}
       className={clx(
-        // DESIGN.md, Inputs: 1.5px Control Edge stroke; checked fills MYDS Blue with an
-        // On MYDS Blue dot (theme tokens, so dark mode follows); disabled is a Well circle with a Hairline
+        // DESIGN.md, Inputs: 1.5px Control Edge stroke; checked fills FTDS Blue with an
+        // On FTDS Blue dot (theme tokens, so dark mode follows); disabled is a Well circle with a Hairline
         "bg-bg-white border-otl-control hover:border-otl-control-hover inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border-[1.5px]",
         "focus-ring transition-colors duration-150 motion-reduce:transition-none",
         "data-[invalid]:border-bg-danger-600",

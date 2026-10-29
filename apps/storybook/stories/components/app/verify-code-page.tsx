@@ -1,7 +1,7 @@
 import React from "react";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Link } from "@mof-malaysia/myds-react/link";
-import { OtpVerify } from "@mof-malaysia/myds-react/otp-verify";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Link } from "@mof-malaysia/ftds-react/link";
+import { OtpVerify } from "@mof-malaysia/ftds-react/otp-verify";
 import { AccessBrand, AccessFooter, wait } from "./access-brand";
 
 /** 123456 is the right code. */

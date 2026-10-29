@@ -5,8 +5,8 @@ import {
   PaymentReceipt,
   PaymentSummary,
   type PaymentLineItem,
-} from "@mof-malaysia/myds-react/payment-summary";
-import { Link } from "@mof-malaysia/myds-react/link";
+} from "@mof-malaysia/ftds-react/payment-summary";
+import { Link } from "@mof-malaysia/ftds-react/link";
 
 /**
  * ### Overview

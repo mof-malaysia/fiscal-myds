@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { OtpVerify, ResendButton } from "@mof-malaysia/myds-react/otp-verify";
+import { OtpVerify, ResendButton } from "@mof-malaysia/ftds-react/otp-verify";
 import { wait } from "./components/app/access-brand";
 
 /**

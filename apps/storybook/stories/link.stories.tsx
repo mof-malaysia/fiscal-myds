@@ -1,5 +1,5 @@
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Button, ButtonIcon } from "@mof-malaysia/ftds-react/button";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import ArrowBack from "../react/arrow-back";
 import { createStory } from "../utils";
@@ -10,9 +10,9 @@ import { createStory } from "../utils";
  *
  * ### Usage
  * ```tsx
- * import { Link } from "@mof-malaysia/myds-react/link";
+ * import { Link } from "@mof-malaysia/ftds-react/link";
  *
- * <Link primary href="https://design.digital.gov.my" underline="always">Malaysia's Official Design System</Link>
+ * <Link primary href="https://www.mof.gov.my" underline="always">Ministry of Finance Malaysia</Link>
  * ```
  */
 const meta = {
@@ -37,7 +37,7 @@ const meta = {
     },
     newTab: {
       table: {
-        category: "MYDS API",
+        category: "FTDS API",
         defaultValue: {
           summary: "false",
         },
@@ -50,7 +50,7 @@ const meta = {
     },
     primary: {
       table: {
-        category: "MYDS API",
+        category: "FTDS API",
         defaultValue: {
           summary: "false",
         },
@@ -63,7 +63,7 @@ const meta = {
     },
     underline: {
       table: {
-        category: "MYDS API",
+        category: "FTDS API",
         defaultValue: {
           summary: "always",
         },
@@ -85,8 +85,8 @@ type Story = StoryObj<typeof meta>;
  * The default link, used in rich text etc.
  */
 export const Default: Story = createStory({
-  children: "Malaysia's Official Design System",
-  href: "https://design.digital.gov.my",
+  children: "Ministry of Finance Malaysia",
+  href: "https://www.mof.gov.my",
   newTab: true,
   primary: true,
   underline: "always",
@@ -97,7 +97,7 @@ export const Default: Story = createStory({
  */
 export const ButtonAsLink: Story = {
   args: {
-    href: "https://design.digital.gov.my",
+    href: "https://www.mof.gov.my",
     underline: "none",
   },
   globals: {
@@ -111,7 +111,7 @@ export const ButtonAsLink: Story = {
  */
 export const Backlink: Story = {
   args: {
-    href: "https://design.digital.gov.my",
+    href: "https://www.mof.gov.my",
     primary: true,
     underline: "hover",
   },
@@ -142,7 +142,7 @@ export const FooterLink: Story = createStory({
  */
 export const NavbarLink: Story = {
   args: {
-    href: "https://design.digital.gov.my",
+    href: "https://www.mof.gov.my",
     underline: "none",
   },
   globals: {

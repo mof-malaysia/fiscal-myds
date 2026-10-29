@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import { SERVICE_NAME } from "./gov-chrome";
 import type {
   SignUpFormProps,
   SignUpValues,
-} from "@mof-malaysia/myds-react/sign-up-form";
+} from "@mof-malaysia/ftds-react/sign-up-form";
 
 /** The agency mark the access examples put above the panel. */
 export const AccessBrand = ({ name = SERVICE_NAME }: { name?: string }) => (

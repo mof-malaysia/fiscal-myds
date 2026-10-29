@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ThemeProvider } from "@mof-malaysia/myds-react/hooks";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+import { ThemeProvider } from "@mof-malaysia/ftds-react/hooks";
+import { ThemeSwitch } from "@mof-malaysia/ftds-react/theme-switch";
 import { createStory } from "../utils";
 
 /**
@@ -9,7 +9,7 @@ import { createStory } from "../utils";
  * It cycles through a list of provided themes, each represented by an icon.
  * ### Usage
  * ```tsx
- * import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+ * import { ThemeSwitch } from "@mof-malaysia/ftds-react/theme-switch";
  *
  * <ThemeProvider>
  *   <ThemeSwitch />

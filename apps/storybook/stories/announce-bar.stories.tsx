@@ -4,8 +4,8 @@ import {
   AnnounceBar,
   AnnounceBarDescription,
   AnnounceBarTag,
-} from "@mof-malaysia/myds-react/announce-bar";
-import { Link } from "@mof-malaysia/myds-react/link";
+} from "@mof-malaysia/ftds-react/announce-bar";
+import { Link } from "@mof-malaysia/ftds-react/link";
 
 /**
  * ### Overview
@@ -18,7 +18,7 @@ import { Link } from "@mof-malaysia/myds-react/link";
  *
  * ### Usage
  * ```tsx
- * import { AnnounceBar, AnnounceBarDescription, AnnounceBarProps, AnnounceBarTag } from "@mof-malaysia/myds-react/announce-bar";
+ * import { AnnounceBar, AnnounceBarDescription, AnnounceBarProps, AnnounceBarTag } from "@mof-malaysia/ftds-react/announce-bar";
  *
  * <AnnounceBar {...args}>
  *       <AnnounceBarTag variant="primary">

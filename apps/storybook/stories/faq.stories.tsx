@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Faq } from "@mof-malaysia/myds-react/faq";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Faq } from "@mof-malaysia/ftds-react/faq";
+import { Link } from "@mof-malaysia/ftds-react/link";
 
 /**
  * ### Overview

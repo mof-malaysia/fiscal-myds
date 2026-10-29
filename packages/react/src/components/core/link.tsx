@@ -28,10 +28,9 @@ const link_cva = cva(
 );
 
 /**
- * The Link component extends the `<a>` element, customised according to the MYDS theme.
+ * The Link component extends the `<a>` element, customised according to the FTDS theme.
  * @example
- * <Link href="https://design.digital.gov.my" newTab primary underline="always">MYDS</Link>
- * @see {@link https://design.digital.gov.my/?path=/docs/myds-react-link--docs}
+ * <Link href="https://www.mof.gov.my" newTab primary underline="always">Ministry of Finance</Link>
  */
 const Link: ForwardRefExoticComponent<LinkProps> = forwardRef(
   (

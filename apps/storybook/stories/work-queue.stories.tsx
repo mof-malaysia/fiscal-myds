@@ -5,8 +5,8 @@ import {
   WorkQueue,
   type WorkQueueAssignee,
   type WorkQueueProps,
-} from "@mof-malaysia/myds-react/work-queue";
-import { ShortcutProvider } from "@mof-malaysia/myds-react/shortcuts";
+} from "@mof-malaysia/ftds-react/work-queue";
+import { ShortcutProvider } from "@mof-malaysia/ftds-react/shortcuts";
 import {
   CASE_COLUMNS,
   STATUSES,

@@ -1,8 +1,8 @@
 {
-  "name": "@mof-malaysia/myds-style",
+  "name": "@mof-malaysia/ftds-style",
   "version": "1.0.0",
   "private": true,
-  "description": "MYDS styles source for the shadcn registry. Not published to npm.",
+  "description": "FTDS styles source for the shadcn registry. Not published to npm.",
   "scripts": {
     "dev": "tailwindcss --input ./styles/input.tailwind.css --output ./styles/output.tailwind.css --watch",
     "build": "tailwindcss --input ./styles/input.tailwind.css --output ./dist/index.css --minify"

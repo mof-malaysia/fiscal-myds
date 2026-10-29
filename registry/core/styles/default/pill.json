@@ -7,8 +7,8 @@
     "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [
-    "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-    "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json"
+    "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+    "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross.json"
   ],
   "files": [
     {

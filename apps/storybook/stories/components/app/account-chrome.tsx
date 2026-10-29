@@ -1,15 +1,15 @@
 import React, { ReactNode } from "react";
 import { GovFooter, GovMasthead, SERVICE_NAME } from "./gov-chrome";
-import { Avatar, AvatarFallback } from "@mof-malaysia/myds-react/avatar";
+import { Avatar, AvatarFallback } from "@mof-malaysia/ftds-react/avatar";
 import {
   Menu,
   MenuContent,
   MenuItem,
   MenuSeparator,
   MenuTrigger,
-} from "@mof-malaysia/myds-react/menu";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { BellIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/menu";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { BellIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * The citizen-facing frame the account examples share: the government

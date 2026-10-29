@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
-import { DateField } from "@mof-malaysia/myds-react/date-field";
+import { DateField } from "@mof-malaysia/ftds-react/date-field";
 
 /**
  * ### Overview
@@ -11,7 +11,7 @@ import { DateField } from "@mof-malaysia/myds-react/date-field";
  *
  * ### Usage
  * ```tsx
- * import DateField from "@mof-malaysia/myds-react/date-field";
+ * import DateField from "@mof-malaysia/ftds-react/date-field";
  *
  * const [date, setDate] = useState("1957-08-31")
  *
@@ -39,13 +39,13 @@ const meta = {
           summary: "enum",
           detail: "small, medium, large",
         },
-        category: "myds API",
+        category: "ftds API",
       },
       control: "inline-radio",
       options: ["small", "medium", "large"],
     },
     invalid: {
-      table: { category: "myds API" },
+      table: { category: "ftds API" },
       type: "boolean",
       description: "Whether the DateField is invalid.",
       control: "boolean",

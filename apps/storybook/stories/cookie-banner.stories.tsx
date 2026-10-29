@@ -8,10 +8,10 @@ import {
   CookieBannerAction,
   CookieBannerPreferences,
   CookieBannerTitle,
-} from "@mof-malaysia/myds-react/cookie-banner";
+} from "@mof-malaysia/ftds-react/cookie-banner";
 import { useEffect, useState } from "react";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
 
 /**
  * ### Overview

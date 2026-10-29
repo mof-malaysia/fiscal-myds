@@ -1,7 +1,7 @@
 import React from "react";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Link } from "@mof-malaysia/myds-react/link";
-import { ForgotPasswordForm } from "@mof-malaysia/myds-react/password-reset";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Link } from "@mof-malaysia/ftds-react/link";
+import { ForgotPasswordForm } from "@mof-malaysia/ftds-react/password-reset";
 import { AccessBrand, AccessFooter, wait } from "./access-brand";
 
 const ForgotPasswordPage = () => {

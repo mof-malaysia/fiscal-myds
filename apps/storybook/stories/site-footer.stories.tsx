@@ -7,21 +7,21 @@ import {
   SiteFooterLinkGroup,
   SiteFooterLogo,
   SiteFooterSection,
-} from "@mof-malaysia/myds-react/site-footer";
+} from "@mof-malaysia/ftds-react/site-footer";
 import {
   Footer,
   FooterCopyright,
   FooterLink,
   FooterLinks,
   FooterMeta,
-} from "@mof-malaysia/myds-react/footer";
-import { Link } from "@mof-malaysia/myds-react/link";
+} from "@mof-malaysia/ftds-react/footer";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import {
   FacebookIcon,
   InstagramIcon,
   TwitterXIcon,
   YoutubeIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview
@@ -40,7 +40,7 @@ import {
  *   SiteFooterLogo,
  *   SiteFooterLinkGroup,
  *   SiteFooterLink,
- * } from "@mof-malaysia/myds-react/site-footer";
+ * } from "@mof-malaysia/ftds-react/site-footer";
  *
  * <SiteFooter>
  *   <SiteFooterSection>

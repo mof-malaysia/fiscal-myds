@@ -559,7 +559,7 @@ ComboboxChipRemove.displayName = "ComboboxChipRemove";
 
 /*========================================================================================================================*/
 
-/** An option. Selected options show a MYDS Blue check. */
+/** An option. Selected options show a FTDS Blue check. */
 const ComboboxItem = forwardRef<
   ComponentRef<typeof ComboboxPrimitive.Item>,
   WithClassName<ComboboxPrimitive.Item.Props>

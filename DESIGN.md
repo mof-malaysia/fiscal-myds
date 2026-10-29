@@ -1,10 +1,10 @@
 ---
-name: Fiscal MYDS
+name: FTDS
 description: The Ministry of Finance's design system for calm, capable, humane government services.
 colors:
-  myds-blue: "#2563EB"
-  myds-blue-deep: "#1D4ED8"
-  myds-blue-wash: "#EFF6FF"
+  ftds-blue: "#2563EB"
+  ftds-blue-deep: "#1D4ED8"
+  ftds-blue-wash: "#EFF6FF"
   focus-blue: "#3A75F6"
   paper: "#FAFAFA"
   sheet: "#FFFFFF"
@@ -15,7 +15,7 @@ colors:
   ink: "#18181B"
   ink-secondary: "#3F3F46"
   ink-tertiary: "#6B6B74"
-  on-myds-blue: "#FFFFFF"
+  on-ftds-blue: "#FFFFFF"
   danger: "#B91C1C"
   danger-fill: "#DC2626"
   danger-wash: "#FEF2F2"
@@ -23,8 +23,8 @@ colors:
   success-wash: "#F0FDF4"
   warning: "#A16207"
   warning-wash: "#FEFCE8"
-  dark-myds-blue: "#6394FF"
-  dark-myds-blue-wash: "#1D2B4D"
+  dark-ftds-blue: "#6394FF"
+  dark-ftds-blue-wash: "#1D2B4D"
   dark-paper: "#131316"
   dark-sheet: "#1C1C20"
   dark-well: "#25252A"
@@ -34,7 +34,7 @@ colors:
   dark-ink: "#EDEDF0"
   dark-ink-secondary: "#B4B4BD"
   dark-ink-tertiary: "#9A9AA5"
-  dark-on-myds-blue: "#131316"
+  dark-on-ftds-blue: "#131316"
   dark-danger: "#F87171"
   dark-danger-wash: "#450A0A"
   dark-success: "#22C55E"
@@ -100,18 +100,18 @@ spacing:
   "12": "48px"
 components:
   button-primary:
-    backgroundColor: "{colors.myds-blue}"
-    textColor: "{colors.on-myds-blue}"
+    backgroundColor: "{colors.ftds-blue}"
+    textColor: "{colors.on-ftds-blue}"
     typography: "{typography.label}"
     rounded: "{rounded.control}"
     padding: "0 20px"
     height: "44px"
   button-primary-hover:
-    backgroundColor: "{colors.myds-blue-deep}"
-    textColor: "{colors.on-myds-blue}"
+    backgroundColor: "{colors.ftds-blue-deep}"
+    textColor: "{colors.on-ftds-blue}"
   button-primary-compact:
-    backgroundColor: "{colors.myds-blue}"
-    textColor: "{colors.on-myds-blue}"
+    backgroundColor: "{colors.ftds-blue}"
+    textColor: "{colors.on-ftds-blue}"
     typography: "{typography.label-compact}"
     rounded: "{rounded.control}"
     padding: "0 12px"
@@ -138,7 +138,7 @@ components:
     textColor: "{colors.ink}"
   button-danger:
     backgroundColor: "{colors.danger-fill}"
-    textColor: "{colors.on-myds-blue}"
+    textColor: "{colors.on-ftds-blue}"
     typography: "{typography.label}"
     rounded: "{rounded.control}"
     padding: "0 20px"
@@ -158,8 +158,8 @@ components:
     padding: "0 10px"
     height: "32px"
   badge-info:
-    backgroundColor: "{colors.myds-blue-wash}"
-    textColor: "{colors.myds-blue}"
+    backgroundColor: "{colors.ftds-blue-wash}"
+    textColor: "{colors.ftds-blue}"
     typography: "{typography.label-compact}"
     rounded: "{rounded.pill}"
     padding: "2px 10px"
@@ -200,22 +200,22 @@ components:
     backgroundColor: "{colors.well}"
 ---
 
-# Design System: Fiscal MYDS
+# Design System: FTDS
 
 ## 1. Overview
 
 **Creative North Star: "The Steady Hand"**
 
-Fiscal MYDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.
+FTDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.
 
-The system is quiet by construction. Surfaces are white and soft neutral greys; structure comes from spacing and gentle tonal steps rather than lines; one clear MYDS blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.
+The system is quiet by construction. Surfaces are white and soft neutral greys; structure comes from spacing and gentle tonal steps rather than lines; one clear FTDS blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.
 
 It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (every element outlined in grey, boxes inside boxes), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).
 
 **Key Characteristics:**
 
 - Neutral surfaces with almost no borders; spacing and tone do the grouping.
-- The national MYDS blue, used sparingly for action, selection and focus.
+- The blue inherited from MYDS, the national design system, used sparingly for action, selection and focus.
 - A single typeface (Inter) with a real hierarchy and tabular figures for money.
 - Two densities from the same tokens: comfortable for citizens, compact for officers.
 - Flat at rest; shadows only for things that genuinely float.
@@ -225,15 +225,15 @@ It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailw
 
 **Motion.** State changes only: hover, press, open, close, expand. 150–200ms with an ease-out curve (`cubic-bezier(0.16, 1, 0.3, 1)`). No entrance choreography, no bounce, and everything respects `prefers-reduced-motion`.
 
-## 2. Colors: The MYDS Palette
+## 2. Colors: The FTDS Palette
 
-The national MYDS palette: a clear, confident blue on neutral zinc greys and white surfaces, with semantic colours as soft washes. The calm comes from how sparingly colour is used, not from muting it.
+The palette inherited from MYDS, the national design system: a clear, confident blue on neutral zinc greys and white surfaces, with semantic colours as soft washes. The calm comes from how sparingly colour is used, not from muting it.
 
 ### Primary
 
-- **MYDS Blue** (#2563EB): the primary action button, links, the selected tab or nav item, checked checkboxes and radios. The national MYDS blue, kept so Fiscal MYDS stays recognisably part of the family. White text on it reads at 5.2:1; as text on Paper, 5.0:1.
-- **MYDS Blue Deep** (#1D4ED8): hover and pressed state of primary buttons and links.
-- **MYDS Blue Wash** (#EFF6FF): selected rows, the active item in a menu, info badges and callouts. MYDS Blue text on it reads at 4.8:1.
+- **FTDS Blue** (#2563EB): the primary action button, links, the selected tab or nav item, checked checkboxes and radios. Inherited from MYDS, so FTDS stays recognisably part of the government family. White text on it reads at 5.2:1; as text on Paper, 5.0:1.
+- **FTDS Blue Deep** (#1D4ED8): hover and pressed state of primary buttons and links.
+- **FTDS Blue Wash** (#EFF6FF): selected rows, the active item in a menu, info badges and callouts. FTDS Blue text on it reads at 4.8:1.
 - **Focus Blue** (#3A75F6): the focus ring only, drawn solid (never translucent) so it measures 4.0:1 against Paper.
 
 ### Neutral
@@ -261,14 +261,14 @@ Dark mode is a first-class theme for officers in long sessions, not an inversion
 
 - **Surfaces step in tone, about 1.1:1 apart**, so tone still separates areas the way it does in light: Dark Paper (#131316) canvas, Dark Sheet (#1C1C20) for raised content, Dark Well (#25252A) for grouped areas and secondary buttons, Dark Hover Mist (#2E2E34) for hover and the Hairline. Floating layers are Dark Sheet with a Hairline edge (see Elevation), so Well-toned controls inside them still read. Surfaces closer than 1.05:1 read as one flat slab; avoid them.
 - **Text stops short of pure white.** Dark Ink (#EDEDF0) reads at 14.5:1 on Sheet; pure white on near-black (17:1 and up) glares over a long session. Dark Ink Secondary (#B4B4BD) is 8.3:1 and Dark Ink Tertiary (#9A9AA5) 6.1:1, and at least 4.5:1 on every dark surface including hover and the selection wash, so the three levels stay clearly apart and all stay readable.
-- **Accent:** Dark MYDS Blue (#6394FF), 5.8:1 on Sheet, with Dark Paper text on primary buttons (6.4:1). Selection uses Dark MYDS Blue Wash (#1D2B4D), calmer than a saturated navy; blue text on it reads at 4.8:1.
+- **Accent:** Dark FTDS Blue (#6394FF), 5.8:1 on Sheet, with Dark Paper text on primary buttons (6.4:1). Selection uses Dark FTDS Blue Wash (#1D2B4D), calmer than a saturated navy; blue text on it reads at 4.8:1.
 - **Control Edge** (#71717C) keeps 3.5:1 on Sheet.
 
 The same rules apply: tone, not lines.
 
 ### Named Rules
 
-**The One Blue Rule.** MYDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.
+**The One Blue Rule.** FTDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.
 
 **The Dark-Enough Rule.** Text the user needs to read is Ink or Ink Secondary, never lighter. Light-grey hint text is forbidden.
 
@@ -325,8 +325,8 @@ In the dark theme, floating layers use Dark Sheet plus a 1px Dark Hairline edge 
 Calm and decisive: a clear primary, quiet everything else.
 
 - **Shape:** gently rounded corners (8px).
-- **Primary:** MYDS Blue fill, On MYDS Blue text, Label type, no border, no shadow. Comfortable 44px tall with 20px horizontal padding; compact 32px with 12px.
-- **Hover / Focus:** hover deepens to MYDS Blue Deep over 150ms. Focus shows a 2px Focus Blue ring offset 2px from the button. Pressed scales nothing; it simply holds the deep colour.
+- **Primary:** FTDS Blue fill, On FTDS Blue text, Label type, no border, no shadow. Comfortable 44px tall with 20px horizontal padding; compact 32px with 12px.
+- **Hover / Focus:** hover deepens to FTDS Blue Deep over 150ms. Focus shows a 2px Focus Blue ring offset 2px from the button. Pressed scales nothing; it simply holds the deep colour.
 - **Secondary:** Well fill with Ink text and no border; hover moves to Hover Mist. This replaces every outlined button.
 - **Ghost:** transparent with Ink Secondary text; hover shows a Well fill. For tertiary actions, toolbars and icon buttons (icon buttons are never boxed).
 - **Danger:** Danger Fill (#DC2626) with white text, used only for the final confirmation of a destructive action.
@@ -347,24 +347,24 @@ Calm and decisive: a clear primary, quiet everything else.
 ### Inputs / Fields
 
 - **Style:** Sheet background, 1px Control Edge stroke, 8px radius; 44px tall comfortable, 32px compact. Labels sit above in Label type and Ink; hints sit below in Ink Secondary.
-- **Focus:** the stroke turns MYDS Blue and a 2px Focus Blue ring appears outside it.
+- **Focus:** the stroke turns FTDS Blue and a 2px Focus Blue ring appears outside it.
 - **Error:** stroke and message turn Danger; the message always says what to do, not just what's wrong.
 - **Disabled:** Well background, Ink Tertiary text, stroke removed.
-- **Checkbox and radio:** 1.5px Control Edge stroke; checked fills MYDS Blue with an On MYDS Blue mark.
+- **Checkbox and radio:** 1.5px Control Edge stroke; checked fills FTDS Blue with an On FTDS Blue mark.
 
 ### Navigation
 
-- **Top bar:** Paper background with a single Hairline rule beneath. Items in Label type and Ink Secondary; hover moves to Ink; the current item is Ink with a 2px MYDS Blue underline.
+- **Top bar:** Paper background with a single Hairline rule beneath. Items in Label type and Ink Secondary; hover moves to Ink; the current item is Ink with a 2px FTDS Blue underline.
 - **Tabs:** one style across the system: the same underline treatment as the top bar. The three tab variants collapse into this one.
 - **Mobile:** the menu opens as a full-width Sheet panel with comfortable-density rows (44px), no dividers between items.
-- **Desk layout** (`DeskShell`, officer workstations): always compact. A 48px icon rail on the Well with a Hairline on its right; the current section takes the Blue Wash and a 2px MYDS Blue bar on the rail's edge. A 40px top bar (breadcrumbs, underlined section tabs, ⌘K search) and a 28px status bar on the Well in Label Compact. Every destination has a shortcut shown in its tooltip as key caps (`Kbd`); ⌘K opens the command palette and `?` lists every shortcut. On narrow screens the rail opens as a left drawer with labelled rows.
+- **Desk layout** (`DeskShell`, officer workstations): always compact. A 48px icon rail on the Well with a Hairline on its right; the current section takes the Blue Wash and a 2px FTDS Blue bar on the rail's edge. A 40px top bar (breadcrumbs, underlined section tabs, ⌘K search) and a 28px status bar on the Well in Label Compact. Every destination has a shortcut shown in its tooltip as key caps (`Kbd`); ⌘K opens the command palette and `?` lists every shortcut. On narrow screens the rail opens as a left drawer with labelled rows.
 
 ### Data Table (signature component)
 
 The officer's home screen, built to be looked at all day.
 
 - **No outer border or box.** Header row is Paper with Label Compact text in Ink Secondary.
-- **Rows:** 48px tall in comfortable density and 40px in compact (52px in comfortable when a row holds actions), content text, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with MYDS Blue Wash.
+- **Rows:** 48px tall in comfortable density and 40px in compact (52px in comfortable when a row holds actions), content text, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with FTDS Blue Wash.
 - **Amounts:** Amount type, right-aligned.
 - **Status:** wash badges, never outlined.
 - **Row actions:** ghost buttons or a single overflow menu, never a column of outlined "Edit" buttons.
@@ -380,7 +380,7 @@ The officer's home screen, built to be looked at all day.
 ### Do:
 
 - **Do** separate groups with spacing (16–24px comfortable, 8–12px compact) and tone (Paper, Sheet, Well) before reaching for any line.
-- **Do** keep MYDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.
+- **Do** keep FTDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.
 - **Do** use Ink (#18181B) or Ink Secondary (#3F3F46) for any text a user must read; Ink Secondary measures 10:1.
 - **Do** ship every component in both densities: comfortable (16px text, 44px controls) for citizens and compact (14px text, 32px controls) for officers.
 - **Do** set every amount in tabular figures and right-align it in columns.

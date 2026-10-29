@@ -6,16 +6,16 @@ import {
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 import {
   Fieldset,
   FieldsetDescription,
   FieldsetLegend,
-} from "@mof-malaysia/myds-react/fieldset";
-import { Form } from "@mof-malaysia/myds-react/form";
-import { Input } from "@mof-malaysia/myds-react/input";
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/fieldset";
+import { Form } from "@mof-malaysia/ftds-react/form";
+import { Input } from "@mof-malaysia/ftds-react/input";
+import { TextArea } from "@mof-malaysia/ftds-react/textarea";
+import { Button } from "@mof-malaysia/ftds-react/button";
 
 /**
  * ### Overview

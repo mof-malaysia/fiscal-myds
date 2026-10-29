@@ -1,11 +1,11 @@
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { CtaBand } from "@mof-malaysia/myds-react/cta-band";
+import { CtaBand } from "@mof-malaysia/ftds-react/cta-band";
 
 /**
  * ### Overview
  * The closing call to action: title, text, one primary action and an
- * optional secondary one, on a Well (default) or MYDS Blue Wash band. Never a
+ * optional secondary one, on a Well (default) or FTDS Blue Wash band. Never a
  * saturated blue block: the primary button is the only fill.
  *
  * ### Usage

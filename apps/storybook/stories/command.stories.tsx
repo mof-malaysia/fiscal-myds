@@ -11,8 +11,8 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@mof-malaysia/myds-react/command";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/command";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   DocumentIcon,
   FolderIcon,
@@ -20,7 +20,7 @@ import {
   PlusIcon,
   SearchIcon,
   SettingIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

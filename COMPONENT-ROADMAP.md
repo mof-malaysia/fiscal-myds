@@ -1,4 +1,4 @@
-# Component Roadmap: Fiscal MYDS 2.0
+# Component Roadmap: FTDS 2.0
 
 Status: implemented on `feat/myds-2-tiered-components` (d449458). Breaking release (2.0).
 

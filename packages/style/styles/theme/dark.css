@@ -93,7 +93,7 @@
   --bg-warning-disabled: var(--_warning-950);
 
   /* Text - White */
-  /* Text on MYDS Blue and other fills: the Paper tone */
+  /* Text on FTDS Blue and other fills: the Paper tone */
   --txt-white: var(--_graphite-900);
   --txt-white-disabled: var(--_graphite-900) / 0.4;
 

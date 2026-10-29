@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { ErrorPage } from "@mof-malaysia/myds-react/error-page";
+import { ErrorPage } from "@mof-malaysia/ftds-react/error-page";
 
 /**
  * ### Overview

@@ -62,8 +62,8 @@ const button_cva = cva(
           "disabled:bg-bg-white-disabled disabled:text-txt-danger-disabled disabled:border-transparent",
         ],
         "primary-fill": [
-          // Theme tokens (DESIGN.md, Dark theme): MYDS Blue with white text in light,
-          // Dark MYDS Blue with Dark Sheet text in dark
+          // Theme tokens (DESIGN.md, Dark theme): FTDS Blue with white text in light,
+          // Dark FTDS Blue with Dark Sheet text in dark
           "bg-bg-primary-600 border border-transparent text-txt-white",
           "hover:bg-bg-primary-700",
           "disabled:bg-bg-primary-disabled disabled:text-txt-white-disabled",

@@ -1,10 +1,10 @@
 import React from "react";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import {
   SignInForm,
   type SignInMethod,
-} from "@mof-malaysia/myds-react/sign-in-form";
+} from "@mof-malaysia/ftds-react/sign-in-form";
 import { AccessBrand, wait } from "./access-brand";
 
 /** Officer sign-in for a staff portal: single sign-on first, compact density. */

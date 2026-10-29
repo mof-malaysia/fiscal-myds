@@ -11,14 +11,14 @@ import {
   NavbarMenuGroup,
   NavbarMenuFeature,
   NavbarMenuFooterLink,
-} from "@mof-malaysia/myds-react/navbar";
+} from "@mof-malaysia/ftds-react/navbar";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@mof-malaysia/myds-react/select";
+} from "@mof-malaysia/ftds-react/select";
 import {
   BookIcon,
   CalendarIcon,
@@ -34,9 +34,9 @@ import {
   OrgChartIcon,
   SearchIcon,
   UserGroupIcon,
-} from "@mof-malaysia/myds-react/icon";
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
-import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
+} from "@mof-malaysia/ftds-react/icon";
+import { Button, ButtonIcon } from "@mof-malaysia/ftds-react/button";
+import { ThemeSwitch } from "@mof-malaysia/ftds-react/theme-switch";
 
 /**
  * ### Overview
@@ -47,7 +47,7 @@ import { ThemeSwitch } from "@mof-malaysia/myds-react/theme-switch";
  * ### Usage
  * ```tsx
  *   <Navbar>
- *      <NavbarLogo src="https://d2391uizq0pg2.cloudfront.net/common/logo.svg">MYDS</NavbarLogo>
+ *      <NavbarLogo src="https://d2391uizq0pg2.cloudfront.net/common/logo.svg">FTDS</NavbarLogo>
  *         <NavbarMenu>
  *             <NavbarMenuItem href="/menu1">
  *                 MinistryProfile
@@ -157,15 +157,15 @@ const meta = {
 
 export default meta;
 
-export const NavbarCustomMyds = createStory(
+export const NavbarCustomFtds = createStory(
   {
     children: (
       <>
         <NavbarLogo
           src="https://d2391uizq0pg2.cloudfront.net/common/logo.svg"
-          alt="Malaysian Government Design System"
+          alt="FiscalTech Design System"
         >
-          MYDS
+          FTDS
         </NavbarLogo>
 
         <NavbarMenu>

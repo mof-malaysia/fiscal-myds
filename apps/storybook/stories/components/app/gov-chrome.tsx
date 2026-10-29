@@ -6,18 +6,18 @@ import {
   MastheadSection,
   MastheadTitle,
   MastheadTrigger,
-} from "@mof-malaysia/myds-react/masthead";
+} from "@mof-malaysia/ftds-react/masthead";
 import {
   Footer,
   FooterCopyright,
   FooterLink,
   FooterLinks,
-} from "@mof-malaysia/myds-react/footer";
+} from "@mof-malaysia/ftds-react/footer";
 import {
   Lock2Icon,
   LockFillIcon,
   PutrajayaIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /** The one service name every citizen-facing example uses. */
 export const SERVICE_NAME = "MyFiscal";

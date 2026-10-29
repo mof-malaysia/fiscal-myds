@@ -1,5 +1,5 @@
 {
-  "name": "@myds-app",
+  "name": "@ftds-app",
   "description": "Service and officer tools: forms, data, workflows",
   "version": "2.0.0",
   "components": [
@@ -8,17 +8,17 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/avatar.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/textarea.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/attachment.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chat-bubble.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/document.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/swap.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/user.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/avatar.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/textarea.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/attachment.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chat-bubble.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/document.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/swap.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/user.json"
       ],
       "files": [
         "styles/default/activity-timeline.json"
@@ -32,13 +32,13 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/drawer.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/tooltip.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-down.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/hamburger-menu.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/drawer.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/tooltip.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-down.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/hamburger-menu.json"
       ],
       "files": [
         "styles/default/app-shell.json"
@@ -49,12 +49,12 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/empty-state.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/tag.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/document.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/empty-state.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/tag.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/document.json"
       ],
       "files": [
         "styles/default/application-list.json"
@@ -65,7 +65,7 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/auth-layout.json"
@@ -78,9 +78,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/combobox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/combobox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/autocomplete.json"
@@ -94,10 +94,10 @@
         "react-day-picker@^9.11.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-left.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-left.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-right.json"
       ],
       "files": [
         "styles/default/calendar.json"
@@ -110,10 +110,10 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/textarea.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/textarea.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/character-count.json"
@@ -124,12 +124,12 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/error-summary.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/check-answers.json"
@@ -143,9 +143,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/checkbox-group.json"
@@ -159,11 +159,11 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-down.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-down.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross.json"
       ],
       "files": [
         "styles/default/combobox.json"
@@ -176,10 +176,10 @@
         "cmdk@^1.1.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/dialog.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/search.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/dialog.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/search.json"
       ],
       "files": [
         "styles/default/command.json"
@@ -190,14 +190,14 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/copy.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/printer.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/copy.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/printer.json"
       ],
       "files": [
         "styles/default/confirmation-panel.json"
@@ -210,8 +210,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/context-menu.json"
@@ -224,15 +224,15 @@
         "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/table.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/arrow-down.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/arrow-up.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/column-collapse.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/column-expand.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/table.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/arrow-down.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/arrow-up.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-right.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/column-collapse.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/column-expand.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross.json"
       ],
       "files": [
         "styles/default/data-table.json"
@@ -245,7 +245,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/calendar.json"
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/calendar.json"
       ],
       "files": [
         "styles/default/date-field.json"
@@ -260,12 +260,12 @@
         "react-day-picker@^9.11.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/calendar.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/dialog.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/popover.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/calendar.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/calendar.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/dialog.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/popover.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/calendar.json"
       ],
       "files": [
         "styles/default/date-picker.json"
@@ -280,14 +280,14 @@
         "react-day-picker@^9.11.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/calendar.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/popover.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/calendar.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-left.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/calendar.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/popover.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/calendar.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-left.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-right.json"
       ],
       "files": [
         "styles/default/daterange-picker.json"
@@ -298,15 +298,15 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/alert-dialog.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/radio.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/textarea.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/alert-dialog.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/radio.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/textarea.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/decision-panel.json"
@@ -320,15 +320,15 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/drawer.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/shortcuts.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/tooltip.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/hamburger-menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/search.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/drawer.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/shortcuts.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/kbd.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/tooltip.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/hamburger-menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/search.json"
       ],
       "files": [
         "styles/default/desk-shell.json"
@@ -342,9 +342,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross.json"
       ],
       "files": [
         "styles/default/drawer.json"
@@ -355,7 +355,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/empty-state.json"
@@ -366,11 +366,11 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/copy.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/copy.json"
       ],
       "files": [
         "styles/default/error-page.json"
@@ -381,9 +381,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/error-summary.json"
@@ -396,15 +396,15 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/progress.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/spinner.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/document.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/upload.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/progress.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/spinner.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/document.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/upload.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/file-upload.json"
@@ -415,12 +415,12 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/stepper.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-left.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/error-summary.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/stepper.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-left.json"
       ],
       "files": [
         "styles/default/form-step.json"
@@ -433,9 +433,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/toggle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/toggle.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/menubar.json"
@@ -449,9 +449,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/progress.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/progress.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/meter.json"
@@ -462,19 +462,19 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/empty-state.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/toggle-group.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/toggle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/bell.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/calendar.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/document.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/info.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/money.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/empty-state.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/toggle-group.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/toggle.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/bell.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/calendar.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/document.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/info.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/money.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/notification-list.json"
@@ -487,10 +487,10 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/combobox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/minus.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/plus.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/combobox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/minus.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/plus.json"
       ],
       "files": [
         "styles/default/number-field.json"
@@ -503,8 +503,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/combobox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/combobox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/otp-field.json"
@@ -515,13 +515,13 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/otp-field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/spinner.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/otp-field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/spinner.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/otp-verify.json"
@@ -534,7 +534,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/page-header.json"
@@ -547,12 +547,12 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-left.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/ellipsis.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-left.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-right.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/ellipsis.json"
       ],
       "files": [
         "styles/default/pagination.json"
@@ -566,11 +566,11 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/info.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/info.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/panel.json"
@@ -581,11 +581,11 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/eye-hide.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/eye-show.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/eye-hide.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/eye-show.json"
       ],
       "files": [
         "styles/default/password-input.json"
@@ -596,15 +596,15 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/otp-verify.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/sign-up-form.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/spinner.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/email.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/error-summary.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/otp-verify.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/sign-up-form.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/spinner.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/email.json"
       ],
       "files": [
         "styles/default/password-reset.json"
@@ -617,15 +617,15 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/radio.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/download.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/lock-fill.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/printer.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/error-summary.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/radio.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/download.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/lock-fill.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/printer.json"
       ],
       "files": [
         "styles/default/payment-summary.json"
@@ -638,8 +638,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/popover.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/popover.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/preview-card.json"
@@ -653,7 +653,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/progress.json"
@@ -664,9 +664,9 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/alert-dialog.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/alert-dialog.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json"
       ],
       "files": [
         "styles/default/session-timeout.json"
@@ -677,10 +677,10 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/warning-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/warning-circle.json"
       ],
       "files": [
         "styles/default/settings-layout.json"
@@ -694,7 +694,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/sheet.json"
@@ -705,10 +705,10 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/command.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/dialog.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/command.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/dialog.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/kbd.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/shortcuts.json"
@@ -719,15 +719,15 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/password-input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/spinner.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/error-summary.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/password-input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/spinner.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/sign-in-form.json"
@@ -738,16 +738,16 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/error-summary.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/password-input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/field.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/link.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/spinner.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/error-summary.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/password-input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/field.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/link.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/spinner.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check-circle.json"
       ],
       "files": [
         "styles/default/sign-up-form.json"
@@ -760,7 +760,7 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/slider.json"
@@ -771,7 +771,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/split-pane.json"
@@ -784,9 +784,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/arrow-down.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/arrow-up.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/arrow-down.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/arrow-up.json"
       ],
       "files": [
         "styles/default/stat.json"
@@ -799,9 +799,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/progress.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/check.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/progress.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/check.json"
       ],
       "files": [
         "styles/default/stepper.json"
@@ -812,7 +812,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/summary-list.json"
@@ -823,10 +823,10 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/skeleton.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/tooltip.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/question-circle.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/skeleton.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/tooltip.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/question-circle.json"
       ],
       "files": [
         "styles/default/table.json"
@@ -839,8 +839,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/tag.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/tag.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/task-list.json"
@@ -854,9 +854,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/combobox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/toggle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/combobox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/toggle.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json"
       ],
       "files": [
         "styles/default/toolbar.json"
@@ -867,25 +867,25 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/shortcuts.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/app/styles/default/table.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/checkbox.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/hooks.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/input.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/kbd.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/menu.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/select.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/toggle-group.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/toggle.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/utils.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-down.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-left.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/chevron-right.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/cross.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/download.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/search.json",
-        "https://mof-malaysia.github.io/fiscal-myds/registry/icons/styles/default/user.json"
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/shortcuts.json",
+        "https://mof-malaysia.github.io/ftds/registry/app/styles/default/table.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/checkbox.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/hooks.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/input.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/kbd.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/menu.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/select.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/toggle-group.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/toggle.json",
+        "https://mof-malaysia.github.io/ftds/registry/core/styles/default/utils.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-down.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-left.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/chevron-right.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/cross.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/download.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/search.json",
+        "https://mof-malaysia.github.io/ftds/registry/icons/styles/default/user.json"
       ],
       "files": [
         "styles/default/work-queue.json"

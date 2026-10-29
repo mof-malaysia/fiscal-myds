@@ -44,7 +44,7 @@ const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
 ).dependencies;
 
 /**
- * Pin npm dependencies to the ranges MYDS is built against, so a project
+ * Pin npm dependencies to the ranges FTDS is built against, so a project
  * doesn't pull in a new major (e.g. @tanstack/react-table v9).
  */
 function withVersions(deps: Iterable<string>): string[] {
@@ -113,7 +113,7 @@ function generateUtilsItem(): RegistryComponent {
     registryDependencies: [],
     files: [
       {
-        path: "lib/myds/utils/index.ts",
+        path: "lib/ftds/utils/index.ts",
         content: readFileContent(path.join(UTILS_DIR, "index.ts")),
         type: "registry:lib",
       },
@@ -131,7 +131,7 @@ function generateHooksItem(): RegistryComponent {
     .filter((file) => /\.tsx?$/.test(file))
     .sort()
     .map((file) => ({
-      path: `lib/myds/hooks/${file}`,
+      path: `lib/ftds/hooks/${file}`,
       content: transformImports(readFileContent(path.join(HOOKS_DIR, file)), {
         keepSameFolderImports: true,
       }),
@@ -139,7 +139,7 @@ function generateHooksItem(): RegistryComponent {
     }));
 
   files.push({
-    path: "lib/myds/utils/events.ts",
+    path: "lib/ftds/utils/events.ts",
     content: transformImports(
       readFileContent(path.join(UTILS_DIR, "events.ts")),
     ),

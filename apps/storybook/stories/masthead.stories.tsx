@@ -6,12 +6,12 @@ import {
   MastheadTrigger,
   MastheadSection,
   MastheadTitle,
-} from "@mof-malaysia/myds-react/masthead";
+} from "@mof-malaysia/ftds-react/masthead";
 import {
   Lock2Icon,
   PutrajayaIcon,
   LockFillIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 import { createStory } from "../utils";
 
 /**
@@ -41,7 +41,7 @@ import { createStory } from "../utils";
  * ### Usage
  * ```tsx
  * // Basic usage with all defaults
- * import { Masthead } from "@mof-malaysia/myds-react/masthead";
+ * import { Masthead } from "@mof-malaysia/ftds-react/masthead";
  *
  * const MyPage = () => <Masthead />;
  *

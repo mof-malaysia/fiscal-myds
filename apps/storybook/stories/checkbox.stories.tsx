@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
+import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
 import { createRender, createStory } from "../utils";
 
 /**
@@ -20,7 +20,7 @@ import { createRender, createStory } from "../utils";
  *
  * ### Usage
  * ```tsx
- * import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
+ * import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
  *
  * // Default checkbox (small size)
  * <Checkbox>Default Checkbox</Checkbox>

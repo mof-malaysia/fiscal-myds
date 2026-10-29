@@ -32,7 +32,6 @@ type DatePickerProps = {
 
 /**
  * The DatePicker component allows users to select a date from an interactive calendar.
- * @see {@link https://design.digital.gov.my/?path=/docs/myds-react-datepicker--docs}
  */
 const DatePicker: FC<DatePickerProps> = ({
   defaultValue,

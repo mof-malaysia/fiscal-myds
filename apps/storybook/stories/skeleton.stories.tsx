@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Skeleton } from "@mof-malaysia/myds-react/skeleton";
+import { Skeleton } from "@mof-malaysia/ftds-react/skeleton";
 
 /**
  * ### Overview

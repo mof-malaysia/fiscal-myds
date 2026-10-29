@@ -49,7 +49,7 @@ interface CtaBandProps extends Omit<ComponentProps<"section">, "title"> {
   description?: ReactNode;
   primaryAction: CtaAction;
   secondaryAction?: CtaAction;
-  /** Band colour: Well (default) or MYDS Blue Wash. */
+  /** Band colour: Well (default) or FTDS Blue Wash. */
   tone?: "well" | "primary";
 }
 

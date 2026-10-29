@@ -252,7 +252,7 @@ interface SignUpFormProps
   showPhone?: boolean;
   termsHref?: string;
   privacyHref?: string;
-  /** Renders the consent links; pass your router's link. Defaults to a myds Link that opens in a new tab. */
+  /** Renders the consent links; pass your router's link. Defaults to a ftds Link that opens in a new tab. */
   renderLink?: (href: string, children: ReactNode) => ReactNode;
   /** Rules for the password checklist. */
   passwordRules?: PasswordRule[];

@@ -4,13 +4,13 @@ import { createRender } from "../utils";
 import {
   CurrencyField,
   NumberField,
-} from "@mof-malaysia/myds-react/number-field";
+} from "@mof-malaysia/ftds-react/number-field";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

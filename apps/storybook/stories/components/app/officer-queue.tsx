@@ -2,11 +2,11 @@ import React from "react";
 import {
   WorkQueue,
   type WorkQueueAssignee,
-} from "@mof-malaysia/myds-react/work-queue";
-import { useCommands } from "@mof-malaysia/myds-react/shortcuts";
-import { useToast } from "@mof-malaysia/myds-react/hooks";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { PlusIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/work-queue";
+import { useCommands } from "@mof-malaysia/ftds-react/shortcuts";
+import { useToast } from "@mof-malaysia/ftds-react/hooks";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { PlusIcon } from "@mof-malaysia/ftds-react/icon";
 import {
   CASE_COLUMNS,
   CASES,

@@ -1,14 +1,14 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { FormStep } from "@mof-malaysia/myds-react/form-step";
+import { FormStep } from "@mof-malaysia/ftds-react/form-step";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
-import { Input } from "@mof-malaysia/myds-react/input";
+} from "@mof-malaysia/ftds-react/field";
+import { Input } from "@mof-malaysia/ftds-react/input";
 
 /**
  * ### Overview

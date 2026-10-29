@@ -1,24 +1,24 @@
-# Contributing to MYDS
+# Contributing to FTDS
 
-Thank you for your interest in contributing to MYDS! We welcome all contributions that help improve the library, whether through bug fixes, new components, documentation, or discussions.
+Thank you for your interest in contributing to FTDS! We welcome all contributions that help improve the library, whether through bug fixes, new components, documentation, or discussions.
 
 ## Issue Reporting
 
-If you've found a bug in MYDS that you'd like to fix, you may raise it in [Issues](https://github.com/mof-malaysia/fiscal-myds/issues) first. After the bug is confirmed by our team, we may opt to resolve it ourselves or open it to the public (or you) to submit a pull request with the fix, depending on how critical the bug is.
+If you've found a bug in FTDS that you'd like to fix, you may raise it in [Issues](https://github.com/mof-malaysia/ftds/issues) first. After the bug is confirmed by our team, we may opt to resolve it ourselves or open it to the public (or you) to submit a pull request with the fix, depending on how critical the bug is.
 
 We recommend searching the existing issues to avoid duplicates.
 
 ## New features
 
-If there's a new feature you'd like to see added to MYDS, share your idea with us in the [Discussions](https://github.com/mof-malaysia/fiscal-myds/discussions) forum to get it on our radar as something to consider for a future release.
+If there's a new feature you'd like to see added to FTDS, share your idea with us in the [Discussions](https://github.com/mof-malaysia/ftds/discussions) forum to get it on our radar as something to consider for a future release.
 
-Please note that we don't often accept pull requests for new features. Adding a new feature or component to MYDS requires us to think through the entire problem ourselves to make sure we agree with the proposed API, which means the feature needs to be high on our own priority list for us to be able to give it the attention it needs.
+Please note that we don't often accept pull requests for new features. Adding a new feature or component to FTDS requires us to think through the entire problem ourselves to make sure we agree with the proposed API, which means the feature needs to be high on our own priority list for us to be able to give it the attention it needs.
 
 If you open a pull request for a new feature, we're likely to close it not because it's a bad idea, but because we aren't ready to prioritize the feature and don't want the PR to sit open for months or even years.
 
 ## Turborepo
 
-MYDS is largely managed by [Turborepo](https://turbo.build/). If you would like contribute via code, we recommend learning to utilise the features of Turborepo to make your life easier, from running multiple dev servers to scoped installs and many more.
+FTDS is largely managed by [Turborepo](https://turbo.build/). If you would like contribute via code, we recommend learning to utilise the features of Turborepo to make your life easier, from running multiple dev servers to scoped installs and many more.
 
 ## Coding standards
 

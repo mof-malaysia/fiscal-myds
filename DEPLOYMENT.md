@@ -1,13 +1,13 @@
 # GitHub Pages Deployment Guide
 
-This guide explains how to deploy the MYDS component registry and Storybook to GitHub Pages.
+This guide explains how to deploy the FTDS component registry and Storybook to GitHub Pages.
 
 ## Deployment Structure
 
 The deployment is one GitHub Pages site:
 
 ```
-https://mof-malaysia.github.io/fiscal-myds/
+https://mof-malaysia.github.io/ftds/
 ├── /                            → Registry landing page
 ├── /registry/                   → Registry JSON
 │   ├── index.json               → Root index of the five registries
@@ -32,7 +32,7 @@ https://mof-malaysia.github.io/fiscal-myds/
 1. Checks out the repo and sets up pnpm and Node.js 20 (`setup-node` caches the pnpm store)
 2. `pnpm install --frozen-lockfile`
 3. `pnpm run registry:build`
-4. `pnpm run build:gh-pages` in `apps/storybook` (sets `BASE_PATH=/fiscal-myds/storybook`)
+4. `pnpm run build:gh-pages` in `apps/storybook` (sets `BASE_PATH=/ftds/storybook`)
 5. `pnpm run deploy:prepare`
 6. Uploads `./deploy` and deploys it to GitHub Pages
 
@@ -46,7 +46,7 @@ Deployments usually finish in a few minutes. Watch progress in the **Actions** t
 
 ```bash
 pnpm registry:build                      # regenerate registry/
-pnpm --filter @mof-malaysia/myds-storybook build:gh-pages
+pnpm --filter @mof-malaysia/ftds-storybook build:gh-pages
 pnpm deploy:prepare                      # assemble ./deploy
 ```
 
@@ -60,7 +60,7 @@ git init
 git checkout -b gh-pages
 git add .
 git commit -m "Deploy to GitHub Pages"
-git remote add origin git@github.com:mof-malaysia/fiscal-myds.git
+git remote add origin git@github.com:mof-malaysia/ftds.git
 git push -f origin gh-pages
 ```
 
@@ -74,24 +74,24 @@ git push -f origin gh-pages
 
 1. Add a DNS CNAME record pointing to `mof-malaysia.github.io`:
    ```
-   CNAME    myds    mof-malaysia.github.io
+   CNAME    ftds    mof-malaysia.github.io
    ```
-2. In `scripts/deploy/prepare-gh-pages.ts`, uncomment and set `createCNAME("myds.yourdomain.com");`.
+2. In `scripts/deploy/prepare-gh-pages.ts`, uncomment and set `createCNAME("ftds.yourdomain.com");`.
 3. The site is now served from the domain root, so change the Storybook base path in `apps/storybook/package.json`:
    ```json
    "build:gh-pages": "BASE_PATH=/storybook storybook build -o dist"
    ```
-4. Rebuild registry items against the new host: `MYDS_REGISTRY_URL=https://myds.yourdomain.com/registry pnpm registry:build`.
+4. Rebuild registry items against the new host: `FTDS_REGISTRY_URL=https://ftds.yourdomain.com/registry pnpm registry:build`.
 5. In **Settings** → **Pages**, enter the custom domain and enable **Enforce HTTPS**.
 
 ## Local Development
 
 ```bash
 # Storybook dev server at http://localhost:6006
-pnpm --filter @mof-malaysia/myds-storybook dev
+pnpm --filter @mof-malaysia/ftds-storybook dev
 
 # Production build, served locally
-pnpm --filter @mof-malaysia/myds-storybook build
+pnpm --filter @mof-malaysia/ftds-storybook build
 npx serve apps/storybook/dist
 ```
 
@@ -108,7 +108,7 @@ npx serve apps/storybook/dist
 
 ### Storybook 404s or broken assets
 
-`BASE_PATH` must match where Storybook is served. On the default GitHub Pages URL that is `/fiscal-myds/storybook`; on a custom domain it is `/storybook`.
+`BASE_PATH` must match where Storybook is served. On the default GitHub Pages URL that is `/ftds/storybook`; on a custom domain it is `/storybook`.
 
 ### Registry files return 404
 
@@ -132,7 +132,7 @@ npx serve apps/storybook/dist
 ## File Structure
 
 ```
-fiscal-myds/
+ftds/
 ├── .github/workflows/
 │   └── deploy-gh-pages.yml        # GitHub Pages workflow (currently disabled)
 ├── apps/storybook/
@@ -146,7 +146,7 @@ fiscal-myds/
 │   │   ├── build-multi.ts         # pnpm registry:build entry point
 │   │   ├── generate-components.ts # core, app and marketing tiers, utils, hooks
 │   │   ├── generate-icons.ts      # Icons
-│   │   ├── generate-style.ts      # myds-init and the granular style items
+│   │   ├── generate-style.ts      # ftds-init and the granular style items
 │   │   ├── sync-exports.ts        # packages/react exports (pnpm components:sync-exports)
 │   │   └── utils.ts
 │   └── deploy/
@@ -162,10 +162,10 @@ fiscal-myds/
 
 ## URLs
 
-- **Landing**: `https://mof-malaysia.github.io/fiscal-myds/`
-- **Storybook**: `https://mof-malaysia.github.io/fiscal-myds/storybook/`
-- **Registry index**: `https://mof-malaysia.github.io/fiscal-myds/registry/index.json`
-- **An item**: `https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json`
+- **Landing**: `https://mof-malaysia.github.io/ftds/`
+- **Storybook**: `https://mof-malaysia.github.io/ftds/storybook/`
+- **Registry index**: `https://mof-malaysia.github.io/ftds/registry/index.json`
+- **An item**: `https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json`
 
 ## Using the Registry
 
@@ -173,8 +173,8 @@ Users install items by full URL (the shadcn CLI has no `--registry` flag):
 
 ```bash
 npx shadcn@latest init   # keep the default Base UI library
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/style/styles/default/myds-init.json
-npx shadcn@latest add https://mof-malaysia.github.io/fiscal-myds/registry/core/styles/default/button.json --overwrite
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/style/styles/default/ftds-init.json
+npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json --overwrite
 ```
 
 See [REGISTRY.md](./REGISTRY.md) for the full guide.
@@ -187,7 +187,7 @@ With the workflow enabled, re-run the last good deployment from the **Actions** 
 git checkout <good-commit>
 pnpm install
 pnpm registry:build
-pnpm --filter @mof-malaysia/myds-storybook build:gh-pages
+pnpm --filter @mof-malaysia/ftds-storybook build:gh-pages
 pnpm deploy:prepare
 # then push deploy/ to gh-pages as in Manual Deployment
 ```

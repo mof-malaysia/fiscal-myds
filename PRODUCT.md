@@ -6,7 +6,7 @@ product
 
 ## Users
 
-Two groups use services built with Fiscal MYDS, the Ministry of Finance (MOF) fork of the Malaysia Government Design System.
+Two groups use services built with FTDS (FiscalTech Design System), the Ministry of Finance (MOF) design system. FTDS began as a fork of MYDS, the Malaysia Government Design System.
 
 - **Citizens and businesses** dealing with MOF: checking obligations, applying, paying, tracking a submission. Many are older or not confident online. Money and government deadlines make these tasks stressful, so they arrive anxious and want certainty that they did it right.
 - **MOF officers** who work in the same system all day: reviewing tables, processing forms, reading dashboards. Their problem is fatigue, not unfamiliarity. Long sessions in dense screens make eye strain and visual noise real costs.
@@ -15,7 +15,7 @@ The primary surfaces are service and task screens: forms, tables, dashboards, po
 
 ## Product Purpose
 
-Fiscal MYDS is a component library, shipped as a shadcn registry, that MOF teams use to build their services. It exists so every MOF service feels like one trustworthy institution, and so teams spend their effort on the service, not on styling.
+FTDS is a component library, shipped as a shadcn registry, that MOF teams use to build their services. It exists so every MOF service feels like one trustworthy institution, and so teams spend their effort on the service, not on styling.
 
 Success looks like: a citizen finishes a payment or application and feels sure it went through; an officer ends a day in a data table without feeling worn out; a team can build a new service that looks right without a designer.
 
@@ -23,7 +23,7 @@ Success looks like: a citizen finishes a payment or application and feels sure i
 
 **Calm, capable, humane.**
 
-- **Calm:** quiet surfaces, nothing competing for attention, colour used only when it means something. The national MYDS colours stay bright and confident; calm comes from restraint, not from muting them. The interface lowers the stakes of a stressful task.
+- **Calm:** quiet surfaces, nothing competing for attention, colour used only when it means something. The colours inherited from MYDS stay bright and confident; calm comes from restraint, not from muting them. The interface lowers the stakes of a stressful task.
 - **Capable:** precise and well-made. Alignment, spacing and states are exact, so the system feels like a competent institution handling your money.
 - **Humane:** plain language in BM and English, readable sizes, reassurance at the moments that matter (submitting, paying, deleting). Never cold or bureaucratic.
 
@@ -31,7 +31,7 @@ The reference for craft is Linear: restraint, soft surfaces instead of outlines,
 
 ## Anti-references
 
-- **Generic Tailwind starter.** Every element outlined with a 1px grey border, boxes inside boxes, the same weight on everything. Fiscal MYDS keeps the national MYDS palette; the generic look came from the outlines and flat hierarchy, not the colours.
+- **Generic Tailwind starter.** Every element outlined with a 1px grey border, boxes inside boxes, the same weight on everything. FTDS keeps the MYDS palette; the generic look came from the outlines and flat hierarchy, not the colours.
 - **Old government portals.** Dense banners, crests and logos everywhere, gradients, tiny text, 2010-era layouts.
 - **Flashy fintech.** Neon accents, dark gradient heroes, glassmorphism, crypto-app energy.
 - **Stiff corporate banking.** Navy and gold, heavy serif headings, formal and distant.

@@ -136,7 +136,7 @@ const stepper_circle_cva = cva(
     variants: {
       state: {
         complete: "bg-bg-primary-600 text-txt-white",
-        // Ring of MYDS Blue on its wash: selected, not filled (DESIGN.md: One Blue Rule)
+        // Ring of FTDS Blue on its wash: selected, not filled (DESIGN.md: One Blue Rule)
         current:
           "bg-bg-primary-50 text-txt-primary ring-2 ring-inset ring-bg-primary-600",
         upcoming: "bg-bg-washed-active text-txt-black-700",

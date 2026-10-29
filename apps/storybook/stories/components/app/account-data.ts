@@ -1,4 +1,4 @@
-import type { NotificationItem } from "@mof-malaysia/myds-react/notification-list";
+import type { NotificationItem } from "@mof-malaysia/ftds-react/notification-list";
 
 /** Fixed "now" so day groups (Today, Yesterday) stay stable in stories. */
 export const NOW = new Date("2026-10-28T16:30:00+08:00");

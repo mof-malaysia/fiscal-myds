@@ -8,7 +8,7 @@ import {
   StatGroup,
   StatLabel,
   StatValue,
-} from "@mof-malaysia/myds-react/stat";
+} from "@mof-malaysia/ftds-react/stat";
 
 /**
  * ### Overview

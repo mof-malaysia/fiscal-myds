@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
-import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
-import { clx } from "@mof-malaysia/myds-react/utils";
+import { Skiplink } from "@mof-malaysia/ftds-react/skiplink";
+import { clx } from "@mof-malaysia/ftds-react/utils";
 
 /**
  * ### Overview
@@ -14,7 +14,7 @@ import { clx } from "@mof-malaysia/myds-react/utils";
  *
  * ### Usage
  * ```ts
- * import Skiplink from "@mof-malaysia/myds-react/skiplink";
+ * import Skiplink from "@mof-malaysia/ftds-react/skiplink";
  *
  * <Skiplink href="#main-content">
  * <span>Skip to main content</span>

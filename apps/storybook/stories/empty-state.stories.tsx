@@ -7,9 +7,9 @@ import {
   EmptyStateDescription,
   EmptyStateIcon,
   EmptyStateTitle,
-} from "@mof-malaysia/myds-react/empty-state";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { DocumentIcon, SearchIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/empty-state";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { DocumentIcon, SearchIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

@@ -4,7 +4,7 @@ import { listComponents } from "./utils";
 
 /**
  * Regenerate packages/react/package.json "exports" from the component tiers.
- * Entry points stay flat (`@mof-malaysia/myds-react/button`) whatever the tier.
+ * Entry points stay flat (`@mof-malaysia/ftds-react/button`) whatever the tier.
  */
 
 const PKG_DIR = path.join(__dirname, "../../packages/react");
@@ -22,7 +22,7 @@ pkg.exports = {
     components.map(({ name, filePath }) => [
       `./${name}`,
       entry(`./${path.relative(PKG_DIR, filePath)}`),
-    ])
+    ]),
   ),
 };
 

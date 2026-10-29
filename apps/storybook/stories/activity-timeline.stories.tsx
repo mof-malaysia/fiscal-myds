@@ -4,7 +4,7 @@ import { createRender } from "../utils";
 import {
   ActivityTimeline,
   type ActivityEvent,
-} from "@mof-malaysia/myds-react/activity-timeline";
+} from "@mof-malaysia/ftds-react/activity-timeline";
 import { EVENTS, ME, NOW } from "./components/app/officer-data";
 
 /**

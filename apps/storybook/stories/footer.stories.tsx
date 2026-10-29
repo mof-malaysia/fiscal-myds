@@ -6,7 +6,7 @@ import {
   FooterLink,
   FooterLinks,
   FooterMeta,
-} from "@mof-malaysia/myds-react/footer";
+} from "@mof-malaysia/ftds-react/footer";
 
 /**
  * ### Overview
@@ -27,7 +27,7 @@ import {
  *   FooterMeta,
  *   FooterLinks,
  *   FooterLink,
- * } from "@mof-malaysia/myds-react/footer";
+ * } from "@mof-malaysia/ftds-react/footer";
  *
  * <Footer>
  *   <FooterCopyright>© 2026 Kementerian Kewangan Malaysia</FooterCopyright>

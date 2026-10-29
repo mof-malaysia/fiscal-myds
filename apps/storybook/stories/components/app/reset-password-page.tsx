@@ -1,11 +1,11 @@
 import React from "react";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Button } from "@mof-malaysia/myds-react/button";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   ResetPasswordForm,
   type ResetPasswordFormProps,
-} from "@mof-malaysia/myds-react/password-reset";
-import { CheckCircleIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/password-reset";
+import { CheckCircleIcon } from "@mof-malaysia/ftds-react/icon";
 import { AccessBrand, AccessFooter, wait } from "./access-brand";
 
 const ResetPasswordPage = () => {

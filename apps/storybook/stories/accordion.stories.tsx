@@ -5,7 +5,7 @@ import {
   AccordionContent,
   Accordion,
   AccordionItem,
-} from "@mof-malaysia/myds-react/accordion";
+} from "@mof-malaysia/ftds-react/accordion";
 import React from "react";
 
 /**
@@ -22,7 +22,7 @@ import React from "react";
  *   AccordionContent,
  *   Accordion,
  *   AccordionItem,
- * } from "@mof-malaysia/myds-react/accordion";
+ * } from "@mof-malaysia/ftds-react/accordion";
  *
  * const AccordionDemo = () => (
  *   <Accordion type="single" defaultValue="item-1" collapsible>

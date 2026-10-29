@@ -44,7 +44,7 @@ export function extractImports(content: string): {
   const localImports: string[] = [];
 
   for (const [, specifier] of content.matchAll(
-    /^(?:import|export)\s[^;=]*?from\s+["']([^"']+)["']/gm
+    /^(?:import|export)\s[^;=]*?from\s+["']([^"']+)["']/gm,
   )) {
     if (specifier.startsWith(".")) {
       localImports.push(specifier);
@@ -52,7 +52,7 @@ export function extractImports(content: string): {
       // "@base-ui/react/dialog" -> "@base-ui/react", "date-fns/locale" -> "date-fns"
       const parts = specifier.split("/");
       npmDependencies.add(
-        specifier.startsWith("@") ? `${parts[0]}/${parts[1]}` : parts[0]
+        specifier.startsWith("@") ? `${parts[0]}/${parts[1]}` : parts[0],
       );
     }
   }
@@ -61,12 +61,12 @@ export function extractImports(content: string): {
 }
 
 /**
- * Base URL the registries are served from. Override with MYDS_REGISTRY_URL
+ * Base URL the registries are served from. Override with FTDS_REGISTRY_URL
  * (e.g. http://localhost:8080/registry) to test against a local build.
  */
 export const REGISTRY_BASE_URL = (
-  process.env.MYDS_REGISTRY_URL ||
-  "https://mof-malaysia.github.io/fiscal-myds/registry"
+  process.env.FTDS_REGISTRY_URL ||
+  "https://mof-malaysia.github.io/ftds/registry"
 ).replace(/\/$/, "");
 
 export const REGISTRY_ITEM_SCHEMA =
@@ -78,7 +78,7 @@ export type RegistryName = ComponentTier | "icons" | "style";
 
 export const COMPONENTS_DIR = path.join(
   __dirname,
-  "../../packages/react/src/components"
+  "../../packages/react/src/components",
 );
 
 export interface ComponentSource {
@@ -101,11 +101,13 @@ export function listComponents(): ComponentSource[] {
       .map((file) => {
         const name = file.replace(/\.tsx$/, "");
         if (tierOf.has(name)) {
-          throw new Error(`"${name}" exists in both ${tierOf.get(name)} and ${tier}`);
+          throw new Error(
+            `"${name}" exists in both ${tierOf.get(name)} and ${tier}`,
+          );
         }
         tierOf.set(name, tier);
         return { name, tier, filePath: path.join(COMPONENTS_DIR, tier, file) };
-      })
+      }),
   );
 }
 
@@ -139,7 +141,7 @@ export function getIconExportMap(iconsDir: string): Map<string, string> {
  */
 export function expandIconBarrelImports(
   content: string,
-  iconMap: Map<string, string>
+  iconMap: Map<string, string>,
 ): string {
   return content.replace(
     /import\s*\{([^}]+)\}\s*from\s*["']((?:\.\.\/)+)icons["'];?/g,
@@ -153,7 +155,7 @@ export function expandIconBarrelImports(
           if (!file) throw new Error(`Unknown icon in barrel import: ${n}`);
           return `import { ${n} } from "${prefix}icons/${file}";`;
         })
-        .join("\n")
+        .join("\n"),
   );
 }
 
@@ -163,27 +165,42 @@ const TIER_PATTERN = COMPONENT_TIERS.join("|");
  * Transform relative imports to the alias paths the files are installed at.
  * Every tier installs flat into components/ui, so a component never needs to
  * know which registry its dependency came from.
- * MYDS helpers live under lib/myds/ so they don't overwrite shadcn's lib/utils.ts.
+ * FTDS helpers live under lib/ftds/ so they don't overwrite shadcn's lib/utils.ts.
  */
 export function transformImports(
   content: string,
-  { keepSameFolderImports = false } = {}
+  { keepSameFolderImports = false } = {},
 ): string {
   const rewrites: [RegExp, string][] = [
-    // "../../utils/events" -> "@/lib/myds/utils/events", "../../utils" -> "@/lib/myds/utils"
-    [/from\s+["'](?:\.\.\/)+utils(\/[^"']+)?["']/g, 'from "@/lib/myds/utils$1"'],
-    // "../../hooks", "../../hooks/use-theme" -> "@/lib/myds/hooks..."
-    [/from\s+["'](?:\.\.\/)+hooks(\/[^"']+)?["']/g, 'from "@/lib/myds/hooks$1"'],
+    // "../../utils/events" -> "@/lib/ftds/utils/events", "../../utils" -> "@/lib/ftds/utils"
+    [
+      /from\s+["'](?:\.\.\/)+utils(\/[^"']+)?["']/g,
+      'from "@/lib/ftds/utils$1"',
+    ],
+    // "../../hooks", "../../hooks/use-theme" -> "@/lib/ftds/hooks..."
+    [
+      /from\s+["'](?:\.\.\/)+hooks(\/[^"']+)?["']/g,
+      'from "@/lib/ftds/hooks$1"',
+    ],
     // "../../icons/chevron-down" -> "@/components/ui/icons/chevron-down"
-    [/from\s+["'](?:\.\.\/)+icons\/([^"']+)["']/g, 'from "@/components/ui/icons/$1"'],
+    [
+      /from\s+["'](?:\.\.\/)+icons\/([^"']+)["']/g,
+      'from "@/components/ui/icons/$1"',
+    ],
     // "../components/core/toast" (from hooks/utils) -> "@/components/ui/toast"
     [
-      new RegExp(`from\\s+["']\\.\\.\\/components\\/(?:${TIER_PATTERN})\\/([^"']+)["']`, "g"),
+      new RegExp(
+        `from\\s+["']\\.\\.\\/components\\/(?:${TIER_PATTERN})\\/([^"']+)["']`,
+        "g",
+      ),
       'from "@/components/ui/$1"',
     ],
     // "../core/button" (cross-tier) -> "@/components/ui/button"
     [
-      new RegExp(`from\\s+["']\\.\\.\\/(?:${TIER_PATTERN})\\/([^"']+)["']`, "g"),
+      new RegExp(
+        `from\\s+["']\\.\\.\\/(?:${TIER_PATTERN})\\/([^"']+)["']`,
+        "g",
+      ),
       'from "@/components/ui/$1"',
     ],
   ];
@@ -191,15 +208,18 @@ export function transformImports(
   // Same-folder component imports: "./button" -> "@/components/ui/button".
   // Files that ship together in one folder (hooks) keep relative imports.
   if (!keepSameFolderImports) {
-    rewrites.push([/from\s+["']\.\/([^"']+)["']/g, 'from "@/components/ui/$1"']);
+    rewrites.push([
+      /from\s+["']\.\/([^"']+)["']/g,
+      'from "@/components/ui/$1"',
+    ]);
   }
 
   return rewrites.reduce(
     (acc, [pattern, replacement]) =>
       acc.replace(pattern, (...args) =>
-        replacement.replace("$1", args[1] ?? "")
+        replacement.replace("$1", args[1] ?? ""),
       ),
-    content
+    content,
   );
 }
 
@@ -210,17 +230,24 @@ export function transformImports(
  */
 export function mapToRegistryDependency(
   importPath: string,
-  fromTier: ComponentTier
+  fromTier: ComponentTier,
 ): string | null {
-  if (/^(\.\.\/)+utils$/.test(importPath)) return registryItemUrl("core", "utils");
+  if (/^(\.\.\/)+utils$/.test(importPath))
+    return registryItemUrl("core", "utils");
   // utils/events ships with the hooks item
-  if (/^(\.\.\/)+utils\/events$/.test(importPath)) return registryItemUrl("core", "hooks");
-  if (/^(\.\.\/)+hooks/.test(importPath)) return registryItemUrl("core", "hooks");
+  if (/^(\.\.\/)+utils\/events$/.test(importPath))
+    return registryItemUrl("core", "hooks");
+  if (/^(\.\.\/)+hooks/.test(importPath))
+    return registryItemUrl("core", "hooks");
   const icon = importPath.match(/^(?:\.\.\/)+icons\/(.+)$/);
   if (icon) return registryItemUrl("icons", icon[1]);
-  const crossTier = importPath.match(new RegExp(`^\\.\\.\\/(${TIER_PATTERN})\\/(.+)$`));
-  if (crossTier) return registryItemUrl(crossTier[1] as ComponentTier, crossTier[2]);
-  if (importPath.startsWith("./")) return registryItemUrl(fromTier, importPath.slice(2));
+  const crossTier = importPath.match(
+    new RegExp(`^\\.\\.\\/(${TIER_PATTERN})\\/(.+)$`),
+  );
+  if (crossTier)
+    return registryItemUrl(crossTier[1] as ComponentTier, crossTier[2]);
+  if (importPath.startsWith("./"))
+    return registryItemUrl(fromTier, importPath.slice(2));
   return null;
 }
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
-import { TextArea } from "@mof-malaysia/myds-react/textarea";
+import { TextArea } from "@mof-malaysia/ftds-react/textarea";
 
 /**
  * ### Overview
@@ -15,7 +15,7 @@ import { TextArea } from "@mof-malaysia/myds-react/textarea";
  *
  * ### Usage
  * ```tsx
- * import TextArea from "@mof-malaysia/myds-react/text-area";
+ * import TextArea from "@mof-malaysia/ftds-react/text-area";
  *
  * <TextArea />
  * ```

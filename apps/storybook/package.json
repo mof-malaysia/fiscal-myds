@@ -1,18 +1,18 @@
 {
-  "name": "@mof-malaysia/myds-storybook",
+  "name": "@mof-malaysia/ftds-storybook",
   "version": "1.0.2",
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build -o dist",
-    "build:gh-pages": "BASE_PATH=/fiscal-myds/storybook storybook build -o dist",
+    "build:gh-pages": "BASE_PATH=/ftds/storybook storybook build -o dist",
     "start": "serve storybook-static",
     "test-storybook": "test-storybook",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@mof-malaysia/myds-react": "workspace:*",
-    "@mof-malaysia/myds-style": "workspace:*",
+    "@mof-malaysia/ftds-react": "workspace:*",
+    "@mof-malaysia/ftds-style": "workspace:*",
     "@vitejs/plugin-react": "^4.3.2",
     "tailwindcss": "^4.1.17",
     "vite": "^5.4.8"
