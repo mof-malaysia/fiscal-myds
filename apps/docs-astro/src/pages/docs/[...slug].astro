@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Pre from "~/components/Pre.astro";
+import Docs from "~/layouts/Docs.astro";
+import { getSidebar } from "~/lib/nav";
+
+export const getStaticPaths = (async () => {
+  const entries = await getCollection("docs", (entry) => entry.id.startsWith("en/"));
+  return Promise.all(
+    entries.map(async (entry) => {
+      const slug = entry.id.replace(/^en\//, "");
+      const section = slug.split("/")[0];
+      return {
+        params: { slug },
+        props: { entry, slug, section, sidebar: await getSidebar(section, "en") },
+      };
+    }),
+  );
+}) satisfies GetStaticPaths;
+
+const { entry, slug, section, sidebar } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<Docs
+  title={entry.data.title}
+  description={entry.data.description}
+  source={entry.data.source}
+  locale="en"
+  section={section}
+  slug={slug}
+  sidebar={sidebar}
+  headings={headings}
+>
+  <Content components={{ pre: Pre }} />
+</Docs>

@@ -1,7 +1,7 @@
 name: Pages
 
 # Deploys https://mof-malaysia.github.io/ftds: the JSON registry of every
-# release tag (r/), and Storybook and the landing page built from `ref`.
+# release tag (r/), and the docs and Storybook built from `ref`.
 # The Release workflow calls this after tagging; run it by hand from main to
 # redeploy (for example after deleting a tag).
 
@@ -51,6 +51,11 @@ jobs:
         run: pnpm --filter @mof-malaysia/ftds-storybook build:gh-pages
 
       # Repository variables, for a custom domain (see DEPLOYMENT.md)
+      - name: Build docs
+        env:
+          FTDS_SITE_URL: ${{ vars.FTDS_SITE_URL || 'https://mof-malaysia.github.io/ftds' }}
+        run: pnpm --filter @mof-malaysia/ftds-docs-astro build
+
       - name: Assemble site
         env:
           FTDS_SITE_URL: ${{ vars.FTDS_SITE_URL }}

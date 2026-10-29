@@ -1,0 +1,79 @@
+---
+/**
+ * A sample with numbered parts and a legend. Mark parts in the sample with
+ * `data-part="1"` etc.; render the sample without a client directive.
+ */
+interface Props {
+  parts: { name: string; description: string; optional?: boolean }[];
+}
+
+const { parts } = Astro.props;
+---
+
+<figure class="not-prose my-6">
+  <div data-anatomy data-density="comfortable" class="bg-bg-white flex min-h-64 items-center justify-center overflow-x-auto rounded-lg px-6 py-20" aria-hidden="true">
+    <slot />
+  </div>
+  <figcaption class="mt-4">
+    <ol class="grid gap-3 sm:grid-cols-2">
+      {
+        parts.map((part, i) => (
+          <li class="flex gap-3">
+            <span class="bg-bg-black-900 text-bg-white grid size-6 shrink-0 place-items-center rounded-full text-[0.8125rem] font-semibold tabular-nums">
+              {i + 1}
+            </span>
+            <span class="text-sm leading-6">
+              <span class="text-txt-black-900 font-medium">{part.name}</span>
+              {part.optional && <span class="text-txt-black-700"> (optional)</span>}
+              <span class="text-txt-black-700 block">{part.description}</span>
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </figcaption>
+</figure>
+
+<style is:global>
+  /* Drawn larger so the parts are easy to tell apart; zoom keeps layout honest */
+  [data-anatomy] > * {
+    zoom: 1.5;
+  }
+  [data-anatomy] [data-part] {
+    position: relative;
+    outline: 1.5px dashed rgb(var(--txt-black-700));
+    outline-offset: 3px;
+  }
+  [data-anatomy] [data-part]::after {
+    content: attr(data-part);
+    position: absolute;
+    left: 50%;
+    top: -2rem;
+    translate: -50% 0;
+    display: grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background: rgb(var(--bg-black-900));
+    color: rgb(var(--bg-white));
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  /* The container's marker sits below so it doesn't collide with its parts */
+  [data-anatomy] [data-part="1"]::after {
+    top: auto;
+    bottom: -2rem;
+  }
+  /* Edge parts lean outward so neighbouring markers keep apart */
+  [data-anatomy] [data-part]:first-child:not(:only-child)::after {
+    left: 0;
+    translate: -60% 0;
+  }
+  [data-anatomy] [data-part]:last-child:not(:only-child)::after {
+    left: 100%;
+    translate: -40% 0;
+  }
+</style>

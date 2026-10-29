@@ -3,7 +3,7 @@
 FTDS is published two ways from the same release:
 
 - **GitHub registry**: the repository itself. The shadcn CLI reads `registry.json` and the files under `registry/` straight from GitHub (`npx shadcn@latest add mof-malaysia/ftds/button#v2.1.0`). See the [shadcn docs](https://ui.shadcn.com/docs/registry/github).
-- **GitHub Pages**: `https://mof-malaysia.github.io/ftds/`, with a JSON registry per release for the `@ftds` namespace, plus Storybook and the landing page.
+- **GitHub Pages**: `https://mof-malaysia.github.io/ftds/`, with a JSON registry per release for the `@ftds` namespace, plus the docs site and Storybook.
 
 The whole repository has one version, and a version is a git tag.
 
@@ -37,7 +37,7 @@ Tags are permanent. Never move or reuse one: people pin them, and every `#v2.1.0
 
 ```
 https://mof-malaysia.github.io/ftds/
-├── index.html, 404.html     Landing page
+├── index.html, docs/        Docs site (apps/docs-astro), built from the latest release tag
 ├── storybook/               Storybook, built from the latest release tag
 ├── llms.txt, llms-full.txt  Docs for coding agents, with components/*.md, guides/*.md and icons.md
 └── r/
@@ -62,7 +62,17 @@ Projects choose a folder in `components.json`:
 
 ### The Astro docs site
 
-When the Astro docs land, build them in the Pages workflow with `base: "/ftds"` (and `site: "https://mof-malaysia.github.io"`) in the Astro config, and have `prepare-gh-pages.ts` copy the build to the root of `deploy/` in place of the landing page. Keep `storybook/` and `r/` where they are, since projects already point at `r/`.
+`apps/docs-astro` is built by the Pages workflow from the release tag, so the docs always describe the published registry. It takes `site` and `base` from `FTDS_SITE_URL` (`https://mof-malaysia.github.io/ftds` unless the repository variable is set); without it, it builds for the root, which is what `pnpm dev` there uses. CI builds it on every pull request.
+
+`prepare-gh-pages.ts` copies the build to the root of `deploy/`, so the docs are the site. Keep `storybook/` and `r/` where they are, since projects already point at `r/`.
+
+To check a deploy locally:
+
+```sh
+FTDS_SITE_URL=https://mof-malaysia.github.io/ftds pnpm --filter @mof-malaysia/ftds-docs-astro build
+pnpm --filter @mof-malaysia/ftds-storybook build:gh-pages
+pnpm deploy:prepare
+```
 
 ## One-time setup on GitHub
 
@@ -73,7 +83,7 @@ When the Astro docs land, build them in the Pages workflow with `base: "/ftds"` 
 
 ## Redeploying Pages
 
-**Actions** → **Pages** → **Run workflow** from `main`, with the release tag to build Storybook and the landing page from (normally the latest). Use it after a failed deploy or after deleting a tag that should disappear from `r/`.
+**Actions** → **Pages** → **Run workflow** from `main`, with the release tag to build the docs and Storybook from (normally the latest). Use it after a failed deploy or after deleting a tag that should disappear from `r/`.
 
 ## Custom domain
 
@@ -106,7 +116,7 @@ pnpm tsx scripts/registry/build-json.ts . /tmp/r http://localhost:3000/r/dev
 | `pnpm registry:build`    | Generate `registry.json` and `registry/` (set `FTDS_REF` to pin deps) |
 | `pnpm registry:validate` | `shadcn registry validate ./registry.json`                            |
 | `pnpm registry:clean`    | Delete the generated registry                                         |
-| `pnpm deploy:prepare`    | Assemble `deploy/`: `r/` from every release tag, Storybook, landing   |
+| `pnpm deploy:prepare`    | Assemble `deploy/`: docs, `r/` from every release tag, Storybook      |
 | `pnpm deploy:clean`      | Delete `deploy/`                                                      |
 
 ## Troubleshooting

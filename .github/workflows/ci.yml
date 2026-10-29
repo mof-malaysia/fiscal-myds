@@ -51,3 +51,6 @@ jobs:
 
       - name: Build Storybook
         run: pnpm --filter @mof-malaysia/ftds-storybook build
+
+      - name: Build docs
+        run: pnpm --filter @mof-malaysia/ftds-docs-astro build

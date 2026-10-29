@@ -1,0 +1,49 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const headings = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+  headings.length > 0 && (
+    <nav aria-labelledby="toc-title" data-toc>
+      <p id="toc-title" class="text-txt-black-900 mb-2 text-sm font-semibold">
+        On this page
+      </p>
+      <ul class="space-y-1">
+        {headings.map((h) => (
+          <li data-toc-slug={h.slug}>
+            <a
+              href={`#${h.slug}`}
+              class:list={[
+                "focus-ring text-txt-black-700 hover:text-txt-black-900 block rounded-xs py-1 text-sm transition-colors",
+                h.depth === 3 && "pl-3",
+              ]}
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<script>
+  import { CHANGE } from "~/scripts/tabs";
+
+  // On pages with tabs, list only the headings in the open tab
+  const toc = document.querySelector<HTMLElement>("[data-toc]");
+  const sync = () => {
+    for (const item of toc?.querySelectorAll<HTMLElement>("[data-toc-slug]") ?? []) {
+      const panel = document.getElementById(item.dataset.tocSlug!)?.closest<HTMLElement>("[role=tabpanel]");
+      item.hidden = Boolean(panel?.closest("[data-hash]") && panel.hidden);
+    }
+  };
+  sync();
+  document.addEventListener(CHANGE, sync);
+</script>

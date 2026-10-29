@@ -7,7 +7,8 @@ import { buildJsonRegistry } from "../registry/build-json";
 /**
  * Assemble the GitHub Pages site in deploy/:
  *
- *   index.html, 404.html   landing page (the Astro docs take over the root later)
+ *   index.html, docs/      apps/docs-astro build at the root (run `pnpm build`
+ *                          there with FTDS_SITE_URL set first)
  *   storybook/             apps/storybook build (run `pnpm build:gh-pages` there first)
  *   r/v2.1.0/<name>.json   JSON registry of each release tag, built from its own files
  *   r/v2/<name>.json       latest 2.x release
@@ -24,6 +25,7 @@ import { buildJsonRegistry } from "../registry/build-json";
 const ROOT_DIR = path.join(__dirname, "../..");
 const DEPLOY_DIR = path.join(ROOT_DIR, "deploy");
 const STORYBOOK_BUILD = path.join(ROOT_DIR, "apps/storybook/dist");
+const DOCS_BUILD = path.join(ROOT_DIR, "apps/docs-astro/dist");
 
 /** Where the site is served; set FTDS_SITE_URL for a custom domain. */
 const SITE_URL = (
@@ -139,6 +141,17 @@ function buildRegistries(
   );
 }
 
+/** The Astro docs are the site, so they go at the root. */
+function copyDocs() {
+  if (!fs.existsSync(DOCS_BUILD)) {
+    throw new Error(
+      "Docs build not found. Run `pnpm build` in apps/docs-astro first.",
+    );
+  }
+  fs.cpSync(DOCS_BUILD, DEPLOY_DIR, { recursive: true });
+  log("docs copied");
+}
+
 function copyStorybook() {
   if (!fs.existsSync(STORYBOOK_BUILD)) {
     throw new Error(
@@ -151,83 +164,6 @@ function copyStorybook() {
   log("storybook/ copied");
 }
 
-const escapeHtml = (text: string) =>
-  text.replace(
-    /[&<>"]/g,
-    (c) => `&${{ "&": "amp", "<": "lt", ">": "gt", '"': "quot" }[c]};`,
-  );
-
-function landingPage(releases: Release[], channels: Record<string, string>) {
-  const latest = channels.latest;
-  const major = latest ? latest.split(".")[0] : "v2";
-  const versions = releases.length
-    ? releases
-        .map(
-          ({ tag }) =>
-            `<li><a href="r/${tag}/registry.json"><code>${tag}</code></a></li>`,
-        )
-        .join("")
-    : "<li>No release yet.</li>";
-  const pin = latest ?? "v2.0.0";
-
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FTDS Registry</title>
-  <meta name="description" content="FiscalTech Design System: the Ministry of Finance's shadcn component registry.">
-  <style>
-    :root { --ink: #18181b; --muted: #52525b; --line: #e4e4e7; --well: #f4f4f5; --blue: #2563eb; --paper: #fff; }
-    @media (prefers-color-scheme: dark) {
-      :root { --ink: #fafafa; --muted: #a1a1aa; --line: #27272a; --well: #18181b; --blue: #6394ff; --paper: #09090b; }
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
-    main { max-width: 760px; margin: 0 auto; padding: 56px 16px 80px; }
-    h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
-    h2 { font-size: 1.125rem; margin: 40px 0 8px; }
-    p { margin: 0 0 12px; color: var(--muted); }
-    a { color: var(--blue); }
-    pre { background: var(--well); padding: 14px 16px; border-radius: 8px; overflow-x: auto; font-size: 0.875rem; margin: 0 0 12px; }
-    code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
-    nav { display: flex; gap: 20px; margin: 20px 0 0; }
-    ul { padding-left: 20px; color: var(--muted); }
-    footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.875rem; color: var(--muted); }
-  </style>
-</head>
-<body>
-<main>
-  <h1>FTDS Registry</h1>
-  <p>FiscalTech Design System: components, icons and styles for Ministry of Finance services, installed with the shadcn CLI.${latest ? ` Latest release: <code>${escapeHtml(latest)}</code>.` : ""}</p>
-  <nav><a href="storybook/">Storybook</a><a href="llms.txt">llms.txt</a><a href="https://github.com/mof-malaysia/ftds">GitHub</a><a href="https://github.com/mof-malaysia/ftds/releases">Releases</a></nav>
-
-  <h2>Install from this site</h2>
-  <p>Add the namespace to <code>components.json</code> once. <code>${major}</code> follows the latest ${major}.x release; use an exact version such as <code>${escapeHtml(pin)}</code> to pin, or <code>latest</code>.</p>
-  <pre><code>"registries": {
-  "@ftds": "${SITE_URL}/r/${major}/{name}.json"
-}</code></pre>
-  <pre><code>npx shadcn@latest add @ftds/ftds-init
-npx shadcn@latest add @ftds/button --overwrite</code></pre>
-
-  <h2>Install from GitHub</h2>
-  <p>No configuration needed. Always pin a release tag: without one you get unreleased work from main.</p>
-  <pre><code>npx shadcn@latest add mof-malaysia/ftds/button#${escapeHtml(pin)}</code></pre>
-  <p>GitHub allows 60 unauthenticated API requests an hour per IP address, and the CLI makes one per file. Sign in with <code>gh auth login</code>, or use this site.</p>
-
-  <h2>For coding agents</h2>
-  <p>Point your coding agent at <a href="llms.txt"><code>${SITE_URL}/llms.txt</code></a>: the rules for writing FTDS code and a page per component with its props and checked examples. <a href="llms-full.txt"><code>llms-full.txt</code></a> has everything in one file.</p>
-
-  <h2>Versions</h2>
-  <ul>${versions}</ul>
-
-  <footer>FTDS is built on MYDS, the Malaysia Government Design System, and is maintained by the Ministry of Finance.</footer>
-</main>
-</body>
-</html>
-`;
-}
-
 function main() {
   console.log("🚀 Preparing GitHub Pages deployment\n");
 
@@ -237,6 +173,7 @@ function main() {
   const releases = listReleases();
   const channels = resolveChannels(releases);
   if (!releases.length) log("No release tags yet: r/ holds only versions.json");
+  copyDocs();
   buildRegistries(releases, channels);
   copyStorybook();
   // The checked-out ref is the release being deployed, so the docs describe it
@@ -246,9 +183,6 @@ function main() {
     { cwd: ROOT_DIR, stdio: "inherit" },
   );
 
-  const page = landingPage(releases, channels);
-  fs.writeFileSync(path.join(DEPLOY_DIR, "index.html"), page);
-  fs.writeFileSync(path.join(DEPLOY_DIR, "404.html"), page);
   // Keep Jekyll from dropping files that start with an underscore
   fs.writeFileSync(path.join(DEPLOY_DIR, ".nojekyll"), "");
   if (process.env.FTDS_SITE_CNAME) {
