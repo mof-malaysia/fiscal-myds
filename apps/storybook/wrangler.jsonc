@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Storybook as static files on Cloudflare: https://ftds-storybook.<account>.workers.dev
+  // Build for the site root first (`pnpm build`, not build:gh-pages)
+  "name": "ftds-storybook",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist" },
+}

@@ -183,12 +183,12 @@ packages/
   style/            Tailwind v4 tokens and themes (source for @ftds-style)
   _typescript/      Shared tsconfig presets
 registry.json       Registry root the shadcn CLI reads from GitHub
-registry/           Generated registry files by tier (committed; CI checks they are current)
+registry/           Generated registry files by tier (committed; the pre-push hook checks they are current)
 scripts/
   registry/         Registry generators (pnpm registry:build) and the Pages JSON converter
   icons/            SVG to React icon converter (pnpm icons:generate)
   deploy/           GitHub Pages bundle (pnpm deploy:prepare)
-.github/workflows/  CI, Release and Pages
+.github/workflows/  Release and Pages
 ```
 
 ### Setup
@@ -214,7 +214,7 @@ pnpm --filter @mof-malaysia/ftds-storybook dev # Storybook at http://localhost:6
 | `pnpm llms:check`              | Typecheck every example in the component docs and guides        |
 | `pnpm llms:build`              | Build `llms.txt` and the agent docs into `deploy/`              |
 
-Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`. Commit the output of `pnpm registry:build` with any component, doc, icon or style change: CI fails if `registry/` is out of date. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and [DEPLOYMENT.md](./DEPLOYMENT.md) for releasing.
+Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`; every push also checks the registry and agent docs and builds Storybook, the docs and the playground. Commit the output of `pnpm registry:build` with any component, doc, icon or style change: the push fails if `registry/` is out of date. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and [DEPLOYMENT.md](./DEPLOYMENT.md) for releasing.
 
 ## Origins
 

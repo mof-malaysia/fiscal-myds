@@ -52,13 +52,21 @@ Guides for agents live in `docs/guides/`, and the rules at the top of `llms.txt`
 
 ## Git hooks
 
-[Lefthook](https://lefthook.dev) installs the hooks when you run `pnpm install`. Before every commit it runs, in parallel:
+[Lefthook](https://lefthook.dev) installs the hooks when you run `pnpm install`. They are the project's checks: there is no CI workflow.
+
+Before every commit, in parallel:
 
 - Prettier on staged `.ts`, `.tsx` and `.md` files, re-staging the fixes
 - `pnpm lint` across the workspace
 - `pnpm typecheck` across the workspace
 
-A failing check blocks the commit. If the hooks are missing, run `pnpm exec lefthook install`. To skip them in an emergency, use `LEFTHOOK=0 git commit ...`, then run the checks yourself before opening a PR.
+Before every push:
+
+- `registry/` matches `pnpm registry:build`, and `pnpm registry:validate` passes
+- `pnpm llms:check`: every component has a doc and every docs example typechecks
+- In parallel, the Storybook build, the docs build, and the playground's tests and build
+
+A failing check blocks the commit or push. The push checks read the working tree, so commit or stash other changes first. Run them by hand with `pnpm exec lefthook run pre-push --force`. If the hooks are missing, run `pnpm exec lefthook install`. To skip them in an emergency, use `LEFTHOOK=0 git commit ...` or `LEFTHOOK=0 git push ...`, then run the checks yourself before opening a PR.
 
 ## Submitting a Pull Request (PR)
 

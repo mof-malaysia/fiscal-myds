@@ -11,14 +11,14 @@ The whole repository has one version, and a version is a git tag.
 
 Development is trunk-based: short-lived branches merge into `main`, and releases are tags cut from `main`.
 
-- `main` is always releasable. CI runs lint, typecheck, the registry checks and a Storybook build on every pull request and on every push to `main`.
-- `registry/` is committed and must match `pnpm registry:build`. CI fails if it doesn't, so commit the build output with every component, icon or style change.
+- `main` is always releasable. There is no CI workflow: the git hooks run the checks locally (see [CONTRIBUTING.md](./CONTRIBUTING.md#git-hooks)). Every commit gets lint and typecheck; every push also gets the registry checks, the agent-docs check and the Storybook, docs and playground builds.
+- `registry/` is committed and must match `pnpm registry:build`. The pre-push hook fails if it doesn't, so commit the build output with every component, icon or style change.
 - On `main`, `registryDependencies` are unpinned (`mof-malaysia/ftds/utils`). Anyone installing from GitHub without a tag gets unreleased work; the docs tell people to pin a tag.
 - Nothing is deployed from `main`. GitHub Pages only changes when a release is cut.
 
 ## Cutting a release
 
-1. Check `main` is green in **Actions** → **CI**.
+1. Pull `main` and run the pre-push checks on it: `pnpm exec lefthook run pre-push --force`.
 2. Go to **Actions** → **Release** → **Run workflow**, keep the branch on `main` and enter the version without the `v`: `2.1.0`, or `2.2.0-rc.1` for a prerelease.
 
 The workflow:
@@ -62,7 +62,7 @@ Projects choose a folder in `components.json`:
 
 ### The Astro docs site
 
-`apps/docs-astro` is built by the Pages workflow from the release tag, so the docs always describe the published registry. It takes `site` and `base` from `FTDS_SITE_URL` (`https://mof-malaysia.github.io/ftds` unless the repository variable is set); without it, it builds for the root, which is what `pnpm dev` there uses. CI builds it on every pull request.
+`apps/docs-astro` is built by the Pages workflow from the release tag, so the docs always describe the published registry. It takes `site` and `base` from `FTDS_SITE_URL` (`https://mof-malaysia.github.io/ftds` unless the repository variable is set); without it, it builds for the root, which is what `pnpm dev` there uses. The pre-push hook builds it before every push.
 
 `prepare-gh-pages.ts` copies the build to the root of `deploy/`, so the docs are the site. Keep `storybook/` and `r/` where they are, since projects already point at `r/`.
 
@@ -79,7 +79,15 @@ pnpm deploy:prepare
 1. **Settings** → **Pages** → **Source**: **GitHub Actions**.
 2. **Settings** → **Environments** → **github-pages**: deployments must be allowed from `main`. The Release and Pages workflows run on `main` even when they build a tag.
 3. **Settings** → **Actions** → **General** → **Workflow permissions**: the Release workflow asks for `contents: write` to push the tag and create the release. If a ruleset protects `v*` tags, let GitHub Actions bypass it.
-4. Optional: protect `main` and require the **CI** check.
+
+## Cloudflare
+
+Two Workers on the maintainer's Cloudflare account are deployed by hand, after `wrangler login`:
+
+- **ftds-mcp**, the playground's MCP server ([apps/mcp](./apps/mcp/README.md)): `pnpm --filter @mof-malaysia/ftds-mcp run deploy`
+- **ftds-storybook**, Storybook built for the site root: `pnpm --filter @mof-malaysia/ftds-storybook run deploy`
+
+Use `run deploy`: `pnpm deploy` is a built-in pnpm command.
 
 ## Redeploying Pages
 

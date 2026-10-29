@@ -162,7 +162,7 @@ apps/mcp/
 - Deploys with the **Release** workflow, from the release tag, like the docs
   site, so the playground matches the published registry. Needs
   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
-- CI builds the Worker and runs the checks' tests on every pull request.
+- The pre-push hook builds the Worker and runs the checks' tests.
 - Public and authless. Add Cloudflare rate limiting on `/mcp`; the tools only
   read bundled data, so the cost of abuse is Worker requests.
 

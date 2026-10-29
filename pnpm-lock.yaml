@@ -306,6 +306,9 @@ importers:
       tw-animate-css:
         specifier: 1.4.0
         version: 1.4.0
+      wrangler:
+        specifier: 4.155.0
+        version: 4.155.0(@cloudflare/workers-types@5.20261029.1)(@types/node@24.10.1)
 
   packages/_typescript: {}
 

@@ -34,4 +34,4 @@ The test host calls `render_screen` on the local Worker and loads the preview th
 pnpm --filter @mof-malaysia/ftds-mcp run deploy
 ```
 
-Needs a Cloudflare account (`wrangler login`, or `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in CI). Set `FTDS_VERSION` to the release tag when deploying from a release, so tools and share links name it.
+Needs a Cloudflare account (`wrangler login`, or `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in a workflow). Set `FTDS_VERSION` to the release tag when deploying from a release, so tools and share links name it.
