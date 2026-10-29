@@ -1,0 +1,49 @@
+---
+/**
+ * An `npx` command shown for each package manager. The choice is shared by
+ * every Install block and remembered.
+ */
+import { Code } from "astro:components";
+import CopyButton from "./CopyButton.astro";
+
+interface Props {
+  /** The command as you would run it with npx, e.g. `npx shadcn@latest add …`. */
+  command: string;
+}
+
+const args = Astro.props.command.replace(/^npx\s+/, "");
+const managers = [
+  { id: "pnpm", command: `pnpm dlx ${args}` },
+  { id: "npm", command: `npx ${args}` },
+  { id: "yarn", command: `yarn dlx ${args}` },
+  { id: "bun", command: `bunx --bun ${args}` },
+];
+const tabClass =
+  "focus-ring-inset -mb-px flex h-10 items-center border-b-2 border-transparent text-sm font-medium text-txt-black-700 transition-colors hover:text-txt-black-900 aria-selected:border-bg-primary-600 aria-selected:text-txt-black-900";
+---
+
+<ftds-tabs class="not-prose my-4 block" data-sync="package-manager">
+  <div role="tablist" aria-label="Package manager" class="flex gap-5">
+    {
+      managers.map((m, i) => (
+        <button type="button" role="tab" aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} data-value={m.id} class={tabClass}>
+          {m.id}
+        </button>
+      ))
+    }
+  </div>
+  {
+    managers.map((m, i) => (
+      <div role="tabpanel" data-value={m.id} hidden={i !== 0}>
+        <div class="code-block mt-3 pr-10">
+          <Code code={m.command} lang="bash" themes={{ light: "github-light", dark: "github-dark-dimmed" }} defaultColor={false} />
+          <CopyButton class="absolute top-2 right-2" />
+        </div>
+      </div>
+    ))
+  }
+</ftds-tabs>
+
+<script>
+  import "~/scripts/tabs";
+</script>

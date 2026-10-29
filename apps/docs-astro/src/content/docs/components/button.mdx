@@ -1,0 +1,263 @@
+---
+title: Button
+description: Buttons let people take an action, such as submitting a form, saving a change or moving to the next step.
+source: https://github.com/mof-malaysia/ftds/blob/main/packages/react/src/components/core/button.tsx
+---
+
+import Anatomy from "~/components/Anatomy.astro";
+import DoDont from "~/components/DoDont.astro";
+import Example from "~/components/Example.astro";
+import PageTabs from "~/components/PageTabs.astro";
+import Panel from "~/components/Panel.astro";
+import TokenTable from "~/components/TokenTable.astro";
+
+import AnatomySample from "~/examples/button/anatomy";
+import Variant from "~/examples/button/variant";
+import variantCode from "~/examples/button/variant?raw";
+import Size from "~/examples/button/size";
+import sizeCode from "~/examples/button/size?raw";
+import State from "~/examples/button/state";
+import stateCode from "~/examples/button/state?raw";
+import WithIcon from "~/examples/button/with-icon";
+import withIconCode from "~/examples/button/with-icon?raw";
+import IconOnly from "~/examples/button/icon-only";
+import iconOnlyCode from "~/examples/button/icon-only?raw";
+import WithCounter from "~/examples/button/with-counter";
+import withCounterCode from "~/examples/button/with-counter?raw";
+import * as P from "~/examples/button/practices";
+
+<PageTabs
+  tabs={[
+    { id: "design", label: "Design" },
+    { id: "usage", label: "Usage" },
+    { id: "accessibility", label: "Accessibility" },
+  ]}
+>
+
+<Panel id="design" first>
+
+## Purpose
+
+### Move a task forward
+
+A button commits the user to something: continuing to the next step, submitting a form, paying. The label says exactly what will happen.
+
+### Make the next step obvious
+
+A screen has one primary button, so the way forward is never in doubt. Everything else is quieter.
+
+### Confirm a serious action
+
+Danger buttons are kept for the final step of something that can't easily be undone, such as deleting a record.
+
+## Anatomy
+
+<Anatomy
+  parts={[
+    { name: "Container", description: "Holds the content. Its fill sets the variant." },
+    { name: "Leading icon", description: "Hints at the action before the label.", optional: true },
+    { name: "Label", description: "A verb that says what happens." },
+    { name: "Counter", description: "A number related to the action, like filters applied.", optional: true },
+  ]}
+>
+  <AnatomySample />
+</Anatomy>
+
+## Configuration
+
+### Variant
+
+Eight variants in three tones. Use **Primary** for the one main action on a screen, **Secondary** for other actions beside it, and **Tertiary** for low-emphasis actions in toolbars and rows. The colour versions add MYDS Blue where an action needs a little more pull without competing with Primary. **Danger** variants are for destructive actions.
+
+<Example code={variantCode}>
+  <Variant client:visible />
+</Example>
+
+| Variant          | `variant` value   | Use for                                          |
+| ---------------- | ----------------- | ------------------------------------------------ |
+| Primary          | `primary-fill`    | The main action on the screen. Only one.         |
+| Secondary        | `default-outline` | Other actions next to the primary, like Back.    |
+| Secondary colour | `primary-outline` | A secondary action that should stand out a bit.  |
+| Tertiary         | `default-ghost`   | Low-emphasis actions in toolbars and table rows. |
+| Tertiary colour  | `primary-ghost`   | Low-emphasis actions that need a hint of colour. |
+| Danger primary   | `danger-fill`     | The final confirmation of a destructive action.  |
+| Danger secondary | `danger-outline`  | A destructive action that isn't the last step.   |
+| Danger tertiary  | `danger-ghost`    | Destructive actions in rows and menus.           |
+
+### Size
+
+Three sizes, each relative to the density. Use **Small** for most buttons, **Medium** where the button is the focus of a section, and **Large** for a single call to action on a landing page. Switch the density above the preview to see how sizes change.
+
+<Example code={sizeCode}>
+  <Size client:visible />
+</Example>
+
+### State
+
+Buttons have default, hover, focus and disabled states. Hover deepens the fill over 150ms, and focus adds a 2px Focus Blue ring offset 2px from the button. Pressing nudges the button down by half a pixel. Disabled buttons lighten and stop responding.
+
+<Example code={stateCode}>
+  <State client:visible />
+</Example>
+
+### Leading and trailing icon
+
+A **leading icon** sits before the label and hints at the action, like download or delete. A **trailing icon** sits after it and suggests direction, like an arrow to the next step.
+
+<Example code={withIconCode}>
+  <WithIcon client:visible />
+</Example>
+
+### Icon only
+
+For familiar actions where space is tight, such as delete in a table row. The icon must be universally understood, and the button still needs a text label for screen readers.
+
+<Example code={iconOnlyCode}>
+  <IconOnly client:visible />
+</Example>
+
+### Counter
+
+A small number inside the button, such as how many filters are applied or items are selected.
+
+<Example code={withCounterCode}>
+  <WithCounter client:visible />
+</Example>
+
+## Structure
+
+Height and padding come from the density, so the same button fits a citizen form or an officer's table.
+
+| Size   | Comfortable (height / padding) | Compact (height / padding) | Label |
+| ------ | ------------------------------ | -------------------------- | ----- |
+| Small  | 44px / 16px                    | 32px / 12px                | 14px  |
+| Medium | 48px / 20px                    | 36px / 14px                | 14px  |
+| Large  | 56px / 24px                    | 40px / 16px                | 16px  |
+
+Icon-only buttons are square at the same height. The corner radius is 8px, the label is weight 500, and the gap between icon, label and counter is 6px.
+
+### Design tokens
+
+<TokenTable
+  rows={[
+    { category: "Background", token: "--bg-primary-600", use: "Primary fill" },
+    { category: "Background", token: "--bg-primary-700", use: "Primary hover" },
+    { category: "Background", token: "--bg-primary-disabled", use: "Primary disabled" },
+    { category: "Background", token: "--bg-washed", use: "Secondary fill" },
+    { category: "Background", token: "--bg-washed-active", use: "Secondary hover" },
+    { category: "Background", token: "--bg-primary-50", use: "Secondary colour fill, tertiary colour hover" },
+    { category: "Background", token: "--bg-danger-600", use: "Danger primary fill" },
+    { category: "Background", token: "--bg-danger-700", use: "Danger primary hover" },
+    { category: "Background", token: "--bg-danger-50", use: "Danger secondary fill, danger tertiary hover" },
+    { category: "Text", token: "--txt-white", use: "Label on primary and danger primary" },
+    { category: "Text", token: "--txt-black-900", use: "Label on secondary" },
+    { category: "Text", token: "--txt-primary", use: "Label on secondary colour and tertiary colour" },
+    { category: "Text", token: "--txt-danger", use: "Label on danger secondary and tertiary" },
+    { category: "Outline", token: "--fr-primary", use: "Focus ring" },
+    { category: "Size", token: "--ctl-h-sm / md / lg", value: "44 / 48 / 56px", use: "Height in comfortable density" },
+    { category: "Padding", token: "--ctl-px-sm / md / lg", value: "16 / 20 / 24px", use: "Horizontal padding in comfortable density" },
+    { category: "Radius", token: "--radius-md", value: "8px", use: "Corners" },
+    { category: "Typography", token: "--ctl-label-sm / md / lg", value: "14 / 14 / 16px", use: "Label size" },
+  ]}
+/>
+
+</Panel>
+
+<Panel id="usage">
+
+## When to use
+
+- To submit a form or move to the next step of a task.
+- To save, confirm or cancel a change.
+- To start an action on the current page, like opening a dialog or applying filters.
+
+## When not to use
+
+- To go to another page. Use a link, so people can open it in a new tab and know where it leads.
+- For a choice between options. Use radios, checkboxes or a toggle.
+- For actions that aren't available. Hide them, or explain what's needed to make them available, instead of showing a disabled button with no reason.
+
+## Best practices
+
+<DoDont
+  title="Use one primary button per screen"
+  doText="Pair the primary action with a secondary one, so the way forward is clear."
+  dontText="Two primary buttons compete, and people hesitate over which is the real next step."
+>
+  <P.OnePrimaryDo slot="do" />
+  <P.OnePrimaryDont slot="dont" />
+</DoDont>
+
+<DoDont
+  title="Say what will happen"
+  doText="Start with a verb and be specific. Show amounts in full."
+  dontText="Vague labels like OK or Click here make people read around the button to know what it does."
+>
+  <P.LabelDo slot="do" />
+  <P.LabelDont slot="dont" />
+</DoDont>
+
+<DoDont
+  title="Write labels in sentence case"
+  doText="Capitalise only the first word and proper nouns."
+  dontText="All caps is harder to read and feels like shouting."
+>
+  <P.CaseDo slot="do" />
+  <P.CaseDont slot="dont" />
+</DoDont>
+
+<DoDont
+  title="Keep danger for the final destructive step"
+  doText="Use Danger primary only to confirm something that can't easily be undone, next to a safe way out."
+  dontText="A red button for a harmless action makes it look risky and dulls the warning for real ones."
+>
+  <P.DangerDo slot="do" />
+  <P.DangerDont slot="dont" />
+</DoDont>
+
+<DoDont
+  title="Use icon-only buttons for familiar actions"
+  doText="Give main actions a text label. Use icon-only buttons for well-known actions like delete."
+  dontText="An unfamiliar icon on its own leaves people guessing, especially for an important action."
+>
+  <P.IconOnlyDo slot="do" />
+  <P.IconOnlyDont slot="dont" />
+</DoDont>
+
+</Panel>
+
+<Panel id="accessibility">
+
+## Built-in accessibility
+
+- Renders a native `<button>`, so it is announced as a button and works with the keyboard without extra code.
+- The label on Primary meets 5.2:1 contrast on MYDS Blue, and every variant meets WCAG AA in both themes.
+- The focus ring is solid Focus Blue, offset 2px, and measures 4.0:1 against the page.
+- In comfortable density, small buttons are 44px tall, which meets the WCAG 2.5.5 target size. Compact buttons are 32px, above the 24px minimum in WCAG 2.5.8.
+- Disabled buttons use the `disabled` attribute, so assistive technology reports them as unavailable.
+
+## Labels and content
+
+- Give every icon-only button an `aria-label` that names the action, such as "Delete file".
+- When a button has a counter, make sure the label still makes sense read aloud. "Filter 5" may need an `aria-label` like "Filter, 5 applied".
+- Keep the visible label in the accessible name. If you add an `aria-label`, start it with the visible text.
+- Don't rely on colour alone. A danger button's label should say what will be destroyed.
+
+## Focus and interaction
+
+- Disabled buttons can't be focused, so keyboard and screen reader users may not find them. Say nearby what's needed to enable the action.
+- After an action opens a dialog, move focus into it. When it closes, return focus to the button.
+- Use `type="submit"` only for the button that submits its form. Other buttons in a form should be `type="button"`.
+
+## Keyboard interaction
+
+| Key       | Interaction                      |
+| --------- | -------------------------------- |
+| Tab       | Moves focus to the next button.  |
+| Shift+Tab | Moves focus to the previous one. |
+| Enter     | Activates the focused button.    |
+| Space     | Activates the focused button.    |
+
+</Panel>
+
+</PageTabs>

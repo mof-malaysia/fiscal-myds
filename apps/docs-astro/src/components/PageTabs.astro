@@ -1,0 +1,45 @@
+---
+/**
+ * Top-level tabs for a component page (Design, Usage, Accessibility). Wrap
+ * one `<Panel>` per tab. The URL hash follows the tab, so `#usage` links work.
+ *
+ *   <PageTabs tabs={[{ id: "design", label: "Design" }, …]}>
+ *     <Panel id="design">…</Panel>
+ *   </PageTabs>
+ */
+interface Props {
+  tabs: { id: string; label: string }[];
+}
+
+const { tabs } = Astro.props;
+---
+
+<ftds-tabs data-hash class="not-prose mt-2 block" data-selected={tabs[0].id}>
+  <div
+    role="tablist"
+    aria-label="Page sections"
+    class="border-otl-gray-200 sticky top-14 z-20 -mx-4 mb-8 flex gap-6 overflow-x-auto border-b bg-bg-gray-50 px-4 md:-mx-10 md:px-10"
+  >
+    {
+      tabs.map((tab, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${tab.id}`}
+          aria-controls={tab.id}
+          aria-selected={i === 0 ? "true" : "false"}
+          tabindex={i === 0 ? 0 : -1}
+          data-value={tab.id}
+          class="focus-ring-inset text-txt-black-700 hover:text-txt-black-900 aria-selected:border-bg-primary-600 aria-selected:text-txt-black-900 -mb-px flex h-12 shrink-0 items-center border-b-2 border-transparent font-medium transition-colors"
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+  <slot />
+</ftds-tabs>
+
+<script>
+  import "~/scripts/tabs";
+</script>

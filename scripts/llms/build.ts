@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { execFileSync } from "child_process";
 import { readExports, type ExportInfo, type PropInfo } from "./api";
 import {
   CATEGORIES,
+  DEFAULT_SITE_URL,
   INTRO_FILE,
   ROOT_DIR,
   readGuides,
@@ -11,6 +11,8 @@ import {
   readRegistry,
   readDoc,
   rel,
+  currentTag,
+  siteUrl,
   tsxExamples,
   type Item,
 } from "./content";
@@ -39,37 +41,14 @@ const arg = (name: string) => {
 };
 
 const OUT_DIR = path.resolve(ROOT_DIR, arg("out") ?? "deploy");
-const SITE_URL = (
-  arg("site") ||
-  process.env.FTDS_SITE_URL ||
-  "https://mof-malaysia.github.io/ftds"
-).replace(/\/$/, "");
+const SITE_URL = siteUrl(arg("site"));
 const VERSION = arg("version") ?? currentTag() ?? "main";
 const ALLOW_MISSING = args.includes("--allow-missing");
-
-/** The release tag at HEAD, if HEAD is one (Pages builds from a tag). */
-function currentTag(): string | undefined {
-  try {
-    return execFileSync(
-      "git",
-      ["describe", "--tags", "--exact-match", "HEAD"],
-      {
-        cwd: ROOT_DIR,
-        encoding: "utf-8",
-        stdio: ["ignore", "pipe", "ignore"],
-      },
-    ).trim();
-  } catch {
-    return undefined;
-  }
-}
 
 const isRelease = /^v\d+\.\d+\.\d+/.test(VERSION);
 const pageUrl = (page: string) => `${SITE_URL}/${page}`;
 const rawUrl = (file: string) =>
   `https://raw.githubusercontent.com/${REGISTRY_REPO}/${VERSION}/${file}`;
-
-const DEFAULT_SITE_URL = "https://mof-malaysia.github.io/ftds";
 
 function write(file: string, content: string) {
   const target = path.join(OUT_DIR, file);

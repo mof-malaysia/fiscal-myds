@@ -1,0 +1,13 @@
+---
+/** One tab of `<PageTabs>`. The first panel is shown before scripts run. */
+interface Props {
+  id: string;
+  first?: boolean;
+}
+
+const { id, first = false } = Astro.props;
+---
+
+<section role="tabpanel" id={id} aria-labelledby={`tab-${id}`} data-value={id} hidden={!first} class="prose max-w-none">
+  <slot />
+</section>
