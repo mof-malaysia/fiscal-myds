@@ -1,592 +1,592 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T09:42:30+00:00",
+  "generatedAt": "2026-10-28T10:57:14+00:00",
   "title": "Design System: Fiscal MYDS",
   "extensions": {
     "colorMeta": {
-      "steady-blue": {
+      "myds-blue": {
         "role": "primary",
-        "displayName": "Steady Blue",
-        "canonical": "oklch(48.0% 0.150 258)",
+        "displayName": "MYDS Blue",
+        "canonical": "#2563EB",
         "tonalRamp": [
-          "#00072A",
-          "#012455",
-          "#154384",
-          "#2B64B6",
-          "#5389DA",
-          "#81B0F5",
-          "#ACD3FF",
-          "#D0F1FF"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
-      "steady-blue-deep": {
+      "myds-blue-deep": {
         "role": "primary",
-        "displayName": "Steady Blue Deep",
-        "canonical": "oklch(42.0% 0.140 258)",
+        "displayName": "MYDS Blue Deep",
+        "canonical": "#1D4ED8",
         "tonalRamp": [
-          "#000828",
-          "#042452",
-          "#194380",
-          "#3165B1",
-          "#578AD4",
-          "#84B0F0",
-          "#AED3FF",
-          "#D2F1FF"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
-      "steady-blue-wash": {
+      "myds-blue-wash": {
         "role": "primary",
-        "displayName": "Steady Blue Wash",
-        "canonical": "oklch(95.5% 0.022 258)",
+        "displayName": "MYDS Blue Wash",
+        "canonical": "#EFF6FF",
         "tonalRamp": [
-          "#080B10",
-          "#22272E",
-          "#3F454F",
-          "#5F6772",
-          "#828A95",
-          "#A8AEB9",
-          "#CCD1DA",
-          "#EAEFF6"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
       "focus-blue": {
         "role": "primary",
         "displayName": "Focus Blue",
-        "canonical": "oklch(62.0% 0.140 258)",
+        "canonical": "#3A75F6",
         "tonalRamp": [
-          "#000828",
-          "#042452",
-          "#194380",
-          "#3165B1",
-          "#578AD4",
-          "#84B0F0",
-          "#AED3FF",
-          "#D2F1FF"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
       "paper": {
         "role": "neutral",
         "displayName": "Paper",
-        "canonical": "oklch(98.5% 0.003 255)",
+        "canonical": "#FAFAFA",
         "tonalRamp": [
-          "#0B0B0C",
-          "#262627",
-          "#444546",
-          "#656668",
-          "#88898B",
-          "#ADAEAF",
-          "#D0D1D2",
-          "#EEEEEF"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "sheet": {
         "role": "neutral",
         "displayName": "Sheet",
-        "canonical": "oklch(99.5% 0.002 255)",
+        "canonical": "#FFFFFF",
         "tonalRamp": [
-          "#0B0B0C",
-          "#262627",
-          "#444546",
-          "#656667",
-          "#88898A",
-          "#ADAEAF",
-          "#D0D1D2",
-          "#EEEEEF"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "well": {
         "role": "neutral",
         "displayName": "Well",
-        "canonical": "oklch(96.5% 0.005 255)",
+        "canonical": "#F4F4F5",
         "tonalRamp": [
-          "#0A0B0C",
-          "#252628",
-          "#444547",
-          "#646669",
-          "#87898C",
-          "#ACAEB0",
-          "#D0D1D3",
-          "#EDEEF0"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "hover-mist": {
         "role": "neutral",
         "displayName": "Hover Mist",
-        "canonical": "oklch(94.5% 0.007 255)",
+        "canonical": "#F4F4F5",
         "tonalRamp": [
-          "#0A0B0D",
-          "#252729",
-          "#434548",
-          "#64666A",
-          "#87898D",
-          "#ACAEB1",
-          "#CFD1D4",
-          "#EDEFF1"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "hairline": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "oklch(91.0% 0.007 255)",
+        "canonical": "#E4E4E7",
         "tonalRamp": [
-          "#0A0B0D",
-          "#252729",
-          "#434548",
-          "#64666A",
-          "#87898D",
-          "#ACAEB1",
-          "#CFD1D4",
-          "#EDEFF1"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "control-edge": {
         "role": "neutral",
         "displayName": "Control Edge",
-        "canonical": "oklch(64.0% 0.014 255)",
+        "canonical": "#898990",
         "tonalRamp": [
-          "#090B0E",
-          "#23272B",
-          "#41454B",
-          "#61676E",
-          "#848A91",
-          "#AAAEB5",
-          "#CDD1D7",
-          "#EBEFF3"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "ink": {
         "role": "neutral",
         "displayName": "Ink",
-        "canonical": "oklch(22.0% 0.015 255)",
+        "canonical": "#18181B",
         "tonalRamp": [
-          "#090B0E",
-          "#23272B",
-          "#41454C",
-          "#61676E",
-          "#848A91",
-          "#A9AEB5",
-          "#CDD1D7",
-          "#EBEFF4"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "ink-secondary": {
         "role": "neutral",
         "displayName": "Ink Secondary",
-        "canonical": "oklch(42.0% 0.015 255)",
+        "canonical": "#3F3F46",
         "tonalRamp": [
-          "#090B0E",
-          "#23272B",
-          "#41454C",
-          "#61676E",
-          "#848A91",
-          "#A9AEB5",
-          "#CDD1D7",
-          "#EBEFF4"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "ink-tertiary": {
         "role": "neutral",
         "displayName": "Ink Tertiary",
-        "canonical": "oklch(52.0% 0.014 255)",
+        "canonical": "#6B6B74",
         "tonalRamp": [
-          "#090B0E",
-          "#23272B",
-          "#41454B",
-          "#61676E",
-          "#848A91",
-          "#AAAEB5",
-          "#CDD1D7",
-          "#EBEFF3"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
-      "on-steady-blue": {
-        "role": "neutral",
-        "displayName": "On Steady Blue",
-        "canonical": "oklch(99.0% 0.004 255)",
+      "on-myds-blue": {
+        "role": "primary",
+        "displayName": "On MYDS Blue",
+        "canonical": "#FFFFFF",
         "tonalRamp": [
-          "#0B0B0C",
-          "#262628",
-          "#444547",
-          "#656668",
-          "#88898B",
-          "#ADAEB0",
-          "#D0D1D2",
-          "#EDEEF0"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
       "danger": {
         "role": "semantic",
         "displayName": "Danger",
-        "canonical": "oklch(50.0% 0.170 25)",
+        "canonical": "#B91C1C",
         "tonalRamp": [
-          "#250000",
-          "#500006",
-          "#7E191C",
-          "#B03333",
-          "#D65E58",
-          "#F48C85",
-          "#FFB6AF",
-          "#FFD9D2"
+          "#450A0A",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#FCA5A5",
+          "#FEE2E2",
+          "#FEF2F2"
+        ]
+      },
+      "danger-fill": {
+        "role": "semantic",
+        "displayName": "Danger Fill",
+        "canonical": "#DC2626",
+        "tonalRamp": [
+          "#450A0A",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#FCA5A5",
+          "#FEE2E2",
+          "#FEF2F2"
         ]
       },
       "danger-wash": {
         "role": "semantic",
         "displayName": "Danger Wash",
-        "canonical": "oklch(96.0% 0.018 25)",
+        "canonical": "#FEF2F2",
         "tonalRamp": [
-          "#0F0A09",
-          "#2C2424",
-          "#4D4241",
-          "#706361",
-          "#938684",
-          "#B6ABAA",
-          "#D8CECD",
-          "#F4ECEB"
+          "#450A0A",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#FCA5A5",
+          "#FEE2E2",
+          "#FEF2F2"
         ]
       },
       "success": {
         "role": "semantic",
         "displayName": "Success",
-        "canonical": "oklch(47.0% 0.100 150)",
+        "canonical": "#15803D",
         "tonalRamp": [
-          "#001002",
-          "#082F14",
-          "#20512D",
-          "#397548",
-          "#60996C",
-          "#8CBC95",
-          "#B5DDBC",
-          "#D8F9DD"
+          "#052E16",
+          "#166534",
+          "#15803D",
+          "#16A34A",
+          "#22C55E",
+          "#83DAA3",
+          "#DCFCE7",
+          "#F0FDF4"
         ]
       },
       "success-wash": {
         "role": "semantic",
         "displayName": "Success Wash",
-        "canonical": "oklch(96.0% 0.025 150)",
+        "canonical": "#F0FDF4",
         "tonalRamp": [
-          "#080D08",
-          "#212922",
-          "#3E483F",
-          "#5D6A5F",
-          "#808D82",
-          "#A6B1A8",
-          "#CAD4CC",
-          "#E9F1EA"
+          "#052E16",
+          "#166534",
+          "#15803D",
+          "#16A34A",
+          "#22C55E",
+          "#83DAA3",
+          "#DCFCE7",
+          "#F0FDF4"
         ]
       },
       "warning": {
         "role": "semantic",
         "displayName": "Warning",
-        "canonical": "oklch(47.0% 0.090 65)",
+        "canonical": "#A16207",
         "tonalRamp": [
-          "#170600",
-          "#3A1F02",
-          "#5F3C16",
-          "#885B2C",
-          "#AB7F53",
-          "#CCA681",
-          "#EBCAAC",
-          "#FFE9D0"
+          "#422006",
+          "#854D0E",
+          "#A16207",
+          "#CA8A04",
+          "#EAB308",
+          "#FDE047",
+          "#FEF9C3",
+          "#FEFCE8"
         ]
       },
       "warning-wash": {
         "role": "semantic",
         "displayName": "Warning Wash",
-        "canonical": "oklch(96.5% 0.035 85)",
+        "canonical": "#FEFCE8",
         "tonalRamp": [
-          "#0F0B04",
-          "#2C261A",
-          "#4C4434",
-          "#6F6551",
-          "#928874",
-          "#B6AD9C",
-          "#D7D0C2",
-          "#F4EEE2"
+          "#422006",
+          "#854D0E",
+          "#A16207",
+          "#CA8A04",
+          "#EAB308",
+          "#FDE047",
+          "#FEF9C3",
+          "#FEFCE8"
         ]
       },
-      "dark-steady-blue": {
+      "dark-myds-blue": {
         "role": "primary",
-        "displayName": "Dark Steady Blue",
-        "canonical": "oklch(70.0% 0.120 258)",
+        "displayName": "Dark MYDS Blue",
+        "canonical": "#6394FF",
         "tonalRamp": [
-          "#000924",
-          "#0B254C",
-          "#224477",
-          "#3A66A6",
-          "#5F8ACA",
-          "#8AB0E7",
-          "#B4D3FF",
-          "#D6F1FF"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
-      "dark-steady-blue-bright": {
+      "dark-myds-blue-wash": {
         "role": "primary",
-        "displayName": "Dark Steady Blue Deep",
-        "canonical": "oklch(76.0% 0.110 258)",
+        "displayName": "Dark MYDS Blue Wash",
+        "canonical": "#172554",
         "tonalRamp": [
-          "#000A22",
-          "#0E2649",
-          "#254573",
-          "#3E66A1",
-          "#638AC5",
-          "#8EB0E2",
-          "#B6D3FE",
-          "#D8F0FF"
-        ]
-      },
-      "dark-steady-blue-wash": {
-        "role": "primary",
-        "displayName": "Dark Steady Blue Wash",
-        "canonical": "oklch(27.0% 0.045 258)",
-        "tonalRamp": [
-          "#060B15",
-          "#1E2735",
-          "#394658",
-          "#57677F",
-          "#7A8AA2",
-          "#A1AFC4",
-          "#C6D2E3",
-          "#E5EFFE"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
       "dark-paper": {
         "role": "neutral",
         "displayName": "Dark Paper",
-        "canonical": "oklch(17.0% 0.010 255)",
+        "canonical": "#161619",
         "tonalRamp": [
-          "#0A0B0D",
-          "#24272A",
-          "#424549",
-          "#62666C",
-          "#86898F",
-          "#ABAEB3",
-          "#CED1D5",
-          "#ECEFF2"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-sheet": {
         "role": "neutral",
         "displayName": "Dark Sheet",
-        "canonical": "oklch(20.5% 0.011 255)",
+        "canonical": "#18181B",
         "tonalRamp": [
-          "#0A0B0D",
-          "#24272A",
-          "#42454A",
-          "#62666C",
-          "#858A8F",
-          "#AAAEB3",
-          "#CED1D5",
-          "#ECEFF2"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-well": {
         "role": "neutral",
         "displayName": "Dark Well",
-        "canonical": "oklch(15.0% 0.009 255)",
+        "canonical": "#1D1D21",
         "tonalRamp": [
-          "#0A0B0D",
-          "#252729",
-          "#424549",
-          "#63666B",
-          "#86898E",
-          "#ABAEB2",
-          "#CFD1D5",
-          "#ECEFF1"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-hover-mist": {
         "role": "neutral",
         "displayName": "Dark Hover Mist",
-        "canonical": "oklch(24.5% 0.012 255)",
+        "canonical": "#27272A",
         "tonalRamp": [
-          "#090B0E",
-          "#24272A",
-          "#42454A",
-          "#62666D",
-          "#858A90",
-          "#AAAEB4",
-          "#CED1D6",
-          "#ECEFF2"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-hairline": {
         "role": "neutral",
         "displayName": "Dark Hairline",
-        "canonical": "oklch(29.0% 0.012 255)",
+        "canonical": "#27272A",
         "tonalRamp": [
-          "#090B0E",
-          "#24272A",
-          "#42454A",
-          "#62666D",
-          "#858A90",
-          "#AAAEB4",
-          "#CED1D6",
-          "#ECEFF2"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-control-edge": {
         "role": "neutral",
         "displayName": "Dark Control Edge",
-        "canonical": "oklch(56.0% 0.014 255)",
+        "canonical": "#6B6B74",
         "tonalRamp": [
-          "#090B0E",
-          "#23272B",
-          "#41454B",
-          "#61676E",
-          "#848A91",
-          "#AAAEB5",
-          "#CDD1D7",
-          "#EBEFF3"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-ink": {
         "role": "neutral",
         "displayName": "Dark Ink",
-        "canonical": "oklch(95.0% 0.005 255)",
+        "canonical": "#FFFFFF",
         "tonalRamp": [
-          "#0A0B0C",
-          "#252628",
-          "#444547",
-          "#646669",
-          "#87898C",
-          "#ACAEB0",
-          "#D0D1D3",
-          "#EDEEF0"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-ink-secondary": {
         "role": "neutral",
         "displayName": "Dark Ink Secondary",
-        "canonical": "oklch(78.0% 0.010 255)",
+        "canonical": "#D4D4D8",
         "tonalRamp": [
-          "#0A0B0D",
-          "#24272A",
-          "#424549",
-          "#62666C",
-          "#86898F",
-          "#ABAEB3",
-          "#CED1D5",
-          "#ECEFF2"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
       "dark-ink-tertiary": {
         "role": "neutral",
         "displayName": "Dark Ink Tertiary",
-        "canonical": "oklch(68.0% 0.012 255)",
+        "canonical": "#A1A1AA",
         "tonalRamp": [
-          "#090B0E",
-          "#24272A",
-          "#42454A",
-          "#62666D",
-          "#858A90",
-          "#AAAEB4",
-          "#CED1D6",
-          "#ECEFF2"
+          "#09090B",
+          "#27272A",
+          "#3F3F46",
+          "#52525B",
+          "#6B6B74",
+          "#D4D4D8",
+          "#F4F4F5",
+          "#FAFAFA"
         ]
       },
-      "dark-on-steady-blue": {
-        "role": "neutral",
-        "displayName": "Dark On Steady Blue",
-        "canonical": "oklch(17.0% 0.010 255)",
+      "dark-on-myds-blue": {
+        "role": "primary",
+        "displayName": "Dark On MYDS Blue",
+        "canonical": "#18181B",
         "tonalRamp": [
-          "#0A0B0D",
-          "#24272A",
-          "#424549",
-          "#62666C",
-          "#86898F",
-          "#ABAEB3",
-          "#CED1D5",
-          "#ECEFF2"
+          "#172554",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3A75F6",
+          "#96B7FF",
+          "#DBEAFE",
+          "#EFF6FF"
         ]
       },
       "dark-danger": {
         "role": "semantic",
         "displayName": "Dark Danger",
-        "canonical": "oklch(72.0% 0.140 25)",
+        "canonical": "#F87171",
         "tonalRamp": [
-          "#210000",
-          "#490C0D",
-          "#762624",
-          "#A5413D",
-          "#CA6862",
-          "#E9938C",
-          "#FFBCB5",
-          "#FFDDD7"
+          "#450A0A",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#FCA5A5",
+          "#FEE2E2",
+          "#FEF2F2"
         ]
       },
       "dark-danger-wash": {
         "role": "semantic",
         "displayName": "Dark Danger Wash",
-        "canonical": "oklch(27.0% 0.050 25)",
+        "canonical": "#450A0A",
         "tonalRamp": [
-          "#140706",
-          "#35201E",
-          "#593D3A",
-          "#7F5C58",
-          "#A37F7B",
-          "#C5A5A2",
-          "#E5CAC7",
-          "#FFE8E6"
+          "#450A0A",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#FCA5A5",
+          "#FEE2E2",
+          "#FEF2F2"
         ]
       },
       "dark-success": {
         "role": "semantic",
         "displayName": "Dark Success",
-        "canonical": "oklch(74.0% 0.120 150)",
+        "canonical": "#22C55E",
         "tonalRamp": [
-          "#001100",
-          "#003010",
-          "#125327",
-          "#2B7841",
-          "#559B66",
-          "#84BE90",
-          "#AFDFB8",
-          "#D3FBDA"
+          "#052E16",
+          "#166534",
+          "#15803D",
+          "#16A34A",
+          "#22C55E",
+          "#83DAA3",
+          "#DCFCE7",
+          "#F0FDF4"
         ]
       },
       "dark-success-wash": {
         "role": "semantic",
         "displayName": "Dark Success Wash",
-        "canonical": "oklch(26.0% 0.040 150)",
+        "canonical": "#052E16",
         "tonalRamp": [
-          "#060E07",
-          "#1D2A20",
-          "#394A3C",
-          "#576D5B",
-          "#7A907E",
-          "#A1B4A4",
-          "#C6D6C9",
-          "#E6F3E8"
+          "#052E16",
+          "#166534",
+          "#15803D",
+          "#16A34A",
+          "#22C55E",
+          "#83DAA3",
+          "#DCFCE7",
+          "#F0FDF4"
         ]
       },
       "dark-warning": {
         "role": "semantic",
         "displayName": "Dark Warning",
-        "canonical": "oklch(80.0% 0.110 80)",
+        "canonical": "#EAB308",
         "tonalRamp": [
-          "#170700",
-          "#382100",
-          "#5D3E00",
-          "#855E03",
-          "#A8823D",
-          "#CAA971",
-          "#E9CD9F",
-          "#FFEBC6"
+          "#422006",
+          "#854D0E",
+          "#A16207",
+          "#CA8A04",
+          "#EAB308",
+          "#FDE047",
+          "#FEF9C3",
+          "#FEFCE8"
         ]
       },
       "dark-warning-wash": {
         "role": "semantic",
         "displayName": "Dark Warning Wash",
-        "canonical": "oklch(27.0% 0.040 75)",
+        "canonical": "#422006",
         "tonalRamp": [
-          "#100A03",
-          "#2E2518",
-          "#4F4332",
-          "#73634E",
-          "#968671",
-          "#B9AC99",
-          "#DBCFC0",
-          "#F7EDE0"
+          "#422006",
+          "#854D0E",
+          "#A16207",
+          "#CA8A04",
+          "#EAB308",
+          "#FDE047",
+          "#FEF9C3",
+          "#FEFCE8"
         ]
       }
     },
@@ -695,7 +695,7 @@
       "refersTo": "button-primary",
       "description": "The one next step on a screen.",
       "html": "<button class=\"ds-btn-primary\">Bayar sekarang</button>",
-      "css": ".ds-btn-primary { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #1D5AB0; color: #FAFCFE; border: none; border-radius: 8px; height: 44px; padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #104A97; } .ds-btn-primary:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+      "css": ".ds-btn-primary { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #2563EB; color: #FFFFFF; border: none; border-radius: 8px; height: 44px; padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #1D4ED8; } .ds-btn-primary:focus-visible { outline: 2px solid #3A75F6; outline-offset: 2px; }"
     },
     {
       "name": "Secondary Button",
@@ -703,7 +703,7 @@
       "refersTo": "button-secondary",
       "description": "Every other action; a tonal fill instead of an outline.",
       "html": "<button class=\"ds-btn-secondary\">Batal</button>",
-      "css": ".ds-btn-secondary { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #F1F4F7; color: #161B22; border: none; border-radius: 8px; height: 44px; padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-secondary:hover { background: #EAEDF2; } .ds-btn-secondary:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+      "css": ".ds-btn-secondary { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #F4F4F5; color: #18181B; border: none; border-radius: 8px; height: 44px; padding: 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-secondary:hover { background: #F4F4F5; } .ds-btn-secondary:focus-visible { outline: 2px solid #3A75F6; outline-offset: 2px; }"
     },
     {
       "name": "Ghost Button",
@@ -711,7 +711,7 @@
       "refersTo": "button-ghost",
       "description": "Tertiary actions, toolbars and unboxed icon buttons.",
       "html": "<button class=\"ds-btn-ghost\">Lihat butiran</button>",
-      "css": ".ds-btn-ghost { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: transparent; color: #484E55; border: none; border-radius: 8px; height: 44px; padding: 0 12px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { background: #F1F4F7; color: #161B22; } .ds-btn-ghost:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+      "css": ".ds-btn-ghost { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: transparent; color: #3F3F46; border: none; border-radius: 8px; height: 44px; padding: 0 12px; font-size: 14px; font-weight: 500; line-height: 20px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { background: #F4F4F5; color: #18181B; } .ds-btn-ghost:focus-visible { outline: 2px solid #3A75F6; outline-offset: 2px; }"
     },
     {
       "name": "Text Field",
@@ -719,7 +719,7 @@
       "refersTo": "input",
       "description": "Inputs keep a stroke: it is what identifies them as controls.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">No. Kad Pengenalan</span><input class=\"ds-input\" placeholder=\"900101-14-5678\" /><span class=\"ds-field-hint\">Tanpa sengkang juga diterima.</span></label>",
-      "css": ".ds-field { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 6px; width: 280px; } .ds-field-label { color: #161B22; font-size: 14px; font-weight: 500; } .ds-field-hint { color: #484E55; font-size: 14px; } .ds-input { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #FCFDFF; color: #161B22; border: 1px solid #878D95; border-radius: 8px; height: 44px; padding: 0 12px; font-size: 16px; transition: border-color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-input::placeholder { color: #646971; } .ds-input:focus-visible { border-color: #1D5AB0; outline: 2px solid #4D86D9; outline-offset: 2px; }"
+      "css": ".ds-field { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 6px; width: 280px; } .ds-field-label { color: #18181B; font-size: 14px; font-weight: 500; } .ds-field-hint { color: #3F3F46; font-size: 14px; } .ds-input { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #FFFFFF; color: #18181B; border: 1px solid #898990; border-radius: 8px; height: 44px; padding: 0 12px; font-size: 16px; transition: border-color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-input::placeholder { color: #6B6B74; } .ds-input:focus-visible { border-color: #2563EB; outline: 2px solid #3A75F6; outline-offset: 2px; }"
     },
     {
       "name": "Status Badge",
@@ -727,7 +727,7 @@
       "refersTo": "badge-success",
       "description": "Wash fill with coloured text; never outlined.",
       "html": "<span class=\"ds-badge ds-badge-success\">Dibayar</span> <span class=\"ds-badge ds-badge-warning\">Tamat 3 hari</span> <span class=\"ds-badge ds-badge-danger\">Tertunggak</span>",
-      "css": ".ds-badge { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: inline-flex; align-items: center; border-radius: 9999px; padding: 2px 10px; font-size: 13px; font-weight: 500; line-height: 18px; } .ds-badge-success { background: #E7F7E9; color: #296A3B; } .ds-badge-warning { background: #FEF2D9; color: #7D4F1B; } .ds-badge-danger { background: #FEEDEC; color: #B02A2D; }"
+      "css": ".ds-badge { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: inline-flex; align-items: center; border-radius: 9999px; padding: 2px 10px; font-size: 13px; font-weight: 500; line-height: 18px; } .ds-badge-success { background: #F0FDF4; color: #15803D; } .ds-badge-warning { background: #FEFCE8; color: #A16207; } .ds-badge-danger { background: #FEF2F2; color: #B91C1C; }"
     },
     {
       "name": "Data Table Row",
@@ -735,7 +735,7 @@
       "refersTo": "table-row",
       "description": "Officer tables: no box, hairline dividers, tabular amounts, wash status.",
       "html": "<table class=\"ds-table\"><thead><tr><th>Pembayar</th><th class=\"ds-num\">Amaun (RM)</th><th>Status</th></tr></thead><tbody><tr><td>Syarikat Maju Sdn Bhd</td><td class=\"ds-num\">12,480.00</td><td><span class=\"ds-tb ds-tb-ok\">Dibayar</span></td></tr><tr><td>Aminah binti Yusof</td><td class=\"ds-num\">310.50</td><td><span class=\"ds-tb ds-tb-due\">Tertunggak</span></td></tr></tbody></table>",
-      "css": ".ds-table { font-family: Inter, ui-sans-serif, system-ui, sans-serif; border-collapse: collapse; width: 480px; background: #F9FAFC; } .ds-table th { text-align: left; color: #484E55; font-size: 13px; font-weight: 500; height: 40px; padding: 0 12px; border-bottom: 1px solid #DEE2E6; } .ds-table td { color: #161B22; font-size: 14px; height: 48px; padding: 0 12px; border-bottom: 1px solid #DEE2E6; } .ds-table tbody tr { transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-table tbody tr:hover { background: #F1F4F7; } .ds-table .ds-num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; } .ds-tb { border-radius: 9999px; padding: 2px 10px; font-size: 13px; font-weight: 500; } .ds-tb-ok { background: #E7F7E9; color: #296A3B; } .ds-tb-due { background: #FEEDEC; color: #B02A2D; }"
+      "css": ".ds-table { font-family: Inter, ui-sans-serif, system-ui, sans-serif; border-collapse: collapse; width: 480px; background: #FAFAFA; } .ds-table th { text-align: left; color: #3F3F46; font-size: 13px; font-weight: 500; height: 40px; padding: 0 12px; border-bottom: 1px solid #E4E4E7; } .ds-table td { color: #18181B; font-size: 14px; height: 48px; padding: 0 12px; border-bottom: 1px solid #E4E4E7; } .ds-table tbody tr { transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-table tbody tr:hover { background: #F4F4F5; } .ds-table .ds-num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; } .ds-tb { border-radius: 9999px; padding: 2px 10px; font-size: 13px; font-weight: 500; } .ds-tb-ok { background: #F0FDF4; color: #15803D; } .ds-tb-due { background: #FEF2F2; color: #B91C1C; }"
     },
     {
       "name": "Top Navigation",
@@ -743,15 +743,15 @@
       "refersTo": "",
       "description": "Paper bar, one hairline below, underline for the current item.",
       "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-current\" href=\"#\">Utama</a><a class=\"ds-nav-item\" href=\"#\">Bayaran</a><a class=\"ds-nav-item\" href=\"#\">Permohonan</a></nav>",
-      "css": ".ds-nav { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; gap: 24px; background: #F9FAFC; border-bottom: 1px solid #DEE2E6; padding: 0 24px; } .ds-nav-item { color: #484E55; font-size: 14px; font-weight: 500; text-decoration: none; padding: 16px 0 14px; border-bottom: 2px solid transparent; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-nav-item:hover { color: #161B22; } .ds-nav-current { color: #161B22; border-bottom-color: #1D5AB0; } .ds-nav-item:focus-visible { outline: 2px solid #4D86D9; outline-offset: 2px; }"
+      "css": ".ds-nav { font-family: Inter, ui-sans-serif, system-ui, sans-serif; display: flex; gap: 24px; background: #FAFAFA; border-bottom: 1px solid #E4E4E7; padding: 0 24px; } .ds-nav-item { color: #3F3F46; font-size: 14px; font-weight: 500; text-decoration: none; padding: 16px 0 14px; border-bottom: 2px solid transparent; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-nav-item:hover { color: #18181B; } .ds-nav-current { color: #18181B; border-bottom-color: #2563EB; } .ds-nav-item:focus-visible { outline: 2px solid #3A75F6; outline-offset: 2px; }"
     }
   ],
   "narrative": {
     "northStar": "The Steady Hand",
-    "overview": "Fiscal MYDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.\n\nThe system is quiet by construction. Surfaces are soft, tinted neutrals that sit almost still; structure comes from spacing and gentle tonal steps rather than lines; one calm blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.\n\nIt rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (stock zinc and `blue-600`, every element outlined in grey), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).",
+    "overview": "Fiscal MYDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.\n\nThe system is quiet by construction. Surfaces are white and soft neutral greys; structure comes from spacing and gentle tonal steps rather than lines; one clear MYDS blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.\n\nIt rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (every element outlined in grey, boxes inside boxes), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).",
     "keyCharacteristics": [
-      "Tinted neutral surfaces with almost no borders; spacing and tone do the grouping.",
-      "One calm, deep blue used sparingly for action, selection and focus.",
+      "Neutral surfaces with almost no borders; spacing and tone do the grouping.",
+      "The national MYDS blue, used sparingly for action, selection and focus.",
       "A single typeface (Inter) with a real hierarchy and tabular figures for money.",
       "Two densities from the same tokens: comfortable for citizens, compact for officers.",
       "Flat at rest; shadows only for things that genuinely float.",
@@ -760,7 +760,7 @@
     "rules": [
       {
         "name": "The One Blue Rule",
-        "body": "Steady Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.",
+        "body": "MYDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.",
         "section": "colors"
       },
       {
@@ -796,8 +796,8 @@
     ],
     "dos": [
       "**Do** separate groups with spacing (16–24px comfortable, 8–12px compact) and tone (Paper, Sheet, Well) before reaching for any line.",
-      "**Do** keep Steady Blue (#1D5AB0) to the primary action, current selection and links: no more than 10% of a screen.",
-      "**Do** use Ink (#161B22) or Ink Secondary (#484E55) for any text a user must read; Ink Secondary still measures 8.1:1.",
+      "**Do** keep MYDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.",
+      "**Do** use Ink (#18181B) or Ink Secondary (#3F3F46) for any text a user must read; Ink Secondary measures 10:1.",
       "**Do** ship every component in both densities: comfortable (16px text, 44px controls) for citizens and compact (14px text, 32px controls) for officers.",
       "**Do** set every amount in tabular figures and right-align it in columns.",
       "**Do** show status with a wash badge plus text or an icon; colour is never the only signal.",
@@ -805,7 +805,7 @@
       "**Do** confirm high-stakes moments (payment, submission, deletion) with plain language and a visible result."
     ],
     "donts": [
-      "**Don't** look like a **generic Tailwind starter**: no stock zinc greys, no `blue-600`, and no 1px grey outline on every button, tag, card and row.",
+      "**Don't** look like a **generic Tailwind starter**: no 1px grey outline on every button, tag, card and row, and no boxes inside boxes.",
       "**Don't** look like an **old government portal**: no crests and banners on every screen, no gradients, no tiny text, no 2010-era layouts.",
       "**Don't** look like **flashy fintech**: no neon accents, no dark gradient heroes, no glassmorphism.",
       "**Don't** look like **stiff corporate banking**: no navy and gold, no heavy serif headings, no formal distance.",
