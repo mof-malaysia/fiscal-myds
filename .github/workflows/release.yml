@@ -81,9 +81,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add registry registry.json
+          # Skip the git hooks: the pre-push hook would rebuild registry/ without
+          # the tag pin and reject this commit as out of date
           git commit --no-verify -m "release: $TAG"
           git tag -a "$TAG" -m "$TAG"
-          git push origin "refs/tags/$TAG"
+          git push --no-verify origin "refs/tags/$TAG"
 
       - name: Create GitHub release
         env:
