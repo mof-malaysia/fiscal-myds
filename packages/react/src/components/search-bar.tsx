@@ -54,9 +54,11 @@ const search_bar_input_container_cva = cva(
   {
     variants: {
       size: {
-        small: "pl-[10px] pr-2 py-[6px] gap-2 rounded-sm text-sm",
-        medium: "px-[12px] pr-2.5 py-[7px] gap-2 rounded-md text-md",
-        large: "pl-[18px] pr-1.5 py-[6px] gap-2.5 rounded-full text-md",
+        small: "pl-[10px] pr-2 h-(--ctl-h-sm) gap-2 rounded-sm text-field-sm",
+        medium:
+          "px-[12px] pr-2.5 h-(--ctl-h-md) gap-2 rounded-md text-field-md",
+        large:
+          "pl-[18px] pr-1.5 h-(--ctl-h-lg) gap-2.5 rounded-full text-field-lg",
       },
     },
     defaultVariants: {

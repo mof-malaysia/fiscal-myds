@@ -3,7 +3,29 @@ import "./global.css";
 
 const preview: Preview = {
   tags: ["autodocs"],
+  globalTypes: {
+    density: {
+      description: "Component density (DESIGN.md)",
+      toolbar: {
+        title: "Density",
+        icon: "component",
+        items: [
+          { value: "comfortable", title: "Comfortable (citizens)" },
+          { value: "compact", title: "Compact (officers)" },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    density: "comfortable",
+  },
   decorators: [
+    (Story, context) => {
+      document.documentElement.dataset.density =
+        context.globals.density ?? "comfortable";
+      return Story();
+    },
     // Dark stories set `backgrounds.default` to "dark" (see utils/createStory).
     // Put `.dark` on <html> so portaled content (dialogs, menus, tooltips)
     // switches theme too, not just the story root.

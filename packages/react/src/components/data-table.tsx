@@ -342,7 +342,7 @@ const DataTableBody: FunctionComponent = () => {
         Array.from({ length: 5 }).map((_, index) => (
           <TableRow key={index}>
             {table.getAllLeafColumns().map((column) => (
-              <TableCell key={column.id} className="py-3">
+              <TableCell key={column.id}>
                 <TableSkeleton />
               </TableCell>
             ))}

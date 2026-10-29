@@ -62,7 +62,7 @@ const TableHead: ForwardRefExoticComponent<ComponentProps<"th">> = forwardRef(
     <th
       ref={ref}
       className={clx(
-        "text-txt-black-500 min-h-[30px] py-3 pr-3 text-left align-middle text-xs font-medium",
+        "text-txt-black-700 py-(--cell-py) pr-3 text-left align-middle text-[0.8125rem] leading-[1.125rem] font-medium",
         "[&:has([role=checkbox])]:w-8 [&:has([role=checkbox])]:pl-1",
         "[&:has([role=radio])]:w-8 [&:has([role=radio])]:pl-1",
         className,
@@ -80,7 +80,10 @@ const TableCell: ForwardRefExoticComponent<ComponentProps<"td">> = forwardRef(
       role="gridcell"
       tabIndex={-1}
       className={clx(
-        "border-otl-gray-200 text-txt-black-900 border-b py-1.5 pr-3 align-middle text-sm leading-[33.11px]",
+        // Row height follows data-density: 48px comfortable, 40px compact
+        "border-otl-gray-200 text-txt-black-900 text-content border-b py-(--cell-py) pr-3 align-middle",
+        // Cells holding a control (row actions) keep rows tight: 52px comfortable, 40px compact
+        "[&:has(button)]:py-1",
         "focus:outline-primary-600/20 rounded-[1px] focus:z-20 focus:outline-[3px] focus:outline-offset-0",
         "[&:has([role=checkbox])]:w-8 [&:has([role=checkbox])]:pl-1",
         "[&:has([role=radio])]:w-8 [&:has([role=radio])]:pl-1",

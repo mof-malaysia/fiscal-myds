@@ -43,9 +43,10 @@ const input_cva = cva(
   {
     variants: {
       size: {
-        small: "py-1.5 px-3 text-body-sm",
-        medium: "py-2 px-3 text-body-md",
-        large: "py-2.5 px-3.5 text-body-lg",
+        // Height excludes the wrapper's 1px border; follows data-density
+        small: "h-[calc(var(--ctl-h-sm)-2px)] px-3 text-field-sm",
+        medium: "h-[calc(var(--ctl-h-md)-2px)] px-3 text-field-md",
+        large: "h-[calc(var(--ctl-h-lg)-2px)] px-3.5 text-field-lg",
       },
     },
     defaultVariants: {
@@ -115,9 +116,9 @@ const input_addon_cva = cva(
   {
     variants: {
       size: {
-        small: "py-1.5 px-3 text-body-sm",
-        medium: "py-2 px-3 text-body-md",
-        large: "py-2.5 px-3.5 text-body-md",
+        small: "h-[calc(var(--ctl-h-sm)-2px)] px-3 text-label-sm",
+        medium: "h-[calc(var(--ctl-h-md)-2px)] px-3 text-label-md",
+        large: "h-[calc(var(--ctl-h-lg)-2px)] px-3.5 text-label-lg",
       },
     },
   },

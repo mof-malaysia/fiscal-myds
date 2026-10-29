@@ -281,9 +281,9 @@ const select_trigger_cva = cva(
         ],
       },
       size: {
-        small: "py-1.5 px-2.5 text-body-sm",
-        medium: "py-2 px-3 text-body-md",
-        large: "py-2.5 px-4 text-body-lg",
+        small: "control-sm text-field-sm",
+        medium: "control-md text-field-md",
+        large: "control-lg text-field-lg",
       },
     },
     defaultVariants: { variant: "outline", size: "small" },

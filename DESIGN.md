@@ -222,7 +222,7 @@ It rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailw
 - Flat at rest; shadows only for things that genuinely float.
 - Light and dark themes designed as equals, both verified for contrast.
 
-**Density.** Every component ships in two densities. *Comfortable* (citizen-facing, the default): 16px body text, 44px control height, 16–24px gaps. *Compact* (officer tools): 14px body text, 32px control height, 8–12px gaps. Density changes size and spacing only; colour, radius and behaviour stay identical.
+**Density.** Every component ships in two densities, switched by `data-density="comfortable" | "compact"` on any element (comfortable is the default on `:root`); component `size` props stay relative to it. *Comfortable* (citizen-facing, the default): 16px body text, 44px control height, 16–24px gaps. *Compact* (officer tools): 14px body text, 32px control height, 8–12px gaps. Density changes size and spacing only; colour, radius and behaviour stay identical.
 
 **Motion.** State changes only: hover, press, open, close, expand. 150–200ms with an ease-out curve (`cubic-bezier(0.16, 1, 0.3, 1)`). No entrance choreography, no bounce, and everything respects `prefers-reduced-motion`.
 
@@ -341,7 +341,7 @@ Calm and decisive: a clear primary, quiet everything else.
 ### Data Table (signature component)
 The officer's home screen, built to be looked at all day.
 - **No outer border or box.** Header row is Paper with Label Compact text in Ink Secondary.
-- **Rows:** 48px tall (40px in dense mode), Body Compact, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with Steady Blue Wash.
+- **Rows:** 48px tall in comfortable density and 40px in compact (52px in comfortable when a row holds actions), content text, separated by a single Hairline divider. Hover fills the row with Well; selection fills it with Steady Blue Wash.
 - **Amounts:** Amount type, right-aligned.
 - **Status:** wash badges, never outlined.
 - **Row actions:** ghost buttons or a single overflow menu, never a column of outlined "Edit" buttons.
