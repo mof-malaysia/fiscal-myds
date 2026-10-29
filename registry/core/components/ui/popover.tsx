@@ -44,12 +44,12 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
     });
     return (
       <PopoverPrimitive.Portal container={container}>
-        <PopoverPrimitive.Positioner className="z-50" {...positionerProps}>
+        <PopoverPrimitive.Positioner className="z-popup" {...positionerProps}>
           <PopoverPrimitive.Popup
             ref={ref}
             className={clx(
               floating_popup_class,
-              "text-txt-black-900 z-50 w-72 p-4",
+              "text-txt-black-900 w-72 p-4",
               className,
             )}
             {...popupProps}

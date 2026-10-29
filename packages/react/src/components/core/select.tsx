@@ -516,7 +516,7 @@ const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
     return (
       <SelectPrimitive.Portal container={container}>
         <SelectPrimitive.Positioner
-          className="z-50 outline-none"
+          className="z-popup outline-none"
           alignItemWithTrigger={position === "item-aligned"}
           {...positionerProps}
         >

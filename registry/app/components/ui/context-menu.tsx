@@ -45,7 +45,8 @@ import {
 
 const ContextMenu = ContextMenuPrimitive.Root;
 
-type ContextMenuTriggerProps = WithClassName<ContextMenuPrimitive.Trigger.Props>;
+type ContextMenuTriggerProps =
+  WithClassName<ContextMenuPrimitive.Trigger.Props>;
 
 /** The area that responds to right-click. Renders a `<div>`; use `render` for another element. */
 const ContextMenuTrigger = forwardRef<HTMLDivElement, ContextMenuTriggerProps>(
@@ -74,7 +75,7 @@ const ContextMenuContent = forwardRef<HTMLDivElement, ContextMenuContentProps>(
     return (
       <ContextMenuPrimitive.Portal container={container}>
         <ContextMenuPrimitive.Positioner
-          className="z-50 outline-none"
+          className="z-popup outline-none"
           {...positionerProps}
         >
           <ContextMenuPrimitive.Popup

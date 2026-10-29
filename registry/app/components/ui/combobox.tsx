@@ -333,7 +333,7 @@ const createComboboxParts = (
       return (
         <ComboboxPrimitive.Portal container={container}>
           <ComboboxPrimitive.Positioner
-            className="z-50 outline-none"
+            className="z-popup outline-none"
             {...positionerProps}
           >
             <ComboboxPrimitive.Popup

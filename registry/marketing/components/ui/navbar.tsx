@@ -46,7 +46,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
       <header
         id={id}
         className={clx(
-          "bg-bg-white border-otl-gray-200 sticky top-0 z-50 h-16 w-full border-b max-md:h-14 print:hidden",
+          "bg-bg-white border-otl-gray-200 z-sticky sticky top-0 h-16 w-full border-b max-md:h-14 print:hidden",
           className,
         )}
         data-nosnippet
@@ -151,7 +151,7 @@ const NavbarMenu: FunctionComponent<NavigationMenuProps> = ({
       <NavigationMenuPrimitive.Portal>
         <NavigationMenuPrimitive.Positioner
           className={clx(
-            "z-50 outline-none",
+            "z-popup outline-none",
             "h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)]",
             "ease-standard transition-[top,left,right,bottom] duration-200 data-[instant]:transition-none motion-reduce:transition-none",
           )}
@@ -219,7 +219,7 @@ const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
           align="start"
           // Flush with the header: no 5px gap from the screen edges
           collisionPadding={0}
-          className="z-40 xl:hidden"
+          className="z-sticky xl:hidden"
         >
           <PopoverPrimitive.Popup
             className={clx(
