@@ -1,39 +1,8 @@
-import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-
-const reactSrc = fileURLToPath(
-  new URL("../../packages/react/src/", import.meta.url),
-);
-const tiers = ["core", "app", "marketing"];
-
-/**
- * Examples import components the way a project that ran `shadcn add` does
- * (`@/components/ui/button`, `@/components/ui/icons/copy`), so the Code tab
- * shows code people can paste. This resolves those paths to the package source.
- */
-function registryPaths() {
-  return {
-    name: "ftds-registry-paths",
-    enforce: "pre",
-    resolveId(id) {
-      const match = id.match(/^@\/components\/ui\/(.+)$/);
-      if (!match) return null;
-      const name = match[1];
-      if (name.startsWith("icons/")) {
-        return `${reactSrc}icons/${name.slice("icons/".length)}.tsx`;
-      }
-      for (const tier of tiers) {
-        const file = `${reactSrc}components/${tier}/${name}.tsx`;
-        if (existsSync(file)) return file;
-      }
-      return null;
-    },
-  };
-}
+import { ftdsPaths } from "../../packages/react/paths.mjs";
 
 /**
  * Where the site is served. The Pages workflow sets FTDS_SITE_URL (by default
@@ -54,6 +23,8 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [registryPaths(), tailwindcss()],
+    // Examples import FTDS the way a project that ran `shadcn add` does, so
+    // the Code tab shows code people can paste
+    plugins: [ftdsPaths(), tailwindcss()],
   },
 });

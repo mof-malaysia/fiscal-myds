@@ -21,11 +21,11 @@ export type Theme = (typeof THEMES)[number];
 export const VIEWPORTS = ["mobile", "tablet", "desktop"] as const;
 export type Viewport = (typeof VIEWPORTS)[number];
 
-/** Width of the preview frame; desktop fills the space it has. */
-export const VIEWPORT_WIDTH: Record<Viewport, number | undefined> = {
+/** Width of the preview frame. Wider than the space it has, it scales down. */
+export const VIEWPORT_WIDTH: Record<Viewport, number> = {
   mobile: 390,
   tablet: 768,
-  desktop: undefined,
+  desktop: 1280,
 };
 
 export function encodeScreen(screen: Screen): string {
@@ -40,17 +40,28 @@ export function decodeScreen(fragment: string): Screen | undefined {
   if (!json) return undefined;
   try {
     const value = JSON.parse(json);
-    if (typeof value?.code !== "string") return undefined;
-    return {
-      v: typeof value.v === "string" ? value.v : "unknown",
-      title: typeof value.title === "string" ? value.title : "Untitled screen",
-      code: value.code,
-      theme: THEMES.includes(value.theme) ? value.theme : "light",
-      viewport: VIEWPORTS.includes(value.viewport) ? value.viewport : "desktop",
-    };
+    return toScreen(value, typeof value?.v === "string" ? value.v : "unknown");
   } catch {
     return undefined;
   }
+}
+
+/** A screen from untrusted fields (a link, a tool's arguments), with defaults. */
+export function toScreen(value: unknown, v: string): Screen | undefined {
+  const fields = (value ?? {}) as Record<string, unknown>;
+  if (typeof fields.code !== "string") return undefined;
+  const pick = <T extends string>(
+    field: unknown,
+    options: readonly T[],
+    fallback: T,
+  ): T => (options.includes(field as T) ? (field as T) : fallback);
+  return {
+    v,
+    title: typeof fields.title === "string" ? fields.title : "Untitled screen",
+    code: fields.code,
+    theme: pick(fields.theme, THEMES, "light"),
+    viewport: pick(fields.viewport, VIEWPORTS, "desktop"),
+  };
 }
 
 export function shareUrl(origin: string, screen: Screen): string {

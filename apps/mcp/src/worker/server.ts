@@ -8,11 +8,47 @@ import { z } from "zod";
 import catalogueJson from "../generated/catalogue.json";
 import viewHtml from "../../dist/view.html";
 import type { Catalogue } from "../shared/catalogue";
-import { checkScreen, formatProblems } from "../shared/check";
+import {
+  checkScreen,
+  closest,
+  formatProblems,
+  screenImports,
+} from "../shared/check";
 import { THEMES, VIEWPORTS, shareUrl, type Screen } from "../shared/screen";
 
 const catalogue = catalogueJson as Catalogue;
-export const PREVIEW_URI = "ui://ftds/preview.html";
+const PREVIEW_URI = "ui://ftds/preview.html";
+
+/** The 3 MB preview page, split once around the per-request origin. */
+const previewParts = (viewHtml as string)
+  .replaceAll("__FTDS_VERSION__", catalogue.version)
+  .split("__FTDS_ORIGIN__");
+
+const SCREEN_CODE = z.string().max(60_000);
+const READ_DOCS_INPUT = z.object({
+  names: z
+    .array(z.string())
+    .min(1)
+    .max(12)
+    .describe('Item names, "guide:<slug>" or "icons"'),
+});
+const RENDER_INPUT = z.object({
+  title: z
+    .string()
+    .max(120)
+    .describe('What the screen is, e.g. "Grant applications: officer review"'),
+  code: SCREEN_CODE.describe("The whole TSX file"),
+  theme: z.enum(THEMES).default("light"),
+  viewport: z
+    .enum(VIEWPORTS)
+    .default("desktop")
+    .describe(
+      "mobile for citizen services on phones; desktop for officer tools",
+    ),
+});
+const HANDOFF_INPUT = z.object({
+  code: SCREEN_CODE.describe("The screen's TSX file"),
+});
 
 const INSTRUCTIONS = `FTDS Playground mocks up screens with FTDS, the Ministry of Finance Malaysia's design system, and shows them to the user in the chat. Use it when someone wants to see what a screen, page or flow could look like: gathering requirements, comparing options, preparing a demo. Call get_started first.`;
 
@@ -97,13 +133,7 @@ export function createServer(origin: string): McpServer {
       title: "Read FTDS docs",
       description:
         'The documentation page of components, blocks, guides or icons: the import, props with their types, examples and rules. Pass item names from list_components (e.g. "data-table", "work-queue"), guides as "guide:<slug>", or "icons".',
-      inputSchema: z.object({
-        names: z
-          .array(z.string())
-          .min(1)
-          .max(12)
-          .describe('Item names, "guide:<slug>" or "icons"'),
-      }),
+      inputSchema: READ_DOCS_INPUT,
       annotations: { readOnlyHint: true },
     },
     async ({ names }) => text(names.map(readDoc).join("\n\n---\n\n")),
@@ -116,22 +146,7 @@ export function createServer(origin: string): McpServer {
       title: "Render a screen",
       description:
         "Check and render a screen (one TSX file, see get_started) and show it to the user in the chat, with a share link anyone can open in a browser. Returns errors to fix if it can't render, and design-rule warnings. Call again with the whole file to change it.",
-      inputSchema: z.object({
-        title: z
-          .string()
-          .max(120)
-          .describe(
-            'What the screen is, e.g. "Grant applications: officer review"',
-          ),
-        code: z.string().max(60_000).describe("The whole TSX file"),
-        theme: z.enum(THEMES).default("light"),
-        viewport: z
-          .enum(VIEWPORTS)
-          .default("desktop")
-          .describe(
-            "mobile for citizen services on phones; desktop for officer tools",
-          ),
-      }),
+      inputSchema: RENDER_INPUT,
       annotations: { readOnlyHint: true },
       _meta: { ui: { resourceUri: PREVIEW_URI } },
     },
@@ -143,7 +158,7 @@ export function createServer(origin: string): McpServer {
         theme,
         viewport,
       };
-      const { problems } = checkScreen(code, catalogue.modules);
+      const problems = checkScreen(code, catalogue.modules);
       const errors = problems.filter((p) => p.severity === "error");
       const warnings = problems.filter((p) => p.severity === "warning");
 
@@ -183,14 +198,13 @@ export function createServer(origin: string): McpServer {
       title: "Prepare a developer handoff",
       description:
         "Turn a finished screen into what developers need to build it: the shadcn install command for every FTDS item it uses, setup notes and the code.",
-      inputSchema: z.object({
-        code: z.string().max(60_000).describe("The screen's TSX file"),
-      }),
+      inputSchema: HANDOFF_INPUT,
       annotations: { readOnlyHint: true },
     },
     async ({ code }) => {
-      const { imports } = checkScreen(code, catalogue.modules);
-      const items = imports.map(registryItem);
+      const items = screenImports(code, catalogue.modules).map(
+        (importPath) => catalogue.items[importPath]!,
+      );
       return text(
         [
           `# Handoff`,
@@ -233,9 +247,7 @@ export function createServer(origin: string): McpServer {
 
 /** The preview page, told where this Worker is and which release it renders. */
 export function previewHtml(origin: string): string {
-  return (viewHtml as string)
-    .replaceAll("__FTDS_ORIGIN__", origin)
-    .replaceAll("__FTDS_VERSION__", catalogue.version);
+  return previewParts.join(origin);
 }
 
 function readDoc(name: string): string {
@@ -255,14 +267,6 @@ function readDoc(name: string): string {
   const page = catalogue.pages[key] ?? catalogue.pages[key.split("/").pop()!];
   if (page) return page;
 
-  const close = Object.keys(catalogue.pages)
-    .filter((n) => n.includes(key) || key.includes(n))
-    .slice(0, 5);
+  const close = closest(key, Object.keys(catalogue.pages));
   return `No docs for "${name}".${close.length ? ` Did you mean: ${close.join(", ")}?` : " Call list_components for the names."}`;
-}
-
-/** Import path → registry item: @/components/ui/icons/check → icon-check, @/lib/ftds/utils → utils. */
-function registryItem(importPath: string): string {
-  const name = importPath.split("/").pop()!;
-  return importPath.includes("/icons/") ? `icon-${name}` : name;
 }

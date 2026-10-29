@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { execFileSync } from "child_process";
 import { REGISTRY_DIR, type RegistryName } from "../registry/utils";
 
 /**
@@ -13,6 +14,34 @@ import { REGISTRY_DIR, type RegistryName } from "../registry/utils";
  */
 
 export const ROOT_DIR = path.join(__dirname, "../..");
+
+/** Where the docs are published; hand-written docs link here. */
+export const DEFAULT_SITE_URL = "https://mof-malaysia.github.io/ftds";
+
+/** The site to link to: an explicit one, else FTDS_SITE_URL, else the default. */
+export function siteUrl(explicit?: string): string {
+  return (explicit || process.env.FTDS_SITE_URL || DEFAULT_SITE_URL).replace(
+    /\/$/,
+    "",
+  );
+}
+
+/** The release tag at HEAD, if HEAD is one (Pages builds from a tag). */
+export function currentTag(): string | undefined {
+  try {
+    return execFileSync(
+      "git",
+      ["describe", "--tags", "--exact-match", "HEAD"],
+      {
+        cwd: ROOT_DIR,
+        encoding: "utf-8",
+        stdio: ["ignore", "pipe", "ignore"],
+      },
+    ).trim();
+  } catch {
+    return undefined;
+  }
+}
 const REACT_SRC = path.join(ROOT_DIR, "packages/react/src");
 export const GUIDES_DIR = path.join(ROOT_DIR, "docs/guides");
 export const INTRO_FILE = path.join(ROOT_DIR, "docs/llms-intro.md");

@@ -9,11 +9,13 @@ export interface Catalogue {
   intro: string;
   sections: {
     category: string;
-    items: { name: string; title: string; description: string }[];
+    items: { name: string; description: string }[];
   }[];
   /** Item name → its llms page (props, examples, rules). */
   pages: Record<string, string>;
   guides: { slug: string; title: string; body: string }[];
-  icons: { name: string; export: string; import: string }[];
+  icons: { export: string; import: string }[];
   modules: ModuleExports;
+  /** Import path → registry item name, e.g. `@/components/ui/icons/check` → `icon-check`. */
+  items: Record<string, string>;
 }

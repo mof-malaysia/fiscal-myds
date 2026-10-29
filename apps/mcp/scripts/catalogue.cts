@@ -1,8 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { readItems } from "../../../scripts/llms/content";
+import {
+  ROOT_DIR,
+  currentTag,
+  readGuides,
+  readItems,
+  siteUrl,
+} from "../../../scripts/llms/content";
 import { readExports } from "../../../scripts/llms/api";
+import {
+  getIconExportMap,
+  iconItemName,
+} from "../../../scripts/registry/utils";
 import type { Catalogue } from "../src/shared/catalogue";
 
 /**
@@ -16,6 +26,7 @@ import type { Catalogue } from "../src/shared/catalogue";
  *   icons       every icon and its export
  *   modules     import path → export names, read with the TypeScript checker,
  *               for checking a screen's imports
+ *   items       import path → registry item, for `shadcn add`
  *
  * Writes src/generated/catalogue.json, which the Worker bundles.
  *
@@ -23,29 +34,11 @@ import type { Catalogue } from "../src/shared/catalogue";
  */
 
 const APP_DIR = path.dirname(__dirname);
-const ROOT_DIR = path.join(APP_DIR, "../..");
 const LLMS_DIR = path.join(APP_DIR, ".catalogue");
 const OUT_FILE = path.join(APP_DIR, "src/generated/catalogue.json");
-const SITE_URL = (
-  process.env.FTDS_SITE_URL || "https://mof-malaysia.github.io/ftds"
-).replace(/\/$/, "");
-
-function git(...args: string[]): string | undefined {
-  try {
-    return execFileSync("git", args, {
-      cwd: ROOT_DIR,
-      encoding: "utf-8",
-      stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
-  } catch {
-    return undefined;
-  }
-}
-
-const version =
-  process.env.FTDS_VERSION ||
-  git("describe", "--tags", "--exact-match", "HEAD") ||
-  "main";
+const ICONS_DIR = path.join(ROOT_DIR, "packages/react/src/icons");
+const SITE_URL = siteUrl();
+const version = process.env.FTDS_VERSION || currentTag() || "main";
 
 execFileSync(
   "pnpm",
@@ -76,15 +69,9 @@ for (const line of index.split("\n")) {
     sections.push({ category: heading[1]!, items: [] });
     continue;
   }
-  const item = line.match(
-    /^- \[(.+?)\]\(.+?\/components\/([\w-]+)\.md\): (.*)$/,
-  );
+  const item = line.match(/^- \[.+?\]\(.+?\/components\/([\w-]+)\.md\): (.*)$/);
   if (item && sections.length) {
-    sections.at(-1)!.items.push({
-      name: item[2]!,
-      title: item[1]!,
-      description: item[3]!,
-    });
+    sections.at(-1)!.items.push({ name: item[1]!, description: item[2]! });
   }
 }
 
@@ -93,32 +80,28 @@ for (const file of fs.readdirSync(path.join(LLMS_DIR, "components"))) {
   pages[file.replace(/\.md$/, "")] = read(`components/${file}`);
 }
 
-const guides: Catalogue["guides"] = fs
-  .readdirSync(path.join(LLMS_DIR, "guides"))
-  .map((file) => {
-    const body = read(`guides/${file}`);
-    return {
-      slug: file.replace(/\.md$/, ""),
-      title: body.match(/^# (.+)$/m)?.[1] ?? file,
-      body,
-    };
-  });
-
-const icons: Catalogue["icons"] = [
-  ...read("icons.md").matchAll(
-    /^\| `icon-([\w-]+)` \| `(\w+)` \| `([^`]+)` \|$/gm,
-  ),
-].map(([, name, exported, importPath]) => ({
-  name: name!,
-  export: exported!,
-  import: importPath!,
+// The section index comes from llms.txt above: build.ts groups blocks there
+const guides: Catalogue["guides"] = readGuides().map(({ slug, title }) => ({
+  slug,
+  title,
+  body: read(`guides/${slug}.md`),
 }));
 
 const modules: Catalogue["modules"] = {};
+const items: Catalogue["items"] = {};
 for (const item of readItems()) {
   modules[item.importPath] = readExports(item.sourceFile).map((e) => e.name);
+  items[item.importPath] = item.entry.name;
 }
-for (const icon of icons) modules[icon.import] = [icon.export];
+
+const icons: Catalogue["icons"] = [];
+for (const [exported, file] of getIconExportMap(ICONS_DIR)) {
+  const importPath = `@/components/ui/icons/${file}`;
+  icons.push({ export: exported, import: importPath });
+  modules[importPath] = [exported];
+  items[importPath] = iconItemName(file);
+}
+icons.sort((a, b) => a.import.localeCompare(b.import));
 
 const catalogue: Catalogue = {
   version,
@@ -129,6 +112,7 @@ const catalogue: Catalogue = {
   guides,
   icons,
   modules,
+  items,
 };
 
 fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });

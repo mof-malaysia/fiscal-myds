@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { checkScreen, checkRules } from "./check";
+import { checkRules, checkScreen, compile, screenImports } from "./check";
 import { decodeScreen, encodeScreen, type Screen } from "./screen";
 
 const modules = {
@@ -9,22 +9,20 @@ const modules = {
 };
 
 const errors = (code: string) =>
-  checkScreen(code, modules).problems.filter((p) => p.severity === "error");
+  checkScreen(code, modules).filter((p) => p.severity === "error");
 
-test("a valid screen compiles to CommonJS", () => {
-  const result = checkScreen(
-    `import { useState } from "react";
+test("a valid screen passes and compiles to CommonJS", () => {
+  const code = `import { useState } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 export default function Screen() {
   const [n, setN] = useState<number>(0);
   return <Button onClick={() => setN(n + 1)}>{n}</Button>;
-}`,
-    modules,
-  );
-  assert.deepEqual(result.problems, []);
-  assert.deepEqual(result.imports, ["@/components/ui/button"]);
-  assert.match(result.js!, /require\(["']@\/components\/ui\/button["']\)/);
-  assert.match(result.js!, /require\("react\/jsx-runtime"\)/);
+}`;
+  assert.deepEqual(checkScreen(code, modules), []);
+  assert.deepEqual(screenImports(code, modules), ["@/components/ui/button"]);
+  const js = compile(code);
+  assert.match(js, /require\(["']@\/components\/ui\/button["']\)/);
+  assert.match(js, /require\("react\/jsx-runtime"\)/);
 });
 
 test("unknown modules and names are errors with a hint", () => {

@@ -1,5 +1,6 @@
 import {
   Component,
+  memo,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -12,6 +13,8 @@ import {
   type ReactNode,
 } from "react";
 import { Button, ButtonIcon } from "@/components/ui/button";
+import { Toggle } from "@/components/ui/toggle";
+import { ToggleGroup } from "@/components/ui/toggle-group";
 import { ArrowOutgoingIcon } from "@/components/ui/icons/arrow-outgoing";
 import { CheckIcon } from "@/components/ui/icons/check";
 import { DesktopIcon } from "@/components/ui/icons/desktop";
@@ -40,7 +43,6 @@ import { FRAME_CONTAINER } from "./styles";
 type DisplayMode = "inline" | "fullscreen" | "pip";
 
 export interface PreviewState {
-  mode: "host" | "share";
   /** FTDS release this page renders with. */
   version: string;
   screen?: Screen;
@@ -64,27 +66,31 @@ interface Store {
   subscribe(listener: () => void): () => void;
 }
 
-/** Desktop screens render at this width and scale down to fit the chat. */
-const DESKTOP_WIDTH = 1280;
 /** Inline in a chat the page has a fixed height, so the host can size it. */
 const INLINE_HEIGHT = 720;
 
 emulateFrameWidth();
 followMovedPortals();
 
+/** `host` is set inside a chat, and absent on a share link. */
 export function Preview({ store, host }: { store: Store; host?: Host }) {
   const state = useSyncExternalStore(store.subscribe, store.get);
   const { screen } = state;
-  const [theme, setTheme] = useState<Theme>("light");
-  const [viewport, setViewport] = useState<Viewport>("desktop");
+  const [theme, setTheme] = useState<Theme>(screen?.theme ?? "light");
+  const [viewport, setViewport] = useState<Viewport>(
+    screen?.viewport ?? "desktop",
+  );
   const [showWarnings, setShowWarnings] = useState(false);
 
-  // A new screen brings its own theme and width
-  useEffect(() => {
-    if (!screen) return;
-    setTheme(screen.theme);
-    setViewport(screen.viewport);
-  }, [screen]);
+  // A new screen brings its own theme and width, from its first render
+  const [shown, setShown] = useState(screen);
+  if (screen !== shown) {
+    setShown(screen);
+    if (screen) {
+      setTheme(screen.theme);
+      setViewport(screen.viewport);
+    }
+  }
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -97,7 +103,7 @@ export function Preview({ store, host }: { store: Store; host?: Host }) {
     [host],
   );
 
-  const inline = state.mode === "host" && state.displayMode !== "fullscreen";
+  const inline = host && state.displayMode !== "fullscreen";
   const errors = state.problems.filter((p) => p.severity === "error");
   const warnings = state.problems.filter((p) => p.severity === "warning");
 
@@ -117,7 +123,7 @@ export function Preview({ store, host }: { store: Store; host?: Host }) {
         onViewport={setViewport}
         onShowWarnings={setShowWarnings}
       />
-      {state.mode === "share" &&
+      {!host &&
         screen &&
         screen.v !== state.version &&
         screen.v !== "unknown" && (
@@ -129,15 +135,15 @@ export function Preview({ store, host }: { store: Store; host?: Host }) {
       {showWarnings && warnings.length > 0 && <Warnings warnings={warnings} />}
       {!screen ? (
         <Empty>
-          {state.mode === "host"
+          {host
             ? "Waiting for the screen…"
             : "This link doesn't contain a screen. Ask whoever sent it for a new one."}
         </Empty>
       ) : errors.length ? (
-        <Errors problems={errors} />
+        <Errors messages={errors.map(problemText)} />
       ) : (
         <Stage
-          screen={screen}
+          code={screen.code}
           viewport={viewport}
           theme={theme}
           onError={reportError}
@@ -240,23 +246,26 @@ function Toolbar({
         {dark ? <MoonIcon /> : <SunIcon />}
       </IconButton>
 
-      <div
-        role="group"
+      <ToggleGroup
         aria-label="Width"
-        className="bg-bg-washed flex gap-0.5 rounded-md p-0.5"
+        value={[viewport]}
+        onValueChange={(value) => {
+          // Pressing the current width again would leave none pressed
+          if (value[0]) onViewport(value[0] as Viewport);
+        }}
       >
         {WIDTHS.map(([option, label, Icon]) => (
-          <IconButton
+          <Toggle
             key={option}
-            label={label}
-            segment
-            pressed={option === viewport}
-            onClick={() => onViewport(option)}
+            value={option}
+            iconOnly
+            aria-label={label}
+            title={label}
           >
             <Icon />
-          </IconButton>
+          </Toggle>
         ))}
-      </div>
+      </ToggleGroup>
 
       <IconButton
         label={copied ?? "Copy share link"}
@@ -291,15 +300,12 @@ function Toolbar({
 function IconButton({
   label,
   pressed,
-  segment,
   disabled,
   onClick,
   children,
 }: {
   label: string;
   pressed?: boolean;
-  /** Part of a segmented group: the pressed one is raised on the group's tone. */
-  segment?: boolean;
   disabled?: boolean;
   onClick(): void;
   children: ReactElement;
@@ -309,9 +315,6 @@ function IconButton({
       size="small"
       iconOnly
       variant={pressed ? "default-outline" : "default-ghost"}
-      className={
-        segment && pressed ? "bg-bg-white hover:bg-bg-white" : undefined
-      }
       aria-label={label}
       aria-pressed={pressed}
       title={label}
@@ -330,13 +333,13 @@ function IconButton({
  * transform makes it the box `position: fixed` elements (dialogs, sheets,
  * sticky headers) stay inside.
  */
-function Stage({
-  screen,
+const Stage = memo(function Stage({
+  code,
   viewport,
   theme,
   onError,
 }: {
-  screen: Screen;
+  code: string;
   viewport: Viewport;
   theme: Theme;
   onError(message: string): void;
@@ -374,21 +377,34 @@ function Stage({
     return () => observer.disconnect();
   }, [measured]);
 
-  const target = VIEWPORT_WIDTH[viewport] ?? DESKTOP_WIDTH;
+  const target = VIEWPORT_WIDTH[viewport];
 
   // Run again for a new width too, so JS media queries see it
   const rendered = useMemo((): { Screen?: ComponentType; error?: string } => {
     setFrameWidth(target);
     try {
-      return { Screen: runScreen(screen.code) };
+      return { Screen: runScreen(code) };
     } catch (error) {
       return { error: (error as Error).message };
     }
-  }, [screen.code, target]);
+  }, [code, target]);
 
   useEffect(() => {
     if (rendered.error) onError(rendered.error);
   }, [rendered.error, onError]);
+
+  // Resizes only restyle the frame; the screen itself doesn't re-render
+  const content = useMemo(
+    () => (
+      <ScreenBoundary
+        key={`${code}\u0000${target}\u0000${theme}`}
+        onError={onError}
+      >
+        {rendered.Screen && <rendered.Screen />}
+      </ScreenBoundary>
+    ),
+    [rendered, code, target, theme, onError],
+  );
 
   const scale = size ? Math.min(1, size.width / target) : 1;
   const left = size ? Math.max(0, (size.width - target * scale) / 2) : 0;
@@ -399,7 +415,7 @@ function Stage({
       className="bg-bg-washed relative flex flex-1 flex-col overflow-hidden"
     >
       {rendered.error ? (
-        <Errors problems={[{ severity: "error", message: rendered.error }]} />
+        <Errors messages={[rendered.error]} />
       ) : (
         size && (
           <div
@@ -416,20 +432,13 @@ function Stage({
             }}
           >
             {/* Scrolls inside the frame, so portalled layers stay put while it scrolls */}
-            <div className="h-full overflow-auto">
-              <ScreenBoundary
-                key={`${screen.code}\u0000${viewport}\u0000${theme}`}
-                onError={onError}
-              >
-                {rendered.Screen && <rendered.Screen />}
-              </ScreenBoundary>
-            </div>
+            <div className="h-full overflow-auto">{content}</div>
           </div>
         )
       )}
     </div>
   );
-}
+});
 
 class ScreenBoundary extends Component<
   { children: ReactNode; onError(message: string): void },
@@ -447,17 +456,13 @@ class ScreenBoundary extends Component<
 
   render() {
     if (this.state.error) {
-      return (
-        <Errors
-          problems={[{ severity: "error", message: this.state.error.message }]}
-        />
-      );
+      return <Errors messages={[this.state.error.message]} />;
     }
     return this.props.children;
   }
 }
 
-function Errors({ problems }: { problems: Problem[] }) {
+function Errors({ messages }: { messages: string[] }) {
   return (
     <div className="flex-1 overflow-auto p-4">
       <div className="bg-bg-danger-50 text-txt-danger mx-auto max-w-2xl rounded-lg p-4">
@@ -465,14 +470,7 @@ function Errors({ problems }: { problems: Problem[] }) {
         <p className="text-txt-black-700 mt-1 text-sm">
           The assistant has been told what to fix. Errors:
         </p>
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
-          {problems.map((p, i) => (
-            <li key={i}>
-              {p.line ? `Line ${p.line}: ` : ""}
-              {p.message}
-            </li>
-          ))}
-        </ul>
+        <ProblemList items={messages} className="mt-2 space-y-1 text-sm" />
       </div>
     </div>
   );
@@ -480,12 +478,27 @@ function Errors({ problems }: { problems: Problem[] }) {
 
 function Warnings({ warnings }: { warnings: Problem[] }) {
   return (
-    <ul className="border-otl-gray-200 bg-bg-warning-50 text-txt-warning max-h-32 shrink-0 list-disc space-y-0.5 overflow-auto border-b py-1.5 pr-3 pl-7 text-xs">
-      {warnings.map((w, i) => (
-        <li key={i}>
-          {w.line ? `Line ${w.line}: ` : ""}
-          {w.message}
-        </li>
+    <ProblemList
+      items={warnings.map(problemText)}
+      className="border-otl-gray-200 bg-bg-warning-50 text-txt-warning max-h-32 shrink-0 space-y-0.5 overflow-auto border-b py-1.5 pr-3 text-xs"
+    />
+  );
+}
+
+const problemText = (p: Problem) =>
+  `${p.line ? `Line ${p.line}: ` : ""}${p.message}`;
+
+function ProblemList({
+  items,
+  className,
+}: {
+  items: string[];
+  className: string;
+}) {
+  return (
+    <ul className={`list-disc pl-5 ${className}`}>
+      {items.map((item, i) => (
+        <li key={i}>{item}</li>
       ))}
     </ul>
   );

@@ -8,8 +8,7 @@ import { transform } from "sucrase";
  *   doesn't have, or has no default export;
  * - warnings render anyway: the screen breaks a design rule from DESIGN.md.
  *
- * The same checks run in the Worker (to answer the model) and in the preview
- * (to compile what it renders).
+ * The checks run in the Worker; the preview only uses `compile`.
  */
 
 export interface Problem {
@@ -22,20 +21,12 @@ export interface Problem {
 /** Import specifier → the names it exports, e.g. `@/components/ui/button` → `Button`, `ButtonIcon`. */
 export type ModuleExports = Record<string, string[]>;
 
-export interface CheckResult {
-  problems: Problem[];
-  /** CommonJS output for the preview runtime; set when there are no errors. */
-  js?: string;
-  /** The FTDS modules the screen imports, in order. */
-  imports: string[];
-}
-
 /** Modules a screen may import besides FTDS. Any name is allowed from these. */
 const EXTERNAL = new Set(["react"]);
 
-export function checkScreen(code: string, modules: ModuleExports): CheckResult {
+export function checkScreen(code: string, modules: ModuleExports): Problem[] {
   const problems: Problem[] = [];
-  const imports = checkImports(code, modules, problems);
+  checkImports(code, modules, problems);
 
   if (!/^\s*export\s+default\b/m.test(code)) {
     problems.push({
@@ -45,9 +36,8 @@ export function checkScreen(code: string, modules: ModuleExports): CheckResult {
     });
   }
 
-  let js: string | undefined;
   try {
-    js = compile(code);
+    compile(code);
   } catch (error) {
     problems.push({
       severity: "error",
@@ -57,9 +47,12 @@ export function checkScreen(code: string, modules: ModuleExports): CheckResult {
   }
 
   problems.push(...checkRules(code));
+  return problems;
+}
 
-  const failed = problems.some((p) => p.severity === "error");
-  return { problems, js: failed ? undefined : js, imports };
+/** The FTDS modules a screen imports, in order, without checking anything else. */
+export function screenImports(code: string, modules: ModuleExports): string[] {
+  return checkImports(code, modules, []);
 }
 
 /** TSX → CommonJS with the automatic JSX runtime (`require("react/jsx-runtime")`). */
@@ -159,23 +152,26 @@ function parseClause(clause: string): {
 }
 
 function suggestModule(source: string, modules: ModuleExports): string {
-  const name = source.split("/").pop() ?? source;
-  const close = Object.keys(modules)
-    .map((key) => ({
-      key,
-      distance: editDistance(name, key.split("/").pop()!),
-    }))
-    .filter(
-      ({ distance }) => distance <= Math.max(1, Math.floor(name.length / 4)),
-    )
-    .sort((a, b) => a.distance - b.distance)
-    .map(({ key }) => key);
+  const close = closest(source, Object.keys(modules));
   if (close.length)
-    return `Did you mean ${close
-      .slice(0, 3)
-      .map((c) => `"${c}"`)
-      .join(" or ")}?`;
+    return `Did you mean ${close.map((c) => `"${c}"`).join(" or ")}?`;
   return "Only react and FTDS modules (@/components/ui/*, @/components/ui/icons/*, @/components/blocks/*, @/lib/ftds/*) are available; call list_components to see them.";
+}
+
+/** Up to three candidates whose last path segment is a near-miss of `name`'s. */
+export function closest(name: string, candidates: string[]): string[] {
+  const last = (value: string) => value.split("/").pop() ?? value;
+  const target = last(name);
+  const limit = Math.max(1, Math.floor(target.length / 4));
+  return candidates
+    .map((candidate) => ({
+      candidate,
+      distance: editDistance(target, last(candidate)),
+    }))
+    .filter(({ distance }) => distance <= limit)
+    .sort((a, b) => a.distance - b.distance)
+    .slice(0, 3)
+    .map(({ candidate }) => candidate);
 }
 
 function editDistance(a: string, b: string): number {

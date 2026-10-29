@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { App } from "@modelcontextprotocol/ext-apps/app-with-deps";
-import { decodeScreen, THEMES, VIEWPORTS, type Screen } from "../shared/screen";
+import { decodeScreen, toScreen, type Screen } from "../shared/screen";
 import type { Problem } from "../shared/check";
 import { startStyles } from "./styles";
 import { Preview, type PreviewState, type Host } from "./preview";
@@ -25,7 +25,6 @@ const version = meta("ftds-version") ?? "main";
 const inHost = window.parent !== window;
 
 let state: PreviewState = {
-  mode: inHost ? "host" : "share",
   version,
   problems: [],
   waiting: inHost,
@@ -45,24 +44,6 @@ function update(patch: Partial<PreviewState>) {
   listeners.forEach((listener) => listener());
 }
 
-/** A screen from render_screen's arguments, before the server has checked it. */
-function screenFromArguments(
-  args: Record<string, unknown> = {},
-): Screen | undefined {
-  if (typeof args.code !== "string") return undefined;
-  return {
-    v: version,
-    title: typeof args.title === "string" ? args.title : "Untitled screen",
-    code: args.code,
-    theme: THEMES.includes(args.theme as never)
-      ? (args.theme as Screen["theme"])
-      : "light",
-    viewport: VIEWPORTS.includes(args.viewport as never)
-      ? (args.viewport as Screen["viewport"])
-      : "desktop",
-  };
-}
-
 async function connectHost(): Promise<Host> {
   const app = new App(
     { name: "FTDS preview", version },
@@ -71,7 +52,8 @@ async function connectHost(): Promise<Host> {
   );
 
   app.addEventListener("toolinput", ({ arguments: args }) => {
-    const screen = screenFromArguments(args);
+    // Before the server has checked it, so the preview shows it straight away
+    const screen = toScreen(args, version);
     if (screen)
       update({ screen, problems: [], shareUrl: undefined, waiting: true });
   });

@@ -104,26 +104,29 @@ export async function startStyles(origin: string | undefined): Promise<void> {
     }
   };
 
-  const scan = (roots: Iterable<Element>) => {
-    const fresh: string[] = [];
-    for (const root of roots) {
-      collect(root, fresh);
-      root.querySelectorAll("[class]").forEach((el) => collect(el, fresh));
-    }
+  const build = (fresh: string[]) => {
     if (fresh.length) style.textContent = compiler.build(fresh);
   };
+  const scan = (root: Element, fresh: string[]) => {
+    collect(root, fresh);
+    root.querySelectorAll("[class]").forEach((el) => collect(el, fresh));
+  };
 
-  scan([document.documentElement]);
+  const initial: string[] = [];
+  scan(document.documentElement, initial);
+  build(initial);
   // Callbacks run as microtasks, before the browser paints the new nodes
   new MutationObserver((records) => {
-    const roots: Element[] = [];
+    const fresh: string[] = [];
     for (const record of records) {
-      if (record.type === "attributes") roots.push(record.target as Element);
+      // A class change only adds that element's classes; new nodes bring subtrees
+      if (record.type === "attributes")
+        collect(record.target as Element, fresh);
       record.addedNodes.forEach((node) => {
-        if (node instanceof Element) roots.push(node);
+        if (node instanceof Element) scan(node, fresh);
       });
     }
-    scan(roots);
+    build(fresh);
   }).observe(document.documentElement, {
     subtree: true,
     childList: true,

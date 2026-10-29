@@ -5,6 +5,7 @@ import * as jsxRuntime from "react/jsx-runtime";
 import * as utils from "@/lib/ftds/utils";
 import * as hooks from "@/lib/ftds/hooks";
 import { compile } from "../shared/check";
+import { VIEWPORT_WIDTH } from "../shared/screen";
 
 /**
  * Runs a screen's code against the real FTDS components.
@@ -68,8 +69,12 @@ let runs = 0;
  * 'unsafe-inline' scripts), so the compiled code runs as an inline script
  * that hands its module factory back to this page.
  */
+let compiled = { code: "", js: "" };
+
 export function runScreen(code: string): ComponentType {
-  const js = compile(code);
+  // Width changes run the same code again; compile it once
+  if (compiled.code !== code) compiled = { code, js: compile(code) };
+  const { js } = compiled;
   const id = `__ftdsScreen${++runs}`;
   const target = window as unknown as Record<string, unknown>;
   let exported: unknown;
@@ -103,7 +108,7 @@ export function runScreen(code: string): ComponentType {
   return exported as ComponentType;
 }
 
-let frameWidth = 1280;
+let frameWidth = VIEWPORT_WIDTH.desktop;
 
 /** The preview frame's width, which width media queries answer for. */
 export function setFrameWidth(width: number): void {
