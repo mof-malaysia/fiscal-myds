@@ -5,13 +5,13 @@ import {
   FileUpload,
   FileUploadItem,
   type FileUploadFile,
-} from "@mof-malaysia/myds-react/file-upload";
+} from "@mof-malaysia/ftds-react/file-upload";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

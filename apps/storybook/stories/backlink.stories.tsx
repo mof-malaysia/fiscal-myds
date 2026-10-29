@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Backlink } from "@mof-malaysia/myds-react/backlink";
+import { Backlink } from "@mof-malaysia/ftds-react/backlink";
 
 /**
  * ### Overview

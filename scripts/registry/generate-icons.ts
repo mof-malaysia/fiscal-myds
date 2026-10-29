@@ -1,29 +1,34 @@
 import fs from "fs";
 import path from "path";
 import {
-  writeJsonFile,
+  describeItem,
+  iconItemName,
   readFileContent,
-  REGISTRY_ITEM_SCHEMA,
+  writeRegistry,
+  REGISTRY_DIR,
   type RegistryComponent,
 } from "./utils";
 
 /**
- * Generate Icons Registry (@myds-icon)
+ * Generate Icons Registry (@ftds-icon)
  * Creates individual registry entries for each icon
  */
 
 const ICONS_DIR = path.join(__dirname, "../../packages/react/src/icons");
-const REGISTRY_OUTPUT = path.join(__dirname, "../../registry/icons/styles/default");
+const REGISTRY_OUTPUT = path.join(REGISTRY_DIR, "icons");
 
 async function main() {
-  console.log("🎨 Generating Icons Registry (@myds-icon)...\n");
+  console.log("🎨 Generating Icons Registry (@ftds-icon)...\n");
 
   const components: RegistryComponent[] = [];
 
   // Read all icon files from src/icons/
   const iconFiles = fs
     .readdirSync(ICONS_DIR)
-    .filter((file) => file.endsWith(".tsx") && file !== "index.ts" && file !== "index.tsx");
+    .filter(
+      (file) =>
+        file.endsWith(".tsx") && file !== "index.ts" && file !== "index.tsx",
+    );
 
   console.log(`Found ${iconFiles.length} icon files\n`);
 
@@ -36,9 +41,10 @@ async function main() {
     // Transform imports if needed
     const transformedContent = content;
 
-    const registryComponent: RegistryComponent = {
-      $schema: REGISTRY_ITEM_SCHEMA,
-      name: iconName,
+    const exportName = content.match(/export const (\w+)/)?.[1] ?? iconName;
+    const registryComponent: RegistryComponent = describeItem(
+      {
+      name: iconItemName(iconName),
       type: "registry:ui",
       dependencies: [],
       registryDependencies: [],
@@ -49,14 +55,19 @@ async function main() {
           type: "registry:ui",
         },
       ],
-    };
+      },
+      {
+        title: `${iconName.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase())} icon`,
+        description: `The ${exportName} icon component, installed to components/ui/icons/${iconName}.tsx.`,
+        categories: ["icons"],
+      },
+    );
 
     components.push(registryComponent);
-    const outputPath = path.join(REGISTRY_OUTPUT, `${iconName}.json`);
-    writeJsonFile(outputPath, registryComponent);
-
-    console.log(`✓ Generated: ${iconName}`);
+    console.log(`✓ Generated: ${registryComponent.name}`);
   }
+
+  writeRegistry("icons", components);
 
   console.log(`\n✅ Generated ${components.length} icon components`);
   console.log(`📁 Output: ${REGISTRY_OUTPUT}`);

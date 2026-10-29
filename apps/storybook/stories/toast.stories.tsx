@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
-import { AutoToast } from "@mof-malaysia/myds-react/toast";
-import { useToast } from "@mof-malaysia/myds-react/hooks";
-import { Button } from "@mof-malaysia/myds-react/button";
+import { AutoToast } from "@mof-malaysia/ftds-react/toast";
+import { useToast } from "@mof-malaysia/ftds-react/hooks";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import React from "react";
 
 const DemoToast = (props: any) => {
@@ -79,7 +79,7 @@ const DemoToast = (props: any) => {
 /**
  * ### Overview
  *
- * This file contains the implementation of a Toast component using `@mof-malaysia/myds-react/toast`.
+ * This file contains the implementation of a Toast component using `@mof-malaysia/ftds-react/toast`.
  * The `DemoToast` component demonstrates various toast notifications such as message, info, success, warning, and error.
  *
  * > Toast enak dimakan pagi,
@@ -90,8 +90,8 @@ const DemoToast = (props: any) => {
  *
  * ### Usage
  * ```tsx
- * import { AutoToast } from "@mof-malaysia/myds-react/toast";
- * import { useToast } from "@mof-malaysia/myds-react/hooks";
+ * import { AutoToast } from "@mof-malaysia/ftds-react/toast";
+ * import { useToast } from "@mof-malaysia/ftds-react/hooks";
  *
  * const { toast } = useToast();
  *
@@ -116,7 +116,7 @@ const DemoToast = (props: any) => {
  *   ToastClose,
  *   ToastProgress,
  *   useToastManager,
- * } from "@mof-malaysia/myds-react/toast";
+ * } from "@mof-malaysia/ftds-react/toast";
  *
  * const ToastList = () => {
  *   // Must be rendered inside <ToastProvider>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { createRender, createStory } from "../utils";
-import { SiteSearch } from "@mof-malaysia/myds-react/site-search";
+import { SiteSearch } from "@mof-malaysia/ftds-react/site-search";
 
 /**
  * ### Overview
@@ -21,7 +21,7 @@ import { SiteSearch } from "@mof-malaysia/myds-react/site-search";
  *
  * ### Usage
  * ```tsx
- * import { SiteSearch } from "@mof-malaysia/myds-react/site-search";
+ * import { SiteSearch } from "@mof-malaysia/ftds-react/site-search";
  *
  * <SiteSearch action="/search" placeholder="For example, road tax" />
  * ```

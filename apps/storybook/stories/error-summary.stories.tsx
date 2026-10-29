@@ -7,15 +7,15 @@ import {
   ErrorSummaryItem,
   ErrorSummaryList,
   ErrorSummaryTitle,
-} from "@mof-malaysia/myds-react/error-summary";
+} from "@mof-malaysia/ftds-react/error-summary";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
-import { Input } from "@mof-malaysia/myds-react/input";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/field";
+import { Input } from "@mof-malaysia/ftds-react/input";
+import { Button } from "@mof-malaysia/ftds-react/button";
 
 /**
  * ### Overview

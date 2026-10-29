@@ -7,7 +7,7 @@ import {
   TaskListItemHint,
   TaskListItemStatus,
   TaskListItemTitle,
-} from "@mof-malaysia/myds-react/task-list";
+} from "@mof-malaysia/ftds-react/task-list";
 
 /**
  * ### Overview

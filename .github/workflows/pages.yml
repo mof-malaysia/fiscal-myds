@@ -1,0 +1,79 @@
+name: Pages
+
+# Deploys https://mof-malaysia.github.io/ftds: the JSON registry of every
+# release tag (r/), and the docs and Storybook built from `ref`.
+# The Release workflow calls this after tagging; run it by hand from main to
+# redeploy (for example after deleting a tag).
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Release tag to build Storybook and the site from
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Release tag to build Storybook and the site from, e.g. v0.1.0
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref }}
+          # Every release tag is rebuilt into r/<tag>/
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook
+        run: pnpm --filter @mof-malaysia/ftds-storybook build:gh-pages
+
+      # Repository variables, for a custom domain (see DEPLOYMENT.md)
+      - name: Build docs
+        env:
+          FTDS_SITE_URL: ${{ vars.FTDS_SITE_URL || 'https://mof-malaysia.github.io/ftds' }}
+        run: pnpm --filter @mof-malaysia/ftds-docs-astro build
+
+      - name: Assemble site
+        env:
+          FTDS_SITE_URL: ${{ vars.FTDS_SITE_URL }}
+          FTDS_SITE_CNAME: ${{ vars.FTDS_SITE_CNAME }}
+        run: pnpm deploy:prepare
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: deploy
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

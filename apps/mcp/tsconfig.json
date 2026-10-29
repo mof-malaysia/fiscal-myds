@@ -1,0 +1,28 @@
+{
+  "extends": "../../packages/_typescript/base.json",
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["es2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"],
+    "paths": {
+      "@/components/ui/icons/*": ["../../packages/react/src/icons/*"],
+      "@/components/ui/*": [
+        "../../packages/react/src/components/core/*",
+        "../../packages/react/src/components/app/*",
+        "../../packages/react/src/components/marketing/*"
+      ],
+      "@/components/blocks/*": [
+        "../../packages/react/src/components/app/*",
+        "../../packages/react/src/components/marketing/*"
+      ],
+      "@/lib/ftds/utils": ["../../packages/react/src/utils/index.ts"],
+      "@/lib/ftds/hooks": ["../../packages/react/src/hooks/index.ts"]
+    }
+  },
+  "include": ["src", "scripts", "vite.config.ts"]
+}

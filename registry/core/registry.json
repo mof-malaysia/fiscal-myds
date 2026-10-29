@@ -1,0 +1,1005 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-core",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "utils",
+      "title": "Utils",
+      "description": "Helper functions shared by FTDS components, chiefly clx for joining and merging Tailwind classes with FTDS tokens. Imported from @/lib/ftds/utils.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:lib",
+      "dependencies": [
+        "tailwind-merge@^3.4.0"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "lib/ftds/utils/index.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "hooks",
+      "title": "Hooks",
+      "description": "React hooks shared by FTDS components: toasts, the theme, media queries, copy to clipboard, countdowns, pagination and state helpers. Imported from @/lib/ftds/hooks.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:lib",
+      "dependencies": [
+        "mitt@^3.0.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/toast"
+      ],
+      "files": [
+        {
+          "path": "lib/ftds/hooks/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-callback-ref.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-controllable-state.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-copy.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-countdown.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-media-query.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-merged-refs.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-pagination.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-theme.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/hooks/use-toast.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/ftds/utils/events.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "title": "Alert Dialog",
+      "description": "A short modal message with a status icon and one or two actions. Use it to confirm a high-stakes or destructive action, or to report a result the user must acknowledge.",
+      "categories": [
+        "overlays"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/dialog",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/icon-warning-diamond",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "A person's photo in a circle, falling back to their initials while the image loads or if it fails. AvatarGroup overlaps several, such as a case's officers.",
+      "categories": [
+        "data-display"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "backlink",
+      "title": "Backlink",
+      "description": "A \"Back\" link with an arrow that takes the user to the previous step of a multi-page flow. Place it at the top of the page, above the heading.",
+      "categories": [
+        "navigation"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-arrow-back",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/backlink.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "A trail of links showing where the current page sits in the site's hierarchy, with the current page last. Quiet navigation at the top of content pages.",
+      "categories": [
+        "navigation"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/icon-ellipsis",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Triggers an action or submits a form. One primary (blue) button per screen; tonal secondary, ghost and danger variants for everything else.",
+      "categories": [
+        "actions"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "callout",
+      "title": "Callout",
+      "description": "A wash-coloured message with an icon for information, success, a warning or an error about the current page or task. It can carry an action and be dismissed.",
+      "categories": [
+        "feedback-and-status"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/callout.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "description": "Groups related content on its own surface, white on the page or Well for secondary content, with no border or shadow. Has header, content and footer parts.",
+      "categories": [
+        "layout"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "description": "A single tick box for a yes or no answer that is sent with a form, such as a declaration or consent. Put it in a Field with its label beside it.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-minus",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "cookie-banner",
+      "title": "Cookie Banner",
+      "description": "A panel in the bottom-right corner that asks for consent to non-essential cookies, with an optional preferences view. Show it until the user makes a choice.",
+      "categories": [
+        "government-chrome"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/cookie-banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "title": "Details",
+      "description": "A link-like toggle that reveals a short piece of help, such as \"Help with your IC number\". Use it for information only some users need.",
+      "categories": [
+        "data-display"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/details.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "title": "Dialog",
+      "description": "A modal window over the page for a short task that needs the user's full attention, such as editing details or reviewing before submitting. Focus stays inside until it closes.",
+      "categories": [
+        "overlays"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "title": "Field",
+      "description": "Wraps one form control with its label, hint and error message, and wires them together for assistive technology. Use it around every input.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fieldset",
+      "title": "Fieldset",
+      "description": "Groups related fields under one legend, such as an address or a question answered with radios or checkboxes. Disabling it disables every field inside.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/fieldset.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "description": "The plain government footer every service needs: one band with the copyright line, an optional \"last updated\" note and the required links.",
+      "categories": [
+        "government-chrome"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/footer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "title": "Form",
+      "description": "A form element that collects and validates the Fields inside it, and shows server errors on the right fields. Use it for any page that submits answers.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/form.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "A single-line text field, with optional icons inside it and add-ons (such as \"https://\") joined to its edges. Always place it in a Field.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "inset-text",
+      "title": "Inset Text",
+      "description": "Sets a passage apart from the text around it, such as a deadline, a requirement or a quote, on a grey Well with no icon.",
+      "categories": [
+        "data-display"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/inset-text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "title": "Kbd",
+      "description": "Shows a keyboard shortcut as key caps in the platform's notation (mod+k reads ⌘K on macOS, Ctrl K elsewhere), and is read aloud as words.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "title": "Label",
+      "description": "A plain text label tied to a control with htmlFor. Only for controls outside a Field; inside a Field use FieldLabel.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "title": "Link",
+      "description": "A styled anchor for links in text and lists, with options for colour, underline and opening in a new tab. Pass render to use your router's link.",
+      "categories": [
+        "navigation"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/link.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "masthead",
+      "title": "Masthead",
+      "description": "The \"Official Malaysia Government Website\" bar at the very top of every government site, with a panel that explains how to tell the site is genuine.",
+      "categories": [
+        "government-chrome"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-malaysia-flag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/masthead.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "title": "Menu",
+      "description": "A list of actions that opens from a button: row actions in a table, an account menu, a \"More\" overflow. Items run an action or go to a page; they don't choose a value.",
+      "categories": [
+        "overlays"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-chevron-right",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "phase-banner",
+      "title": "Phase Banner",
+      "description": "A slim bar under the masthead that says a service is in Alpha or Beta (or under maintenance) and asks for feedback.",
+      "categories": [
+        "government-chrome"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/link",
+        "mof-malaysia/ftds/tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/phase-banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pill",
+      "title": "Pill",
+      "description": "A removable tag with a ✕, for an applied filter, a chosen recipient or a selected option. For a status label that can't be removed, use Tag.",
+      "categories": [
+        "data-display"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/icon-cross"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "description": "A small floating panel anchored to its trigger, opened by a click. Use it for short help or a few controls that don't need a full dialog.",
+      "categories": [
+        "overlays"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "title": "Radio",
+      "description": "A group of radio buttons for choosing exactly one option from a short list that people should see all at once. Label the group with a Fieldset legend.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll Area",
+      "description": "A fixed-size region with native scrolling and a thin scrollbar that shows only on hover or while scrolling. Use it for long lists inside panels, sidebars and dialogs.",
+      "categories": [
+        "layout"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "description": "Choose one option, or several with multiple, from a list that opens below a field-like trigger. Pass items for a plain list or compose the parts for groups.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/checkbox",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-check",
+        "mof-malaysia/ftds/icon-chevron-down",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/menu",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "title": "Separator",
+      "description": "A single hairline between two groups of content, horizontal or vertical. Lines must earn their place; reach for spacing and tone first.",
+      "categories": [
+        "layout"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "A shimmering placeholder in the shape of content that is still loading, so the layout doesn't jump when the data arrives.",
+      "categories": [
+        "feedback-and-status"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skiplink",
+      "title": "Skiplink",
+      "description": "A \"Skip to main content\" link that stays hidden until it gets keyboard focus. Put it first on every page so keyboard users can jump past the masthead and navigation.",
+      "categories": [
+        "government-chrome"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skiplink.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner",
+      "description": "A small spinning ring for a short wait on one action, such as a button that is submitting. It has no accessible name, so pair it with text.",
+      "categories": [
+        "feedback-and-status"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "Turns a setting on or off straight away, with no submit step, such as email reminders. For a choice saved with a form, use a Checkbox.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Switches between views of the same subject on one page, such as a case's details, documents and history. One underline style, with optional icons and counts.",
+      "categories": [
+        "navigation"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "title": "Tag",
+      "description": "A small wash label for the status or category of an item, such as Paid, In review or Overdue. The words carry the meaning, never colour alone.",
+      "categories": [
+        "data-display"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "title": "Text Area",
+      "description": "A multi-line text field for longer answers, such as the reason for an appeal. Place it in a Field; use CharacterCount when the answer has a limit.",
+      "categories": [
+        "forms-and-inputs"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "theme-switch",
+      "title": "Theme Switch",
+      "description": "A button or select that switches between light and dark themes through ThemeProvider. Put it in the top bar or a settings page.",
+      "categories": [
+        "actions"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/button",
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-moon",
+        "mof-malaysia/ftds/icon-sun",
+        "mof-malaysia/ftds/select"
+      ],
+      "files": [
+        {
+          "path": "components/ui/theme-switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "description": "A brief message in the corner of the screen that confirms something just happened, such as \"Draft saved\". Mount AutoToast once and call useToast().toast() anywhere.",
+      "categories": [
+        "feedback-and-status"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/hooks",
+        "mof-malaysia/ftds/icon-check-circle",
+        "mof-malaysia/ftds/icon-cross",
+        "mof-malaysia/ftds/icon-info",
+        "mof-malaysia/ftds/icon-warning",
+        "mof-malaysia/ftds/icon-warning-circle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "title": "Toggle Group",
+      "description": "A segmented control: a short row of Toggles where one, or several with multiple, is pressed. Use it to switch a view or filter, like Day, Week, Month.",
+      "categories": [
+        "actions"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/toggle",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": "A button that stays pressed until pressed again, such as Bold in an editor toolbar or a \"Show archived\" filter. Inside a ToggleGroup it becomes a segment.",
+      "categories": [
+        "actions"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "A short text label that appears when a control is hovered or focused. Use it to name icon-only buttons or show a keyboard shortcut, never for information people need.",
+      "categories": [
+        "overlays"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

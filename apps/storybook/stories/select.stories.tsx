@@ -13,20 +13,20 @@ import {
   SelectTrigger,
   SelectValue,
   type SelectOption,
-} from "@mof-malaysia/myds-react/select";
+} from "@mof-malaysia/ftds-react/select";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
-import { Input, InputIcon } from "@mof-malaysia/myds-react/input";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/field";
+import { Input, InputIcon } from "@mof-malaysia/ftds-react/input";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   FilterIcon,
   GlobeIcon,
   SearchIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

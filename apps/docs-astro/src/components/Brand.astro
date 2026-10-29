@@ -1,0 +1,18 @@
+---
+/** The FTDS mark and name, linking home. */
+import type { Locale } from "~/content.config";
+import { href } from "~/lib/url";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+---
+
+<a href={href("/", locale)} class="focus-ring flex items-center gap-2 rounded-md">
+  <span class="bg-bg-primary-600 text-txt-white grid size-7 place-items-center rounded-md text-xs font-semibold">
+    M
+  </span>
+  <span class="text-txt-black-900 font-semibold">FTDS</span>
+</a>

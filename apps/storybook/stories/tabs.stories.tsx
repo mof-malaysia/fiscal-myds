@@ -7,19 +7,19 @@ import {
   TabsIcon,
   TabsList,
   TabsTrigger,
-} from "@mof-malaysia/myds-react/tabs";
+} from "@mof-malaysia/ftds-react/tabs";
 import {
   ClockIcon,
   DocumentIcon,
   InfoIcon,
   MoneyIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview
  * Tabs switch between views of the same subject, such as the parts of one application.
  * There is one style (DESIGN.md, Navigation): Label type in Ink Secondary on a single
- * Hairline, the active tab in Ink with a 2px MYDS Blue underline that slides between
+ * Hairline, the active tab in Ink with a 2px FTDS Blue underline that slides between
  * tabs. No pills and no boxes.
  *
  * - Tab height follows the density toolbar (44px comfortable, 32px compact); `size`
@@ -36,7 +36,7 @@ import {
  *   TabsCounter,
  *   TabsList,
  *   TabsTrigger,
- * } from "@mof-malaysia/myds-react/tabs";
+ * } from "@mof-malaysia/ftds-react/tabs";
  *
  * <Tabs defaultValue="details">
  *   <TabsList width="full">

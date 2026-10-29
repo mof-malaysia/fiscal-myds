@@ -1,13 +1,13 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { PasswordInput } from "@mof-malaysia/myds-react/password-input";
+import { PasswordInput } from "@mof-malaysia/ftds-react/password-input";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

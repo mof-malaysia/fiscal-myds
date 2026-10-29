@@ -4,8 +4,8 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@mof-malaysia/myds-react/tooltip";
-import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/tooltip";
+import { QuestionCircleIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview
@@ -22,7 +22,7 @@ import { QuestionCircleIcon } from "@mof-malaysia/myds-react/icon";
  *
  * ### Usage
  * ```tsx
- * import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/myds-react/tooltip";
+ * import { Tooltip, TooltipTrigger, TooltipContent } from "@mof-malaysia/ftds-react/tooltip";
  *
  * <Tooltip>
  *     <TooltipTrigger aria-label="Tooltip">

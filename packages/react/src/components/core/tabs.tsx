@@ -16,7 +16,7 @@ import { useRender } from "@base-ui/react/use-render";
 /**
  * Tabs switch between views of the same subject. There is one style (DESIGN.md,
  * Navigation): Label type in Ink Secondary on a single Hairline, the active tab in Ink
- * with a 2px MYDS Blue underline that slides between tabs. No pills, no boxes.
+ * with a 2px FTDS Blue underline that slides between tabs. No pills, no boxes.
  *
  * Tab height follows `data-density`; `size` steps it within the density.
  *
@@ -35,7 +35,7 @@ import { useRender } from "@base-ui/react/use-render";
 
 /*========================================================================================================================*/
 
-/** Base UI parts accept a state function for className; MYDS keeps it a plain string. */
+/** Base UI parts accept a state function for className; FTDS keeps it a plain string. */
 type WithStringClassName<P> = Omit<P, "className"> & { className?: string };
 
 interface TabsProps extends WithStringClassName<TabsPrimitive.Root.Props> {

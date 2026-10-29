@@ -4,7 +4,7 @@ import { createRender } from "../utils";
 import {
   DecisionPanel,
   type DecisionResult,
-} from "@mof-malaysia/myds-react/decision-panel";
+} from "@mof-malaysia/ftds-react/decision-panel";
 
 /**
  * ### Overview

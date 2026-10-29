@@ -235,7 +235,7 @@ const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
              */}
             <div
               className={clx(
-                "absolute inset-x-0 top-0 h-dvh bg-gray-900/40",
+                "bg-scrim/40 absolute inset-x-0 top-0 h-dvh",
                 "ease-standard transition-opacity duration-200 motion-reduce:transition-none",
                 "group-data-[ending-style]:opacity-0 group-data-[starting-style]:opacity-0",
               )}
@@ -304,7 +304,7 @@ const navbar_menu_item_cva = cva(
   {
     variants: {
       is_from_dropdown: {
-        true: "text-sm font-normal ml-3 xl:ml-0 xl:w-full rounded-md xl:rounded-xs text-left",
+        true: "text-label-sm font-normal ml-3 xl:ml-0 xl:w-full rounded-md xl:rounded-xs text-left",
         false: "font-medium rounded-md",
       },
     },
@@ -742,12 +742,15 @@ interface NavbarActionProps extends ComponentProps<typeof Button> {
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
+  /** Accessible name of the menu button; `aria-expanded` says whether it is open. @default "Menu" */
+  menuLabel?: string;
 }
 
 const NavbarAction: FunctionComponent<NavbarActionProps> = ({
   children,
   className,
   onClick,
+  menuLabel = "Menu",
   ...props
 }) => {
   const { show, setShow } = useContext(NavbarContext);
@@ -763,10 +766,11 @@ const NavbarAction: FunctionComponent<NavbarActionProps> = ({
         iconOnly
         className={clx("xl:hidden", className)}
         onClick={handleToggle}
-        aria-label={`${show ? "Close" : "Open"} navigation menu`}
+        aria-label={menuLabel}
+        aria-expanded={show}
         {...props}
       >
-        {show ? <CrossIcon /> : <HamburgerMenuIcon />}
+        {show ? <CrossIcon aria-hidden /> : <HamburgerMenuIcon aria-hidden />}
       </Button>
     </div>
   );

@@ -8,9 +8,9 @@ import {
   ToolbarInput,
   ToolbarLink,
   ToolbarSeparator,
-} from "@mof-malaysia/myds-react/toolbar";
-import { Toggle } from "@mof-malaysia/myds-react/toggle";
-import { ToggleGroup } from "@mof-malaysia/myds-react/toggle-group";
+} from "@mof-malaysia/ftds-react/toolbar";
+import { Toggle } from "@mof-malaysia/ftds-react/toggle";
+import { ToggleGroup } from "@mof-malaysia/ftds-react/toggle-group";
 import {
   AlignCenterIcon,
   AlignLeftIcon,
@@ -20,7 +20,7 @@ import {
   ItalicIcon,
   PrinterIcon,
   UnderlineIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

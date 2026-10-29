@@ -1,0 +1,18 @@
+---
+title: Rules for coding agents
+description: The short list of rules at the top of llms.txt. Every rule here must be true of the code; details live in the guides.
+---
+
+FTDS components are not an npm package: the shadcn CLI copies their source into the project, which then owns it. Before writing UI for an FTDS project, read the [conventions guide](https://mof-malaysia.github.io/ftds/guides/conventions.md) and the page of every component you use. The rules that matter most:
+
+- **Install with the shadcn CLI, then import from the project.** `npx shadcn@latest add @ftds/<item>` (after adding the `@ftds` namespace to `components.json`, see the setup guide) or `npx shadcn@latest add mof-malaysia/ftds/<item>#<tag>`. Import components from `@/components/ui/<name>`, blocks from `@/components/blocks/<name>`, icons from `@/components/ui/icons/<name>`, and helpers from `@/lib/ftds/utils` and `@/lib/ftds/hooks`. There is no `@mof-malaysia/ftds-react` package to import.
+- **Use FTDS components before writing your own.** Check the component list below first: FTDS covers government chrome, forms, tables, overlays, service screens and officer workstations. Only build a custom component when nothing here fits, and then build it from FTDS tokens and parts.
+- **Built on Base UI, not Radix.** Compose with the `render` prop (`<Button render={<a href="/apply" />}>Apply</Button>`), never `asChild`. State props follow Base UI: `value`/`defaultValue` with `onValueChange`, `open`/`defaultOpen` with `onOpenChange`.
+- **Merge classes with `clx` from `@/lib/ftds/utils`**, not shadcn's `cn`. Pass `className` to adjust layout; don't restyle a component's colours.
+- **Style with FTDS tokens, not raw Tailwind colours.** Backgrounds `bg-bg-*`, text `text-txt-*`, borders `border-otl-*`, focus `focus-ring`; for example `bg-bg-primary-600`, `text-txt-black-900`, `bg-bg-washed`. Never `bg-blue-600` or `text-gray-500`: tokens switch with dark mode and raw colours don't.
+- **Wrap every form control in `Field`** with a `FieldLabel`, and put the message in `FieldError`. Never place a bare `Input`, `Select` or `Checkbox` without a visible label. After a failed submit, show an `ErrorSummary` at the top of the form.
+- **Follow the design rules.** One primary (blue) action per screen; secondary actions use `variant="default-outline"`, which is a tonal fill, not an outline. Don't add borders, shadows or outlines to group content: use spacing and the `bg-bg-washed` tone. Status is a wash `Tag` plus text, never colour alone. Amounts use tabular figures (`tabular-nums`) and right-align in tables.
+- **Two densities.** Citizen services use the default comfortable density. Officer tools set `data-density="compact"` on a container (`DeskShell` does it for you). Never resize controls by hand; their `size` prop is relative to the density.
+- **Dark mode is the `dark` class** on `<html>` (or on any container, to make a dark island). `ThemeProvider` from `@/lib/ftds/hooks` restores the saved theme and, with a `ThemeSwitch`, toggles it and saves the choice in `localStorage` (see the setup guide to avoid a flash on load). Don't write `dark:` colour overrides for FTDS tokens; they already switch.
+- **Accessible by default; keep it that way.** Every icon-only button needs an `aria-label`. Each page has one `h1` (`PageHeaderTitle` or the block's title). Don't remove focus rings. Built-in text is English; translate it with the component's `labels` prop where it has one.
+- **Plain language.** Error messages say what to do ("Enter your IC number in the format 900101-14-5678"), destructive confirmations name the consequence, and the primary button repeats the verb ("Delete records").

@@ -4,11 +4,11 @@ import {
   AutoPagination,
   PaginationNext,
   PaginationPrevious,
-} from "@mof-malaysia/myds-react/pagination";
+} from "@mof-malaysia/ftds-react/pagination";
 import React from "react";
 
-import { GovtOfficeIcon } from "@mof-malaysia/myds-react/icon";
-import { Button, ButtonIcon } from "@mof-malaysia/myds-react/button";
+import { GovtOfficeIcon } from "@mof-malaysia/ftds-react/icon";
+import { Button, ButtonIcon } from "@mof-malaysia/ftds-react/button";
 import ArrowBack from "../react/arrow-back";
 
 /**
@@ -22,7 +22,7 @@ import ArrowBack from "../react/arrow-back";
  *
  * ### Usage
  * ```ts
- * import Pagination from "@mof-malaysia/myds-react/pagination";
+ * import Pagination from "@mof-malaysia/ftds-react/pagination";
  *
  * <Pagination
  *    page={1}
@@ -56,25 +56,25 @@ const meta = {
   argTypes: {
     page: {
       table: {
-        category: "myds API",
+        category: "ftds API",
       },
       description: "The current page number",
     },
     count: {
       table: {
-        category: "myds API",
+        category: "ftds API",
       },
       description: "The total number of items",
     },
     limit: {
       table: {
-        category: "myds API",
+        category: "ftds API",
       },
       description: "The number of items per page",
     },
     maxDisplay: {
       table: {
-        category: "myds API",
+        category: "ftds API",
         type: {
           summary: "number",
         },
@@ -87,7 +87,7 @@ const meta = {
         type: {
           summary: "enum",
         },
-        category: "myds API",
+        category: "ftds API",
       },
       description: "The multiple types available for pagination",
       control: "inline-radio",
@@ -232,7 +232,7 @@ export const CustomizedButtonAndLabel: Story = createStory({
 /**
  *
  * ```ts
- * import Pagination from "@mof-malaysia/myds-react/pagination";
+ * import Pagination from "@mof-malaysia/ftds-react/pagination";
  *
  * const urlParams = new URLSearchParams(document.location.search);
  *

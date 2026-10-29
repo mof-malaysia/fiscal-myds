@@ -1,10 +1,10 @@
 import React from "react";
-import type { ActivityEvent } from "@mof-malaysia/myds-react/activity-timeline";
+import type { ActivityEvent } from "@mof-malaysia/ftds-react/activity-timeline";
 import type {
   WorkQueueColumn,
   WorkQueueOption,
-} from "@mof-malaysia/myds-react/work-queue";
-import { Tag } from "@mof-malaysia/myds-react/tag";
+} from "@mof-malaysia/ftds-react/work-queue";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
 
 /** Sample cases and history shared by the officer block stories and example pages. */
 

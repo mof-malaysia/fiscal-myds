@@ -5,7 +5,7 @@ import {
   SignInForm,
   type SignInFormProps,
   type SignInMethod,
-} from "@mof-malaysia/myds-react/sign-in-form";
+} from "@mof-malaysia/ftds-react/sign-in-form";
 import { wait } from "./components/app/access-brand";
 
 /**

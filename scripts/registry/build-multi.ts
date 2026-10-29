@@ -1,70 +1,63 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { writeJsonFile, COMPONENT_TIERS, type RegistryName } from "./utils";
+import {
+  writeJsonFile,
+  REGISTRY_DIR,
+  REGISTRY_HOMEPAGE,
+  REGISTRY_SCHEMA,
+  type RegistryName,
+} from "./utils";
 
 /**
- * Build the multi-registry system:
- *   core, app, marketing  components (one registry per tier)
- *   icons                 icon library
- *   style                 Tailwind v4 styling system
- * then an index.json per registry and a root index.
+ * Build the registry the shadcn CLI reads straight from GitHub
+ * (https://ui.shadcn.com/docs/registry/github):
+ *   registry/<name>/registry.json + files   core, app, marketing, icons, style
+ *   registry.json                           root, includes the five above
+ * Items install as `mof-malaysia/ftds/<item>`, so names are unique across all
+ * five. scripts/registry/build-json.ts turns the same files into the JSON
+ * registry served on GitHub Pages.
  */
 
-const REGISTRY_DIR = path.join(__dirname, "../../registry");
+const ROOT_DIR = path.join(__dirname, "../..");
+const REGISTRIES: RegistryName[] = [
+  "core",
+  "app",
+  "marketing",
+  "icons",
+  "style",
+];
 
-const REGISTRIES: Record<RegistryName, { name: string; description: string }> = {
-  core: {
-    name: "@myds-core",
-    description: "Shared primitives, government site chrome, utilities and hooks",
-  },
-  app: {
-    name: "@myds-app",
-    description: "Service and officer tools: forms, data, workflows",
-  },
-  marketing: {
-    name: "@myds-marketing",
-    description: "Agency and landing site components and blocks",
-  },
-  icons: { name: "@myds-icon", description: "Icon library" },
-  style: { name: "@myds-style", description: "Tailwind v4 styling system" },
-};
-
-const version: string =
-  JSON.parse(fs.readFileSync(path.join(__dirname, "../../package.json"), "utf-8"))
-    .version || "2.0.0";
-
-function buildIndex(registry: RegistryName): number {
-  const dir = path.join(REGISTRY_DIR, registry, "styles/default");
-  const components = fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith(".json"))
-    .map((file) => {
-      const content = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8"));
-      return {
-        name: content.name,
-        type: content.type,
-        dependencies: content.dependencies || [],
-        registryDependencies: content.registryDependencies || [],
-        files: [`styles/default/${file}`],
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
-
-  writeJsonFile(path.join(REGISTRY_DIR, registry, "index.json"), {
-    ...REGISTRIES[registry],
-    version,
-    components,
-  });
-  console.log(`📦 ${REGISTRIES[registry].name}: ${components.length} items`);
-  return components.length;
+/** Every item name across the five registries; throws on a duplicate. */
+function assertUniqueNames(): number {
+  const seen = new Map<string, RegistryName>();
+  for (const registry of REGISTRIES) {
+    const { items } = JSON.parse(
+      fs.readFileSync(
+        path.join(REGISTRY_DIR, registry, "registry.json"),
+        "utf-8",
+      ),
+    );
+    for (const { name } of items as { name: string }[]) {
+      if (seen.has(name)) {
+        throw new Error(
+          `"${name}" is in both ${seen.get(name)} and ${registry}`,
+        );
+      }
+      seen.set(name, registry);
+    }
+    console.log(`📦 ${registry}: ${items.length} items`);
+  }
+  return seen.size;
 }
 
 function main() {
-  console.log("🏗️  Building Multi-Registry System\n");
+  console.log("🏗️  Building registry\n");
 
-  // The flat `ui` registry was split into core/app/marketing in 2.0.
-  fs.rmSync(path.join(REGISTRY_DIR, "ui"), { recursive: true, force: true });
+  // Leftovers of the earlier JSON layout (registry/<name>/styles/default/*.json, registry/index.json)
+  for (const stale of ["ui", "index.json"]) {
+    fs.rmSync(path.join(REGISTRY_DIR, stale), { recursive: true, force: true });
+  }
 
   console.log("Generating component registries (core, app, marketing)...");
   execSync("tsx scripts/registry/generate-components.ts", { stdio: "inherit" });
@@ -74,30 +67,16 @@ function main() {
   execSync("tsx scripts/registry/generate-style.ts", { stdio: "inherit" });
   console.log("");
 
-  const registries = Object.fromEntries(
-    (Object.keys(REGISTRIES) as RegistryName[]).map((registry) => [
-      registry,
-      {
-        ...REGISTRIES[registry],
-        url: `/registry/${registry}`,
-        components: buildIndex(registry),
-      },
-    ])
-  );
+  const total = assertUniqueNames();
 
-  writeJsonFile(path.join(REGISTRY_DIR, "index.json"), {
-    name: "@mof-malaysia/myds",
-    version,
-    description: "Malaysia Design System - Multi-registry component library",
-    tiers: COMPONENT_TIERS,
-    registries,
-    totalComponents: Object.values(registries).reduce(
-      (sum, r) => sum + r.components,
-      0
-    ),
+  writeJsonFile(path.join(ROOT_DIR, "registry.json"), {
+    $schema: REGISTRY_SCHEMA,
+    name: "ftds",
+    homepage: REGISTRY_HOMEPAGE,
+    include: REGISTRIES.map((registry) => `registry/${registry}/registry.json`),
   });
 
-  console.log("\n✨ Registry build complete");
+  console.log(`\n✨ Registry build complete: ${total} items`);
 }
 
 main();

@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { SessionTimeoutDialog } from "@mof-malaysia/myds-react/session-timeout";
-import { Button } from "@mof-malaysia/myds-react/button";
+import { SessionTimeoutDialog } from "@mof-malaysia/ftds-react/session-timeout";
+import { Button } from "@mof-malaysia/ftds-react/button";
 
 /**
  * ### Overview

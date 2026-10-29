@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Menubar, MenubarTrigger } from "@mof-malaysia/myds-react/menubar";
+import { Menubar, MenubarTrigger } from "@mof-malaysia/ftds-react/menubar";
 import {
   Menu,
   MenuCheckboxItem,
@@ -15,7 +15,7 @@ import {
   MenuShortcut,
   MenuSubmenu,
   MenuSubmenuTrigger,
-} from "@mof-malaysia/myds-react/menu";
+} from "@mof-malaysia/ftds-react/menu";
 
 /**
  * ### Overview

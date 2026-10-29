@@ -1,4 +1,4 @@
-import { Button } from "@mof-malaysia/myds-react/button";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   Carousel,
   CarouselContent,
@@ -6,18 +6,18 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@mof-malaysia/myds-react/carousel";
-import { CtaBand } from "@mof-malaysia/myds-react/cta-band";
-import { Faq } from "@mof-malaysia/myds-react/faq";
-import { FeatureGrid } from "@mof-malaysia/myds-react/feature-grid";
+} from "@mof-malaysia/ftds-react/carousel";
+import { CtaBand } from "@mof-malaysia/ftds-react/cta-band";
+import { Faq } from "@mof-malaysia/ftds-react/faq";
+import { FeatureGrid } from "@mof-malaysia/ftds-react/feature-grid";
 import {
   Footer,
   FooterCopyright,
   FooterLink,
   FooterLinks,
   FooterMeta,
-} from "@mof-malaysia/myds-react/footer";
-import { Hero } from "@mof-malaysia/myds-react/hero";
+} from "@mof-malaysia/ftds-react/footer";
+import { Hero } from "@mof-malaysia/ftds-react/hero";
 import {
   BellIcon,
   ChatBubbleIcon,
@@ -33,9 +33,9 @@ import {
   SearchIcon,
   TwitterXIcon,
   YoutubeIcon,
-} from "@mof-malaysia/myds-react/icon";
-import { Link } from "@mof-malaysia/myds-react/link";
-import { LogoCloud } from "@mof-malaysia/myds-react/logo-cloud";
+} from "@mof-malaysia/ftds-react/icon";
+import { Link } from "@mof-malaysia/ftds-react/link";
+import { LogoCloud } from "@mof-malaysia/ftds-react/logo-cloud";
 import {
   Masthead,
   MastheadContent,
@@ -43,7 +43,7 @@ import {
   MastheadSection,
   MastheadTitle,
   MastheadTrigger,
-} from "@mof-malaysia/myds-react/masthead";
+} from "@mof-malaysia/ftds-react/masthead";
 import {
   Navbar,
   NavbarAction,
@@ -51,7 +51,7 @@ import {
   NavbarMenu,
   NavbarMenuDropdown,
   NavbarMenuItem,
-} from "@mof-malaysia/myds-react/navbar";
+} from "@mof-malaysia/ftds-react/navbar";
 import {
   SiteFooter,
   SiteFooterInfo,
@@ -59,10 +59,10 @@ import {
   SiteFooterLinkGroup,
   SiteFooterLogo,
   SiteFooterSection,
-} from "@mof-malaysia/myds-react/site-footer";
-import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
-import { StatsBand } from "@mof-malaysia/myds-react/stats-band";
-import { Testimonial } from "@mof-malaysia/myds-react/testimonial";
+} from "@mof-malaysia/ftds-react/site-footer";
+import { Skiplink } from "@mof-malaysia/ftds-react/skiplink";
+import { StatsBand } from "@mof-malaysia/ftds-react/stats-band";
+import { Testimonial } from "@mof-malaysia/ftds-react/testimonial";
 
 const JATA =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png";
@@ -96,9 +96,9 @@ const DemoMasthead = () => (
         immediately even if it looks similar.
       </MastheadSection>
       <MastheadSection icon={<Lock2Icon />} title="Secure websites use HTTPS">
-        Look for a lock (<LockFillIcon className="inline-block" />) or
-        https:// as an added precaution. If not present, do not share any
-        sensitive information.
+        Look for a lock (<LockFillIcon className="inline-block" />) or https://
+        as an added precaution. If not present, do not share any sensitive
+        information.
       </MastheadSection>
     </MastheadContent>
   </Masthead>
@@ -286,11 +286,26 @@ export default function LandingPage() {
         <LogoCloud
           title="Agencies using MyBayar"
           logos={[
-            { src: wordmark("LHDN", "#2563EB"), alt: "Lembaga Hasil Dalam Negeri" },
-            { src: wordmark("JKDM", "#15803D"), alt: "Jabatan Kastam Diraja Malaysia" },
-            { src: wordmark("ANM", "#B91C1C"), alt: "Jabatan Akauntan Negara Malaysia" },
-            { src: wordmark("JPJ", "#A16207"), alt: "Jabatan Pengangkutan Jalan" },
-            { src: wordmark("KWAP", "#1D4ED8"), alt: "Kumpulan Wang Persaraan" },
+            {
+              src: wordmark("LHDN", "#2563EB"),
+              alt: "Lembaga Hasil Dalam Negeri",
+            },
+            {
+              src: wordmark("JKDM", "#15803D"),
+              alt: "Jabatan Kastam Diraja Malaysia",
+            },
+            {
+              src: wordmark("ANM", "#B91C1C"),
+              alt: "Jabatan Akauntan Negara Malaysia",
+            },
+            {
+              src: wordmark("JPJ", "#A16207"),
+              alt: "Jabatan Pengangkutan Jalan",
+            },
+            {
+              src: wordmark("KWAP", "#1D4ED8"),
+              alt: "Kumpulan Wang Persaraan",
+            },
           ]}
         />
         <FeatureGrid
@@ -299,19 +314,56 @@ export default function LandingPage() {
           description="One MyDigital ID for every Ministry of Finance payment, from a summons to a supplier fee."
           surface="sheet"
           features={[
-            { icon: <MoneyIcon />, title: "Pay online", description: "FPX, debit and credit cards, and e-wallets. No queue, no cheque.", href: "#" },
-            { icon: <DocumentIcon />, title: "Official receipts", description: "Every payment gets a receipt you can download, print or share.", href: "#" },
-            { icon: <BellIcon />, title: "Due-date reminders", description: "We remind you before a payment is due, by email or SMS." },
-            { icon: <CheckShieldIcon />, title: "Secure by default", description: "Sign in with MyDigital ID. Your data stays in Malaysia." },
-            { icon: <MobileIcon />, title: "Works on your phone", description: "Designed for small screens first, with large, readable text." },
-            { icon: <ChatBubbleIcon />, title: "Help when you need it", description: "Guidance in BM and English, and a person to talk to if you are stuck.", href: "#" },
+            {
+              icon: <MoneyIcon />,
+              title: "Pay online",
+              description:
+                "FPX, debit and credit cards, and e-wallets. No queue, no cheque.",
+              href: "#",
+            },
+            {
+              icon: <DocumentIcon />,
+              title: "Official receipts",
+              description:
+                "Every payment gets a receipt you can download, print or share.",
+              href: "#",
+            },
+            {
+              icon: <BellIcon />,
+              title: "Due-date reminders",
+              description:
+                "We remind you before a payment is due, by email or SMS.",
+            },
+            {
+              icon: <CheckShieldIcon />,
+              title: "Secure by default",
+              description:
+                "Sign in with MyDigital ID. Your data stays in Malaysia.",
+            },
+            {
+              icon: <MobileIcon />,
+              title: "Works on your phone",
+              description:
+                "Designed for small screens first, with large, readable text.",
+            },
+            {
+              icon: <ChatBubbleIcon />,
+              title: "Help when you need it",
+              description:
+                "Guidance in BM and English, and a person to talk to if you are stuck.",
+              href: "#",
+            },
           ]}
         />
         <StatsBand
           title="MyBayar in numbers"
           stats={[
             { value: "RM 4.2 bil", label: "Collected online in 2025" },
-            { value: "1.8 juta", label: "Payments a month", footnote: "Average, January to September 2026" },
+            {
+              value: "1.8 juta",
+              label: "Payments a month",
+              footnote: "Average, January to September 2026",
+            },
             { value: "32", label: "Agencies connected" },
             { value: "3 min", label: "Typical time to pay" },
           ]}
@@ -321,18 +373,51 @@ export default function LandingPage() {
         <Testimonial
           title="What people say"
           items={[
-            { quote: "I paid my company's assessment in five minutes and had the receipt before I closed the tab.", name: "Nurul Aina Rahman", role: "Business owner, Shah Alam", avatar: avatar("NA") },
-            { quote: "The reminders are the best part. I have not missed a due date since I signed up.", name: "Tan Wei Ming", role: "Retiree, Ipoh", avatar: avatar("TW") },
-            { quote: "Saya boleh semak status tuntutan tanpa perlu menelefon. Semuanya jelas.", name: "Muthu Krishnan", role: "Penjawat awam, Putrajaya" },
+            {
+              quote:
+                "I paid my company's assessment in five minutes and had the receipt before I closed the tab.",
+              name: "Nurul Aina Rahman",
+              role: "Business owner, Shah Alam",
+              avatar: avatar("NA"),
+            },
+            {
+              quote:
+                "The reminders are the best part. I have not missed a due date since I signed up.",
+              name: "Tan Wei Ming",
+              role: "Retiree, Ipoh",
+              avatar: avatar("TW"),
+            },
+            {
+              quote:
+                "Saya boleh semak status tuntutan tanpa perlu menelefon. Semuanya jelas.",
+              name: "Muthu Krishnan",
+              role: "Penjawat awam, Putrajaya",
+            },
           ]}
         />
         <Faq
           description="Answers to the questions people ask most about paying online."
           items={[
-            { question: "Which bills can I pay here?", answer: "Fees, fines and assessments from more than 30 federal agencies, including JPJ summonses, LHDN instalments and court fines." },
-            { question: "How do I know my payment went through?", answer: "You see a confirmation page with a reference number straight away, and we email you an official receipt within five minutes." },
-            { question: "Can I pay on behalf of someone else?", answer: "Yes. Enter their bill or reference number. The receipt shows their name and your payment details." },
-            { question: "What if I paid the wrong amount?", answer: "Contact the agency that issued the bill. Refunds are handled by the agency and usually take 14 working days." },
+            {
+              question: "Which bills can I pay here?",
+              answer:
+                "Fees, fines and assessments from more than 30 federal agencies, including JPJ summonses, LHDN instalments and court fines.",
+            },
+            {
+              question: "How do I know my payment went through?",
+              answer:
+                "You see a confirmation page with a reference number straight away, and we email you an official receipt within five minutes.",
+            },
+            {
+              question: "Can I pay on behalf of someone else?",
+              answer:
+                "Yes. Enter their bill or reference number. The receipt shows their name and your payment details.",
+            },
+            {
+              question: "What if I paid the wrong amount?",
+              answer:
+                "Contact the agency that issued the bill. Refunds are handled by the agency and usually take 14 working days.",
+            },
           ]}
           contact={
             <>

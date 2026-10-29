@@ -36,6 +36,10 @@ type CalendarProps = DayPickerProps & {
   minYear?: number;
   yearOrder?: "asc" | "desc";
   daterange?: "from" | "to";
+  /** Accessible name of the month grid's next-year button. Defaults to English, or Bahasa Melayu with a `ms` locale. */
+  nextYearLabel?: string;
+  /** Accessible name of the month grid's previous-year button. */
+  previousYearLabel?: string;
 };
 
 /**
@@ -56,7 +60,7 @@ const calendar_nav_button = clx(
   "disabled:bg-bg-white-disabled disabled:text-txt-black-disabled disabled:cursor-not-allowed",
 );
 
-/** DayPicker's navigation chevrons, drawn with the MYDS icons. */
+/** DayPicker's navigation chevrons, drawn with the FTDS icons. */
 const CalendarChevron = ({
   orientation,
   className,
@@ -72,7 +76,7 @@ const CalendarChevron = ({
 const calendar_cell_size =
   "[--cal-cell:2.5rem] in-data-[density=compact]:[--cal-cell:2rem]";
 
-/** A range's first and last day: MYDS Blue on the Blue Wash band. */
+/** A range's first and last day: FTDS Blue on the Blue Wash band. */
 const range_cap =
   "bg-bg-primary-50 *:bg-bg-primary-600 *:text-txt-white *:hover:bg-bg-primary-600 *:hover:text-txt-white *:focus:bg-bg-primary-600 *:focus:text-txt-white";
 
@@ -113,8 +117,14 @@ const Calendar: FC<CalendarProps> = ({
   minYear = 1900,
   showOutsideDays = true,
   yearOrder = "asc",
+  nextYearLabel,
+  previousYearLabel,
   ...props
 }) => {
+  const malay = locale?.code?.startsWith("ms") ?? false;
+  const nextYear = nextYearLabel ?? (malay ? "Tahun seterusnya" : "Next year");
+  const previousYear =
+    previousYearLabel ?? (malay ? "Tahun sebelumnya" : "Previous year");
   const [view, setView] = useState<"day" | "month" | "year">("day");
 
   const today = new Date();
@@ -123,6 +133,7 @@ const Calendar: FC<CalendarProps> = ({
   const thisYear = _month?.getFullYear() ?? today.getFullYear();
   const [year, setYear] = useState<number>(thisYear);
 
+  const yearCount = maxYear - minYear + 1;
   const yearRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (view === "year")
@@ -155,7 +166,7 @@ const Calendar: FC<CalendarProps> = ({
         months: "relative flex flex-col h-full",
         month: "flex flex-col h-full gap-y-1.5",
         month_caption: "",
-        caption_label: "text-sm font-medium",
+        caption_label: "text-label-sm font-medium",
         nav: "absolute right-0 flex gap-2 items-center",
         ...calendar_day_classnames,
         selected: clx(
@@ -173,7 +184,7 @@ const Calendar: FC<CalendarProps> = ({
             <Button
               variant={view === monthOrYear ? "unset" : "default-ghost"}
               className={clx(
-                "px-1.5 py-1 text-base font-semibold",
+                "text-body-md px-1.5 py-1 font-semibold",
                 view === monthOrYear
                   ? "text-txt-primary bg-bg-primary-50 ring-fr-primary focus-visible:ring"
                   : "border-none",
@@ -241,8 +252,7 @@ const Calendar: FC<CalendarProps> = ({
                               setView("day");
 
                               if (props.mode !== undefined && props.onSelect) {
-                                if (props.mode === "single")
-                                  props.onSelect(date, date, {}, e);
+                                // Single mode: the month grid only navigates; the day is still to pick
                                 if (props.mode === "range") {
                                   if (props.selected) {
                                     const { from, to } = props.selected;
@@ -280,12 +290,15 @@ const Calendar: FC<CalendarProps> = ({
             <div className="overflow-y-auto">
               <table role="grid" className="w-full">
                 <tbody>
-                  {Array(Math.ceil((maxYear - minYear) / 3))
+                  {Array(Math.ceil(yearCount / 3))
                     .fill(null)
                     .map((_, row_index) => (
                       <tr key={row_index}>
                         {[0, 1, 2].map((col_index) => {
                           const i = row_index * 3 + col_index;
+                          // minYear to maxYear inclusive; pad the last row
+                          if (i >= yearCount)
+                            return <td key={`empty-${i}`} role="gridcell" />;
 
                           const displayYear =
                             yearOrder === "asc" ? minYear + i : maxYear - i;
@@ -341,8 +354,7 @@ const Calendar: FC<CalendarProps> = ({
                                     props.mode !== undefined &&
                                     props.onSelect
                                   ) {
-                                    if (props.mode === "single")
-                                      props.onSelect(date, date, {}, e);
+                                    // Single mode: the year grid only navigates; the day is still to pick
                                     if (props.mode === "range") {
                                       if (props.selected) {
                                         const { from, to } = props.selected;
@@ -395,7 +407,7 @@ const Calendar: FC<CalendarProps> = ({
             <button
               type="button"
               {...props}
-              aria-label="Go to the Next Year"
+              aria-label={nextYear}
               onClick={() => {
                 const date = addYears(month, 1);
                 setMonth(date);
@@ -423,7 +435,7 @@ const Calendar: FC<CalendarProps> = ({
             <button
               type="button"
               {...props}
-              aria-label="Go to the Previous Year"
+              aria-label={previousYear}
               onClick={() => {
                 const date = subYears(month, 1);
                 setMonth(date);

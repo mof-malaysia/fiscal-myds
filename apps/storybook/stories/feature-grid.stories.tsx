@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { FeatureGrid } from "@mof-malaysia/myds-react/feature-grid";
+import { FeatureGrid } from "@mof-malaysia/ftds-react/feature-grid";
 import {
   BellIcon,
   ChatBubbleIcon,
@@ -8,7 +8,7 @@ import {
   DocumentIcon,
   MobileIcon,
   MoneyIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

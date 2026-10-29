@@ -5,17 +5,17 @@ import {
   SettingsLayout,
   SettingsRow,
   SettingsSection,
-} from "@mof-malaysia/myds-react/settings-layout";
-import { Field, FieldLabel } from "@mof-malaysia/myds-react/field";
-import { Input } from "@mof-malaysia/myds-react/input";
-import { Switch } from "@mof-malaysia/myds-react/switch";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/settings-layout";
+import { Field, FieldLabel } from "@mof-malaysia/ftds-react/field";
+import { Input } from "@mof-malaysia/ftds-react/input";
+import { Switch } from "@mof-malaysia/ftds-react/switch";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   BellIcon,
   LockIcon,
   SettingIcon,
   UserIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

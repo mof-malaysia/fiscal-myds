@@ -16,7 +16,9 @@ import { ChevronDownIcon } from "../../icons/chevron-down";
  */
 
 /**
- * Accordion component description.
+ * Accordion stacks sections that people expand one at a time (or several, with
+ * `type="multiple"`): FAQs and long explanations on agency sites. Each item's
+ * trigger is a button with its expanded state announced.
  * @component
  * @example
  * <Accordion type="single" collapsible defaultValue="item-1">
@@ -123,7 +125,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionBase.Trigger
       className={clx(
         "text-txt-black-700 font-body bg-bg-white hover:text-txt-black-900 data-[panel-open]:text-txt-black-900 group flex flex-1 cursor-pointer items-center justify-between py-4 text-base leading-none font-medium hover:underline",
-        "rounded-xs outline-none focus-visible:underline focus-ring",
+        "focus-ring rounded-xs outline-none focus-visible:underline",
         "data-[disabled]:text-txt-black-disabled data-[disabled]:cursor-not-allowed data-[disabled]:hover:no-underline",
         className,
       )}

@@ -30,6 +30,8 @@ const CookieBannerContext = createContext<CookieBannerContextValue>({
 type CookieBannerProps = Omit<DialogPrimitive.Root.Props, "children"> & {
   className?: string;
   children?: ReactNode;
+  /** Accessible name of the ✕ button. @default "Close cookie banner" */
+  closeLabel?: string;
 };
 
 const cookie_content_cva = cva([
@@ -40,10 +42,16 @@ const cookie_content_cva = cva([
   "sm:mb-4 sm:mr-4 sm:p-6",
 ]);
 
+/**
+ * CookieBanner asks for cookie consent in the corner of the page. It is not
+ * modal: the page stays usable behind it, and only a choice (an action, the
+ * ✕ button or Esc) closes it. A press elsewhere on the page doesn't.
+ */
 const CookieBanner: FunctionComponent<CookieBannerProps> = ({
   className,
   children,
   onOpenChange,
+  closeLabel = "Close cookie banner",
   ...props
 }) => {
   const [showPreferences, setShowPreferences] = useState(false);
@@ -54,12 +62,15 @@ const CookieBanner: FunctionComponent<CookieBannerProps> = ({
       value={{ showPreferences, setShowPreferences }}
     >
       <DialogPrimitive.Root
+        modal={false}
+        disablePointerDismissal
         onOpenChange={(open, eventDetails) => {
-          if (
-            eventDetails.reason === "outside-press" ||
-            eventDetails.reason === "focus-out"
-          )
-            resetPreferences();
+          // Moving focus to the page is not a choice: keep the banner open
+          if (eventDetails.reason === "focus-out") {
+            eventDetails.cancel();
+            return;
+          }
+          if (!open) resetPreferences();
           onOpenChange?.(open, eventDetails);
         }}
         {...props}
@@ -68,8 +79,11 @@ const CookieBanner: FunctionComponent<CookieBannerProps> = ({
           <DialogPrimitive.Popup
             className={clx(cookie_content_cva(), className)}
           >
-            <DialogPrimitive.Close className="ring-fr-primary absolute top-0 right-0 mt-4 mr-4 rounded-md p-1.5 transition-all outline-none focus-visible:ring">
-              <CrossIcon className="size-4 shrink-0" />
+            <DialogPrimitive.Close
+              aria-label={closeLabel}
+              className="ring-fr-primary absolute top-0 right-0 mt-4 mr-4 rounded-md p-1.5 transition-all outline-none focus-visible:ring"
+            >
+              <CrossIcon className="size-4 shrink-0" aria-hidden />
             </DialogPrimitive.Close>
             {children}
           </DialogPrimitive.Popup>

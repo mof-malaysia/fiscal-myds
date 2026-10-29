@@ -6,7 +6,7 @@ import {
   MeterLabel,
   MeterTrack,
   MeterValue,
-} from "@mof-malaysia/myds-react/meter";
+} from "@mof-malaysia/ftds-react/meter";
 
 /**
  * ### Overview

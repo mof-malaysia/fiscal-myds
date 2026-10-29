@@ -1,40 +1,40 @@
 import React from "react";
-import { FormStep } from "@mof-malaysia/myds-react/form-step";
-import { CheckAnswers } from "@mof-malaysia/myds-react/check-answers";
-import { ConfirmationPanel } from "@mof-malaysia/myds-react/confirmation-panel";
+import { FormStep } from "@mof-malaysia/ftds-react/form-step";
+import { CheckAnswers } from "@mof-malaysia/ftds-react/check-answers";
+import { ConfirmationPanel } from "@mof-malaysia/ftds-react/confirmation-panel";
 import {
   PaymentReceipt,
   PaymentSummary,
-} from "@mof-malaysia/myds-react/payment-summary";
-import { ApplicationList } from "@mof-malaysia/myds-react/application-list";
+} from "@mof-malaysia/ftds-react/payment-summary";
+import { ApplicationList } from "@mof-malaysia/ftds-react/application-list";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
-import { Input } from "@mof-malaysia/myds-react/input";
+} from "@mof-malaysia/ftds-react/field";
+import { Input } from "@mof-malaysia/ftds-react/input";
 import {
   Radio,
   RadioButton,
   RadioItem,
   RadioLabel,
-} from "@mof-malaysia/myds-react/radio";
+} from "@mof-malaysia/ftds-react/radio";
 import {
   Callout,
   CalloutAction,
   CalloutContent,
   CalloutTitle,
-} from "@mof-malaysia/myds-react/callout";
+} from "@mof-malaysia/ftds-react/callout";
 import {
   PageHeader,
   PageHeaderActions,
   PageHeaderContent,
   PageHeaderDescription,
   PageHeaderTitle,
-} from "@mof-malaysia/myds-react/page-header";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Link } from "@mof-malaysia/myds-react/link";
+} from "@mof-malaysia/ftds-react/page-header";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import { CitizenChrome } from "./citizen-chrome";
 
 /*

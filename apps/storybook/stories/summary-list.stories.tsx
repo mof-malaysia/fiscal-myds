@@ -9,10 +9,10 @@ import {
   SummaryListDetail,
   SummaryListRow,
   SummaryListAddition,
-} from "@mof-malaysia/myds-react/summary-list";
-import { Tag } from "@mof-malaysia/myds-react/tag";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { SwapIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/summary-list";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { SwapIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

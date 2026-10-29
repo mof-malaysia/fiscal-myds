@@ -5,13 +5,13 @@ import {
   OTPField,
   OTPFieldSeparator,
   OTPFieldSlot,
-} from "@mof-malaysia/myds-react/otp-field";
+} from "@mof-malaysia/ftds-react/otp-field";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

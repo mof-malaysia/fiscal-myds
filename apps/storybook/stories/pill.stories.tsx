@@ -2,7 +2,7 @@ import { fn } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { createRender, createStory } from "../utils";
-import { Pill } from "@mof-malaysia/myds-react/pill";
+import { Pill } from "@mof-malaysia/ftds-react/pill";
 
 /**
  * ### Overview
@@ -18,7 +18,7 @@ import { Pill } from "@mof-malaysia/myds-react/pill";
  *
  * ### Usage
  * ```tsx
- * import { Pill } from "@mof-malaysia/myds-react/pill";
+ * import { Pill } from "@mof-malaysia/ftds-react/pill";
  *
  * <Pill onDismiss={() => removeFilter("approved")}>Approved</Pill>
  * <Pill dismissLabel="Buang Diluluskan" onDismiss={...}>Diluluskan</Pill>

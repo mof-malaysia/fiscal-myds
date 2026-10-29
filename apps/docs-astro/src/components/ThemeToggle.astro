@@ -1,0 +1,40 @@
+<button
+  type="button"
+  data-theme-toggle
+  class="focus-ring text-txt-black-700 hover:bg-bg-washed hover:text-txt-black-900 grid size-9 place-items-center rounded-md transition-colors"
+  aria-label="Toggle dark theme"
+>
+  <!-- Sun in dark mode, moon in light mode -->
+  <svg class="hidden size-5 dark:block" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <circle cx="10" cy="10" r="3.25" stroke="currentColor" stroke-width="1.5"></circle>
+    <path
+      d="M10 2.75v1.5M10 15.75v1.5M17.25 10h-1.5M4.25 10h-1.5M15.13 4.87l-1.06 1.06M5.93 14.07l-1.06 1.06M15.13 15.13l-1.06-1.06M5.93 5.93 4.87 4.87"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"></path>
+  </svg>
+  <svg class="size-5 dark:hidden" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <path
+      d="M16.5 11.9A6.75 6.75 0 0 1 8.1 3.5a6.75 6.75 0 1 0 8.4 8.4Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")) {
+    const root = document.documentElement;
+    const sync = () => button.setAttribute("aria-pressed", String(root.classList.contains("dark")));
+    sync();
+    button.addEventListener("click", () => {
+      const next = root.classList.contains("dark") ? "light" : "dark";
+      root.classList.remove("light", "dark");
+      root.classList.add(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+      sync();
+    });
+  }
+</script>

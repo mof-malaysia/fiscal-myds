@@ -3,7 +3,9 @@ import { clx } from "../../utils";
 import { Tag } from "../core/tag";
 
 /**
- * AnnounceBar component description.
+ * AnnounceBar is a short notice across the top of an agency site: a status tag
+ * and one line of text, such as planned maintenance or a new service. For a
+ * service in alpha or beta, use PhaseBanner.
  * @component
  * @example
  * <AnnounceBar>
@@ -45,7 +47,7 @@ const AnnounceBarDescription: ForwardRefExoticComponent<ComponentProps<"div">> =
       <div
         ref={ref}
         className={clx(
-          "min-height-[28px] text-txt-black-700 font-body flex items-center text-sm",
+          "text-txt-black-700 font-body text-content flex min-h-[28px] items-center",
           className,
         )}
         {...props}

@@ -48,7 +48,7 @@ const twMergeConfig = extendTailwindMerge<"control">({
 });
 
 /**
- * Base UI accepts a function for `className`; MYDS components take a plain string.
+ * Base UI accepts a function for `className`; FTDS components take a plain string.
  * @example interface Props extends WithClassName<Popover.Popup.Props> {}
  */
 export type WithClassName<P> = Omit<P, "className"> & { className?: string };

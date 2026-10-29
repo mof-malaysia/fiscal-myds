@@ -147,7 +147,12 @@ interface ActivityTimelineProps
   extends Omit<ComponentProps<"div">, "children"> {
   events: ActivityEvent[];
   /** Shows the composer when set; resolves (or not) as the app saves the note. */
-  onAddNote?: (text: string) => void | Promise<void>;
+  /**
+   * Saves a note. The composer clears once it resolves; reject or resolve to
+   * `false` when saving fails, so the note stays for another try (show why
+   * with `noteError`).
+   */
+  onAddNote?: (text: string) => void | boolean | Promise<void | boolean>;
   /** Where the composer sits. Use "top" for newest-first lists. @default "top" */
   composer?: "top" | "bottom";
   /** Disables the composer while the note saves. */
@@ -169,7 +174,7 @@ const NoteComposer = ({
   error,
   labels,
 }: {
-  onAddNote: (text: string) => void | Promise<void>;
+  onAddNote: NonNullable<ActivityTimelineProps["onAddNote"]>;
   pending: boolean;
   error?: ReactNode;
   labels: ActivityTimelineLabels;
@@ -182,7 +187,12 @@ const NoteComposer = ({
         event.preventDefault();
         const text = note.trim();
         if (!text) return;
-        await onAddNote(text);
+        try {
+          // Keep the note when the save fails, so nothing typed is lost
+          if ((await onAddNote(text)) === false) return;
+        } catch {
+          return;
+        }
         setNote("");
       }}
     >

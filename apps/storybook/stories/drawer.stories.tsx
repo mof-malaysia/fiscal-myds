@@ -12,9 +12,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
   type DrawerSide,
-} from "@mof-malaysia/myds-react/drawer";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
+} from "@mof-malaysia/ftds-react/drawer";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
 
 /**
  * ### Overview

@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { ConfirmationPanel } from "@mof-malaysia/myds-react/confirmation-panel";
+import { ConfirmationPanel } from "@mof-malaysia/ftds-react/confirmation-panel";
 
 /**
  * ### Overview

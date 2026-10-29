@@ -1,0 +1,477 @@
+/* FTDS Theme Configuration */
+/**
+ * Tailwind CSS 4.0 Configuration
+ * This file contains all theme customizations converted from tailwind.config.js
+ *
+ * `inline` makes utilities use the token's value (e.g. rgb(var(--bg-white)))
+ * instead of var(--color-bg-white), so `.dark` on any element switches colors.
+ */
+
+@theme inline {
+  /* === Spacing === */
+  --spacing-2\.5: 0.625rem;
+  --spacing-4\.5: 1.125rem;
+  --spacing-10\.5: 2.625rem;
+
+  /* === Font Sizes === */
+  --text-default: 0.875rem;
+  --text-default--line-height: 1.25rem;
+
+  --text-heading-xl: 3.75rem;
+  --text-heading-xl--line-height: 4.5rem;
+  --text-heading-lg: 3rem;
+  --text-heading-lg--line-height: 3.75rem;
+  --text-heading-md: 2.25rem;
+  --text-heading-md--line-height: 2.75rem;
+  --text-heading-sm: 1.875rem;
+  --text-heading-sm--line-height: 2.375rem;
+  --text-heading-xs: 1.5rem;
+  --text-heading-xs--line-height: 2rem;
+  --text-heading-2xs: 1.25rem;
+  --text-heading-2xs--line-height: 1.75rem;
+
+  --text-body-xl: 1.25rem;
+  --text-body-xl--line-height: 1.875rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.625rem;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-body-xs: 0.75rem;
+  --text-body-xs--line-height: 1.125rem;
+
+  /* === Border Radius === */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+
+  /* === Font Families === */
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* === Colors (using CSS variables from color.css) === */
+  /* White */
+  --color-white: rgb(var(--_white));
+  --color-white-disabled: rgba(var(--_white) / 0.4);
+
+  /* Gray scale */
+  --color-gray-50: rgb(var(--_gray-50));
+  --color-gray-100: rgb(var(--_gray-100));
+  --color-gray-200: rgb(var(--_gray-200));
+  --color-gray-300: rgb(var(--_gray-300));
+  --color-gray-400: rgb(var(--_gray-400));
+  --color-gray-500: rgb(var(--_gray-500));
+  --color-gray-600: rgb(var(--_gray-600));
+  --color-gray-700: rgb(var(--_gray-700));
+  --color-gray-800: rgb(var(--_gray-800));
+  --color-gray-850: rgb(var(--_gray-850));
+  --color-gray-900: rgb(var(--_gray-900));
+  --color-gray-930: rgb(var(--_gray-930));
+  --color-gray-950: rgb(var(--_gray-950));
+
+  /* Primary */
+  --color-primary-50: rgb(var(--_primary-50));
+  --color-primary-100: rgb(var(--_primary-100));
+  --color-primary-200: rgb(var(--_primary-200));
+  --color-primary-300: rgb(var(--_primary-300));
+  --color-primary-400: rgb(var(--_primary-400));
+  --color-primary-500: rgb(var(--_primary-500));
+  --color-primary-600: rgb(var(--_primary-600));
+  --color-primary-700: rgb(var(--_primary-700));
+  --color-primary-800: rgb(var(--_primary-800));
+  --color-primary-900: rgb(var(--_primary-900));
+  --color-primary-950: rgb(var(--_primary-950));
+
+  /* Danger */
+  --color-danger-50: rgb(var(--_danger-50));
+  --color-danger-100: rgb(var(--_danger-100));
+  --color-danger-200: rgb(var(--_danger-200));
+  --color-danger-300: rgb(var(--_danger-300));
+  --color-danger-400: rgb(var(--_danger-400));
+  --color-danger-500: rgb(var(--_danger-500));
+  --color-danger-600: rgb(var(--_danger-600));
+  --color-danger-700: rgb(var(--_danger-700));
+  --color-danger-800: rgb(var(--_danger-800));
+  --color-danger-900: rgb(var(--_danger-900));
+  --color-danger-950: rgb(var(--_danger-950));
+
+  /* Success */
+  --color-success-50: rgb(var(--_success-50));
+  --color-success-100: rgb(var(--_success-100));
+  --color-success-200: rgb(var(--_success-200));
+  --color-success-300: rgb(var(--_success-300));
+  --color-success-400: rgb(var(--_success-400));
+  --color-success-500: rgb(var(--_success-500));
+  --color-success-600: rgb(var(--_success-600));
+  --color-success-700: rgb(var(--_success-700));
+  --color-success-800: rgb(var(--_success-800));
+  --color-success-900: rgb(var(--_success-900));
+  --color-success-950: rgb(var(--_success-950));
+
+  /* Warning */
+  --color-warning-50: rgb(var(--_warning-50));
+  --color-warning-100: rgb(var(--_warning-100));
+  --color-warning-200: rgb(var(--_warning-200));
+  --color-warning-300: rgb(var(--_warning-300));
+  --color-warning-400: rgb(var(--_warning-400));
+  --color-warning-500: rgb(var(--_warning-500));
+  --color-warning-600: rgb(var(--_warning-600));
+  --color-warning-700: rgb(var(--_warning-700));
+  --color-warning-800: rgb(var(--_warning-800));
+  --color-warning-900: rgb(var(--_warning-900));
+  --color-warning-950: rgb(var(--_warning-950));
+
+  /* Semantic background colors */
+  --color-bg-white: rgb(var(--bg-white));
+  --color-bg-white-hover: rgb(var(--bg-white-hover));
+  --color-bg-white-disabled: rgb(var(--bg-white-disabled));
+  --color-bg-washed: rgb(var(--bg-washed));
+  --color-bg-washed-active: rgb(var(--bg-washed-active));
+  --color-bg-contrast: rgb(var(--bg-contrast));
+  --color-bg-dialog: rgb(var(--bg-dialog));
+  --color-bg-dialog-active: rgb(var(--bg-dialog-active));
+  --color-bg-raised: rgb(var(--bg-raised));
+  --color-bg-track: rgb(var(--bg-track));
+
+  --color-bg-black-900: rgb(var(--bg-black-900));
+  --color-bg-black-800: rgb(var(--bg-black-800));
+  --color-bg-black-700: rgb(var(--bg-black-700));
+  --color-bg-black-500: rgb(var(--bg-black-500));
+  --color-bg-black-400: rgb(var(--bg-black-400));
+  --color-bg-black-300: rgb(var(--bg-black-300));
+  --color-bg-black-200: rgb(var(--bg-black-200));
+  --color-bg-black-100: rgb(var(--bg-black-100));
+  --color-bg-black-50: rgb(var(--bg-black-50));
+  --color-bg-black-disabled: rgb(var(--bg-black-disabled));
+
+  --color-bg-gray-50: rgb(var(--bg-gray-50));
+
+  --color-bg-primary-50: rgb(var(--bg-primary-50));
+  --color-bg-primary-100: rgb(var(--bg-primary-100));
+  --color-bg-primary-200: rgb(var(--bg-primary-200));
+  --color-bg-primary-300: rgb(var(--bg-primary-300));
+  --color-bg-primary-400: rgb(var(--bg-primary-400));
+  --color-bg-primary-500: rgb(var(--bg-primary-500));
+  --color-bg-primary-600: rgb(var(--bg-primary-600));
+  --color-bg-primary-700: rgb(var(--bg-primary-700));
+  --color-bg-primary-800: rgb(var(--bg-primary-800));
+  --color-bg-primary-900: rgb(var(--bg-primary-900));
+  --color-bg-primary-950: rgb(var(--bg-primary-950));
+  --color-bg-primary-disabled: rgb(var(--bg-primary-disabled));
+
+  --color-bg-danger-50: rgb(var(--bg-danger-50));
+  --color-bg-danger-100: rgb(var(--bg-danger-100));
+  --color-bg-danger-200: rgb(var(--bg-danger-200));
+  --color-bg-danger-300: rgb(var(--bg-danger-300));
+  --color-bg-danger-400: rgb(var(--bg-danger-400));
+  --color-bg-danger-500: rgb(var(--bg-danger-500));
+  --color-bg-danger-600: rgb(var(--bg-danger-600));
+  --color-bg-danger-700: rgb(var(--bg-danger-700));
+  --color-bg-danger-800: rgb(var(--bg-danger-800));
+  --color-bg-danger-900: rgb(var(--bg-danger-900));
+  --color-bg-danger-950: rgb(var(--bg-danger-950));
+  --color-bg-danger-disabled: rgb(var(--bg-danger-disabled));
+
+  --color-bg-success-50: rgb(var(--bg-success-50));
+  --color-bg-success-100: rgb(var(--bg-success-100));
+  --color-bg-success-200: rgb(var(--bg-success-200));
+  --color-bg-success-300: rgb(var(--bg-success-300));
+  --color-bg-success-400: rgb(var(--bg-success-400));
+  --color-bg-success-500: rgb(var(--bg-success-500));
+  --color-bg-success-600: rgb(var(--bg-success-600));
+  --color-bg-success-700: rgb(var(--bg-success-700));
+  --color-bg-success-800: rgb(var(--bg-success-800));
+  --color-bg-success-900: rgb(var(--bg-success-900));
+  --color-bg-success-950: rgb(var(--bg-success-950));
+  --color-bg-success-disabled: rgb(var(--bg-success-disabled));
+
+  --color-bg-warning-50: rgb(var(--bg-warning-50));
+  --color-bg-warning-100: rgb(var(--bg-warning-100));
+  --color-bg-warning-200: rgb(var(--bg-warning-200));
+  --color-bg-warning-300: rgb(var(--bg-warning-300));
+  --color-bg-warning-400: rgb(var(--bg-warning-400));
+  --color-bg-warning-500: rgb(var(--bg-warning-500));
+  --color-bg-warning-600: rgb(var(--bg-warning-600));
+  --color-bg-warning-700: rgb(var(--bg-warning-700));
+  --color-bg-warning-800: rgb(var(--bg-warning-800));
+  --color-bg-warning-900: rgb(var(--bg-warning-900));
+  --color-bg-warning-950: rgb(var(--bg-warning-950));
+  --color-bg-warning-disabled: rgb(var(--bg-warning-disabled));
+
+  /* Semantic text colors */
+  --color-txt-white: rgb(var(--txt-white));
+  --color-txt-white-disabled: rgb(var(--txt-white-disabled));
+  --color-txt-black-900: rgb(var(--txt-black-900));
+  --color-txt-black-700: rgb(var(--txt-black-700));
+  --color-txt-black-500: rgb(var(--txt-black-500));
+  --color-txt-black-disabled: rgb(var(--txt-black-disabled));
+  --color-txt-primary: rgb(var(--txt-primary));
+  --color-txt-primary-disabled: rgb(var(--txt-primary-disabled));
+  --color-txt-danger: rgb(var(--txt-danger));
+  --color-txt-danger-disabled: rgb(var(--txt-danger-disabled));
+  --color-txt-success: rgb(var(--txt-success));
+  --color-txt-success-disabled: rgb(var(--txt-success-disabled));
+  --color-txt-warning: rgb(var(--txt-warning));
+  --color-txt-warning-disabled: rgb(var(--txt-warning-disabled));
+
+  /* Semantic outline colors */
+  --color-otl-divider: rgb(var(--otl-divider));
+  --color-otl-control: rgb(var(--otl-control));
+  --color-otl-control-hover: rgb(var(--otl-control-hover));
+  --color-otl-gray-200: rgb(var(--otl-gray-200));
+  --color-otl-gray-300: rgb(var(--otl-gray-300));
+  --color-otl-primary-disabled: rgb(var(--otl-primary-disabled));
+  --color-otl-primary-200: rgb(var(--otl-primary-200));
+  --color-otl-primary-300: rgb(var(--otl-primary-300));
+  --color-otl-danger-disabled: rgb(var(--otl-danger-disabled));
+  --color-otl-danger-200: rgb(var(--otl-danger-200));
+  --color-otl-danger-300: rgb(var(--otl-danger-300));
+  --color-otl-success-disabled: rgb(var(--otl-success-disabled));
+  --color-otl-success-200: rgb(var(--otl-success-200));
+  --color-otl-success-300: rgb(var(--otl-success-300));
+  --color-otl-warning-disabled: rgb(var(--otl-warning-disabled));
+  --color-otl-warning-200: rgb(var(--otl-warning-200));
+  --color-otl-warning-300: rgb(var(--otl-warning-300));
+
+  /* Focus ring colors */
+  --color-fr-primary: rgb(var(--fr-primary));
+  --color-fr-danger: rgb(var(--fr-danger));
+
+  /* Scrim behind dialogs, sheets and drawers: Ink, used at 40% (DESIGN.md,
+     Elevation). The grey palette doesn't flip, so it stays dark in both themes. */
+  --color-scrim: rgb(var(--_gray-900));
+
+  /* === Density-aware spacing (values set per density below) === */
+  --spacing-surface: var(--space-surface);
+  --spacing-stack-lg: var(--space-stack-lg);
+  --spacing-stack-md: var(--space-stack-md);
+  --spacing-stack-sm: var(--space-stack-sm);
+
+  /* === Motion (DESIGN.md: 150–200ms, ease-out) === */
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* === Transition Durations === */
+  --duration-200: 200ms;
+  --duration-400: 400ms;
+  --duration-600: 600ms;
+
+  /* === Box Shadows === */
+  /* Flat at rest: shadows only for layers that float (DESIGN.md, Elevation) */
+  --shadow-card: 0 1px 2px rgba(22, 27, 34, 0.06), 0 8px 24px rgba(22, 27, 34, 0.08);
+  --shadow-context-menu: 0 1px 2px rgba(22, 27, 34, 0.06), 0 8px 24px rgba(22, 27, 34, 0.08);
+  --shadow-dialog: 0 2px 4px rgba(22, 27, 34, 0.06), 0 24px 48px rgba(22, 27, 34, 0.14);
+
+  /* === Transform Origins === */
+  --transform-origin-tooltip-origin: var(--transform-origin);
+
+  /* === Keyframes === */
+  @keyframes decrease-width {
+    0% { width: 100%; }
+    100% { width: 0%; }
+  }
+
+  @keyframes accordion-slide-down {
+    from { height: 0; }
+    to { height: var(--accordion-panel-height); }
+  }
+
+  @keyframes accordion-slide-up {
+    from { height: var(--accordion-panel-height); }
+    to { height: 0; }
+  }
+
+  @keyframes collapsible-slide-down {
+    from { height: 0; }
+    to { height: var(--collapsible-panel-height); }
+  }
+
+  @keyframes collapsible-slide-up {
+    from { height: var(--collapsible-panel-height); }
+    to { height: 0; }
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes slide-down {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0%; }
+  }
+
+  /* === Animations === */
+  --animate-expire: decrease-width 5s linear;
+  --animate-slide-up: slide-up 300ms ease-out;
+  --animate-slide-down: slide-down 300ms ease-out;
+  --animate-accordion-slide-down: accordion-slide-down 300ms ease-out;
+  --animate-accordion-slide-up: accordion-slide-up 300ms ease-out;
+  --animate-collapsible-slide-down: collapsible-slide-down 300ms ease-out;
+  --animate-collapsible-slide-up: collapsible-slide-up 300ms ease-out;
+  --animate-shimmer: shimmer 1200ms linear infinite;
+}
+
+/**
+ * Densities (DESIGN.md, Overview): comfortable for citizen services (default),
+ * compact for officer tools. Set `data-density="compact"` on any element to
+ * switch everything inside it; component `size` props stay relative to it.
+ */
+:root,
+[data-density="comfortable"] {
+  --ctl-h-sm: 44px;
+  --ctl-h-md: 48px;
+  --ctl-h-lg: 56px;
+  --ctl-px-sm: 16px;
+  --ctl-px-md: 20px;
+  --ctl-px-lg: 24px;
+  --ctl-label-sm: 0.875rem;
+  --ctl-label-md: 0.875rem;
+  --ctl-label-lg: 1rem;
+  --ctl-field-sm: 1rem;
+  --ctl-field-md: 1rem;
+  --ctl-field-lg: 1.125rem;
+  --content-text: 1rem;
+  --content-leading: 1.5rem;
+  /* Table row height (DESIGN.md, Data Table); rows with controls grow to fit */
+  --row-h: 48px;
+  --space-surface: 24px;
+  --space-stack-lg: 24px;
+  --space-stack-md: 16px;
+  --space-stack-sm: 12px;
+}
+
+[data-density="compact"] {
+  --ctl-h-sm: 32px;
+  --ctl-h-md: 36px;
+  --ctl-h-lg: 40px;
+  --ctl-px-sm: 12px;
+  --ctl-px-md: 14px;
+  --ctl-px-lg: 16px;
+  --ctl-label-sm: 0.875rem;
+  --ctl-label-md: 0.875rem;
+  --ctl-label-lg: 1rem;
+  --ctl-field-sm: 0.875rem;
+  --ctl-field-md: 0.875rem;
+  --ctl-field-lg: 1rem;
+  --content-text: 0.875rem;
+  --content-leading: 1.25rem;
+  --row-h: 40px;
+  --space-surface: 16px;
+  --space-stack-lg: 16px;
+  --space-stack-md: 12px;
+  --space-stack-sm: 8px;
+}
+
+/* Control box: height and horizontal padding for each size step */
+@utility control-sm {
+  height: var(--ctl-h-sm);
+  padding-inline: var(--ctl-px-sm);
+}
+@utility control-md {
+  height: var(--ctl-h-md);
+  padding-inline: var(--ctl-px-md);
+}
+@utility control-lg {
+  height: var(--ctl-h-lg);
+  padding-inline: var(--ctl-px-lg);
+}
+
+/* Square controls (icon-only buttons) */
+@utility control-square-sm {
+  height: var(--ctl-h-sm);
+  width: var(--ctl-h-sm);
+}
+@utility control-square-md {
+  height: var(--ctl-h-md);
+  width: var(--ctl-h-md);
+}
+@utility control-square-lg {
+  height: var(--ctl-h-lg);
+  width: var(--ctl-h-lg);
+}
+
+/* Type on controls: labels (buttons, tabs) and field values (inputs, selects) */
+@utility text-label-sm {
+  font-size: var(--ctl-label-sm);
+  line-height: 1.43;
+}
+@utility text-label-md {
+  font-size: var(--ctl-label-md);
+  line-height: 1.43;
+}
+@utility text-label-lg {
+  font-size: var(--ctl-label-lg);
+  line-height: 1.5;
+}
+@utility text-field-sm {
+  font-size: var(--ctl-field-sm);
+  line-height: 1.5;
+}
+@utility text-field-md {
+  font-size: var(--ctl-field-md);
+  line-height: 1.5;
+}
+@utility text-field-lg {
+  font-size: var(--ctl-field-lg);
+  line-height: 1.5;
+}
+
+/* Reading text inside components (table cells, panels) */
+@utility text-content {
+  font-size: var(--content-text);
+  line-height: var(--content-leading);
+}
+
+/* DESIGN.md type hierarchy (fixed sizes; weight is set separately) */
+@utility text-display {
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+@utility text-headline {
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: -0.015em;
+}
+@utility text-title {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+/* The smallest size in the system: compact-density labels, badges, captions */
+@utility text-label-compact {
+  font-size: 0.8125rem;
+  line-height: 1.38;
+}
+
+/* Focus ring for every interactive element: solid, offset 2px (DESIGN.md: Buttons) */
+@utility focus-ring {
+  /* Set at rest too: with transition-colors, an outline-color that only changes on
+     focus would fade in from the text colour instead of appearing in Focus Blue */
+  outline-color: rgb(var(--fr-primary));
+  &:focus-visible {
+    /* rgb(var(--fr-primary)), not --color-fr-primary: resolves per element, so .dark islands switch */
+    outline: 2px solid rgb(var(--fr-primary));
+    outline-offset: 2px;
+  }
+}
+
+/* The same ring drawn inside the element, for controls in a clipping scroller (tabs) */
+@utility focus-ring-inset {
+  outline-color: rgb(var(--fr-primary));
+  &:focus-visible {
+    outline: 2px solid rgb(var(--fr-primary));
+    outline-offset: -2px;
+  }
+}

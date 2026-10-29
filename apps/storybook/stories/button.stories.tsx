@@ -5,7 +5,7 @@ import {
   Button,
   ButtonIcon,
   ButtonCounter,
-} from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/button";
 import ArrowForward from "../react/arrow-forward";
 import ArrowBack from "../react/arrow-back";
 import React from "react";
@@ -21,7 +21,7 @@ import React from "react";
  *
  * ### Usage
  * ```tsx
- * import { Button, ButtonIcon, ButtonCounter } from "@mof-malaysia/myds-react/button"
+ * import { Button, ButtonIcon, ButtonCounter } from "@mof-malaysia/ftds-react/button"
  *
  * //* Text only
  * <Button variant="primary-fill" size="medium">Welcome</Button>
@@ -91,7 +91,7 @@ const meta = {
         type: {
           summary: "enum",
         },
-        category: "myds API",
+        category: "ftds API",
       },
       description: "Available button variants",
       control: "select",
@@ -112,7 +112,7 @@ const meta = {
         type: {
           summary: "enum",
         },
-        category: "myds API",
+        category: "ftds API",
       },
       description: "Available button sizes",
       control: "inline-radio",

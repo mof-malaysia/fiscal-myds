@@ -1,4 +1,10 @@
-import React, { ComponentProps, Fragment, forwardRef, useMemo } from "react";
+import React, {
+  ComponentProps,
+  Fragment,
+  forwardRef,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
 import { clx } from "../../utils";
 
 /**
@@ -128,11 +134,11 @@ const KEY_LABELS: Record<string, string> = {
 };
 
 /** Key caps for display: one array of labels per step. */
-function comboLabels(combo: string): string[][] {
+function comboLabels(combo: string, mac = isMac): string[][] {
   return parseCombo(combo).map((step) => {
     const parts = step === "+" ? ["+"] : step.split(/\+(?!$)/);
     const key = parts.pop()!;
-    const labels = parts.map((m) => (isMac ? MAC_SYMBOLS : PC_LABELS)[m]!);
+    const labels = parts.map((m) => (mac ? MAC_SYMBOLS : PC_LABELS)[m]!);
     labels.push(KEY_LABELS[key] ?? (isLetter(key) ? key.toUpperCase() : key));
     return labels;
   });
@@ -171,13 +177,23 @@ interface KbdProps extends Omit<ComponentProps<"span">, "children"> {
   inverse?: boolean;
 }
 
+/** The platform never changes while the page is open. */
+const subscribeNever = () => () => {};
+
 /** Key caps for a combo. Read as words by screen readers ("Command K"). */
 const Kbd = forwardRef<HTMLSpanElement, KbdProps>(
   (
     { combo, thenLabel = "then", inverse = false, className, ...props },
     ref,
   ) => {
-    const steps = useMemo(() => comboLabels(combo), [combo]);
+    // Server and hydration render the non-Mac labels; the client then switches,
+    // so a server-rendered page doesn't mismatch on macOS
+    const mac = useSyncExternalStore(
+      subscribeNever,
+      () => isMac,
+      () => false,
+    );
+    const steps = useMemo(() => comboLabels(combo, mac), [combo, mac]);
     return (
       <span
         ref={ref}

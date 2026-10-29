@@ -1,0 +1,186 @@
+---
+import type { MarkdownHeading } from "astro";
+import Base from "./Base.astro";
+import Sidebar from "~/components/Sidebar.astro";
+import Brand from "~/components/Brand.astro";
+import ThemeToggle from "~/components/ThemeToggle.astro";
+import Toc from "~/components/Toc.astro";
+import type { Locale } from "~/content.config";
+import { getSidebar, type NavLink, type NavSection } from "~/lib/nav";
+
+interface Props {
+  title: string;
+  description?: string;
+  source?: string;
+  locale: Locale;
+  section: string;
+  slug: string;
+  sidebar: NavSection[];
+  headings: MarkdownHeading[];
+}
+
+const { title, description, source, locale, section, slug, sidebar, headings } = Astro.props;
+
+// Each section links to its first page; sections with no pages yet are hidden
+const sections = (
+  await Promise.all(
+    [
+      { id: "develop", label: "Get started" },
+      { id: "design", label: "Foundations" },
+      { id: "components", label: "Components" },
+    ].map(async (s) => ({
+      ...s,
+      href: (await getSidebar(s.id, locale))[0]?.links[0]?.href,
+    })),
+  )
+).filter((s): s is typeof s & { href: string } => Boolean(s.href));
+
+const links = sidebar.flatMap((s) => s.links);
+const index = links.findIndex((l) => l.id === slug);
+const prev: NavLink | undefined = links[index - 1];
+const next: NavLink | undefined = links[index + 1];
+---
+
+<Base title={title} description={description} locale={locale}>
+  <a
+    href="#content"
+    class="focus-ring bg-bg-white text-txt-black-900 sr-only rounded-md px-3 py-2 text-sm font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50"
+  >
+    Skip to content
+  </a>
+
+  <header class="border-otl-gray-200 bg-bg-gray-50/90 sticky top-0 z-30 border-b backdrop-blur-sm">
+    <div class="flex h-14 items-center gap-6 px-4 md:px-6">
+      <Brand locale={locale} />
+
+      <nav aria-label="Sections" class="hidden h-full items-stretch gap-5 md:flex">
+        {
+          sections.map((s) => (
+            <a
+              href={s.href}
+              aria-current={s.id === section ? "true" : undefined}
+              class:list={[
+                "focus-ring-inset flex items-center border-b-2 text-sm font-medium transition-colors",
+                s.id === section
+                  ? "border-bg-primary-600 text-txt-black-900"
+                  : "text-txt-black-700 hover:text-txt-black-900 border-transparent",
+              ]}
+            >
+              {s.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="ml-auto flex items-center gap-1">
+        <ThemeToggle />
+        <button
+          type="button"
+          popovertarget="mobile-nav"
+          class="focus-ring text-txt-black-700 hover:bg-bg-washed grid size-9 place-items-center rounded-md md:hidden"
+          aria-label="Open menu"
+        >
+          <svg class="size-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3.5 6h13M3.5 10h13M3.5 14h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu: a native popover, so it needs no JavaScript -->
+  <div
+    id="mobile-nav"
+    popover
+    class="bg-bg-white text-txt-black-900 fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto p-4"
+  >
+    <div class="mb-4 flex items-center justify-between">
+      <span class="font-semibold">Menu</span>
+      <button
+        type="button"
+        popovertarget="mobile-nav"
+        popovertargetaction="hide"
+        class="focus-ring text-txt-black-700 hover:bg-bg-washed grid size-9 place-items-center rounded-md"
+        aria-label="Close menu"
+      >
+        <svg class="size-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+    <ul class="mb-6">
+      {
+        sections.map((s) => (
+          <li>
+            <a
+              href={s.href}
+              class="text-txt-black-900 flex min-h-11 items-center rounded-md px-3 font-medium"
+            >
+              {s.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <Sidebar sections={sidebar} current={slug} />
+  </div>
+
+  <div class="md:grid md:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[16rem_minmax(0,1fr)_14rem]">
+    <aside class="bg-bg-washed sticky top-14 hidden h-[calc(100dvh-3.5rem)] overflow-y-auto px-3 py-6 md:block">
+      <Sidebar sections={sidebar} current={slug} />
+    </aside>
+
+    <main id="content" class="min-w-0 px-4 py-8 md:px-10 md:py-10">
+      <article class="mx-auto max-w-[48rem]" data-pagefind-body>
+        <header class="mb-8">
+          <h1 class="text-display text-txt-black-900 font-semibold">{title}</h1>
+          {description && <p class="text-txt-black-700 mt-2 max-w-[70ch] text-lg">{description}</p>}
+          {
+            source && (
+              <a
+                href={source}
+                class="focus-ring text-txt-black-700 hover:text-txt-black-900 mt-4 inline-flex items-center gap-1.5 rounded-xs text-sm font-medium transition-colors"
+              >
+                <svg class="size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+                </svg>
+                View source on GitHub
+              </a>
+            )
+          }
+        </header>
+        <div class="prose max-w-none">
+          <slot />
+        </div>
+
+        {
+          (prev || next) && (
+            <nav aria-label="Pages" class="mt-16 grid gap-3 sm:grid-cols-2" data-pagefind-ignore>
+              {prev ? (
+                <a href={prev.href} class="focus-ring bg-bg-washed hover:bg-bg-washed-active rounded-lg p-4 transition-colors">
+                  <span class="text-txt-black-700 block text-sm">Previous</span>
+                  <span class="text-txt-black-900 font-medium">{prev.title}</span>
+                </a>
+              ) : (
+                <span />
+              )}
+              {next && (
+                <a
+                  href={next.href}
+                  class="focus-ring bg-bg-washed hover:bg-bg-washed-active rounded-lg p-4 text-right transition-colors"
+                >
+                  <span class="text-txt-black-700 block text-sm">Next</span>
+                  <span class="text-txt-black-900 font-medium">{next.title}</span>
+                </a>
+              )}
+            </nav>
+          )
+        }
+      </article>
+    </main>
+
+    <aside class="sticky top-14 hidden h-[calc(100dvh-3.5rem)] overflow-y-auto py-10 pr-6 xl:block">
+      <Toc headings={headings} />
+    </aside>
+  </div>
+</Base>

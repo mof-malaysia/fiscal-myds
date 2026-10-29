@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { GovFooter, GovMasthead, SERVICE_NAME } from "./gov-chrome";
-import { Skiplink } from "@mof-malaysia/myds-react/skiplink";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { Skiplink } from "@mof-malaysia/ftds-react/skiplink";
+import { Link } from "@mof-malaysia/ftds-react/link";
 
 /** Shared frame for the citizen example pages: masthead, service header, footer. */
 

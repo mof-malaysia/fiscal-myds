@@ -16,30 +16,30 @@ import {
   DeskTabs,
   DeskTopBar,
   type DeskShellProps,
-} from "@mof-malaysia/myds-react/desk-shell";
+} from "@mof-malaysia/ftds-react/desk-shell";
 import {
   useCommands,
   useShortcut,
   useShortcutActions,
   useShortcutScope,
   type ShortcutGroup,
-} from "@mof-malaysia/myds-react/shortcuts";
-import { SplitPane } from "@mof-malaysia/myds-react/split-pane";
-import { Kbd } from "@mof-malaysia/myds-react/kbd";
+} from "@mof-malaysia/ftds-react/shortcuts";
+import { SplitPane } from "@mof-malaysia/ftds-react/split-pane";
+import { Kbd } from "@mof-malaysia/ftds-react/kbd";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@mof-malaysia/myds-react/breadcrumb";
+} from "@mof-malaysia/ftds-react/breadcrumb";
 import {
   Menu,
   MenuContent,
   MenuItem,
   MenuTrigger,
-} from "@mof-malaysia/myds-react/menu";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Tag } from "@mof-malaysia/myds-react/tag";
+} from "@mof-malaysia/ftds-react/menu";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
 import {
   DocumentIcon,
   FolderIcon,
@@ -47,7 +47,7 @@ import {
   MoneyIcon,
   QuestionCircleIcon,
   SettingIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

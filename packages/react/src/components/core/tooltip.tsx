@@ -51,7 +51,7 @@ interface TooltipContentProps
 }
 
 const tooltip_content_cva = cva([
-  "bg-bg-black-900 border-bg-black-900 shadow-context-menu text-txt-white z-50 min-w-[50px] max-w-[250px] rounded-sm border px-3 py-2 text-xs ",
+  "bg-bg-black-900 border-bg-black-900 shadow-context-menu text-txt-white z-50 min-w-[50px] max-w-[250px] rounded-sm border px-3 py-2 text-label-compact",
   "animate-in fade-in duration-200 origin-[var(--transform-origin)]",
   "data-[side=top]:-mb-1 data-[side=top]:-translate-y-1",
   "data-[side=bottom]:-mt-1 data-[side=bottom]:translate-y-1",

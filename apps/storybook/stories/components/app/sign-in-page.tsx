@@ -1,11 +1,11 @@
 import React from "react";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import {
   SignInForm,
   type SignInFormProps,
   type SignInMethod,
-} from "@mof-malaysia/myds-react/sign-in-form";
+} from "@mof-malaysia/ftds-react/sign-in-form";
 import { AccessBrand, AccessFooter, wait } from "./access-brand";
 
 /** Citizen sign-in: MyDigital ID first, email and password as the fallback. */

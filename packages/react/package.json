@@ -1,8 +1,8 @@
 {
-  "name": "@mof-malaysia/myds-react",
-  "version": "2.0.0",
+  "name": "@mof-malaysia/ftds-react",
+  "version": "0.1.0",
   "private": true,
-  "description": "MYDS React component source for the shadcn registry. Not published to npm.",
+  "description": "FTDS React component source for the shadcn registry. Not published to npm.",
   "scripts": {
     "dev": "echo 'Build disabled - component source only'",
     "build": "echo 'Build disabled - component source only'",

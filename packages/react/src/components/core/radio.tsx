@@ -58,10 +58,11 @@ Radio.displayName = "Radio";
 
 const RadioItem: FunctionComponent<
   ComponentProps<"div"> & { disabled?: boolean }
-> = ({ className, children, ...props }) => {
+> = ({ className, children, disabled: itemDisabled, ...props }) => {
   const { disabled } = useContext(RadioContext);
   return (
-    <RadioItemContext.Provider value={{ disabled: props.disabled ?? disabled }}>
+    // `disabled` reaches the RadioButton through context; a div has no disabled state
+    <RadioItemContext.Provider value={{ disabled: itemDisabled ?? disabled }}>
       <div className={clx("flex items-center gap-3", className)} {...props}>
         {children}
       </div>
@@ -84,15 +85,17 @@ const RadioButton = React.forwardRef<
     <RadioPrimitive.Root
       ref={ref}
       className={clx(
-        // DESIGN.md, Inputs: 1.5px Control Edge stroke; checked fills MYDS Blue with an
-        // On MYDS Blue dot (theme tokens, so dark mode follows); disabled is a Well circle with a Hairline
+        // DESIGN.md, Inputs: 1.5px Control Edge stroke; checked fills FTDS Blue with an
+        // On FTDS Blue dot (theme tokens, so dark mode follows); disabled is a Well circle with a Hairline
         "bg-bg-white border-otl-control hover:border-otl-control-hover inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border-[1.5px]",
         "focus-ring transition-colors duration-150 motion-reduce:transition-none",
         "data-[invalid]:border-bg-danger-600",
         "data-[checked]:bg-bg-primary-600 data-[checked]:hover:bg-bg-primary-700 data-[checked]:border-transparent",
         "data-[disabled]:bg-bg-washed data-[disabled]:border-otl-gray-200 data-[disabled]:cursor-not-allowed",
         "data-[checked]:data-[disabled]:bg-bg-primary-disabled",
-        size === "small" ? "size-4" : "size-5",
+        size === "small" && "size-4",
+        size === "medium" && "size-5",
+        size === "large" && "size-6",
         className,
       )}
       disabled={props.disabled ?? disabled}
@@ -123,7 +126,7 @@ const RadioLabel = ({
         "text-txt-black-900 cursor-pointer",
         size === "small" && "text-label-sm",
         size === "medium" && "text-content",
-        size === "large" && "text-lg",
+        size === "large" && "text-body-lg",
         disabled && "text-txt-black-disabled cursor-not-allowed",
         className,
       )}
@@ -139,11 +142,11 @@ const RadioHintText = ({
   className,
   children,
   ...props
-}: ComponentProps<"label">) => {
+}: ComponentProps<"p">) => {
   const { size } = useContext(RadioContext);
   const { disabled } = useContext(RadioItemContext);
   return (
-    <label
+    <p
       className={clx(
         // Hints are Ink Secondary (DESIGN.md: never lighter for text the user reads)
         "text-txt-black-700",
@@ -156,7 +159,7 @@ const RadioHintText = ({
       {...props}
     >
       {children}
-    </label>
+    </p>
   );
 };
 RadioHintText.displayName = "RadioHintText";

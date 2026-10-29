@@ -6,7 +6,7 @@ import {
   PanelBody,
   PanelReference,
   PanelTitle,
-} from "@mof-malaysia/myds-react/panel";
+} from "@mof-malaysia/ftds-react/panel";
 
 /**
  * ### Overview

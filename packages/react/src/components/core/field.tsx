@@ -13,7 +13,7 @@ import { clx, type WithClassName } from "../../utils";
 /**
  * Field groups one control with its label, hint and error, and wires them up for
  * assistive technology (label `for`, `aria-describedby`, `aria-invalid`).
- * Every MYDS control (Input, TextArea, Select, Checkbox, Radio, Switch, ...) picks
+ * Every FTDS control (Input, TextArea, Select, Checkbox, Radio, Switch, ...) picks
  * up the field it sits in, so validation state flows from `Field` or `Form`.
  *
  * @example

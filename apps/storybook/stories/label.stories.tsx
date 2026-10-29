@@ -1,14 +1,14 @@
 import { fn } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory, createRender } from "../utils";
-import { Label } from "@mof-malaysia/myds-react/label";
-import { Checkbox } from "@mof-malaysia/myds-react/checkbox";
-import { Switch } from "@mof-malaysia/myds-react/switch";
+import { Label } from "@mof-malaysia/ftds-react/label";
+import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
+import { Switch } from "@mof-malaysia/ftds-react/switch";
 
 /**
  * ### Overview
  *
- * The Label component from @mof-malaysia/myds-react/label is a customizable UI element used to associate text with form controls like checkboxes and toggles. It accepts props such as htmlFor to link it to a specific form element and size to adjust its appearance. This component ensures accessibility and consistent styling across the application.
+ * The Label component from @mof-malaysia/ftds-react/label is a customizable UI element used to associate text with form controls like checkboxes and toggles. It accepts props such as htmlFor to link it to a specific form element and size to adjust its appearance. This component ensures accessibility and consistent styling across the application.
  *
  *
  * > Label cantik dipandang mata,
@@ -19,7 +19,7 @@ import { Switch } from "@mof-malaysia/myds-react/switch";
  *
  * ### Usage
  * ```tsx
- * import Label from "@mof-malaysia/myds-react/label";
+ * import Label from "@mof-malaysia/ftds-react/label";
  *
  *  <Label htmlFor="checkbox" size={size}>
  *   Auto-delete notifications

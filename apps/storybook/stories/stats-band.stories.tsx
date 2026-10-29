@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { StatsBand } from "@mof-malaysia/myds-react/stats-band";
+import { StatsBand } from "@mof-malaysia/ftds-react/stats-band";
 
 /**
  * ### Overview

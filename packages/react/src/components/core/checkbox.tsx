@@ -9,8 +9,8 @@ import { forwardRef, ForwardRefExoticComponent, useState } from "react";
 
 /**
  * Checkbox (DESIGN.md, Inputs): a 1.5px Control Edge stroke on Sheet; checked and
- * indeterminate fill MYDS Blue with an On MYDS Blue mark (theme tokens, so dark mode
- * gets Dark MYDS Blue with a dark mark). The focus ring is the shared solid 2px ring,
+ * indeterminate fill FTDS Blue with an On FTDS Blue mark (theme tokens, so dark mode
+ * gets Dark FTDS Blue with a dark mark). The focus ring is the shared solid 2px ring,
  * and disabled is a Well box with a Hairline rather than a faded one.
  */
 const checkbox_cva = cva(
@@ -30,7 +30,7 @@ const checkbox_cva = cva(
       size: {
         small: "size-4 rounded-[4px]",
         medium: "size-5 rounded-[5px]",
-        large: "size-5 rounded-[5px]",
+        large: "size-6 rounded-[6px]",
       },
     },
     defaultVariants: {
@@ -52,7 +52,7 @@ const checkbox_icon_cva = cva(
       size: {
         small: "size-3 stroke-[1.5px]",
         medium: "size-4 stroke-[2px]",
-        large: "size-4 stroke-[2px]",
+        large: "size-5 stroke-[2px]",
       },
     },
     defaultVariants: {

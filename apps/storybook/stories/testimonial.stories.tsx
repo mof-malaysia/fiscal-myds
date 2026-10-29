@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Testimonial } from "@mof-malaysia/myds-react/testimonial";
+import { Testimonial } from "@mof-malaysia/ftds-react/testimonial";
 
 /**
  * ### Overview

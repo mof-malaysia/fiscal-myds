@@ -5,7 +5,7 @@ import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuTrigger,
-} from "@mof-malaysia/myds-react/context-menu";
+} from "@mof-malaysia/ftds-react/context-menu";
 import {
   MenuCheckboxItem,
   MenuContent,
@@ -14,7 +14,7 @@ import {
   MenuShortcut,
   MenuSubmenu,
   MenuSubmenuTrigger,
-} from "@mof-malaysia/myds-react/menu";
+} from "@mof-malaysia/ftds-react/menu";
 
 /**
  * ### Overview

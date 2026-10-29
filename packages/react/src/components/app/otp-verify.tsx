@@ -107,6 +107,8 @@ interface OtpVerifyLabels {
   resend: string;
   resendWaiting: string;
   noCode: string;
+  /** Before `noCode` when `expiresInMinutes` is set; `{minutes}` is replaced. */
+  expiry: string;
   otherMethod: string;
 }
 
@@ -118,7 +120,8 @@ const DEFAULT_LABELS: OtpVerifyLabels = {
   pending: "Checking the code…",
   resend: "Send a new code",
   resendWaiting: "Send a new code in {seconds}s",
-  noCode: "The code expires in 10 minutes. Didn't get it?",
+  noCode: "Didn't get a code?",
+  expiry: "The code expires in {minutes} minutes.",
   otherMethod: "Use another way to verify",
 };
 
@@ -136,6 +139,8 @@ interface OtpVerifyProps
   onResend?: () => void;
   /** Seconds before "Send a new code" can be pressed. @default 60 */
   resendSeconds?: number;
+  /** How long the code works, stated above the resend button when set. */
+  expiresInMinutes?: number;
   /** A wrong or expired code. */
   error?: ReactNode;
   /** While the code is being checked. */
@@ -162,6 +167,7 @@ const OtpVerify = forwardRef<HTMLFormElement, OtpVerifyProps>(
       autoSubmit = true,
       onResend,
       resendSeconds = 60,
+      expiresInMinutes,
       error,
       pending = false,
       otherMethodHref,
@@ -230,12 +236,16 @@ const OtpVerify = forwardRef<HTMLFormElement, OtpVerifyProps>(
           disabled={pending || code.length < length}
           className="w-full justify-center"
         >
-          {pending && <Spinner color="white" />}
+          {pending && <Spinner color="white" label={null} />}
           {pending ? labels.pending : labels.submit}
         </Button>
 
         <div className="flex flex-col items-center gap-1 text-center">
-          <p className="text-content text-txt-black-700">{labels.noCode}</p>
+          <p className="text-content text-txt-black-700">
+            {expiresInMinutes !== undefined &&
+              `${labels.expiry.replace("{minutes}", String(expiresInMinutes))} `}
+            {labels.noCode}
+          </p>
           <ResendButton
             seconds={resendSeconds}
             onResend={onResend}

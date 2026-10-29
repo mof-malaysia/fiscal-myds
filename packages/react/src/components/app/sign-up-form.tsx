@@ -252,7 +252,7 @@ interface SignUpFormProps
   showPhone?: boolean;
   termsHref?: string;
   privacyHref?: string;
-  /** Renders the consent links; pass your router's link. Defaults to a myds Link that opens in a new tab. */
+  /** Renders the consent links; pass your router's link. Defaults to a ftds Link that opens in a new tab. */
   renderLink?: (href: string, children: ReactNode) => ReactNode;
   /** Rules for the password checklist. */
   passwordRules?: PasswordRule[];
@@ -354,7 +354,7 @@ const SignUpForm = forwardRef<HTMLFormElement, SignUpFormProps>(
           textField(
             "phone",
             <>
-              {labels.phone}
+              {labels.phone}{" "}
               <span className="text-txt-black-700 font-normal">
                 {labels.optional}
               </span>
@@ -398,7 +398,7 @@ const SignUpForm = forwardRef<HTMLFormElement, SignUpFormProps>(
           disabled={pending}
           className="w-full justify-center"
         >
-          {pending && <Spinner color="white" />}
+          {pending && <Spinner color="white" label={null} />}
           {pending ? labels.pending : labels.submit}
         </Button>
       </form>

@@ -1,10 +1,10 @@
 import React from "react";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import {
   SignUpForm,
   type SignUpFormProps,
-} from "@mof-malaysia/myds-react/sign-up-form";
+} from "@mof-malaysia/ftds-react/sign-up-form";
 import {
   AccessBrand,
   AccessFooter,

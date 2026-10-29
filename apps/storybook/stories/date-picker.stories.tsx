@@ -1,4 +1,4 @@
-import { DatePicker } from "@mof-malaysia/myds-react/date-picker";
+import { DatePicker } from "@mof-malaysia/ftds-react/date-picker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createStory } from "../utils";
 import { fn } from "storybook/test";
@@ -10,7 +10,7 @@ import { fn } from "storybook/test";
  * ### Usage
  * ```ts
  * import * as React from "react"
- * import DatePicker from "@mof-malaysia/myds-react/date-picker";
+ * import DatePicker from "@mof-malaysia/ftds-react/date-picker";
  *
  * export function DatePickerDemo() {
  *    const [date, setDate] = React.useState<Date>();

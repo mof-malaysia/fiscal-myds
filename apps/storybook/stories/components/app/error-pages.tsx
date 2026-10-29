@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorPage } from "@mof-malaysia/myds-react/error-page";
+import { ErrorPage } from "@mof-malaysia/ftds-react/error-page";
 import { AccountChrome } from "./account-chrome";
 
 export const NotFoundPage = () => (

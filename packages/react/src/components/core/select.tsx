@@ -141,7 +141,7 @@ const SelectContext = React.createContext<SelectContextValue>({
 const useIsoLayoutEffect =
   typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
-/** MYDS values ("" = empty) to Base UI values (`null` = empty). */
+/** FTDS values ("" = empty) to Base UI values (`null` = empty). */
 const normalise = (
   value: string | string[] | undefined | null,
   multiple: boolean,

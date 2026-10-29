@@ -4,7 +4,7 @@ import { createRender } from "../utils";
 import {
   InsetText,
   InsetTextAuthor,
-} from "@mof-malaysia/myds-react/inset-text";
+} from "@mof-malaysia/ftds-react/inset-text";
 
 /**
  * ### Overview

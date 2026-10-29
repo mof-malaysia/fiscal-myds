@@ -13,7 +13,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { clx, type WithClassName } from "../../utils";
 
 /**
- * Avatar shows a person's photo, falling back to their initials on a soft MYDS Blue
+ * Avatar shows a person's photo, falling back to their initials on a soft FTDS Blue
  * wash while the image loads or if it fails. Always give the image `alt` text, or
  * put the person's name next to the avatar and leave `alt=""`.
  *

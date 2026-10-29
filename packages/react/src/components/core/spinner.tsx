@@ -21,7 +21,8 @@ const spinnerVariants = cva(
       },
       color: {
         gray: "to-txt-black-500",
-        white: "to-white",
+        // On filled buttons: the button's own text colour, so dark mode follows
+        white: "to-txt-white",
       },
     },
     defaultVariants: {
@@ -36,6 +37,12 @@ interface SpinnerProps
     Omit<ComponentProps<"div">, "color"> {
   className?: string;
   show?: boolean;
+  /**
+   * What is loading, read by screen readers. Pass `null` when text beside the
+   * spinner already says it (the spinner is then hidden from them).
+   * @default "Loading"
+   */
+  label?: string | null;
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({
@@ -43,6 +50,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
   color,
   className = "",
   show = true,
+  label = "Loading",
   ...props
 }) => {
   if (!show) {
@@ -50,6 +58,9 @@ export const Spinner: React.FC<SpinnerProps> = ({
   }
   return (
     <div
+      {...(label === null
+        ? { "aria-hidden": true }
+        : { role: "status", "aria-label": label })}
       {...props}
       className={clx("relative flex items-center justify-center", className)}
     >

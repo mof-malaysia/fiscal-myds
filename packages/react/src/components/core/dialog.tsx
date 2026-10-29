@@ -154,7 +154,7 @@ const DialogBody: ForwardRefExoticComponent<
           className={clx(
             "fixed inset-0 z-[900]",
             "h-full w-full",
-            "bg-gray-700/60",
+            "bg-scrim/40",
             "data-[open]:animate-in data-[open]:fade-in-0",
             "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:fade-out-0",
             // Same duration as the popup, so neither finishes early and snaps back
@@ -302,11 +302,7 @@ const DialogFooter: ForwardRefExoticComponent<DialogFooterProps> = forwardRef(
     return (
       <div className={clx(dialog_footer_cva({ border, align }), className)}>
         {action}
-        <div
-          ref={ref}
-          className={clx(dialog_action_cva({ align }), className)}
-          {...props}
-        />
+        <div ref={ref} className={dialog_action_cva({ align })} {...props} />
       </div>
     );
   },

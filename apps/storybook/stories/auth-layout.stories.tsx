@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { AuthLayout } from "@mof-malaysia/myds-react/auth-layout";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Link } from "@mof-malaysia/myds-react/link";
+import { AuthLayout } from "@mof-malaysia/ftds-react/auth-layout";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Link } from "@mof-malaysia/ftds-react/link";
 import { AccessBrand, AccessFooter } from "./components/app/access-brand";
 
 /**

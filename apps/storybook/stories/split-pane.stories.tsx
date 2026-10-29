@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { SplitPane } from "@mof-malaysia/myds-react/split-pane";
+import { SplitPane } from "@mof-malaysia/ftds-react/split-pane";
 
 /**
  * ### Overview

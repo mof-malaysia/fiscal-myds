@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createRender, createStory } from "../utils";
-import { Switch } from "@mof-malaysia/myds-react/switch";
+import { Switch } from "@mof-malaysia/ftds-react/switch";
 
 /**
  * ### Overview

@@ -6,12 +6,12 @@ import {
   MastheadTrigger,
   MastheadSection,
   MastheadTitle,
-} from "@mof-malaysia/myds-react/masthead";
+} from "@mof-malaysia/ftds-react/masthead";
 import {
   Lock2Icon,
   PutrajayaIcon,
   LockFillIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 import { createStory } from "../utils";
 
 /**
@@ -29,7 +29,7 @@ import { createStory } from "../utils";
  * - Keyboard navigation support
  *
  * ### Accessibility
- * - Keyboard shortcut: Alt + Cmd/Ctrl + Enter to toggle panel
+ * - The trigger is a button named by its text, with its expanded state announced
  * - Screen reader friendly content structure
  * - High contrast text and icons
  *
@@ -41,7 +41,7 @@ import { createStory } from "../utils";
  * ### Usage
  * ```tsx
  * // Basic usage with all defaults
- * import { Masthead } from "@mof-malaysia/myds-react/masthead";
+ * import { Masthead } from "@mof-malaysia/ftds-react/masthead";
  *
  * const MyPage = () => <Masthead />;
  *

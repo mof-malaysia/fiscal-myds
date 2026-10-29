@@ -4,7 +4,7 @@ import { createRender } from "../utils";
 import {
   PhaseBanner,
   PhaseBannerLink,
-} from "@mof-malaysia/myds-react/phase-banner";
+} from "@mof-malaysia/ftds-react/phase-banner";
 
 /**
  * ### Overview

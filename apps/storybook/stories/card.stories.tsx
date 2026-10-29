@@ -9,8 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@mof-malaysia/myds-react/card";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/card";
+import { Button } from "@mof-malaysia/ftds-react/button";
 
 /**
  * ### Overview

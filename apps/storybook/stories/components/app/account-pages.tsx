@@ -3,30 +3,30 @@ import {
   SettingsLayout,
   SettingsRow,
   SettingsSection,
-} from "@mof-malaysia/myds-react/settings-layout";
+} from "@mof-malaysia/ftds-react/settings-layout";
 import {
   NotificationList,
   type NotificationItem,
-} from "@mof-malaysia/myds-react/notification-list";
+} from "@mof-malaysia/ftds-react/notification-list";
 import {
   Field,
   FieldDescription,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
-import { Input } from "@mof-malaysia/myds-react/input";
-import { PasswordInput } from "@mof-malaysia/myds-react/password-input";
-import { Switch } from "@mof-malaysia/myds-react/switch";
+} from "@mof-malaysia/ftds-react/field";
+import { Input } from "@mof-malaysia/ftds-react/input";
+import { PasswordInput } from "@mof-malaysia/ftds-react/password-input";
+import { Switch } from "@mof-malaysia/ftds-react/switch";
 import {
   Radio,
   RadioButton,
   RadioItem,
   RadioLabel,
-} from "@mof-malaysia/myds-react/radio";
-import { ToggleGroup } from "@mof-malaysia/myds-react/toggle-group";
-import { Toggle } from "@mof-malaysia/myds-react/toggle";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { Tag } from "@mof-malaysia/myds-react/tag";
-import { DesktopIcon, MobileIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/radio";
+import { ToggleGroup } from "@mof-malaysia/ftds-react/toggle-group";
+import { Toggle } from "@mof-malaysia/ftds-react/toggle";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
+import { DesktopIcon, MobileIcon } from "@mof-malaysia/ftds-react/icon";
 import { AccountChrome } from "./account-chrome";
 import { NOTIFICATIONS, NOW, SETTINGS_NAV } from "./account-data";
 

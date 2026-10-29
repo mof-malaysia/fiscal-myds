@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Separator } from "@mof-malaysia/myds-react/separator";
+import { Separator } from "@mof-malaysia/ftds-react/separator";
 
 /**
  * ### Overview

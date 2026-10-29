@@ -1,0 +1,41 @@
+---
+import type { NavSection } from "~/lib/nav";
+
+interface Props {
+  sections: NavSection[];
+  current: string;
+}
+
+const { sections, current } = Astro.props;
+---
+
+<nav aria-label="Docs">
+  {
+    sections.map((section) => (
+      <div class="mb-6">
+        <p class="text-txt-black-900 mb-1 px-3 text-sm font-semibold">{section.title}</p>
+        <ul>
+          {section.links.map((link) => {
+            const active = link.id === current;
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  class:list={[
+                    "focus-ring-inset flex min-h-9 items-center rounded-md px-3 text-sm font-medium transition-colors",
+                    active
+                      ? "bg-bg-primary-50 text-txt-primary"
+                      : "text-txt-black-700 hover:bg-bg-raised hover:text-txt-black-900",
+                  ]}
+                >
+                  {link.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
+</nav>

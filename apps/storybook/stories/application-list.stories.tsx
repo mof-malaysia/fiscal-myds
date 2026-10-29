@@ -4,8 +4,8 @@ import { createRender } from "../utils";
 import {
   ApplicationList,
   type ApplicationListItem,
-} from "@mof-malaysia/myds-react/application-list";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/application-list";
+import { Button } from "@mof-malaysia/ftds-react/button";
 
 /**
  * ### Overview

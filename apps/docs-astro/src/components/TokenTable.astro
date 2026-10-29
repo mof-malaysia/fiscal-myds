@@ -1,0 +1,71 @@
+---
+/**
+ * Design tokens a component uses. Colour tokens (`--bg-primary-600`) show a
+ * swatch and their light and dark values, resolved from the style package.
+ * Other tokens show the `value` given.
+ */
+import { resolveColor, type ResolvedColor } from "~/lib/tokens";
+
+interface Row {
+  category: string;
+  token: string;
+  value?: string;
+  use: string;
+}
+
+interface Props {
+  rows: Row[];
+}
+
+const rows = Astro.props.rows.map((row) => ({
+  ...row,
+  color: row.value ? undefined : resolveColor(row.token),
+}));
+
+const label = (c: ResolvedColor) => (c.alpha < 1 ? `${c.hex} / ${Math.round(c.alpha * 100)}%` : c.hex);
+---
+
+<div class="not-prose my-4 overflow-x-auto" role="region" aria-label="Design tokens" tabindex="0">
+  <table class="w-full min-w-[40rem] text-left text-sm">
+    <thead>
+      <tr class="border-otl-gray-200 text-txt-black-700 border-b">
+        <th scope="col" class="py-2 pr-4 font-medium">Category</th>
+        <th scope="col" class="py-2 pr-4 font-medium">Token</th>
+        <th scope="col" class="py-2 pr-4 font-medium">Value</th>
+        <th scope="col" class="py-2 font-medium">Where it's used</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr class="border-otl-gray-200 border-b align-top">
+            <td class="text-txt-black-700 py-3 pr-4">{row.category}</td>
+            <td class="py-3 pr-4">
+              <code class="text-txt-black-900 font-mono text-[0.8125rem]">{row.token}</code>
+            </td>
+            <td class="py-3 pr-4">
+              {row.color?.light ? (
+                <div class="flex items-start gap-2">
+                  <span
+                    class="ring-otl-gray-200 mt-0.5 size-4 shrink-0 rounded-xs ring-1"
+                    style={`background: rgb(var(${row.token}))`}
+                    aria-hidden="true"
+                  />
+                  <span class="text-txt-black-900 font-mono text-[0.8125rem] leading-5 whitespace-nowrap">
+                    {label(row.color.light)}
+                    {row.color.dark && (
+                      <span class="text-txt-black-700 block">Dark: {label(row.color.dark)}</span>
+                    )}
+                  </span>
+                </div>
+              ) : (
+                <span class="text-txt-black-900 font-mono text-[0.8125rem]">{row.value ?? "–"}</span>
+              )}
+            </td>
+            <td class="text-txt-black-700 py-3">{row.use}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

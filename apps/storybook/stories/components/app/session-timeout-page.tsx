@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { SessionTimeoutDialog } from "@mof-malaysia/myds-react/session-timeout";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { SessionTimeoutDialog } from "@mof-malaysia/ftds-react/session-timeout";
 import { AccessBrand } from "./access-brand";
 
 /** A signed-in screen with the inactivity warning open over it. */

@@ -1,0 +1,3747 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-icons",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "icon-accessible",
+      "title": "Accessible icon",
+      "description": "The AccessibleIcon icon component, installed to components/ui/icons/accessible.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/accessible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-align-center",
+      "title": "Align center icon",
+      "description": "The AlignCenterIcon icon component, installed to components/ui/icons/align-center.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-center.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-align-justify",
+      "title": "Align justify icon",
+      "description": "The AlignJustifyIcon icon component, installed to components/ui/icons/align-justify.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-justify.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-align-left",
+      "title": "Align left icon",
+      "description": "The AlignLeftIcon icon component, installed to components/ui/icons/align-left.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-left.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-align-right",
+      "title": "Align right icon",
+      "description": "The AlignRightIcon icon component, installed to components/ui/icons/align-right.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-right.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-back-close",
+      "title": "Arrow back close icon",
+      "description": "The ArrowBackCloseIcon icon component, installed to components/ui/icons/arrow-back-close.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-back-close.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-back",
+      "title": "Arrow back icon",
+      "description": "The ArrowBackIcon icon component, installed to components/ui/icons/arrow-back.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-back.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-down",
+      "title": "Arrow down icon",
+      "description": "The ArrowDownIcon icon component, installed to components/ui/icons/arrow-down.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-down.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-forward-close",
+      "title": "Arrow forward close icon",
+      "description": "The ArrowForwardCloseIcon icon component, installed to components/ui/icons/arrow-forward-close.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-forward-close.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-forward",
+      "title": "Arrow forward icon",
+      "description": "The ArrowForwardIcon icon component, installed to components/ui/icons/arrow-forward.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-forward.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-incoming",
+      "title": "Arrow incoming icon",
+      "description": "The ArrowIncomingIcon icon component, installed to components/ui/icons/arrow-incoming.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-incoming.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-outgoing",
+      "title": "Arrow outgoing icon",
+      "description": "The ArrowOutgoingIcon icon component, installed to components/ui/icons/arrow-outgoing.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-outgoing.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-arrow-up",
+      "title": "Arrow up icon",
+      "description": "The ArrowUpIcon icon component, installed to components/ui/icons/arrow-up.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-up.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-attachment",
+      "title": "Attachment icon",
+      "description": "The AttachmentIcon icon component, installed to components/ui/icons/attachment.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/attachment.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-bell",
+      "title": "Bell icon",
+      "description": "The BellIcon icon component, installed to components/ui/icons/bell.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bell.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-bold",
+      "title": "Bold icon",
+      "description": "The BoldIcon icon component, installed to components/ui/icons/bold.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bold.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-bolt",
+      "title": "Bolt icon",
+      "description": "The BoltIcon icon component, installed to components/ui/icons/bolt.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bolt.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-book",
+      "title": "Book icon",
+      "description": "The BookIcon icon component, installed to components/ui/icons/book.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/book.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-bulleted-list",
+      "title": "Bulleted list icon",
+      "description": "The BulletedListIcon icon component, installed to components/ui/icons/bulleted-list.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bulleted-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-button",
+      "title": "Button icon",
+      "description": "The ButtonIcon icon component, installed to components/ui/icons/button.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-calendar",
+      "title": "Calendar icon",
+      "description": "The CalendarIcon icon component, installed to components/ui/icons/calendar.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-carousel",
+      "title": "Carousel icon",
+      "description": "The CarouselIcon icon component, installed to components/ui/icons/carousel.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chat-bubble",
+      "title": "Chat bubble icon",
+      "description": "The ChatBubbleIcon icon component, installed to components/ui/icons/chat-bubble.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chat-bubble.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-check-circle-fill",
+      "title": "Check circle fill icon",
+      "description": "The CheckCircleFillIcon icon component, installed to components/ui/icons/check-circle-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-circle-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-check-circle",
+      "title": "Check circle icon",
+      "description": "The CheckCircleIcon icon component, installed to components/ui/icons/check-circle.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-check-shield",
+      "title": "Check shield icon",
+      "description": "The CheckShieldIcon icon component, installed to components/ui/icons/check-shield.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-shield.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-check-star",
+      "title": "Check star icon",
+      "description": "The CheckStarIcon icon component, installed to components/ui/icons/check-star.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-star.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-check",
+      "title": "Check icon",
+      "description": "The CheckIcon icon component, installed to components/ui/icons/check.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-down-fill",
+      "title": "Chevron down fill icon",
+      "description": "The ChevronDownFillIcon icon component, installed to components/ui/icons/chevron-down-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-down-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-down",
+      "title": "Chevron down icon",
+      "description": "The ChevronDownIcon icon component, installed to components/ui/icons/chevron-down.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-down.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-left-fill",
+      "title": "Chevron left fill icon",
+      "description": "The ChevronLeftFillIcon icon component, installed to components/ui/icons/chevron-left-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-left-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-left",
+      "title": "Chevron left icon",
+      "description": "The ChevronLeftIcon icon component, installed to components/ui/icons/chevron-left.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-left.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-right-fill",
+      "title": "Chevron right fill icon",
+      "description": "The ChevronRightFillIcon icon component, installed to components/ui/icons/chevron-right-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-right-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-right",
+      "title": "Chevron right icon",
+      "description": "The ChevronRightIcon icon component, installed to components/ui/icons/chevron-right.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-right.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-up-fill",
+      "title": "Chevron up fill icon",
+      "description": "The ChevronUpFillIcon icon component, installed to components/ui/icons/chevron-up-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-up-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-chevron-up",
+      "title": "Chevron up icon",
+      "description": "The ChevronUpIcon icon component, installed to components/ui/icons/chevron-up.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-up.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-clock",
+      "title": "Clock icon",
+      "description": "The ClockIcon icon component, installed to components/ui/icons/clock.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/clock.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-column-collapse",
+      "title": "Column collapse icon",
+      "description": "The ColumnCollapseIcon icon component, installed to components/ui/icons/column-collapse.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/column-collapse.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-column-expand",
+      "title": "Column expand icon",
+      "description": "The ColumnExpandIcon icon component, installed to components/ui/icons/column-expand.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/column-expand.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-component",
+      "title": "Component icon",
+      "description": "The ComponentIcon icon component, installed to components/ui/icons/component.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/component.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-copy",
+      "title": "Copy icon",
+      "description": "The CopyIcon icon component, installed to components/ui/icons/copy.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/copy.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-cross-circle",
+      "title": "Cross circle icon",
+      "description": "The CrossCircleIcon icon component, installed to components/ui/icons/cross-circle.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cross-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-cross-fill",
+      "title": "Cross fill icon",
+      "description": "The CrossFillIcon icon component, installed to components/ui/icons/cross-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cross-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-cross",
+      "title": "Cross icon",
+      "description": "The CrossIcon icon component, installed to components/ui/icons/cross.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cross.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-cursor",
+      "title": "Cursor icon",
+      "description": "The CursorIcon icon component, installed to components/ui/icons/cursor.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cursor.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-database",
+      "title": "Database icon",
+      "description": "The DatabaseIcon icon component, installed to components/ui/icons/database.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/database.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-desktop",
+      "title": "Desktop icon",
+      "description": "The DesktopIcon icon component, installed to components/ui/icons/desktop.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/desktop.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-direction",
+      "title": "Direction icon",
+      "description": "The DirectionIcon icon component, installed to components/ui/icons/direction.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/direction.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-document-add",
+      "title": "Document add icon",
+      "description": "The DocumentAddIcon icon component, installed to components/ui/icons/document-add.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document-add.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-document-filled",
+      "title": "Document filled icon",
+      "description": "The DocumentFilledIcon icon component, installed to components/ui/icons/document-filled.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document-filled.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-document-minus",
+      "title": "Document minus icon",
+      "description": "The DocumentMinusIcon icon component, installed to components/ui/icons/document-minus.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document-minus.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-document",
+      "title": "Document icon",
+      "description": "The DocumentIcon icon component, installed to components/ui/icons/document.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-download",
+      "title": "Download icon",
+      "description": "The DownloadIcon icon component, installed to components/ui/icons/download.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/download.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-drop-arrow-down",
+      "title": "Drop arrow down icon",
+      "description": "The DropArrowDownIcon icon component, installed to components/ui/icons/drop-arrow-down.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/drop-arrow-down.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-duplicate",
+      "title": "Duplicate icon",
+      "description": "The DuplicateIcon icon component, installed to components/ui/icons/duplicate.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/duplicate.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-edit",
+      "title": "Edit icon",
+      "description": "The EditIcon icon component, installed to components/ui/icons/edit.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/edit.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-ellipsis-vertical",
+      "title": "Ellipsis vertical icon",
+      "description": "The EllipsisVerticalIcon icon component, installed to components/ui/icons/ellipsis-vertical.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/ellipsis-vertical.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-ellipsis",
+      "title": "Ellipsis icon",
+      "description": "The EllipsisIcon icon component, installed to components/ui/icons/ellipsis.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/ellipsis.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-email",
+      "title": "Email icon",
+      "description": "The EmailIcon icon component, installed to components/ui/icons/email.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/email.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-excel-media",
+      "title": "Excel media icon",
+      "description": "The ExcelMediaIcon icon component, installed to components/ui/icons/excel-media.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/excel-media.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-excel",
+      "title": "Excel icon",
+      "description": "The ExcelIcon icon component, installed to components/ui/icons/excel.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/excel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-expand",
+      "title": "Expand icon",
+      "description": "The ExpandIcon icon component, installed to components/ui/icons/expand.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/expand.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-eye-hide",
+      "title": "Eye hide icon",
+      "description": "The EyeHideIcon icon component, installed to components/ui/icons/eye-hide.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/eye-hide.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-eye-show",
+      "title": "Eye show icon",
+      "description": "The EyeShowIcon icon component, installed to components/ui/icons/eye-show.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/eye-show.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-facebook",
+      "title": "Facebook icon",
+      "description": "The FacebookIcon icon component, installed to components/ui/icons/facebook.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/facebook.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-figma",
+      "title": "Figma icon",
+      "description": "The FigmaIcon icon component, installed to components/ui/icons/figma.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/figma.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-filter-asc",
+      "title": "Filter asc icon",
+      "description": "The FilterAscIcon icon component, installed to components/ui/icons/filter-asc.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/filter-asc.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-filter-desc",
+      "title": "Filter desc icon",
+      "description": "The FilterDescIcon icon component, installed to components/ui/icons/filter-desc.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/filter-desc.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-filter",
+      "title": "Filter icon",
+      "description": "The FilterIcon icon component, installed to components/ui/icons/filter.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/filter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-flag",
+      "title": "Flag icon",
+      "description": "The FlagIcon icon component, installed to components/ui/icons/flag.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/flag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-folder-minus",
+      "title": "Folder minus icon",
+      "description": "The FolderMinusIcon icon component, installed to components/ui/icons/folder-minus.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/folder-minus.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-folder-plus",
+      "title": "Folder plus icon",
+      "description": "The FolderPlusIcon icon component, installed to components/ui/icons/folder-plus.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/folder-plus.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-folder",
+      "title": "Folder icon",
+      "description": "The FolderIcon icon component, installed to components/ui/icons/folder.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/folder.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-font",
+      "title": "Font icon",
+      "description": "The FontIcon icon component, installed to components/ui/icons/font.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/font.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-forms",
+      "title": "Forms icon",
+      "description": "The FormsIcon icon component, installed to components/ui/icons/forms.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/forms.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-gallery",
+      "title": "Gallery icon",
+      "description": "The GalleryIcon icon component, installed to components/ui/icons/gallery.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/gallery.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-github",
+      "title": "Github icon",
+      "description": "The GithubIcon icon component, installed to components/ui/icons/github.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/github.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-globe",
+      "title": "Globe icon",
+      "description": "The GlobeIcon icon component, installed to components/ui/icons/globe.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/globe.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-google",
+      "title": "Google icon",
+      "description": "The GoogleIcon icon component, installed to components/ui/icons/google.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/google.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-govt-office",
+      "title": "Govt office icon",
+      "description": "The GovtOfficeIcon icon component, installed to components/ui/icons/govt-office.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/govt-office.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-grid",
+      "title": "Grid icon",
+      "description": "The GridIcon icon component, installed to components/ui/icons/grid.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-hamburger-menu",
+      "title": "Hamburger menu icon",
+      "description": "The HamburgerMenuIcon icon component, installed to components/ui/icons/hamburger-menu.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/hamburger-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-heart",
+      "title": "Heart icon",
+      "description": "The HeartIcon icon component, installed to components/ui/icons/heart.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/heart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-home",
+      "title": "Home icon",
+      "description": "The HomeIcon icon component, installed to components/ui/icons/home.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/home.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-info",
+      "title": "Info icon",
+      "description": "The InfoIcon icon component, installed to components/ui/icons/info.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/info.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-input-field",
+      "title": "Input field icon",
+      "description": "The InputFieldIcon icon component, installed to components/ui/icons/input-field.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/input-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-instagram",
+      "title": "Instagram icon",
+      "description": "The InstagramIcon icon component, installed to components/ui/icons/instagram.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/instagram.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-italic",
+      "title": "Italic icon",
+      "description": "The ItalicIcon icon component, installed to components/ui/icons/italic.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/italic.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-ambulance-mers",
+      "title": "Legacy ambulance mers icon",
+      "description": "The AmbulanceMERSIcon icon component, installed to components/ui/icons/legacy-ambulance-mers.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-ambulance-mers.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-ballot-spr",
+      "title": "Legacy ballot spr icon",
+      "description": "The BallotSPRIcon icon component, installed to components/ui/icons/legacy-ballot-spr.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-ballot-spr.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-blood-pdn",
+      "title": "Legacy blood pdn icon",
+      "description": "The BloodPDNIcon icon component, installed to components/ui/icons/legacy-blood-pdn.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-blood-pdn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-bnm",
+      "title": "Legacy bnm icon",
+      "description": "The BNMIcon icon component, installed to components/ui/icons/legacy-bnm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-bnm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-book-moe",
+      "title": "Legacy book moe icon",
+      "description": "The BookMOEIcon icon component, installed to components/ui/icons/legacy-book-moe.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-book-moe.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-car-jpj",
+      "title": "Legacy car jpj icon",
+      "description": "The CarJPJIcon icon component, installed to components/ui/icons/legacy-car-jpj.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-car-jpj.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-document-mof",
+      "title": "Legacy document mof icon",
+      "description": "The DocumentMOFIcon icon component, installed to components/ui/icons/legacy-document-mof.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-document-mof.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-dosm",
+      "title": "Legacy dosm icon",
+      "description": "The DOSMIcon icon component, installed to components/ui/icons/legacy-dosm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-dosm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-fire-bomba",
+      "title": "Legacy fire bomba icon",
+      "description": "The FireBOMBAIcon icon component, installed to components/ui/icons/legacy-fire-bomba.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-fire-bomba.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-flood-jps",
+      "title": "Legacy flood jps icon",
+      "description": "The FloodJPSIcon icon component, installed to components/ui/icons/legacy-flood-jps.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-flood-jps.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-helmet-jpa",
+      "title": "Legacy helmet jpa icon",
+      "description": "The HelmetJPAIcon icon component, installed to components/ui/icons/legacy-helmet-jpa.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-helmet-jpa.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-helping-hand-icu-jpm",
+      "title": "Legacy helping hand icu jpm icon",
+      "description": "The HelpingHandICUJPMIcon icon component, installed to components/ui/icons/legacy-helping-hand-icu-jpm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-helping-hand-icu-jpm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-hospital-moh",
+      "title": "Legacy hospital moh icon",
+      "description": "The HospitalMOHIcon icon component, installed to components/ui/icons/legacy-hospital-moh.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-hospital-moh.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-identity-jpn",
+      "title": "Legacy identity jpn icon",
+      "description": "The IdentityJPNIcon icon component, installed to components/ui/icons/legacy-identity-jpn.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-identity-jpn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-internet-mcmc",
+      "title": "Legacy internet mcmc icon",
+      "description": "The InternetMCMCIcon icon component, installed to components/ui/icons/legacy-internet-mcmc.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-internet-mcmc.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-jakoa",
+      "title": "Legacy jakoa icon",
+      "description": "The JAKOAIcon icon component, installed to components/ui/icons/legacy-jakoa.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-jakoa.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-jata-negara",
+      "title": "Legacy jata negara icon",
+      "description": "The JataNegaraIcon icon component, installed to components/ui/icons/legacy-jata-negara.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-jata-negara.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-light-bulb-ipr-epu",
+      "title": "Legacy light bulb ipr epu icon",
+      "description": "The LightBulbIPREPUIcon icon component, installed to components/ui/icons/legacy-light-bulb-ipr-epu.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-light-bulb-ipr-epu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mampu",
+      "title": "Legacy mampu icon",
+      "description": "The MAMPUIcon icon component, installed to components/ui/icons/legacy-mampu.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mampu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-ambulance-mers",
+      "title": "Legacy mini ambulance mers icon",
+      "description": "The MiniAmbulanceMERSIcon icon component, installed to components/ui/icons/legacy-mini-ambulance-mers.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-ambulance-mers.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-ballot-spr",
+      "title": "Legacy mini ballot spr icon",
+      "description": "The MiniBallotSPRIcon icon component, installed to components/ui/icons/legacy-mini-ballot-spr.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-ballot-spr.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-blood-pdn",
+      "title": "Legacy mini blood pdn icon",
+      "description": "The MiniBloodPDNIcon icon component, installed to components/ui/icons/legacy-mini-blood-pdn.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-blood-pdn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-bnm",
+      "title": "Legacy mini bnm icon",
+      "description": "The MiniBNMIcon icon component, installed to components/ui/icons/legacy-mini-bnm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-bnm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-book-moe",
+      "title": "Legacy mini book moe icon",
+      "description": "The MiniBookMOEIcon icon component, installed to components/ui/icons/legacy-mini-book-moe.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-book-moe.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-car-jpj",
+      "title": "Legacy mini car jpj icon",
+      "description": "The MiniCarJPJIcon icon component, installed to components/ui/icons/legacy-mini-car-jpj.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-car-jpj.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-document-mof",
+      "title": "Legacy mini document mof icon",
+      "description": "The MiniDocumentMOFIcon icon component, installed to components/ui/icons/legacy-mini-document-mof.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-document-mof.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-dosm",
+      "title": "Legacy mini dosm icon",
+      "description": "The MiniDOSMIcon icon component, installed to components/ui/icons/legacy-mini-dosm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-dosm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-fire-bomba",
+      "title": "Legacy mini fire bomba icon",
+      "description": "The MiniFireBOMBAIcon icon component, installed to components/ui/icons/legacy-mini-fire-bomba.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-fire-bomba.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-flood-warning",
+      "title": "Legacy mini flood warning icon",
+      "description": "The MiniFloodWarningIcon icon component, installed to components/ui/icons/legacy-mini-flood-warning.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-flood-warning.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-helmet-jpa",
+      "title": "Legacy mini helmet jpa icon",
+      "description": "The MiniHelmetJPAIcon icon component, installed to components/ui/icons/legacy-mini-helmet-jpa.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-helmet-jpa.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-helping-hands-icu-jpm",
+      "title": "Legacy mini helping hands icu jpm icon",
+      "description": "The MiniHelpingHandsICUJPMIcon icon component, installed to components/ui/icons/legacy-mini-helping-hands-icu-jpm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-helping-hands-icu-jpm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-hospital-moh",
+      "title": "Legacy mini hospital moh icon",
+      "description": "The MiniHospitalMOHIcon icon component, installed to components/ui/icons/legacy-mini-hospital-moh.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-hospital-moh.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-identity-jpn",
+      "title": "Legacy mini identity jpn icon",
+      "description": "The MiniIdentityJPNIcon icon component, installed to components/ui/icons/legacy-mini-identity-jpn.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-identity-jpn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-internet-mcmc",
+      "title": "Legacy mini internet mcmc icon",
+      "description": "The MiniInternetMCMCIcon icon component, installed to components/ui/icons/legacy-mini-internet-mcmc.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-internet-mcmc.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-jakoa",
+      "title": "Legacy mini jakoa icon",
+      "description": "The MiniJAKOAIcon icon component, installed to components/ui/icons/legacy-mini-jakoa.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-jakoa.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-light-bulb-ipr-epu",
+      "title": "Legacy mini light bulb ipr epu icon",
+      "description": "The MiniLightBulbIPREPUIcon icon component, installed to components/ui/icons/legacy-mini-light-bulb-ipr-epu.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-light-bulb-ipr-epu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-mampu",
+      "title": "Legacy mini mampu icon",
+      "description": "The MiniMAMPUIcon icon component, installed to components/ui/icons/legacy-mini-mampu.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-mampu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-money-epf",
+      "title": "Legacy mini money epf icon",
+      "description": "The MiniMoneyEPFIcon icon component, installed to components/ui/icons/legacy-mini-money-epf.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-money-epf.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-money-kwap",
+      "title": "Legacy mini money kwap icon",
+      "description": "The MiniMoneyKWAPIcon icon component, installed to components/ui/icons/legacy-mini-money-kwap.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-money-kwap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-money-lhdn",
+      "title": "Legacy mini money lhdn icon",
+      "description": "The MiniMoneyLHDNIcon icon component, installed to components/ui/icons/legacy-mini-money-lhdn.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-money-lhdn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-passport-imigresen",
+      "title": "Legacy mini passport imigresen icon",
+      "description": "The MiniPassportImigresenIcon icon component, installed to components/ui/icons/legacy-mini-passport-imigresen.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-passport-imigresen.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-phcorp",
+      "title": "Legacy mini phcorp icon",
+      "description": "The MiniPhcorpIcon icon component, installed to components/ui/icons/legacy-mini-phcorp.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-phcorp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-police-pdrm",
+      "title": "Legacy mini police pdrm icon",
+      "description": "The MiniPolicePDRMIcon icon component, installed to components/ui/icons/legacy-mini-police-pdrm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-police-pdrm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-ribbon-ntrc",
+      "title": "Legacy mini ribbon ntrc icon",
+      "description": "The MiniRibbonNTRCIcon icon component, installed to components/ui/icons/legacy-mini-ribbon-ntrc.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-ribbon-ntrc.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-socso",
+      "title": "Legacy mini socso icon",
+      "description": "The MiniSOCSOIcon icon component, installed to components/ui/icons/legacy-mini-socso.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-socso.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-train-mot",
+      "title": "Legacy mini train mot icon",
+      "description": "The MiniTrainMOTIcon icon component, installed to components/ui/icons/legacy-mini-train-mot.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-train-mot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-unhcr",
+      "title": "Legacy mini unhcr icon",
+      "description": "The MiniUNHCRIcon icon component, installed to components/ui/icons/legacy-mini-unhcr.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-unhcr.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-weather-climate",
+      "title": "Legacy mini weather climate icon",
+      "description": "The MiniWeatherClimateIcon icon component, installed to components/ui/icons/legacy-mini-weather-climate.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-weather-climate.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-mini-website",
+      "title": "Legacy mini website icon",
+      "description": "The MiniWebsiteIcon icon component, installed to components/ui/icons/legacy-mini-website.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-website.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-money-epf",
+      "title": "Legacy money epf icon",
+      "description": "The MoneyEPFIcon icon component, installed to components/ui/icons/legacy-money-epf.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-money-epf.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-money-kwap",
+      "title": "Legacy money kwap icon",
+      "description": "The MoneyKWAPIcon icon component, installed to components/ui/icons/legacy-money-kwap.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-money-kwap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-money-lhdn",
+      "title": "Legacy money lhdn icon",
+      "description": "The MoneyLHDNIcon icon component, installed to components/ui/icons/legacy-money-lhdn.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-money-lhdn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-passport-imigresen",
+      "title": "Legacy passport imigresen icon",
+      "description": "The PassportImigresenIcon icon component, installed to components/ui/icons/legacy-passport-imigresen.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-passport-imigresen.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-phcorp",
+      "title": "Legacy phcorp icon",
+      "description": "The PhcorpIcon icon component, installed to components/ui/icons/legacy-phcorp.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-phcorp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-police-pdrm",
+      "title": "Legacy police pdrm icon",
+      "description": "The PolicePDRMIcon icon component, installed to components/ui/icons/legacy-police-pdrm.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-police-pdrm.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-ribbon-ntrc",
+      "title": "Legacy ribbon ntrc icon",
+      "description": "The RibbonNTRCIcon icon component, installed to components/ui/icons/legacy-ribbon-ntrc.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-ribbon-ntrc.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-socso-perkeso",
+      "title": "Legacy socso perkeso icon",
+      "description": "The SOCSOPERKESOIcon icon component, installed to components/ui/icons/legacy-socso-perkeso.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-socso-perkeso.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-train-mot",
+      "title": "Legacy train mot icon",
+      "description": "The TrainMOTIcon icon component, installed to components/ui/icons/legacy-train-mot.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-train-mot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-unhcr",
+      "title": "Legacy unhcr icon",
+      "description": "The UNHCRIcon icon component, installed to components/ui/icons/legacy-unhcr.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-unhcr.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-legacy-weather-met",
+      "title": "Legacy weather met icon",
+      "description": "The WeatherMETIcon icon component, installed to components/ui/icons/legacy-weather-met.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-weather-met.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-link-diagonal",
+      "title": "Link diagonal icon",
+      "description": "The LinkDiagonalIcon icon component, installed to components/ui/icons/link-diagonal.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/link-diagonal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-link",
+      "title": "Link icon",
+      "description": "The LinkIcon icon component, installed to components/ui/icons/link.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/link.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-linkedin",
+      "title": "Linkedin icon",
+      "description": "The LinkedinIcon icon component, installed to components/ui/icons/linkedin.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/linkedin.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-list",
+      "title": "List icon",
+      "description": "The ListIcon icon component, installed to components/ui/icons/list.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-lock-2",
+      "title": "Lock 2 icon",
+      "description": "The Lock2Icon icon component, installed to components/ui/icons/lock-2.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/lock-2.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-lock-fill",
+      "title": "Lock fill icon",
+      "description": "The LockFillIcon icon component, installed to components/ui/icons/lock-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/lock-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-lock",
+      "title": "Lock icon",
+      "description": "The LockIcon icon component, installed to components/ui/icons/lock.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/lock.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-logout",
+      "title": "Logout icon",
+      "description": "The LogoutIcon icon component, installed to components/ui/icons/logout.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/logout.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-malaysia-flag",
+      "title": "Malaysia flag icon",
+      "description": "The MalaysiaFlagIcon icon component, installed to components/ui/icons/malaysia-flag.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/malaysia-flag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-map",
+      "title": "Map icon",
+      "description": "The MapIcon icon component, installed to components/ui/icons/map.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/map.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-megaphone",
+      "title": "Megaphone icon",
+      "description": "The MegaphoneIcon icon component, installed to components/ui/icons/megaphone.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/megaphone.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-minus-circle",
+      "title": "Minus circle icon",
+      "description": "The MinusCircleIcon icon component, installed to components/ui/icons/minus-circle.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/minus-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-minus",
+      "title": "Minus icon",
+      "description": "The MinusIcon icon component, installed to components/ui/icons/minus.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/minus.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-mobile",
+      "title": "Mobile icon",
+      "description": "The MobileIcon icon component, installed to components/ui/icons/mobile.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/mobile.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-money",
+      "title": "Money icon",
+      "description": "The MoneyIcon icon component, installed to components/ui/icons/money.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/money.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-moon",
+      "title": "Moon icon",
+      "description": "The MoonIcon icon component, installed to components/ui/icons/moon.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/moon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-numbered-list",
+      "title": "Numbered list icon",
+      "description": "The NumberedListIcon icon component, installed to components/ui/icons/numbered-list.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/numbered-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-org-chart",
+      "title": "Org chart icon",
+      "description": "The OrgChartIcon icon component, installed to components/ui/icons/org-chart.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/org-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-pause",
+      "title": "Pause icon",
+      "description": "The PauseIcon icon component, installed to components/ui/icons/pause.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pause.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-pdf-media",
+      "title": "Pdf media icon",
+      "description": "The PDFMediaIcon icon component, installed to components/ui/icons/pdf-media.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pdf-media.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-pdf",
+      "title": "Pdf icon",
+      "description": "The PdfIcon icon component, installed to components/ui/icons/pdf.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pdf.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-phone",
+      "title": "Phone icon",
+      "description": "The PhoneIcon icon component, installed to components/ui/icons/phone.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/phone.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-pin",
+      "title": "Pin icon",
+      "description": "The PinIcon icon component, installed to components/ui/icons/pin.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pin.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-placeholder",
+      "title": "Placeholder icon",
+      "description": "The PlaceholderIcon icon component, installed to components/ui/icons/placeholder.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/placeholder.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-play",
+      "title": "Play icon",
+      "description": "The PlayIcon icon component, installed to components/ui/icons/play.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/play.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-plus-circle",
+      "title": "Plus circle icon",
+      "description": "The PlusCircleIcon icon component, installed to components/ui/icons/plus-circle.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/plus-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-plus",
+      "title": "Plus icon",
+      "description": "The PlusIcon icon component, installed to components/ui/icons/plus.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/plus.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-powerpoint-media",
+      "title": "Powerpoint media icon",
+      "description": "The PowerpointMediaIcon icon component, installed to components/ui/icons/powerpoint-media.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/powerpoint-media.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-printer",
+      "title": "Printer icon",
+      "description": "The PrinterIcon icon component, installed to components/ui/icons/printer.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/printer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-putrajaya",
+      "title": "Putrajaya icon",
+      "description": "The PutrajayaIcon icon component, installed to components/ui/icons/putrajaya.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/putrajaya.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-qr-code",
+      "title": "Qr code icon",
+      "description": "The QrCodeIcon icon component, installed to components/ui/icons/qr-code.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/qr-code.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-question-circle",
+      "title": "Question circle icon",
+      "description": "The QuestionCircleIcon icon component, installed to components/ui/icons/question-circle.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/question-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-redo",
+      "title": "Redo icon",
+      "description": "The RedoIcon icon component, installed to components/ui/icons/redo.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/redo.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-reload",
+      "title": "Reload icon",
+      "description": "The ReloadIcon icon component, installed to components/ui/icons/reload.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/reload.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-reset-style",
+      "title": "Reset style icon",
+      "description": "The ResetStyleIcon icon component, installed to components/ui/icons/reset-style.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/reset-style.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-rss",
+      "title": "Rss icon",
+      "description": "The RSSIcon icon component, installed to components/ui/icons/rss.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/rss.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-search",
+      "title": "Search icon",
+      "description": "The SearchIcon icon component, installed to components/ui/icons/search.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/search.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-section",
+      "title": "Section icon",
+      "description": "The SectionIcon icon component, installed to components/ui/icons/section.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-setting",
+      "title": "Setting icon",
+      "description": "The SettingIcon icon component, installed to components/ui/icons/setting.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/setting.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-share",
+      "title": "Share icon",
+      "description": "The ShareIcon icon component, installed to components/ui/icons/share.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/share.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-star-fill",
+      "title": "Star fill icon",
+      "description": "The StarFillIcon icon component, installed to components/ui/icons/star-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/star-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-star",
+      "title": "Star icon",
+      "description": "The StarIcon icon component, installed to components/ui/icons/star.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/star.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-strikethrough",
+      "title": "Strikethrough icon",
+      "description": "The StrikethroughIcon icon component, installed to components/ui/icons/strikethrough.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/strikethrough.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-sun",
+      "title": "Sun icon",
+      "description": "The SunIcon icon component, installed to components/ui/icons/sun.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/sun.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-swap",
+      "title": "Swap icon",
+      "description": "The SwapIcon icon component, installed to components/ui/icons/swap.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/swap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-table",
+      "title": "Table icon",
+      "description": "The TableIcon icon component, installed to components/ui/icons/table.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-tablet",
+      "title": "Tablet icon",
+      "description": "The TabletIcon icon component, installed to components/ui/icons/tablet.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/tablet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-telegram",
+      "title": "Telegram icon",
+      "description": "The TelegramIcon icon component, installed to components/ui/icons/telegram.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/telegram.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-text",
+      "title": "Text icon",
+      "description": "The TextIcon icon component, installed to components/ui/icons/text.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-thumbs-down",
+      "title": "Thumbs down icon",
+      "description": "The ThumbsDownIcon icon component, installed to components/ui/icons/thumbs-down.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/thumbs-down.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-thumbs-up",
+      "title": "Thumbs up icon",
+      "description": "The ThumbsUpIcon icon component, installed to components/ui/icons/thumbs-up.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/thumbs-up.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-tiktok",
+      "title": "Tiktok icon",
+      "description": "The TiktokIcon icon component, installed to components/ui/icons/tiktok.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/tiktok.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-trash",
+      "title": "Trash icon",
+      "description": "The TrashIcon icon component, installed to components/ui/icons/trash.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/trash.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-trophy",
+      "title": "Trophy icon",
+      "description": "The TrophyIcon icon component, installed to components/ui/icons/trophy.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/trophy.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-twitter-x",
+      "title": "Twitter x icon",
+      "description": "The TwitterXIcon icon component, installed to components/ui/icons/twitter-x.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/twitter-x.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-underline",
+      "title": "Underline icon",
+      "description": "The UnderlineIcon icon component, installed to components/ui/icons/underline.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/underline.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-undo",
+      "title": "Undo icon",
+      "description": "The UndoIcon icon component, installed to components/ui/icons/undo.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/undo.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-unlink",
+      "title": "Unlink icon",
+      "description": "The UnlinkIcon icon component, installed to components/ui/icons/unlink.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/unlink.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-upload",
+      "title": "Upload icon",
+      "description": "The UploadIcon icon component, installed to components/ui/icons/upload.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/upload.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-user-group",
+      "title": "User group icon",
+      "description": "The UserGroupIcon icon component, installed to components/ui/icons/user-group.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/user-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-user",
+      "title": "User icon",
+      "description": "The UserIcon icon component, installed to components/ui/icons/user.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/user.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-video",
+      "title": "Video icon",
+      "description": "The VideoIcon icon component, installed to components/ui/icons/video.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/video.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-warning-circle",
+      "title": "Warning circle icon",
+      "description": "The WarningCircleIcon icon component, installed to components/ui/icons/warning-circle.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-warning-diamond",
+      "title": "Warning diamond icon",
+      "description": "The WarningDiamondIcon icon component, installed to components/ui/icons/warning-diamond.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning-diamond.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-warning-fill",
+      "title": "Warning fill icon",
+      "description": "The WarningFillIcon icon component, installed to components/ui/icons/warning-fill.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning-fill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-warning",
+      "title": "Warning icon",
+      "description": "The WarningIcon icon component, installed to components/ui/icons/warning.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-whatsapp",
+      "title": "Whatsapp icon",
+      "description": "The WhatsappIcon icon component, installed to components/ui/icons/whatsapp.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/whatsapp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-word-media",
+      "title": "Word media icon",
+      "description": "The WordMediaIcon icon component, installed to components/ui/icons/word-media.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/word-media.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-word",
+      "title": "Word icon",
+      "description": "The WordIcon icon component, installed to components/ui/icons/word.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/word.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-youtube",
+      "title": "Youtube icon",
+      "description": "The YoutubeIcon icon component, installed to components/ui/icons/youtube.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/youtube.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-zoom-in",
+      "title": "Zoom in icon",
+      "description": "The ZoomInIcon icon component, installed to components/ui/icons/zoom-in.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/zoom-in.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-zoom-out",
+      "title": "Zoom out icon",
+      "description": "The ZoomOutIcon icon component, installed to components/ui/icons/zoom-out.tsx.",
+      "categories": [
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/zoom-out.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

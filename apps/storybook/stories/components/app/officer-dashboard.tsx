@@ -6,11 +6,11 @@ import {
   StatGroup,
   StatLabel,
   StatValue,
-} from "@mof-malaysia/myds-react/stat";
-import { WorkQueue } from "@mof-malaysia/myds-react/work-queue";
-import { ActivityTimeline } from "@mof-malaysia/myds-react/activity-timeline";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { ArrowForwardIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/stat";
+import { WorkQueue } from "@mof-malaysia/ftds-react/work-queue";
+import { ActivityTimeline } from "@mof-malaysia/ftds-react/activity-timeline";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { ArrowForwardIcon } from "@mof-malaysia/ftds-react/icon";
 import {
   CASE_COLUMNS,
   EVENTS,

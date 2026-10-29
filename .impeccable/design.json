@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-28T10:57:14+00:00",
-  "title": "Design System: Fiscal MYDS",
+  "title": "Design System: FTDS",
   "extensions": {
     "colorMeta": {
-      "myds-blue": {
+      "ftds-blue": {
         "role": "primary",
-        "displayName": "MYDS Blue",
+        "displayName": "FTDS Blue",
         "canonical": "#2563EB",
         "tonalRamp": [
           "#172554",
@@ -19,9 +19,9 @@
           "#EFF6FF"
         ]
       },
-      "myds-blue-deep": {
+      "ftds-blue-deep": {
         "role": "primary",
-        "displayName": "MYDS Blue Deep",
+        "displayName": "FTDS Blue Deep",
         "canonical": "#1D4ED8",
         "tonalRamp": [
           "#172554",
@@ -34,9 +34,9 @@
           "#EFF6FF"
         ]
       },
-      "myds-blue-wash": {
+      "ftds-blue-wash": {
         "role": "primary",
-        "displayName": "MYDS Blue Wash",
+        "displayName": "FTDS Blue Wash",
         "canonical": "#EFF6FF",
         "tonalRamp": [
           "#172554",
@@ -199,9 +199,9 @@
           "#FAFAFA"
         ]
       },
-      "on-myds-blue": {
+      "on-ftds-blue": {
         "role": "primary",
-        "displayName": "On MYDS Blue",
+        "displayName": "On FTDS Blue",
         "canonical": "#FFFFFF",
         "tonalRamp": [
           "#172554",
@@ -319,9 +319,9 @@
           "#FEFCE8"
         ]
       },
-      "dark-myds-blue": {
+      "dark-ftds-blue": {
         "role": "primary",
-        "displayName": "Dark MYDS Blue",
+        "displayName": "Dark FTDS Blue",
         "canonical": "#6394FF",
         "tonalRamp": [
           "#172554",
@@ -334,9 +334,9 @@
           "#EFF6FF"
         ]
       },
-      "dark-myds-blue-wash": {
+      "dark-ftds-blue-wash": {
         "role": "primary",
-        "displayName": "Dark MYDS Blue Wash",
+        "displayName": "Dark FTDS Blue Wash",
         "canonical": "#172554",
         "tonalRamp": [
           "#172554",
@@ -484,9 +484,9 @@
           "#FAFAFA"
         ]
       },
-      "dark-on-myds-blue": {
+      "dark-on-ftds-blue": {
         "role": "primary",
-        "displayName": "Dark On MYDS Blue",
+        "displayName": "Dark On FTDS Blue",
         "canonical": "#18181B",
         "tonalRamp": [
           "#172554",
@@ -748,10 +748,10 @@
   ],
   "narrative": {
     "northStar": "The Steady Hand",
-    "overview": "Fiscal MYDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.\n\nThe system is quiet by construction. Surfaces are white and soft neutral greys; structure comes from spacing and gentle tonal steps rather than lines; one clear MYDS blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.\n\nIt rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (every element outlined in grey, boxes inside boxes), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).",
+    "overview": "FTDS guides people through tasks that make them nervous: paying, declaring, applying, being told they owe something. The interface is the steady hand on the shoulder. It is firm and unhurried, it never fusses, and it never makes the user wonder whether something worked. Everything on screen is either helping with the task or getting out of the way.\n\nThe system is quiet by construction. Surfaces are white and soft neutral greys; structure comes from spacing and gentle tonal steps rather than lines; one clear FTDS blue marks the way forward. Colour, weight and motion are spent only where they carry meaning: the primary action, the current selection, an amount, a deadline, an error. The craft reference is Linear's restraint, applied at sizes and contrast that an older citizen can read without effort.\n\nIt rejects, by name, the four anti-references in PRODUCT.md: the **generic Tailwind starter** (every element outlined in grey, boxes inside boxes), the **old government portal** (crests and banners everywhere, gradients, tiny text), **flashy fintech** (neon, dark gradients, glassmorphism) and **stiff corporate banking** (navy and gold, heavy serifs, formal distance).",
     "keyCharacteristics": [
       "Neutral surfaces with almost no borders; spacing and tone do the grouping.",
-      "The national MYDS blue, used sparingly for action, selection and focus.",
+      "The blue inherited from MYDS, the national design system, used sparingly for action, selection and focus.",
       "A single typeface (Inter) with a real hierarchy and tabular figures for money.",
       "Two densities from the same tokens: comfortable for citizens, compact for officers.",
       "Flat at rest; shadows only for things that genuinely float.",
@@ -760,7 +760,7 @@
     "rules": [
       {
         "name": "The One Blue Rule",
-        "body": "MYDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.",
+        "body": "FTDS Blue covers no more than 10% of any screen. It marks the next step, the current selection and focus; nothing decorative is ever blue. If two things on a screen are filled blue, one of them is wrong.",
         "section": "colors"
       },
       {
@@ -796,7 +796,7 @@
     ],
     "dos": [
       "**Do** separate groups with spacing (16–24px comfortable, 8–12px compact) and tone (Paper, Sheet, Well) before reaching for any line.",
-      "**Do** keep MYDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.",
+      "**Do** keep FTDS Blue (#2563EB) to the primary action, current selection and links: no more than 10% of a screen.",
       "**Do** use Ink (#18181B) or Ink Secondary (#3F3F46) for any text a user must read; Ink Secondary measures 10:1.",
       "**Do** ship every component in both densities: comfortable (16px text, 44px controls) for citizens and compact (14px text, 32px controls) for officers.",
       "**Do** set every amount in tabular figures and right-align it in columns.",

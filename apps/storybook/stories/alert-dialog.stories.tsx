@@ -6,9 +6,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   AlertDialogClose,
-} from "@mof-malaysia/myds-react/alert-dialog";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { DialogBody } from "@mof-malaysia/myds-react/dialog";
+} from "@mof-malaysia/ftds-react/alert-dialog";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { DialogBody } from "@mof-malaysia/ftds-react/dialog";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentProps } from "react";
 import { createStory } from "../utils";
@@ -19,7 +19,7 @@ import { createStory } from "../utils";
  *
  * ### Usage
  * ```tsx
- * import { AlertDialog, AlertDialogTrigger } from "@mof-malaysia/myds-react/alert-dialog";
+ * import { AlertDialog, AlertDialogTrigger } from "@mof-malaysia/ftds-react/alert-dialog";
  *
  *  <AlertDialog variant={variant}>
  *       <AlertDialogTrigger>
@@ -55,7 +55,6 @@ import { createStory } from "../utils";
  *     </AlertDialog>
  * ```
  */
-// @ts-expect-error
 const meta: Meta = {
   title: "Core/AlertDialog",
   component: AlertDialog,

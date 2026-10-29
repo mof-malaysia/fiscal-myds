@@ -5,13 +5,13 @@ import {
   CheckboxGroup,
   CheckboxGroupItem,
   CheckboxGroupNested,
-} from "@mof-malaysia/myds-react/checkbox-group";
-import { Field, FieldError } from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/checkbox-group";
+import { Field, FieldError } from "@mof-malaysia/ftds-react/field";
 import {
   Fieldset,
   FieldsetDescription,
   FieldsetLegend,
-} from "@mof-malaysia/myds-react/fieldset";
+} from "@mof-malaysia/ftds-react/fieldset";
 
 /**
  * ### Overview

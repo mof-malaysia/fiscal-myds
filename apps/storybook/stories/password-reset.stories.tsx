@@ -5,7 +5,7 @@ import {
   ForgotPasswordForm,
   ResetPasswordForm,
   type ResetPasswordFormProps,
-} from "@mof-malaysia/myds-react/password-reset";
+} from "@mof-malaysia/ftds-react/password-reset";
 import { wait } from "./components/app/access-brand";
 
 /**

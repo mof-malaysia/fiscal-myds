@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { Stepper, StepperItem } from "@mof-malaysia/myds-react/stepper";
+import { Stepper, StepperItem } from "@mof-malaysia/ftds-react/stepper";
 
 /**
  * ### Overview

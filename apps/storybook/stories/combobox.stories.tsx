@@ -16,13 +16,13 @@ import {
   ComboboxItem,
   ComboboxList,
   ComboboxValue,
-} from "@mof-malaysia/myds-react/combobox";
+} from "@mof-malaysia/ftds-react/combobox";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

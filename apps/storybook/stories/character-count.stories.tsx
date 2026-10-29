@@ -1,13 +1,13 @@
 import React from "react";
 import type { Meta } from "@storybook/react-vite";
 import { createRender } from "../utils";
-import { CharacterCount } from "@mof-malaysia/myds-react/character-count";
+import { CharacterCount } from "@mof-malaysia/ftds-react/character-count";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@mof-malaysia/myds-react/field";
+} from "@mof-malaysia/ftds-react/field";
 
 /**
  * ### Overview

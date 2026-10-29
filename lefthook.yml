@@ -1,5 +1,6 @@
 # Git hooks, installed by `pnpm install` (the `prepare` script runs `lefthook install`).
-# Skip once in an emergency with `LEFTHOOK=0 git commit ...`.
+# They replace CI: commits get the fast checks, pushes get the rest.
+# Skip once in an emergency with `LEFTHOOK=0 git commit ...` or `LEFTHOOK=0 git push ...`.
 pre-commit:
   parallel: true
   skip:
@@ -14,3 +15,32 @@ pre-commit:
       run: pnpm lint
     typecheck:
       run: pnpm typecheck
+
+# Checks the working tree, so commit or stash other changes before pushing.
+pre-push:
+  jobs:
+    # registry/ is what the shadcn CLI reads from GitHub, so it must match the source
+    - name: registry is up to date
+      run: |
+        pnpm registry:build
+        if [ -n "$(git status --porcelain -- registry registry.json)" ]; then
+          git status --short -- registry registry.json
+          echo "registry/ is out of date. Commit the result of 'pnpm registry:build'."
+          exit 1
+        fi
+    - name: registry validates
+      run: pnpm registry:validate
+    # Every component has a doc for llms.txt, and every example in the docs typechecks
+    - name: agent docs
+      run: pnpm llms:check
+    - name: builds
+      group:
+        parallel: true
+        jobs:
+          - name: storybook
+            run: pnpm --filter @mof-malaysia/ftds-storybook build
+          - name: docs
+            run: pnpm --filter @mof-malaysia/ftds-docs-astro build
+          # The playground's checks, preview page and Worker bundle (no deploy)
+          - name: playground
+            run: pnpm --filter @mof-malaysia/ftds-mcp test && pnpm --filter @mof-malaysia/ftds-mcp build

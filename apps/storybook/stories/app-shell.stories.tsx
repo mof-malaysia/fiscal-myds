@@ -19,8 +19,8 @@ import {
   SidebarMenuSub,
   SidebarTrigger,
   type AppShellProps,
-} from "@mof-malaysia/myds-react/app-shell";
-import { Button } from "@mof-malaysia/myds-react/button";
+} from "@mof-malaysia/ftds-react/app-shell";
+import { Button } from "@mof-malaysia/ftds-react/button";
 import {
   DocumentIcon,
   FolderIcon,
@@ -30,7 +30,7 @@ import {
   SettingIcon,
   UserGroupIcon,
   UserIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview

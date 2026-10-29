@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createRender, createStory } from "../utils";
-import { Tag } from "@mof-malaysia/myds-react/tag";
-import { CheckCircleIcon, ClockIcon } from "@mof-malaysia/myds-react/icon";
+import { Tag } from "@mof-malaysia/ftds-react/tag";
+import { CheckCircleIcon, ClockIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview
@@ -20,7 +20,7 @@ import { CheckCircleIcon, ClockIcon } from "@mof-malaysia/myds-react/icon";
  *
  * ### Usage
  * ```tsx
- * import { Tag } from "@mof-malaysia/myds-react/tag";
+ * import { Tag } from "@mof-malaysia/ftds-react/tag";
  *
  * <Tag variant="success">Paid</Tag>
  * <Tag variant="warning" dot>Due in 3 days</Tag>

@@ -2,26 +2,26 @@ import React from "react";
 import {
   ActivityTimeline,
   type ActivityEvent,
-} from "@mof-malaysia/myds-react/activity-timeline";
+} from "@mof-malaysia/ftds-react/activity-timeline";
 import {
   DecisionPanel,
   type CaseDecision,
-} from "@mof-malaysia/myds-react/decision-panel";
+} from "@mof-malaysia/ftds-react/decision-panel";
 import {
   SummaryList,
   SummaryListBody,
   SummaryListDetail,
   SummaryListRow,
   SummaryListTerm,
-} from "@mof-malaysia/myds-react/summary-list";
-import { Button } from "@mof-malaysia/myds-react/button";
-import { useCommands } from "@mof-malaysia/myds-react/shortcuts";
-import { useToast } from "@mof-malaysia/myds-react/hooks";
+} from "@mof-malaysia/ftds-react/summary-list";
+import { Button } from "@mof-malaysia/ftds-react/button";
+import { useCommands } from "@mof-malaysia/ftds-react/shortcuts";
+import { useToast } from "@mof-malaysia/ftds-react/hooks";
 import {
   ArrowBackIcon,
   AttachmentIcon,
   DownloadIcon,
-} from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/icon";
 import {
   EVENTS,
   ME,

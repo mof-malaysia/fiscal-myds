@@ -4,18 +4,21 @@ import {
   readFileContent,
   extractImports,
   transformImports,
-  writeJsonFile,
+  writeRegistry,
+  describeItem,
   mapToRegistryDependency,
   expandIconBarrelImports,
   getIconExportMap,
   listComponents,
-  registryItemUrl,
-  COMPONENT_TIERS,
+  registryItemRef,
   REGISTRY_ITEM_SCHEMA,
   type ComponentSource,
   type ComponentTier,
   type RegistryComponent,
+  type RegistryDependency,
+  COMPONENT_TIERS,
 } from "./utils";
+import { readDoc } from "../llms/content";
 
 /**
  * Generate the component registries, one per tier:
@@ -32,7 +35,6 @@ const SRC_DIR = path.join(__dirname, "../../packages/react/src");
 const UTILS_DIR = path.join(SRC_DIR, "utils");
 const HOOKS_DIR = path.join(SRC_DIR, "hooks");
 const ICONS_DIR = path.join(SRC_DIR, "icons");
-const REGISTRY_DIR = path.join(__dirname, "../../registry");
 
 /** An app or marketing file that starts with this comment is a composed page section (`registry:block`). */
 const BLOCK_MARKER = /^(?:"use client";\s*)?\/\/ registry:block\b/;
@@ -44,7 +46,7 @@ const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
 ).dependencies;
 
 /**
- * Pin npm dependencies to the ranges MYDS is built against, so a project
+ * Pin npm dependencies to the ranges FTDS is built against, so a project
  * doesn't pull in a new major (e.g. @tanstack/react-table v9).
  */
 function withVersions(deps: Iterable<string>): string[] {
@@ -56,11 +58,15 @@ function withVersions(deps: Iterable<string>): string[] {
 }
 
 /** App and marketing may depend on core; app and marketing never depend on each other. */
-function assertTierBoundary(item: RegistryComponent, tier: ComponentTier) {
-  for (const dep of item.registryDependencies) {
-    const depTier = COMPONENT_TIERS.find((t) => dep.includes(`/${t}/styles/`));
+function assertTierBoundary(
+  name: string,
+  tier: ComponentTier,
+  deps: RegistryDependency[],
+) {
+  for (const dep of deps) {
+    const depTier = COMPONENT_TIERS.find((t) => t === dep.registry);
     if (depTier && depTier !== tier && depTier !== "core") {
-      throw new Error(`${tier}/${item.name} depends on ${depTier}: ${dep}`);
+      throw new Error(`${tier}/${name} depends on ${depTier}: ${dep.name}`);
     }
   }
 }
@@ -73,19 +79,20 @@ function generateComponentItem({
   const content = expandIconBarrelImports(readFileContent(filePath), iconMap);
   const { npmDependencies, localImports } = extractImports(content);
 
-  const selfUrl = registryItemUrl(tier, name);
-  const registryDeps = new Set(
-    localImports
-      .map((importPath) => mapToRegistryDependency(importPath, tier))
-      .filter((dep): dep is string => dep !== null && dep !== selfUrl),
-  );
+  const deps = localImports
+    .map((importPath) => mapToRegistryDependency(importPath, tier))
+    .filter(
+      (dep): dep is RegistryDependency => dep !== null && dep.name !== name,
+    );
+  assertTierBoundary(name, tier, deps);
+  const registryDeps = new Set(deps.map((dep) => registryItemRef(dep.name)));
 
   const isBlock = tier !== "core" && BLOCK_MARKER.test(content);
   const target = isBlock
     ? `components/blocks/${name}.tsx`
     : `components/ui/${name}.tsx`;
 
-  const item: RegistryComponent = {
+  return {
     $schema: REGISTRY_ITEM_SCHEMA,
     name,
     type: isBlock ? "registry:block" : "registry:ui",
@@ -100,8 +107,6 @@ function generateComponentItem({
       },
     ],
   };
-  assertTierBoundary(item, tier);
-  return item;
 }
 
 function generateUtilsItem(): RegistryComponent {
@@ -113,7 +118,7 @@ function generateUtilsItem(): RegistryComponent {
     registryDependencies: [],
     files: [
       {
-        path: "lib/myds/utils/index.ts",
+        path: "lib/ftds/utils/index.ts",
         content: readFileContent(path.join(UTILS_DIR, "index.ts")),
         type: "registry:lib",
       },
@@ -131,7 +136,7 @@ function generateHooksItem(): RegistryComponent {
     .filter((file) => /\.tsx?$/.test(file))
     .sort()
     .map((file) => ({
-      path: `lib/myds/hooks/${file}`,
+      path: `lib/ftds/hooks/${file}`,
       content: transformImports(readFileContent(path.join(HOOKS_DIR, file)), {
         keepSameFolderImports: true,
       }),
@@ -139,7 +144,7 @@ function generateHooksItem(): RegistryComponent {
     }));
 
   files.push({
-    path: "lib/myds/utils/events.ts",
+    path: "lib/ftds/utils/events.ts",
     content: transformImports(
       readFileContent(path.join(UTILS_DIR, "events.ts")),
     ),
@@ -152,28 +157,50 @@ function generateHooksItem(): RegistryComponent {
     type: "registry:lib",
     dependencies: withVersions(["mitt"]),
     // use-toast imports the ToastEvent type from the toast component
-    registryDependencies: [registryItemUrl("core", "toast")],
+    registryDependencies: [registryItemRef("toast")],
     files,
   };
+}
+
+/**
+ * Title, description and category from the item's doc (<name>.md next to its
+ * source), which also feeds llms.txt. Items without a doc yet stay undescribed.
+ */
+function withDoc(item: RegistryComponent, docFile: string): RegistryComponent {
+  if (!fs.existsSync(docFile)) return item;
+  const doc = readDoc(docFile);
+  return describeItem(item, {
+    title: doc.title,
+    description: doc.description,
+    categories: [
+      item.type === "registry:block"
+        ? "blocks"
+        : (doc.category ?? "").toLowerCase().replace(/ /g, "-"),
+    ].filter(Boolean),
+  });
 }
 
 function main() {
   // Build every item first so a tier violation fails before anything is written.
   const items: Record<ComponentTier, RegistryComponent[]> = {
-    core: [generateUtilsItem(), generateHooksItem()],
+    core: [
+      withDoc(generateUtilsItem(), path.join(UTILS_DIR, "utils.md")),
+      withDoc(generateHooksItem(), path.join(HOOKS_DIR, "hooks.md")),
+    ],
     app: [],
     marketing: [],
   };
   for (const source of listComponents()) {
-    items[source.tier].push(generateComponentItem(source));
+    items[source.tier].push(
+      withDoc(
+        generateComponentItem(source),
+        source.filePath.replace(/\.tsx$/, ".md"),
+      ),
+    );
   }
 
   for (const tier of COMPONENT_TIERS) {
-    const outDir = path.join(REGISTRY_DIR, tier, "styles/default");
-    fs.rmSync(path.join(REGISTRY_DIR, tier), { recursive: true, force: true });
-    for (const item of items[tier]) {
-      writeJsonFile(path.join(outDir, `${item.name}.json`), item);
-    }
+    writeRegistry(tier, items[tier]);
     console.log(`   - ${tier}: ${items[tier].length} items`);
   }
 }

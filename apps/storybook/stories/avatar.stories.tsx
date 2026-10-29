@@ -6,8 +6,8 @@ import {
   AvatarFallback,
   AvatarGroup,
   AvatarImage,
-} from "@mof-malaysia/myds-react/avatar";
-import { UserIcon } from "@mof-malaysia/myds-react/icon";
+} from "@mof-malaysia/ftds-react/avatar";
+import { UserIcon } from "@mof-malaysia/ftds-react/icon";
 
 /**
  * ### Overview
