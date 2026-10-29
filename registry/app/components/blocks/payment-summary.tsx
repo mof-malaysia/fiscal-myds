@@ -281,7 +281,7 @@ const PaymentSummary = forwardRef<HTMLFormElement, PaymentSummaryProps>(
                 // Field.Item scopes each option's label to its own radio; without it the
                 // Field gives every radio the same id and only the first gets a name
                 <FieldPrimitive.Item key={option.value}>
-                  <RadioItem className="bg-bg-white border-otl-gray-200 has-[[data-checked]]:border-otl-primary-300 has-[[data-checked]]:bg-bg-primary-50 items-start gap-3 rounded-lg border p-4">
+                  <RadioItem className="bg-bg-washed has-[[data-checked]]:bg-bg-primary-50 items-start gap-3 rounded-lg p-4">
                     <RadioButton
                       value={option.value}
                       id={optionId}

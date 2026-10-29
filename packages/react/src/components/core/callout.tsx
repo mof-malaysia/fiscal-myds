@@ -125,7 +125,7 @@ const CalloutTitle: ForwardRefExoticComponent<ComponentProps<"p">> = forwardRef(
       <p
         ref={ref}
         role="term"
-        className={clx("text-sm font-semibold text-inherit", className)}
+        className={clx("text-content font-semibold text-inherit", className)}
         {...props}
       >
         {children}

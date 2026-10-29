@@ -21,6 +21,7 @@ import {
   SummaryListAction,
   SummaryListBody,
   SummaryListDetail,
+  SummaryListHeader,
   SummaryListRow,
   SummaryListTerm,
 } from "@/components/ui/summary-list";
@@ -29,9 +30,7 @@ import { Tag } from "@/components/ui/tag";
 export function ApplicationDetails() {
   return (
     <SummaryList>
-      <h2 className="text-title text-txt-black-900 font-semibold">
-        Application details
-      </h2>
+      <SummaryListHeader>Application details</SummaryListHeader>
       <SummaryListBody>
         <SummaryListRow>
           <SummaryListTerm>Reference</SummaryListTerm>
@@ -78,7 +77,7 @@ export function ApplicationDetails() {
 
 ## Notes
 
-- `SummaryListHeader` renders an `<h1>`. A page has only one `h1`, so on a page that already has a title, use your own `h2` inside `SummaryList` instead, as above.
+- `SummaryListHeader` is an `h2` by default; pass `as="h3"` when the list sits under another section heading. The page's `h1` is its title.
 - Give every row the same cells. If some rows have an action, put an empty `SummaryListAction` in the others so the columns line up.
 - Action links say what they change: add visually hidden text (`<span className="sr-only"> IC number</span>`) so screen reader users hear which row each link belongs to.
 - Show status as a wash `Tag` with text, and set amounts in tabular figures.

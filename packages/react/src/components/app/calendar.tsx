@@ -166,7 +166,7 @@ const Calendar: FC<CalendarProps> = ({
         months: "relative flex flex-col h-full",
         month: "flex flex-col h-full gap-y-1.5",
         month_caption: "",
-        caption_label: "text-sm font-medium",
+        caption_label: "text-label-sm font-medium",
         nav: "absolute right-0 flex gap-2 items-center",
         ...calendar_day_classnames,
         selected: clx(
@@ -184,7 +184,7 @@ const Calendar: FC<CalendarProps> = ({
             <Button
               variant={view === monthOrYear ? "unset" : "default-ghost"}
               className={clx(
-                "px-1.5 py-1 text-base font-semibold",
+                "text-body-md px-1.5 py-1 font-semibold",
                 view === monthOrYear
                   ? "text-txt-primary bg-bg-primary-50 ring-fr-primary focus-visible:ring"
                   : "border-none",

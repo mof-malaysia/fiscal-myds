@@ -11,20 +11,18 @@ const SummaryList: FunctionComponent<ComponentProps<"div">> = ({
   </div>
 );
 
-const SummaryListHeader: FunctionComponent<ComponentProps<"div">> = ({
-  children,
-  className,
-  ...props
-}) => (
-  <h1
-    className={clx(
-      "text-txt-black-900 text-xl leading-[30px] font-semibold",
-      className,
-    )}
+const SummaryListHeader: FunctionComponent<
+  ComponentProps<"h2"> & {
+    /** Heading level: the page's `h1` is its title, so a list heading is `h2` or below. @default "h2" */
+    as?: "h2" | "h3" | "h4";
+  }
+> = ({ children, className, as: Heading = "h2", ...props }) => (
+  <Heading
+    className={clx("text-title text-txt-black-900 font-semibold", className)}
     {...props}
   >
     {children}
-  </h1>
+  </Heading>
 );
 
 const SummaryListBody: FunctionComponent<ComponentProps<"table">> = ({
@@ -34,7 +32,7 @@ const SummaryListBody: FunctionComponent<ComponentProps<"table">> = ({
 }) => (
   <table
     className={clx(
-      "w-full text-sm font-medium",
+      "text-content w-full",
       "min-h-[40px]",
       "relative",
       className,
@@ -64,7 +62,8 @@ const SummaryListTerm: FunctionComponent<ComponentProps<"td">> = ({
     // scope equals row here to indicate the header relates to all the row it belongs to
     scope="row"
     className={clx(
-      "text-txt-black-500 flex min-w-[190px] items-start py-3 pr-3",
+      // Ink Secondary: people read the term (DESIGN.md, the Dark-Enough Rule)
+      "text-txt-black-700 min-w-[190px] py-3 pr-3 text-left align-top font-medium",
       className,
     )}
     {...props}
@@ -79,7 +78,7 @@ const SummaryListDetail: FunctionComponent<ComponentProps<"td">> = ({
   ...props
 }) => (
   <td
-    className={clx("text-txt-black-900 w-full py-3 pr-3", className)}
+    className={clx("text-txt-black-900 w-full py-3 pr-3 align-top", className)}
     {...props}
   >
     {children}
@@ -92,7 +91,10 @@ const SummaryListAction: FunctionComponent<ComponentProps<"td">> = ({
   ...props
 }) => (
   <td
-    className={clx("flex justify-end py-1.5 pr-3 text-right", className)}
+    className={clx(
+      "py-1.5 pr-3 text-right align-top whitespace-nowrap",
+      className,
+    )}
     {...props}
   >
     {children}

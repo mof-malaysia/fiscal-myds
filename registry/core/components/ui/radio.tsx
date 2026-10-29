@@ -124,7 +124,7 @@ const RadioLabel = ({
         "text-txt-black-900 cursor-pointer",
         size === "small" && "text-label-sm",
         size === "medium" && "text-content",
-        size === "large" && "text-lg",
+        size === "large" && "text-body-lg",
         disabled && "text-txt-black-disabled cursor-not-allowed",
         className,
       )}

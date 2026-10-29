@@ -66,7 +66,8 @@ const AuthLayout = forwardRef<HTMLElement, AuthLayoutProps>(
         )}
         <div
           className={clx(
-            "bg-bg-white shadow-card gap-stack-lg flex flex-col rounded-xl p-6 sm:p-8",
+            // Sheet on the Well: tone, not a shadow, lifts the panel (DESIGN.md, Elevation)
+            "bg-bg-white gap-stack-lg flex flex-col rounded-lg p-6 sm:p-8",
             panelClassName,
           )}
         >

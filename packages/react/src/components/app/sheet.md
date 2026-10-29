@@ -33,7 +33,7 @@ export function OfficerNotes() {
       <SheetTrigger render={<Button variant="default-outline" />}>
         Case notes
       </SheetTrigger>
-      <SheetContent side="right" className="bg-bg-white flex flex-col">
+      <SheetContent side="right">
         <SheetHeader>
           <SheetTitle>Notes for MOF-2026-0412</SheetTitle>
           <SheetDescription>
@@ -57,9 +57,8 @@ export function OfficerNotes() {
 
 ## Notes
 
-- `SheetContent` sets no background colour. Pass `className="bg-bg-white"` (Sheet tone) or the panel is see-through.
 - Focus is trapped while open, and Esc and a click on the overlay close it (Base UI Dialog). It does not close on a swipe.
 - Always give it a `SheetTitle`; it names the dialog for screen readers. `SheetDescription` is announced with it.
 - Open state follows Base UI: `defaultOpen`, or `open` with `onOpenChange`.
-- `overlay={false}` removes the overlay. The overlay is the opaque Well tone, so the page behind is hidden while the sheet is open.
+- The panel is Sheet-toned with the dialog shadow, over a scrim of Ink at 40%; `overlay={false}` removes the scrim. It has no close button of its own: put a `SheetClose` in it.
 - Left and right sheets are three quarters of the screen wide, up to `sm:max-w-sm`; top and bottom sheets span the width. Change the width with `className`.

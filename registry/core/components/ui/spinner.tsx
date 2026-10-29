@@ -21,7 +21,8 @@ const spinnerVariants = cva(
       },
       color: {
         gray: "to-txt-black-500",
-        white: "to-white",
+        // On filled buttons: the button's own text colour, so dark mode follows
+        white: "to-txt-white",
       },
     },
     defaultVariants: {

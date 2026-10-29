@@ -20,7 +20,7 @@ export function CurrentPassword({ error }: { error?: string }) {
   return (
     <Field name="password" invalid={Boolean(error)}>
       <FieldLabel>Password</FieldLabel>
-      <PasswordInput id="password" placeholder="" />
+      <PasswordInput id="password" />
       <FieldError>{error}</FieldError>
     </Field>
   );
@@ -48,7 +48,6 @@ export function NewPassword() {
       <PasswordInput
         id="newPassword"
         autoComplete="new-password"
-        placeholder=""
         minLength={12}
         required
         shownAnnouncement="Your password is visible"
@@ -67,7 +66,7 @@ export function NewPassword() {
 
 - It builds on `Input`, so it joins the surrounding `Field` for label, hint, error and invalid state.
 - `autoComplete` defaults to `"current-password"`. Set `"new-password"` on sign-up and reset forms so password managers offer a strong password.
-- `placeholder` defaults to "Enter password". Placeholders aren't labels; pass `placeholder=""` to remove it, as above, or translate it.
+- There is no placeholder by default; the `FieldLabel` says what to enter.
 - The toggle is a button with `aria-pressed`. Its accessible name is `showLabel` ("Show password") or `hideLabel` ("Hide password"); translate both.
 - `shownAnnouncement` and `hiddenAnnouncement` are read politely after the user toggles. Leave them out to stay silent.
 - Visibility is uncontrolled by default (`defaultVisible`, hidden); control it with `visible` and `onVisibleChange`.

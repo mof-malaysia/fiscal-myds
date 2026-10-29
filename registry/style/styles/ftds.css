@@ -652,6 +652,10 @@
   --color-fr-primary: rgb(var(--fr-primary));
   --color-fr-danger: rgb(var(--fr-danger));
 
+  /* Scrim behind dialogs, sheets and drawers: Ink, used at 40% (DESIGN.md,
+     Elevation). The grey palette doesn't flip, so it stays dark in both themes. */
+  --color-scrim: rgb(var(--_gray-900));
+
   /* === Density-aware spacing (values set per density below) === */
   --spacing-surface: var(--space-surface);
   --spacing-stack-lg: var(--space-stack-lg);

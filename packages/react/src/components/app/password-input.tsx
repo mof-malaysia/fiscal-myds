@@ -48,7 +48,7 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
       hideLabel = "Hide password",
       shownAnnouncement,
       hiddenAnnouncement,
-      placeholder = "Enter password",
+      placeholder,
       autoComplete = "current-password",
       disabled,
       size = "small",

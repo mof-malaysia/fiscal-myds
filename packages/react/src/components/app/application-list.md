@@ -117,7 +117,7 @@ export function PermohonanAnda({ items }: { items: ApplicationListItem[] }) {
 ## Notes
 
 - Status is a wash `Tag` plus a sentence, never colour alone. `"rejected"` reads "Not approved" by default.
-- The action is styled by status: a primary button for `"action-needed"`, a secondary button for `"draft"`, a ghost button otherwise. Each `"action-needed"` item gets a blue button, so a dashboard with several of them shows several; keep that in mind or override the styling in the installed file.
+- The action is styled by status: a blue wash button (`primary-outline`) for `"action-needed"`, a secondary button for `"draft"`, a ghost button otherwise. It is a wash, not a fill, because a list can hold several items that need action.
 - When `title` is a string, the action link gets it as hidden text ("View Refund of overpaid tax"), so a list of "View" links still makes sense to screen readers.
 - A `Date` in `date` is formatted with `locale` (default `"en-MY"`); drafts say "Started", everything else "Submitted". Pass a string or node to show the date as is.
 - The heading is "Your applications" as an `h2`; pass `title` to change it, `title={null}` to drop it, and `headingLevel="h3"` to fit the page outline.

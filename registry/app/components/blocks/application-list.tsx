@@ -269,8 +269,9 @@ const ApplicationList = forwardRef<HTMLElement, ApplicationListProps>(
                       className={clx(
                         button_cva({
                           variant:
+                            // A wash, not a fill: the list can hold several (DESIGN.md, One Blue Rule)
                             item.status === "action-needed"
-                              ? "primary-fill"
+                              ? "primary-outline"
                               : needsCitizen
                                 ? "default-outline"
                                 : "default-ghost",

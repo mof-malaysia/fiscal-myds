@@ -160,7 +160,7 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
       <DrawerPrimitive.Portal container={container} keepMounted={keepMounted}>
         <DrawerPrimitive.Backdrop
           className={clx(
-            "fixed inset-0 z-[900] min-h-dvh bg-gray-900",
+            "bg-scrim fixed inset-0 z-[900] min-h-dvh",
             "opacity-[calc(0.4*(1-var(--drawer-swipe-progress,0)))]",
             "ease-standard transition-opacity duration-200 motion-reduce:transition-none",
             "data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",

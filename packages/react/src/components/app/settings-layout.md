@@ -6,7 +6,7 @@ description: The frame of an account or settings area. Section links beside the 
 ## When to use
 
 - Use `SettingsLayout` for an account or settings area with several sections: profile, security, notifications, linked accounts.
-- Fill it with `SettingsSection`: a group of settings on the Well tone with a title, and with `onSave` a form with "Save changes" and a "Changes saved" confirmation. Use `SettingsRow` inside a section for one setting on a line, such as a `Switch`.
+- Fill it with `SettingsSection`: a group of settings on the Well tone with a title, and with `onSave` a form with a "Save changes" button (a blue wash, since a page has one per section) and a "Changes saved" confirmation. Use `SettingsRow` inside a section for one setting on a line, such as a `Switch`.
 - Use `AuthLayout` for sign-in and password screens, `AppShell` or `DeskShell` for officer tools, and `FormStep` for a multi-step application.
 
 ## Usage

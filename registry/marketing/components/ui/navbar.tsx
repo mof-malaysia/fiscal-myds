@@ -233,7 +233,7 @@ const NavbarMobileMenu: FunctionComponent<NavbarMobileMenuProps> = ({
              */}
             <div
               className={clx(
-                "absolute inset-x-0 top-0 h-dvh bg-gray-900/40",
+                "bg-scrim/40 absolute inset-x-0 top-0 h-dvh",
                 "ease-standard transition-opacity duration-200 motion-reduce:transition-none",
                 "group-data-[ending-style]:opacity-0 group-data-[starting-style]:opacity-0",
               )}
@@ -302,7 +302,7 @@ const navbar_menu_item_cva = cva(
   {
     variants: {
       is_from_dropdown: {
-        true: "text-sm font-normal ml-3 xl:ml-0 xl:w-full rounded-md xl:rounded-xs text-left",
+        true: "text-label-sm font-normal ml-3 xl:ml-0 xl:w-full rounded-md xl:rounded-xs text-left",
         false: "font-medium rounded-md",
       },
     },

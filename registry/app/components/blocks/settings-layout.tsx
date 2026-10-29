@@ -215,7 +215,8 @@ const SettingsSection = forwardRef<HTMLElement, SettingsSectionProps>(
       footer ??
       (onSave && (
         <div className="mt-stack-lg gap-stack-sm flex flex-wrap items-center">
-          <Button type="submit" variant="primary-fill" disabled={pending}>
+          {/* A wash, not a fill: a settings page has a Save per section (DESIGN.md, One Blue Rule) */}
+          <Button type="submit" variant="primary-outline" disabled={pending}>
             {pending ? labels.saving : labels.save}
           </Button>
           {onCancel && (
