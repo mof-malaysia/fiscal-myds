@@ -2,6 +2,9 @@ import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import type { StorybookConfig } from "@storybook/react-vite";
 
+/** The Astro Storybook's dev server (apps/storybook-astro `pnpm dev`). */
+const ASTRO_DEV_URL = "http://localhost:6008";
+
 const config: StorybookConfig = {
   stories: [
     "../stories/**/*.mdx",
@@ -28,12 +31,28 @@ const config: StorybookConfig = {
   refs: (_config: unknown, { configType }: { configType?: string }) => ({
     astro: {
       title: "FTDS for Astro",
-      url:
-        configType === "DEVELOPMENT"
-          ? "http://localhost:6008"
-          : "../storybook-astro",
+      url: configType === "DEVELOPMENT" ? ASTRO_DEV_URL : "../storybook-astro",
     },
   }),
+
+  // Storybook checks a ref once at startup; if the Astro Storybook isn't up
+  // yet (it boots slower), the browser then fetches it with credentials,
+  // which its `Access-Control-Allow-Origin: *` rejects. The ref needs no
+  // credentials, so in dev they're dropped for it, whichever server starts
+  // first. A built Storybook serves both from one origin.
+  managerHead: (head: string, { configType }: { configType?: string }) =>
+    configType === "DEVELOPMENT"
+      ? `${head}
+<script>
+  (() => {
+    const fetch = window.fetch.bind(window);
+    window.fetch = (input, init) =>
+      String(input instanceof Request ? input.url : input).startsWith("${ASTRO_DEV_URL}/")
+        ? fetch(input, { ...init, credentials: "omit" })
+        : fetch(input, init);
+  })();
+</script>`
+      : head,
   swc: () => ({
     jsc: {
       transform: {
