@@ -64,8 +64,9 @@ Before every push:
 
 - `registry/` matches `pnpm registry:build`, and `pnpm registry:validate` passes
 - `pnpm llms:check`: every component has a doc and every docs example typechecks
-- In parallel, the Storybook builds (React and Astro), the docs build, and the playground's tests and build
-- The Astro components' axe and keyboard tests, against the Astro Storybook build (first time: `pnpm --filter @mof-malaysia/ftds-storybook-astro exec playwright install chromium`)
+- Through turbo, in parallel: the Storybook builds (React and Astro), the docs build, the playground's tests and build, and the Astro components' axe and keyboard tests, which start once the Astro Storybook is built (first time: `pnpm --filter @mof-malaysia/ftds-storybook-astro exec playwright install chromium`)
+
+turbo replays a build or test from its cache when neither the package nor the workspace packages it uses have changed, so a push that doesn't touch Astro skips the Astro build and tests. A package that reads files outside its own folder and dependencies lists them as `inputs` in its own `turbo.json` (`apps/storybook-astro`, `apps/mcp`); add new ones there, or the cache can replay a stale result. To force a full run, delete `.turbo/cache`.
 
 A failing check blocks the commit or push. The push checks read the working tree, so commit or stash other changes first. Run them by hand with `pnpm exec lefthook run pre-push --force`. If the hooks are missing, run `pnpm exec lefthook install`. To skip them in an emergency, use `LEFTHOOK=0 git commit ...` or `LEFTHOOK=0 git push ...`, then run the checks yourself before opening a PR.
 

@@ -33,20 +33,15 @@ pre-push:
     # Every component has a doc for llms.txt, and every example in the docs typechecks
     - name: agent docs
       run: pnpm llms:check
-    - name: builds
-      group:
-        parallel: true
-        jobs:
-          - name: storybook
-            run: pnpm --filter @mof-malaysia/ftds-storybook build
-          - name: storybook-astro
-            run: pnpm --filter @mof-malaysia/ftds-storybook-astro build
-          - name: docs
-            run: pnpm --filter @mof-malaysia/ftds-docs-astro build
-          # The playground's checks, preview page and Worker bundle (no deploy)
-          - name: playground
-            run: pnpm --filter @mof-malaysia/ftds-mcp test && pnpm --filter @mof-malaysia/ftds-mcp build
-    # Axe and keyboard tests for the Astro components, against the build above
-    # (first run: `pnpm --filter @mof-malaysia/ftds-storybook-astro exec playwright install chromium`)
-    - name: astro a11y and keyboard
-      run: pnpm --filter @mof-malaysia/ftds-storybook-astro test
+    # Builds and tests through turbo, so a package whose sources (and the
+    # workspace packages it uses) haven't changed replays from the cache. The
+    # four builds run in parallel; the Astro axe and keyboard tests start once
+    # the Astro Storybook is built. Clear the cache with `rm -rf .turbo/cache`.
+    # (First time: `pnpm --filter @mof-malaysia/ftds-storybook-astro exec playwright install chromium`)
+    - name: builds and tests
+      run: >-
+        pnpm exec turbo run build test --ui=stream --output-logs=errors-only
+        --filter=@mof-malaysia/ftds-storybook
+        --filter=@mof-malaysia/ftds-storybook-astro
+        --filter=@mof-malaysia/ftds-docs-astro
+        --filter=@mof-malaysia/ftds-mcp

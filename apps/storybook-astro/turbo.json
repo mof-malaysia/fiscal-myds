@@ -1,0 +1,14 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!tests/**",
+        "!playwright.config.ts",
+        "$TURBO_ROOT$/packages/react/src/utils/**"
+      ]
+    }
+  }
+}
