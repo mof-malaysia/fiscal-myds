@@ -33,7 +33,8 @@ const spinnerVariants = cva(
 );
 
 interface SpinnerProps
-  extends VariantProps<typeof spinnerVariants>,
+  extends
+    VariantProps<typeof spinnerVariants>,
     Omit<ComponentProps<"div">, "color"> {
   className?: string;
   show?: boolean;

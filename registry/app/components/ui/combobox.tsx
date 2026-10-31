@@ -194,7 +194,8 @@ const combobox_icon_button_cva = cva(
 /*========================================================================================================================*/
 
 interface ComboboxInputProps
-  extends WithClassName<Omit<ComboboxPrimitive.Input.Props, "size">>,
+  extends
+    WithClassName<Omit<ComboboxPrimitive.Input.Props, "size">>,
     Pick<VariantProps<typeof combobox_input_group_cva>, "size"> {
   /** Class for the bordered wrapper. `className` goes to the `<input>`. */
   groupClassName?: string;
@@ -215,7 +216,8 @@ interface ComboboxInputProps
 }
 
 interface ComboboxContentProps
-  extends WithClassName<ComboboxPrimitive.Popup.Props>,
+  extends
+    WithClassName<ComboboxPrimitive.Popup.Props>,
     PositionerProps<ComboboxPrimitive.Positioner.Props> {
   /** Element to portal the popup into. Defaults to `document.body`. */
   container?: ComboboxPrimitive.Portal.Props["container"];
@@ -477,7 +479,8 @@ const combobox_chips_cva = cva(
 );
 
 interface ComboboxChipsProps
-  extends WithClassName<ComboboxPrimitive.Chips.Props>,
+  extends
+    WithClassName<ComboboxPrimitive.Chips.Props>,
     VariantProps<typeof combobox_chips_cva> {}
 
 /** Input box for `multiple`: holds the chips and a `ComboboxChipsInput`. Pass its ref to `ComboboxContent anchor`. */

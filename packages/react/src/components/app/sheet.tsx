@@ -48,7 +48,8 @@ const sheetVariants = cva(
 );
 
 interface SheetContentProps
-  extends Omit<SheetPrimitive.Popup.Props, "className">,
+  extends
+    Omit<SheetPrimitive.Popup.Props, "className">,
     VariantProps<typeof sheetVariants> {
   className?: string;
   /** Render a `SheetOverlay` behind the sheet. */

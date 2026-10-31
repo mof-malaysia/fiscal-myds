@@ -239,8 +239,10 @@ const DEFAULT_LABELS: SignUpFormLabels = {
   errorTitle: "There is a problem",
 };
 
-interface SignUpFormProps
-  extends Omit<ComponentProps<"form">, "onSubmit" | "children"> {
+interface SignUpFormProps extends Omit<
+  ComponentProps<"form">,
+  "onSubmit" | "children"
+> {
   onSubmit?: (values: SignUpValues) => void;
   /** Messages from the app's validation, keyed by field. Each shows under its field and in the summary. */
   errors?: Partial<Record<SignUpField, ReactNode>>;

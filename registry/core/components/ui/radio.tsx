@@ -17,8 +17,10 @@ const DEFAULT_SIZE = "medium";
  * Extends Base UI's RadioGroup props.
  * @see https://base-ui.com/react/components/radio#radiogroup
  */
-export interface RadioProps
-  extends Omit<RadioGroupPrimitive.Props<string>, "className"> {
+export interface RadioProps extends Omit<
+  RadioGroupPrimitive.Props<string>,
+  "className"
+> {
   className?: string;
   size?: RadioSize;
 }

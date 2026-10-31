@@ -274,8 +274,10 @@ const navbar_current_class = [
   "xl:after:absolute xl:after:inset-x-2.5 xl:after:bottom-0 xl:after:h-0.5 xl:after:rounded-full xl:after:bg-bg-primary-600",
 ];
 
-interface NavbarMenuItemProps
-  extends Omit<ComponentProps<"li">, "children" | "className"> {
+interface NavbarMenuItemProps extends Omit<
+  ComponentProps<"li">,
+  "children" | "className"
+> {
   children: ReactNode;
   href: string;
   className?: string;

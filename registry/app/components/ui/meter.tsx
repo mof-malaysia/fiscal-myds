@@ -118,7 +118,8 @@ Meter.displayName = "Meter";
 const meter_track_cva = progress_track_cva;
 
 interface MeterTrackProps
-  extends WithClassName<MeterPrimitive.Track.Props>,
+  extends
+    WithClassName<MeterPrimitive.Track.Props>,
     VariantProps<typeof meter_track_cva> {}
 
 /** The unfilled rail. Renders a MeterIndicator when it has no children. */

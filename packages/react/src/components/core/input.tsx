@@ -25,7 +25,8 @@ const InputContext = createContext<InputContextProps>({
 });
 
 interface InputProps
-  extends Omit<InputPrimitive.Props, "size" | "className">,
+  extends
+    Omit<InputPrimitive.Props, "size" | "className">,
     VariantProps<typeof input_cva> {
   className?: string;
   prepend?: ReactNode;

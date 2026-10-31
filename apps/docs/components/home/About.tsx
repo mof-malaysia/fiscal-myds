@@ -117,10 +117,10 @@ export default async function About(props: Props) {
               />
 
               <div className="flex flex-col items-start gap-[0.5rem] lg:items-center">
-                <div className="text-brand-700 text-balance text-[1rem] font-medium leading-[1.5rem]">
+                <div className="text-brand-700 text-[1rem] leading-[1.5rem] font-medium text-balance">
                   {t(item.titleKey)}
                 </div>
-                <p className="text-black-700 text-pretty text-[0.875rem] leading-[1.25rem] lg:text-center">
+                <p className="text-black-700 text-[0.875rem] leading-[1.25rem] text-pretty lg:text-center">
                   {t(item.descriptionKey)}
                 </p>
               </div>

@@ -64,7 +64,8 @@ const switch_thumb_cva = cva(
 );
 
 interface SwitchProps
-  extends Omit<SwitchPrimitive.Root.Props, "className">,
+  extends
+    Omit<SwitchPrimitive.Root.Props, "className">,
     VariantProps<typeof switch_cva> {
   className?: string;
 }

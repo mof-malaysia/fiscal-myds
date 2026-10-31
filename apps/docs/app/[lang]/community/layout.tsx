@@ -28,7 +28,7 @@ export default function Layout({
                 src="/common/logo.svg"
                 alt="MYDS Logo"
               />
-              <h3 className="font-heading text-[18px] font-semibold leading-[26px]">
+              <h3 className="font-heading text-[18px] leading-[26px] font-semibold">
                 MYDS
               </h3>
               <Tag className="text-txt-accent text-xs">Beta</Tag>

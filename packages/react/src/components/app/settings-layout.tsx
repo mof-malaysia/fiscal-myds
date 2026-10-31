@@ -165,8 +165,10 @@ const DEFAULT_SECTION_LABELS: SettingsSectionLabels = {
   saved: "Changes saved",
 };
 
-interface SettingsSectionProps
-  extends Omit<ComponentProps<"section">, "title" | "onSubmit"> {
+interface SettingsSectionProps extends Omit<
+  ComponentProps<"section">,
+  "title" | "onSubmit"
+> {
   title: ReactNode;
   description?: ReactNode;
   /** Makes the section a form with a Save button; called on submit with the form's data. */

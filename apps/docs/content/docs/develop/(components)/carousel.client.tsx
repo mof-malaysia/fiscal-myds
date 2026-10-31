@@ -67,40 +67,38 @@ export function FeaturesCarousel() {
     <section className="flex flex-row justify-center px-[18px] py-12">
       <div className="w-full">
         <Dialog>
-          
-            {/* Carousel Track */}
-            <HorizontalCard>
-              {features.map((feature, index) => (
-                <DialogTrigger key={feature.id}>
+          {/* Carousel Track */}
+          <HorizontalCard>
+            {features.map((feature, index) => (
+              <DialogTrigger key={feature.id}>
+                <div
+                  className="flex-shrink-0 px-2"
+                  style={{ width: "334px", height: "354px" }}
+                >
                   <div
-                    className="flex-shrink-0 px-2"
-                    style={{ width: "334px", height: "354px" }}
+                    className="relative top-0 flex h-full w-full cursor-pointer flex-col items-center overflow-hidden rounded-2xl shadow-2xl md:left-40"
+                    onClick={() => setCurrentFeatureIndex(index)}
                   >
-                    <div
-                      className="relative top-0 flex h-full w-full cursor-pointer flex-col items-center overflow-hidden rounded-2xl shadow-2xl md:left-40"
-                      onClick={() => setCurrentFeatureIndex(index)}
-                    >
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative h-full w-full bg-white">
-                          <img
-                            src={feature.image}
-                            alt={feature.title}
-                            className="object-contain"
-                            sizes="(max-width: 640px) 100vw, (max-width: 992px) 50vw, 334px"
-                          />
-                        </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative h-full w-full bg-white">
+                        <img
+                          src={feature.image}
+                          alt={feature.title}
+                          className="object-contain"
+                          sizes="(max-width: 640px) 100vw, (max-width: 992px) 50vw, 334px"
+                        />
                       </div>
                     </div>
                   </div>
-                </DialogTrigger>
-              ))}
-            </HorizontalCard>
-          
+                </div>
+              </DialogTrigger>
+            ))}
+          </HorizontalCard>
 
           <DialogBody className="w-full md:!max-w-[800px]">
             <DialogClose>
               <button
-                className="absolute right-4 top-4 rounded-lg border border-[#E4E4E7] p-1.5 text-gray-500 hover:text-gray-800"
+                className="absolute top-4 right-4 rounded-lg border border-[#E4E4E7] p-1.5 text-gray-500 hover:text-gray-800"
                 aria-label="Close modal"
               >
                 <svg
@@ -120,11 +118,10 @@ export function FeaturesCarousel() {
               </button>
             </DialogClose>
 
-            <DialogHeader className="pb-0">
-            </DialogHeader>
+            <DialogHeader className="pb-0"></DialogHeader>
 
             <DialogContent>
-              <div className="w-full flex flex-col items-center justify-center gap-8 md:flex-row">
+              <div className="flex w-full flex-col items-center justify-center gap-8 md:flex-row">
                 <div>
                   <img
                     src={features[currentFeatureIndex].open}
@@ -138,13 +135,13 @@ export function FeaturesCarousel() {
                   <h2 className="mb-4 text-base font-semibold">
                     {features[currentFeatureIndex]?.title ?? ""}
                   </h2>
-                  <p className="mt-4 font-normal max-w-sm">
+                  <p className="mt-4 max-w-sm font-normal">
                     {features[currentFeatureIndex]?.desc ?? ""}
                   </p>
                 </div>
               </div>
             </DialogContent>
-            
+
             <DialogFooter className="pt-0"></DialogFooter>
           </DialogBody>
         </Dialog>

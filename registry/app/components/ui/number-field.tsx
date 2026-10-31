@@ -32,8 +32,7 @@ import { clx, type WithClassName } from "@/lib/ftds/utils";
 
 type Size = "small" | "medium" | "large";
 
-interface NumberFieldProps
-  extends WithClassName<NumberFieldPrimitive.Root.Props> {
+interface NumberFieldProps extends WithClassName<NumberFieldPrimitive.Root.Props> {
   /** Class for the bordered box around the input and buttons. */
   groupClassName?: string;
   /** Props for the `<input>` (e.g. `placeholder`, `aria-label`, `className`). */
@@ -114,7 +113,11 @@ const NumberField = forwardRef<HTMLDivElement, NumberFieldProps>(
               size,
               padding: "tight",
               align: resolvedAlign,
-              className: clx("tabular-nums", !steppers && "px-2.5", inputClassName),
+              className: clx(
+                "tabular-nums",
+                !steppers && "px-2.5",
+                inputClassName,
+              ),
             })}
             {...restInputProps}
           />

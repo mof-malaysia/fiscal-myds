@@ -21,8 +21,10 @@ import { clx } from "@/lib/ftds/utils";
 
 type InputProps = React.ComponentProps<typeof Input>;
 
-interface PasswordInputProps
-  extends Omit<InputProps, "type" | "append" | "children"> {
+interface PasswordInputProps extends Omit<
+  InputProps,
+  "type" | "append" | "children"
+> {
   /** Controlled visibility. */
   visible?: boolean;
   /** Initial visibility (uncontrolled). Defaults to hidden. */

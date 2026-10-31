@@ -52,7 +52,8 @@ const checkbox_group_cva = cva("flex w-full min-w-0 border-none p-0", {
 });
 
 interface CheckboxGroupProps
-  extends WithClassName<CheckboxGroupPrimitive.Props>,
+  extends
+    WithClassName<CheckboxGroupPrimitive.Props>,
     VariantProps<typeof checkbox_group_cva> {}
 
 const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
@@ -70,8 +71,10 @@ CheckboxGroup.displayName = "CheckboxGroup";
 
 /*========================================================================================================================*/
 
-interface CheckboxGroupItemProps
-  extends Omit<CheckboxProps, "children" | "className"> {
+interface CheckboxGroupItemProps extends Omit<
+  CheckboxProps,
+  "children" | "className"
+> {
   /** Class for the row. */
   className?: string;
   label: ReactNode;

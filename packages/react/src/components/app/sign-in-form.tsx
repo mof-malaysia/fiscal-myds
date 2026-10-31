@@ -84,8 +84,10 @@ const DEFAULT_LABELS: SignInFormLabels = {
   errorTitle: "We couldn't sign you in",
 };
 
-interface SignInFormProps
-  extends Omit<ComponentProps<"div">, "onSubmit" | "children"> {
+interface SignInFormProps extends Omit<
+  ComponentProps<"div">,
+  "onSubmit" | "children"
+> {
   /** Which ways in to offer, in order. @default ["mydigital-id", "password"] */
   methods?: SignInMethod[];
   onSubmit?: (values: SignInValues) => void;

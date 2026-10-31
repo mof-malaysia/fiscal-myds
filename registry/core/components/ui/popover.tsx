@@ -26,7 +26,8 @@ const floating_popup_class = clx(
 );
 
 interface PopoverContentProps
-  extends WithClassName<PopoverPrimitive.Popup.Props>,
+  extends
+    WithClassName<PopoverPrimitive.Popup.Props>,
     PositionerProps<PopoverPrimitive.Positioner.Props> {
   /** A parent element to render the portal into. */
   container?: PopoverPrimitive.Portal.Props["container"];

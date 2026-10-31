@@ -103,8 +103,10 @@ const NEEDS_REASON: CaseDecision[] = ["return", "reject"];
 const error_class =
   "font-body text-content text-txt-danger flex items-start gap-1.5 font-medium";
 
-interface DecisionPanelProps
-  extends Omit<ComponentProps<"form">, "onSubmit" | "title" | "children"> {
+interface DecisionPanelProps extends Omit<
+  ComponentProps<"form">,
+  "onSubmit" | "title" | "children"
+> {
   /** Choices to offer, in order. @default ["approve", "return", "reject"] */
   options?: CaseDecision[];
   decision?: CaseDecision;

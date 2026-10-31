@@ -34,8 +34,8 @@ export const OfficerQueue = ({
   const [selected, setSelected] = React.useState<string[]>([]);
   const { toast } = useToast();
 
-  const results = queryCases({ search, status, assignee }).map(
-    (c) => cases.find((x) => x.id === c.id)!,
+  const results = queryCases({ search, status, assignee }).map((c) =>
+    cases.find((x) => x.id === c.id)!,
   );
   const items = results.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 

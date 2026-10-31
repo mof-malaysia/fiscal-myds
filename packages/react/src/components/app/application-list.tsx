@@ -144,8 +144,10 @@ interface ApplicationListItem {
   actionLabel?: ReactNode;
 }
 
-interface ApplicationListProps
-  extends Omit<ComponentProps<"section">, "title"> {
+interface ApplicationListProps extends Omit<
+  ComponentProps<"section">,
+  "title"
+> {
   items: ApplicationListItem[];
   /** Overrides the "Your applications" heading. Pass `null` to leave it out. */
   title?: ReactNode;

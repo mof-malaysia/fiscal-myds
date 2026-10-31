@@ -39,8 +39,7 @@ const fieldset_legend_sizes = {
   large: "text-headline font-semibold",
 };
 
-interface FieldsetLegendProps
-  extends WithClassName<FieldsetPrimitive.Legend.Props> {
+interface FieldsetLegendProps extends WithClassName<FieldsetPrimitive.Legend.Props> {
   size?: keyof typeof fieldset_legend_sizes;
 }
 

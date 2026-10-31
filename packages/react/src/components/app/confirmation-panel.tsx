@@ -55,8 +55,10 @@ const DEFAULT_LABELS: ConfirmationPanelLabels = {
   dashboard: "Go to your dashboard",
 };
 
-interface ConfirmationPanelProps
-  extends Omit<ComponentProps<"section">, "title"> {
+interface ConfirmationPanelProps extends Omit<
+  ComponentProps<"section">,
+  "title"
+> {
   /** Overrides the "Application submitted" heading (the page's h1). */
   title?: ReactNode;
   /** The reference the citizen quotes if they contact you. */

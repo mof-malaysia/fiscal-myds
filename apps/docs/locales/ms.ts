@@ -360,12 +360,15 @@ export default {
     },
   },
   myds_ai: {
-    description: "AI MYDS adalah alat yang membantu anda menjana komponen dan reka bentuk MYDS.",
+    description:
+      "AI MYDS adalah alat yang membantu anda menjana komponen dan reka bentuk MYDS.",
   },
   splask: {
-    description: "SPLaSK adalah alat ujian kebolehcapaian untuk laman web kerajaan Malaysia.",
+    description:
+      "SPLaSK adalah alat ujian kebolehcapaian untuk laman web kerajaan Malaysia.",
   },
   storybook: {
-    description: "Storybook adalah persekitaran pembangunan UI untuk komponen MYDS.",
+    description:
+      "Storybook adalah persekitaran pembangunan UI untuk komponen MYDS.",
   },
 };

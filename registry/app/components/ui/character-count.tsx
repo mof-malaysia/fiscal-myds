@@ -44,8 +44,10 @@ interface CharacterCountMessageState {
 
 type TextAreaProps = React.ComponentProps<typeof TextArea>;
 
-interface CharacterCountProps
-  extends Omit<TextAreaProps, "value" | "defaultValue" | "maxLength"> {
+interface CharacterCountProps extends Omit<
+  TextAreaProps,
+  "value" | "defaultValue" | "maxLength"
+> {
   /** The most characters (or words) allowed. */
   limit: number;
   /** Count characters (default) or words. */

@@ -143,8 +143,10 @@ function relativeTime(
   return format.format(0, "minute");
 }
 
-interface ActivityTimelineProps
-  extends Omit<ComponentProps<"div">, "children"> {
+interface ActivityTimelineProps extends Omit<
+  ComponentProps<"div">,
+  "children"
+> {
   events: ActivityEvent[];
   /** Shows the composer when set; resolves (or not) as the app saves the note. */
   /**

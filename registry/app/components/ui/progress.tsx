@@ -82,7 +82,8 @@ const progress_track_cva = cva(
 );
 
 interface ProgressTrackProps
-  extends WithClassName<ProgressPrimitive.Track.Props>,
+  extends
+    WithClassName<ProgressPrimitive.Track.Props>,
     VariantProps<typeof progress_track_cva> {}
 
 /** Shared with Meter. */

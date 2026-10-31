@@ -61,7 +61,8 @@ const ContextMenuTrigger = forwardRef<HTMLDivElement, ContextMenuTriggerProps>(
 ContextMenuTrigger.displayName = "ContextMenuTrigger";
 
 interface ContextMenuContentProps
-  extends WithClassName<ContextMenuPrimitive.Popup.Props>,
+  extends
+    WithClassName<ContextMenuPrimitive.Popup.Props>,
     PositionerProps<ContextMenuPrimitive.Positioner.Props> {
   /** Element to portal the popup into. Defaults to `document.body`. */
   container?: ContextMenuPrimitive.Portal.Props["container"];

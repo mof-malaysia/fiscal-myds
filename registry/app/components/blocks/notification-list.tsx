@@ -124,8 +124,10 @@ const KIND_TONE: Record<NotificationKind, string> = {
   deadline: "text-txt-warning",
 };
 
-interface NotificationListProps
-  extends Omit<ComponentProps<"div">, "onSelect"> {
+interface NotificationListProps extends Omit<
+  ComponentProps<"div">,
+  "onSelect"
+> {
   items: NotificationItem[];
   /** The filter (controlled). */
   filter?: NotificationFilter;
