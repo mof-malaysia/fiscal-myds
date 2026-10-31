@@ -1,6 +1,8 @@
 import Article from "./components/article";
 
 export default {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "examples-article",
   title: "Examples/Article",
   component: Article,
   // remove the automatic documentation for Layout

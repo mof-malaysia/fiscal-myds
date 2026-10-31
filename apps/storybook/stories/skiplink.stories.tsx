@@ -22,6 +22,8 @@ import { clx } from "@mof-malaysia/ftds-react/utils";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-skiplink",
   title: "Core/Skiplink",
   component: Skiplink,
   decorators: [

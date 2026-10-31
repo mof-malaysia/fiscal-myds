@@ -42,6 +42,8 @@ import {
  * ```
  */
 const meta: Meta<typeof Command> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-command",
   title: "App/Command",
   component: Command,
   parameters: { layout: "centered" },

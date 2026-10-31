@@ -35,6 +35,8 @@ import { Link } from "@mof-malaysia/ftds-react/link";
  * ```
  */
 const meta: Meta<typeof PaymentSummary> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-paymentsummary",
   title: "App/Blocks/PaymentSummary",
   component: PaymentSummary,
   parameters: { layout: "padded" },

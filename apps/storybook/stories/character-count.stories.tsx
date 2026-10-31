@@ -25,6 +25,8 @@ import {
  * ```
  */
 const meta: Meta<typeof CharacterCount> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-charactercount",
   title: "App/CharacterCount",
   component: CharacterCount,
   parameters: { layout: "padded" },

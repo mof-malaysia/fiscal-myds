@@ -34,6 +34,8 @@ import ArrowBack from "../react/arrow-back";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-pagination",
   title: "App/Pagination",
   component: AutoPagination,
   parameters: {

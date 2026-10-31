@@ -21,6 +21,8 @@ import { TextArea } from "@mof-malaysia/ftds-react/textarea";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-textarea",
   title: "Core/TextArea",
   component: TextArea,
   tags: ["autodocs"],

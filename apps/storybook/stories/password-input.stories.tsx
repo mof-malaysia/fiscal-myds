@@ -23,6 +23,8 @@ import {
  * ```
  */
 const meta: Meta<typeof PasswordInput> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-passwordinput",
   title: "App/PasswordInput",
   component: PasswordInput,
   parameters: { layout: "padded" },

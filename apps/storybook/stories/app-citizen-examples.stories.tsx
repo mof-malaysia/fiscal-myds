@@ -14,6 +14,8 @@ import {
  * dashboard. Callbacks are simulated, so you can submit with errors and see them.
  */
 export default {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "examples-app-citizen",
   title: "Examples/App/Citizen",
   tags: ["!autodocs"],
   parameters: { layout: "fullscreen" },

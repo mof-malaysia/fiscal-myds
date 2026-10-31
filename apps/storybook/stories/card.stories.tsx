@@ -30,6 +30,8 @@ import { Button } from "@mof-malaysia/ftds-react/button";
  * ```
  */
 const meta: Meta<typeof Card> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-card",
   title: "Core/Card",
   component: Card,
   parameters: { layout: "centered" },

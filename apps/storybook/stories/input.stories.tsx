@@ -35,6 +35,8 @@ import ArrowForward from "../react/arrow-forward";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-input",
   title: "Core/Input",
   component: Input,
   tags: ["autodocs"],

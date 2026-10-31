@@ -26,6 +26,8 @@ import {
  * ```
  */
 const meta: Meta<typeof TaskList> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-tasklist",
   title: "App/TaskList",
   component: TaskList,
   parameters: { layout: "padded" },

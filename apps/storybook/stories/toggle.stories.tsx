@@ -20,6 +20,8 @@ import { BoldIcon } from "@mof-malaysia/ftds-react/icon";
  * ```
  */
 const meta: Meta<typeof Toggle> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-toggle",
   title: "Core/Toggle",
   component: Toggle,
   parameters: { layout: "centered" },

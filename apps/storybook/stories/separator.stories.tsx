@@ -16,6 +16,8 @@ import { Separator } from "@mof-malaysia/ftds-react/separator";
  * ```
  */
 const meta: Meta<typeof Separator> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-separator",
   title: "Core/Separator",
   component: Separator,
   parameters: { layout: "centered" },

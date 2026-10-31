@@ -21,6 +21,8 @@ import { Stepper, StepperItem } from "@mof-malaysia/ftds-react/stepper";
  * ```
  */
 const meta: Meta<typeof Stepper> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-stepper",
   title: "App/Stepper",
   component: Stepper,
   parameters: { layout: "padded" },

@@ -33,6 +33,8 @@ import { QuestionCircleIcon } from "@mof-malaysia/ftds-react/icon";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-tooltip",
   title: "Core/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],

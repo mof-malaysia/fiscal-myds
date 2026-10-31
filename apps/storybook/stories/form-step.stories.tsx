@@ -37,6 +37,8 @@ import { Input } from "@mof-malaysia/ftds-react/input";
  * ```
  */
 const meta: Meta<typeof FormStep> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-formstep",
   title: "App/Blocks/FormStep",
   component: FormStep,
   parameters: { layout: "padded" },

@@ -18,6 +18,8 @@ import {
  * (Masthead, service header, footer).
  */
 export default {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "examples-app-account",
   title: "Examples/App/Account",
   tags: ["!autodocs"],
   parameters: { layout: "fullscreen" },

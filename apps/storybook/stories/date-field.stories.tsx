@@ -31,6 +31,8 @@ import {
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-datefield",
   title: "App/DateField",
   component: DateField,
   tags: ["autodocs"],

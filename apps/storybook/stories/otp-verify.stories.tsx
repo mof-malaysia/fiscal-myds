@@ -28,6 +28,8 @@ import { wait } from "./components/app/access-brand";
  * ```
  */
 const meta: Meta<typeof OtpVerify> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-otpverify",
   title: "App/Blocks/OtpVerify",
   component: OtpVerify,
 };

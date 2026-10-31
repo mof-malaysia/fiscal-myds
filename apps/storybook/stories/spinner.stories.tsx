@@ -15,6 +15,8 @@ import { Button } from "@mof-malaysia/ftds-react/button";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-spinner",
   title: "Core/Spinner",
   component: Spinner,
   tags: ["autodocs"],

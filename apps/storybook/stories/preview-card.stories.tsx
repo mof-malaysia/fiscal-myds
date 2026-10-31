@@ -23,6 +23,8 @@ import {
  * ```
  */
 const meta: Meta<typeof PreviewCard> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-previewcard",
   title: "App/PreviewCard",
   component: PreviewCard,
   parameters: { layout: "centered" },

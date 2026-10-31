@@ -22,6 +22,8 @@ import { ErrorPage } from "@mof-malaysia/ftds-react/error-page";
  * ```
  */
 const meta: Meta<typeof ErrorPage> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-errorpage",
   title: "App/Blocks/ErrorPage",
   component: ErrorPage,
   parameters: { layout: "fullscreen" },

@@ -31,6 +31,8 @@ import { Link } from "@mof-malaysia/ftds-react/link";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "marketing-announcebar",
   title: "Marketing/AnnounceBar",
   component: AnnounceBar,
   tags: ["autodocs"],

@@ -23,6 +23,8 @@ import { UserIcon } from "@mof-malaysia/ftds-react/icon";
  * ```
  */
 const meta: Meta<typeof Avatar> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-avatar",
   title: "Core/Avatar",
   component: Avatar,
   parameters: { layout: "centered" },

@@ -21,6 +21,8 @@ import {
  * ```
  */
 const meta: Meta<typeof Details> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-details",
   title: "Core/Details",
   component: Details,
   parameters: { layout: "padded" },

@@ -37,6 +37,8 @@ import { Button } from "@mof-malaysia/ftds-react/button";
  * ```
  */
 const meta: Meta<typeof Field> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-field",
   title: "Core/Field",
   component: Field,
   parameters: { layout: "padded" },

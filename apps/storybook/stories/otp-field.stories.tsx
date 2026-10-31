@@ -26,6 +26,8 @@ import {
  * ```
  */
 const meta: Meta<typeof OTPField> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-otpfield",
   title: "App/OTPField",
   component: OTPField,
   parameters: { layout: "centered" },

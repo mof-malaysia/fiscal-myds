@@ -26,6 +26,8 @@ import {
  * ```
  */
 const meta: Meta<typeof Stat> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-stat",
   title: "App/Stat",
   component: Stat,
   parameters: { layout: "padded" },

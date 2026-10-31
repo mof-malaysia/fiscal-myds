@@ -40,6 +40,8 @@ import {
  * ```
  */
 const meta: Meta<typeof Footer> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-footer",
   title: "Core/Footer",
   component: Footer,
   parameters: { layout: "fullscreen" },

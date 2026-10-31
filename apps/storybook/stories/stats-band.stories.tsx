@@ -16,6 +16,8 @@ import { StatsBand } from "@mof-malaysia/ftds-react/stats-band";
  * ```
  */
 const meta: Meta<typeof StatsBand> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "marketing-blocks-statsband",
   title: "Marketing/Blocks/StatsBand",
   component: StatsBand,
   parameters: { layout: "fullscreen" },

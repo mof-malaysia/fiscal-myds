@@ -26,6 +26,8 @@ import { Button } from "@mof-malaysia/ftds-react/button";
  * ```
  */
 const meta: Meta<typeof SessionTimeoutDialog> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-sessiontimeoutdialog",
   title: "App/Blocks/SessionTimeoutDialog",
   component: SessionTimeoutDialog,
 };

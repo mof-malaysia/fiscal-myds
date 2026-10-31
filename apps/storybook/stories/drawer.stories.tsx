@@ -35,6 +35,8 @@ import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
  * ```
  */
 const meta: Meta<typeof Drawer> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-drawer",
   title: "App/Drawer",
   component: Drawer,
   parameters: { layout: "centered" },

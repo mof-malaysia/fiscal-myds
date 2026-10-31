@@ -22,6 +22,8 @@ import { ConfirmationPanel } from "@mof-malaysia/ftds-react/confirmation-panel";
  * ```
  */
 const meta: Meta<typeof ConfirmationPanel> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-confirmationpanel",
   title: "App/Blocks/ConfirmationPanel",
   component: ConfirmationPanel,
   parameters: { layout: "padded" },

@@ -36,6 +36,8 @@ import {
  * ```
  */
 const meta: Meta<typeof Menubar> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-menubar",
   title: "App/Menubar",
   component: Menubar,
   parameters: { layout: "centered" },

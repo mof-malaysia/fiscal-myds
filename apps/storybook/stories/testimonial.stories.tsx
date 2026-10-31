@@ -16,6 +16,8 @@ import { Testimonial } from "@mof-malaysia/ftds-react/testimonial";
  * ```
  */
 const meta: Meta<typeof Testimonial> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "marketing-blocks-testimonial",
   title: "Marketing/Blocks/Testimonial",
   component: Testimonial,
   parameters: { layout: "fullscreen" },

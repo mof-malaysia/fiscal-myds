@@ -51,6 +51,8 @@ import React from "react";
  */
 
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "marketing-accordion",
   title: "Marketing/Accordion",
   component: Accordion,
   tags: ["autodocs"],

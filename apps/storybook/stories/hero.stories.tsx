@@ -22,6 +22,8 @@ import { Hero } from "@mof-malaysia/ftds-react/hero";
  * ```
  */
 const meta: Meta<typeof Hero> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "marketing-blocks-hero",
   title: "Marketing/Blocks/Hero",
   component: Hero,
   parameters: { layout: "fullscreen" },

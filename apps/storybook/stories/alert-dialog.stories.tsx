@@ -56,6 +56,8 @@ import { createStory } from "../utils";
  * ```
  */
 const meta: Meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-alertdialog",
   title: "Core/AlertDialog",
   component: AlertDialog,
   render: ({ dismissible, align, variant }) => {

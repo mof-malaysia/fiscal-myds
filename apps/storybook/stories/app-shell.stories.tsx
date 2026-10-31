@@ -62,6 +62,8 @@ import {
  * ```
  */
 const meta: Meta<typeof AppShell> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-appshell",
   title: "App/AppShell",
   component: AppShell,
   parameters: { layout: "fullscreen" },

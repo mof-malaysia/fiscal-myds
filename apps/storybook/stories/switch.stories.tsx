@@ -17,6 +17,8 @@ import { Switch } from "@mof-malaysia/ftds-react/switch";
  * ```
  */
 const meta: Meta<typeof Switch> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-switch",
   title: "Core/Switch",
   component: Switch,
   parameters: { layout: "centered" },

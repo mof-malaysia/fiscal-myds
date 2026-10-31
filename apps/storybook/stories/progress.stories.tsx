@@ -20,6 +20,8 @@ import {
  * ```
  */
 const meta: Meta<typeof Progress> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-progress",
   title: "App/Progress",
   component: Progress,
   parameters: { layout: "centered" },

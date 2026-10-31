@@ -41,6 +41,8 @@ const CalloutDemo = (props: ComponentProps<typeof Callout>) => {
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-callout",
   title: "Core/Callout",
   component: CalloutDemo,
   tags: ["autodocs"],

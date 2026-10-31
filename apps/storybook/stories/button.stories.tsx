@@ -57,6 +57,8 @@ import React from "react";
  * ```
  */
 const meta = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-button",
   title: "Core/Button",
   component: Button,
   parameters: {

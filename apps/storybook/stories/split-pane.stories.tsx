@@ -15,6 +15,8 @@ import { SplitPane } from "@mof-malaysia/ftds-react/split-pane";
  * ```
  */
 const meta: Meta<typeof SplitPane> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-splitpane",
   title: "App/SplitPane",
   component: SplitPane,
   parameters: { layout: "fullscreen" },

@@ -100,6 +100,8 @@ import {
  * ```
  */
 const meta: Meta<typeof DeskShell> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-deskshell",
   title: "App/DeskShell",
   component: DeskShell,
   parameters: { layout: "fullscreen" },

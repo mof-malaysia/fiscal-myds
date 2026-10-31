@@ -27,6 +27,8 @@ import { EVENTS, ME, NOW } from "./components/app/officer-data";
  * ```
  */
 const meta: Meta<typeof ActivityTimeline> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-blocks-activitytimeline",
   title: "App/Blocks/ActivityTimeline",
   component: ActivityTimeline,
   parameters: { layout: "padded" },

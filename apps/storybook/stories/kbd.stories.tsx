@@ -19,6 +19,8 @@ import { Kbd } from "@mof-malaysia/ftds-react/kbd";
  * ```
  */
 const meta: Meta<typeof Kbd> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-kbd",
   title: "Core/Kbd",
   component: Kbd,
   args: { combo: "mod+k" },

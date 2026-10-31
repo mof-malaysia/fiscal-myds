@@ -14,6 +14,8 @@ import { ScrollArea } from "@mof-malaysia/ftds-react/scroll-area";
  * ```
  */
 const meta: Meta<typeof ScrollArea> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "core-scrollarea",
   title: "Core/ScrollArea",
   component: ScrollArea,
   parameters: { layout: "centered" },

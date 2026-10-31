@@ -33,6 +33,8 @@ import {
  * ```
  */
 const meta: Meta<typeof ContextMenu> = {
+  // Pinned so URLs survive the "FTDS for React" title prefix
+  id: "app-contextmenu",
   title: "App/ContextMenu",
   component: ContextMenu,
   parameters: { layout: "centered" },
