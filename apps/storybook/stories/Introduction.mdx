@@ -211,8 +211,25 @@ export const IntroPage = () => (
       <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
         FTDS is a shadcn registry: the CLI copies the source into your project,
         so there is no npm package to install. Start from shadcn's default
-        Base UI setup with Tailwind v4.
+        Base UI setup with Tailwind v4, and add the{" "}
+        <code className="bg-bg-washed rounded px-1 py-0.5 text-xs">@ftds</code>{" "}
+        namespace to{" "}
+        <code className="bg-bg-washed rounded px-1 py-0.5 text-xs">
+          components.json
+        </code>
+        . Pin an exact version, such as{" "}
+        <code className="bg-bg-washed rounded px-1 py-0.5 text-xs">v0.1.0</code>
+        , for anything that ships.
       </p>
+      <Source
+        language="json"
+        dark
+        code={`{
+  "registries": {
+    "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json"
+  }
+}`}
+      />
       <Source
         language="bash"
         dark
@@ -220,10 +237,11 @@ export const IntroPage = () => (
 npx shadcn@latest init
 
 # 2. Add the FTDS styles (creates styles/ftds.css)
-npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/style/styles/default/ftds-init.json
+npx shadcn@latest add @ftds/ftds-init
 
-# 3. Add components; dependencies, icons and hooks come along
-npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/core/styles/default/button.json --overwrite`}
+# 3. Add components; dependencies, icons and hooks come along.
+#    --overwrite replaces the button.tsx that shadcn init created.
+npx shadcn@latest add @ftds/button --overwrite`}
       />
       <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
         Then import the styles in your global CSS:
@@ -236,11 +254,12 @@ npx shadcn@latest add https://mof-malaysia.github.io/ftds/registry/core/styles/d
 @import "../styles/ftds.css";`}
       />
       <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
-        Every item lives at{" "}
+        Without the namespace, install straight from GitHub with a release tag:{" "}
         <code className="bg-bg-washed rounded px-1 py-0.5 text-xs">
-          registry/&lt;core|app|marketing|icons|style&gt;/styles/default/&lt;name&gt;.json
+          npx shadcn@latest add mof-malaysia/ftds/button#v0.1.0
         </code>
-        . The README in the repository covers the full setup and style options.
+        . The README in the repository covers the full setup, style options
+        and where every file installs.
       </p>
     </Section>
   </div>
