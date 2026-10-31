@@ -1,0 +1,77 @@
+---
+/**
+ * The site chrome every page template shares: skip link, Masthead, an
+ * optional AnnounceBar, Navbar, the page's `<main>`, and the footer
+ * (SiteFooter over Footer in one contentinfo landmark).
+ *
+ * In your site this is the body of your layout: put it inside your
+ * `<html lang="ms">` with `<ThemeScript />` in the `<head>`. Slots: the
+ * default (the page), `announce` (an AnnounceBar above the navbar).
+ */
+import { resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Skiplink from "@/components/ui/skiplink.astro";
+import Masthead from "@/components/ui/masthead.astro";
+import Navbar from "@/components/ui/navbar.astro";
+import LanguageSwitcher from "@/components/ui/language-switcher.astro";
+import SiteFooter from "@/components/ui/site-footer.astro";
+import Footer from "@/components/ui/footer.astro";
+import Link from "@/components/ui/link.astro";
+import FacebookIcon from "@/components/ui/icons/facebook.astro";
+import TwitterXIcon from "@/components/ui/icons/twitter-x.astro";
+import YoutubeIcon from "@/components/ui/icons/youtube.astro";
+import { agency, brand, footerGroups, jataNegara, legalLinks, navItems } from "./site";
+
+interface Props {
+  /** Label of the current top-level section, e.g. "Media". */
+  current?: string;
+  lang?: Lang;
+}
+
+const { current, lang: langProp } = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+
+const socials = [
+  { label: "Facebook", href: "https://www.facebook.com/", Icon: FacebookIcon },
+  { label: "X", href: "https://x.com/", Icon: TwitterXIcon },
+  { label: "YouTube", href: "https://www.youtube.com/", Icon: YoutubeIcon },
+];
+---
+
+<Skiplink href="#main" lang={lang} />
+<Masthead lang={lang} />
+<slot name="announce" />
+<Navbar brand={brand} items={navItems(current)} lang={lang}>
+  <LanguageSwitcher
+    slot="actions"
+    lang={lang}
+    locales={[
+      { code: "ms", href: "#ms" },
+      { code: "en", href: "#en" },
+    ]}
+  />
+</Navbar>
+<main id="main" tabindex="-1" class="bg-bg-gray-50 outline-none">
+  <slot />
+</main>
+<footer>
+  <SiteFooter as="div" logoTitle={agency.name} groups={footerGroups}>
+    <img slot="logo" src={jataNegara} width="46" height="36" alt="" class="h-9 w-auto" />
+    <p>{agency.address}</p>
+    <div class="flex gap-1">
+      {
+        socials.map(({ label, href, Icon }) => (
+          <Link
+            href={href}
+            newTab
+            underline="none"
+            aria-label={label}
+            class="text-txt-black-700 hover:text-txt-black-900 flex size-11 items-center justify-center rounded-md"
+          >
+            <Icon aria-hidden="true" />
+          </Link>
+        ))
+      }
+    </div>
+  </SiteFooter>
+  <Footer as="div" tone="well" owner={agency.name} links={legalLinks} lang={lang} />
+</footer>

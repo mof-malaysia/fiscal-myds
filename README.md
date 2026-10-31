@@ -172,6 +172,7 @@ A second distribution for sites whose job is to inform or persuade: agency pages
 - **Not a mirror**: Astro can have marketing and content components React doesn't.
 - **Same look**: components in both stacks share their classes from `packages/style/variants` (the `variants-<name>` items, installed as `components/ui/<name>.variants.ts`), and both use the same `ftds-init` styles.
 - **Built-in labels** in Bahasa Melayu (default) and English, from `astro-i18n`.
+- **Page templates**: full agency pages (homepage, service landing, campaign, news, event, about, contact, publications, 404 and maintenance) assembled from the blocks, in `packages/astro/src/templates` and the Astro Storybook under Marketing › Templates. They are references to copy from, not a starter kit or a registry item.
 - **Requirements**: Astro 7+ and Tailwind v4.
 
 ```bash
@@ -220,7 +221,7 @@ apps/
   docs/             Legacy docs site (being deprecated; not linted)
 packages/
   react/            Component source, by tier: src/components/{core,app,marketing}
-  astro/            FTDS for Astro source: src/components/{core,marketing}, icons, i18n
+  astro/            FTDS for Astro source: src/components/{core,marketing}, icons, i18n, templates
   style/            Tailwind v4 tokens and themes (source for @ftds-style), plus variants/: cva classes shared by React and Astro
   _typescript/      Shared tsconfig presets
 registry.json       Registry root the shadcn CLI reads from GitHub

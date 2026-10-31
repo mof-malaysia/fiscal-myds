@@ -1,0 +1,106 @@
+---
+/**
+ * Template: campaign or announcement page. One message and one action,
+ * repeated: what's changing, why it matters, how to act before the deadline.
+ *
+ * Hero → StatsBand → CtaSplit → Steps → Testimonial → Faq → CtaBand. Copy
+ * this file, the blocks it imports and site-layout.astro, then swap in your
+ * content.
+ */
+import SiteLayout from "./site-layout.astro";
+import Hero from "@/components/blocks/hero.astro";
+import StatsBand from "@/components/blocks/stats-band.astro";
+import CtaSplit from "@/components/blocks/cta-split.astro";
+import Steps from "@/components/blocks/steps.astro";
+import Testimonial from "@/components/blocks/testimonial.astro";
+import Faq from "@/components/blocks/faq.astro";
+import CtaBand from "@/components/blocks/cta-band.astro";
+import { placeholder } from "./site";
+---
+
+<SiteLayout current="Perkhidmatan">
+  <Hero
+    eyebrow="Hingga 31 Disember 2026"
+    title="e-Invois untuk semua perniagaan kecil"
+    description="Mulai 1 Januari 2027, setiap perniagaan yang berdaftar dengan SSM perlu mengeluarkan e-Invois. Daftar sekarang: percuma, dan mengambil masa lima minit."
+    primaryAction={{ label: "Daftar sekarang", href: "#daftar" }}
+    secondaryAction={{ label: "Apa yang berubah", href: "#berubah" }}
+  >
+    <img
+      slot="media"
+      src={placeholder("Gambar kempen")}
+      width="1200"
+      height="675"
+      alt=""
+      class="w-full"
+    />
+  </Hero>
+
+  <StatsBand
+    id="berubah"
+    title="Mengapa ia penting"
+    stats={[
+      { value: "1.2 juta", label: "perniagaan kecil terlibat" },
+      { value: "5 minit", label: "untuk mendaftar" },
+      { value: "RM 0", label: "kos pendaftaran" },
+    ]}
+    source="Sumber: Lembaga Hasil Dalam Negeri, Oktober 2026"
+  />
+
+  <CtaSplit
+    title="Satu akaun untuk semua invois anda"
+    description="Keluarkan, hantar dan simpan invois di satu tempat, dari telefon atau komputer."
+    points={[
+      "Percuma untuk perniagaan dengan jualan kurang RM 500,000 setahun",
+      "Log masuk dengan MyDigital ID",
+      "Invois disahkan dalam masa nyata",
+    ]}
+    primaryAction={{ label: "Daftar sekarang", href: "#daftar" }}
+    secondaryAction={{ label: "Tonton demo", href: "#demo" }}
+  >
+    <img slot="media" src={placeholder("Ilustrasi aplikasi", 800, 600)} width="800" height="600" alt="" />
+  </CtaSplit>
+
+  <Steps
+    id="daftar"
+    tone="well"
+    title="Cara mendaftar"
+    steps={[
+      { title: "Log masuk dengan MyDigital ID", description: "Belum ada? Daftar MyDigital ID dahulu, ia mengambil masa dua minit." },
+      { title: "Pilih perniagaan anda", description: "Kami mengisi maklumat syarikat anda daripada rekod SSM." },
+      { title: "Keluarkan invois pertama anda", description: "Gunakan templat kami, atau muat naik invois sedia ada." },
+    ]}
+    action={{ label: "Daftar sekarang", href: "#mula" }}
+  />
+
+  <Testimonial
+    items={[
+      {
+        quote: "Saya mendaftar semasa rehat tengah hari. Invois pertama saya disahkan dalam beberapa saat.",
+        name: "Nurul Aina",
+        role: "Pemilik kedai bunga, Shah Alam",
+      },
+    ]}
+  />
+
+  <Faq
+    tone="well"
+    items={[
+      {
+        question: "Adakah perniagaan saya perlu mendaftar?",
+        answer: "Ya, jika perniagaan anda berdaftar dengan SSM dan mempunyai jualan tahunan melebihi RM 150,000.",
+      },
+      {
+        question: "Bagaimana jika saya terlepas tarikh akhir?",
+        answer: "Anda masih boleh mendaftar selepas 31 Disember, tetapi invois kertas tidak lagi diterima untuk tuntutan cukai.",
+      },
+    ]}
+  />
+
+  <CtaBand
+    tone="primary"
+    title="Daftar sebelum 31 Disember"
+    description="Percuma, dan mengambil masa lima minit."
+    primaryAction={{ label: "Daftar sekarang", href: "#mula" }}
+  />
+</SiteLayout>

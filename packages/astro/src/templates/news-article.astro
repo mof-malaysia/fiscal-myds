@@ -1,0 +1,100 @@
+---
+/**
+ * Template: news article or press statement. A reading column with the lead
+ * image, the body in Prose, the attachments, and related news after it.
+ * In your site, render a Content Collection entry's `<Content />` in Prose.
+ *
+ * PageIntro (article width) → Prose → DownloadList → NewsList (grid). Copy
+ * this file, the blocks it imports and site-layout.astro, then swap in your
+ * content.
+ */
+import SiteLayout from "./site-layout.astro";
+import PageIntro from "@/components/blocks/page-intro.astro";
+import Prose from "@/components/ui/prose.astro";
+import DownloadList from "@/components/blocks/download-list.astro";
+import NewsList from "@/components/blocks/news-list.astro";
+import Tag from "@/components/ui/tag.astro";
+import { formatDate, isoDate } from "@/lib/ftds/i18n";
+import { home, news, placeholder } from "./site";
+
+const published = "2026-10-10";
+---
+
+<SiteLayout current="Media">
+  <PageIntro
+    tone="paper"
+    width="article"
+    breadcrumb={[
+      home,
+      { label: "Media", href: "#media" },
+      { label: "Belanjawan 2027 dibentangkan" },
+    ]}
+    title="Belanjawan 2027 dibentangkan di Dewan Rakyat"
+    description="Belanjawan memberi tumpuan kepada kos sara hidup, pendidikan dan pendigitalan perkhidmatan awam."
+  >
+    <Tag slot="eyebrow" size="medium">Kenyataan media</Tag>
+    <Fragment slot="meta">
+      <time datetime={isoDate(published)}>{formatDate("ms", published)}</time>
+      <span aria-hidden="true" class="bg-txt-black-500 size-1 rounded-full"></span>
+      <span>4 minit bacaan</span>
+    </Fragment>
+    <figure slot="media">
+      <img src={placeholder("Gambar berita")} width="1200" height="675" alt="" class="w-full" />
+    </figure>
+  </PageIntro>
+
+  <div class="mx-auto w-full max-w-[808px] px-4 md:px-6">
+    <Prose as="article">
+      <p>
+        <strong>PUTRAJAYA, 10 Oktober 2026</strong> — Belanjawan 2027 dibentangkan di Dewan Rakyat hari ini
+        dengan peruntukan sebanyak RM 421 bilion, memberi tumpuan kepada kos sara hidup, pendidikan dan
+        pendigitalan perkhidmatan awam.
+      </p>
+      <h2>Kos sara hidup</h2>
+      <p>
+        Sumbangan Tunai Rahmah diteruskan untuk 5.4 juta isi rumah, dengan kadar baharu mulai Februari 2027.
+        Isi rumah yang sudah menerima bantuan tidak perlu memohon semula.
+      </p>
+      <ul>
+        <li>Sehingga RM 2,000 setahun untuk isi rumah berpendapatan RM 5,000 sebulan atau kurang</li>
+        <li>Bayaran tambahan RM 100 bagi setiap anak di bawah 18 tahun</li>
+        <li>Bayaran terus ke akaun bank dalam empat fasa</li>
+      </ul>
+      <h2>Perkhidmatan awam digital</h2>
+      <p>
+        Semua bayaran kerajaan akan boleh dibuat dalam talian menjelang akhir 2027. Kaunter fizikal kekal dibuka
+        untuk mereka yang memerlukan.
+      </p>
+      <blockquote>
+        <p>"Kerajaan yang baik ialah kerajaan yang mudah ditemui, mudah difahami dan mudah digunakan."</p>
+      </blockquote>
+      <h3>Jadual pelaksanaan</h3>
+      <table>
+        <thead>
+          <tr><th scope="col">Inisiatif</th><th scope="col">Bermula</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Kadar baharu Sumbangan Tunai Rahmah</td><td>Februari 2027</td></tr>
+          <tr><td>e-Invois untuk perniagaan kecil</td><td>Januari 2027</td></tr>
+          <tr><td>Semua bayaran kerajaan dalam talian</td><td>Disember 2027</td></tr>
+        </tbody>
+      </table>
+      <p>Teks penuh ucapan belanjawan boleh dimuat turun di bawah.</p>
+    </Prose>
+  </div>
+
+  <DownloadList
+    title="Lampiran"
+    width="article"
+    files={[
+      { title: "Teks ucapan Belanjawan 2027", href: "#ucapan.pdf", type: "pdf", size: "2.4 MB", date: published },
+      { title: "Ringkasan Belanjawan 2027 (infografik)", href: "#ringkasan.pdf", type: "pdf", size: "5.1 MB", date: published },
+    ]}
+  />
+
+  <NewsList
+    title="Berita berkaitan"
+    viewAll={{ label: "Semua berita", href: "#media" }}
+    items={news.slice(1, 4)}
+  />
+</SiteLayout>

@@ -1,0 +1,130 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { format, label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import ChevronLeftIcon from "@/components/ui/icons/chevron-left.astro";
+import ChevronRightIcon from "@/components/ui/icons/chevron-right.astro";
+
+/**
+ * Pager moves between the pages of a static listing (news, publications):
+ * previous, the page numbers around the current one with the first and last,
+ * and next. Every page is a plain link, so it works with Astro's `paginate()`
+ * and no JavaScript. The current page is `aria-current="page"`; a gap of two
+ * or more pages shows an ellipsis.
+ *
+ * `href` is a pattern with `{n}` for the page number (`"/berita/{n}"`) or a
+ * function of the page. `firstHref` gives page 1 its own URL, as `paginate()`
+ * does (`/berita`, then `/berita/2`).
+ *
+ * For an app's client-side paging, use the React Pagination.
+ *
+ * @example
+ * ---
+ * const { page } = Astro.props; // from paginate()
+ * ---
+ * <Pager current={page.currentPage} total={page.lastPage} href="/berita/{n}" firstHref="/berita" />
+ */
+type Props = Omit<HTMLAttributes<"nav">, "class" | "lang"> & {
+  /** The current page, from 1. */
+  current: number;
+  /** The number of pages. */
+  total: number;
+  /** URL of a page: a pattern with `{n}`, e.g. `"/berita/{n}"`, or a function of the page. */
+  href: string | ((page: number) => string);
+  /** URL of page 1, when it differs from the pattern, e.g. `"/berita"`. */
+  firstHref?: string;
+  /** Pages shown each side of the current one. Defaults to 1. */
+  siblings?: number;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  current,
+  total,
+  href: hrefProp,
+  firstHref,
+  siblings = 1,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const ariaLabel = props["aria-label"] ?? label(lang, "pagination");
+
+const href = (n: number) =>
+  n === 1 && firstHref
+    ? firstHref
+    : typeof hrefProp === "function"
+      ? hrefProp(n)
+      : format(hrefProp, { n });
+
+/** First, last, and `siblings` around the current page; `null` marks a gap. */
+const nearby = [
+  ...new Set([
+    1,
+    ...Array.from({ length: 2 * siblings + 1 }, (_, i) => current - siblings + i),
+    total,
+  ]),
+]
+  .filter((n) => n >= 1 && n <= total)
+  .sort((a, b) => a - b);
+const pages: (number | null)[] = [];
+for (const n of nearby) {
+  const previous = pages.at(-1) ?? 0;
+  // A gap of one page shows that page: "…" would take as much room
+  if (n - previous === 2) pages.push(n - 1);
+  else if (n - previous > 2) pages.push(null);
+  pages.push(n);
+}
+
+const pageLabel = label(lang, "page");
+const itemClass =
+  "text-label-md focus-ring inline-flex h-10 min-w-10 items-center justify-center gap-1 rounded-md px-3 font-medium transition-colors duration-150 motion-reduce:transition-none";
+const linkClass = clx(itemClass, "text-txt-black-700 hover:bg-bg-washed hover:text-txt-black-900");
+const currentClass = clx(itemClass, "bg-bg-primary-50 text-txt-primary");
+---
+
+{
+  total > 1 && (
+    <nav {...props} aria-label={ariaLabel} class={clx("font-body", className)}>
+      <ul class="flex flex-wrap items-center gap-1">
+        {current > 1 && (
+          <li>
+            <a href={href(current - 1)} rel="prev" class={linkClass}>
+              <ChevronLeftIcon aria-hidden="true" class="size-4" />
+              {label(lang, "previous")}
+            </a>
+          </li>
+        )}
+        {pages.map((n) =>
+          n === null ? (
+            <li aria-hidden="true" class="text-txt-black-700 px-2">
+              …
+            </li>
+          ) : (
+            <li>
+              <a
+                href={href(n)}
+                aria-current={n === current ? "page" : undefined}
+                aria-label={format(pageLabel, { n })}
+                class={n === current ? currentClass : linkClass}
+              >
+                {n}
+              </a>
+            </li>
+          ),
+        )}
+        {current < total && (
+          <li>
+            <a href={href(current + 1)} rel="next" class={linkClass}>
+              {label(lang, "next")}
+              <ChevronRightIcon aria-hidden="true" class="size-4" />
+            </a>
+          </li>
+        )}
+      </ul>
+    </nav>
+  )
+}

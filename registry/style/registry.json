@@ -293,6 +293,25 @@
       ]
     },
     {
+      "name": "variants-section",
+      "title": "Section variants",
+      "description": "The cva classes the React and Astro section components share, installed to components/ui/section.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/section.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "variants-stats-band",
       "title": "Stats Band variants",
       "description": "The cva classes the React and Astro stats-band components share, installed to components/ui/stats-band.variants.ts.",

@@ -6,6 +6,7 @@ import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
 import Accordion from "@/components/ui/accordion.astro";
 import SectionHeading from "@/components/ui/section-heading.astro";
 
+import { band_cva } from "@/components/ui/section.variants";
 /**
  * Faq answers common questions: a section heading and intro beside (desktop)
  * or above (mobile) an accordion of question / answer items, with an optional
@@ -46,6 +47,8 @@ type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
   multiple?: boolean;
   /** Item open on first render. */
   defaultOpen?: string;
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
   /** `id` for the h2. Generated when unset. */
   titleId?: string;
   lang?: Lang;
@@ -59,6 +62,7 @@ const {
   contact,
   multiple = false,
   defaultOpen,
+  tone = "paper",
   titleId = uniqueId("faq"),
   lang: langProp,
   class: className,
@@ -75,7 +79,7 @@ const hasContact = Boolean(contact) || Astro.slots.has("contact");
 
 <section
   aria-labelledby={titleId}
-  class={clx("bg-bg-gray-50 font-body w-full", className)}
+  class={clx(band_cva({ tone }), className)}
   {...props}
 >
   <div

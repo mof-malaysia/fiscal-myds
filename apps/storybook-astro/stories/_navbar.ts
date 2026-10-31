@@ -1,11 +1,5 @@
 /** Navbar story data shared by navbar.stories.ts and navbar-with-language-switcher.stories.ts. */
-import { logo } from "./_logo";
-
-export const brand = {
-  title: "Kementerian Kewangan",
-  // The title beside it names the site, so the placeholder logo is decorative
-  logo: { src: logo("MOF"), alt: "" },
-};
+export { brand } from "./_logo";
 
 /** Plain links and one plain dropdown. */
 export const standardItems = [

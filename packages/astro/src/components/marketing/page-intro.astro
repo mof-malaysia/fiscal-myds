@@ -1,0 +1,118 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import type { Lang } from "@/lib/ftds/i18n";
+import Breadcrumb from "@/components/ui/breadcrumb.astro";
+import Tag from "@/components/ui/tag.astro";
+
+import { band_cva, container_cva, meta_row_class } from "@mof-malaysia/ftds-style/variants/section";
+/**
+ * PageIntro opens an inner page of an agency site (About, Contact, a news
+ * article, a publication list): the breadcrumb, an optional eyebrow tag, the
+ * page's one h1, a short description and a meta row (published date,
+ * category, reading time). The Hero is for the home page and campaign pages;
+ * this is its quieter counterpart.
+ *
+ * Slots: `eyebrow`, `title`, `description`, `meta` (replaces the `meta`
+ * items; each child gets a dot before it), `actions` (beside the title on
+ * desktop) and `media` (an image under the text, e.g. an article's lead
+ * photo).
+ *
+ * @example
+ * <PageIntro
+ *   breadcrumb={[{ label: "Utama", href: "/" }, { label: "Mengenai kami" }]}
+ *   title="Mengenai kami"
+ *   description="Kementerian Kewangan merancang dan mengurus kewangan negara."
+ * />
+ */
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** Trail from the home page to this one; the last item is this page. */
+  breadcrumb?: { label: string; href?: string }[];
+  /** Short label above the title, rendered as a primary Tag. */
+  eyebrow?: string;
+  /** The page title, rendered as the only h1. */
+  title?: string;
+  description?: string;
+  /** Facts in a row under the description, e.g. `["31 Oktober 2026", "5 minit bacaan"]`. */
+  meta?: string[];
+  /** Band: Well (default) or Paper. */
+  tone?: "well" | "paper";
+  /** `"article"` narrows the text to a reading column. Defaults to `"wide"`. */
+  width?: "wide" | "article";
+  lang?: Lang;
+  /** `id` for the h1. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  breadcrumb,
+  eyebrow,
+  title,
+  description,
+  meta = [],
+  tone = "well",
+  width = "wide",
+  lang,
+  titleId = uniqueId("page-intro"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasMeta = meta.length > 0 || slots.has("meta");
+---
+
+<section
+  aria-labelledby={titleId}
+  class={clx(band_cva({ tone }), className)}
+  {...props}
+>
+  <div
+    class={clx(container_cva({ width }), "gap-6 py-10 md:py-12")}
+  >
+    {breadcrumb?.length ? <Breadcrumb items={breadcrumb} lang={lang} /> : null}
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+      <div class="flex max-w-[760px] flex-col items-start gap-4">
+        <slot name="eyebrow">
+          {eyebrow && <Tag variant="primary" size="medium">{eyebrow}</Tag>}
+        </slot>
+        <h1
+          id={titleId}
+          class="text-txt-black-900 text-heading-xs md:text-heading-sm font-semibold tracking-[-0.02em] text-balance"
+        >
+          <slot name="title">{title}</slot>
+        </h1>
+        {
+          (description || slots.has("description")) && (
+            <p class="text-txt-black-700 text-body-lg max-w-[65ch]">
+              <slot name="description">{description}</slot>
+            </p>
+          )
+        }
+        {
+          hasMeta && (
+            <div class={meta_row_class}>
+              <slot name="meta">{meta.map((item) => <span>{item}</span>)}</slot>
+            </div>
+          )
+        }
+      </div>
+      {
+        slots.has("actions") && (
+          <div class="flex shrink-0 flex-wrap items-center gap-3">
+            <slot name="actions" />
+          </div>
+        )
+      }
+    </div>
+    {
+      slots.has("media") && (
+        <div class="overflow-hidden rounded-lg">
+          <slot name="media" />
+        </div>
+      )
+    }
+  </div>
+</section>

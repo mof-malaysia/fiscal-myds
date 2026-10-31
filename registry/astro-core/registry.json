@@ -265,6 +265,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
         "mof-malaysia/ftds/utils",
         "mof-malaysia/ftds/variants-link"
       ],

@@ -1,6 +1,7 @@
 ---
 /** Preview of the marketing components and blocks. Not shipped. */
 import Preview from "../layouts/preview.astro";
+import { jataNegara } from "../templates/site";
 import AnnounceBar from "@/components/ui/announce-bar.astro";
 import Hero from "@/components/blocks/hero.astro";
 import LogoCloud from "@/components/blocks/logo-cloud.astro";
@@ -130,7 +131,7 @@ const logo = (text: string) =>
           ] },
         ]}
       >
-        <img slot="logo" src={logo("MOF")} width="36" height="36" alt="" class="size-9 rounded-sm" />
+        <img slot="logo" src={jataNegara} width="46" height="36" alt="" class="h-9 w-auto" />
         <p>
           Kompleks Kementerian Kewangan, No. 5 Persiaran Perdana, Presint 2, 62592 Putrajaya
         </p>

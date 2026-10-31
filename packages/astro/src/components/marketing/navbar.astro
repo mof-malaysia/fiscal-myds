@@ -115,9 +115,10 @@ const maxChars = brand.maxChars ?? 19;
   {...props}
 >
   <div class={navbar_bar_class}>
+    {/* min-w-0: on a narrow bar the title wraps instead of pushing the menu button off-screen */}
     <a
       href={brand.href ?? "/"}
-      class={clx(navbar_brand_class, "focus-ring shrink-0 rounded-xs py-3 max-md:py-2.5")}
+      class={clx(navbar_brand_class, "focus-ring min-w-0 rounded-xs py-3 max-md:py-2.5")}
     >
       {
         hasLogo && (
@@ -126,7 +127,7 @@ const maxChars = brand.maxChars ?? 19;
               src={brand.logo?.src}
               width="40"
               height="32"
-              class={navbar_brand_image_class}
+              class={clx(navbar_brand_image_class, "shrink-0")}
               alt={brand.logo?.alt}
             />
           </slot>

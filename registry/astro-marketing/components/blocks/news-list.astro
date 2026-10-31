@@ -1,0 +1,172 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { formatDate, isoDate, label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Link from "@/components/ui/link.astro";
+import Section from "@/components/ui/section.astro";
+import {
+  linked_item_class,
+  meta_row_class,
+  stretched_link_class,
+} from "@/components/ui/section.variants";
+import Tag from "@/components/ui/tag.astro";
+import ArrowForwardIcon from "@/components/ui/icons/arrow-forward.astro";
+
+/**
+ * NewsList shows the latest news, press statements and announcements, newest
+ * first. It has three layouts:
+ *
+ * - `grid`: a strip of up to three Sheet cards with an image, for the home page.
+ * - `list`: full-width rows with a thumbnail and summary, for a news listing page.
+ * - `compact`: dated headlines only, for an announcements panel beside other content.
+ *
+ * Every item is one link (its title, stretched over the card), with its
+ * category as a Tag and its date as `<time>`. `viewAll` adds a link to the
+ * full listing in the heading row. Slots: `title`, `description`, and the
+ * default slot under the items (e.g. a Pager).
+ *
+ * @example
+ * <NewsList
+ *   items={[
+ *     { title: "Belanjawan 2027 dibentangkan", href: "/berita/belanjawan-2027", date: "2026-10-10", category: "Kenyataan media" },
+ *   ]}
+ *   viewAll={{ label: "Semua berita", href: "/berita" }}
+ * />
+ */
+interface NewsItem {
+  title: string;
+  href: string;
+  /** ISO date, e.g. "2026-10-31". */
+  date: string;
+  category?: string;
+  /** Tag colour for the category. Defaults to `"default"`. */
+  categoryVariant?: "default" | "primary" | "success" | "danger" | "warning";
+  summary?: string;
+  /** Image for the grid and list layouts. Decorative: the title is the label. */
+  image?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** @default "Berita dan pengumuman" / "News and announcements". Pass "" for none. */
+  title?: string;
+  description?: string;
+  items: NewsItem[];
+  /** Defaults to `"grid"`. */
+  layout?: "grid" | "list" | "compact";
+  /** Link to every item, beside the title. */
+  viewAll?: { label: string; href: string };
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title: titleProp,
+  description,
+  items,
+  layout = "grid",
+  viewAll,
+  tone = "paper",
+  lang: langProp,
+  titleId = uniqueId("news-list"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const title = titleProp ?? label(lang, "newsTitle");
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const Item = hasTitle ? "h3" : "h2";
+const compact = layout === "compact";
+const shown = layout === "grid" ? items.slice(0, 3) : items;
+
+const itemClass = clx(
+  linked_item_class,
+  "flex flex-col",
+  {
+    grid: "bg-bg-white overflow-hidden rounded-lg",
+    list: "gap-4 rounded-sm py-6 first:pt-0 sm:flex-row sm:gap-6",
+    compact: "gap-1 rounded-sm py-4 first:pt-0",
+  }[layout],
+);
+---
+
+<Section
+  tone={tone}
+  title={title || undefined}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  {
+    viewAll && (
+      <Link
+        slot="aside"
+        href={viewAll.href}
+        primary
+        underline="hover"
+        class="text-label-md inline-flex shrink-0 items-center gap-1.5 font-medium"
+      >
+        {viewAll.label}
+        <ArrowForwardIcon aria-hidden="true" class="size-4" />
+      </Link>
+    )
+  }
+  <ul
+    class={layout === "grid"
+      ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3"
+      : "divide-otl-gray-200 flex flex-col divide-y"}
+  >
+    {
+      shown.map((item) => (
+        <li class={itemClass}>
+          {item.image && !compact && (
+            <img
+              src={item.image}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class={clx(
+                "bg-bg-washed aspect-[16/9] w-full object-cover",
+                layout === "list" && "rounded-lg sm:w-56 sm:shrink-0",
+              )}
+            />
+          )}
+          <div class={clx("flex min-w-0 flex-col gap-2", layout === "grid" && "p-surface")}>
+            <p class={meta_row_class}>
+              {item.category && !compact && (
+                <Tag variant={item.categoryVariant ?? "default"} size="small">
+                  {item.category}
+                </Tag>
+              )}
+              <time datetime={isoDate(item.date)}>{formatDate(lang, item.date)}</time>
+              {item.category && compact && <span>{item.category}</span>}
+            </p>
+            <Item
+              class={clx(
+                "text-txt-black-900 font-semibold text-pretty",
+                compact ? "text-body-md" : "text-title",
+              )}
+            >
+              <a href={item.href} class={stretched_link_class}>
+                {item.title}
+              </a>
+            </Item>
+            {item.summary && !compact && (
+              <p class="text-txt-black-700 text-content line-clamp-3">{item.summary}</p>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+  <slot />
+</Section>

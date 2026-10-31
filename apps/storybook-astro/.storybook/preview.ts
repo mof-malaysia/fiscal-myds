@@ -4,7 +4,9 @@ const preview = {
   parameters: {
     layout: "fullscreen",
     options: {
-      storySort: { order: ["Introduction", "Core", "Marketing"] },
+      storySort: {
+        order: ["Introduction", "Core", "Marketing", ["*", "Templates"]],
+      },
     },
     a11y: { test: "error" },
   },

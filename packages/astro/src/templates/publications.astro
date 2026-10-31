@@ -1,0 +1,69 @@
+---
+/**
+ * Template: publications library. Reports, budget documents and circulars,
+ * grouped by type in Tabs (every panel shows with JavaScript off), newest
+ * first, as cards with the file type and size.
+ *
+ * PageIntro → Tabs of DownloadList (cards). For a long library, give each
+ * type its own page with a Pager instead of a tab. Copy this file, the blocks
+ * it imports and site-layout.astro, then swap in your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import PageIntro from "@/components/blocks/page-intro.astro";
+import DownloadList from "@/components/blocks/download-list.astro";
+import Tabs from "@/components/ui/tabs.astro";
+import { home } from "./site";
+
+// One tab per type of publication, newest first
+const groups = [
+  {
+    value: "laporan",
+    label: "Laporan",
+    files: [
+      { title: "Laporan Ekonomi 2026/2027", href: "#le-2026.pdf", type: "pdf", size: "8.6 MB", date: "2026-10-10", category: "Laporan" },
+      { title: "Laporan Tahunan Kementerian Kewangan 2025", href: "#lt-2025.pdf", type: "pdf", size: "12.3 MB", date: "2026-06-30", category: "Laporan" },
+      { title: "Laporan Prestasi Fiskal Suku Kedua 2026", href: "#pf-q2.pdf", type: "pdf", size: "2.1 MB", date: "2026-08-15", category: "Laporan" },
+    ],
+  },
+  {
+    value: "belanjawan",
+    label: "Belanjawan",
+    files: [
+      { title: "Teks ucapan Belanjawan 2027", href: "#ucapan.pdf", type: "pdf", size: "2.4 MB", date: "2026-10-10", category: "Belanjawan" },
+      { title: "Anggaran Perbelanjaan Persekutuan 2027", href: "#anggaran.pdf", type: "pdf", size: "15.8 MB", date: "2026-10-10", category: "Belanjawan" },
+      { title: "Data belanjawan mengikut kementerian 2027", href: "#data.xlsx", type: "xlsx", size: "640 KB", date: "2026-10-10", category: "Data" },
+    ],
+  },
+  {
+    value: "pekeliling",
+    label: "Pekeliling",
+    files: [
+      { title: "Pekeliling Perbendaharaan PK 2.1/2026: Perolehan bekalan", href: "#pk-2-1.pdf", type: "pdf", size: "480 KB", date: "2026-07-01", category: "Pekeliling" },
+      { title: "Templat laporan perbelanjaan agensi", href: "#templat.docx", type: "docx", size: "96 KB", date: "2026-07-01", category: "Templat" },
+    ],
+  },
+] as const;
+---
+
+<SiteLayout current="Penerbitan">
+  <PageIntro
+    breadcrumb={[home, { label: "Penerbitan" }]}
+    title="Penerbitan"
+    description="Laporan, dokumen belanjawan dan pekeliling Kementerian Kewangan, untuk dimuat turun."
+  />
+
+  <div class="mx-auto w-full max-w-[1280px] px-4 pt-10 pb-4 md:px-6 md:pt-12">
+    <Tabs
+      size="medium"
+      width="full"
+      items={groups.map(({ value, label, files }) => ({ value, label, count: files.length }))}
+    >
+      {
+        groups.map(({ value, files }) => (
+          // No heading of its own: the tab names it
+          <DownloadList slot={value} title="" layout="cards" flush files={[...files]} class="pt-8" />
+        ))
+      }
+    </Tabs>
+  </div>
+</SiteLayout>

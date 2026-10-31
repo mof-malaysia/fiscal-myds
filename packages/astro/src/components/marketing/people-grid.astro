@@ -1,0 +1,151 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Section from "@/components/ui/section.astro";
+import { linked_item_class, stretched_link_class } from "@mof-malaysia/ftds-style/variants/section";
+
+/**
+ * PeopleGrid introduces an agency's leadership or a team: a photo (or
+ * initials), the person's name, their position and an optional short bio and
+ * profile link. The first `featured` people (the minister, the
+ * secretary-general) get a wider card on their own row.
+ *
+ * Photos are decorative, since the name is beside them; without one the
+ * initials show on a primary wash. Slots: `title`, `description`, and the
+ * default slot under the grid (e.g. a link to the organisation chart).
+ *
+ * @example
+ * <PeopleGrid
+ *   title="Kepimpinan"
+ *   featured={1}
+ *   people={[
+ *     { name: "Datuk Seri Ahmad bin Ali", role: "Menteri Kewangan", photo: "/menteri.jpg" },
+ *     { name: "Puan Siti Aminah", role: "Ketua Setiausaha Perbendaharaan" },
+ *   ]}
+ * />
+ */
+interface Person {
+  name: string;
+  /** Position or job title. */
+  role: string;
+  /** Photo URL. Decorative: the name is the label. */
+  photo?: string;
+  bio?: string;
+  /** Profile page. Makes the name a link. */
+  href?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  people: Person[];
+  /** How many of the first people get a featured card. Defaults to 0. */
+  featured?: number;
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  people,
+  featured = 0,
+  tone = "paper",
+  titleId = uniqueId("people-grid"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const Heading = hasTitle ? "h3" : "h2";
+// The featured people get a wider card on their own row
+const groups = [
+  { people: people.slice(0, featured), featured: true },
+  { people: people.slice(featured), featured: false },
+].filter((group) => group.people.length > 0);
+const initials = (name: string) =>
+  name
+    .replace(/\b(Datuk|Dato'|Datin|Tan Sri|Puan|Encik|Dr\.?|Prof\.?|Seri|Ir\.?|Ts\.?)\s+/gi, "")
+    .split(/\s+/)
+    .filter((word) => !/^(bin|binti|bt|b|a\/l|a\/p)$/i.test(word))
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase())
+    .join("");
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  {
+    groups.map(({ people: group, featured: isFeatured }) => (
+        <ul
+          class={clx(
+            "grid grid-cols-1 gap-4 md:gap-6",
+            isFeatured ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-4",
+          )}
+        >
+          {group.map((person) => (
+            <li
+              class={clx(
+                linked_item_class,
+                "bg-bg-white p-surface flex gap-5 rounded-lg",
+                isFeatured ? "flex-col sm:flex-row sm:items-start" : "flex-col",
+              )}
+            >
+              {person.photo ? (
+                <img
+                  src={person.photo}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class={clx(
+                    "bg-bg-washed shrink-0 rounded-lg object-cover",
+                    isFeatured ? "aspect-[4/5] w-32 sm:w-40" : "aspect-square w-24",
+                  )}
+                />
+              ) : (
+                <span
+                  aria-hidden="true"
+                  class={clx(
+                    "bg-bg-primary-50 text-txt-primary flex shrink-0 items-center justify-center rounded-lg font-semibold",
+                    isFeatured ? "text-heading-xs aspect-[4/5] w-32 sm:w-40" : "text-title size-24",
+                  )}
+                >
+                  {initials(person.name)}
+                </span>
+              )}
+              <div class="flex flex-col gap-1.5">
+                <Heading class="text-txt-black-900 text-title font-semibold text-pretty">
+                  {person.href ? (
+                    <a
+                      href={person.href}
+                      class={stretched_link_class}
+                    >
+                      {person.name}
+                    </a>
+                  ) : (
+                    person.name
+                  )}
+                </Heading>
+                <p class="text-txt-black-700 text-content font-medium">{person.role}</p>
+                {person.bio && <p class="text-txt-black-700 text-content mt-2">{person.bio}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+    ))
+  }
+  <slot />
+</Section>

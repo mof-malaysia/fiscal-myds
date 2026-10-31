@@ -25,6 +25,14 @@ export async function openStory(page: Page, id: string, query = "") {
     .locator("#storybook-root > *")
     .first()
     .waitFor({ state: "attached" });
+  // A story whose component threw renders Storybook's error box, which
+  // would otherwise pass every check
+  const error = page.getByText("Error rendering Astro component");
+  if ((await error.count()) > 0) {
+    throw new Error(
+      `${id} failed to render: ${await page.locator("#storybook-root pre").innerText()}`,
+    );
+  }
   await page.waitForFunction(
     () =>
       !document.querySelector(

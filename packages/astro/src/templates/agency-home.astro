@@ -1,0 +1,162 @@
+---
+/**
+ * Template: agency homepage. Gets people to the services they came for, then
+ * shows what's new and what the agency has achieved.
+ *
+ * Hero → ServiceHighlights → NewsList (grid) → ImpactStats → PartnerGrid →
+ * CtaCards. Copy this file, the blocks it imports and site-layout.astro, then
+ * swap in your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import AnnounceBar from "@/components/ui/announce-bar.astro";
+import Link from "@/components/ui/link.astro";
+import Hero from "@/components/blocks/hero.astro";
+import ServiceHighlights from "@/components/blocks/service-highlights.astro";
+import NewsList from "@/components/blocks/news-list.astro";
+import ImpactStats from "@/components/blocks/impact-stats.astro";
+import PartnerGrid from "@/components/blocks/partner-grid.astro";
+import CtaCards from "@/components/blocks/cta-cards.astro";
+import MoneyIcon from "@/components/ui/icons/money.astro";
+import UserGroupIcon from "@/components/ui/icons/user-group.astro";
+import GovtOfficeIcon from "@/components/ui/icons/govt-office.astro";
+import DocumentIcon from "@/components/ui/icons/document.astro";
+import ChatBubbleIcon from "@/components/ui/icons/chat-bubble.astro";
+import SearchIcon from "@/components/ui/icons/search.astro";
+import { agencies, news, placeholder } from "./site";
+---
+
+<SiteLayout current="Utama">
+  <AnnounceBar slot="announce" tag="Penyelenggaraan" tagVariant="warning">
+    <p>
+      Pembayaran dalam talian tidak tersedia pada 2 November, 1 pagi hingga 4 pagi.{" "}
+      <Link href="#notis" primary>Baca notis</Link>
+    </p>
+  </AnnounceBar>
+
+  <Hero
+    eyebrow="Belanjawan 2027"
+    title="Mengurus kewangan negara untuk semua rakyat"
+    description="Bayar bil kerajaan, semak bantuan yang anda layak terima, dan ikuti perkembangan Belanjawan 2027 di satu tempat."
+    primaryAction={{ label: "Cari perkhidmatan", href: "#perkhidmatan" }}
+    secondaryAction={{ label: "Belanjawan 2027", href: "#belanjawan" }}
+  >
+    <img
+      slot="media"
+      src={placeholder("Gambar utama")}
+      width="1200"
+      height="675"
+      alt=""
+      class="w-full"
+    />
+  </Hero>
+
+  <ServiceHighlights
+    id="perkhidmatan"
+    tone="well"
+    title="Perkhidmatan popular"
+    description="Perkara yang paling kerap dicari di laman ini."
+    services={[
+      {
+        icon: MoneyIcon,
+        title: "Bayar bil kerajaan",
+        description: "Jelaskan saman, yuran dan taksiran daripada lebih 30 agensi.",
+        href: "#bayar",
+        facts: ["Dalam talian", "3 minit"],
+      },
+      {
+        icon: UserGroupIcon,
+        title: "Semak bantuan tunai",
+        description: "Ketahui sama ada isi rumah anda layak menerima Sumbangan Tunai Rahmah.",
+        href: "#bantuan",
+        facts: ["Dalam talian", "Percuma"],
+        tag: "Dibuka",
+      },
+      {
+        icon: GovtOfficeIcon,
+        title: "Daftar sebagai pembekal",
+        description: "Daftar syarikat anda untuk membida perolehan kerajaan.",
+        href: "#pembekal",
+        facts: ["Dalam talian", "Kira-kira 30 minit"],
+      },
+      {
+        icon: DocumentIcon,
+        title: "Pekeliling perbendaharaan",
+        description: "Pekeliling dan garis panduan terkini untuk agensi kerajaan.",
+        href: "#pekeliling",
+      },
+      {
+        icon: SearchIcon,
+        title: "Data terbuka",
+        description: "Muat turun data perbelanjaan dan hasil kerajaan.",
+        href: "#data",
+      },
+      {
+        icon: ChatBubbleIcon,
+        title: "Aduan dan maklum balas",
+        description: "Beritahu kami apa yang berlaku. Kami membalas dalam 3 hari bekerja.",
+        href: "#maklum-balas",
+      },
+    ]}
+  />
+
+  <NewsList
+    title="Berita terkini"
+    viewAll={{ label: "Semua berita", href: "#media" }}
+    items={news.slice(0, 3)}
+  />
+
+  <ImpactStats
+    title="Kesan program kami"
+    description="Angka terkini, dengan sumbernya."
+    stats={[
+      {
+        value: "5.4 juta",
+        label: "isi rumah menerima Sumbangan Tunai Rahmah",
+        period: "Januari hingga September 2026",
+        source: { label: "Kementerian Kewangan", href: "#data" },
+      },
+      {
+        value: "RM 4.2 bil",
+        label: "bayaran kerajaan dijelaskan dalam talian",
+        period: "Tahun 2025",
+        source: { label: "Akauntan Negara Malaysia", href: "#data" },
+      },
+      {
+        value: "92%",
+        label: "pengguna berpuas hati dengan perkhidmatan dalam talian",
+        period: "Tinjauan Julai 2026, 12,400 responden",
+        source: { label: "Tinjauan kepuasan pelanggan" },
+      },
+    ]}
+  >
+    <p>Cara angka ini dikira diterangkan dalam <a href="#metodologi">nota metodologi</a>.</p>
+  </ImpactStats>
+
+  <PartnerGrid
+    title="Agensi di bawah kementerian"
+    description="Agensi yang melaksanakan dasar kewangan negara."
+    columns={4}
+    partners={agencies}
+  />
+
+  <!-- Paper, not Well: the footer below is Well -->
+  <CtaCards
+    tone="paper"
+    title="Perlukan bantuan?"
+    options={[
+      {
+        icon: ChatBubbleIcon,
+        title: "Tanya kami",
+        description: "Cari jawapan dalam soalan lazim, atau hantar pertanyaan dalam talian.",
+        action: { label: "Lihat soalan lazim", href: "#soalan" },
+        recommended: true,
+      },
+      {
+        icon: GovtOfficeIcon,
+        title: "Kunjungi pejabat",
+        description: "Kaunter kami dibuka Isnin hingga Jumaat, 8 pagi hingga 5 petang.",
+        action: { label: "Cari pejabat", href: "#hubungi" },
+      },
+    ]}
+  />
+</SiteLayout>

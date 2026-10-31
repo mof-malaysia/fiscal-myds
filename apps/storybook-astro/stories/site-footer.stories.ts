@@ -1,5 +1,5 @@
 import SiteFooter from "@/components/ui/site-footer.astro";
-import { logo } from "./_logo";
+import { jataNegara } from "./_logo";
 
 const groups = [
   {
@@ -48,7 +48,7 @@ export const Default = {
     logoTitle: "Kementerian Kewangan Malaysia",
     groups,
     slots: {
-      logo: `<img src="${logo("MOF")}" width="36" height="36" alt="" class="size-9 rounded-sm" />`,
+      logo: `<img src="${jataNegara}" width="46" height="36" alt="" class="h-9 w-auto" />`,
       default: address,
     },
   },

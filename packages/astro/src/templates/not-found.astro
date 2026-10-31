@@ -1,0 +1,36 @@
+---
+/**
+ * Template: 404 page. Keeps the site chrome, so people can find their way on,
+ * and offers the pages most people were looking for.
+ *
+ * StatusPage (not-found) with popular links. In Astro, save it as
+ * `src/pages/404.astro`.
+ */
+import SiteLayout from "./site-layout.astro";
+import StatusPage from "@/components/blocks/status-page.astro";
+import Link from "@/components/ui/link.astro";
+
+const popular = [
+  { label: "Bayar bil kerajaan", href: "#bayar" },
+  { label: "Semak bantuan tunai", href: "#bantuan" },
+  { label: "Berita dan kenyataan media", href: "#media" },
+  { label: "Penerbitan", href: "#penerbitan" },
+];
+---
+
+<SiteLayout>
+  <StatusPage kind="not-found" homeHref="#utama" supportHref="#hubungi">
+    <h2 class="text-txt-black-900 text-title font-semibold">Halaman popular</h2>
+    <ul class="mt-3 flex flex-col gap-2">
+      {
+        popular.map((page) => (
+          <li>
+            <Link href={page.href} primary>
+              {page.label}
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  </StatusPage>
+</SiteLayout>

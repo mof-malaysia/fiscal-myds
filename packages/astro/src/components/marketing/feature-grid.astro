@@ -9,6 +9,7 @@ import SectionHeading from "@/components/ui/section-heading.astro";
 import ArrowForwardIcon from "@/components/ui/icons/arrow-forward.astro";
 import { grid_cva, item_cva } from "@mof-malaysia/ftds-style/variants/feature-grid";
 
+import { band_cva } from "@mof-malaysia/ftds-style/variants/section";
 /**
  * FeatureGrid introduces what a service offers: a section title and intro,
  * then a responsive grid (1 / 2 / 3 columns) of features. Each feature has an
@@ -51,6 +52,8 @@ type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
   /** Default link text for features with an `href`. Defaults to the `learnMore` label. */
   linkLabel?: string;
   lang?: Lang;
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
   /** `id` for the h2. Generated when unset. */
   titleId?: string;
   class?: string;
@@ -63,6 +66,7 @@ const {
   columns = 3,
   surface = "none",
   lang: langProp,
+  tone = "paper",
   titleId = uniqueId("feature-grid"),
   class: className,
   ...props
@@ -76,7 +80,7 @@ const hasTitle = Boolean(title) || slots.has("title");
 
 <section
   aria-labelledby={hasTitle ? titleId : undefined}
-  class={clx("bg-bg-gray-50 font-body w-full", className)}
+  class={clx(band_cva({ tone }), className)}
   {...props}
 >
   <div

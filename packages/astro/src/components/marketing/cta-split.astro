@@ -1,0 +1,132 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Button from "@/components/ui/button.astro";
+import SectionHeading from "@/components/ui/section-heading.astro";
+import CheckCircleIcon from "@/components/ui/icons/check-circle.astro";
+
+import { band_cva, container_cva } from "@mof-malaysia/ftds-style/variants/section";
+/**
+ * CtaSplit is a call to action with a picture: the title, a short case for
+ * acting, up to four reasons as a checklist, and the actions on one side; an
+ * image or illustration on the other. Use it mid-page on a campaign, where
+ * the closing CtaBand would come too late. It sits on a Sheet panel, so only
+ * the primary button is filled blue.
+ *
+ * The `media` slot takes the image (decorative unless you give it alt text);
+ * `mediaPosition` puts it on the left or right. Slots: `title`,
+ * `description`, `actions`, `media`.
+ *
+ * @example
+ * <CtaSplit
+ *   title="Daftar sebelum 31 Disember"
+ *   description="Pendaftaran mengambil masa lima minit."
+ *   points={["Tiada yuran", "Guna MyDigital ID"]}
+ *   primaryAction={{ label: "Daftar sekarang", href: "/daftar" }}
+ * >
+ *   <img slot="media" src="/kempen.jpg" alt="" />
+ * </CtaSplit>
+ */
+interface CtaAction {
+  label: string;
+  href: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  /** Up to four short reasons, shown with a tick. */
+  points?: string[];
+  primaryAction?: CtaAction;
+  secondaryAction?: CtaAction;
+  /** Side of the media on desktop. Defaults to `"right"`. */
+  mediaPosition?: "left" | "right";
+  /** Section band around the panel: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  points = [],
+  primaryAction,
+  secondaryAction,
+  mediaPosition = "right",
+  tone = "paper",
+  titleId = uniqueId("cta-split"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const hasMedia = slots.has("media");
+---
+
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx(band_cva({ tone }), className)}
+  {...props}
+>
+  <div class={container_cva()}>
+    <div
+      class={clx(
+        "bg-bg-white grid items-center gap-8 overflow-hidden rounded-lg",
+        hasMedia && "lg:grid-cols-2 lg:gap-0",
+      )}
+    >
+      <div
+        class={clx(
+          "p-surface flex flex-col items-start gap-6 md:p-10 lg:p-12",
+          hasMedia && mediaPosition === "left" && "lg:order-2",
+        )}
+      >
+        <SectionHeading titleId={titleId} title={title} description={description}>
+          <slot name="title" slot="title" />
+          <slot name="description" slot="description" />
+        </SectionHeading>
+        {
+          points.length > 0 && (
+            <ul class="flex flex-col gap-3">
+              {points.slice(0, 4).map((point) => (
+                <li class="text-txt-black-900 text-content flex gap-3">
+                  <CheckCircleIcon aria-hidden="true" class="text-txt-success mt-0.5 size-5 shrink-0" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        <div class="flex flex-wrap items-center gap-3">
+          <slot name="actions">
+            {
+              primaryAction && (
+                <Button variant="primary-fill" size="large" href={primaryAction.href}>
+                  {primaryAction.label}
+                </Button>
+              )
+            }
+            {
+              secondaryAction && (
+                <Button variant="primary-ghost" size="large" href={secondaryAction.href}>
+                  {secondaryAction.label}
+                </Button>
+              )
+            }
+          </slot>
+        </div>
+      </div>
+      {
+        hasMedia && (
+          <div class="h-full min-h-[240px] [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
+            <slot name="media" />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -48,7 +48,7 @@ export const StoryLink = ({ id, className, children }) => (
   </a>
 );
 
-export const TierCard = ({ name, components, stories, id, children, examples }) => (
+export const TierCard = ({ name, components, unit = "components", stories, id, children, examples }) => (
   <StoryLink
     id={id}
     className="bg-bg-washed hover:bg-bg-washed-active group flex flex-col gap-2 rounded-xl p-5 no-underline transition-colors"
@@ -56,7 +56,7 @@ export const TierCard = ({ name, components, stories, id, children, examples }) 
     <div className="flex items-baseline justify-between">
       <span className="text-txt-black-900 font-semibold">{name}</span>
       <span className="text-txt-black-500 text-sm tabular-nums">
-        {components} components · {stories} stories
+        {components} {unit} · {stories} stories
       </span>
     </div>
     <p className="text-txt-black-700 text-sm leading-relaxed">{children}</p>
@@ -152,7 +152,10 @@ export const IntroPage = () => (
         A selective subset of core and the marketing tier. There are no App
         components, and Astro can have marketing components React doesn't.{" "}
         <strong className="font-medium">Blocks</strong> are ready-made page
-        sections installed to <Code>components/blocks</Code>.
+        sections installed to <Code>components/blocks</Code>.{" "}
+        <strong className="font-medium">Templates</strong> are full pages
+        built from them: pick one, copy it and the blocks it uses from{" "}
+        <Code>packages/astro/src/templates</Code>, and swap in your content.
       </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <TierCard
@@ -166,12 +169,22 @@ export const IntroPage = () => (
         </TierCard>
         <TierCard
           name="Marketing"
-          components={13}
-          stories={42}
+          components={30}
+          stories={92}
           id="marketing-navbar--expressive"
           examples="Navbar, Hero, FeatureGrid, FAQ, Carousel, SiteFooter"
         >
           Agency site sections and blocks, from the navbar to the footer.
+        </TierCard>
+        <TierCard
+          name="Templates"
+          components={11}
+          unit="pages"
+          stories={11}
+          id="marketing-templates-agency-homepage--default"
+          examples="Agency homepage, Service landing, News, Event, Contact, 404"
+        >
+          Whole pages assembled from the blocks, to copy and fill in.
         </TierCard>
       </div>
     </Section>

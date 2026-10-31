@@ -54,6 +54,45 @@ const ms = {
   theme: "Tema",
   themeLight: "Cerah",
   themeDark: "Gelap",
+  stepsTitle: "Cara memohon",
+  eligibilityTitle: "Siapa yang layak",
+  eligibilityMeet: "Anda boleh memohon jika anda",
+  eligibilityNotMeet: "Anda tidak boleh memohon jika anda",
+  newsTitle: "Berita dan pengumuman",
+  downloadsTitle: "Muat turun",
+  published: "Diterbitkan",
+  contactTitle: "Hubungi kami",
+  address: "Alamat",
+  phone: "Telefon",
+  email: "E-mel",
+  officeHours: "Waktu pejabat",
+  liveChat: "Sembang langsung",
+  opensInNewTab: "(dibuka dalam tab baharu)",
+  directions: "Dapatkan arah",
+  source: "Sumber",
+  eventDate: "Tarikh",
+  eventTime: "Masa",
+  eventVenue: "Tempat",
+  eventFee: "Yuran",
+  eventProgramme: "Atur cara",
+  pagination: "Penomboran halaman",
+  previous: "Sebelumnya",
+  next: "Seterusnya",
+  /** `{n}` is the page number. */
+  page: "Halaman {n}",
+  /** `{code}` is the HTTP status code. */
+  errorCode: "Ralat {code}",
+  notFoundTitle: "Kami tidak dapat mencari halaman itu",
+  notFoundBody:
+    "Pautan itu mungkin sudah lapuk, atau alamatnya mungkin tersalah taip. Semak alamat itu, atau mula semula dari laman utama.",
+  serverErrorTitle: "Ada masalah di pihak kami",
+  serverErrorBody: "Ini bukan salah anda. Cuba lagi dalam beberapa minit.",
+  maintenanceTitle: "Laman web ini sedang diselenggara",
+  maintenanceBody:
+    "Kami sedang membuat penambahbaikan, jadi laman web ini tidak dapat digunakan buat masa ini.",
+  /** `{time}` is when the site is expected back. */
+  backAt: "Kami jangka kembali pada {time}.",
+  goHome: "Pergi ke laman utama",
 } as const;
 
 export type LabelKey = keyof typeof ms;
@@ -97,6 +136,42 @@ const en: Record<LabelKey, string> = {
   theme: "Theme",
   themeLight: "Light",
   themeDark: "Dark",
+  stepsTitle: "How to apply",
+  eligibilityTitle: "Who can apply",
+  eligibilityMeet: "You can apply if you",
+  eligibilityNotMeet: "You can't apply if you",
+  newsTitle: "News and announcements",
+  downloadsTitle: "Downloads",
+  published: "Published",
+  contactTitle: "Contact us",
+  address: "Address",
+  phone: "Phone",
+  email: "Email",
+  officeHours: "Office hours",
+  liveChat: "Live chat",
+  opensInNewTab: "(opens in a new tab)",
+  directions: "Get directions",
+  source: "Source",
+  eventDate: "Date",
+  eventTime: "Time",
+  eventVenue: "Venue",
+  eventFee: "Fee",
+  eventProgramme: "Programme",
+  pagination: "Pagination",
+  previous: "Previous",
+  next: "Next",
+  page: "Page {n}",
+  errorCode: "Error {code}",
+  notFoundTitle: "We can't find that page",
+  notFoundBody:
+    "The link may be out of date, or the address may have a typo. Check the address, or start again from the home page.",
+  serverErrorTitle: "Something went wrong on our side",
+  serverErrorBody: "This isn't something you did. Try again in a few minutes.",
+  maintenanceTitle: "This website is down for maintenance",
+  maintenanceBody:
+    "We're making improvements, so you can't use the website right now.",
+  backAt: "We expect to be back by {time}.",
+  goHome: "Go to the home page",
 };
 
 export const labels = { ms, en } satisfies Record<
@@ -138,3 +213,39 @@ export function format(
     name in values ? String(values[name]) : match,
   );
 }
+
+/** Dates on FTDS sites are Malaysian dates, wherever the site is built. */
+const TIME_ZONE = "Asia/Kuala_Lumpur";
+
+const LONG_DATE: Intl.DateTimeFormatOptions = {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+};
+// Built once per language: lists format a date per item
+const longDate = new Map<Lang, Intl.DateTimeFormat>();
+const ISO_DATE = new Intl.DateTimeFormat("en-CA", { timeZone: TIME_ZONE });
+
+/**
+ * A date in `lang`, e.g. "31 Oktober 2026", in Malaysia time. Takes a Date
+ * or an ISO string; a bare "2026-10-31" stays that day.
+ */
+export function formatDate(
+  lang: Lang,
+  date: Date | string,
+  options?: Intl.DateTimeFormatOptions,
+): string {
+  let formatter = options ? undefined : longDate.get(lang);
+  if (!formatter) {
+    formatter = new Intl.DateTimeFormat(`${lang}-MY`, {
+      timeZone: TIME_ZONE,
+      ...(options ?? LONG_DATE),
+    });
+    if (!options) longDate.set(lang, formatter);
+  }
+  return formatter.format(new Date(date));
+}
+
+/** The Malaysian date as `<time datetime>` wants it: "2026-10-31". */
+export const isoDate = (date: Date | string): string =>
+  ISO_DATE.format(new Date(date));

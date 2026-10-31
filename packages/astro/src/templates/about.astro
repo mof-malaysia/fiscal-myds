@@ -1,0 +1,108 @@
+---
+/**
+ * Template: about and leadership. What the agency does and why, who leads it,
+ * and the agencies under it.
+ *
+ * PageIntro → Prose with InsetText → FeatureGrid (functions) → PeopleGrid →
+ * PartnerGrid → CtaBand. Copy this file, the blocks it imports and
+ * site-layout.astro, then swap in your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import PageIntro from "@/components/blocks/page-intro.astro";
+import Prose from "@/components/ui/prose.astro";
+import InsetText from "@/components/ui/inset-text.astro";
+import FeatureGrid from "@/components/blocks/feature-grid.astro";
+import PeopleGrid from "@/components/blocks/people-grid.astro";
+import PartnerGrid from "@/components/blocks/partner-grid.astro";
+import CtaBand from "@/components/blocks/cta-band.astro";
+import Link from "@/components/ui/link.astro";
+import MoneyIcon from "@/components/ui/icons/money.astro";
+import ChartIcon from "@/components/ui/icons/org-chart.astro";
+import CheckShieldIcon from "@/components/ui/icons/check-shield.astro";
+import { agencies, home, leadership } from "./site";
+---
+
+<SiteLayout current="Mengenai kami">
+  <PageIntro
+    breadcrumb={[home, { label: "Mengenai kami" }]}
+    title="Mengenai kami"
+    description="Kementerian Kewangan merancang, mengurus dan memantau kewangan negara supaya setiap ringgit memberi manfaat kepada rakyat."
+  />
+
+  <div class="mx-auto grid w-full max-w-[1280px] gap-10 px-4 py-12 md:px-6 md:py-16 lg:grid-cols-12 lg:gap-12">
+    <Prose class="lg:col-span-7">
+      <h2>Peranan kami</h2>
+      <p>
+        Kami menyediakan belanjawan negara, mengutip hasil kerajaan melalui agensi di bawah kami, dan memastikan
+        wang awam dibelanjakan dengan cekap dan telus.
+      </p>
+      <p>
+        Kami juga menggubal dasar fiskal dan cukai, mengurus pelaburan dan aset kerajaan, serta menetapkan
+        peraturan perolehan untuk semua kementerian dan agensi.
+      </p>
+    </Prose>
+    <div class="flex flex-col gap-6 lg:col-span-5">
+      <InsetText>
+        <p class="text-txt-black-900 text-title font-semibold">Visi</p>
+        <p class="text-content mt-2">Kewangan negara yang mampan, untuk Malaysia yang makmur dan adil.</p>
+      </InsetText>
+      <InsetText>
+        <p class="text-txt-black-900 text-title font-semibold">Misi</p>
+        <p class="text-content mt-2">
+          Mengurus sumber kewangan negara secara berhemat, telus dan bertanggungjawab.
+        </p>
+      </InsetText>
+    </div>
+  </div>
+
+  <FeatureGrid
+    tone="well"
+    title="Apa yang kami lakukan"
+    features={[
+      {
+        icon: MoneyIcon,
+        title: "Belanjawan negara",
+        description: "Menyediakan belanjawan tahunan dan memantau perbelanjaan setiap kementerian.",
+        href: "#belanjawan",
+      },
+      {
+        icon: ChartIcon,
+        title: "Dasar fiskal dan cukai",
+        description: "Menggubal dasar cukai dan menganalisis kesannya terhadap rakyat dan perniagaan.",
+        href: "#dasar",
+      },
+      {
+        icon: CheckShieldIcon,
+        title: "Perolehan kerajaan",
+        description: "Menetapkan peraturan perolehan supaya kontrak kerajaan adil dan berbaloi.",
+        href: "#perolehan",
+      },
+    ]}
+  />
+
+  <PeopleGrid
+    id="kepimpinan"
+    title="Kepimpinan"
+    description="Nama dan gambar ialah contoh. Gantikan dengan kepimpinan agensi anda."
+    featured={2}
+    people={leadership}
+  >
+    <p class="text-content">
+      <Link href="#carta" primary>Lihat carta organisasi penuh</Link>
+    </p>
+  </PeopleGrid>
+
+  <PartnerGrid
+    tone="well"
+    title="Agensi di bawah kementerian"
+    partners={agencies.slice(0, 3)}
+  />
+
+  <CtaBand
+    tone="primary"
+    title="Bekerja bersama kami"
+    description="Lihat jawatan kosong dan program latihan siswazah di Kementerian Kewangan."
+    primaryAction={{ label: "Lihat jawatan kosong", href: "#kerjaya" }}
+    secondaryAction={{ label: "Hubungi kami", href: "#hubungi" }}
+  />
+</SiteLayout>
