@@ -69,6 +69,13 @@ export const LinkButton = ({ href, external, ...props }) => (
   />
 );
 
+{/* The Astro Storybook is deployed beside this one (/storybook-astro) and
+    runs on port 6008 in dev; it is also composed into this sidebar. */}
+
+export const astroStorybookUrl = import.meta.env.DEV
+  ? "http://localhost:6008/"
+  : "../storybook-astro/";
+
 export const IntroPage = () => (
   <div className="text-txt-black-900 mx-auto max-w-3xl px-6 py-12 font-sans">
     <header>
@@ -161,6 +168,26 @@ export const IntroPage = () => (
         </a>{" "}
         examples.
       </p>
+    </Section>
+    <Section title="Building a static site with Astro?">
+      <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
+        FTDS for Astro is a second distribution for static agency, landing and
+        campaign sites: a selective subset of Core and the Marketing tier as
+        native Astro components that ship no JavaScript unless they need it.
+        It sits beside this library and doesn't replace it. Its stories are
+        also in this sidebar, under FTDS for Astro.
+      </p>
+      <div className="flex flex-wrap gap-3">
+        <LinkButton
+          variant="primary-outline"
+          href={story("/docs/astro_introduction--docs")}
+        >
+          Open FTDS for Astro
+        </LinkButton>
+        <LinkButton variant="default-ghost" href={astroStorybookUrl} external>
+          Open its Storybook on its own
+        </LinkButton>
+      </div>
     </Section>
     <Section title="Design principles">
       <ol className="flex flex-col gap-5">
