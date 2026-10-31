@@ -57,8 +57,6 @@ import { Tag } from "@mof-malaysia/ftds-react/tag";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-table",
   title: "App/Table",
   component: Table,
   parameters: {

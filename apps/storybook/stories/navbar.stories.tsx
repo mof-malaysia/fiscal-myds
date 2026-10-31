@@ -129,8 +129,6 @@ import { ThemeSwitch } from "@mof-malaysia/ftds-react/theme-switch";
  */
 
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-navbar",
   title: "Marketing/Navbar",
   component: Navbar,
   tags: ["autodocs"],

@@ -62,11 +62,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: [
-          "Introduction",
-          "FTDS for React",
-          ["Core", "App", "Marketing", "Examples"],
-        ],
+        order: ["Introduction", "Core", "App", "Marketing", "Examples"],
       },
     },
     deepControls: { enabled: true },

@@ -18,8 +18,6 @@ import { CtaBand } from "@mof-malaysia/ftds-react/cta-band";
  * ```
  */
 const meta: Meta<typeof CtaBand> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-blocks-ctaband",
   title: "Marketing/Blocks/CtaBand",
   component: CtaBand,
   parameters: { layout: "fullscreen" },

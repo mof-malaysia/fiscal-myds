@@ -44,8 +44,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Combobox> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-combobox",
   title: "App/Combobox",
   component: Combobox,
   parameters: { layout: "padded" },

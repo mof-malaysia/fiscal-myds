@@ -23,8 +23,6 @@ import { fn } from "storybook/test";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-datepicker",
   title: "App/DatePicker",
   component: DatePicker,
   tags: ["autodocs"],

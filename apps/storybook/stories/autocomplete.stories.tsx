@@ -39,8 +39,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Autocomplete> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-autocomplete",
   title: "App/Autocomplete",
   component: Autocomplete,
   parameters: { layout: "padded" },

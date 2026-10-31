@@ -36,8 +36,6 @@ import { Button } from "@mof-malaysia/ftds-react/button";
  * ```
  */
 const meta: Meta<typeof Menu> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-menu",
   title: "Core/Menu",
   component: Menu,
   parameters: { layout: "centered" },

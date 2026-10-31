@@ -16,8 +16,6 @@ import { createStory } from "../utils";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-link",
   title: "Core/Link",
   component: Link,
   tags: ["autodocs"],

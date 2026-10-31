@@ -15,8 +15,6 @@ import { Skeleton } from "@mof-malaysia/ftds-react/skeleton";
  * ```
  */
 const meta: Meta<typeof Skeleton> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-skeleton",
   title: "Core/Skeleton",
   component: Skeleton,
   parameters: { layout: "centered" },

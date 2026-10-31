@@ -29,8 +29,6 @@ import { NOTIFICATIONS, NOW } from "./components/app/account-data";
  * ```
  */
 const meta: Meta<typeof NotificationList> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-notificationlist",
   title: "App/Blocks/NotificationList",
   component: NotificationList,
 };

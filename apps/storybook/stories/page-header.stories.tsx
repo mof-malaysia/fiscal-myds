@@ -39,8 +39,6 @@ import { Tag } from "@mof-malaysia/ftds-react/tag";
  * ```
  */
 const meta: Meta<typeof PageHeader> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-pageheader",
   title: "App/PageHeader",
   component: PageHeader,
   parameters: { layout: "padded" },

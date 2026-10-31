@@ -159,8 +159,6 @@ const DemoToast = (props: any) => {
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-toast",
   title: "Core/Toast",
   component: DemoToast,
   tags: ["autodocs"],

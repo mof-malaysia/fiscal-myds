@@ -34,8 +34,6 @@ import { Button } from "@mof-malaysia/ftds-react/button";
  * ```
  */
 const meta: Meta<typeof ErrorSummary> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-errorsummary",
   title: "App/ErrorSummary",
   component: ErrorSummary,
   parameters: { layout: "padded" },

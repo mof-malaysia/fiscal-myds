@@ -31,8 +31,6 @@ import {
  * ```
  */
 const meta: Meta<typeof CheckboxGroup> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-checkboxgroup",
   title: "App/CheckboxGroup",
   component: CheckboxGroup,
   parameters: { layout: "padded" },

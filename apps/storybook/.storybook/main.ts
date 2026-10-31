@@ -6,15 +6,9 @@ import type { StorybookConfig } from "@storybook/react-vite";
 const ASTRO_DEV_URL = "http://localhost:6008";
 
 const config: StorybookConfig = {
-  // The React stories sit under one root, "FTDS for React", beside the
-  // composed "FTDS for Astro"; the Introduction stays on top of both.
   stories: [
-    "../stories/Introduction.mdx",
-    {
-      directory: "../stories",
-      files: "**/*.stories.@(js|jsx|mjs|ts|tsx)",
-      titlePrefix: "FTDS for React",
-    },
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   staticDirs: ["../stories/assets"],
 

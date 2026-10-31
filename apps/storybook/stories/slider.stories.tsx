@@ -22,8 +22,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Slider> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-slider",
   title: "App/Slider",
   component: Slider,
   parameters: { layout: "padded" },

@@ -15,8 +15,6 @@ import { CASES, type OfficerCase } from "./components/app/officer-data";
  * the full list.
  */
 export default {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "examples-app-officer",
   title: "Examples/App/Officer",
   tags: ["!autodocs"],
   parameters: { layout: "fullscreen" },

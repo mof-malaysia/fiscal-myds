@@ -30,8 +30,6 @@ import {
  * ```
  */
 const meta: Meta<typeof FileUpload> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-fileupload",
   title: "App/FileUpload",
   component: FileUpload,
   parameters: { layout: "padded" },

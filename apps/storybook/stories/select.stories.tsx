@@ -66,8 +66,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Select> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-select",
   title: "Core/Select",
   component: Select,
   parameters: { layout: "centered" },

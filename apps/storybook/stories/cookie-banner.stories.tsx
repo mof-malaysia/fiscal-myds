@@ -40,8 +40,6 @@ import { Checkbox } from "@mof-malaysia/ftds-react/checkbox";
  */
 
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-cookiesbanner",
   title: "Core/CookiesBanner",
   component: function CookieBannerDemo(
     _args: React.ComponentProps<typeof CookieBanner>,

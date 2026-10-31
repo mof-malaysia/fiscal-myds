@@ -28,8 +28,6 @@ import { CheckCircleIcon, ClockIcon } from "@mof-malaysia/ftds-react/icon";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-tag",
   title: "Core/Tag",
   component: Tag,
   parameters: {

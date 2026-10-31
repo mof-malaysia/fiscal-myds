@@ -23,8 +23,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Panel> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-panel",
   title: "App/Panel",
   component: Panel,
   parameters: { layout: "padded" },

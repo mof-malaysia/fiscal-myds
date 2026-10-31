@@ -15,8 +15,6 @@ import { Backlink } from "@mof-malaysia/ftds-react/backlink";
  * ```
  */
 const meta: Meta<typeof Backlink> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-backlink",
   title: "Core/Backlink",
   component: Backlink,
   parameters: { layout: "padded" },

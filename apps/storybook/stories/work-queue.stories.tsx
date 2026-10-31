@@ -52,8 +52,6 @@ import {
  * ```
  */
 const meta: Meta<typeof WorkQueue> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-workqueue",
   title: "App/Blocks/WorkQueue",
   component: WorkQueue,
   parameters: { layout: "padded" },

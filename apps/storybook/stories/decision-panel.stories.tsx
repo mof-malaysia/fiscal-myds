@@ -25,8 +25,6 @@ import {
  * ```
  */
 const meta: Meta<typeof DecisionPanel> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-decisionpanel",
   title: "App/Blocks/DecisionPanel",
   component: DecisionPanel,
   parameters: { layout: "padded" },

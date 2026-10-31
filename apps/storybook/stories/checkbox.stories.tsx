@@ -39,8 +39,6 @@ import { createRender, createStory } from "../utils";
  * ```
  */
 const meta: Meta<typeof Checkbox> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-checkbox",
   title: "Core/Checkbox",
   component: Checkbox,
   parameters: {

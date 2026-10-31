@@ -55,8 +55,6 @@ import {
  * ```
  */
 const meta: Meta<typeof SiteFooter> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-sitefooter",
   title: "Marketing/SiteFooter",
   component: SiteFooter,
   parameters: { layout: "fullscreen" },

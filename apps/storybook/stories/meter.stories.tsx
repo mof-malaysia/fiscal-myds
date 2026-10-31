@@ -20,8 +20,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Meter> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-meter",
   title: "App/Meter",
   component: Meter,
   parameters: { layout: "centered" },

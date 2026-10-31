@@ -17,8 +17,6 @@ import { createStory } from "../utils";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-themeswitch",
   title: "Core/ThemeSwitch",
   // tags: ["!dev"],
   component: ThemeSwitch,

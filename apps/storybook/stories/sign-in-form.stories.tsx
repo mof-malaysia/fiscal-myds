@@ -31,8 +31,6 @@ import { wait } from "./components/app/access-brand";
  * ```
  */
 const meta: Meta<typeof SignInForm> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-signinform",
   title: "App/Blocks/SignInForm",
   component: SignInForm,
 };

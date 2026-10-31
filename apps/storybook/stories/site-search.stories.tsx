@@ -27,8 +27,6 @@ import { SiteSearch } from "@mof-malaysia/ftds-react/site-search";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-sitesearch",
   title: "Marketing/SiteSearch",
   component: SiteSearch,
   parameters: {

@@ -25,8 +25,6 @@ import { Pill } from "@mof-malaysia/ftds-react/pill";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-pill",
   title: "Core/Pill",
   component: Pill,
   parameters: {

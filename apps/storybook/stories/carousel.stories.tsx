@@ -33,8 +33,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Carousel> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-carousel",
   title: "Marketing/Carousel",
   component: Carousel,
   parameters: { layout: "padded" },

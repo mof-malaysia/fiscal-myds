@@ -18,8 +18,6 @@ import { Link } from "@mof-malaysia/ftds-react/link";
  * ```
  */
 const meta: Meta<typeof Faq> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-blocks-faq",
   title: "Marketing/Blocks/Faq",
   component: Faq,
   parameters: { layout: "fullscreen" },

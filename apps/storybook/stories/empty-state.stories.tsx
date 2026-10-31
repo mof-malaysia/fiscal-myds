@@ -27,8 +27,6 @@ import { DocumentIcon, SearchIcon } from "@mof-malaysia/ftds-react/icon";
  * ```
  */
 const meta: Meta<typeof EmptyState> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-emptystate",
   title: "App/EmptyState",
   component: EmptyState,
   parameters: { layout: "padded" },

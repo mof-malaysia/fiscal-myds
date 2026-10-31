@@ -25,8 +25,6 @@ import {
  * ```
  */
 const meta: Meta<typeof FeatureGrid> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-blocks-featuregrid",
   title: "Marketing/Blocks/FeatureGrid",
   component: FeatureGrid,
   parameters: { layout: "fullscreen" },

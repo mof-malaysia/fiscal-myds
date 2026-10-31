@@ -70,8 +70,6 @@ import { createStory } from "../utils";
  */
 // @ts-expect-error
 const meta: Meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-dialog",
   title: "Core/Dialog",
   component: Dialog,
   render: ({ dismissible, border, align, border_header }) => {

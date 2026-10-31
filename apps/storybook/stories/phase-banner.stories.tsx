@@ -19,8 +19,6 @@ import {
  * ```
  */
 const meta: Meta<typeof PhaseBanner> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-phasebanner",
   title: "Core/PhaseBanner",
   component: PhaseBanner,
   parameters: { layout: "fullscreen" },

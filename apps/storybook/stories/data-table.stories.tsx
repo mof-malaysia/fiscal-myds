@@ -175,8 +175,6 @@ const applications: Application[] = [
 ];
 
 const meta: Meta<typeof DataTable> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-datatable",
   title: "App/DataTable",
   component: DataTable,
   parameters: {

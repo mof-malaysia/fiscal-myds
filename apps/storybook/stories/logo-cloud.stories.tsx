@@ -16,8 +16,6 @@ import { LogoCloud } from "@mof-malaysia/ftds-react/logo-cloud";
  * ```
  */
 const meta: Meta<typeof LogoCloud> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "marketing-blocks-logocloud",
   title: "Marketing/Blocks/LogoCloud",
   component: LogoCloud,
   parameters: { layout: "fullscreen" },

@@ -21,8 +21,6 @@ import { SwapIcon } from "@mof-malaysia/ftds-react/icon";
  */
 
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-summarylist",
   title: "App/SummaryList",
   component: SummaryList,
   tags: ["autodocs"],

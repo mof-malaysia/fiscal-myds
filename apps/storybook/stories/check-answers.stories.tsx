@@ -31,8 +31,6 @@ import {
  * ```
  */
 const meta: Meta<typeof CheckAnswers> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-checkanswers",
   title: "App/Blocks/CheckAnswers",
   component: CheckAnswers,
   parameters: { layout: "padded" },

@@ -28,8 +28,6 @@ import { Switch } from "@mof-malaysia/ftds-react/switch";
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-label",
   title: "Core/Label",
   component: Label,
   tags: ["autodocs"],

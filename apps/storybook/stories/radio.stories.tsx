@@ -40,8 +40,6 @@ import {
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-radio",
   title: "Core/Radio",
   component: Radio,
   render: ({ ...props }) => {

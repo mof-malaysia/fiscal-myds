@@ -27,8 +27,6 @@ import {
  * ```
  */
 const meta: Meta<typeof NumberField> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-numberfield",
   title: "App/NumberField",
   component: NumberField,
   parameters: { layout: "padded" },

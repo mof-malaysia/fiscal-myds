@@ -32,8 +32,6 @@ import { wait } from "./components/app/access-brand";
  * ```
  */
 const meta: Meta<typeof ForgotPasswordForm> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-passwordreset",
   title: "App/Blocks/PasswordReset",
   component: ForgotPasswordForm,
 };

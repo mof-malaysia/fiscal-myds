@@ -39,8 +39,6 @@ import {
  * ```
  */
 const meta: Meta<typeof Toolbar> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-toolbar",
   title: "App/Toolbar",
   component: Toolbar,
   parameters: { layout: "centered" },

@@ -51,8 +51,6 @@ import {
  * ```
  */
 const meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-tabs",
   title: "Core/Tabs",
   component: Tabs,
   parameters: {

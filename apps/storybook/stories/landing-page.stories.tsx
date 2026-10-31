@@ -1,8 +1,6 @@
 import LandingPage from "./components/landingPage";
 
 export default {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "examples-landingpage",
   title: "Examples/LandingPage",
   component: LandingPage,
   // remove the automatic documentation for Layout

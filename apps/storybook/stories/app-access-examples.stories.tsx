@@ -14,8 +14,6 @@ import SessionTimeoutPage from "./components/app/session-timeout-page";
  * the error state.
  */
 const meta: Meta = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "examples-app-access",
   title: "Examples/App/Access",
   tags: ["!autodocs"],
   parameters: { layout: "fullscreen" },

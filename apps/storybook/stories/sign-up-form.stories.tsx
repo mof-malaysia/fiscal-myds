@@ -32,8 +32,6 @@ import { validateSignUp, wait } from "./components/app/access-brand";
  * ```
  */
 const meta: Meta<typeof SignUpForm> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-signupform",
   title: "App/Blocks/SignUpForm",
   component: SignUpForm,
 };

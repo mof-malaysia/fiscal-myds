@@ -26,8 +26,6 @@ import { AccessBrand, AccessFooter } from "./components/app/access-brand";
  * ```
  */
 const meta: Meta<typeof AuthLayout> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-authlayout",
   title: "App/Blocks/AuthLayout",
   component: AuthLayout,
   parameters: { layout: "fullscreen" },

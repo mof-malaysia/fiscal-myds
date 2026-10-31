@@ -42,8 +42,6 @@ import {
  * ```
  */
 const meta: Meta<typeof SettingsLayout> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "app-blocks-settingslayout",
   title: "App/Blocks/SettingsLayout",
   component: SettingsLayout,
 };

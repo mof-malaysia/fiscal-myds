@@ -18,8 +18,6 @@ import {
  * ```
  */
 const meta: Meta<typeof InsetText> = {
-  // Pinned so URLs survive the "FTDS for React" title prefix
-  id: "core-insettext",
   title: "Core/InsetText",
   component: InsetText,
   parameters: { layout: "padded" },
