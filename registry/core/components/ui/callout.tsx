@@ -67,7 +67,7 @@ const Callout: ForwardRefExoticComponent<CalloutProps> = forwardRef(
             ref={ref}
             // Danger interrupts; the rest are announced politely when they appear
             role={variant === "danger" ? "alert" : "status"}
-            className={calloutVariants({ variant, className })}
+            className={clx(calloutVariants({ variant }), className)}
             {...props}
           >
             {variant && iconMap[variant]}

@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
 import { calloutVariants } from "@/components/ui/callout.variants";
 import CheckCircle from "@/components/ui/icons/check-circle.astro";
 import WarningCircle from "@/components/ui/icons/warning-circle.astro";
@@ -41,7 +42,7 @@ const slots = Astro.slots;
 
 <div
   role={variant === "danger" ? "alert" : "status"}
-  class={calloutVariants({ variant, className })}
+  class={clx(calloutVariants({ variant }), className)}
   {...props}
 >
   <Icon class="size-5 shrink-0" aria-hidden="true" />

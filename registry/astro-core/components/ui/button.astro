@@ -36,6 +36,10 @@ const icon_class = [
   size === "small" ? "[&_svg]:size-4" : "[&_svg]:size-5",
 ];
 
+// The rest of a destructured union isn't narrowed by `href`; without it,
+// these are the <button> branch's attributes
+const buttonProps = props as Omit<HTMLAttributes<"button">, "class">;
+
 const classes = clx(button_cva({ variant, size, iconOnly }), icon_class, className);
 ---
 
@@ -45,7 +49,7 @@ const classes = clx(button_cva({ variant, size, iconOnly }), icon_class, classNa
       <slot />
     </a>
   ) : (
-    <button type="button" class={classes} {...props}>
+    <button type="button" class={classes} {...buttonProps}>
       <slot />
     </button>
   )
