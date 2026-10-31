@@ -1,0 +1,112 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import ChevronDown from "@/components/ui/icons/chevron-down.astro";
+
+/**
+ * Accordion stacks sections that people expand one at a time (or several,
+ * with `type="multiple"`): FAQs and long explanations on agency sites.
+ *
+ * Each item is a native `<details>`, so it opens and closes with JavaScript
+ * off, from the keyboard (Enter or Space on the title) and with the browser's
+ * find-in-page. `type="single"` groups them with `<details name>`, which the
+ * browser keeps to one open item; no script ships.
+ *
+ * An item's content is its `content` text or, for rich content, the slot
+ * named after its `value` (`item-0`, `item-1`... when unset).
+ *
+ * @example
+ * <Accordion
+ *   defaultValue="eligibility"
+ *   items={[
+ *     { value: "eligibility", title: "Who can apply?", content: "Any Malaysian citizen aged 18 and above." },
+ *     { value: "documents", title: "What documents do I need?" },
+ *   ]}
+ * >
+ *   <ul slot="documents"><li>MyKad</li><li>Latest payslip</li></ul>
+ * </Accordion>
+ */
+interface AccordionItem {
+  title: string;
+  /** Plain-text content. The slot named after `value` takes rich content. */
+  content?: string;
+  /** Stable id for the item and its slot name. Defaults to `item-<index>`. */
+  value?: string;
+}
+
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  items: AccordionItem[];
+  /** Whether one or many items can be open at the same time. @default "single" */
+  type?: "single" | "multiple";
+  /** Item(s) open on first render. */
+  defaultValue?: string | string[];
+  /** Class for each item's trigger (the `<summary>`). */
+  triggerClass?: string;
+  /** Class for each item's content box. */
+  contentClass?: string;
+  /** Class for each item (the `<details>`). */
+  itemClass?: string;
+  class?: string;
+};
+
+const {
+  items,
+  type = "single",
+  defaultValue,
+  triggerClass,
+  contentClass,
+  itemClass,
+  class: className,
+  ...props
+} = Astro.props;
+
+const name = type === "single" ? uniqueId("accordion") : undefined;
+const open = new Set(
+  defaultValue === undefined ? [] : Array.isArray(defaultValue) ? defaultValue : [defaultValue],
+);
+const values = items.map((item, i) => item.value ?? `item-${i}`);
+// Rendered and trimmed, not Astro.slots.has: a forwarded empty slot still "has" it
+const slotted = await Promise.all(
+  values.map(async (value) =>
+    Astro.slots.has(value) ? (await Astro.slots.render(value)).trim() : "",
+  ),
+);
+---
+
+<div class={clx("font-body w-full", className)} {...props}>
+  {
+    items.map((item, i) => (
+      <details
+        name={name}
+        open={open.has(values[i]!)}
+        data-value={values[i]}
+        class={clx(
+          "border-otl-gray-200 bg-bg-white group/accordion mt-px overflow-hidden border-b first:mt-0",
+          itemClass,
+        )}
+      >
+        <summary
+          class={clx(
+            "text-txt-black-700 font-body bg-bg-white hover:text-txt-black-900 group-open/accordion:text-txt-black-900 flex cursor-pointer list-none items-center justify-between py-4 text-base leading-none font-medium hover:underline [&::-webkit-details-marker]:hidden",
+            "focus-ring rounded-xs outline-none focus-visible:underline",
+            triggerClass,
+          )}
+        >
+          {item.title}
+          <ChevronDown
+            aria-hidden="true"
+            class="text-txt-black-500 size-5 shrink-0 transition-transform duration-300 ease-in-out group-open/accordion:rotate-180 motion-reduce:transition-none"
+          />
+        </summary>
+        <div
+          class={clx(
+            "text-txt-black-700 font-body text-content overflow-hidden pr-9 pb-4 font-normal",
+            contentClass,
+          )}
+        >
+          {slotted[i] ? <Fragment set:html={slotted[i]} /> : item.content}
+        </div>
+      </details>
+    ))
+  }
+</div>

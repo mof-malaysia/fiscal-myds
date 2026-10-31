@@ -189,8 +189,7 @@
       ],
       "type": "registry:ui",
       "dependencies": [
-        "@base-ui/react@^1.9.0",
-        "class-variance-authority@^0.7.1"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "mof-malaysia/ftds/button",
@@ -199,7 +198,8 @@
         "mof-malaysia/ftds/icon-cross",
         "mof-malaysia/ftds/icon-hamburger-menu",
         "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-navbar"
       ],
       "files": [
         {

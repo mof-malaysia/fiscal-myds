@@ -4,6 +4,27 @@
   "homepage": "https://github.com/mof-malaysia/ftds",
   "items": [
     {
+      "name": "astro-accordion",
+      "title": "Accordion (Astro)",
+      "description": "A stack of sections that open and close under their headings. Use it when a page has several sections people need one at a time.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-icon-chevron-down",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accordion.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "astro-announce-bar",
       "title": "Announce Bar (Astro)",
       "description": "A one-line notice with a tag under the site's navigation, such as planned maintenance or a new feature. For a service's alpha or beta phase, use PhaseBanner.",
@@ -20,6 +41,33 @@
       "files": [
         {
           "path": "components/ui/announce-bar.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-carousel",
+      "title": "Carousel (Astro)",
+      "description": "A horizontal row of slides people scroll by touch, buttons, dots or arrow keys. Built on CSS scroll-snap; no autoplay unless you turn it on.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-chevron-left",
+        "mof-malaysia/ftds/astro-icon-chevron-right",
+        "mof-malaysia/ftds/astro-icon-pause",
+        "mof-malaysia/ftds/astro-icon-play",
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/carousel.astro",
           "type": "registry:ui"
         }
       ]
@@ -45,6 +93,30 @@
           "path": "components/blocks/cta-band.astro",
           "type": "registry:component",
           "target": "components/blocks/cta-band.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-faq",
+      "title": "FAQ (Astro)",
+      "description": "A frequently asked questions section: a heading and intro beside an accordion of questions and answers, with an optional \"still need help\" line.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-accordion",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/faq.astro",
+          "type": "registry:component",
+          "target": "components/blocks/faq.astro"
         }
       ]
     },
@@ -115,6 +187,34 @@
           "path": "components/blocks/logo-cloud.astro",
           "type": "registry:component",
           "target": "components/blocks/logo-cloud.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-navbar",
+      "title": "Navbar (Astro)",
+      "description": "The site's top navigation bar: logo, links and dropdown menus, and actions such as search, with a full-width menu panel on tablet and mobile.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-icon-chevron-down",
+        "mof-malaysia/ftds/astro-icon-cross",
+        "mof-malaysia/ftds/astro-icon-hamburger-menu",
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-navbar"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navbar.astro",
+          "type": "registry:ui"
         }
       ]
     },

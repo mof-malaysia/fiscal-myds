@@ -22,6 +22,24 @@
       ]
     },
     {
+      "name": "astro-scripts",
+      "title": "Astro behaviour scripts",
+      "description": "Helpers the interactive FTDS Astro components share in their <script>: onEach (set up once, again after view transitions) and moveFocus (arrow-key focus). Imported from @/lib/ftds/scripts.",
+      "categories": [
+        "astro",
+        "utilities"
+      ],
+      "type": "registry:lib",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "lib/ftds/scripts/index.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "astro-breadcrumb",
       "title": "Breadcrumb (Astro)",
       "description": "A trail of links showing where the current page sits in the site's hierarchy, with the current page last. Quiet navigation at the top of content pages.",
@@ -79,10 +97,13 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
         "mof-malaysia/ftds/astro-icon-check-circle",
+        "mof-malaysia/ftds/astro-icon-cross",
         "mof-malaysia/ftds/astro-icon-info",
         "mof-malaysia/ftds/astro-icon-warning",
         "mof-malaysia/ftds/astro-icon-warning-circle",
+        "mof-malaysia/ftds/astro-scripts",
         "mof-malaysia/ftds/utils",
         "mof-malaysia/ftds/variants-callout"
       ],
@@ -112,6 +133,30 @@
       "files": [
         {
           "path": "components/ui/card.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-cookie-banner",
+      "title": "Cookie Banner (Astro)",
+      "description": "A panel in the bottom-right corner that asks for consent to non-essential cookies, with an optional preferences view. Show it until the user makes a choice.",
+      "categories": [
+        "astro",
+        "core"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-cross",
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/cookie-banner.astro",
           "type": "registry:ui"
         }
       ]
@@ -179,6 +224,28 @@
       "files": [
         {
           "path": "components/ui/inset-text.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-language-switcher",
+      "title": "Language Switcher (Astro)",
+      "description": "LanguageSwitcher links to the same page in each language the site has: plain links, so it works without JavaScript.",
+      "categories": [
+        "astro",
+        "core"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-globe",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/language-switcher.astro",
           "type": "registry:ui"
         }
       ]
@@ -296,6 +363,27 @@
       ]
     },
     {
+      "name": "astro-tabs",
+      "title": "Tabs (Astro)",
+      "description": "Switches between views of the same subject on one page, such as a case's details, documents and history. One underline style, with optional icons and counts.",
+      "categories": [
+        "astro",
+        "core"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "astro-tag",
       "title": "Tag (Astro)",
       "description": "A small wash label for the status or category of an item, such as Paid, In review or Overdue. The words carry the meaning, never colour alone.",
@@ -312,6 +400,49 @@
       "files": [
         {
           "path": "components/ui/tag.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-theme-script",
+      "title": "Theme Script (Astro)",
+      "description": "ThemeScript applies the saved theme, or the system's when none is saved, before the page paints, so a dark-theme visitor never sees a flash of the light one.",
+      "categories": [
+        "astro",
+        "core"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/theme-script.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-theme-switch",
+      "title": "Theme Switch (Astro)",
+      "description": "A button or select that switches between light and dark themes through ThemeProvider. Put it in the top bar or a settings page.",
+      "categories": [
+        "astro",
+        "core"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-moon",
+        "mof-malaysia/ftds/astro-icon-sun",
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/theme-switch.astro",
           "type": "registry:ui"
         }
       ]

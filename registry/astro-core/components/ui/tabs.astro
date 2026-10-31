@@ -1,0 +1,177 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+
+/**
+ * Tabs switch between views of the same subject on one page: Label type in
+ * Ink Secondary on a single Hairline, the active tab in Ink with a 2px FTDS
+ * Blue underline. Each item's panel is the slot named after its `value`.
+ *
+ * Without JavaScript every panel shows, stacked under its label, so nothing
+ * is hidden. The script turns them into tabs: arrow keys, Home and End move
+ * between tabs, and a tab activates on focus unless `activationMode` is
+ * `"manual"`.
+ *
+ * @example
+ * <Tabs items={[
+ *   { value: "details", label: "Butiran" },
+ *   { value: "documents", label: "Dokumen", count: 3 },
+ * ]}>
+ *   <div slot="details">...</div>
+ *   <div slot="documents">...</div>
+ * </Tabs>
+ */
+interface TabItem {
+  value: string;
+  label: string;
+  /** A count beside the label, in a neutral pill. */
+  count?: number;
+  disabled?: boolean;
+}
+
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  items: TabItem[];
+  /** The tab open first. Defaults to the first enabled item. */
+  defaultValue?: string;
+  /** @default "small" */
+  size?: "small" | "medium";
+  /** `full` runs the Hairline across the container. @default "fit" */
+  width?: "fit" | "full";
+  /** `manual` activates a tab on Enter or Space instead of on focus. */
+  activationMode?: "automatic" | "manual";
+  class?: string;
+};
+
+const {
+  items,
+  defaultValue = items.find((item) => !item.disabled)?.value,
+  size = "small",
+  width = "fit",
+  activationMode = "automatic",
+  class: className,
+  ...props
+} = Astro.props;
+
+const id = uniqueId("tabs");
+const panels = await Promise.all(
+  items.map(async (item) =>
+    Astro.slots.has(item.value) ? await Astro.slots.render(item.value) : "",
+  ),
+);
+
+const trigger_class = clx(
+  "relative flex shrink-0 cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-md font-medium",
+  "text-txt-black-700 hover:text-txt-black-900 aria-selected:text-txt-black-900",
+  "transition-colors duration-150 motion-reduce:transition-none",
+  // Inset so the ring isn't clipped by the scrolling list
+  "focus-ring-inset",
+  "disabled:text-txt-black-disabled disabled:cursor-not-allowed",
+  size === "small" ? "control-sm px-3 text-label-sm" : "control-md px-4 text-label-md",
+);
+---
+
+<div
+  class={clx("font-body group/tabs flex flex-col", className)}
+  data-ftds-tabs
+  data-activation={activationMode}
+  {...props}
+>
+  <div
+    role="tablist"
+    hidden
+    class={clx(
+      // The Hairline is an inset shadow so the indicator can sit on top of it
+      "relative z-0 flex max-w-full items-stretch gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-otl-gray-200)]",
+      "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+      width === "full" ? "w-full" : "w-fit",
+    )}
+  >
+    {
+      items.map((item) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${id}-tab-${item.value}`}
+          aria-controls={`${id}-panel-${item.value}`}
+          aria-selected={item.value === defaultValue ? "true" : "false"}
+          tabindex={item.value === defaultValue ? 0 : -1}
+          disabled={item.disabled}
+          data-value={item.value}
+          class={trigger_class}
+        >
+          {item.label}
+          {item.count !== undefined && (
+            <span class="bg-bg-washed-active text-txt-black-700 text-label-compact inline-flex min-w-5 justify-center rounded-full px-1.5 font-medium tabular-nums">
+              {item.count}
+            </span>
+          )}
+        </button>
+      ))
+    }
+    <span
+      aria-hidden="true"
+      data-ftds-tabs-indicator
+      class="bg-txt-primary absolute bottom-0 left-0 z-10 h-0.5 w-(--active-tab-width) translate-x-(--active-tab-left) rounded-full transition-[translate,width] duration-200 ease-(--ease-standard) motion-reduce:transition-none"
+    ></span>
+  </div>
+  {
+    items.map((item, i) => (
+      <section
+        role="tabpanel"
+        id={`${id}-panel-${item.value}`}
+        aria-labelledby={`${id}-tab-${item.value}`}
+        tabindex="0"
+        data-value={item.value}
+        class="text-txt-black-900 text-content focus-ring rounded-md pt-(--space-stack-md)"
+      >
+        {/* Shown only without JavaScript, where every panel is visible */}
+        <h3 data-ftds-tabs-label class="text-txt-black-900 font-semibold">
+          {item.label}
+        </h3>
+        <Fragment set:html={panels[i]} />
+      </section>
+    ))
+  }
+</div>
+
+<script>
+  import { moveFocus, onEach } from "@/lib/ftds/scripts";
+
+  onEach("[data-ftds-tabs]", (root) => {
+    const list = root.querySelector<HTMLElement>("[role=tablist]")!;
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>("[role=tab]")];
+    const panels = [...root.querySelectorAll<HTMLElement>(":scope > [role=tabpanel]")];
+    const indicator = list.querySelector<HTMLElement>("[data-ftds-tabs-indicator]")!;
+    const manual = root.dataset.activation === "manual";
+
+    const select = (tab: HTMLButtonElement) => {
+      for (const other of tabs) {
+        const active = other === tab;
+        other.setAttribute("aria-selected", String(active));
+        other.tabIndex = active ? 0 : -1;
+      }
+      for (const panel of panels) panel.hidden = panel.dataset.value !== tab.dataset.value;
+      indicator.style.setProperty("--active-tab-left", `${tab.offsetLeft}px`);
+      indicator.style.setProperty("--active-tab-width", `${tab.offsetWidth}px`);
+    };
+
+    // Enhance: show the tablist, drop the no-JS labels, open the default tab
+    list.hidden = false;
+    for (const label of root.querySelectorAll<HTMLElement>("[data-ftds-tabs-label]")) {
+      label.hidden = true;
+    }
+    select(tabs.find((tab) => tab.getAttribute("aria-selected") === "true") ?? tabs[0]!);
+
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("keydown", (event) => {
+        const next = moveFocus(event, tabs);
+        if (next && !manual) select(next as HTMLButtonElement);
+      });
+    }
+    new ResizeObserver(() => {
+      const active = tabs.find((tab) => tab.getAttribute("aria-selected") === "true");
+      if (active) select(active);
+    }).observe(list);
+  });
+</script>

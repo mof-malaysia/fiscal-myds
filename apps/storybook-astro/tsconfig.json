@@ -1,0 +1,18 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".storybook/**/*", "stories/**/*", "tests/**/*"],
+  "compilerOptions": {
+    "types": ["astro/client"],
+    "paths": {
+      "@/lib/ftds/utils": ["../../packages/react/src/utils/index.ts"],
+      "@/lib/ftds/i18n": ["../../packages/astro/src/i18n/index.ts"],
+      "@/lib/ftds/scripts": ["../../packages/astro/src/scripts/index.ts"],
+      "@/components/ui/icons/*": ["../../packages/astro/src/icons/*"],
+      "@/components/ui/*": [
+        "../../packages/astro/src/components/core/*",
+        "../../packages/astro/src/components/marketing/*"
+      ],
+      "@/components/blocks/*": ["../../packages/astro/src/components/marketing/*"]
+    }
+  }
+}

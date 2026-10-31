@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# FTDS for Astro
+
+FTDS for Astro is the FiscalTech Design System as native Astro components: a
+focused subset of core plus the marketing components, for static agency,
+landing and marketing sites. They render to plain HTML with little or no
+client-side JavaScript, and there are no app components.
+
+It sits beside the React library and doesn't replace it. Both read their
+classes from `@mof-malaysia/ftds-style`, so a Button looks the same in either
+stack. Pick the one that fits your project.
+
+## Install
+
+Components install through the shadcn CLI from the FTDS registry:
+
+```sh
+npx shadcn@latest add @ftds/astro-<name>
+```
+
+For example `@ftds/astro-button` or `@ftds/astro-hero`. Core and marketing
+components land in `components/ui`, composed page sections in
+`components/blocks`.
+
+## Reading these stories
+
+Astro components render on the server, so the stories here are pre-rendered
+when Storybook is built. Changing a Control does not re-render a story on the
+published site. Instead, every meaningful variant (tones, sizes, with or
+without optional parts, English vs. the default Bahasa Melayu labels) has its
+own story in the sidebar.
+
+Stories are grouped as **Core** (government chrome and basic components) and
+**Marketing** (agency and landing-page sections).

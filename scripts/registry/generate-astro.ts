@@ -62,6 +62,7 @@ function aliasDependency(
 ): string {
   if (specifier === "@/lib/ftds/utils") return "utils";
   if (specifier === "@/lib/ftds/i18n") return astroItemName("i18n");
+  if (specifier === "@/lib/ftds/scripts") return astroItemName("scripts");
   const icon = specifier.match(/^@\/components\/ui\/icons\/(.+)\.astro$/);
   if (icon) return astroItemName(iconItemName(icon[1]!));
   const dep = specifier.match(
@@ -86,9 +87,14 @@ function generateItem(
   tierOf: Map<string, ComponentTier>,
 ): RegistryComponent {
   const content = readFileContent(source.filePath);
-  const frontmatter = content.slice(3, content.indexOf("\n---", 3));
-  const { npmDependencies, aliasImports, variants } =
-    extractImports(frontmatter);
+  // Imports live in the frontmatter and in <script> blocks (behaviour)
+  const code = [
+    content.slice(3, content.indexOf("\n---", 3)),
+    ...[...content.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(
+      (match) => match[1]!.replace(/^\s+/gm, ""),
+    ),
+  ].join("\n");
+  const { npmDependencies, aliasImports, variants } = extractImports(code);
   npmDependencies.delete("astro");
 
   const isBlock = BLOCK_MARKER.test(content);
@@ -176,6 +182,31 @@ function generateI18nItem(): RegistryComponent {
   );
 }
 
+function generateScriptsItem(): RegistryComponent {
+  return describeItem(
+    {
+      $schema: REGISTRY_ITEM_SCHEMA,
+      name: astroItemName("scripts"),
+      type: "registry:lib",
+      dependencies: [],
+      registryDependencies: [],
+      files: [
+        {
+          path: "lib/ftds/scripts/index.ts",
+          content: readFileContent(path.join(ASTRO_SRC, "scripts/index.ts")),
+          type: "registry:lib",
+        },
+      ],
+    },
+    {
+      title: "Astro behaviour scripts",
+      description:
+        "Helpers the interactive FTDS Astro components share in their <script>: onEach (set up once, again after view transitions) and moveFocus (arrow-key focus). Imported from @/lib/ftds/scripts.",
+      categories: ["astro", "utilities"],
+    },
+  );
+}
+
 function generateIconItems(): RegistryComponent[] {
   const dir = path.join(ASTRO_SRC, "icons");
   return fs
@@ -218,7 +249,7 @@ function main() {
 
   // Build every item first so a boundary violation fails before anything is written
   const items: Record<AstroTier, RegistryComponent[]> = {
-    core: [generateI18nItem()],
+    core: [generateI18nItem(), generateScriptsItem()],
     marketing: [],
   };
   for (const source of sources) {

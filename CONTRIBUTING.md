@@ -64,7 +64,8 @@ Before every push:
 
 - `registry/` matches `pnpm registry:build`, and `pnpm registry:validate` passes
 - `pnpm llms:check`: every component has a doc and every docs example typechecks
-- In parallel, the Storybook build, the docs build, and the playground's tests and build
+- In parallel, the Storybook builds (React and Astro), the docs build, and the playground's tests and build
+- The Astro components' axe and keyboard tests, against the Astro Storybook build (first time: `pnpm --filter @mof-malaysia/ftds-storybook-astro exec playwright install chromium`)
 
 A failing check blocks the commit or push. The push checks read the working tree, so commit or stash other changes first. Run them by hand with `pnpm exec lefthook run pre-push --force`. If the hooks are missing, run `pnpm exec lefthook install`. To skip them in an emergency, use `LEFTHOOK=0 git commit ...` or `LEFTHOOK=0 git push ...`, then run the checks yourself before opening a PR.
 

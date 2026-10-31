@@ -1,0 +1,292 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+import ChevronLeft from "@/components/ui/icons/chevron-left.astro";
+import ChevronRight from "@/components/ui/icons/chevron-right.astro";
+import Pause from "@/components/ui/icons/pause.astro";
+import Play from "@/components/ui/icons/play.astro";
+
+/**
+ * Carousel is a horizontal row of slides on native CSS scroll-snap. Each
+ * direct child of the default slot is one slide. Without JavaScript it is a
+ * row people swipe or scroll, and every slide is in the page.
+ *
+ * The script adds the previous / next buttons (disabled at the ends), the
+ * slide indicators, "2 of 5" names on the slides, and the left and right
+ * arrow keys while focus is inside. There is no autoplay unless `autoplay`
+ * is set; then a pause / play button shows, and it pauses while the pointer
+ * is over the carousel or focus is inside it, stops once the visitor
+ * navigates, and never starts under `prefers-reduced-motion`.
+ *
+ * Name it with `aria-label` or `aria-labelledby`. Put each slide's content on
+ * a Sheet or Well surface without borders, at full height (`h-full`).
+ *
+ * @example
+ * <Carousel aria-labelledby="updates-title" perView="third">
+ *   <article class="bg-bg-white p-surface h-full rounded-lg">...</article>
+ *   <article class="bg-bg-white p-surface h-full rounded-lg">...</article>
+ * </Carousel>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class" | "lang"> & {
+  /**
+   * Slides in view: `one` is full width; `half` and `third` show part of the
+   * next slide on small screens, then 2 or 3 from `md` / `lg`. @default "one"
+   */
+  perView?: "one" | "half" | "third";
+  /** Milliseconds between slides. Off by default. */
+  autoplay?: number | false;
+  /** Shows a dot per slide. @default true */
+  indicators?: boolean;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  perView = "one",
+  autoplay = false,
+  indicators = true,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+
+const per_view_class = {
+  one: "*:basis-full",
+  half: "*:basis-4/5 md:*:basis-1/2",
+  third: "*:basis-4/5 md:*:basis-1/2 lg:*:basis-1/3",
+}[perView];
+---
+
+<div
+  role="region"
+  aria-roledescription={label(lang, "carousel")}
+  class={clx("font-body relative flex flex-col gap-4", className)}
+  data-ftds-carousel
+  data-autoplay={autoplay || undefined}
+  data-label-slide={label(lang, "carouselSlide")}
+  data-label-slide-of={label(lang, "carouselSlideOf")}
+  data-label-go-to={label(lang, "carouselGoTo")}
+  data-label-pause={label(lang, "carouselPause")}
+  data-label-play={label(lang, "carouselPlay")}
+  {...props}
+>
+  {/* Focusable so keyboard users can scroll it; slides are its direct children */}
+  <div
+    tabindex="0"
+    aria-live={autoplay ? "off" : "polite"}
+    class={clx(
+      "gap-stack-md relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth",
+      "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+      "focus-ring rounded-lg outline-none motion-reduce:scroll-auto",
+      "*:min-w-0 *:shrink-0 *:grow-0 *:snap-start",
+      per_view_class,
+    )}
+    data-ftds-carousel-track
+  >
+    <slot />
+  </div>
+  {/* Controls need the script, so they stay hidden without it */}
+  <div class="flex items-center gap-2" hidden data-ftds-carousel-controls>
+    {
+      autoplay && (
+        <Button
+          variant="default-ghost"
+          size="small"
+          iconOnly
+          aria-label={label(lang, "carouselPause")}
+          data-ftds-carousel-play
+        >
+          <span data-ftds-carousel-pause-icon><Pause aria-hidden="true" class="size-5" /></span>
+          <span hidden data-ftds-carousel-play-icon><Play aria-hidden="true" class="size-5" /></span>
+        </Button>
+      )
+    }
+    <Button
+      variant="default-ghost"
+      size="small"
+      iconOnly
+      aria-label={label(lang, "carouselPrevious")}
+      data-ftds-carousel-prev
+    >
+      <ChevronLeft aria-hidden="true" class="size-5" />
+    </Button>
+    <Button
+      variant="default-ghost"
+      size="small"
+      iconOnly
+      aria-label={label(lang, "carouselNext")}
+      data-ftds-carousel-next
+    >
+      <ChevronRight aria-hidden="true" class="size-5" />
+    </Button>
+    {indicators && <div class="ml-auto flex items-center gap-0.5" data-ftds-carousel-dots />}
+  </div>
+</div>
+
+<script>
+  import { onEach } from "@/lib/ftds/scripts";
+
+  const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fill = (text: string, values: Record<string, number>) =>
+    text.replace(/\{(\w+)\}/g, (_, key: string) => String(values[key] ?? ""));
+
+  const DOT_CLASS =
+    "group flex h-6 min-w-6 cursor-pointer items-center justify-center rounded-full outline-none focus-visible:outline-fr-primary focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-solid";
+  const PILL_CLASS =
+    "ease-standard block h-2 rounded-full transition-[width,background-color] duration-200 motion-reduce:transition-none";
+  const PILL_CURRENT = ["bg-bg-primary-600", "w-5"];
+  const PILL_OTHER = ["bg-bg-black-400", "group-hover:bg-bg-black-500", "w-2"];
+
+  onEach("[data-ftds-carousel]", (root) => {
+    const track = root.querySelector<HTMLElement>("[data-ftds-carousel-track]")!;
+    const controls = root.querySelector<HTMLElement>("[data-ftds-carousel-controls]")!;
+    const prev = controls.querySelector<HTMLButtonElement>("[data-ftds-carousel-prev]")!;
+    const next = controls.querySelector<HTMLButtonElement>("[data-ftds-carousel-next]")!;
+    const play = controls.querySelector<HTMLButtonElement>("[data-ftds-carousel-play]");
+    const dotsBox = controls.querySelector<HTMLElement>("[data-ftds-carousel-dots]");
+    const { labelSlide, labelSlideOf, labelGoTo, labelPause, labelPlay } = root.dataset;
+    const delay = Number(root.dataset.autoplay) || 0;
+
+    let slides: HTMLElement[] = [];
+    let dots: HTMLButtonElement[] = [];
+    let index = 0;
+    let canNext = false;
+
+    /** Re-read the slides: names, and one dot each. */
+    const scan = () => {
+      slides = [...track.children].filter((el): el is HTMLElement => el instanceof HTMLElement);
+      slides.forEach((slide, i) => {
+        slide.setAttribute("role", "group");
+        slide.setAttribute("aria-roledescription", labelSlide!);
+        slide.setAttribute("aria-label", fill(labelSlideOf!, { n: i + 1, count: slides.length }));
+      });
+      if (!dotsBox) return;
+      dotsBox.replaceChildren();
+      dots = slides.length < 2 ? [] : slides.map((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = DOT_CLASS;
+        dot.setAttribute("aria-label", fill(labelGoTo!, { n: i + 1 }));
+        const pill = document.createElement("span");
+        pill.setAttribute("aria-hidden", "true");
+        pill.className = PILL_CLASS;
+        dot.append(pill);
+        dot.addEventListener("click", () => scrollTo(i));
+        return dot;
+      });
+      dotsBox.append(...dots);
+    };
+
+    /** Measure: the slide at the start of the view, and whether either end is reached. */
+    const update = () => {
+      const { scrollLeft, clientWidth, scrollWidth } = track;
+      let distance = Infinity;
+      slides.forEach((slide, i) => {
+        const d = Math.abs(slide.offsetLeft - scrollLeft);
+        if (d < distance) {
+          distance = d;
+          index = i;
+        }
+      });
+      canNext = scrollLeft + clientWidth < scrollWidth - 1;
+      prev.disabled = scrollLeft <= 1;
+      next.disabled = !canNext;
+      dots.forEach((dot, i) => {
+        const current = i === index;
+        if (current) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+        const pill = dot.firstElementChild!;
+        pill.classList.remove(...PILL_CURRENT, ...PILL_OTHER);
+        pill.classList.add(...(current ? PILL_CURRENT : PILL_OTHER));
+      });
+    };
+
+    /* Autoplay: never under reduced motion; paused on hover or focus inside */
+    let playing = delay > 0 && !reducedMotion();
+    let hovered = false;
+    let focused = false;
+    let timer = 0;
+    const sync = () => {
+      window.clearInterval(timer);
+      if (play) {
+        play.setAttribute("aria-label", playing ? labelPause! : labelPlay!);
+        // The hidden attribute on a wrapper: Button sets display on every svg
+        play.querySelector("[data-ftds-carousel-pause-icon]")?.toggleAttribute("hidden", !playing);
+        play.querySelector("[data-ftds-carousel-play-icon]")?.toggleAttribute("hidden", playing);
+      }
+      // Announce slide changes, except while they change by themselves
+      track.setAttribute("aria-live", playing ? "off" : "polite");
+      if (playing && !hovered && !focused) {
+        timer = window.setInterval(() => scrollTo(canNext ? index + 1 : 0, false), delay);
+      }
+    };
+
+    const scrollTo = (target: number, fromUser = true) => {
+      if (slides.length === 0) return;
+      const clamped = Math.max(0, Math.min(slides.length - 1, target));
+      if (fromUser && playing) {
+        playing = false;
+        sync();
+      }
+      track.scrollTo({
+        left: slides[clamped]!.offsetLeft,
+        behavior: reducedMotion() ? "auto" : "smooth",
+      });
+    };
+
+    prev.addEventListener("click", () => scrollTo(index - 1));
+    next.addEventListener("click", () => scrollTo(index + 1));
+    play?.addEventListener("click", () => {
+      playing = !playing;
+      sync();
+    });
+
+    root.addEventListener("keydown", (event) => {
+      if (event.defaultPrevented) return;
+      if ((event.target as HTMLElement).closest("input, textarea, select, [contenteditable=true]")) return;
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollTo(index + (event.key === "ArrowLeft" ? -1 : 1));
+      }
+    });
+    root.addEventListener("pointerenter", () => {
+      hovered = true;
+      sync();
+    });
+    root.addEventListener("pointerleave", () => {
+      hovered = false;
+      sync();
+    });
+    root.addEventListener("focusin", () => {
+      focused = true;
+      sync();
+    });
+    root.addEventListener("focusout", (event) => {
+      if (root.contains(event.relatedTarget as Node | null)) return;
+      focused = false;
+      sync();
+    });
+
+    let frame = 0;
+    track.addEventListener("scroll", () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    });
+    new ResizeObserver(update).observe(track);
+    new MutationObserver(() => {
+      scan();
+      update();
+    }).observe(track, { childList: true });
+
+    controls.hidden = false;
+    scan();
+    update();
+    sync();
+  });
+</script>

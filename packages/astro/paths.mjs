@@ -16,7 +16,7 @@ const find = (dirs, file) =>
  * A Vite plugin that resolves the import paths an Astro project gets from
  * `shadcn add` (`@/components/ui/button.astro`, `@/components/blocks/hero.astro`,
  * `@/components/ui/icons/chevron-right.astro`, `@/lib/ftds/utils`,
- * `@/lib/ftds/i18n`) to the source in this repo. Utils are shared with
+ * `@/lib/ftds/i18n`, `@/lib/ftds/scripts`) to the source in this repo. Utils are shared with
  * packages/react; variants come from `@mof-malaysia/ftds-style/variants/*`.
  */
 export function ftdsAstroPaths() {
@@ -28,6 +28,8 @@ export function ftdsAstroPaths() {
       if (id === "@/lib/ftds/utils")
         return path.join(REACT_SRC, "utils/index.ts");
       if (id === "@/lib/ftds/i18n") return path.join(SRC, "i18n/index.ts");
+      if (id === "@/lib/ftds/scripts")
+        return path.join(SRC, "scripts/index.ts");
       const icon = id.match(/^@\/components\/ui\/icons\/(.+\.astro)$/);
       if (icon) return find([path.join(SRC, "icons")], icon[1]);
       const item = id.match(/^@\/components\/(?:ui|blocks)\/(.+\.astro)$/);

@@ -1,0 +1,41 @@
+---
+/**
+ * ThemeScript applies the saved theme, or the system's when none is saved,
+ * before the page paints, so a dark-theme visitor never sees a flash of the
+ * light one. Put it in `<head>` on every page that has a ThemeSwitch, with the
+ * same `storageKey`. It sets `dark` or `light` on `<html>`; FTDS tokens
+ * switch on `.dark`.
+ *
+ * @example
+ * <head>
+ *   <ThemeScript />
+ * </head>
+ */
+interface Props {
+  /** localStorage key the theme is saved under. @default "ftds-theme" */
+  storageKey?: string;
+}
+
+const { storageKey = "ftds-theme" } = Astro.props;
+---
+
+<script is:inline define:vars={{ storageKey }}>
+  (function () {
+    function apply(doc) {
+      var theme = null;
+      try {
+        theme = localStorage.getItem(storageKey);
+      } catch (error) {}
+      if (theme !== "light" && theme !== "dark") {
+        theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      doc.documentElement.classList.remove("light", "dark");
+      doc.documentElement.classList.add(theme);
+    }
+    apply(document);
+    // View transitions replace <html>'s attributes: set the class on the incoming page too
+    document.addEventListener("astro:before-swap", function (event) {
+      apply(event.newDocument);
+    });
+  })();
+</script>

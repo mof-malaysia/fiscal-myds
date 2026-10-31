@@ -28,6 +28,32 @@ const ms = {
   footerCopyright: "Hak cipta terpelihara",
   footerNav: "Kaki laman",
   learnMore: "Ketahui lanjut",
+  navbarNav: "Navigasi utama",
+  navbarMenu: "Menu",
+  navbarClose: "Tutup",
+  navbarViewAll: "Lihat semua",
+  languageSwitcher: "Bahasa",
+  carousel: "karusel",
+  carouselSlide: "slaid",
+  carouselPrevious: "Slaid sebelumnya",
+  carouselNext: "Slaid seterusnya",
+  carouselPause: "Jeda slaid",
+  carouselPlay: "Main slaid",
+  /** `{n}` is the slide number. */
+  carouselGoTo: "Pergi ke slaid {n}",
+  /** `{n}` is the slide number, `{count}` the number of slides. */
+  carouselSlideOf: "{n} daripada {count}",
+  dismiss: "Tutup",
+  faqTitle: "Soalan lazim",
+  cookieBannerTitle: "Kuki di laman web ini",
+  cookieBannerBody:
+    "Kami menggunakan kuki yang perlu untuk laman web ini berfungsi. Kami juga ingin menggunakan kuki analitik untuk memahami cara anda menggunakannya.",
+  cookieAccept: "Terima kuki analitik",
+  cookieDecline: "Tolak kuki analitik",
+  cookieBannerClose: "Tutup sepanduk kuki",
+  theme: "Tema",
+  themeLight: "Cerah",
+  themeDark: "Gelap",
 } as const;
 
 export type LabelKey = keyof typeof ms;
@@ -47,6 +73,30 @@ const en: Record<LabelKey, string> = {
   footerCopyright: "All rights reserved",
   footerNav: "Footer",
   learnMore: "Learn more",
+  navbarNav: "Main navigation",
+  navbarMenu: "Menu",
+  navbarClose: "Close",
+  navbarViewAll: "View all",
+  languageSwitcher: "Language",
+  carousel: "carousel",
+  carouselSlide: "slide",
+  carouselPrevious: "Previous slide",
+  carouselNext: "Next slide",
+  carouselPause: "Pause slides",
+  carouselPlay: "Play slides",
+  carouselGoTo: "Go to slide {n}",
+  carouselSlideOf: "{n} of {count}",
+  dismiss: "Dismiss",
+  faqTitle: "Frequently asked questions",
+  cookieBannerTitle: "Cookies on this website",
+  cookieBannerBody:
+    "We use essential cookies to make this website work. We would also like to use analytics cookies to understand how you use it.",
+  cookieAccept: "Accept analytics cookies",
+  cookieDecline: "Reject analytics cookies",
+  cookieBannerClose: "Close cookie banner",
+  theme: "Theme",
+  themeLight: "Light",
+  themeDark: "Dark",
 };
 
 export const labels = { ms, en } satisfies Record<

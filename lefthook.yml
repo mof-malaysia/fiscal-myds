@@ -39,8 +39,14 @@ pre-push:
         jobs:
           - name: storybook
             run: pnpm --filter @mof-malaysia/ftds-storybook build
+          - name: storybook-astro
+            run: pnpm --filter @mof-malaysia/ftds-storybook-astro build
           - name: docs
             run: pnpm --filter @mof-malaysia/ftds-docs-astro build
           # The playground's checks, preview page and Worker bundle (no deploy)
           - name: playground
             run: pnpm --filter @mof-malaysia/ftds-mcp test && pnpm --filter @mof-malaysia/ftds-mcp build
+    # Axe and keyboard tests for the Astro components, against the build above
+    # (first run: `pnpm --filter @mof-malaysia/ftds-storybook-astro exec playwright install chromium`)
+    - name: astro a11y and keyboard
+      run: pnpm --filter @mof-malaysia/ftds-storybook-astro test

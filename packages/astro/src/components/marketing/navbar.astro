@@ -1,0 +1,660 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+import ArrowForward from "@/components/ui/icons/arrow-forward.astro";
+import ChevronDown from "@/components/ui/icons/chevron-down.astro";
+import Cross from "@/components/ui/icons/cross.astro";
+import HamburgerMenu from "@/components/ui/icons/hamburger-menu.astro";
+import {
+  navbar_current_class,
+  navbar_dropdown_columns,
+  navbar_logo_cva,
+  navbar_menu_item_cva,
+  navbar_menu_rich_link_class,
+} from "@mof-malaysia/ftds-style/variants/navbar";
+
+/**
+ * Navbar is the site's top navigation bar: the logo and site title linking
+ * home, the links and dropdown menus, and actions such as search or the
+ * LanguageSwitcher in the `actions` slot. It is sticky and goes under the
+ * Masthead.
+ *
+ * From `xl` (1280px) the links sit in the bar and an item with `children` or
+ * `groups` opens a dropdown. Below it they move into a full-width panel under
+ * the bar, opened by a menu button, where dropdowns expand in place.
+ *
+ * Plain links make the standard bar. Children with a `description` (and an
+ * `icon`), titled `groups`, a `feature` and a `footer` link make the
+ * expressive dropdowns: a citizen sees what is behind a link before clicking.
+ *
+ * Native first: dropdowns and the mobile panel are popovers (`popovertarget`),
+ * so they open, close on Escape or an outside click, and return focus without
+ * JavaScript; mobile sections are `<details>`. The script adds positioning
+ * where CSS anchor positioning is missing, `aria-expanded`, arrow keys in a
+ * dropdown, and moves focus into the mobile panel. An item with both `href`
+ * and children gets a footer link to its `href`, so its section page is
+ * always one link away.
+ *
+ * @example
+ * <Navbar
+ *   brand={{ title: "Kementerian Kewangan", logo: { src: "/jata.png", alt: "Jata Negara" } }}
+ *   items={[
+ *     { label: "Utama", href: "/", current: true },
+ *     { label: "Perkhidmatan", href: "/perkhidmatan", children: [
+ *       { label: "Bayar bil", href: "/bayar", description: "Saman, yuran dan taksiran" },
+ *     ] },
+ *   ]}
+ * >
+ *   <LanguageSwitcher slot="actions" locales={locales} />
+ * </Navbar>
+ */
+type IconComponent = (props: HTMLAttributes<"svg">) => unknown;
+
+interface NavbarLink {
+  label: string;
+  href: string;
+  /** One line saying what's behind the link. Makes the row a described item. */
+  description?: string;
+  /** An FTDS icon component (`import Money from "@/components/ui/icons/money.astro"`), shown in a tile. */
+  icon?: IconComponent;
+  /** The visitor is on this page: sets `aria-current="page"`. */
+  current?: boolean;
+}
+
+interface NavbarGroup {
+  /** Short heading, e.g. "For citizens". */
+  title: string;
+  links: NavbarLink[];
+}
+
+interface NavbarFeature {
+  href: string;
+  title: string;
+  description?: string;
+  /** Small label above the title, e.g. "New". */
+  eyebrow?: string;
+  /** Call to action at the bottom. Defaults to "Ketahui lanjut" / "Learn more". */
+  linkLabel?: string;
+}
+
+interface NavbarItem {
+  label: string;
+  /** A top-level link, or the section page of a dropdown (linked from its footer). */
+  href?: string;
+  /** The visitor is on this page, or somewhere in this dropdown's section. */
+  current?: boolean;
+  children?: NavbarLink[];
+  /** Titled columns of links, after `children`. */
+  groups?: NavbarGroup[];
+  /** Lay plain `children` out in columns. Groups always sit side by side. */
+  columns?: 1 | 2 | 3;
+  /** The one highlighted item, beside the links (below them on mobile). Text only. */
+  feature?: NavbarFeature;
+  /** A way out to the full index. Defaults to "View all" linking `href`, when the item has one. */
+  footer?: { label: string; href: string };
+}
+
+interface NavbarBrand {
+  /** Site or agency title beside the logo. */
+  title?: string;
+  /** @default "/" */
+  href?: string;
+  /** The logo image. The `logo` slot replaces it. */
+  logo?: { src: string; alt: string };
+  /** A title longer than this is set smaller over two lines. @default 19 */
+  maxChars?: number;
+}
+
+type Props = Omit<HTMLAttributes<"header">, "class" | "lang"> & {
+  brand?: NavbarBrand;
+  items?: NavbarItem[];
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  brand = {},
+  items = [],
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+const id = uniqueId("navbar");
+const panelId = `${id}-panel`;
+const navLabel = label(lang, "navbarNav");
+
+/** Every dropdown as sections: untitled `children` first, then the groups. */
+const menus = items.map((item, i) => {
+  const sections = [
+    ...(item.children?.length ? [{ title: undefined, links: item.children }] : []),
+    ...(item.groups ?? []),
+  ];
+  const links = sections.flatMap((section) => section.links);
+  return {
+    ...item,
+    key: `${id}-${i}`,
+    sections,
+    hasDropdown: sections.length > 0,
+    grouped: sections.some((section) => section.title),
+    // The trigger is underlined when the visitor is anywhere in the section
+    inSection: item.current || links.some((link) => link.current),
+    footer:
+      item.footer ??
+      (item.href ? { label: `${label(lang, "navbarViewAll")}: ${item.label}`, href: item.href } : undefined),
+  };
+});
+
+const isRich = (link: NavbarLink) => link.icon != null || link.description != null;
+
+const trigger_class = clx(
+  navbar_menu_item_cva({ is_from_dropdown: false }),
+  "group w-full select-none bg-transparent transition-colors xl:w-max",
+);
+const chevron_class = "relative top-px ml-1.5 size-4 transition motion-reduce:transition-none";
+const feature_class = clx(
+  "bg-bg-washed-active focus-ring flex h-full flex-col gap-2 rounded-md p-4 text-left",
+  "group/feature transition-colors motion-reduce:transition-none",
+);
+const footer_link_class =
+  "text-txt-primary text-body-sm group/footer focus-ring inline-flex items-center gap-1 rounded-xs font-medium hover:underline";
+const icon_tile_class =
+  "bg-bg-washed-active text-txt-black-700 group-hover/item:bg-bg-dialog group-data-[active]/item:bg-bg-dialog group-data-[active]/item:text-txt-primary flex size-9 shrink-0 items-center justify-center rounded-md transition-colors motion-reduce:transition-none [&_svg]:size-5";
+const group_class = "flex list-none flex-col gap-1 max-xl:gap-0 max-xl:not-first:mt-3";
+const group_heading_class =
+  "text-txt-black-700 text-label-compact px-2.5 pt-1 font-medium max-xl:ml-3 max-xl:pt-2 max-xl:pb-0.5";
+
+const hasLogo = Astro.slots.has("logo") || brand.logo;
+const maxChars = brand.maxChars ?? 19;
+---
+
+<header
+  id={id}
+  class={clx(
+    "bg-bg-white border-otl-gray-200 z-sticky group/navbar font-body sticky top-0 h-16 w-full border-b max-md:h-14 print:hidden",
+    className,
+  )}
+  style={`anchor-name: --${id}`}
+  data-nosnippet
+  data-ftds-navbar
+  {...props}
+>
+  <div
+    class="relative mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-4 px-4.5 max-md:h-14 md:px-6"
+  >
+    <a
+      href={brand.href ?? "/"}
+      class="focus-ring flex h-full w-auto shrink-0 items-center gap-2.5 rounded-xs py-3 max-md:py-2.5"
+    >
+      {
+        hasLogo && (
+          <slot name="logo">
+            <img
+              src={brand.logo?.src}
+              width="40"
+              height="32"
+              class="aspect-auto h-full max-h-8 w-auto select-none"
+              alt={brand.logo?.alt}
+            />
+          </slot>
+        )
+      }
+      {
+        brand.title && (
+          <span class={navbar_logo_cva({ too_long: brand.title.length > maxChars })}>
+            {brand.title}
+          </span>
+        )
+      }
+    </a>
+
+    {/* Desktop */}
+    <nav aria-label={navLabel} class="hidden grow xl:block">
+      <ul class="flex justify-start gap-1">
+        {
+          menus.map((item) =>
+            item.hasDropdown ? (
+              <li class="group/menu relative list-none">
+                <button
+                  type="button"
+                  popovertarget={`${item.key}-dropdown`}
+                  class={clx(
+                    trigger_class,
+                    "focus-ring group-has-[:popover-open]/menu:bg-bg-washed-active",
+                    item.inSection && navbar_current_class,
+                  )}
+                  style={`anchor-name: --${item.key}`}
+                  data-ftds-navbar-trigger
+                >
+                  {item.label}
+                  <ChevronDown
+                    class={clx(chevron_class, "group-has-[:popover-open]/menu:rotate-180")}
+                    aria-hidden="true"
+                  />
+                </button>
+                <div
+                  id={`${item.key}-dropdown`}
+                  popover="auto"
+                  style={`position-anchor: --${item.key}`}
+                  class={clx(
+                    "bg-bg-dialog border-otl-gray-200 shadow-context-menu text-txt-black-900 rounded-lg border",
+                    "w-max max-w-[min(56rem,calc(100vw-2rem))] overflow-hidden",
+                    "ease-standard transition-[opacity,scale] duration-200 motion-reduce:transition-none",
+                    "starting:open:scale-[0.98] starting:open:opacity-0",
+                  )}
+                  data-ftds-navbar-dropdown
+                >
+                  <div class="flex gap-2 p-2">
+                    <ul
+                      class={clx(
+                        "grid content-start gap-x-2 gap-y-1",
+                        item.grouped
+                          ? "auto-cols-[minmax(0,15rem)] grid-flow-col gap-x-4"
+                          : navbar_dropdown_columns[item.columns ?? 1],
+                      )}
+                    >
+                      {item.sections.map((section) => {
+                        const headingId = `${item.key}-${section.title}`.replace(/\s+/g, "-");
+                        const links = section.links.map((link) => {
+                          const Icon = link.icon;
+                          return isRich(link) ? (
+                            <li class="list-none">
+                              <a
+                                href={link.href}
+                                class={clx(navbar_menu_rich_link_class, "focus-ring")}
+                                aria-current={link.current ? "page" : undefined}
+                                data-active={link.current ? "" : undefined}
+                                data-ftds-navbar-link
+                              >
+                                {Icon && (
+                                  <span class={icon_tile_class} aria-hidden="true">
+                                    <Icon />
+                                  </span>
+                                )}
+                                <span class="flex min-w-0 flex-col gap-0.5 pt-px">
+                                  <span class="text-txt-black-900 group-data-[active]/item:text-txt-primary text-body-sm font-medium">
+                                    {link.label}
+                                  </span>
+                                  {link.description && (
+                                    <span class="text-txt-black-700 text-body-sm font-normal">
+                                      {link.description}
+                                    </span>
+                                  )}
+                                </span>
+                              </a>
+                            </li>
+                          ) : (
+                            <li class={navbar_menu_item_cva({ is_from_dropdown: true })}>
+                              <a
+                                href={link.href}
+                                class="focus-ring w-full rounded-xs"
+                                aria-current={link.current ? "page" : undefined}
+                                data-ftds-navbar-link
+                              >
+                                {link.label}
+                              </a>
+                            </li>
+                          );
+                        });
+                        return section.title ? (
+                          <li class={group_class}>
+                            <span id={headingId} class={group_heading_class}>
+                              {section.title}
+                            </span>
+                            <ul aria-labelledby={headingId} class="flex flex-col">
+                              {links}
+                            </ul>
+                          </li>
+                        ) : (
+                          links
+                        );
+                      })}
+                    </ul>
+                    {item.feature && (
+                      <div class="w-64 shrink-0">
+                        <a href={item.feature.href} class={feature_class} data-ftds-navbar-link>
+                          {item.feature.eyebrow && (
+                            <span class="text-txt-primary text-label-compact font-medium">
+                              {item.feature.eyebrow}
+                            </span>
+                          )}
+                          <span class="text-txt-black-900 text-body-md font-semibold">
+                            {item.feature.title}
+                          </span>
+                          {item.feature.description && (
+                            <span class="text-txt-black-700 text-body-sm">
+                              {item.feature.description}
+                            </span>
+                          )}
+                          <span class="text-txt-primary text-body-sm mt-auto inline-flex items-center gap-1 pt-2 font-medium">
+                            {item.feature.linkLabel ?? label(lang, "learnMore")}
+                            <ArrowForward
+                              class="size-4 transition-transform group-hover/feature:translate-x-0.5 motion-reduce:transition-none"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                  {item.footer && (
+                    // A Well band, not a divider (DESIGN.md: tone, not lines)
+                    <div class="bg-bg-washed-active px-4.5 py-3">
+                      <a href={item.footer.href} class={footer_link_class} data-ftds-navbar-link>
+                        {item.footer.label}
+                        <ArrowForward
+                          class="size-4 transition-transform group-hover/footer:translate-x-0.5 motion-reduce:transition-none"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </li>
+            ) : (
+              <li
+                class={clx(
+                  navbar_menu_item_cva({ is_from_dropdown: false }),
+                  item.current && navbar_current_class,
+                )}
+              >
+                <a
+                  href={item.href}
+                  class="focus-ring w-full rounded-xs"
+                  aria-current={item.current ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </nav>
+
+    <div class="ml-auto flex items-center justify-end gap-2">
+      <slot name="actions" />
+      {
+        menus.length > 0 && (
+          <Button
+            variant="default-ghost"
+            iconOnly
+            class="xl:hidden"
+            popovertarget={panelId}
+            aria-controls={panelId}
+            data-ftds-navbar-toggle
+          >
+            {/* Icon and name follow the panel through CSS, so they are right without JavaScript */}
+            {/* Spans, not the svgs: Button sets display on every svg */}
+            <span class="group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:hidden">
+              <HamburgerMenu aria-hidden="true" />
+            </span>
+            <span class="hidden group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:block">
+              <Cross aria-hidden="true" />
+            </span>
+            <span class="sr-only group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:hidden">
+              {label(lang, "navbarMenu")}
+            </span>
+            <span class="sr-only hidden group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:inline">
+              {label(lang, "navbarClose")}
+            </span>
+          </Button>
+        )
+      }
+    </div>
+  </div>
+
+  {/* Tablet / mobile: the panel fills the space under the bar; its own background is the scrim */}
+  {
+    menus.length > 0 && (
+      <div
+        id={panelId}
+        popover="auto"
+        style={`position-anchor: --${id}`}
+        class="bg-scrim/40 text-txt-black-900 xl:hidden"
+        data-ftds-navbar-panel
+      >
+        <nav aria-label={navLabel} class="max-h-full overflow-y-auto overscroll-contain">
+          {/* Full-width sheet (DESIGN.md: Navigation, Mobile) */}
+          <ul class="bg-bg-dialog px-2 pt-2 pb-4">
+            {menus.map((item) =>
+              item.hasDropdown ? (
+                <li class="relative list-none">
+                  <details class="group/details" open={item.inSection}>
+                    <summary
+                      class={clx(
+                        trigger_class,
+                        "focus-ring-inset group-open/details:bg-bg-washed-active list-none [&::-webkit-details-marker]:hidden",
+                        item.inSection && navbar_current_class,
+                      )}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        class={clx(chevron_class, "group-open/details:rotate-180")}
+                        aria-hidden="true"
+                      />
+                    </summary>
+                    <div class="flex w-full flex-col gap-2 pb-2">
+                      <ul class="flex flex-col">
+                        {item.sections.map((section) => {
+                          const headingId = `${item.key}-m-${section.title}`.replace(/\s+/g, "-");
+                          const links = section.links.map((link) => {
+                            const Icon = link.icon;
+                            return isRich(link) ? (
+                              <li class="list-none">
+                                <a
+                                  href={link.href}
+                                  class={clx(navbar_menu_rich_link_class, "focus-ring-inset")}
+                                  aria-current={link.current ? "page" : undefined}
+                                  data-active={link.current ? "" : undefined}
+                                >
+                                  {Icon && (
+                                    <span class={icon_tile_class} aria-hidden="true">
+                                      <Icon />
+                                    </span>
+                                  )}
+                                  <span class="flex min-w-0 flex-col gap-0.5 pt-px">
+                                    <span class="text-txt-black-900 group-data-[active]/item:text-txt-primary text-body-sm font-medium">
+                                      {link.label}
+                                    </span>
+                                    {link.description && (
+                                      <span class="text-txt-black-700 text-body-sm font-normal">
+                                        {link.description}
+                                      </span>
+                                    )}
+                                  </span>
+                                </a>
+                              </li>
+                            ) : (
+                              <li class={navbar_menu_item_cva({ is_from_dropdown: true })}>
+                                <a
+                                  href={link.href}
+                                  class="focus-ring w-full rounded-xs"
+                                  aria-current={link.current ? "page" : undefined}
+                                >
+                                  {link.label}
+                                </a>
+                              </li>
+                            );
+                          });
+                          return section.title ? (
+                            <li class={group_class}>
+                              <span id={headingId} class={group_heading_class}>
+                                {section.title}
+                              </span>
+                              <ul aria-labelledby={headingId} class="flex flex-col">
+                                {links}
+                              </ul>
+                            </li>
+                          ) : (
+                            links
+                          );
+                        })}
+                      </ul>
+                      {item.feature && (
+                        <div class="ml-3">
+                          <a href={item.feature.href} class={feature_class}>
+                            {item.feature.eyebrow && (
+                              <span class="text-txt-primary text-label-compact font-medium">
+                                {item.feature.eyebrow}
+                              </span>
+                            )}
+                            <span class="text-txt-black-900 text-body-md font-semibold">
+                              {item.feature.title}
+                            </span>
+                            {item.feature.description && (
+                              <span class="text-txt-black-700 text-body-sm">
+                                {item.feature.description}
+                              </span>
+                            )}
+                            <span class="text-txt-primary text-body-sm mt-auto inline-flex items-center gap-1 pt-2 font-medium">
+                              {item.feature.linkLabel ?? label(lang, "learnMore")}
+                              <ArrowForward class="size-4" aria-hidden="true" />
+                            </span>
+                          </a>
+                        </div>
+                      )}
+                      {item.footer && (
+                        <div class="ml-3 flex min-h-11 items-center px-2.5">
+                          <a href={item.footer.href} class={footer_link_class}>
+                            {item.footer.label}
+                            <ArrowForward class="size-4" aria-hidden="true" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                </li>
+              ) : (
+                <li
+                  class={clx(
+                    navbar_menu_item_cva({ is_from_dropdown: false }),
+                    item.current && navbar_current_class,
+                  )}
+                >
+                  <a
+                    href={item.href}
+                    class="focus-ring-inset w-full rounded-xs"
+                    aria-current={item.current ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ),
+            )}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
+</header>
+
+<style>
+  /* Popovers sit in the top layer: drop the UA's centred box, then anchor them */
+  [data-ftds-navbar-dropdown],
+  [data-ftds-navbar-panel] {
+    margin: 0;
+    padding: 0;
+  }
+  [data-ftds-navbar-dropdown] {
+    inset: auto;
+    margin-top: 8px;
+    position-area: bottom span-right;
+    position-try-fallbacks: flip-inline;
+  }
+  /* Fills the space under the bar, wherever the bar sits. JavaScript sets
+     `top` where anchor() isn't supported. */
+  [data-ftds-navbar-panel] {
+    inset: 3.5rem 0 0 0;
+    inset-block-start: anchor(bottom);
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    border: 0;
+    overflow: hidden;
+  }
+  [data-ftds-navbar-panel]:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<script>
+  import { moveFocus, onEach } from "@/lib/ftds/scripts";
+
+  const anchored = CSS.supports("anchor-name: --a");
+  const desktop = matchMedia("(min-width: 80rem)");
+
+  onEach("[data-ftds-navbar]", (header) => {
+    /* Desktop dropdowns */
+    for (const trigger of header.querySelectorAll<HTMLButtonElement>("[data-ftds-navbar-trigger]")) {
+      const popup = document.getElementById(trigger.getAttribute("popovertarget")!)!;
+      const item = trigger.parentElement!;
+      const links = [...popup.querySelectorAll<HTMLElement>("[data-ftds-navbar-link]")];
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.setAttribute("aria-controls", popup.id);
+
+      // beforetoggle fires synchronously; toggle is queued
+      popup.addEventListener("beforetoggle", (event) => {
+        const open = (event as ToggleEvent).newState === "open";
+        trigger.setAttribute("aria-expanded", String(open));
+      });
+      popup.addEventListener("toggle", (event) => {
+        if ((event as ToggleEvent).newState === "open" && !anchored) {
+          // No anchor positioning: place it under the trigger, inside the viewport
+          const rect = trigger.getBoundingClientRect();
+          const left = Math.max(16, Math.min(rect.left, innerWidth - popup.offsetWidth - 16));
+          Object.assign(popup.style, { top: `${rect.bottom + 8}px`, left: `${left}px`, marginTop: "0" });
+        }
+      });
+      // Down arrow from the trigger opens the dropdown on its first link
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowDown") return;
+        event.preventDefault();
+        if (!popup.matches(":popover-open")) popup.showPopover();
+        links[0]?.focus();
+      });
+      for (const link of links) {
+        link.addEventListener("keydown", (event) => {
+          moveFocus(event, links, "vertical");
+        });
+      }
+      // Tabbing out of the item closes its dropdown
+      item.addEventListener("focusout", (event) => {
+        const next = event.relatedTarget as Node | null;
+        if (next && !item.contains(next) && popup.matches(":popover-open")) popup.hidePopover();
+      });
+    }
+
+    /* Tablet / mobile panel */
+    const panel = header.querySelector<HTMLElement>("[data-ftds-navbar-panel]");
+    const toggle = header.querySelector<HTMLButtonElement>("[data-ftds-navbar-toggle]");
+    if (!panel || !toggle) return;
+    toggle.setAttribute("aria-expanded", "false");
+
+    panel.addEventListener("beforetoggle", (event) => {
+      const open = (event as ToggleEvent).newState === "open";
+      toggle.setAttribute("aria-expanded", String(open));
+      if (open && !anchored) panel.style.top = `${header.getBoundingClientRect().bottom}px`;
+    });
+    panel.addEventListener("toggle", (event) => {
+      const open = (event as ToggleEvent).newState === "open";
+      // The page under the scrim doesn't scroll while the menu is open
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      // Into the panel; the popover returns focus to the menu button when it closes
+      if (open) panel.querySelector<HTMLElement>("a, summary")?.focus();
+    });
+    // A tap on the scrim (the panel itself, outside the sheet) closes it
+    panel.addEventListener("click", (event) => {
+      if (event.target !== panel) return;
+      panel.hidePopover();
+      toggle.focus();
+    });
+    desktop.addEventListener("change", (event) => {
+      if (event.matches && panel.matches(":popover-open")) panel.hidePopover();
+    });
+  });
+</script>

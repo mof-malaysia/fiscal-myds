@@ -255,6 +255,25 @@
       ]
     },
     {
+      "name": "variants-navbar",
+      "title": "Navbar variants",
+      "description": "The cva classes the React and Astro navbar components share, installed to components/ui/navbar.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/navbar.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "variants-stats-band",
       "title": "Stats Band variants",
       "description": "The cva classes the React and Astro stats-band components share, installed to components/ui/stats-band.variants.ts.",

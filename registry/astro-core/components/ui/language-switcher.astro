@@ -1,0 +1,99 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Globe from "@/components/ui/icons/globe.astro";
+
+/**
+ * LanguageSwitcher links to the same page in each language the site has:
+ * plain links, so it works without JavaScript. The page's own language is
+ * marked with `aria-current`, and every link carries `hreflang` and `lang`.
+ * It fits the Navbar's `actions` slot.
+ *
+ * Pass `locales` with the href of the current page in each language. With
+ * Astro's i18n routing configured, build them with `getRelativeLocaleUrl`
+ * (the component doesn't import `astro:i18n` itself, because that module
+ * fails in projects without i18n routing):
+ *
+ * @example
+ * ---
+ * import { getRelativeLocaleUrl } from "astro:i18n";
+ * const path = Astro.url.pathname.replace(/^\/(en|ms)(?=\/|$)/, "");
+ * const locales = (["ms", "en"] as const).map((code) => ({
+ *   code,
+ *   href: getRelativeLocaleUrl(code, path),
+ * }));
+ * ---
+ * <LanguageSwitcher locales={locales} />
+ */
+interface Locale {
+  code: Lang;
+  /** Visible text. Defaults to "BM" or "EN". */
+  label?: string;
+  href: string;
+}
+
+type Props = Omit<HTMLAttributes<"nav">, "class" | "lang"> & {
+  locales: Locale[];
+  /** The page's language. Defaults to `lang`, then `Astro.currentLocale`, then BM. */
+  current?: Lang;
+  /** Language of the component's own label ("Bahasa" / "Language"). */
+  lang?: Lang;
+  /** Hides the globe icon. */
+  hideIcon?: boolean;
+  class?: string;
+};
+
+const {
+  locales,
+  lang: langProp,
+  current: currentProp,
+  hideIcon = false,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+const current = currentProp ?? lang;
+
+// Each language named in itself, for the tooltip
+const names: Record<Lang, { short: string; full: string }> = {
+  ms: { short: "BM", full: "Bahasa Melayu" },
+  en: { short: "EN", full: "English" },
+};
+---
+
+<nav
+  aria-label={label(lang, "languageSwitcher")}
+  class={clx("font-body flex items-center gap-1", className)}
+  data-ftds-language-switcher
+  {...props}
+>
+  {!hideIcon && <Globe class="text-txt-black-500 size-4 shrink-0" aria-hidden="true" />}
+  <ul class="flex items-center gap-0.5">
+    {
+      locales.map((locale) => {
+        const active = locale.code === current;
+        return (
+          <li class="list-none">
+            <a
+              href={locale.href}
+              hreflang={locale.code}
+              lang={locale.code}
+              title={names[locale.code]?.full}
+              aria-current={active ? "true" : undefined}
+              class={clx(
+                "control-sm text-label-sm focus-ring inline-flex items-center rounded-md px-2 font-medium",
+                "transition-colors motion-reduce:transition-none",
+                active
+                  ? "bg-bg-washed-active text-txt-black-900"
+                  : "text-txt-black-700 hover:bg-bg-washed-active hover:text-txt-black-900",
+              )}
+            >
+              {locale.label ?? names[locale.code]?.short ?? locale.code.toUpperCase()}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

@@ -12,7 +12,7 @@ The repository is the registry: the shadcn CLI installs straight from GitHub, or
 - **Icons**, 220, named `icon-<name>` (`icon-chevron-down`)
 - **FTDS for Astro**: native Astro components for static agency, landing and marketing sites, named `astro-<name>` (`astro-hero`). A focused subset of core plus marketing, with no app components. See [FTDS for Astro](#ftds-for-astro)
 - **Styles**: the Tailwind v4 tokens and themes, all in one with `ftds-init`
-- **Storybook**: an interactive component browser
+- **Storybook**: an interactive component browser, with the Astro components composed in as "FTDS for Astro"
 
 Every item name is unique across the tiers, so you install `button` or `icon-search` without knowing which tier it lives in.
 
@@ -203,7 +203,7 @@ import Hero from "@/components/blocks/hero.astro";
 ## Documentation & Demo
 
 - **🎨 Live Demo**: [https://mof-malaysia.github.io/ftds](https://mof-malaysia.github.io/ftds)
-- **📚 Storybook**: [https://mof-malaysia.github.io/ftds/storybook](https://mof-malaysia.github.io/ftds/storybook)
+- **📚 Storybook**: [https://mof-malaysia.github.io/ftds/storybook](https://mof-malaysia.github.io/ftds/storybook) (React, with the Astro components composed in; Astro alone at [/storybook-astro](https://mof-malaysia.github.io/ftds/storybook-astro))
 - **📦 Registry Catalog**: [`registry.json`](./registry.json), or a release's JSON catalog at `https://mof-malaysia.github.io/ftds/r/<version>/registry.json`
 - **Registry Docs**: See [REGISTRY.md](./REGISTRY.md)
 - **Deployment Guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
@@ -216,6 +216,7 @@ import Hero from "@/components/blocks/hero.astro";
 ```
 apps/
   storybook/        Component browser, deployed to GitHub Pages
+  storybook-astro/  Astro component browser, composed into storybook/ (Playwright a11y and keyboard tests)
   docs/             Legacy docs site (being deprecated; not linted)
 packages/
   react/            Component source, by tier: src/components/{core,app,marketing}

@@ -22,6 +22,18 @@ const config: StorybookConfig = {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
+  // FTDS for Astro, composed into this sidebar (apps/storybook-astro). Deployed
+  // next to this Storybook, so the built ref is relative and survives any
+  // base path or custom domain.
+  refs: (_config: unknown, { configType }: { configType?: string }) => ({
+    astro: {
+      title: "FTDS for Astro",
+      url:
+        configType === "DEVELOPMENT"
+          ? "http://localhost:6008"
+          : "../storybook-astro",
+    },
+  }),
   swc: () => ({
     jsc: {
       transform: {
