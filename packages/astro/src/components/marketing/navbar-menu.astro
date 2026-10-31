@@ -1,0 +1,283 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, type Lang } from "@/lib/ftds/i18n";
+import ArrowForward from "@/components/ui/icons/arrow-forward.astro";
+import ChevronDown from "@/components/ui/icons/chevron-down.astro";
+import {
+  navbar_chevron_class,
+  navbar_current_class,
+  navbar_dropdown_body_class,
+  navbar_dropdown_columns,
+  navbar_dropdown_feature_class,
+  navbar_dropdown_footer_class,
+  navbar_dropdown_list_class,
+  navbar_feature_arrow_class,
+  navbar_feature_class,
+  navbar_feature_cta_class,
+  navbar_feature_description_class,
+  navbar_feature_eyebrow_class,
+  navbar_feature_title_class,
+  navbar_footer_arrow_class,
+  navbar_footer_link_class,
+  navbar_group_class,
+  navbar_group_heading_class,
+  navbar_menu_icon_tile_class,
+  navbar_menu_item_cva,
+  navbar_menu_rich_description_class,
+  navbar_menu_rich_label_class,
+  navbar_menu_rich_link_class,
+  navbar_menu_rich_text_class,
+  navbar_mobile_dropdown_class,
+  navbar_mobile_feature_class,
+  navbar_mobile_footer_class,
+  navbar_trigger_class,
+} from "@mof-malaysia/ftds-style/variants/navbar";
+
+/**
+ * NavbarMenu is one item of the Navbar: a top-level link, or a dropdown with
+ * its links, groups, feature and footer. The Navbar renders it twice, once in
+ * the bar (`mobile={false}`: a popover) and once in the tablet / mobile panel
+ * (`mobile`: a `<details>`). Use Navbar; this is its building block.
+ */
+export type IconComponent = (props: HTMLAttributes<"svg">) => unknown;
+
+export interface NavbarLink {
+  label: string;
+  href: string;
+  /** One line saying what's behind the link. Makes the row a described item. */
+  description?: string;
+  /** An FTDS icon component (`import Money from "@/components/ui/icons/money.astro"`), shown in a tile. */
+  icon?: IconComponent;
+  /** The visitor is on this page: sets `aria-current="page"`. */
+  current?: boolean;
+}
+
+export interface NavbarGroup {
+  /** Short heading, e.g. "For citizens". */
+  title: string;
+  links: NavbarLink[];
+}
+
+export interface NavbarFeature {
+  href: string;
+  title: string;
+  description?: string;
+  /** Small label above the title, e.g. "New". */
+  eyebrow?: string;
+  /** Call to action at the bottom. Defaults to "Ketahui lanjut" / "Learn more". */
+  linkLabel?: string;
+}
+
+export interface NavbarItem {
+  label: string;
+  /** A top-level link, or the section page of a dropdown (linked from its footer). */
+  href?: string;
+  /** The visitor is on this page, or somewhere in this dropdown's section. */
+  current?: boolean;
+  children?: NavbarLink[];
+  /** Titled columns of links, after `children`. */
+  groups?: NavbarGroup[];
+  /** Lay plain `children` out in columns. Groups always sit side by side. */
+  columns?: 1 | 2 | 3;
+  /** The one highlighted item, beside the links (below them on mobile). Text only. */
+  feature?: NavbarFeature;
+  /** A way out to the full index. Defaults to "View all" linking `href`, when the item has one. */
+  footer?: { label: string; href: string };
+}
+
+/** A NavbarItem as the Navbar resolves it: untitled `children` first, then the groups. */
+export interface NavbarMenuEntry extends NavbarItem {
+  /** Unique per item and Navbar: prefixes the ids of the dropdown and its group headings. */
+  key: string;
+  sections: { title?: string; links: NavbarLink[] }[];
+  hasDropdown: boolean;
+  grouped: boolean;
+  /** The visitor is on the item or anywhere in its dropdown: underlines it. */
+  inSection: boolean;
+}
+
+interface Props {
+  item: NavbarMenuEntry;
+  /** In the tablet / mobile panel: a `<details>` instead of a popover. */
+  mobile: boolean;
+  lang: Lang;
+}
+
+const { item, mobile, lang } = Astro.props;
+
+// The panel's rows sit flush with its edges, so their rings go inside
+const ring = mobile ? "focus-ring-inset" : "focus-ring";
+// Desktop dropdown links take the arrow keys (navbar script)
+const linkData = mobile ? {} : { "data-ftds-navbar-link": "" };
+const isRich = (link: NavbarLink) => link.icon != null || link.description != null;
+const headingId = (title: string) =>
+  `${item.key}-${mobile ? "m-" : ""}${title}`.replace(/\s+/g, "-");
+const dropdownId = `${item.key}-dropdown`;
+const learnMore = label(lang, "learnMore");
+
+// Desktop: a popover beside its trigger. Mobile: a <details> that expands in place.
+const Panel = mobile ? "details" : "div";
+const panelProps = mobile
+  ? { class: "group/details", open: item.inSection }
+  : {
+      id: dropdownId,
+      popover: "auto",
+      style: `position-anchor: --${item.key}`,
+      class: clx(
+        "bg-bg-dialog border-otl-gray-200 shadow-context-menu text-txt-black-900 rounded-lg border",
+        // Top layer: drop the UA's centred popover box, anchor under the trigger
+        "inset-auto m-0 mt-2 p-0 [position-area:bottom_span-right] [position-try-fallbacks:flip-inline]",
+        "w-max max-w-[min(56rem,calc(100vw-2rem))] overflow-hidden",
+        "ease-standard transition-[opacity,scale] duration-200 motion-reduce:transition-none",
+        "starting:open:scale-[0.98] starting:open:opacity-0",
+      ),
+      "data-ftds-navbar-dropdown": "",
+    };
+const trigger_class = clx(
+  navbar_menu_item_cva({ is_from_dropdown: false }),
+  navbar_trigger_class,
+  item.inSection && navbar_current_class,
+);
+---
+
+{
+  item.hasDropdown ? (
+    <li class={clx("relative list-none", !mobile && "group/menu")}>
+      {mobile ? null : (
+        <button
+          type="button"
+          popovertarget={dropdownId}
+          aria-controls={dropdownId}
+          class={clx(trigger_class, "focus-ring group-has-[:popover-open]/menu:bg-bg-washed-active")}
+          style={`anchor-name: --${item.key}`}
+          data-ftds-navbar-trigger
+        >
+          {item.label}
+          <ChevronDown
+            class={clx(navbar_chevron_class, "group-has-[:popover-open]/menu:rotate-180")}
+            aria-hidden="true"
+          />
+        </button>
+      )}
+      <Panel {...panelProps}>
+        {mobile && (
+          <summary
+            class={clx(
+              trigger_class,
+              "focus-ring-inset group-open/details:bg-bg-washed-active list-none [&::-webkit-details-marker]:hidden",
+            )}
+          >
+            {item.label}
+            <ChevronDown class={clx(navbar_chevron_class, "group-open/details:rotate-180")} aria-hidden="true" />
+          </summary>
+        )}
+        {/*
+          One body for both layouts. Desktop: links and feature side by side, the
+          footer in a band below. Mobile: links, feature and footer in one column.
+          Each layout flattens the wrapper it doesn't need with `contents`.
+        */}
+        <div class={mobile ? navbar_mobile_dropdown_class : "contents"}>
+          <div class={mobile ? "contents" : navbar_dropdown_body_class}>
+            <ul
+              class={
+                mobile
+                  ? "flex flex-col"
+                  : clx(
+                      navbar_dropdown_list_class,
+                      item.grouped
+                        ? "auto-cols-[minmax(0,15rem)] grid-flow-col gap-x-4"
+                        : navbar_dropdown_columns[item.columns ?? 1],
+                    )
+              }
+            >
+              {item.sections.map((section) => {
+                const links = section.links.map((link) => {
+                  const Icon = link.icon;
+                  return isRich(link) ? (
+                    <li class="list-none">
+                      <a
+                        href={link.href}
+                        class={clx(navbar_menu_rich_link_class, ring)}
+                        aria-current={link.current ? "page" : undefined}
+                        {...linkData}
+                      >
+                        {Icon && (
+                          <span class={clx(navbar_menu_icon_tile_class)} aria-hidden="true">
+                            <Icon />
+                          </span>
+                        )}
+                        <span class={navbar_menu_rich_text_class}>
+                          <span class={navbar_menu_rich_label_class}>{link.label}</span>
+                          {link.description && (
+                            <span class={navbar_menu_rich_description_class}>{link.description}</span>
+                          )}
+                        </span>
+                      </a>
+                    </li>
+                  ) : (
+                    <li class={navbar_menu_item_cva({ is_from_dropdown: true })}>
+                      <a
+                        href={link.href}
+                        class="focus-ring w-full rounded-xs"
+                        aria-current={link.current ? "page" : undefined}
+                        {...linkData}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  );
+                });
+                return section.title ? (
+                  <li class={clx(navbar_group_class)}>
+                    <span id={headingId(section.title)} class={navbar_group_heading_class}>
+                      {section.title}
+                    </span>
+                    <ul aria-labelledby={headingId(section.title)} class="flex flex-col">
+                      {links}
+                    </ul>
+                  </li>
+                ) : (
+                  links
+                );
+              })}
+            </ul>
+            {item.feature && (
+              <div class={mobile ? navbar_mobile_feature_class : navbar_dropdown_feature_class}>
+                <a href={item.feature.href} class={clx(navbar_feature_class, "focus-ring")} {...linkData}>
+                  {item.feature.eyebrow && <span class={navbar_feature_eyebrow_class}>{item.feature.eyebrow}</span>}
+                  <span class={navbar_feature_title_class}>{item.feature.title}</span>
+                  {item.feature.description && (
+                    <span class={navbar_feature_description_class}>{item.feature.description}</span>
+                  )}
+                  <span class={navbar_feature_cta_class}>
+                    {item.feature.linkLabel ?? learnMore}
+                    <ArrowForward class={mobile ? "size-4" : navbar_feature_arrow_class} aria-hidden="true" />
+                  </span>
+                </a>
+              </div>
+            )}
+          </div>
+          {item.footer && (
+            <div class={mobile ? navbar_mobile_footer_class : navbar_dropdown_footer_class}>
+              <a
+                href={item.footer.href}
+                class={clx(navbar_footer_link_class, "focus-ring rounded-xs hover:underline")}
+                {...linkData}
+              >
+                {item.footer.label}
+                <ArrowForward class={mobile ? "size-4" : navbar_footer_arrow_class} aria-hidden="true" />
+              </a>
+            </div>
+          )}
+        </div>
+      </Panel>
+    </li>
+  ) : (
+    <li class={clx(navbar_menu_item_cva({ is_from_dropdown: false }), item.current && navbar_current_class)}>
+      <a href={item.href} class={clx(ring, "w-full rounded-xs")} aria-current={item.current ? "page" : undefined}>
+        {item.label}
+      </a>
+    </li>
+  )
+}

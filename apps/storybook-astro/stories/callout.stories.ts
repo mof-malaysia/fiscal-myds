@@ -36,3 +36,14 @@ export const Danger = {
     slots: { default: "Bank anda menolak bayaran ini. Tiada wang diambil." },
   },
 };
+export const WithDismiss = {
+  args: {
+    variant: "info",
+    title: "Sistem akan diselenggara pada 2 November",
+    dismissible: true,
+    slots: {
+      default:
+        "Perkhidmatan tidak dapat digunakan dari 12 tengah malam hingga 2 pagi.",
+    },
+  },
+};

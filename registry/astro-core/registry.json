@@ -97,6 +97,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
         "mof-malaysia/ftds/astro-i18n",
         "mof-malaysia/ftds/astro-icon-check-circle",
         "mof-malaysia/ftds/astro-icon-cross",
@@ -152,7 +153,8 @@
         "mof-malaysia/ftds/astro-i18n",
         "mof-malaysia/ftds/astro-icon-cross",
         "mof-malaysia/ftds/astro-scripts",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-cookie-banner"
       ],
       "files": [
         {
@@ -374,7 +376,8 @@
       "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/astro-scripts",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-tabs"
       ],
       "files": [
         {

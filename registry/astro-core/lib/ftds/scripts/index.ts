@@ -12,22 +12,77 @@
  * Run `setup` once for every element matching `selector`: now, and after
  * each view transition (`astro:page-load`). An element is never set up twice.
  *
+ * After `setup`, elements inside the root (or the root itself) marked
+ * `hidden data-ftds-requires-js` are shown: controls that only work with
+ * JavaScript, such as a close button.
+ *
+ * `setup` may return a cleanup function for anything that outlives the
+ * element (window or media query listeners, timers). It runs before the
+ * next view transition swaps the page.
+ *
  * @example
  * onEach("[data-ftds-tabs]", (root) => { ... });
  */
 export function onEach(
   selector: string,
-  setup: (element: HTMLElement) => void,
+  setup: (element: HTMLElement) => void | (() => void),
 ): void {
+  const cleanups: (() => void)[] = [];
   const run = () => {
     for (const element of document.querySelectorAll<HTMLElement>(selector)) {
       if (element.dataset.ftdsReady !== undefined) continue;
       element.dataset.ftdsReady = "";
-      setup(element);
+      const cleanup = setup(element);
+      if (cleanup) cleanups.push(cleanup);
+      for (const control of [
+        element,
+        ...element.querySelectorAll<HTMLElement>("[data-ftds-requires-js]"),
+      ]) {
+        if (control.hasAttribute("data-ftds-requires-js"))
+          control.hidden = false;
+      }
     }
   };
   run();
   document.addEventListener("astro:page-load", run);
+  document.addEventListener("astro:before-swap", () => {
+    cleanups.splice(0).forEach((cleanup) => cleanup());
+  });
+}
+
+/** localStorage, or null where it is unavailable (privacy modes, sandboxes). */
+export function readStorage(key: string): string | null {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+/** Save to localStorage; a no-op where it is unavailable. */
+export function writeStorage(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Not persisted; the choice still applies to this page
+  }
+}
+
+/**
+ * Keep a popover trigger's `aria-expanded` in step with the popover,
+ * updated before the toggle so it is right when focus moves.
+ */
+export function trackExpanded(
+  trigger: HTMLElement,
+  popover: HTMLElement,
+): void {
+  trigger.setAttribute("aria-expanded", "false");
+  popover.addEventListener("beforetoggle", (event) => {
+    trigger.setAttribute(
+      "aria-expanded",
+      String((event as ToggleEvent).newState === "open"),
+    );
+  });
 }
 
 /**

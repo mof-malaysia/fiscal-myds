@@ -9,6 +9,7 @@ import Info from "@/components/ui/icons/info.astro";
 import Warning from "@/components/ui/icons/warning.astro";
 import Cross from "@/components/ui/icons/cross.astro";
 import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
 
 /**
  * Callout is a status message about one page or task, with an icon in the
@@ -94,15 +95,18 @@ const slots = Astro.slots;
   </div>
   {
     dismissible && (
-      <button
-        type="button"
+      <Button
+        variant="default-ghost"
+        size="small"
+        iconOnly
         hidden
+        data-ftds-requires-js
         data-ftds-callout-dismiss
         aria-label={dismissLabel ?? label(lang, "dismiss")}
-        class="text-txt-black-700 hover:text-txt-black-900 hover:bg-bg-black-50 focus-ring -my-1 -mr-1 shrink-0 cursor-pointer self-start rounded-md p-1.5 transition-colors"
+        class="-my-1 -mr-1 shrink-0 self-start"
       >
-        <Cross class="size-4 shrink-0" aria-hidden="true" />
-      </button>
+        <Cross aria-hidden="true" />
+      </Button>
     )
   }
 </div>
@@ -114,9 +118,7 @@ const slots = Astro.slots;
     "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex='-1'])";
 
   onEach("[data-ftds-callout-dismissible]", (callout) => {
-    const button = callout.querySelector<HTMLButtonElement>("[data-ftds-callout-dismiss]");
-    if (!button) return;
-    button.hidden = false;
+    const button = callout.querySelector<HTMLButtonElement>("[data-ftds-callout-dismiss]")!;
     button.addEventListener("click", () => {
       // The first focusable element after the callout; else focus falls to <body>
       const next = [...document.querySelectorAll<HTMLElement>(FOCUSABLE)].find(

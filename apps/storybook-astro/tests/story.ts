@@ -15,12 +15,20 @@ export function listStories(): { id: string; title: string; name: string }[] {
   );
 }
 
-/** Open a story on its own and wait until its scripts have set it up. */
-export async function openStory(page: Page, id: string) {
-  await page.goto(`/iframe.html?id=${id}&viewMode=story`);
+/**
+ * Open a story on its own and wait until its scripts have set it up: every
+ * control marked `data-ftds-requires-js` is shown by `onEach` once setup ran.
+ */
+export async function openStory(page: Page, id: string, query = "") {
+  await page.goto(`/iframe.html?id=${id}&viewMode=story${query}`);
   await page
     .locator("#storybook-root > *")
     .first()
     .waitFor({ state: "attached" });
-  await page.waitForLoadState("networkidle");
+  await page.waitForFunction(
+    () =>
+      !document.querySelector(
+        "#storybook-root [data-ftds-requires-js][hidden]",
+      ),
+  );
 }

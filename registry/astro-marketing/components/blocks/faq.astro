@@ -68,6 +68,8 @@ const {
 const lang = resolveLang(langProp, Astro.currentLocale);
 const title = titleProp ?? label(lang, "faqTitle");
 const values = items.map((item, i) => item.value ?? `faq-${i}`);
+// Forward only the filled slots: a forwarded slot always "has" content
+const filled = values.filter((value) => Astro.slots.has(value));
 const hasContact = Boolean(contact) || Astro.slots.has("contact");
 ---
 
@@ -103,7 +105,7 @@ const hasContact = Boolean(contact) || Astro.slots.has("contact");
         triggerClass="text-body-lg gap-4 bg-transparent py-5 text-left leading-snug"
         contentClass="pr-0 pb-5 md:pr-9"
       >
-        {values.map((value) => <Fragment slot={value}><slot name={value} /></Fragment>)}
+        {filled.map((value) => <Fragment slot={value}><slot name={value} /></Fragment>)}
       </Accordion>
     </div>
   </div>

@@ -288,7 +288,8 @@
       "registryDependencies": [
         "mof-malaysia/ftds/button",
         "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-cookie-banner"
       ],
       "files": [
         {
@@ -837,7 +838,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-tabs"
       ],
       "files": [
         {

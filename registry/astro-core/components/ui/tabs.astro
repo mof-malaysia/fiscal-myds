@@ -1,6 +1,11 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { clx, uniqueId } from "@/lib/ftds/utils";
+import {
+  tabs_indicator_cva,
+  tabs_list_cva,
+  tabs_trigger_cva,
+} from "@/components/ui/tabs.variants";
 
 /**
  * Tabs switch between views of the same subject on one page: Label type in
@@ -59,15 +64,6 @@ const panels = await Promise.all(
   ),
 );
 
-const trigger_class = clx(
-  "relative flex shrink-0 cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-md font-medium",
-  "text-txt-black-700 hover:text-txt-black-900 aria-selected:text-txt-black-900",
-  "transition-colors duration-150 motion-reduce:transition-none",
-  // Inset so the ring isn't clipped by the scrolling list
-  "focus-ring-inset",
-  "disabled:text-txt-black-disabled disabled:cursor-not-allowed",
-  size === "small" ? "control-sm px-3 text-label-sm" : "control-md px-4 text-label-md",
-);
 ---
 
 <div
@@ -79,12 +75,8 @@ const trigger_class = clx(
   <div
     role="tablist"
     hidden
-    class={clx(
-      // The Hairline is an inset shadow so the indicator can sit on top of it
-      "relative z-0 flex max-w-full items-stretch gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-otl-gray-200)]",
-      "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-      width === "full" ? "w-full" : "w-fit",
-    )}
+    data-ftds-requires-js
+    class={tabs_list_cva({ width })}
   >
     {
       items.map((item) => (
@@ -96,8 +88,7 @@ const trigger_class = clx(
           aria-selected={item.value === defaultValue ? "true" : "false"}
           tabindex={item.value === defaultValue ? 0 : -1}
           disabled={item.disabled}
-          data-value={item.value}
-          class={trigger_class}
+          class={tabs_trigger_cva({ size })}
         >
           {item.label}
           {item.count !== undefined && (
@@ -111,7 +102,7 @@ const trigger_class = clx(
     <span
       aria-hidden="true"
       data-ftds-tabs-indicator
-      class="bg-txt-primary absolute bottom-0 left-0 z-10 h-0.5 w-(--active-tab-width) translate-x-(--active-tab-left) rounded-full transition-[translate,width] duration-200 ease-(--ease-standard) motion-reduce:transition-none"
+      class={tabs_indicator_cva()}
     ></span>
   </div>
   {
@@ -121,7 +112,6 @@ const trigger_class = clx(
         id={`${id}-panel-${item.value}`}
         aria-labelledby={`${id}-tab-${item.value}`}
         tabindex="0"
-        data-value={item.value}
         class="text-txt-black-900 text-content focus-ring rounded-md pt-(--space-stack-md)"
       >
         {/* Shown only without JavaScript, where every panel is visible */}
@@ -140,27 +130,39 @@ const trigger_class = clx(
   onEach("[data-ftds-tabs]", (root) => {
     const list = root.querySelector<HTMLElement>("[role=tablist]")!;
     const tabs = [...list.querySelectorAll<HTMLButtonElement>("[role=tab]")];
-    const panels = [...root.querySelectorAll<HTMLElement>(":scope > [role=tabpanel]")];
     const indicator = list.querySelector<HTMLElement>("[data-ftds-tabs-indicator]")!;
     const manual = root.dataset.activation === "manual";
+    const panelOf = (tab: HTMLElement) =>
+      document.getElementById(tab.getAttribute("aria-controls")!);
 
-    const select = (tab: HTMLButtonElement) => {
-      for (const other of tabs) {
-        const active = other === tab;
-        other.setAttribute("aria-selected", String(active));
-        other.tabIndex = active ? 0 : -1;
-      }
-      for (const panel of panels) panel.hidden = panel.dataset.value !== tab.dataset.value;
+    let active = tabs.find((tab) => tab.getAttribute("aria-selected") === "true") ?? tabs[0]!;
+
+    /** Move the indicator under `tab`. */
+    const place = (tab: HTMLElement) => {
       indicator.style.setProperty("--active-tab-left", `${tab.offsetLeft}px`);
       indicator.style.setProperty("--active-tab-width", `${tab.offsetWidth}px`);
     };
 
-    // Enhance: show the tablist, drop the no-JS labels, open the default tab
+    const select = (tab: HTMLButtonElement) => {
+      active = tab;
+      for (const other of tabs) {
+        const selected = other === tab;
+        other.setAttribute("aria-selected", String(selected));
+        other.tabIndex = selected ? 0 : -1;
+        const panel = panelOf(other);
+        if (panel) panel.hidden = !selected;
+      }
+      place(tab);
+    };
+
+    // Enhance: show the tablist now (rather than after setup, as
+    // data-ftds-requires-js would) so the indicator can measure its tab, drop
+    // the no-JS labels and open the default tab.
     list.hidden = false;
     for (const label of root.querySelectorAll<HTMLElement>("[data-ftds-tabs-label]")) {
       label.hidden = true;
     }
-    select(tabs.find((tab) => tab.getAttribute("aria-selected") === "true") ?? tabs[0]!);
+    select(active);
 
     for (const tab of tabs) {
       tab.addEventListener("click", () => select(tab));
@@ -169,9 +171,8 @@ const trigger_class = clx(
         if (next && !manual) select(next as HTMLButtonElement);
       });
     }
-    new ResizeObserver(() => {
-      const active = tabs.find((tab) => tab.getAttribute("aria-selected") === "true");
-      if (active) select(active);
-    }).observe(list);
+    const observer = new ResizeObserver(() => place(active));
+    observer.observe(list);
+    return () => observer.disconnect();
   });
 </script>

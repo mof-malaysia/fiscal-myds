@@ -53,6 +53,15 @@ const {
 } = Astro.props;
 const lang = resolveLang(langProp, Astro.currentLocale);
 
+// Labels the script sets on slides, dots and the play button
+const labels = {
+  slide: label(lang, "carouselSlide"),
+  slideOf: label(lang, "carouselSlideOf"),
+  goTo: label(lang, "carouselGoTo"),
+  pause: label(lang, "carouselPause"),
+  play: label(lang, "carouselPlay"),
+};
+
 const per_view_class = {
   one: "*:basis-full",
   half: "*:basis-4/5 md:*:basis-1/2",
@@ -66,17 +75,12 @@ const per_view_class = {
   class={clx("font-body relative flex flex-col gap-4", className)}
   data-ftds-carousel
   data-autoplay={autoplay || undefined}
-  data-label-slide={label(lang, "carouselSlide")}
-  data-label-slide-of={label(lang, "carouselSlideOf")}
-  data-label-go-to={label(lang, "carouselGoTo")}
-  data-label-pause={label(lang, "carouselPause")}
-  data-label-play={label(lang, "carouselPlay")}
+  data-labels={JSON.stringify(labels)}
   {...props}
 >
   {/* Focusable so keyboard users can scroll it; slides are its direct children */}
   <div
     tabindex="0"
-    aria-live={autoplay ? "off" : "polite"}
     class={clx(
       "gap-stack-md relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth",
       "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
@@ -89,18 +93,18 @@ const per_view_class = {
     <slot />
   </div>
   {/* Controls need the script, so they stay hidden without it */}
-  <div class="flex items-center gap-2" hidden data-ftds-carousel-controls>
+  <div class="flex items-center gap-2" hidden data-ftds-requires-js data-ftds-carousel-controls>
     {
       autoplay && (
         <Button
           variant="default-ghost"
           size="small"
           iconOnly
-          aria-label={label(lang, "carouselPause")}
+          aria-label={labels.pause}
           data-ftds-carousel-play
         >
-          <span data-ftds-carousel-pause-icon><Pause aria-hidden="true" class="size-5" /></span>
-          <span hidden data-ftds-carousel-play-icon><Play aria-hidden="true" class="size-5" /></span>
+          <Pause aria-hidden="true" class="size-5" data-ftds-carousel-pause-icon />
+          <Play aria-hidden="true" class="hidden size-5" data-ftds-carousel-play-icon />
         </Button>
       )
     }
@@ -128,17 +132,23 @@ const per_view_class = {
 
 <script>
   import { onEach } from "@/lib/ftds/scripts";
+  import { format } from "@/lib/ftds/i18n";
 
   const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fill = (text: string, values: Record<string, number>) =>
-    text.replace(/\{(\w+)\}/g, (_, key: string) => String(values[key] ?? ""));
 
+  // The current dot is styled from its aria-current, so the script only toggles that
   const DOT_CLASS =
     "group flex h-6 min-w-6 cursor-pointer items-center justify-center rounded-full outline-none focus-visible:outline-fr-primary focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-solid";
   const PILL_CLASS =
-    "ease-standard block h-2 rounded-full transition-[width,background-color] duration-200 motion-reduce:transition-none";
-  const PILL_CURRENT = ["bg-bg-primary-600", "w-5"];
-  const PILL_OTHER = ["bg-bg-black-400", "group-hover:bg-bg-black-500", "w-2"];
+    "ease-standard block h-2 w-2 rounded-full bg-bg-black-400 group-hover:bg-bg-black-500 transition-[width,background-color] duration-200 motion-reduce:transition-none group-aria-[current=true]:w-5 group-aria-[current=true]:bg-bg-primary-600";
+
+  interface Labels {
+    slide: string;
+    slideOf: string;
+    goTo: string;
+    pause: string;
+    play: string;
+  }
 
   onEach("[data-ftds-carousel]", (root) => {
     const track = root.querySelector<HTMLElement>("[data-ftds-carousel-track]")!;
@@ -146,30 +156,32 @@ const per_view_class = {
     const prev = controls.querySelector<HTMLButtonElement>("[data-ftds-carousel-prev]")!;
     const next = controls.querySelector<HTMLButtonElement>("[data-ftds-carousel-next]")!;
     const play = controls.querySelector<HTMLButtonElement>("[data-ftds-carousel-play]");
+    const pauseIcon = play?.querySelector<SVGElement>("[data-ftds-carousel-pause-icon]");
+    const playIcon = play?.querySelector<SVGElement>("[data-ftds-carousel-play-icon]");
     const dotsBox = controls.querySelector<HTMLElement>("[data-ftds-carousel-dots]");
-    const { labelSlide, labelSlideOf, labelGoTo, labelPause, labelPlay } = root.dataset;
+    const labels = JSON.parse(root.dataset.labels!) as Labels;
     const delay = Number(root.dataset.autoplay) || 0;
 
     let slides: HTMLElement[] = [];
     let dots: HTMLButtonElement[] = [];
     let index = 0;
-    let canNext = false;
+    let lastIndex = -1;
 
     /** Re-read the slides: names, and one dot each. */
     const scan = () => {
       slides = [...track.children].filter((el): el is HTMLElement => el instanceof HTMLElement);
       slides.forEach((slide, i) => {
         slide.setAttribute("role", "group");
-        slide.setAttribute("aria-roledescription", labelSlide!);
-        slide.setAttribute("aria-label", fill(labelSlideOf!, { n: i + 1, count: slides.length }));
+        slide.setAttribute("aria-roledescription", labels.slide);
+        slide.setAttribute("aria-label", format(labels.slideOf, { n: i + 1, count: slides.length }));
       });
+      lastIndex = -1;
       if (!dotsBox) return;
-      dotsBox.replaceChildren();
       dots = slides.length < 2 ? [] : slides.map((_, i) => {
         const dot = document.createElement("button");
         dot.type = "button";
         dot.className = DOT_CLASS;
-        dot.setAttribute("aria-label", fill(labelGoTo!, { n: i + 1 }));
+        dot.setAttribute("aria-label", format(labels.goTo, { n: i + 1 }));
         const pill = document.createElement("span");
         pill.setAttribute("aria-hidden", "true");
         pill.className = PILL_CLASS;
@@ -177,7 +189,7 @@ const per_view_class = {
         dot.addEventListener("click", () => scrollTo(i));
         return dot;
       });
-      dotsBox.append(...dots);
+      dotsBox.replaceChildren(...dots);
     };
 
     /** Measure: the slide at the start of the view, and whether either end is reached. */
@@ -191,17 +203,12 @@ const per_view_class = {
           index = i;
         }
       });
-      canNext = scrollLeft + clientWidth < scrollWidth - 1;
       prev.disabled = scrollLeft <= 1;
-      next.disabled = !canNext;
-      dots.forEach((dot, i) => {
-        const current = i === index;
-        if (current) dot.setAttribute("aria-current", "true");
-        else dot.removeAttribute("aria-current");
-        const pill = dot.firstElementChild!;
-        pill.classList.remove(...PILL_CURRENT, ...PILL_OTHER);
-        pill.classList.add(...(current ? PILL_CURRENT : PILL_OTHER));
-      });
+      next.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
+      if (index === lastIndex) return;
+      dots[lastIndex]?.removeAttribute("aria-current");
+      dots[index]?.setAttribute("aria-current", "true");
+      lastIndex = index;
     };
 
     /* Autoplay: never under reduced motion; paused on hover or focus inside */
@@ -212,15 +219,15 @@ const per_view_class = {
     const sync = () => {
       window.clearInterval(timer);
       if (play) {
-        play.setAttribute("aria-label", playing ? labelPause! : labelPlay!);
-        // The hidden attribute on a wrapper: Button sets display on every svg
-        play.querySelector("[data-ftds-carousel-pause-icon]")?.toggleAttribute("hidden", !playing);
-        play.querySelector("[data-ftds-carousel-play-icon]")?.toggleAttribute("hidden", playing);
+        play.setAttribute("aria-label", playing ? labels.pause : labels.play);
+        // The class, not the attribute: svg props don't take `hidden`
+        pauseIcon?.classList.toggle("hidden", !playing);
+        playIcon?.classList.toggle("hidden", playing);
       }
       // Announce slide changes, except while they change by themselves
       track.setAttribute("aria-live", playing ? "off" : "polite");
       if (playing && !hovered && !focused) {
-        timer = window.setInterval(() => scrollTo(canNext ? index + 1 : 0, false), delay);
+        timer = window.setInterval(() => scrollTo(next.disabled ? 0 : index + 1, false), delay);
       }
     };
 
@@ -278,15 +285,23 @@ const per_view_class = {
         update();
       });
     });
-    new ResizeObserver(update).observe(track);
-    new MutationObserver(() => {
+    const resize = new ResizeObserver(update);
+    resize.observe(track);
+    const mutations = new MutationObserver(() => {
       scan();
       update();
-    }).observe(track, { childList: true });
+    });
+    mutations.observe(track, { childList: true });
 
-    controls.hidden = false;
     scan();
     update();
     sync();
+
+    return () => {
+      window.clearInterval(timer);
+      cancelAnimationFrame(frame);
+      resize.disconnect();
+      mutations.disconnect();
+    };
   });
 </script>

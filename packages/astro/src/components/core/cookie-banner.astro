@@ -4,6 +4,7 @@ import { clx, uniqueId } from "@/lib/ftds/utils";
 import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
 import Button from "@/components/ui/button.astro";
 import Cross from "@/components/ui/icons/cross.astro";
+import { cookie_content_cva } from "@mof-malaysia/ftds-style/variants/cookie-banner";
 
 /**
  * CookieBanner asks for consent to non-essential cookies in the corner of the
@@ -67,22 +68,19 @@ const id = uniqueId("cookie-banner");
   hidden
   data-ftds-cookie-banner
   data-storage-key={storageKey}
-  class={clx(
-    "bg-bg-white p-4.5 shadow-card border-otl-gray-200 font-body fixed right-0 bottom-0 z-banner max-w-[500px]",
-    "space-y-1 rounded-lg border outline-none",
-    "sm:mr-4 sm:mb-4 sm:p-6",
-    className,
-  )}
+  class={clx(cookie_content_cva(), "font-body", className)}
   {...props}
 >
-  <button
-    type="button"
+  <Button
+    variant="default-ghost"
+    size="small"
+    iconOnly
     data-ftds-cookie-close
     aria-label={closeLabel ?? label(lang, "cookieBannerClose")}
-    class="text-txt-black-700 hover:text-txt-black-900 focus-ring absolute top-0 right-0 mt-4 mr-4 cursor-pointer rounded-md p-1.5 transition-colors"
+    class="absolute top-0 right-0 mt-4 mr-4"
   >
-    <Cross class="size-4 shrink-0" aria-hidden="true" />
-  </button>
+    <Cross aria-hidden="true" />
+  </Button>
   <h2 id={`${id}-title`} class="text-body-md text-txt-black-900 pr-8 font-semibold">
     <slot name="title">{title ?? label(lang, "cookieBannerTitle")}</slot>
   </h2>
@@ -111,22 +109,13 @@ const id = uniqueId("cookie-banner");
 </section>
 
 <script>
-  import { onEach } from "@/lib/ftds/scripts";
+  import { onEach, readStorage, writeStorage } from "@/lib/ftds/scripts";
 
   type Consent = "accepted" | "declined";
 
-  // localStorage can throw (private mode, blocked storage): treat as nothing saved
-  const read = (key: string) => {
-    try {
-      return localStorage.getItem(key);
-    } catch {
-      return null;
-    }
-  };
-
   onEach("[data-ftds-cookie-banner]", (banner) => {
-    const key = banner.dataset.storageKey || "ftds-cookie-consent";
-    if (read(key) !== null) return;
+    const key = banner.dataset.storageKey!;
+    if (readStorage(key) !== null) return;
 
     const close = () => {
       // Hand focus back to the page if it was in the banner
@@ -138,11 +127,8 @@ const id = uniqueId("cookie-banner");
     for (const button of banner.querySelectorAll<HTMLElement>("[data-ftds-cookie-choice]")) {
       button.addEventListener("click", () => {
         const value = button.dataset.ftdsCookieChoice as Consent;
-        try {
-          localStorage.setItem(key, value);
-        } catch {
-          // Not saved: the banner shows again on the next page
-        }
+        // Not saved where storage is unavailable: the banner shows again next page
+        writeStorage(key, value);
         close();
         document.dispatchEvent(new CustomEvent("ftds:cookie-consent", { detail: { value } }));
       });

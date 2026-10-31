@@ -65,7 +65,6 @@ const names: Record<Lang, { short: string; full: string }> = {
 <nav
   aria-label={label(lang, "languageSwitcher")}
   class={clx("font-body flex items-center gap-1", className)}
-  data-ftds-language-switcher
   {...props}
 >
   {!hideIcon && <Globe class="text-txt-black-500 size-4 shrink-0" aria-hidden="true" />}
@@ -79,7 +78,7 @@ const names: Record<Lang, { short: string; full: string }> = {
               href={locale.href}
               hreflang={locale.code}
               lang={locale.code}
-              title={names[locale.code]?.full}
+              title={names[locale.code].full}
               aria-current={active ? "true" : undefined}
               class={clx(
                 "control-sm text-label-sm focus-ring inline-flex items-center rounded-md px-2 font-medium",
@@ -89,7 +88,7 @@ const names: Record<Lang, { short: string; full: string }> = {
                   : "text-txt-black-700 hover:bg-bg-washed-active hover:text-txt-black-900",
               )}
             >
-              {locale.label ?? names[locale.code]?.short ?? locale.code.toUpperCase()}
+              {locale.label ?? names[locale.code].short}
             </a>
           </li>
         );

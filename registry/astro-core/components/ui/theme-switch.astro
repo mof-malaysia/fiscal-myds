@@ -16,7 +16,8 @@ import Moon from "@/components/ui/icons/moon.astro";
  * `<ThemeScript />` to `<head>` too, with the same `storageKey`, so the saved
  * theme applies before the page paints.
  *
- * Its accessible name is `label` and the current theme: "Tema: Cerah".
+ * Its accessible name is `label` and the current theme: "Tema: Cerah". The
+ * name and icon follow the `<html>` class in CSS, so no script updates them.
  * Switching dispatches `ftds:theme-change` on `document` with
  * `detail.theme`.
  *
@@ -59,22 +60,21 @@ const dark = darkLabel ?? label(lang, "themeDark");
   size="small"
   iconOnly
   hidden
+  data-ftds-requires-js
   data-ftds-theme-switch
   data-storage-key={storageKey}
-  data-label={name}
-  data-light-label={light}
-  data-dark-label={dark}
-  aria-label={`${name}: ${light}`}
   class={clx("aspect-square shrink-0 rounded-md", className)}
   {...props}
 >
-  {/* The icon follows the <html> class, so it is right from the first paint */}
-  <span class="contents dark:hidden"><Sun class="text-txt-black-900" aria-hidden="true" /></span>
-  <span class="hidden dark:contents"><Moon class="text-txt-black-900" aria-hidden="true" /></span>
+  {/* Name and icon follow the <html> class, so they are right from the first paint */}
+  <span class="sr-only dark:hidden">{name}: {light}</span>
+  <span class="sr-only hidden dark:inline">{name}: {dark}</span>
+  <Sun class="text-txt-black-900 dark:hidden" aria-hidden="true" />
+  <Moon class="text-txt-black-900 hidden dark:block" aria-hidden="true" />
 </Button>
 
 <script>
-  import { onEach } from "@/lib/ftds/scripts";
+  import { onEach, readStorage, writeStorage } from "@/lib/ftds/scripts";
 
   type Theme = "light" | "dark";
 
@@ -82,54 +82,35 @@ const dark = darkLabel ?? label(lang, "themeDark");
   const media = matchMedia("(prefers-color-scheme: dark)");
 
   const stored = (key: string): Theme | null => {
-    try {
-      const value = localStorage.getItem(key);
-      return value === "light" || value === "dark" ? value : null;
-    } catch {
-      return null;
-    }
+    const value = readStorage(key);
+    return value === "light" || value === "dark" ? value : null;
   };
   const current = (): Theme => (root.classList.contains("dark") ? "dark" : "light");
-
-  /** Update every switch's name ("Theme: Dark") to the current theme. */
-  const sync = () => {
-    const theme = current();
-    for (const button of document.querySelectorAll<HTMLElement>("[data-ftds-theme-switch]")) {
-      const { label, lightLabel, darkLabel } = button.dataset;
-      button.setAttribute("aria-label", `${label}: ${theme === "dark" ? darkLabel : lightLabel}`);
-    }
-  };
 
   const apply = (theme: Theme) => {
     root.classList.remove("light", "dark");
     root.classList.add(theme);
-    sync();
     document.dispatchEvent(new CustomEvent("ftds:theme-change", { detail: { theme } }));
   };
 
   onEach("[data-ftds-theme-switch]", (button) => {
-    const key = button.dataset.storageKey || "ftds-theme";
+    const key = button.dataset.storageKey!;
     // ThemeScript normally did this before paint; do it here in case it's missing
     if (!root.classList.contains("light") && !root.classList.contains("dark")) {
       apply(stored(key) ?? (media.matches ? "dark" : "light"));
     }
 
-    button.hidden = false;
-    sync();
-
     button.addEventListener("click", () => {
       const next: Theme = current() === "dark" ? "light" : "dark";
-      try {
-        localStorage.setItem(key, next);
-      } catch {
-        // Not saved: the switch still works for this page
-      }
+      writeStorage(key, next);
       apply(next);
     });
 
     // Follow the system until the visitor makes a choice
-    media.addEventListener("change", (event) => {
+    const follow = (event: MediaQueryListEvent) => {
       if (stored(key) === null) apply(event.matches ? "dark" : "light");
-    });
+    };
+    media.addEventListener("change", follow);
+    return () => media.removeEventListener("change", follow);
   });
 </script>

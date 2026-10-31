@@ -179,6 +179,25 @@
       ]
     },
     {
+      "name": "variants-cookie-banner",
+      "title": "Cookie Banner variants",
+      "description": "The cva classes the React and Astro cookie-banner components share, installed to components/ui/cookie-banner.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/cookie-banner.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "variants-cta-band",
       "title": "Cta Band variants",
       "description": "The cva classes the React and Astro cta-band components share, installed to components/ui/cta-band.variants.ts.",
@@ -288,6 +307,25 @@
       "files": [
         {
           "path": "components/ui/stats-band.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-tabs",
+      "title": "Tabs variants",
+      "description": "The cva classes the React and Astro tabs components share, installed to components/ui/tabs.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/tabs.variants.ts",
           "type": "registry:ui"
         }
       ]

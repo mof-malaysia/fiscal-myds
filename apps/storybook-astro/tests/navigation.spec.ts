@@ -4,10 +4,13 @@ import { openStory } from "./story";
 test.describe("navbar on desktop", () => {
   test.use({ viewport: { width: 1400, height: 900 } });
 
-  test("dropdown opens, arrows move in, Escape returns focus", async ({
+  test("current page marked; dropdown opens, arrows move in, Escape returns focus", async ({
     page,
   }) => {
     await openStory(page, "marketing-navbar--standard");
+    await expect(page.locator('[aria-current="page"]').first()).toHaveText(
+      /Utama/,
+    );
     const trigger = page.getByRole("button", { name: "Agensi" });
     await trigger.focus();
     await page.keyboard.press("Enter");
@@ -31,20 +34,10 @@ test.describe("navbar on desktop", () => {
   test("outside click closes the dropdown", async ({ page }) => {
     await openStory(page, "marketing-navbar--standard");
     await page.getByRole("button", { name: "Agensi" }).click();
-    await expect(
-      page.getByRole("link", { name: "Lembaga Hasil Dalam Negeri" }),
-    ).toBeVisible();
+    const link = page.getByRole("link", { name: "Lembaga Hasil Dalam Negeri" });
+    await expect(link).toBeVisible();
     await page.mouse.click(5, 600);
-    await expect(
-      page.getByRole("link", { name: "Lembaga Hasil Dalam Negeri" }),
-    ).toBeHidden();
-  });
-
-  test("the current page is marked", async ({ page }) => {
-    await openStory(page, "marketing-navbar--standard");
-    await expect(page.locator('[aria-current="page"]').first()).toHaveText(
-      /Utama/,
-    );
+    await expect(link).toBeHidden();
   });
 });
 
@@ -59,22 +52,15 @@ test.describe("navbar on mobile", () => {
     await menu.click();
     const panel = page.locator("[data-ftds-navbar-panel]:popover-open");
     await expect(panel).toHaveCount(1);
-    await expect
-      .poll(() =>
-        page.evaluate(() =>
-          document
-            .querySelector("[data-ftds-navbar-panel]:popover-open")
-            ?.contains(document.activeElement),
-        ),
-      )
-      .toBe(true);
+    await expect(panel.locator(":focus")).toHaveCount(1);
     await page.keyboard.press("Escape");
-    await expect(
-      page.locator("[data-ftds-navbar-panel]:popover-open"),
-    ).toHaveCount(0);
+    await expect(panel).toHaveCount(0);
     await expect(menu).toBeFocused();
   });
 });
+
+const dot = (page: import("@playwright/test").Page, n: number) =>
+  page.locator("[data-ftds-carousel-dots] button").nth(n);
 
 test("carousel: next, previous and arrow keys move between slides", async ({
   page,
@@ -83,32 +69,26 @@ test("carousel: next, previous and arrow keys move between slides", async ({
   const prev = page.locator("[data-ftds-carousel-prev]");
   const next = page.locator("[data-ftds-carousel-next]");
   await expect(prev).toBeDisabled();
-  const dots = page.locator("[data-ftds-carousel-dots] [aria-current]");
   await next.click();
-  await expect(dots).toHaveCount(1);
-  const current = () =>
-    dots
-      .first()
-      .evaluate((dot) => [...dot.parentElement!.children].indexOf(dot));
-  await expect.poll(current).toBe(1);
+  await expect(dot(page, 1)).toHaveAttribute("aria-current", "true");
   await expect(prev).toBeEnabled();
   await prev.click();
-  await expect.poll(current).toBe(0);
+  await expect(dot(page, 0)).toHaveAttribute("aria-current", "true");
   await page.locator("[data-ftds-carousel-track]").focus();
   await page.keyboard.press("ArrowRight");
-  await expect.poll(current).toBe(1);
+  await expect(dot(page, 1)).toHaveAttribute("aria-current", "true");
 });
 
-test("carousel: autoplay has a pause button and stops when paused", async ({
-  page,
-}) => {
+test("carousel: autoplay advances, and pause stops it", async ({ page }) => {
+  await page.clock.install();
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await openStory(page, "marketing-carousel--autoplay");
-  const play = page.locator("[data-ftds-carousel-play]");
-  await expect(play).toBeVisible();
-  const label = await play.getAttribute("aria-label");
-  await play.click();
-  await expect(play).not.toHaveAttribute("aria-label", label ?? "");
+  // The story advances every 4 s
+  await page.clock.runFor(4100);
+  await expect(dot(page, 1)).toHaveAttribute("aria-current", "true");
+  await page.locator("[data-ftds-carousel-play]").click();
+  await page.clock.runFor(8200);
+  await expect(dot(page, 1)).toHaveAttribute("aria-current", "true");
 });
 
 test("language switcher: links carry hreflang and mark the current one", async ({

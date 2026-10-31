@@ -30,9 +30,11 @@ const {
   ...props
 } = Astro.props;
 
-// ButtonIcon sizes from button.variants, applied to every svg in the slot
+// ButtonIcon sizes from button.variants, applied to every svg in the slot.
+// No display class: svgs are flex items already, and setting one would
+// override `hidden` / `dark:hidden` on an icon.
 const icon_class = [
-  "[&_svg]:block [&_svg]:shrink-0 [&_svg]:stroke-[1.5px]",
+  "[&_svg]:shrink-0 [&_svg]:stroke-[1.5px]",
   size === "small" ? "[&_svg]:size-4" : "[&_svg]:size-5",
 ];
 

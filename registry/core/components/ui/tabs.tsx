@@ -11,6 +11,11 @@ import {
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { clx } from "@/lib/ftds/utils";
 import { cva } from "class-variance-authority";
+import {
+  tabs_indicator_cva,
+  tabs_list_cva,
+  tabs_trigger_cva,
+} from "@/components/ui/tabs.variants";
 import { useRender } from "@base-ui/react/use-render";
 
 /**
@@ -89,23 +94,11 @@ const TabsList: ForwardRefExoticComponent<TabsListProps> = forwardRef(
       <TabsPrimitive.List
         ref={ref}
         activateOnFocus={activationMode !== "manual"}
-        className={clx(
-          // The Hairline is an inset shadow so the indicator can sit on top of it
-          "relative z-0 flex max-w-full items-stretch gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-otl-gray-200)]",
-          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          width === "full" ? "w-full" : "w-fit",
-          className,
-        )}
+        className={clx(tabs_list_cva({ width }), className)}
         {...props}
       >
         {children}
-        <TabsPrimitive.Indicator
-          className={clx(
-            "bg-txt-primary absolute bottom-0 left-0 z-10 h-0.5 rounded-full",
-            "w-(--active-tab-width) translate-x-(--active-tab-left)",
-            "transition-[translate,width] duration-200 ease-(--ease-standard) motion-reduce:transition-none",
-          )}
-        />
+        <TabsPrimitive.Indicator className={tabs_indicator_cva()} />
       </TabsPrimitive.List>
     );
   },
@@ -113,28 +106,6 @@ const TabsList: ForwardRefExoticComponent<TabsListProps> = forwardRef(
 TabsList.displayName = "TabsList";
 
 /*========================================================================================================================*/
-
-const tabs_trigger_cva = cva(
-  [
-    "relative flex shrink-0 cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-md font-medium",
-    "text-txt-black-700 hover:text-txt-black-900 data-[active]:text-txt-black-900",
-    "transition-colors duration-150 motion-reduce:transition-none",
-    // Inset so the ring isn't clipped by the scrolling list
-    "focus-ring-inset",
-    "data-[disabled]:text-txt-black-disabled data-[disabled]:cursor-not-allowed",
-  ],
-  {
-    variants: {
-      size: {
-        small: "control-sm px-3 text-label-sm",
-        medium: "control-md px-4 text-label-md",
-      },
-    },
-    defaultVariants: {
-      size: "small",
-    },
-  },
-);
 
 const TabsTrigger: ForwardRefExoticComponent<
   WithStringClassName<TabsPrimitive.Tab.Props>

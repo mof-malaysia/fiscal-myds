@@ -4,6 +4,11 @@ import { openStory } from "./story";
 test("tabs: arrow keys, Home and End move and activate", async ({ page }) => {
   await openStory(page, "core-tabs--default");
   const tabs = page.getByRole("tab");
+  // The underline sits under the active tab from the start
+  await expect(page.locator("[data-ftds-tabs-indicator]")).toHaveAttribute(
+    "style",
+    /--active-tab-width: [1-9]\d*px/,
+  );
   await tabs.first().focus();
   await page.keyboard.press("ArrowRight");
   await expect(tabs.nth(1)).toBeFocused();

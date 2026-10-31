@@ -124,3 +124,17 @@ export function resolveLang(lang?: string, locale?: string): Lang {
 export function label(lang: Lang, key: LabelKey): string {
   return labels[lang][key];
 }
+
+/**
+ * Fill `{name}` placeholders in a label, e.g.
+ * `format(label(lang, "carouselSlideOf"), { n: 2, count: 5 })`. Plain
+ * enough for client scripts too.
+ */
+export function format(
+  text: string,
+  values: Record<string, string | number>,
+): string {
+  return text.replace(/\{(\w+)\}/g, (match, name: string) =>
+    name in values ? String(values[name]) : match,
+  );
+}

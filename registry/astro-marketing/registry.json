@@ -191,6 +191,30 @@
       ]
     },
     {
+      "name": "astro-navbar-menu",
+      "title": "Navbar Menu (Astro)",
+      "description": "NavbarMenu is one item of the Navbar: a top-level link, or a dropdown with its links, groups, feature and footer.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-icon-chevron-down",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-navbar"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navbar-menu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "astro-navbar",
       "title": "Navbar (Astro)",
       "description": "The site's top navigation bar: logo, links and dropdown menus, and actions such as search, with a full-width menu panel on tablet and mobile.",
@@ -203,10 +227,9 @@
       "registryDependencies": [
         "mof-malaysia/ftds/astro-button",
         "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-arrow-forward",
-        "mof-malaysia/ftds/astro-icon-chevron-down",
         "mof-malaysia/ftds/astro-icon-cross",
         "mof-malaysia/ftds/astro-icon-hamburger-menu",
+        "mof-malaysia/ftds/astro-navbar-menu",
         "mof-malaysia/ftds/astro-scripts",
         "mof-malaysia/ftds/utils",
         "mof-malaysia/ftds/variants-navbar"

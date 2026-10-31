@@ -65,10 +65,9 @@ const open = new Set(
   defaultValue === undefined ? [] : Array.isArray(defaultValue) ? defaultValue : [defaultValue],
 );
 const values = items.map((item, i) => item.value ?? `item-${i}`);
-// Rendered and trimmed, not Astro.slots.has: a forwarded empty slot still "has" it
 const slotted = await Promise.all(
   values.map(async (value) =>
-    Astro.slots.has(value) ? (await Astro.slots.render(value)).trim() : "",
+    Astro.slots.has(value) ? await Astro.slots.render(value) : undefined,
   ),
 );
 ---
@@ -79,7 +78,6 @@ const slotted = await Promise.all(
       <details
         name={name}
         open={open.has(values[i]!)}
-        data-value={values[i]}
         class={clx(
           "border-otl-gray-200 bg-bg-white group/accordion mt-px overflow-hidden border-b first:mt-0",
           itemClass,
@@ -104,7 +102,7 @@ const slotted = await Promise.all(
             contentClass,
           )}
         >
-          {slotted[i] ? <Fragment set:html={slotted[i]} /> : item.content}
+          {slotted[i] !== undefined ? <Fragment set:html={slotted[i]} /> : item.content}
         </div>
       </details>
     ))

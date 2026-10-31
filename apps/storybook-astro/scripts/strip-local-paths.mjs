@@ -16,24 +16,20 @@ const REPO_ROOT = path.resolve(DIST, "../../..");
 const ANNOTATION = /\s?data-astro-source-(?:file|loc)=(?:\\"[^"\\]*\\"|"[^"]*")/g;
 
 let changed = 0;
+const leaks = [];
 for (const file of fs.readdirSync(DIST, { recursive: true, withFileTypes: true })) {
-  if (!file.isFile() || !/\.(?:js|json|html|css|map)$/.test(file.name)) continue;
+  if (!file.isFile()) continue;
   const filePath = path.join(file.parentPath, file.name);
   const before = fs.readFileSync(filePath, "utf-8");
+  if (!before.includes(REPO_ROOT) && !before.includes("data-astro-source-")) continue;
   const after = before.replace(ANNOTATION, "").replaceAll(REPO_ROOT, "/ftds");
+  if (after.includes(REPO_ROOT)) leaks.push(file.name);
   if (after !== before) {
     fs.writeFileSync(filePath, after);
     changed++;
   }
 }
-
-const leaks = fs
-  .readdirSync(DIST, { recursive: true, withFileTypes: true })
-  .filter((file) => file.isFile())
-  .filter((file) =>
-    fs.readFileSync(path.join(file.parentPath, file.name), "utf-8").includes(REPO_ROOT),
-  );
 if (leaks.length) {
-  throw new Error(`Local paths left in: ${leaks.map((f) => f.name).join(", ")}`);
+  throw new Error(`Local paths left in: ${leaks.join(", ")}`);
 }
 console.log(`Stripped local paths from ${changed} files`);
