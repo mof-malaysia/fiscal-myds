@@ -31,7 +31,7 @@
       "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/colors"
+        "mof-malaysia/ftds/colors#v0.2.0"
       ],
       "files": [
         {
@@ -51,7 +51,7 @@
       "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/colors"
+        "mof-malaysia/ftds/colors#v0.2.0"
       ],
       "files": [
         {
@@ -71,9 +71,9 @@
       "type": "registry:file",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/colors",
-        "mof-malaysia/ftds/theme-light",
-        "mof-malaysia/ftds/theme-dark"
+        "mof-malaysia/ftds/colors#v0.2.0",
+        "mof-malaysia/ftds/theme-light#v0.2.0",
+        "mof-malaysia/ftds/theme-dark#v0.2.0"
       ],
       "files": [
         {

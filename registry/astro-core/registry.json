@@ -50,9 +50,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-chevron-right",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -74,8 +74,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-button"
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-button#v0.2.0"
       ],
       "files": [
         {
@@ -97,16 +97,16 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-button",
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-check-circle",
-        "mof-malaysia/ftds/astro-icon-cross",
-        "mof-malaysia/ftds/astro-icon-info",
-        "mof-malaysia/ftds/astro-icon-warning",
-        "mof-malaysia/ftds/astro-icon-warning-circle",
-        "mof-malaysia/ftds/astro-scripts",
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-callout"
+        "mof-malaysia/ftds/astro-button#v0.2.0",
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-cross#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-info#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-warning#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/astro-scripts#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-callout#v0.2.0"
       ],
       "files": [
         {
@@ -128,8 +128,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-card"
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-card#v0.2.0"
       ],
       "files": [
         {
@@ -149,12 +149,12 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-button",
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-cross",
-        "mof-malaysia/ftds/astro-scripts",
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-cookie-banner"
+        "mof-malaysia/ftds/astro-button#v0.2.0",
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-cross#v0.2.0",
+        "mof-malaysia/ftds/astro-scripts#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-cookie-banner#v0.2.0"
       ],
       "files": [
         {
@@ -174,9 +174,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-icon-chevron-right",
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-link"
+        "mof-malaysia/ftds/astro-icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-link#v0.2.0"
       ],
       "files": [
         {
@@ -198,10 +198,10 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-link",
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-footer"
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-link#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-footer#v0.2.0"
       ],
       "files": [
         {
@@ -221,7 +221,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -241,9 +241,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-globe",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-globe#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -265,9 +265,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-link"
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-link#v0.2.0"
       ],
       "files": [
         {
@@ -287,12 +287,12 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-chevron-down",
-        "mof-malaysia/ftds/astro-icon-lock-2",
-        "mof-malaysia/ftds/astro-icon-malaysia-flag",
-        "mof-malaysia/ftds/astro-icon-putrajaya",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-chevron-down#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-lock-2#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-malaysia-flag#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-putrajaya#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -312,9 +312,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-tag",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-tag#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -334,7 +334,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -354,9 +354,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-button",
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/astro-button#v0.2.0",
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -376,9 +376,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-scripts",
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-tabs"
+        "mof-malaysia/ftds/astro-scripts#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-tabs#v0.2.0"
       ],
       "files": [
         {
@@ -398,8 +398,8 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils",
-        "mof-malaysia/ftds/variants-tag"
+        "mof-malaysia/ftds/utils#v0.2.0",
+        "mof-malaysia/ftds/variants-tag#v0.2.0"
       ],
       "files": [
         {
@@ -437,12 +437,12 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/astro-button",
-        "mof-malaysia/ftds/astro-i18n",
-        "mof-malaysia/ftds/astro-icon-moon",
-        "mof-malaysia/ftds/astro-icon-sun",
-        "mof-malaysia/ftds/astro-scripts",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/astro-button#v0.2.0",
+        "mof-malaysia/ftds/astro-i18n#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-moon#v0.2.0",
+        "mof-malaysia/ftds/astro-icon-sun#v0.2.0",
+        "mof-malaysia/ftds/astro-scripts#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {

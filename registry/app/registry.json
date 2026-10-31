@@ -13,17 +13,17 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/avatar",
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/icon-attachment",
-        "mof-malaysia/ftds/icon-chat-bubble",
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/icon-document",
-        "mof-malaysia/ftds/icon-swap",
-        "mof-malaysia/ftds/icon-user",
-        "mof-malaysia/ftds/textarea",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/avatar#v0.2.0",
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/icon-attachment#v0.2.0",
+        "mof-malaysia/ftds/icon-chat-bubble#v0.2.0",
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-document#v0.2.0",
+        "mof-malaysia/ftds/icon-swap#v0.2.0",
+        "mof-malaysia/ftds/icon-user#v0.2.0",
+        "mof-malaysia/ftds/textarea#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -46,13 +46,13 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/drawer",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-chevron-down",
-        "mof-malaysia/ftds/icon-hamburger-menu",
-        "mof-malaysia/ftds/tooltip",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/drawer#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-down#v0.2.0",
+        "mof-malaysia/ftds/icon-hamburger-menu#v0.2.0",
+        "mof-malaysia/ftds/tooltip#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -71,12 +71,12 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/empty-state",
-        "mof-malaysia/ftds/icon-document",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/tag",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/empty-state#v0.2.0",
+        "mof-malaysia/ftds/icon-document#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/tag#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -96,7 +96,7 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -118,9 +118,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/combobox",
-        "mof-malaysia/ftds/menu",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/combobox#v0.2.0",
+        "mof-malaysia/ftds/menu#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -142,10 +142,10 @@
         "react-day-picker@^9.11.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/icon-chevron-left",
-        "mof-malaysia/ftds/icon-chevron-right",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-left#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -166,10 +166,10 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/textarea",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/textarea#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -188,12 +188,12 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/error-summary",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/error-summary#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -216,9 +216,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -240,11 +240,11 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-check",
-        "mof-malaysia/ftds/icon-chevron-down",
-        "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/menu",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-check#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-down#v0.2.0",
+        "mof-malaysia/ftds/icon-cross#v0.2.0",
+        "mof-malaysia/ftds/menu#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -265,10 +265,10 @@
         "cmdk@^1.1.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/dialog",
-        "mof-malaysia/ftds/icon-search",
-        "mof-malaysia/ftds/menu",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/dialog#v0.2.0",
+        "mof-malaysia/ftds/icon-search#v0.2.0",
+        "mof-malaysia/ftds/menu#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -287,14 +287,14 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-check",
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/icon-copy",
-        "mof-malaysia/ftds/icon-printer",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-check#v0.2.0",
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-copy#v0.2.0",
+        "mof-malaysia/ftds/icon-printer#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -316,8 +316,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/menu",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/menu#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -338,15 +338,15 @@
         "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/icon-arrow-down",
-        "mof-malaysia/ftds/icon-arrow-up",
-        "mof-malaysia/ftds/icon-chevron-right",
-        "mof-malaysia/ftds/icon-column-collapse",
-        "mof-malaysia/ftds/icon-column-expand",
-        "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/table",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/icon-arrow-down#v0.2.0",
+        "mof-malaysia/ftds/icon-arrow-up#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/icon-column-collapse#v0.2.0",
+        "mof-malaysia/ftds/icon-column-expand#v0.2.0",
+        "mof-malaysia/ftds/icon-cross#v0.2.0",
+        "mof-malaysia/ftds/table#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -368,8 +368,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-calendar"
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-calendar#v0.2.0"
       ],
       "files": [
         {
@@ -392,13 +392,13 @@
         "react-day-picker@^9.11.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/calendar",
-        "mof-malaysia/ftds/dialog",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-calendar",
-        "mof-malaysia/ftds/popover",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/calendar#v0.2.0",
+        "mof-malaysia/ftds/dialog#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-calendar#v0.2.0",
+        "mof-malaysia/ftds/popover#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -421,14 +421,14 @@
         "react-day-picker@^9.11.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/calendar",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-calendar",
-        "mof-malaysia/ftds/icon-chevron-left",
-        "mof-malaysia/ftds/icon-chevron-right",
-        "mof-malaysia/ftds/popover",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/calendar#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-calendar#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-left#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/popover#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -447,15 +447,15 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/alert-dialog",
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/radio",
-        "mof-malaysia/ftds/textarea",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/alert-dialog#v0.2.0",
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/radio#v0.2.0",
+        "mof-malaysia/ftds/textarea#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -478,15 +478,15 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/drawer",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-hamburger-menu",
-        "mof-malaysia/ftds/icon-search",
-        "mof-malaysia/ftds/kbd",
-        "mof-malaysia/ftds/shortcuts",
-        "mof-malaysia/ftds/tooltip",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/drawer#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-hamburger-menu#v0.2.0",
+        "mof-malaysia/ftds/icon-search#v0.2.0",
+        "mof-malaysia/ftds/kbd#v0.2.0",
+        "mof-malaysia/ftds/shortcuts#v0.2.0",
+        "mof-malaysia/ftds/tooltip#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -508,9 +508,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/icon-cross#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -529,7 +529,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -548,11 +548,11 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-check",
-        "mof-malaysia/ftds/icon-copy",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-check#v0.2.0",
+        "mof-malaysia/ftds/icon-copy#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -572,9 +572,9 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -595,15 +595,15 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/icon-document",
-        "mof-malaysia/ftds/icon-upload",
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/progress",
-        "mof-malaysia/ftds/spinner",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-cross#v0.2.0",
+        "mof-malaysia/ftds/icon-document#v0.2.0",
+        "mof-malaysia/ftds/icon-upload#v0.2.0",
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/progress#v0.2.0",
+        "mof-malaysia/ftds/spinner#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -622,12 +622,12 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/error-summary",
-        "mof-malaysia/ftds/icon-chevron-left",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/stepper",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/error-summary#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-left#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/stepper#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -649,9 +649,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/menu",
-        "mof-malaysia/ftds/toggle",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/menu#v0.2.0",
+        "mof-malaysia/ftds/toggle#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -673,9 +673,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/progress",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/progress#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -694,19 +694,19 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/empty-state",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-bell",
-        "mof-malaysia/ftds/icon-calendar",
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/icon-document",
-        "mof-malaysia/ftds/icon-info",
-        "mof-malaysia/ftds/icon-money",
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/toggle",
-        "mof-malaysia/ftds/toggle-group",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/empty-state#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-bell#v0.2.0",
+        "mof-malaysia/ftds/icon-calendar#v0.2.0",
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-document#v0.2.0",
+        "mof-malaysia/ftds/icon-info#v0.2.0",
+        "mof-malaysia/ftds/icon-money#v0.2.0",
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/toggle#v0.2.0",
+        "mof-malaysia/ftds/toggle-group#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -728,10 +728,10 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/combobox",
-        "mof-malaysia/ftds/icon-minus",
-        "mof-malaysia/ftds/icon-plus",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/combobox#v0.2.0",
+        "mof-malaysia/ftds/icon-minus#v0.2.0",
+        "mof-malaysia/ftds/icon-plus#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -752,8 +752,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/combobox",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/combobox#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -772,13 +772,13 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/otp-field",
-        "mof-malaysia/ftds/spinner",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/otp-field#v0.2.0",
+        "mof-malaysia/ftds/spinner#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -800,7 +800,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -821,12 +821,12 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-chevron-left",
-        "mof-malaysia/ftds/icon-chevron-right",
-        "mof-malaysia/ftds/icon-ellipsis",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-left#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/icon-ellipsis#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -848,11 +848,11 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/icon-cross-circle",
-        "mof-malaysia/ftds/icon-info",
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-cross-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-info#v0.2.0",
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -871,11 +871,11 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-eye-hide",
-        "mof-malaysia/ftds/icon-eye-show",
-        "mof-malaysia/ftds/input",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-eye-hide#v0.2.0",
+        "mof-malaysia/ftds/icon-eye-show#v0.2.0",
+        "mof-malaysia/ftds/input#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -894,15 +894,15 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/error-summary",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/icon-email",
-        "mof-malaysia/ftds/input",
-        "mof-malaysia/ftds/otp-verify",
-        "mof-malaysia/ftds/sign-up-form",
-        "mof-malaysia/ftds/spinner",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/error-summary#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/icon-email#v0.2.0",
+        "mof-malaysia/ftds/input#v0.2.0",
+        "mof-malaysia/ftds/otp-verify#v0.2.0",
+        "mof-malaysia/ftds/sign-up-form#v0.2.0",
+        "mof-malaysia/ftds/spinner#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -924,15 +924,15 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/error-summary",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/icon-download",
-        "mof-malaysia/ftds/icon-lock-fill",
-        "mof-malaysia/ftds/icon-printer",
-        "mof-malaysia/ftds/radio",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/error-summary#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-download#v0.2.0",
+        "mof-malaysia/ftds/icon-lock-fill#v0.2.0",
+        "mof-malaysia/ftds/icon-printer#v0.2.0",
+        "mof-malaysia/ftds/radio#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -954,8 +954,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/popover",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/popover#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -977,7 +977,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -996,9 +996,9 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/alert-dialog",
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/hooks"
+        "mof-malaysia/ftds/alert-dialog#v0.2.0",
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0"
       ],
       "files": [
         {
@@ -1018,10 +1018,10 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/icon-warning-circle#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1044,7 +1044,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1063,10 +1063,10 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/command",
-        "mof-malaysia/ftds/dialog",
-        "mof-malaysia/ftds/kbd",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/command#v0.2.0",
+        "mof-malaysia/ftds/dialog#v0.2.0",
+        "mof-malaysia/ftds/kbd#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1085,15 +1085,15 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/error-summary",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/input",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/password-input",
-        "mof-malaysia/ftds/spinner",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/error-summary#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/input#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/password-input#v0.2.0",
+        "mof-malaysia/ftds/spinner#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1113,16 +1113,16 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/error-summary",
-        "mof-malaysia/ftds/field",
-        "mof-malaysia/ftds/icon-check-circle",
-        "mof-malaysia/ftds/input",
-        "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/password-input",
-        "mof-malaysia/ftds/spinner",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/error-summary#v0.2.0",
+        "mof-malaysia/ftds/field#v0.2.0",
+        "mof-malaysia/ftds/icon-check-circle#v0.2.0",
+        "mof-malaysia/ftds/input#v0.2.0",
+        "mof-malaysia/ftds/link#v0.2.0",
+        "mof-malaysia/ftds/password-input#v0.2.0",
+        "mof-malaysia/ftds/spinner#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1144,7 +1144,7 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1163,7 +1163,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1184,9 +1184,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-arrow-down",
-        "mof-malaysia/ftds/icon-arrow-up",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-arrow-down#v0.2.0",
+        "mof-malaysia/ftds/icon-arrow-up#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1207,9 +1207,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-check",
-        "mof-malaysia/ftds/progress",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-check#v0.2.0",
+        "mof-malaysia/ftds/progress#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1228,7 +1228,7 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1247,10 +1247,10 @@
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/icon-question-circle",
-        "mof-malaysia/ftds/skeleton",
-        "mof-malaysia/ftds/tooltip",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/icon-question-circle#v0.2.0",
+        "mof-malaysia/ftds/skeleton#v0.2.0",
+        "mof-malaysia/ftds/tooltip#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1271,8 +1271,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/tag",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/tag#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1294,9 +1294,9 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/combobox",
-        "mof-malaysia/ftds/toggle",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/combobox#v0.2.0",
+        "mof-malaysia/ftds/toggle#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
@@ -1315,25 +1315,25 @@
       "type": "registry:block",
       "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/button",
-        "mof-malaysia/ftds/checkbox",
-        "mof-malaysia/ftds/hooks",
-        "mof-malaysia/ftds/icon-chevron-down",
-        "mof-malaysia/ftds/icon-chevron-left",
-        "mof-malaysia/ftds/icon-chevron-right",
-        "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/icon-download",
-        "mof-malaysia/ftds/icon-search",
-        "mof-malaysia/ftds/icon-user",
-        "mof-malaysia/ftds/input",
-        "mof-malaysia/ftds/kbd",
-        "mof-malaysia/ftds/menu",
-        "mof-malaysia/ftds/select",
-        "mof-malaysia/ftds/shortcuts",
-        "mof-malaysia/ftds/table",
-        "mof-malaysia/ftds/toggle",
-        "mof-malaysia/ftds/toggle-group",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/button#v0.2.0",
+        "mof-malaysia/ftds/checkbox#v0.2.0",
+        "mof-malaysia/ftds/hooks#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-down#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-left#v0.2.0",
+        "mof-malaysia/ftds/icon-chevron-right#v0.2.0",
+        "mof-malaysia/ftds/icon-cross#v0.2.0",
+        "mof-malaysia/ftds/icon-download#v0.2.0",
+        "mof-malaysia/ftds/icon-search#v0.2.0",
+        "mof-malaysia/ftds/icon-user#v0.2.0",
+        "mof-malaysia/ftds/input#v0.2.0",
+        "mof-malaysia/ftds/kbd#v0.2.0",
+        "mof-malaysia/ftds/menu#v0.2.0",
+        "mof-malaysia/ftds/select#v0.2.0",
+        "mof-malaysia/ftds/shortcuts#v0.2.0",
+        "mof-malaysia/ftds/table#v0.2.0",
+        "mof-malaysia/ftds/toggle#v0.2.0",
+        "mof-malaysia/ftds/toggle-group#v0.2.0",
+        "mof-malaysia/ftds/utils#v0.2.0"
       ],
       "files": [
         {
