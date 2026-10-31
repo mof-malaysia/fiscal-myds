@@ -2,7 +2,7 @@
 // registry:block — composed page section, installs to components/blocks
 import type { HTMLAttributes } from "astro/types";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
-import { clx } from "@/lib/ftds/utils";
+import { clx, uniqueId } from "@/lib/ftds/utils";
 import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
 import Link from "@/components/ui/link.astro";
 import SectionHeading from "@/components/ui/section-heading.astro";
@@ -63,7 +63,7 @@ const {
   columns = 3,
   surface = "none",
   lang: langProp,
-  titleId = `feature-grid-${crypto.randomUUID().slice(0, 8)}`,
+  titleId = uniqueId("feature-grid"),
   class: className,
   ...props
 } = Astro.props;
@@ -82,15 +82,14 @@ const hasTitle = Boolean(title) || slots.has("title");
   <div
     class="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-4 py-12 md:px-6 md:py-16 lg:gap-12 lg:py-24"
   >
-    {/* Forward a slot only when filled: SectionHeading checks Astro.slots.has. */}
     <SectionHeading
       titleId={titleId}
       title={title}
       description={description}
       class="max-w-[720px]"
     >
-      <slot name="title" slot={slots.has("title") ? "title" : "_"} />
-      <slot name="description" slot={slots.has("description") ? "description" : "_"} />
+      <slot name="title" slot="title" />
+      <slot name="description" slot="description" />
     </SectionHeading>
     <ul class={grid_cva({ columns })}>
       {

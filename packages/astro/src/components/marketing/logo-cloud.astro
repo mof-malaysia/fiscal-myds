@@ -1,7 +1,7 @@
 ---
 // registry:block — composed page section, installs to components/blocks
 import type { HTMLAttributes } from "astro/types";
-import { clx } from "@/lib/ftds/utils";
+import { clx, uniqueId } from "@/lib/ftds/utils";
 
 /**
  * LogoCloud lists the agencies or partners that use a service, as a quiet
@@ -39,7 +39,7 @@ const {
   title,
   logos,
   muted = true,
-  titleId = `logo-cloud-${crypto.randomUUID().slice(0, 8)}`,
+  titleId = uniqueId("logo-cloud"),
   class: className,
   ...props
 } = Astro.props;

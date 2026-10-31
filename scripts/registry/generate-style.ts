@@ -1,9 +1,16 @@
+import fs from "fs";
 import path from "path";
 import {
+  describeItem,
   readFileContent,
   registryItemRef,
   writeRegistry,
   REGISTRY_DIR,
+  REGISTRY_ITEM_SCHEMA,
+  VARIANTS_DIR,
+  titleFromName,
+  variantsItemName,
+  withVersions,
   type RegistryComponent,
 } from "./utils";
 
@@ -258,6 +265,49 @@ function toRegistryFileItem(component: RegistryComponent) {
   }));
 }
 
+const STYLE_DEPENDENCIES: Record<string, string> = JSON.parse(
+  readFileContent(path.join(__dirname, "../../packages/style/package.json")),
+).dependencies;
+
+/**
+ * One item per packages/style/variants file (`variants-button`): the classes a
+ * React and an Astro component share. Both depend on it, so a project that
+ * installs `button` and `astro-button` gets one copy.
+ */
+function generateVariantsComponents(): RegistryComponent[] {
+  return fs
+    .readdirSync(VARIANTS_DIR)
+    .filter((file) => file.endsWith(".ts"))
+    .sort()
+    .map((file) => {
+      const name = file.replace(/\.ts$/, "");
+      return describeItem(
+        {
+          $schema: REGISTRY_ITEM_SCHEMA,
+          name: variantsItemName(name),
+          type: "registry:ui",
+          dependencies: withVersions(
+            ["class-variance-authority"],
+            STYLE_DEPENDENCIES,
+          ),
+          registryDependencies: [],
+          files: [
+            {
+              path: `components/ui/${name}.variants.ts`,
+              content: readFileContent(path.join(VARIANTS_DIR, file)),
+              type: "registry:ui",
+            },
+          ],
+        },
+        {
+          title: `${titleFromName(name)} variants`,
+          description: `The cva classes the React and Astro ${name} components share, installed to components/ui/${name}.variants.ts.`,
+          categories: ["utilities"],
+        },
+      );
+    });
+}
+
 /**
  * Main function to generate all style components
  */
@@ -293,7 +343,9 @@ async function main() {
     toRegistryFileItem(component);
     log(`✓ Generated ${component.name}`);
   }
-  writeRegistry("style", components);
+  const variants = generateVariantsComponents();
+  log(`✓ Generated ${variants.length} variants items`);
+  writeRegistry("style", [...components, ...variants]);
   log(`Output: ${REGISTRY_OUTPUT_DIR}`);
 
   console.log("\n" + "=".repeat(60));

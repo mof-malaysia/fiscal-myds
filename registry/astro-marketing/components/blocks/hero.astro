@@ -1,7 +1,7 @@
 ---
 // registry:block — composed page section, installs to components/blocks
 import type { HTMLAttributes } from "astro/types";
-import { clx } from "@/lib/ftds/utils";
+import { clx, uniqueId } from "@/lib/ftds/utils";
 import Button from "@/components/ui/button.astro";
 import Tag from "@/components/ui/tag.astro";
 
@@ -52,7 +52,7 @@ const {
   primaryAction,
   secondaryAction,
   footnote,
-  titleId = `hero-${crypto.randomUUID().slice(0, 8)}`,
+  titleId = uniqueId("hero"),
   class: className,
   ...props
 } = Astro.props;

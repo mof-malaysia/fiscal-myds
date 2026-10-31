@@ -1,7 +1,7 @@
 ---
 // registry:block — composed page section, installs to components/blocks
 import type { HTMLAttributes } from "astro/types";
-import { clx } from "@/lib/ftds/utils";
+import { clx, uniqueId } from "@/lib/ftds/utils";
 import Button from "@/components/ui/button.astro";
 import SectionHeading from "@/components/ui/section-heading.astro";
 import { band_cva } from "@mof-malaysia/ftds-style/variants/cta-band";
@@ -47,27 +47,29 @@ const {
   primaryAction,
   secondaryAction,
   tone = "well",
-  titleId = `cta-band-${crypto.randomUUID().slice(0, 8)}`,
+  titleId = uniqueId("cta-band"),
   class: className,
   ...props
 } = Astro.props;
 
 const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
 ---
 
-<section aria-labelledby={titleId} class={clx(band_cva({ tone }), className)} {...props}>
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx(band_cva({ tone }), className)} {...props}>
   <div
     class="mx-auto flex w-full max-w-[1280px] flex-col gap-6 px-4 py-12 md:px-6 md:py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-12"
   >
-    {/* Forward a slot only when filled: SectionHeading checks Astro.slots.has. */}
     <SectionHeading
       titleId={titleId}
       title={title}
       description={description}
       class="max-w-[680px]"
     >
-      <slot name="title" slot={slots.has("title") ? "title" : "_"} />
-      <slot name="description" slot={slots.has("description") ? "description" : "_"} />
+      <slot name="title" slot="title" />
+      <slot name="description" slot="description" />
     </SectionHeading>
     <div class="flex shrink-0 flex-wrap items-center gap-3">
       <slot name="actions">

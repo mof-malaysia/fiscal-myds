@@ -40,8 +40,14 @@ const {
   ...props
 } = Astro.props;
 
-const hasTitle = Boolean(title) || Astro.slots.has("title");
-const hasDescription = Boolean(description) || Astro.slots.has("description");
+// Rendered, not Astro.slots.has: a block forwarding an empty slot still
+// "has" it, and would otherwise leave an empty h2
+const render = async (name: string) =>
+  Astro.slots.has(name) ? (await Astro.slots.render(name)).trim() : "";
+const titleHtml = await render("title");
+const descriptionHtml = await render("description");
+const hasTitle = Boolean(title || titleHtml);
+const hasDescription = Boolean(description || descriptionHtml);
 const hasChildren = Astro.slots.has("default");
 ---
 
@@ -58,12 +64,12 @@ const hasChildren = Astro.slots.has("default");
               : "text-headline",
           )}
         >
-          <slot name="title">{title}</slot>
+          {titleHtml ? <Fragment set:html={titleHtml} /> : title}
         </Heading>
       )}
       {hasDescription && (
         <p class="text-txt-black-700 text-body-lg">
-          <slot name="description">{description}</slot>
+          {descriptionHtml ? <Fragment set:html={descriptionHtml} /> : description}
         </p>
       )}
       <slot />

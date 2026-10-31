@@ -24,7 +24,7 @@
     {
       "name": "astro-breadcrumb",
       "title": "Breadcrumb (Astro)",
-      "description": "Breadcrumb shows where the current page sits and links back up the trail: Label type, parents in Ink Secondary, the current page in Ink, small chevrons between them, and no container.",
+      "description": "A trail of links showing where the current page sits in the site's hierarchy, with the current page last. Quiet navigation at the top of content pages.",
       "categories": [
         "astro",
         "core"
@@ -46,7 +46,7 @@
     {
       "name": "astro-button",
       "title": "Button (Astro)",
-      "description": "Button in the FTDS theme.",
+      "description": "Triggers an action or submits a form. One primary (blue) button per screen; tonal secondary, ghost and danger variants for everything else.",
       "categories": [
         "astro",
         "core"
@@ -56,15 +56,12 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-button"
       ],
       "files": [
         {
           "path": "components/ui/button.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/button.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -72,7 +69,7 @@
     {
       "name": "astro-callout",
       "title": "Callout (Astro)",
-      "description": "Callout is a status message about one page or task, with an icon in the variant's colour: `info` (default), `success`, `warning` or `danger`.",
+      "description": "A wash-coloured message with an icon for information, success, a warning or an error about the current page or task. It can carry an action and be dismissed.",
       "categories": [
         "astro",
         "core"
@@ -85,15 +82,12 @@
         "mof-malaysia/ftds/astro-icon-check-circle",
         "mof-malaysia/ftds/astro-icon-info",
         "mof-malaysia/ftds/astro-icon-warning",
-        "mof-malaysia/ftds/astro-icon-warning-circle"
+        "mof-malaysia/ftds/astro-icon-warning-circle",
+        "mof-malaysia/ftds/variants-callout"
       ],
       "files": [
         {
           "path": "components/ui/callout.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/callout.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -101,7 +95,7 @@
     {
       "name": "astro-card",
       "title": "Card (Astro)",
-      "description": "Card groups related content on its own surface: Sheet on a Paper page, or `tone=\"well\"` for grouped secondary content.",
+      "description": "Groups related content on its own surface, white on the page or Well for secondary content, with no border or shadow. Has header, content and footer parts.",
       "categories": [
         "astro",
         "core"
@@ -111,15 +105,12 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-card"
       ],
       "files": [
         {
           "path": "components/ui/card.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/card.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -127,26 +118,21 @@
     {
       "name": "astro-details",
       "title": "Details (Astro)",
-      "description": "Details hides a short piece of help behind a link-like trigger, such as \"Help with your IC number\".",
+      "description": "A link-like toggle that reveals a short piece of help, such as \"Help with your IC number\". Use it for information only some users need.",
       "categories": [
         "astro",
         "core"
       ],
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/astro-icon-chevron-right",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-link"
       ],
       "files": [
         {
           "path": "components/ui/details.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/link.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -154,7 +140,7 @@
     {
       "name": "astro-footer",
       "title": "Footer (Astro)",
-      "description": "Footer is the plain government footer every MOF site and service needs: one compact band with the copyright line, an optional \"last updated\" note and the required links.",
+      "description": "The plain government footer every service needs: one band with the copyright line, an optional \"last updated\" note and the required links.",
       "categories": [
         "astro",
         "core"
@@ -166,15 +152,12 @@
       "registryDependencies": [
         "mof-malaysia/ftds/astro-i18n",
         "mof-malaysia/ftds/astro-link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-footer"
       ],
       "files": [
         {
           "path": "components/ui/footer.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/footer.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -182,7 +165,7 @@
     {
       "name": "astro-inset-text",
       "title": "Inset Text (Astro)",
-      "description": "InsetText sets a passage apart from the text around it: a deadline, a requirement, a quote.",
+      "description": "Sets a passage apart from the text around it, such as a deadline, a requirement or a quote, on a grey Well with no icon.",
       "categories": [
         "astro",
         "core"
@@ -202,7 +185,7 @@
     {
       "name": "astro-link",
       "title": "Link (Astro)",
-      "description": "An `<a>` in the FTDS theme.",
+      "description": "A styled anchor for links in text and lists, with options for colour, underline and opening in a new tab. Pass render to use your router's link.",
       "categories": [
         "astro",
         "core"
@@ -212,15 +195,12 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-link"
       ],
       "files": [
         {
           "path": "components/ui/link.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/link.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -228,7 +208,7 @@
     {
       "name": "astro-masthead",
       "title": "Masthead (Astro)",
-      "description": "Masthead is the \"Official website of the Government of Malaysia\" bar at the very top of every government site, with a panel that explains how to tell the site is genuine.",
+      "description": "The \"Official Malaysia Government Website\" bar at the very top of every government site, with a panel that explains how to tell the site is genuine.",
       "categories": [
         "astro",
         "core"
@@ -253,7 +233,7 @@
     {
       "name": "astro-phase-banner",
       "title": "Phase Banner (Astro)",
-      "description": "PhaseBanner tells users which stage a service is at (Alpha, Beta, Maintenance) and invites feedback.",
+      "description": "A slim bar under the masthead that says a service is in Alpha or Beta (or under maintenance) and asks for feedback.",
       "categories": [
         "astro",
         "core"
@@ -275,7 +255,7 @@
     {
       "name": "astro-separator",
       "title": "Separator (Astro)",
-      "description": "Separator draws a single Hairline between two groups of content, horizontal or vertical, announced to screen readers as a separator.",
+      "description": "A single hairline between two groups of content, horizontal or vertical. Lines must earn their place; reach for spacing and tone first.",
       "categories": [
         "astro",
         "core"
@@ -295,16 +275,15 @@
     {
       "name": "astro-skiplink",
       "title": "Skiplink (Astro)",
-      "description": "Skiplink lets keyboard users jump past the masthead and navigation.",
+      "description": "A \"Skip to main content\" link that stays hidden until it gets keyboard focus. Put it first on every page so keyboard users can jump past the masthead and navigation.",
       "categories": [
         "astro",
         "core"
       ],
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
         "mof-malaysia/ftds/astro-i18n",
         "mof-malaysia/ftds/utils"
       ],
@@ -312,35 +291,26 @@
         {
           "path": "components/ui/skiplink.astro",
           "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/button.variants.ts",
-          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "astro-tag",
       "title": "Tag (Astro)",
-      "description": "Tag labels the status or category of an item: a wash background with matching coloured text.",
+      "description": "A small wash label for the status or category of an item, such as Paid, In review or Overdue. The words carry the meaning, never colour alone.",
       "categories": [
         "astro",
         "core"
       ],
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-tag"
       ],
       "files": [
         {
           "path": "components/ui/tag.astro",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/tag.variants.ts",
           "type": "registry:ui"
         }
       ]

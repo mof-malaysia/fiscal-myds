@@ -13,13 +13,13 @@ import { button_cva } from "@mof-malaysia/ftds-style/variants/button";
  * <Button variant="primary-fill" size="large" href="/pay">Start a payment</Button>
  * <Button variant="default-outline" type="submit">Send</Button>
  */
-type Props = Omit<HTMLAttributes<"button">, "class"> &
-  Pick<HTMLAttributes<"a">, "target" | "rel" | "download"> &
-  VariantProps<typeof button_cva> & {
-    /** Renders an `<a>` styled as a button. */
-    href?: string;
-    class?: string;
-  };
+type ButtonVariants = VariantProps<typeof button_cva> & { class?: string };
+
+/** With `href`, an `<a>` taking anchor attributes; without, a `<button>`. */
+type Props =
+  | (Omit<HTMLAttributes<"a">, "class"> & ButtonVariants & { href: string })
+  | (Omit<HTMLAttributes<"button">, "class"> &
+      ButtonVariants & { href?: undefined });
 
 const {
   variant = "primary-fill",
@@ -27,7 +27,6 @@ const {
   iconOnly = false,
   href,
   class: className,
-  type = "button",
   ...props
 } = Astro.props;
 
@@ -36,6 +35,10 @@ const icon_class = [
   "[&_svg]:block [&_svg]:shrink-0 [&_svg]:stroke-[1.5px]",
   size === "small" ? "[&_svg]:size-4" : "[&_svg]:size-5",
 ];
+
+// The rest of a destructured union isn't narrowed by `href`; without it,
+// these are the <button> branch's attributes
+const buttonProps = props as Omit<HTMLAttributes<"button">, "class">;
 
 const classes = clx(button_cva({ variant, size, iconOnly }), icon_class, className);
 ---
@@ -46,7 +49,7 @@ const classes = clx(button_cva({ variant, size, iconOnly }), icon_class, classNa
       <slot />
     </a>
   ) : (
-    <button type={type} class={classes} {...props}>
+    <button type="button" class={classes} {...buttonProps}>
       <slot />
     </button>
   )

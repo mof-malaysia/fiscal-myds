@@ -69,7 +69,9 @@ function main() {
   execSync("tsx scripts/registry/generate-icons.ts", { stdio: "inherit" });
   console.log("Generating style registry...");
   execSync("tsx scripts/registry/generate-style.ts", { stdio: "inherit" });
-  console.log("Generating Astro registries (astro-core, astro-marketing, astro-icons)...");
+  console.log(
+    "Generating Astro registries (astro-core, astro-marketing, astro-icons)...",
+  );
   execSync("tsx scripts/registry/generate-astro.ts", { stdio: "inherit" });
   console.log("");
 

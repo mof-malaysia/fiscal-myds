@@ -11,9 +11,8 @@ import {
   getIconExportMap,
   listComponents,
   registryItemRef,
-  variantImports,
-  variantsFile,
-  VARIANTS_PACKAGE,
+  variantsItemName,
+  withVersions as pinVersions,
   REGISTRY_ITEM_SCHEMA,
   type ComponentSource,
   type ComponentTier,
@@ -44,7 +43,6 @@ const BLOCK_MARKER = /^(?:"use client";\s*)?\/\/ registry:block\b/;
 
 const iconMap = getIconExportMap(ICONS_DIR);
 
-
 const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
   readFileContent(path.join(__dirname, "../../packages/react/package.json")),
 ).dependencies;
@@ -54,11 +52,7 @@ const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
  * doesn't pull in a new major (e.g. @tanstack/react-table v9).
  */
 function withVersions(deps: Iterable<string>): string[] {
-  return Array.from(deps)
-    .sort()
-    .map((dep) =>
-      PACKAGE_DEPENDENCIES[dep] ? `${dep}@${PACKAGE_DEPENDENCIES[dep]}` : dep,
-    );
+  return pinVersions(deps, PACKAGE_DEPENDENCIES);
 }
 
 /** App and marketing may depend on core; app and marketing never depend on each other. */
@@ -81,17 +75,7 @@ function generateComponentItem({
   filePath,
 }: ComponentSource): RegistryComponent {
   const content = expandIconBarrelImports(readFileContent(filePath), iconMap);
-  const { npmDependencies, localImports } = extractImports(content);
-
-  // Variants from packages/style ship inside the item: the classes the React
-  // and Astro components share (generate-astro.ts bundles the same files)
-  const variantFiles = variantImports(content).map(variantsFile);
-  npmDependencies.delete(VARIANTS_PACKAGE);
-  for (const file of variantFiles) {
-    extractImports(file.content).npmDependencies.forEach((dep) =>
-      npmDependencies.add(dep),
-    );
-  }
+  const { npmDependencies, localImports, variants } = extractImports(content);
 
   const deps = localImports
     .map((importPath) => mapToRegistryDependency(importPath, tier))
@@ -99,7 +83,11 @@ function generateComponentItem({
       (dep): dep is RegistryDependency => dep !== null && dep.name !== name,
     );
   assertTierBoundary(name, tier, deps);
-  const registryDeps = new Set(deps.map((dep) => registryItemRef(dep.name)));
+  const registryDeps = new Set(
+    [...deps.map((dep) => dep.name), ...variants.map(variantsItemName)].map(
+      registryItemRef,
+    ),
+  );
 
   const isBlock = tier !== "core" && BLOCK_MARKER.test(content);
   const target = isBlock
@@ -119,7 +107,6 @@ function generateComponentItem({
         type: isBlock ? "registry:component" : "registry:ui",
         ...(isBlock ? { target } : {}),
       },
-      ...variantFiles,
     ],
   };
 }

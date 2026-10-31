@@ -188,15 +188,12 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-button"
       ],
       "files": [
         {
           "path": "components/ui/button.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/button.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -220,15 +217,12 @@
         "mof-malaysia/ftds/icon-info",
         "mof-malaysia/ftds/icon-warning",
         "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-callout"
       ],
       "files": [
         {
           "path": "components/ui/callout.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/callout.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -245,15 +239,12 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-card"
       ],
       "files": [
         {
           "path": "components/ui/card.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/card.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -410,15 +401,12 @@
       ],
       "registryDependencies": [
         "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-footer"
       ],
       "files": [
         {
           "path": "components/ui/footer.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/footer.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -539,15 +527,12 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-link"
       ],
       "files": [
         {
           "path": "components/ui/link.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/link.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -869,19 +854,14 @@
         "data-display"
       ],
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-tag"
       ],
       "files": [
         {
           "path": "components/ui/tag.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "components/ui/tag.variants.ts",
           "type": "registry:ui"
         }
       ]

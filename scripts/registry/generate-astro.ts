@@ -2,17 +2,24 @@ import fs from "fs";
 import path from "path";
 import {
   describeItem,
+  extractImports,
+  iconItemName,
+  iconTitle,
+  listComponents,
   readFileContent,
   registryItemRef,
   rewriteVariantsImports,
-  variantImports,
-  variantsFile,
+  titleFromName,
+  variantsItemName,
+  withVersions,
   writeRegistry,
-  VARIANTS_PACKAGE,
   REGISTRY_ITEM_SCHEMA,
+  type ComponentSource,
+  type ComponentTier,
   type RegistryComponent,
   type RegistryName,
 } from "./utils";
+import { readDoc } from "../llms/content";
 
 /**
  * Generate the Astro registries (docs/rfc/astro.md):
@@ -23,15 +30,15 @@ import {
  * Source lives in packages/astro/src and imports FTDS the way an installed
  * project does. Item names carry an `astro-` prefix, since every registry
  * shares one namespace (`button` is the React one). Shared classes
- * (`@mof-malaysia/ftds-style/variants/<name>`) come from packages/style and
- * ship inside the item as components/ui/<name>.variants.ts, as
- * generate-components.ts does for React.
+ * (`@mof-malaysia/ftds-style/variants/<name>`) are `variants-<name>` items in
+ * the style registry, as they are for React.
  */
 
 const ROOT_DIR = path.join(__dirname, "../..");
 const ASTRO_SRC = path.join(ROOT_DIR, "packages/astro/src");
+const REACT_COMPONENTS = path.join(ROOT_DIR, "packages/react/src/components");
 
-const TIERS = ["core", "marketing"] as const;
+const TIERS = ["core", "marketing"] as const satisfies ComponentTier[];
 type AstroTier = (typeof TIERS)[number];
 const REGISTRY_OF: Record<AstroTier, RegistryName> = {
   core: "astro-core",
@@ -44,143 +51,103 @@ const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
 
 /** The first line of a block's frontmatter, as in the React source. */
 const BLOCK_MARKER = /^---\s*\n\/\/ registry:block\b/;
-/** A file that is one part of a larger component: `// part of card`. */
-const PART_MARKER = /^---\s*\n\/\/ part of ([a-z0-9-]+)/;
 
-export const astroItemName = (name: string) => `astro-${name}`;
+const astroItemName = (name: string) => `astro-${name}`;
 
-interface Source {
-  name: string;
-  tier: AstroTier;
-  files: string[];
+/** The registry item an `@/` import in Astro source comes from. */
+function aliasDependency(
+  specifier: string,
+  source: ComponentSource,
+  tierOf: Map<string, ComponentTier>,
+): string {
+  if (specifier === "@/lib/ftds/utils") return "utils";
+  if (specifier === "@/lib/ftds/i18n") return astroItemName("i18n");
+  const icon = specifier.match(/^@\/components\/ui\/icons\/(.+)\.astro$/);
+  if (icon) return astroItemName(iconItemName(icon[1]!));
+  const dep = specifier.match(
+    /^@\/components\/(?:ui|blocks)\/(.+)\.astro$/,
+  )?.[1];
+  const depTier = dep && tierOf.get(dep);
+  if (!depTier) {
+    // React components and app-tier items never reach the Astro registries
+    throw new Error(
+      `${source.filePath} imports ${specifier}, which the Astro registries don't ship`,
+    );
+  }
+  // Marketing may depend on core; core never on marketing
+  if (source.tier === "core" && depTier !== "core") {
+    throw new Error(`core/${source.name} depends on ${depTier}/${dep}`);
+  }
+  return astroItemName(dep);
 }
 
-/** Every component, its part files grouped with it; names are unique across tiers. */
-function listSources(): Source[] {
-  const sources = new Map<string, Source>();
-  const parts: { owner: string; file: string }[] = [];
-  for (const tier of TIERS) {
-    const dir = path.join(ASTRO_SRC, "components", tier);
-    for (const file of fs.readdirSync(dir).sort()) {
-      if (!file.endsWith(".astro")) continue;
-      const filePath = path.join(dir, file);
-      const part = readFileContent(filePath).match(PART_MARKER);
-      if (part) {
-        parts.push({ owner: part[1]!, file: filePath });
-        continue;
-      }
-      const name = file.replace(/\.astro$/, "");
-      if (sources.has(name)) {
-        throw new Error(`"${name}" exists in both ${sources.get(name)!.tier} and ${tier}`);
-      }
-      sources.set(name, { name, tier, files: [filePath] });
-    }
-  }
-  for (const { owner, file } of parts) {
-    const source = sources.get(owner);
-    if (!source) throw new Error(`${file} is part of unknown component "${owner}"`);
-    source.files.push(file);
-  }
-  return [...sources.values()];
-}
+function generateItem(
+  source: ComponentSource,
+  tierOf: Map<string, ComponentTier>,
+): RegistryComponent {
+  const content = readFileContent(source.filePath);
+  const frontmatter = content.slice(3, content.indexOf("\n---", 3));
+  const { npmDependencies, aliasImports, variants } =
+    extractImports(frontmatter);
+  npmDependencies.delete("astro");
 
-/** Module specifiers of the imports in an .astro frontmatter or a .ts file. */
-function importsOf(content: string): string[] {
-  const code = content.startsWith("---")
-    ? content.slice(3, content.indexOf("\n---", 3))
-    : content;
-  return [...code.matchAll(/^import\s[^;]*?from\s+["']([^"']+)["']/gm)].map(
-    (match) => match[1]!,
+  const isBlock = BLOCK_MARKER.test(content);
+  const target = `components/${isBlock ? "blocks" : "ui"}/${source.name}.astro`;
+  const registryDependencies = [
+    ...aliasImports.map((specifier) =>
+      aliasDependency(specifier, source, tierOf),
+    ),
+    ...variants.map(variantsItemName),
+  ];
+
+  return describe(
+    {
+      $schema: REGISTRY_ITEM_SCHEMA,
+      name: astroItemName(source.name),
+      type: isBlock ? "registry:block" : "registry:ui",
+      dependencies: withVersions(npmDependencies, PACKAGE_DEPENDENCIES),
+      registryDependencies: [
+        ...new Set(registryDependencies.map(registryItemRef)),
+      ].sort(),
+      files: [
+        {
+          path: target,
+          content: rewriteVariantsImports(content),
+          type: isBlock ? "registry:component" : "registry:ui",
+          ...(isBlock ? { target } : {}),
+        },
+      ],
+    },
+    source,
+    content,
   );
 }
 
-
-function generateItem(source: Source, tierOf: Map<string, AstroTier>): RegistryComponent {
-  const own = new Set(source.files.map((file) => path.basename(file, ".astro")));
-  const isBlock = BLOCK_MARKER.test(readFileContent(source.files[0]!));
-  const npm = new Set<string>();
-  const registryDeps = new Set<string>();
-  const variantFiles = new Map<string, RegistryComponent["files"][number]>();
-
-  const scan = (content: string, from: string) => {
-    for (const specifier of importsOf(content)) {
-      let match: RegExpMatchArray | null;
-      if (specifier === "@/lib/ftds/utils") {
-        registryDeps.add(registryItemRef("utils"));
-      } else if (specifier === "@/lib/ftds/i18n") {
-        registryDeps.add(registryItemRef(astroItemName("i18n")));
-      } else if ((match = specifier.match(/^@\/components\/ui\/icons\/(.+)\.astro$/))) {
-        registryDeps.add(registryItemRef(astroItemName(`icon-${match[1]}`)));
-      } else if (specifier.startsWith(`${VARIANTS_PACKAGE}/variants/`)) {
-        // Bundled below, from variantImports
-      } else if ((match = specifier.match(/^@\/components\/(?:ui|blocks)\/(.+)\.astro$/))) {
-        const dep = match[1]!;
-        if (own.has(dep)) continue;
-        const depTier = tierOf.get(dep);
-        if (!depTier) throw new Error(`${from} imports unknown Astro component ${dep}`);
-        // Marketing may depend on core; core never on marketing
-        if (source.tier === "core" && depTier !== "core") {
-          throw new Error(`core/${source.name} depends on ${depTier}/${dep}`);
-        }
-        registryDeps.add(registryItemRef(astroItemName(dep)));
-      } else if (specifier.startsWith("@/") || specifier.startsWith(".")) {
-        // React components and app-tier items never reach the Astro registries
-        throw new Error(`${from} imports ${specifier}, which the Astro registries don't ship`);
-      } else if (!specifier.startsWith("astro")) {
-        const [scope, name] = specifier.split("/");
-        npm.add(specifier.startsWith("@") ? `${scope}/${name}` : scope!);
-      }
-    }
-  };
-
-  const files = source.files.map((file) => {
-    const raw = readFileContent(file);
-    scan(raw, file);
-    for (const name of variantImports(raw)) {
-      const variants = variantsFile(name);
-      variantFiles.set(name, variants);
-      scan(variants.content, variants.path);
-    }
-    const content = rewriteVariantsImports(raw);
-    const target = `components/${isBlock ? "blocks" : "ui"}/${path.basename(file)}`;
-    return {
-      path: target,
-      content,
-      type: isBlock ? "registry:component" : "registry:ui",
-      ...(isBlock ? { target } : {}),
-    };
-  });
-
-  return {
-    $schema: REGISTRY_ITEM_SCHEMA,
-    name: astroItemName(source.name),
-    type: isBlock ? "registry:block" : "registry:ui",
-    dependencies: [...npm]
-      .sort()
-      .map((dep) => (PACKAGE_DEPENDENCIES[dep] ? `${dep}@${PACKAGE_DEPENDENCIES[dep]}` : dep)),
-    registryDependencies: [...registryDeps].sort(),
-    files: [...files, ...variantFiles.values()],
-  };
-}
-
-/** Title and description from the component's JSDoc: its first sentence. */
-function describe(item: RegistryComponent, source: Source): RegistryComponent {
-  const content = readFileContent(source.files[0]!);
-  const doc = content.match(/\/\*\*([\s\S]*?)\*\//)?.[1] ?? "";
-  const paragraph = doc
+/**
+ * Title and description from the React doc (<name>.md, the one llms.txt
+ * uses) when the component exists in both stacks, otherwise the first
+ * sentence of the Astro component's JSDoc.
+ */
+function describe(
+  item: RegistryComponent,
+  source: ComponentSource,
+  content: string,
+): RegistryComponent {
+  const docFile = path.join(REACT_COMPONENTS, source.tier, `${source.name}.md`);
+  const doc = fs.existsSync(docFile) ? readDoc(docFile) : null;
+  const jsdoc = (content.match(/\/\*\*([\s\S]*?)\*\//)?.[1] ?? "")
     .split(/\n\s*\*\s*\n/)[0]!
     .replace(/^\s*\*\s?/gm, "")
     .replace(/\s+/g, " ")
     .trim();
-  const sentence = paragraph.match(/^.*?\.(?=\s|$)/)?.[0] ?? paragraph;
-  const title = source.name
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
   return describeItem(item, {
-    title: `${title} (Astro)`,
-    description: sentence || `The FTDS ${title} as a native Astro component.`,
-    categories: ["astro", item.type === "registry:block" ? "blocks" : source.tier],
+    title: `${doc?.title ?? titleFromName(source.name)} (Astro)`,
+    description:
+      doc?.description ?? jsdoc.match(/^.*?\.(?=\s|$)/)?.[0] ?? jsdoc,
+    categories: [
+      "astro",
+      item.type === "registry:block" ? "blocks" : source.tier,
+    ],
   });
 }
 
@@ -220,7 +187,7 @@ function generateIconItems(): RegistryComponent[] {
       return describeItem(
         {
           $schema: REGISTRY_ITEM_SCHEMA,
-          name: astroItemName(`icon-${name}`),
+          name: astroItemName(iconItemName(name)),
           type: "registry:ui",
           dependencies: [],
           registryDependencies: [],
@@ -233,7 +200,7 @@ function generateIconItems(): RegistryComponent[] {
           ],
         },
         {
-          title: `${name.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase())} icon (Astro)`,
+          title: `${iconTitle(name)} (Astro)`,
           description: `The ${name} icon as an Astro component, installed to components/ui/icons/${file}.`,
           categories: ["astro", "icons"],
         },
@@ -242,7 +209,11 @@ function generateIconItems(): RegistryComponent[] {
 }
 
 function main() {
-  const sources = listSources();
+  const sources = listComponents({
+    dir: path.join(ASTRO_SRC, "components"),
+    tiers: TIERS,
+    ext: ".astro",
+  });
   const tierOf = new Map(sources.map((source) => [source.name, source.tier]));
 
   // Build every item first so a boundary violation fails before anything is written
@@ -251,7 +222,7 @@ function main() {
     marketing: [],
   };
   for (const source of sources) {
-    items[source.tier].push(describe(generateItem(source, tierOf), source));
+    items[source.tier as AstroTier].push(generateItem(source, tierOf));
   }
   const icons = generateIconItems();
 

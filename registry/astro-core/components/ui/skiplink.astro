@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from "astro/types";
 import { clx } from "@/lib/ftds/utils";
 import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
-import { button_cva } from "@/components/ui/button.variants";
+import Button from "@/components/ui/button.astro";
 
 /**
  * Skiplink lets keyboard users jump past the masthead and navigation. Put it
@@ -28,11 +28,11 @@ type Props = Omit<HTMLAttributes<"a">, "class" | "lang"> & {
 const { href = "#main", lang: langProp, class: className, ...props } = Astro.props;
 const lang = resolveLang(langProp, Astro.currentLocale);
 ---
-
-<a
+<Button
   href={href}
+  variant="primary-outline"
+  size="small"
   class={clx(
-    button_cva({ variant: "primary-outline", size: "small" }),
     // Visually hidden until focused
     "shadow-context-menu",
     "z-skiplink absolute size-[1px]",
@@ -49,4 +49,4 @@ const lang = resolveLang(langProp, Astro.currentLocale);
   {...props}
 >
   <slot>{label(lang, "skipToContent")}</slot>
-</a>
+</Button>

@@ -15,7 +15,6 @@
 const ms = {
   skipToContent: "Langkau ke kandungan utama",
   breadcrumb: "Serbuk roti",
-  dismiss: "Tutup",
   mastheadTitle: "Laman web rasmi Kerajaan Malaysia",
   mastheadTrigger: "Begini cara mengenalinya",
   mastheadOfficialTitle: "Laman web rasmi menggunakan .gov.my",
@@ -36,7 +35,6 @@ export type LabelKey = keyof typeof ms;
 const en: Record<LabelKey, string> = {
   skipToContent: "Skip to main content",
   breadcrumb: "Breadcrumb",
-  dismiss: "Dismiss",
   mastheadTitle: "Official website of the Government of Malaysia",
   mastheadTrigger: "Here's how you know",
   mastheadOfficialTitle: "Official websites use .gov.my",

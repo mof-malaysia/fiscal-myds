@@ -1,7 +1,7 @@
 ---
 // registry:block — composed page section, installs to components/blocks
 import type { HTMLAttributes } from "astro/types";
-import { clx } from "@/lib/ftds/utils";
+import { clx, uniqueId } from "@/lib/ftds/utils";
 import SectionHeading from "@/components/ui/section-heading.astro";
 
 /**
@@ -35,7 +35,7 @@ type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
 const {
   title,
   items,
-  titleId = `testimonial-${crypto.randomUUID().slice(0, 8)}`,
+  titleId = uniqueId("testimonial"),
   class: className,
   ...props
 } = Astro.props;
@@ -60,9 +60,8 @@ const avatarClass =
   <div
     class="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-4 py-12 md:px-6 md:py-16 lg:py-24"
   >
-    {/* Forward a slot only when filled: SectionHeading checks Astro.slots.has. */}
     <SectionHeading titleId={titleId} title={title} class={clx(single && "text-center")}>
-      <slot name="title" slot={slots.has("title") ? "title" : "_"} />
+      <slot name="title" slot="title" />
     </SectionHeading>
     {
       single && first ? (

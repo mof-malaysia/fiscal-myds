@@ -1,6 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { clx } from "@/lib/ftds/utils";
+import { clx, uniqueId } from "@/lib/ftds/utils";
 import Link from "@/components/ui/link.astro";
 import { footer_link_class } from "@/components/ui/footer.variants";
 
@@ -55,7 +55,7 @@ const {
   as: Tag = "footer",
   logoTitle,
   groups = [],
-  titleId = `site-footer-${crypto.randomUUID().slice(0, 8)}`,
+  titleId = uniqueId("site-footer"),
   class: className,
   ...props
 } = Astro.props;

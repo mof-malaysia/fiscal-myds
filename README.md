@@ -170,7 +170,7 @@ A second distribution for sites whose job is to inform or persuade: agency pages
 
 - **Scope**: a selective subset of core (the pieces marketing pages need) and the marketing tier. App components are never part of it.
 - **Not a mirror**: Astro can have marketing and content components React doesn't.
-- **Same look**: components in both stacks share their classes from `packages/style/variants` (installed as `components/ui/<name>.variants.ts`), and both use the same `ftds-init` styles.
+- **Same look**: components in both stacks share their classes from `packages/style/variants` (the `variants-<name>` items, installed as `components/ui/<name>.variants.ts`), and both use the same `ftds-init` styles.
 - **Built-in labels** in Bahasa Melayu (default) and English, from `astro-i18n`.
 - **Requirements**: Astro 7+ and Tailwind v4.
 

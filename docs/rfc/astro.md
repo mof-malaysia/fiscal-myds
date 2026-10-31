@@ -34,7 +34,7 @@ packages/astro/src/
   icons/<name>.astro                  generated from packages/react/src/svg/icons
   scripts/<name>.ts                   native-first behaviour modules (Phase 2)
   i18n/                               BM/EN labels
-packages/style/variants/<name>.ts   cva shared by both stacks, installed as components/ui/<name>.variants.ts
+packages/style/variants/<name>.ts   cva shared by both stacks; registry item variants-<name>
 registry/astro-core/  registry/astro-marketing/  registry/astro-icons/
 templates/astro-starter/              (Phase 4)
 ```

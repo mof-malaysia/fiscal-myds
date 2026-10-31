@@ -26,12 +26,13 @@ registry/
 ├── icons/                        # One item per icon, named icon-<name>
 │   ├── registry.json
 │   └── components/ui/icons/*.tsx
-├── style/                        # ftds-init + colors, theme-light, theme-dark, theme-config, base-styles
+├── style/                        # ftds-init + colors, theme-light, theme-dark, theme-config, base-styles, variants-<name>
 │   ├── registry.json
-│   └── styles/
+│   ├── styles/
+│   └── components/ui/*.variants.ts
 ├── astro-core/                   # FTDS for Astro: core subset + astro-i18n, named astro-<name>
 │   ├── registry.json
-│   ├── components/ui/*.{astro,variants.ts}
+│   ├── components/ui/*.astro
 │   └── lib/ftds/i18n/
 ├── astro-marketing/              # FTDS for Astro: marketing components and blocks
 │   ├── registry.json
@@ -54,7 +55,7 @@ Every item has one address, whatever its tier:
 
 A component goes in the lowest tier that every consumer of it belongs to. App and Marketing items may depend on Core; App and Marketing never depend on each other (the generator fails the build if they do). Every tier installs flat into `components/ui/`, and every item shares one namespace, so names are unique across all registries (the build fails on a duplicate). That is why icons carry an `icon-` prefix: `icon-button` is the icon, `button` the component. Astro items carry an `astro-` prefix for the same reason. Blocks install into `components/blocks/`.
 
-Classes a React and an Astro component share live in `packages/style/variants/<name>.ts`. Both import them as `@mof-malaysia/ftds-style/variants/<name>`; the generators ship the file inside every item that imports it, installed as `components/ui/<name>.variants.ts`, and rewrite the import to match.
+Classes a React and an Astro component share live in `packages/style/variants/<name>.ts`. Both import them as `@mof-malaysia/ftds-style/variants/<name>`; each file is its own item in the style registry, `variants-<name>`, installed as `components/ui/<name>.variants.ts`. The React and Astro items depend on it (so a project with both gets one copy), and the generators rewrite the import to match.
 
 - **Core (40)**: alert-dialog, avatar, backlink, breadcrumb, button, callout, card, checkbox, cookie-banner, details, dialog, field, fieldset, footer, form, input, inset-text, label, link, masthead, menu, phase-banner, pill, popover, radio, scroll-area, select, separator, skeleton, skiplink, spinner, switch, tabs, tag, textarea, theme-switch, toast, toggle, toggle-group, tooltip. Plus `utils` and `hooks`.
 - **App (34)**: app-shell, autocomplete, calendar, character-count, checkbox-group, combobox, command, context-menu, data-table, date-field, date-picker, daterange-picker, drawer, empty-state, error-summary, file-upload, menubar, meter, number-field, otp-field, page-header, pagination, panel, password-input, preview-card, progress, sheet, slider, stat, stepper, summary-list, table, task-list, toolbar.

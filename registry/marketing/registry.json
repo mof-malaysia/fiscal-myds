@@ -78,22 +78,17 @@
         "blocks"
       ],
       "type": "registry:block",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/section-heading",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-cta-band"
       ],
       "files": [
         {
           "path": "components/blocks/cta-band.tsx",
           "type": "registry:component",
           "target": "components/blocks/cta-band.tsx"
-        },
-        {
-          "path": "components/ui/cta-band.variants.ts",
-          "type": "registry:ui"
         }
       ]
     },
@@ -127,24 +122,19 @@
         "blocks"
       ],
       "type": "registry:block",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/icon-arrow-forward",
         "mof-malaysia/ftds/link",
         "mof-malaysia/ftds/section-heading",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-feature-grid"
       ],
       "files": [
         {
           "path": "components/blocks/feature-grid.tsx",
           "type": "registry:component",
           "target": "components/blocks/feature-grid.tsx"
-        },
-        {
-          "path": "components/ui/feature-grid.variants.ts",
-          "type": "registry:ui"
         }
       ]
     },
@@ -292,22 +282,17 @@
         "blocks"
       ],
       "type": "registry:block",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/section-heading",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-stats-band"
       ],
       "files": [
         {
           "path": "components/blocks/stats-band.tsx",
           "type": "registry:component",
           "target": "components/blocks/stats-band.tsx"
-        },
-        {
-          "path": "components/ui/stats-band.variants.ts",
-          "type": "registry:ui"
         }
       ]
     },

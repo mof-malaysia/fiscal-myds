@@ -24,6 +24,7 @@ export function ftdsAstroPaths() {
     name: "ftds-astro-paths",
     enforce: "pre",
     resolveId(id) {
+      if (!id.startsWith("@/")) return null;
       if (id === "@/lib/ftds/utils")
         return path.join(REACT_SRC, "utils/index.ts");
       if (id === "@/lib/ftds/i18n") return path.join(SRC, "i18n/index.ts");

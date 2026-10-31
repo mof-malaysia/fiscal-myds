@@ -3,5 +3,5 @@
   "printWidth": 80,
   "sortPackageJson": false,
   "sortTailwindcss": {},
-  "ignorePatterns": ["registry/", "registry.json"]
+  "ignorePatterns": ["/registry/", "/registry.json"]
 }
