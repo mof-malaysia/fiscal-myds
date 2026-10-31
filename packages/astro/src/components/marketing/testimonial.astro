@@ -1,0 +1,130 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import SectionHeading from "@/components/ui/section-heading.astro";
+
+/**
+ * Testimonial shows what people say about a service. One quote renders as a
+ * large centred pull quote; two or three render as a grid of Sheet panels.
+ * Each quote has the person's name, an optional role and an optional avatar.
+ * Marked up as `<figure>` / `<blockquote>` / `<figcaption>`. Slot: `title`.
+ *
+ * @example
+ * <Testimonial
+ *   items={[{ quote: "I paid my assessment in five minutes.", name: "Nurul Aina", role: "Business owner, Shah Alam" }]}
+ * />
+ */
+interface TestimonialItem {
+  quote: string;
+  name: string;
+  role?: string;
+  /** Avatar image URL. Decorative: the name is the label. */
+  avatar?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  /** One to three quotes. Extra items are dropped. */
+  items: TestimonialItem[];
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  items,
+  titleId = `testimonial-${crypto.randomUUID().slice(0, 8)}`,
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const shown = items.slice(0, 3);
+const first = shown[0];
+const single = shown.length === 1;
+
+// Avatar markup inlined (core Avatar is not in the Astro set). The image is
+// decorative: the name sits beside it.
+const avatarClass =
+  "bg-bg-primary-50 relative inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full align-middle select-none";
+---
+
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx("bg-bg-gray-50 font-body w-full", className)}
+  {...props}
+>
+  <div
+    class="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-4 py-12 md:px-6 md:py-16 lg:py-24"
+  >
+    {/* Forward a slot only when filled: SectionHeading checks Astro.slots.has. */}
+    <SectionHeading titleId={titleId} title={title} class={clx(single && "text-center")}>
+      <slot name="title" slot={slots.has("title") ? "title" : "_"} />
+    </SectionHeading>
+    {
+      single && first ? (
+        <figure class="mx-auto flex max-w-[860px] flex-col items-center gap-8 text-center">
+          <blockquote class="text-txt-black-900 text-heading-2xs md:text-heading-xs font-medium tracking-[-0.01em] text-balance">
+            <p>{first.quote}</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3">
+            {first.avatar && (
+              <span class={avatarClass}>
+                <img
+                  src={first.avatar}
+                  alt=""
+                  width={44}
+                  height={44}
+                  loading="lazy"
+                  class="size-full object-cover"
+                />
+              </span>
+            )}
+            <span class="flex flex-col text-left">
+              <span class="text-txt-black-900 text-body-md font-semibold">{first.name}</span>
+              {first.role && <span class="text-txt-black-700 text-body-sm">{first.role}</span>}
+            </span>
+          </figcaption>
+        </figure>
+      ) : (
+        <ul
+          class={clx(
+            "grid grid-cols-1 gap-6 md:grid-cols-2",
+            shown.length === 3 && "lg:grid-cols-3",
+          )}
+        >
+          {shown.map((item) => (
+            <li class="flex">
+              <figure class="bg-bg-white p-surface flex w-full flex-col justify-between gap-6 rounded-lg">
+                <blockquote class="text-txt-black-900 text-body-lg">
+                  <p>{item.quote}</p>
+                </blockquote>
+                <figcaption class="flex items-center gap-3">
+                  {item.avatar && (
+                    <span class={avatarClass}>
+                      <img
+                        src={item.avatar}
+                        alt=""
+                        width={44}
+                        height={44}
+                        loading="lazy"
+                        class="size-full object-cover"
+                      />
+                    </span>
+                  )}
+                  <span class="flex flex-col text-left">
+                    <span class="text-txt-black-900 text-body-md font-semibold">{item.name}</span>
+                    {item.role && <span class="text-txt-black-700 text-body-sm">{item.role}</span>}
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>

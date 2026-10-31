@@ -3,13 +3,15 @@ import path from "path";
 
 /**
  * Convert packages/react/src/svg/icons/*.svg into React components in
- * packages/react/src/icons, then rewrite the icons barrel (index.ts).
- * The output directory is wiped first, so edit the SVGs, not the .tsx files.
+ * packages/react/src/icons (plus the icons barrel, index.ts) and Astro
+ * components in packages/astro/src/icons. Both output directories are wiped
+ * first, so edit the SVGs, not the generated files.
  */
 
 const REACT_DIR = path.join(__dirname, "../../packages/react/src");
 const SVG_DIR = path.join(REACT_DIR, "svg/icons");
 const ICONS_DIR = path.join(REACT_DIR, "icons");
+const ASTRO_ICONS_DIR = path.join(__dirname, "../../packages/astro/src/icons");
 
 // Agency and file-type acronyms stay upper case in the component name
 const ACRONYMS = new Set([
@@ -104,12 +106,32 @@ export const ${name}Icon: FunctionComponent<SVGProps<SVGSVGElement>> = (props) =
     return ${toReactAttrs(svg)}
 }`;
 
+// Astro passes attributes through as written, so only the colour changes
+const astroIconTemplate = (name: string, svg: string) => `---
+import type { HTMLAttributes } from "astro/types";
+
+/** ${name} icon. Props go to the <svg>, e.g. class="size-5". */
+type Props = HTMLAttributes<"svg">;
+---
+
+${svg
+  .trim()
+  .replace(
+    `xmlns="http://www.w3.org/2000/svg"`,
+    `xmlns="http://www.w3.org/2000/svg" {...Astro.props}`,
+  )
+  .replaceAll(`fill="#18181B"`, `fill="currentColor"`)
+  .replaceAll(`stroke="#18181B"`, `stroke="currentColor"`)}
+`;
+
 const svgFiles = fs
   .readdirSync(SVG_DIR)
   .filter((file) => path.extname(file) === ".svg");
 
 fs.rmSync(ICONS_DIR, { recursive: true, force: true });
 fs.mkdirSync(ICONS_DIR);
+fs.rmSync(ASTRO_ICONS_DIR, { recursive: true, force: true });
+fs.mkdirSync(ASTRO_ICONS_DIR, { recursive: true });
 
 for (const file of svgFiles) {
   const name = path.basename(file, ".svg");
@@ -119,6 +141,11 @@ for (const file of svgFiles) {
     iconTemplate(toPascalCase(name), svg),
     "utf-8",
   );
+  fs.writeFileSync(
+    path.join(ASTRO_ICONS_DIR, `${name}.astro`),
+    astroIconTemplate(toPascalCase(name), svg),
+    "utf-8",
+  );
 }
 
 const barrel = svgFiles
@@ -126,4 +153,4 @@ const barrel = svgFiles
   .join("\n");
 fs.writeFileSync(path.join(ICONS_DIR, "index.ts"), barrel);
 
-console.log(`✅ Converted ${svgFiles.length} icons`);
+console.log(`✅ Converted ${svgFiles.length} icons (React and Astro)`);

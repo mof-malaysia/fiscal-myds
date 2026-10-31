@@ -22,7 +22,7 @@ FTDS is largely managed by [Turborepo](https://turbo.build/). If you would like 
 
 ## Coding standards
 
-Formatting is defined in [.prettierrc](./.prettierrc) and lint rules in [.oxlintrc.json](./.oxlintrc.json) ([oxlint](https://oxc.rs/docs/guide/usage/linter)). `apps/docs` is not linted.
+Formatting is defined in [.oxfmtrc.json](./.oxfmtrc.json) ([oxfmt](https://oxc.rs/docs/guide/usage/formatter)) and lint rules in [.oxlintrc.json](./.oxlintrc.json) ([oxlint](https://oxc.rs/docs/guide/usage/linter)). `apps/docs` is not linted.
 
 ```sh
 pnpm run lint        # oxlint, fails on any warning
@@ -56,7 +56,7 @@ Guides for agents live in `docs/guides/`, and the rules at the top of `llms.txt`
 
 Before every commit, in parallel:
 
-- Prettier on staged `.ts`, `.tsx` and `.md` files, re-staging the fixes
+- oxfmt on staged `.ts`, `.tsx` and `.md` files, re-staging the fixes
 - `pnpm lint` across the workspace
 - `pnpm typecheck` across the workspace
 

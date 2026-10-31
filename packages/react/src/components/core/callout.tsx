@@ -8,7 +8,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 import { clx } from "../../utils";
 import { CheckCircleIcon } from "../../icons/check-circle";
 import {
@@ -20,29 +20,9 @@ import {
 import { Button, ButtonIcon } from "./button";
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
+import { calloutVariants } from "@mof-malaysia/ftds-style/variants/callout";
 
 type CalloutVariant = "success" | "warning" | "info" | "danger";
-
-const calloutVariants = cva(
-  [
-    "flex justify-between items-center gap-2",
-    "p-3 rounded-md w-full",
-    "[&:has([role=definition])]:items-start",
-  ],
-  {
-    variants: {
-      variant: {
-        success: "bg-bg-success-50 text-txt-success",
-        warning: "bg-bg-warning-50 text-txt-warning",
-        info: "bg-bg-primary-50 text-txt-primary",
-        danger: "bg-bg-danger-50 text-txt-danger",
-      },
-    },
-    defaultVariants: {
-      variant: "info",
-    },
-  },
-);
 
 const iconMap: Record<CalloutVariant, ReactNode> = {
   success: <CheckCircleIcon className="size-5 shrink-0" />,
@@ -52,8 +32,7 @@ const iconMap: Record<CalloutVariant, ReactNode> = {
 };
 
 interface CalloutProps
-  extends VariantProps<typeof calloutVariants>,
-    ComponentProps<"div"> {
+  extends VariantProps<typeof calloutVariants>, ComponentProps<"div"> {
   dismissible?: boolean;
   onDismiss?: () => void;
   /** Accessible name of the ✕ button `dismissible` adds. @default "Dismiss" */

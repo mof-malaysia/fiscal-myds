@@ -6,9 +6,13 @@ import {
 } from "react";
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
-import { cva, VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 import { clx } from "../../utils";
 import { Link } from "./link";
+import {
+  footer_cva,
+  footer_link_class,
+} from "@mof-malaysia/ftds-style/variants/footer";
 
 /**
  * Footer is the plain government footer every MOF site and service needs:
@@ -31,24 +35,9 @@ import { Link } from "./link";
  *   </FooterLinks>
  * </Footer>
  */
-const footer_cva = cva(
-  [
-    "font-body text-content text-txt-black-700 w-full border-t border-otl-gray-200 print:hidden",
-  ],
-  {
-    variants: {
-      tone: {
-        paper: "bg-bg-gray-50",
-        well: "bg-bg-washed",
-      },
-    },
-    defaultVariants: { tone: "paper" },
-  },
-);
 
 interface FooterProps
-  extends useRender.ComponentProps<"footer">,
-    VariantProps<typeof footer_cva> {
+  extends useRender.ComponentProps<"footer">, VariantProps<typeof footer_cva> {
   /** Class for the inner max-width row. */
   containerClassName?: string;
 }
@@ -131,9 +120,6 @@ const FooterLinks: ForwardRefExoticComponent<
   </nav>
 ));
 FooterLinks.displayName = "FooterLinks";
-
-/** Ink Secondary link that darkens on hover; shared with the marketing SiteFooterLink. */
-const footer_link_class = "text-txt-black-700 hover:text-txt-black-900";
 
 interface FooterLinkProps extends ComponentProps<typeof Link> {}
 /** One required link, rendered inside a list item. */

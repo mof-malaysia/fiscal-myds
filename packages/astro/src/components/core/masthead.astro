@@ -1,0 +1,117 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import MalaysiaFlag from "@/components/ui/icons/malaysia-flag.astro";
+import ChevronDown from "@/components/ui/icons/chevron-down.astro";
+import Putrajaya from "@/components/ui/icons/putrajaya.astro";
+import Lock2 from "@/components/ui/icons/lock-2.astro";
+
+/**
+ * Masthead is the "Official website of the Government of Malaysia" bar at the
+ * very top of every government site, with a panel that explains how to tell
+ * the site is genuine. `<Masthead />` alone renders the full standard
+ * masthead in the page's language (BM by default).
+ *
+ * It is a native `<details>`: the header row is the `<summary>`, so it opens
+ * and closes with JavaScript off. Hidden when printing and excluded from
+ * search snippets. Put it after the Skiplink, before the PhaseBanner and the
+ * navigation; don't make it sticky.
+ *
+ * Override the texts with `title` and `trigger` (or the `title` / `trigger`
+ * slots), and replace the two explanatory sections with the `content` slot.
+ *
+ * @example
+ * <Masthead />
+ * <Masthead lang="en" />
+ */
+type Props = Omit<HTMLAttributes<"div">, "class" | "lang" | "title"> & {
+  /** Header text. Defaults to the dictionary's `mastheadTitle`. */
+  title?: string;
+  /** Toggle text, visually hidden on small screens. Defaults to `mastheadTrigger`. */
+  trigger?: string;
+  /** Starts with the panel open. */
+  open?: boolean;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  title,
+  trigger,
+  open = false,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+
+const sections = [
+  {
+    icon: Putrajaya,
+    title: label(lang, "mastheadOfficialTitle"),
+    body: label(lang, "mastheadOfficialBody"),
+  },
+  {
+    icon: Lock2,
+    title: label(lang, "mastheadSecureTitle"),
+    body: label(lang, "mastheadSecureBody"),
+  },
+];
+---
+
+<div
+  id="masthead"
+  class={clx("bg-bg-washed print:hidden", className)}
+  data-nosnippet
+  {...props}
+>
+  <details class="group mx-auto grid w-full max-w-screen-xl outline-none print:hidden" open={open}>
+    <summary
+      class="focus-visible:ring-fr-primary flex cursor-pointer list-none items-center gap-2 overflow-x-hidden px-4.5 py-2 outline-none focus-visible:ring focus-visible:ring-inset sm:py-1 md:px-6 [&::-webkit-details-marker]:hidden"
+    >
+      <MalaysiaFlag class="inline-block aspect-auto w-fit shrink-0" aria-hidden="true" />
+      <span
+        class="text-txt-black-700 text-body-sm flex w-full items-center justify-between truncate sm:justify-start"
+      >
+        <span class="text-txt-black-700 text-body-sm truncate sm:max-w-full sm:flex-grow-0">
+          <slot name="title">{title ?? label(lang, "mastheadTitle")}</slot>
+        </span>
+        <span
+          class="text-txt-primary bg-otl-gray-200 flex items-center gap-0.5 rounded-md p-1 px-1 sm:bg-transparent sm:pl-1.5 xl:rounded-sm"
+        >
+          <span
+            class="text-txt-primary sr-only tracking-[-0.01em] select-none sm:not-sr-only"
+          >
+            <slot name="trigger">{trigger ?? label(lang, "mastheadTrigger")}</slot>
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            class="size-4 rotate-0 transform transition-transform group-open:rotate-180 motion-reduce:transition-none"
+          />
+        </span>
+      </span>
+    </summary>
+    <div
+      class="flex flex-col gap-4.5 px-4.5 pt-3 pb-6 sm:grid-cols-2 sm:flex-row sm:pt-6 sm:pb-8 md:px-6"
+    >
+      <slot name="content">
+        {
+          sections.map(({ icon: Icon, title, body }) => (
+            <div class="flex w-full gap-3">
+              <Icon class="text-txt-black-500 size-6 shrink-0" aria-hidden="true" />
+              <div class="space-y-1.5">
+                <p class="text-txt-black-900 text-body-sm sm:text-body-md font-medium">
+                  {title}
+                </p>
+                <p class="text-txt-black-700 text-body-sm max-w-[50ch] text-balance">
+                  {body}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </slot>
+    </div>
+  </details>
+</div>

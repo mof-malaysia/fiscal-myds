@@ -1,0 +1,52 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import { button_cva } from "@/components/ui/button.variants";
+
+/**
+ * Skiplink lets keyboard users jump past the masthead and navigation. Put it
+ * first on the page; it stays visually hidden until it gets focus, then shows
+ * near the top left styled as a primary-outline button (absolutely positioned, so give
+ * the page wrapper `relative`).
+ *
+ * `href` defaults to `#main`; give the target `tabindex="-1"` so focus moves
+ * to it in every browser. The text comes from the dictionary's
+ * `skipToContent`; the default slot overrides it.
+ *
+ * @example
+ * <Skiplink />
+ * <main id="main" tabindex="-1">...</main>
+ */
+type Props = Omit<HTMLAttributes<"a">, "class" | "lang"> & {
+  /** The target anchor, matching the main content's `id`. */
+  href?: string;
+  lang?: Lang;
+  class?: string;
+};
+
+const { href = "#main", lang: langProp, class: className, ...props } = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+---
+
+<a
+  href={href}
+  class={clx(
+    button_cva({ variant: "primary-outline", size: "small" }),
+    // Visually hidden until focused
+    "shadow-context-menu",
+    "z-skiplink absolute size-[1px]",
+    "overflow-hidden",
+    "whitespace-nowrap",
+    "[clip-path:inset(50%)]",
+    "focus:h-auto focus:w-auto",
+    "focus:top-11 focus:left-4",
+    "focus:[clip-path:none]",
+    "transition-all duration-500 ease-in-out",
+    "opacity-0 focus:opacity-100",
+    className,
+  )}
+  {...props}
+>
+  <slot>{label(lang, "skipToContent")}</slot>
+</a>

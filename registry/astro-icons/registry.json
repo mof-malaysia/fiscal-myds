@@ -1,0 +1,3967 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-astro-icons",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "astro-icon-accessible",
+      "title": "Accessible icon (Astro)",
+      "description": "The accessible icon as an Astro component, installed to components/ui/icons/accessible.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/accessible.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-align-center",
+      "title": "Align center icon (Astro)",
+      "description": "The align-center icon as an Astro component, installed to components/ui/icons/align-center.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-center.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-align-justify",
+      "title": "Align justify icon (Astro)",
+      "description": "The align-justify icon as an Astro component, installed to components/ui/icons/align-justify.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-justify.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-align-left",
+      "title": "Align left icon (Astro)",
+      "description": "The align-left icon as an Astro component, installed to components/ui/icons/align-left.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-left.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-align-right",
+      "title": "Align right icon (Astro)",
+      "description": "The align-right icon as an Astro component, installed to components/ui/icons/align-right.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/align-right.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-back-close",
+      "title": "Arrow back close icon (Astro)",
+      "description": "The arrow-back-close icon as an Astro component, installed to components/ui/icons/arrow-back-close.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-back-close.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-back",
+      "title": "Arrow back icon (Astro)",
+      "description": "The arrow-back icon as an Astro component, installed to components/ui/icons/arrow-back.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-back.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-down",
+      "title": "Arrow down icon (Astro)",
+      "description": "The arrow-down icon as an Astro component, installed to components/ui/icons/arrow-down.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-down.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-forward-close",
+      "title": "Arrow forward close icon (Astro)",
+      "description": "The arrow-forward-close icon as an Astro component, installed to components/ui/icons/arrow-forward-close.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-forward-close.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-forward",
+      "title": "Arrow forward icon (Astro)",
+      "description": "The arrow-forward icon as an Astro component, installed to components/ui/icons/arrow-forward.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-forward.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-incoming",
+      "title": "Arrow incoming icon (Astro)",
+      "description": "The arrow-incoming icon as an Astro component, installed to components/ui/icons/arrow-incoming.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-incoming.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-outgoing",
+      "title": "Arrow outgoing icon (Astro)",
+      "description": "The arrow-outgoing icon as an Astro component, installed to components/ui/icons/arrow-outgoing.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-outgoing.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-arrow-up",
+      "title": "Arrow up icon (Astro)",
+      "description": "The arrow-up icon as an Astro component, installed to components/ui/icons/arrow-up.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/arrow-up.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-attachment",
+      "title": "Attachment icon (Astro)",
+      "description": "The attachment icon as an Astro component, installed to components/ui/icons/attachment.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/attachment.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-bell",
+      "title": "Bell icon (Astro)",
+      "description": "The bell icon as an Astro component, installed to components/ui/icons/bell.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bell.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-bold",
+      "title": "Bold icon (Astro)",
+      "description": "The bold icon as an Astro component, installed to components/ui/icons/bold.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bold.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-bolt",
+      "title": "Bolt icon (Astro)",
+      "description": "The bolt icon as an Astro component, installed to components/ui/icons/bolt.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bolt.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-book",
+      "title": "Book icon (Astro)",
+      "description": "The book icon as an Astro component, installed to components/ui/icons/book.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/book.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-bulleted-list",
+      "title": "Bulleted list icon (Astro)",
+      "description": "The bulleted-list icon as an Astro component, installed to components/ui/icons/bulleted-list.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/bulleted-list.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-button",
+      "title": "Button icon (Astro)",
+      "description": "The button icon as an Astro component, installed to components/ui/icons/button.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/button.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-calendar",
+      "title": "Calendar icon (Astro)",
+      "description": "The calendar icon as an Astro component, installed to components/ui/icons/calendar.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/calendar.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-carousel",
+      "title": "Carousel icon (Astro)",
+      "description": "The carousel icon as an Astro component, installed to components/ui/icons/carousel.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/carousel.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chat-bubble",
+      "title": "Chat bubble icon (Astro)",
+      "description": "The chat-bubble icon as an Astro component, installed to components/ui/icons/chat-bubble.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chat-bubble.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-check-circle-fill",
+      "title": "Check circle fill icon (Astro)",
+      "description": "The check-circle-fill icon as an Astro component, installed to components/ui/icons/check-circle-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-circle-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-check-circle",
+      "title": "Check circle icon (Astro)",
+      "description": "The check-circle icon as an Astro component, installed to components/ui/icons/check-circle.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-circle.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-check-shield",
+      "title": "Check shield icon (Astro)",
+      "description": "The check-shield icon as an Astro component, installed to components/ui/icons/check-shield.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-shield.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-check-star",
+      "title": "Check star icon (Astro)",
+      "description": "The check-star icon as an Astro component, installed to components/ui/icons/check-star.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check-star.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-check",
+      "title": "Check icon (Astro)",
+      "description": "The check icon as an Astro component, installed to components/ui/icons/check.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/check.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-down-fill",
+      "title": "Chevron down fill icon (Astro)",
+      "description": "The chevron-down-fill icon as an Astro component, installed to components/ui/icons/chevron-down-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-down-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-down",
+      "title": "Chevron down icon (Astro)",
+      "description": "The chevron-down icon as an Astro component, installed to components/ui/icons/chevron-down.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-down.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-left-fill",
+      "title": "Chevron left fill icon (Astro)",
+      "description": "The chevron-left-fill icon as an Astro component, installed to components/ui/icons/chevron-left-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-left-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-left",
+      "title": "Chevron left icon (Astro)",
+      "description": "The chevron-left icon as an Astro component, installed to components/ui/icons/chevron-left.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-left.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-right-fill",
+      "title": "Chevron right fill icon (Astro)",
+      "description": "The chevron-right-fill icon as an Astro component, installed to components/ui/icons/chevron-right-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-right-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-right",
+      "title": "Chevron right icon (Astro)",
+      "description": "The chevron-right icon as an Astro component, installed to components/ui/icons/chevron-right.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-right.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-up-fill",
+      "title": "Chevron up fill icon (Astro)",
+      "description": "The chevron-up-fill icon as an Astro component, installed to components/ui/icons/chevron-up-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-up-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-chevron-up",
+      "title": "Chevron up icon (Astro)",
+      "description": "The chevron-up icon as an Astro component, installed to components/ui/icons/chevron-up.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/chevron-up.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-clock",
+      "title": "Clock icon (Astro)",
+      "description": "The clock icon as an Astro component, installed to components/ui/icons/clock.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/clock.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-column-collapse",
+      "title": "Column collapse icon (Astro)",
+      "description": "The column-collapse icon as an Astro component, installed to components/ui/icons/column-collapse.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/column-collapse.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-column-expand",
+      "title": "Column expand icon (Astro)",
+      "description": "The column-expand icon as an Astro component, installed to components/ui/icons/column-expand.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/column-expand.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-component",
+      "title": "Component icon (Astro)",
+      "description": "The component icon as an Astro component, installed to components/ui/icons/component.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/component.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-copy",
+      "title": "Copy icon (Astro)",
+      "description": "The copy icon as an Astro component, installed to components/ui/icons/copy.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/copy.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-cross-circle",
+      "title": "Cross circle icon (Astro)",
+      "description": "The cross-circle icon as an Astro component, installed to components/ui/icons/cross-circle.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cross-circle.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-cross-fill",
+      "title": "Cross fill icon (Astro)",
+      "description": "The cross-fill icon as an Astro component, installed to components/ui/icons/cross-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cross-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-cross",
+      "title": "Cross icon (Astro)",
+      "description": "The cross icon as an Astro component, installed to components/ui/icons/cross.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cross.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-cursor",
+      "title": "Cursor icon (Astro)",
+      "description": "The cursor icon as an Astro component, installed to components/ui/icons/cursor.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/cursor.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-database",
+      "title": "Database icon (Astro)",
+      "description": "The database icon as an Astro component, installed to components/ui/icons/database.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/database.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-desktop",
+      "title": "Desktop icon (Astro)",
+      "description": "The desktop icon as an Astro component, installed to components/ui/icons/desktop.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/desktop.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-direction",
+      "title": "Direction icon (Astro)",
+      "description": "The direction icon as an Astro component, installed to components/ui/icons/direction.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/direction.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-document-add",
+      "title": "Document add icon (Astro)",
+      "description": "The document-add icon as an Astro component, installed to components/ui/icons/document-add.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document-add.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-document-filled",
+      "title": "Document filled icon (Astro)",
+      "description": "The document-filled icon as an Astro component, installed to components/ui/icons/document-filled.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document-filled.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-document-minus",
+      "title": "Document minus icon (Astro)",
+      "description": "The document-minus icon as an Astro component, installed to components/ui/icons/document-minus.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document-minus.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-document",
+      "title": "Document icon (Astro)",
+      "description": "The document icon as an Astro component, installed to components/ui/icons/document.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/document.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-download",
+      "title": "Download icon (Astro)",
+      "description": "The download icon as an Astro component, installed to components/ui/icons/download.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/download.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-drop-arrow-down",
+      "title": "Drop arrow down icon (Astro)",
+      "description": "The drop-arrow-down icon as an Astro component, installed to components/ui/icons/drop-arrow-down.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/drop-arrow-down.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-duplicate",
+      "title": "Duplicate icon (Astro)",
+      "description": "The duplicate icon as an Astro component, installed to components/ui/icons/duplicate.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/duplicate.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-edit",
+      "title": "Edit icon (Astro)",
+      "description": "The edit icon as an Astro component, installed to components/ui/icons/edit.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/edit.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-ellipsis-vertical",
+      "title": "Ellipsis vertical icon (Astro)",
+      "description": "The ellipsis-vertical icon as an Astro component, installed to components/ui/icons/ellipsis-vertical.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/ellipsis-vertical.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-ellipsis",
+      "title": "Ellipsis icon (Astro)",
+      "description": "The ellipsis icon as an Astro component, installed to components/ui/icons/ellipsis.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/ellipsis.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-email",
+      "title": "Email icon (Astro)",
+      "description": "The email icon as an Astro component, installed to components/ui/icons/email.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/email.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-excel-media",
+      "title": "Excel media icon (Astro)",
+      "description": "The excel-media icon as an Astro component, installed to components/ui/icons/excel-media.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/excel-media.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-excel",
+      "title": "Excel icon (Astro)",
+      "description": "The excel icon as an Astro component, installed to components/ui/icons/excel.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/excel.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-expand",
+      "title": "Expand icon (Astro)",
+      "description": "The expand icon as an Astro component, installed to components/ui/icons/expand.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/expand.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-eye-hide",
+      "title": "Eye hide icon (Astro)",
+      "description": "The eye-hide icon as an Astro component, installed to components/ui/icons/eye-hide.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/eye-hide.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-eye-show",
+      "title": "Eye show icon (Astro)",
+      "description": "The eye-show icon as an Astro component, installed to components/ui/icons/eye-show.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/eye-show.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-facebook",
+      "title": "Facebook icon (Astro)",
+      "description": "The facebook icon as an Astro component, installed to components/ui/icons/facebook.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/facebook.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-figma",
+      "title": "Figma icon (Astro)",
+      "description": "The figma icon as an Astro component, installed to components/ui/icons/figma.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/figma.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-filter-asc",
+      "title": "Filter asc icon (Astro)",
+      "description": "The filter-asc icon as an Astro component, installed to components/ui/icons/filter-asc.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/filter-asc.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-filter-desc",
+      "title": "Filter desc icon (Astro)",
+      "description": "The filter-desc icon as an Astro component, installed to components/ui/icons/filter-desc.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/filter-desc.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-filter",
+      "title": "Filter icon (Astro)",
+      "description": "The filter icon as an Astro component, installed to components/ui/icons/filter.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/filter.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-flag",
+      "title": "Flag icon (Astro)",
+      "description": "The flag icon as an Astro component, installed to components/ui/icons/flag.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/flag.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-folder-minus",
+      "title": "Folder minus icon (Astro)",
+      "description": "The folder-minus icon as an Astro component, installed to components/ui/icons/folder-minus.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/folder-minus.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-folder-plus",
+      "title": "Folder plus icon (Astro)",
+      "description": "The folder-plus icon as an Astro component, installed to components/ui/icons/folder-plus.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/folder-plus.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-folder",
+      "title": "Folder icon (Astro)",
+      "description": "The folder icon as an Astro component, installed to components/ui/icons/folder.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/folder.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-font",
+      "title": "Font icon (Astro)",
+      "description": "The font icon as an Astro component, installed to components/ui/icons/font.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/font.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-forms",
+      "title": "Forms icon (Astro)",
+      "description": "The forms icon as an Astro component, installed to components/ui/icons/forms.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/forms.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-gallery",
+      "title": "Gallery icon (Astro)",
+      "description": "The gallery icon as an Astro component, installed to components/ui/icons/gallery.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/gallery.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-github",
+      "title": "Github icon (Astro)",
+      "description": "The github icon as an Astro component, installed to components/ui/icons/github.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/github.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-globe",
+      "title": "Globe icon (Astro)",
+      "description": "The globe icon as an Astro component, installed to components/ui/icons/globe.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/globe.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-google",
+      "title": "Google icon (Astro)",
+      "description": "The google icon as an Astro component, installed to components/ui/icons/google.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/google.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-govt-office",
+      "title": "Govt office icon (Astro)",
+      "description": "The govt-office icon as an Astro component, installed to components/ui/icons/govt-office.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/govt-office.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-grid",
+      "title": "Grid icon (Astro)",
+      "description": "The grid icon as an Astro component, installed to components/ui/icons/grid.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/grid.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-hamburger-menu",
+      "title": "Hamburger menu icon (Astro)",
+      "description": "The hamburger-menu icon as an Astro component, installed to components/ui/icons/hamburger-menu.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/hamburger-menu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-heart",
+      "title": "Heart icon (Astro)",
+      "description": "The heart icon as an Astro component, installed to components/ui/icons/heart.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/heart.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-home",
+      "title": "Home icon (Astro)",
+      "description": "The home icon as an Astro component, installed to components/ui/icons/home.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/home.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-info",
+      "title": "Info icon (Astro)",
+      "description": "The info icon as an Astro component, installed to components/ui/icons/info.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/info.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-input-field",
+      "title": "Input field icon (Astro)",
+      "description": "The input-field icon as an Astro component, installed to components/ui/icons/input-field.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/input-field.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-instagram",
+      "title": "Instagram icon (Astro)",
+      "description": "The instagram icon as an Astro component, installed to components/ui/icons/instagram.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/instagram.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-italic",
+      "title": "Italic icon (Astro)",
+      "description": "The italic icon as an Astro component, installed to components/ui/icons/italic.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/italic.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-ambulance-mers",
+      "title": "Legacy ambulance mers icon (Astro)",
+      "description": "The legacy-ambulance-mers icon as an Astro component, installed to components/ui/icons/legacy-ambulance-mers.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-ambulance-mers.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-ballot-spr",
+      "title": "Legacy ballot spr icon (Astro)",
+      "description": "The legacy-ballot-spr icon as an Astro component, installed to components/ui/icons/legacy-ballot-spr.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-ballot-spr.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-blood-pdn",
+      "title": "Legacy blood pdn icon (Astro)",
+      "description": "The legacy-blood-pdn icon as an Astro component, installed to components/ui/icons/legacy-blood-pdn.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-blood-pdn.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-bnm",
+      "title": "Legacy bnm icon (Astro)",
+      "description": "The legacy-bnm icon as an Astro component, installed to components/ui/icons/legacy-bnm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-bnm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-book-moe",
+      "title": "Legacy book moe icon (Astro)",
+      "description": "The legacy-book-moe icon as an Astro component, installed to components/ui/icons/legacy-book-moe.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-book-moe.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-car-jpj",
+      "title": "Legacy car jpj icon (Astro)",
+      "description": "The legacy-car-jpj icon as an Astro component, installed to components/ui/icons/legacy-car-jpj.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-car-jpj.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-document-mof",
+      "title": "Legacy document mof icon (Astro)",
+      "description": "The legacy-document-mof icon as an Astro component, installed to components/ui/icons/legacy-document-mof.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-document-mof.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-dosm",
+      "title": "Legacy dosm icon (Astro)",
+      "description": "The legacy-dosm icon as an Astro component, installed to components/ui/icons/legacy-dosm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-dosm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-fire-bomba",
+      "title": "Legacy fire bomba icon (Astro)",
+      "description": "The legacy-fire-bomba icon as an Astro component, installed to components/ui/icons/legacy-fire-bomba.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-fire-bomba.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-flood-jps",
+      "title": "Legacy flood jps icon (Astro)",
+      "description": "The legacy-flood-jps icon as an Astro component, installed to components/ui/icons/legacy-flood-jps.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-flood-jps.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-helmet-jpa",
+      "title": "Legacy helmet jpa icon (Astro)",
+      "description": "The legacy-helmet-jpa icon as an Astro component, installed to components/ui/icons/legacy-helmet-jpa.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-helmet-jpa.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-helping-hand-icu-jpm",
+      "title": "Legacy helping hand icu jpm icon (Astro)",
+      "description": "The legacy-helping-hand-icu-jpm icon as an Astro component, installed to components/ui/icons/legacy-helping-hand-icu-jpm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-helping-hand-icu-jpm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-hospital-moh",
+      "title": "Legacy hospital moh icon (Astro)",
+      "description": "The legacy-hospital-moh icon as an Astro component, installed to components/ui/icons/legacy-hospital-moh.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-hospital-moh.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-identity-jpn",
+      "title": "Legacy identity jpn icon (Astro)",
+      "description": "The legacy-identity-jpn icon as an Astro component, installed to components/ui/icons/legacy-identity-jpn.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-identity-jpn.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-internet-mcmc",
+      "title": "Legacy internet mcmc icon (Astro)",
+      "description": "The legacy-internet-mcmc icon as an Astro component, installed to components/ui/icons/legacy-internet-mcmc.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-internet-mcmc.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-jakoa",
+      "title": "Legacy jakoa icon (Astro)",
+      "description": "The legacy-jakoa icon as an Astro component, installed to components/ui/icons/legacy-jakoa.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-jakoa.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-jata-negara",
+      "title": "Legacy jata negara icon (Astro)",
+      "description": "The legacy-jata-negara icon as an Astro component, installed to components/ui/icons/legacy-jata-negara.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-jata-negara.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-light-bulb-ipr-epu",
+      "title": "Legacy light bulb ipr epu icon (Astro)",
+      "description": "The legacy-light-bulb-ipr-epu icon as an Astro component, installed to components/ui/icons/legacy-light-bulb-ipr-epu.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-light-bulb-ipr-epu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mampu",
+      "title": "Legacy mampu icon (Astro)",
+      "description": "The legacy-mampu icon as an Astro component, installed to components/ui/icons/legacy-mampu.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mampu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-ambulance-mers",
+      "title": "Legacy mini ambulance mers icon (Astro)",
+      "description": "The legacy-mini-ambulance-mers icon as an Astro component, installed to components/ui/icons/legacy-mini-ambulance-mers.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-ambulance-mers.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-ballot-spr",
+      "title": "Legacy mini ballot spr icon (Astro)",
+      "description": "The legacy-mini-ballot-spr icon as an Astro component, installed to components/ui/icons/legacy-mini-ballot-spr.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-ballot-spr.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-blood-pdn",
+      "title": "Legacy mini blood pdn icon (Astro)",
+      "description": "The legacy-mini-blood-pdn icon as an Astro component, installed to components/ui/icons/legacy-mini-blood-pdn.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-blood-pdn.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-bnm",
+      "title": "Legacy mini bnm icon (Astro)",
+      "description": "The legacy-mini-bnm icon as an Astro component, installed to components/ui/icons/legacy-mini-bnm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-bnm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-book-moe",
+      "title": "Legacy mini book moe icon (Astro)",
+      "description": "The legacy-mini-book-moe icon as an Astro component, installed to components/ui/icons/legacy-mini-book-moe.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-book-moe.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-car-jpj",
+      "title": "Legacy mini car jpj icon (Astro)",
+      "description": "The legacy-mini-car-jpj icon as an Astro component, installed to components/ui/icons/legacy-mini-car-jpj.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-car-jpj.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-document-mof",
+      "title": "Legacy mini document mof icon (Astro)",
+      "description": "The legacy-mini-document-mof icon as an Astro component, installed to components/ui/icons/legacy-mini-document-mof.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-document-mof.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-dosm",
+      "title": "Legacy mini dosm icon (Astro)",
+      "description": "The legacy-mini-dosm icon as an Astro component, installed to components/ui/icons/legacy-mini-dosm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-dosm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-fire-bomba",
+      "title": "Legacy mini fire bomba icon (Astro)",
+      "description": "The legacy-mini-fire-bomba icon as an Astro component, installed to components/ui/icons/legacy-mini-fire-bomba.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-fire-bomba.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-flood-warning",
+      "title": "Legacy mini flood warning icon (Astro)",
+      "description": "The legacy-mini-flood-warning icon as an Astro component, installed to components/ui/icons/legacy-mini-flood-warning.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-flood-warning.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-helmet-jpa",
+      "title": "Legacy mini helmet jpa icon (Astro)",
+      "description": "The legacy-mini-helmet-jpa icon as an Astro component, installed to components/ui/icons/legacy-mini-helmet-jpa.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-helmet-jpa.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-helping-hands-icu-jpm",
+      "title": "Legacy mini helping hands icu jpm icon (Astro)",
+      "description": "The legacy-mini-helping-hands-icu-jpm icon as an Astro component, installed to components/ui/icons/legacy-mini-helping-hands-icu-jpm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-helping-hands-icu-jpm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-hospital-moh",
+      "title": "Legacy mini hospital moh icon (Astro)",
+      "description": "The legacy-mini-hospital-moh icon as an Astro component, installed to components/ui/icons/legacy-mini-hospital-moh.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-hospital-moh.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-identity-jpn",
+      "title": "Legacy mini identity jpn icon (Astro)",
+      "description": "The legacy-mini-identity-jpn icon as an Astro component, installed to components/ui/icons/legacy-mini-identity-jpn.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-identity-jpn.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-internet-mcmc",
+      "title": "Legacy mini internet mcmc icon (Astro)",
+      "description": "The legacy-mini-internet-mcmc icon as an Astro component, installed to components/ui/icons/legacy-mini-internet-mcmc.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-internet-mcmc.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-jakoa",
+      "title": "Legacy mini jakoa icon (Astro)",
+      "description": "The legacy-mini-jakoa icon as an Astro component, installed to components/ui/icons/legacy-mini-jakoa.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-jakoa.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-light-bulb-ipr-epu",
+      "title": "Legacy mini light bulb ipr epu icon (Astro)",
+      "description": "The legacy-mini-light-bulb-ipr-epu icon as an Astro component, installed to components/ui/icons/legacy-mini-light-bulb-ipr-epu.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-light-bulb-ipr-epu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-mampu",
+      "title": "Legacy mini mampu icon (Astro)",
+      "description": "The legacy-mini-mampu icon as an Astro component, installed to components/ui/icons/legacy-mini-mampu.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-mampu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-money-epf",
+      "title": "Legacy mini money epf icon (Astro)",
+      "description": "The legacy-mini-money-epf icon as an Astro component, installed to components/ui/icons/legacy-mini-money-epf.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-money-epf.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-money-kwap",
+      "title": "Legacy mini money kwap icon (Astro)",
+      "description": "The legacy-mini-money-kwap icon as an Astro component, installed to components/ui/icons/legacy-mini-money-kwap.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-money-kwap.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-money-lhdn",
+      "title": "Legacy mini money lhdn icon (Astro)",
+      "description": "The legacy-mini-money-lhdn icon as an Astro component, installed to components/ui/icons/legacy-mini-money-lhdn.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-money-lhdn.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-passport-imigresen",
+      "title": "Legacy mini passport imigresen icon (Astro)",
+      "description": "The legacy-mini-passport-imigresen icon as an Astro component, installed to components/ui/icons/legacy-mini-passport-imigresen.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-passport-imigresen.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-phcorp",
+      "title": "Legacy mini phcorp icon (Astro)",
+      "description": "The legacy-mini-phcorp icon as an Astro component, installed to components/ui/icons/legacy-mini-phcorp.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-phcorp.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-police-pdrm",
+      "title": "Legacy mini police pdrm icon (Astro)",
+      "description": "The legacy-mini-police-pdrm icon as an Astro component, installed to components/ui/icons/legacy-mini-police-pdrm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-police-pdrm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-ribbon-ntrc",
+      "title": "Legacy mini ribbon ntrc icon (Astro)",
+      "description": "The legacy-mini-ribbon-ntrc icon as an Astro component, installed to components/ui/icons/legacy-mini-ribbon-ntrc.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-ribbon-ntrc.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-socso",
+      "title": "Legacy mini socso icon (Astro)",
+      "description": "The legacy-mini-socso icon as an Astro component, installed to components/ui/icons/legacy-mini-socso.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-socso.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-train-mot",
+      "title": "Legacy mini train mot icon (Astro)",
+      "description": "The legacy-mini-train-mot icon as an Astro component, installed to components/ui/icons/legacy-mini-train-mot.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-train-mot.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-unhcr",
+      "title": "Legacy mini unhcr icon (Astro)",
+      "description": "The legacy-mini-unhcr icon as an Astro component, installed to components/ui/icons/legacy-mini-unhcr.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-unhcr.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-weather-climate",
+      "title": "Legacy mini weather climate icon (Astro)",
+      "description": "The legacy-mini-weather-climate icon as an Astro component, installed to components/ui/icons/legacy-mini-weather-climate.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-weather-climate.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-mini-website",
+      "title": "Legacy mini website icon (Astro)",
+      "description": "The legacy-mini-website icon as an Astro component, installed to components/ui/icons/legacy-mini-website.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-mini-website.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-money-epf",
+      "title": "Legacy money epf icon (Astro)",
+      "description": "The legacy-money-epf icon as an Astro component, installed to components/ui/icons/legacy-money-epf.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-money-epf.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-money-kwap",
+      "title": "Legacy money kwap icon (Astro)",
+      "description": "The legacy-money-kwap icon as an Astro component, installed to components/ui/icons/legacy-money-kwap.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-money-kwap.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-money-lhdn",
+      "title": "Legacy money lhdn icon (Astro)",
+      "description": "The legacy-money-lhdn icon as an Astro component, installed to components/ui/icons/legacy-money-lhdn.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-money-lhdn.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-passport-imigresen",
+      "title": "Legacy passport imigresen icon (Astro)",
+      "description": "The legacy-passport-imigresen icon as an Astro component, installed to components/ui/icons/legacy-passport-imigresen.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-passport-imigresen.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-phcorp",
+      "title": "Legacy phcorp icon (Astro)",
+      "description": "The legacy-phcorp icon as an Astro component, installed to components/ui/icons/legacy-phcorp.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-phcorp.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-police-pdrm",
+      "title": "Legacy police pdrm icon (Astro)",
+      "description": "The legacy-police-pdrm icon as an Astro component, installed to components/ui/icons/legacy-police-pdrm.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-police-pdrm.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-ribbon-ntrc",
+      "title": "Legacy ribbon ntrc icon (Astro)",
+      "description": "The legacy-ribbon-ntrc icon as an Astro component, installed to components/ui/icons/legacy-ribbon-ntrc.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-ribbon-ntrc.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-socso-perkeso",
+      "title": "Legacy socso perkeso icon (Astro)",
+      "description": "The legacy-socso-perkeso icon as an Astro component, installed to components/ui/icons/legacy-socso-perkeso.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-socso-perkeso.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-train-mot",
+      "title": "Legacy train mot icon (Astro)",
+      "description": "The legacy-train-mot icon as an Astro component, installed to components/ui/icons/legacy-train-mot.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-train-mot.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-unhcr",
+      "title": "Legacy unhcr icon (Astro)",
+      "description": "The legacy-unhcr icon as an Astro component, installed to components/ui/icons/legacy-unhcr.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-unhcr.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-legacy-weather-met",
+      "title": "Legacy weather met icon (Astro)",
+      "description": "The legacy-weather-met icon as an Astro component, installed to components/ui/icons/legacy-weather-met.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/legacy-weather-met.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-link-diagonal",
+      "title": "Link diagonal icon (Astro)",
+      "description": "The link-diagonal icon as an Astro component, installed to components/ui/icons/link-diagonal.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/link-diagonal.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-link",
+      "title": "Link icon (Astro)",
+      "description": "The link icon as an Astro component, installed to components/ui/icons/link.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/link.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-linkedin",
+      "title": "Linkedin icon (Astro)",
+      "description": "The linkedin icon as an Astro component, installed to components/ui/icons/linkedin.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/linkedin.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-list",
+      "title": "List icon (Astro)",
+      "description": "The list icon as an Astro component, installed to components/ui/icons/list.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/list.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-lock-2",
+      "title": "Lock 2 icon (Astro)",
+      "description": "The lock-2 icon as an Astro component, installed to components/ui/icons/lock-2.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/lock-2.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-lock-fill",
+      "title": "Lock fill icon (Astro)",
+      "description": "The lock-fill icon as an Astro component, installed to components/ui/icons/lock-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/lock-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-lock",
+      "title": "Lock icon (Astro)",
+      "description": "The lock icon as an Astro component, installed to components/ui/icons/lock.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/lock.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-logout",
+      "title": "Logout icon (Astro)",
+      "description": "The logout icon as an Astro component, installed to components/ui/icons/logout.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/logout.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-malaysia-flag",
+      "title": "Malaysia flag icon (Astro)",
+      "description": "The malaysia-flag icon as an Astro component, installed to components/ui/icons/malaysia-flag.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/malaysia-flag.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-map",
+      "title": "Map icon (Astro)",
+      "description": "The map icon as an Astro component, installed to components/ui/icons/map.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/map.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-megaphone",
+      "title": "Megaphone icon (Astro)",
+      "description": "The megaphone icon as an Astro component, installed to components/ui/icons/megaphone.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/megaphone.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-minus-circle",
+      "title": "Minus circle icon (Astro)",
+      "description": "The minus-circle icon as an Astro component, installed to components/ui/icons/minus-circle.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/minus-circle.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-minus",
+      "title": "Minus icon (Astro)",
+      "description": "The minus icon as an Astro component, installed to components/ui/icons/minus.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/minus.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-mobile",
+      "title": "Mobile icon (Astro)",
+      "description": "The mobile icon as an Astro component, installed to components/ui/icons/mobile.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/mobile.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-money",
+      "title": "Money icon (Astro)",
+      "description": "The money icon as an Astro component, installed to components/ui/icons/money.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/money.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-moon",
+      "title": "Moon icon (Astro)",
+      "description": "The moon icon as an Astro component, installed to components/ui/icons/moon.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/moon.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-numbered-list",
+      "title": "Numbered list icon (Astro)",
+      "description": "The numbered-list icon as an Astro component, installed to components/ui/icons/numbered-list.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/numbered-list.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-org-chart",
+      "title": "Org chart icon (Astro)",
+      "description": "The org-chart icon as an Astro component, installed to components/ui/icons/org-chart.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/org-chart.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-pause",
+      "title": "Pause icon (Astro)",
+      "description": "The pause icon as an Astro component, installed to components/ui/icons/pause.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pause.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-pdf-media",
+      "title": "Pdf media icon (Astro)",
+      "description": "The pdf-media icon as an Astro component, installed to components/ui/icons/pdf-media.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pdf-media.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-pdf",
+      "title": "Pdf icon (Astro)",
+      "description": "The pdf icon as an Astro component, installed to components/ui/icons/pdf.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pdf.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-phone",
+      "title": "Phone icon (Astro)",
+      "description": "The phone icon as an Astro component, installed to components/ui/icons/phone.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/phone.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-pin",
+      "title": "Pin icon (Astro)",
+      "description": "The pin icon as an Astro component, installed to components/ui/icons/pin.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/pin.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-placeholder",
+      "title": "Placeholder icon (Astro)",
+      "description": "The placeholder icon as an Astro component, installed to components/ui/icons/placeholder.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/placeholder.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-play",
+      "title": "Play icon (Astro)",
+      "description": "The play icon as an Astro component, installed to components/ui/icons/play.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/play.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-plus-circle",
+      "title": "Plus circle icon (Astro)",
+      "description": "The plus-circle icon as an Astro component, installed to components/ui/icons/plus-circle.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/plus-circle.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-plus",
+      "title": "Plus icon (Astro)",
+      "description": "The plus icon as an Astro component, installed to components/ui/icons/plus.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/plus.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-powerpoint-media",
+      "title": "Powerpoint media icon (Astro)",
+      "description": "The powerpoint-media icon as an Astro component, installed to components/ui/icons/powerpoint-media.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/powerpoint-media.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-printer",
+      "title": "Printer icon (Astro)",
+      "description": "The printer icon as an Astro component, installed to components/ui/icons/printer.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/printer.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-putrajaya",
+      "title": "Putrajaya icon (Astro)",
+      "description": "The putrajaya icon as an Astro component, installed to components/ui/icons/putrajaya.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/putrajaya.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-qr-code",
+      "title": "Qr code icon (Astro)",
+      "description": "The qr-code icon as an Astro component, installed to components/ui/icons/qr-code.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/qr-code.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-question-circle",
+      "title": "Question circle icon (Astro)",
+      "description": "The question-circle icon as an Astro component, installed to components/ui/icons/question-circle.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/question-circle.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-redo",
+      "title": "Redo icon (Astro)",
+      "description": "The redo icon as an Astro component, installed to components/ui/icons/redo.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/redo.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-reload",
+      "title": "Reload icon (Astro)",
+      "description": "The reload icon as an Astro component, installed to components/ui/icons/reload.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/reload.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-reset-style",
+      "title": "Reset style icon (Astro)",
+      "description": "The reset-style icon as an Astro component, installed to components/ui/icons/reset-style.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/reset-style.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-rss",
+      "title": "Rss icon (Astro)",
+      "description": "The rss icon as an Astro component, installed to components/ui/icons/rss.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/rss.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-search",
+      "title": "Search icon (Astro)",
+      "description": "The search icon as an Astro component, installed to components/ui/icons/search.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/search.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-section",
+      "title": "Section icon (Astro)",
+      "description": "The section icon as an Astro component, installed to components/ui/icons/section.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/section.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-setting",
+      "title": "Setting icon (Astro)",
+      "description": "The setting icon as an Astro component, installed to components/ui/icons/setting.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/setting.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-share",
+      "title": "Share icon (Astro)",
+      "description": "The share icon as an Astro component, installed to components/ui/icons/share.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/share.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-star-fill",
+      "title": "Star fill icon (Astro)",
+      "description": "The star-fill icon as an Astro component, installed to components/ui/icons/star-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/star-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-star",
+      "title": "Star icon (Astro)",
+      "description": "The star icon as an Astro component, installed to components/ui/icons/star.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/star.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-strikethrough",
+      "title": "Strikethrough icon (Astro)",
+      "description": "The strikethrough icon as an Astro component, installed to components/ui/icons/strikethrough.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/strikethrough.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-sun",
+      "title": "Sun icon (Astro)",
+      "description": "The sun icon as an Astro component, installed to components/ui/icons/sun.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/sun.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-swap",
+      "title": "Swap icon (Astro)",
+      "description": "The swap icon as an Astro component, installed to components/ui/icons/swap.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/swap.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-table",
+      "title": "Table icon (Astro)",
+      "description": "The table icon as an Astro component, installed to components/ui/icons/table.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/table.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-tablet",
+      "title": "Tablet icon (Astro)",
+      "description": "The tablet icon as an Astro component, installed to components/ui/icons/tablet.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/tablet.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-telegram",
+      "title": "Telegram icon (Astro)",
+      "description": "The telegram icon as an Astro component, installed to components/ui/icons/telegram.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/telegram.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-text",
+      "title": "Text icon (Astro)",
+      "description": "The text icon as an Astro component, installed to components/ui/icons/text.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/text.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-thumbs-down",
+      "title": "Thumbs down icon (Astro)",
+      "description": "The thumbs-down icon as an Astro component, installed to components/ui/icons/thumbs-down.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/thumbs-down.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-thumbs-up",
+      "title": "Thumbs up icon (Astro)",
+      "description": "The thumbs-up icon as an Astro component, installed to components/ui/icons/thumbs-up.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/thumbs-up.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-tiktok",
+      "title": "Tiktok icon (Astro)",
+      "description": "The tiktok icon as an Astro component, installed to components/ui/icons/tiktok.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/tiktok.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-trash",
+      "title": "Trash icon (Astro)",
+      "description": "The trash icon as an Astro component, installed to components/ui/icons/trash.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/trash.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-trophy",
+      "title": "Trophy icon (Astro)",
+      "description": "The trophy icon as an Astro component, installed to components/ui/icons/trophy.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/trophy.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-twitter-x",
+      "title": "Twitter x icon (Astro)",
+      "description": "The twitter-x icon as an Astro component, installed to components/ui/icons/twitter-x.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/twitter-x.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-underline",
+      "title": "Underline icon (Astro)",
+      "description": "The underline icon as an Astro component, installed to components/ui/icons/underline.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/underline.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-undo",
+      "title": "Undo icon (Astro)",
+      "description": "The undo icon as an Astro component, installed to components/ui/icons/undo.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/undo.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-unlink",
+      "title": "Unlink icon (Astro)",
+      "description": "The unlink icon as an Astro component, installed to components/ui/icons/unlink.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/unlink.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-upload",
+      "title": "Upload icon (Astro)",
+      "description": "The upload icon as an Astro component, installed to components/ui/icons/upload.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/upload.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-user-group",
+      "title": "User group icon (Astro)",
+      "description": "The user-group icon as an Astro component, installed to components/ui/icons/user-group.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/user-group.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-user",
+      "title": "User icon (Astro)",
+      "description": "The user icon as an Astro component, installed to components/ui/icons/user.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/user.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-video",
+      "title": "Video icon (Astro)",
+      "description": "The video icon as an Astro component, installed to components/ui/icons/video.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/video.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-warning-circle",
+      "title": "Warning circle icon (Astro)",
+      "description": "The warning-circle icon as an Astro component, installed to components/ui/icons/warning-circle.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning-circle.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-warning-diamond",
+      "title": "Warning diamond icon (Astro)",
+      "description": "The warning-diamond icon as an Astro component, installed to components/ui/icons/warning-diamond.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning-diamond.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-warning-fill",
+      "title": "Warning fill icon (Astro)",
+      "description": "The warning-fill icon as an Astro component, installed to components/ui/icons/warning-fill.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning-fill.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-warning",
+      "title": "Warning icon (Astro)",
+      "description": "The warning icon as an Astro component, installed to components/ui/icons/warning.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/warning.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-whatsapp",
+      "title": "Whatsapp icon (Astro)",
+      "description": "The whatsapp icon as an Astro component, installed to components/ui/icons/whatsapp.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/whatsapp.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-word-media",
+      "title": "Word media icon (Astro)",
+      "description": "The word-media icon as an Astro component, installed to components/ui/icons/word-media.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/word-media.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-word",
+      "title": "Word icon (Astro)",
+      "description": "The word icon as an Astro component, installed to components/ui/icons/word.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/word.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-youtube",
+      "title": "Youtube icon (Astro)",
+      "description": "The youtube icon as an Astro component, installed to components/ui/icons/youtube.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/youtube.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-zoom-in",
+      "title": "Zoom in icon (Astro)",
+      "description": "The zoom-in icon as an Astro component, installed to components/ui/icons/zoom-in.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/zoom-in.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-icon-zoom-out",
+      "title": "Zoom out icon (Astro)",
+      "description": "The zoom-out icon as an Astro component, installed to components/ui/icons/zoom-out.astro.",
+      "categories": [
+        "astro",
+        "icons"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/icons/zoom-out.astro",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+---
+/** Preview of the marketing components and blocks. Not shipped. */
+import Preview from "../layouts/preview.astro";
+import AnnounceBar from "@/components/ui/announce-bar.astro";
+import Hero from "@/components/blocks/hero.astro";
+import LogoCloud from "@/components/blocks/logo-cloud.astro";
+import FeatureGrid from "@/components/blocks/feature-grid.astro";
+import StatsBand from "@/components/blocks/stats-band.astro";
+import Testimonial from "@/components/blocks/testimonial.astro";
+import CtaBand from "@/components/blocks/cta-band.astro";
+import SiteFooter from "@/components/ui/site-footer.astro";
+import Link from "@/components/ui/link.astro";
+import MoneyIcon from "@/components/ui/icons/money.astro";
+import DocumentIcon from "@/components/ui/icons/document.astro";
+import BellIcon from "@/components/ui/icons/bell.astro";
+import CheckShieldIcon from "@/components/ui/icons/check-shield.astro";
+import FacebookIcon from "@/components/ui/icons/facebook.astro";
+import TwitterXIcon from "@/components/ui/icons/twitter-x.astro";
+import YoutubeIcon from "@/components/ui/icons/youtube.astro";
+
+const socials = [
+  { label: "Facebook", href: "https://www.facebook.com/MOFMalaysia", Icon: FacebookIcon },
+  { label: "X (Twitter)", href: "https://x.com/MOFMalaysia", Icon: TwitterXIcon },
+  { label: "YouTube", href: "https://www.youtube.com/@MOFMalaysia", Icon: YoutubeIcon },
+];
+
+// Placeholder logo: an inline SVG data URI, so the preview needs no assets.
+const logo = (text: string) =>
+  `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="48" viewBox="0 0 160 48"><rect width="160" height="48" rx="8" fill="#2563eb"/><text x="80" y="30" font-family="sans-serif" font-size="18" font-weight="600" fill="#fff" text-anchor="middle">${text}</text></svg>`,
+  )}`;
+---
+
+<Preview title="Marketing">
+      <AnnounceBar tag="Penyelenggaraan" tagVariant="warning">
+        <p>
+          Pembayaran dalam talian tidak tersedia pada 2 November, 1 pagi hingga 4 pagi.{" "}
+          <Link href="#notis" primary>Baca notis</Link>
+        </p>
+      </AnnounceBar>
+      <Hero
+        eyebrow="Baharu"
+        title="Bayar bil kerajaan di satu tempat"
+        description="Jelaskan yuran, saman dan taksiran daripada lebih 30 agensi dengan satu MyDigital ID."
+        primaryAction={{ label: "Mula membayar", href: "#pay" }}
+        secondaryAction={{ label: "Cara ia berfungsi", href: "#how" }}
+        footnote="Mengambil masa kira-kira tiga minit."
+      />
+      <LogoCloud
+        title="Agensi yang menggunakan MyBayar"
+        logos={[
+          { src: logo("LHDN"), alt: "Lembaga Hasil Dalam Negeri", href: "https://www.hasil.gov.my", width: 160, height: 48 },
+          { src: logo("JKDM"), alt: "Jabatan Kastam Diraja Malaysia", href: "https://www.customs.gov.my", width: 160, height: 48 },
+          { src: logo("JANM"), alt: "Jabatan Akauntan Negara Malaysia", width: 160, height: 48 },
+          { src: logo("JPJ"), alt: "Jabatan Pengangkutan Jalan", width: 160, height: 48 },
+        ]}
+      />
+      <FeatureGrid
+        id="how"
+        title="Semua dalam satu akaun"
+        description="Satu MyDigital ID untuk setiap bayaran Kementerian Kewangan, daripada saman hingga yuran pembekal."
+        surface="sheet"
+        columns={2}
+        linkLabel="Ketahui lanjut"
+        features={[
+          { icon: MoneyIcon, title: "Bayar dalam talian", description: "FPX, kad debit dan kredit, serta e-dompet. Tiada barisan, tiada cek.", href: "#pay" },
+          { icon: DocumentIcon, title: "Resit rasmi", description: "Setiap bayaran mendapat resit yang boleh dimuat turun, dicetak atau dikongsi.", href: "#resit", linkLabel: "Dapatkan resit" },
+          { icon: BellIcon, title: "Peringatan tarikh akhir", description: "Kami mengingatkan anda melalui e-mel atau SMS sebelum bayaran perlu dijelaskan." },
+          { icon: CheckShieldIcon, title: "Selamat secara lalai", description: "Log masuk dengan MyDigital ID. Data anda kekal di Malaysia." },
+        ]}
+      />
+      <StatsBand
+        title="MyBayar dalam angka"
+        stats={[
+          { value: "RM 4.2 bil", label: "Dikutip dalam talian pada 2025" },
+          { value: "1.8 juta", label: "Bayaran sebulan", footnote: "Purata, Januari hingga September 2026" },
+          { value: "32", label: "Agensi disambungkan" },
+          { value: "3 min", label: "Masa biasa untuk membayar" },
+        ]}
+        source="Sumber: Kementerian Kewangan Malaysia, September 2026"
+      />
+      <Testimonial
+        title="Kata pengguna"
+        items={[
+          { quote: "Saya bayar taksiran syarikat dalam lima minit dan dapat resit sebelum menutup tab.", name: "Nurul Aina Rahman", role: "Pemilik perniagaan, Shah Alam" },
+          { quote: "Peringatan itulah yang terbaik. Saya tidak pernah terlepas tarikh akhir sejak mendaftar.", name: "Tan Wei Ming", role: "Pesara, Ipoh" },
+          { quote: "Saya boleh semak status tuntutan tanpa menelefon sesiapa. Semuanya jelas.", name: "Muthu Krishnan", role: "Penjawat awam, Putrajaya" },
+        ]}
+      />
+      <Testimonial
+        items={[
+          { quote: "Urusan bayaran cukai jalan kini selesai sambil menunggu kopi.", name: "Siti Hajar Ismail", role: "Guru, Kota Bharu" },
+        ]}
+      />
+      <CtaBand
+        tone="primary"
+        title="Sedia untuk membayar?"
+        description="Mengambil masa kira-kira tiga minit. Sediakan nombor bil atau rujukan anda."
+        primaryAction={{ label: "Mula membayar", href: "#pay" }}
+        secondaryAction={{ label: "Hubungi kami", href: "#hubungi" }}
+      />
+      <CtaBand
+        title="Ada soalan?"
+        description="Pasukan kami menjawab dalam satu hari bekerja."
+        primaryAction={{ label: "Hubungi kami", href: "#hubungi" }}
+        secondaryAction={{ label: "Soalan lazim", href: "#soalan" }}
+      />
+      <SiteFooter
+        logoTitle="Kementerian Kewangan Malaysia"
+        groups={[
+          { title: "Tentang kami", links: [
+            { label: "Profil kementerian", href: "#profil" },
+            { label: "Carta organisasi", href: "#carta" },
+            { label: "Piagam pelanggan", href: "#piagam" },
+          ] },
+          { title: "Perkhidmatan", links: [
+            { label: "Bayar bil", href: "#pay" },
+            { label: "Pendaftaran pembekal", href: "#pembekal" },
+            { label: "Insentif cukai", href: "#insentif" },
+          ] },
+          { title: "Sumber", links: [
+            { label: "Belanjawan 2027", href: "#belanjawan" },
+            { label: "Pekeliling perbendaharaan", href: "#pekeliling" },
+            { label: "Data terbuka", href: "#data" },
+          ] },
+          { title: "Bantuan", links: [
+            { label: "Hubungi kami", href: "#hubungi" },
+            { label: "Soalan lazim", href: "#soalan" },
+            { label: "Maklum balas", href: "#maklum-balas" },
+          ] },
+        ]}
+      >
+        <img slot="logo" src={logo("MOF")} width="36" height="36" alt="" class="size-9 rounded-sm" />
+        <p>
+          Kompleks Kementerian Kewangan, No. 5 Persiaran Perdana, Presint 2, 62592 Putrajaya
+        </p>
+        <div class="flex gap-1">
+          {
+            socials.map(({ label, href, Icon }) => (
+              <Link
+                href={href}
+                newTab
+                underline="none"
+                aria-label={label}
+                class="text-txt-black-700 hover:text-txt-black-900 flex size-11 items-center justify-center rounded-md"
+              >
+                <Icon aria-hidden="true" />
+              </Link>
+            ))
+          }
+        </div>
+      </SiteFooter>
+</Preview>

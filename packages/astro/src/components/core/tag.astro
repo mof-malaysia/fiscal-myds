@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { tag_cva } from "@mof-malaysia/ftds-style/variants/tag";
+
+/**
+ * Tag labels the status or category of an item: a wash background with
+ * matching coloured text. The words carry the meaning, never colour alone.
+ *
+ * @example
+ * <Tag variant="success">Paid</Tag>
+ * <Tag variant="warning" dot>Due in 3 days</Tag>
+ */
+type Props = Omit<HTMLAttributes<"span">, "class"> & {
+  /** Shows a dot in the tag's colour before the label. */
+  dot?: boolean;
+  variant?: "default" | "primary" | "success" | "danger" | "warning";
+  size?: "small" | "medium" | "large";
+  class?: string;
+};
+
+const {
+  variant = "default",
+  size = "medium",
+  dot = false,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<span class={clx(tag_cva({ variant, size }), className)} {...props}>
+  {
+    dot && (
+      <span
+        aria-hidden="true"
+        class={clx(
+          "inline-block shrink-0 rounded-full bg-current",
+          size === "large" ? "size-2" : "size-1.5",
+        )}
+      />
+    )
+  }
+  <slot />
+</span>

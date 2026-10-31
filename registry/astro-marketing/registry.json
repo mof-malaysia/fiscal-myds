@@ -1,0 +1,229 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-astro-marketing",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "astro-announce-bar",
+      "title": "Announce Bar (Astro)",
+      "description": "AnnounceBar is a short notice across the top of an agency site: a status tag and one line of text, such as planned maintenance or a new service.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/announce-bar.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-cta-band",
+      "title": "Cta Band (Astro)",
+      "description": "CtaBand is the closing call to action of a page: a title, short text, one primary action and an optional secondary one.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/cta-band.astro",
+          "type": "registry:component",
+          "target": "components/blocks/cta-band.astro"
+        },
+        {
+          "path": "components/ui/cta-band.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-feature-grid",
+      "title": "Feature Grid (Astro)",
+      "description": "FeatureGrid introduces what a service offers: a section title and intro, then a responsive grid (1 / 2 / 3 columns) of features.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/feature-grid.astro",
+          "type": "registry:component",
+          "target": "components/blocks/feature-grid.astro"
+        },
+        {
+          "path": "components/ui/feature-grid.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-hero",
+      "title": "Hero (Astro)",
+      "description": "Hero is the opening section of an agency or landing page: an optional eyebrow tag, the page's single h1, supporting text, a primary and a secondary action, and an optional media slot beside the text on desktop.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/hero.astro",
+          "type": "registry:component",
+          "target": "components/blocks/hero.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-logo-cloud",
+      "title": "Logo Cloud (Astro)",
+      "description": "LogoCloud lists the agencies or partners that use a service, as a quiet row of logos.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/logo-cloud.astro",
+          "type": "registry:component",
+          "target": "components/blocks/logo-cloud.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-section-heading",
+      "title": "Section Heading (Astro)",
+      "description": "SectionHeading is the title and intro shared by the marketing blocks: an h2 with the section title and an optional larger intro paragraph.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/section-heading.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-site-footer",
+      "title": "Site Footer (Astro)",
+      "description": "SiteFooter is the large multi-column footer for agency and landing sites: agency identity, address and social links, then groups of site links.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/site-footer.astro",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/footer.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-stats-band",
+      "title": "Stats Band (Astro)",
+      "description": "StatsBand shows two to four headline figures on a Well band.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/stats-band.astro",
+          "type": "registry:component",
+          "target": "components/blocks/stats-band.astro"
+        },
+        {
+          "path": "components/ui/stats-band.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-testimonial",
+      "title": "Testimonial (Astro)",
+      "description": "Testimonial shows what people say about a service.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/testimonial.astro",
+          "type": "registry:component",
+          "target": "components/blocks/testimonial.astro"
+        }
+      ]
+    }
+  ]
+}

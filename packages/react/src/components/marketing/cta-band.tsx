@@ -7,13 +7,13 @@ import {
   RefAttributes,
   useId,
 } from "react";
-import { cva } from "class-variance-authority";
 import { clx } from "../../utils";
 import {
   renderAction,
   SectionHeading,
   type BlockAction,
 } from "./section-heading";
+import { band_cva } from "@mof-malaysia/ftds-style/variants/cta-band";
 
 /**
  * CtaBand is the closing call to action of a page: a title, short text, one
@@ -33,16 +33,6 @@ import {
  */
 
 type CtaAction = BlockAction;
-
-const band_cva = cva("font-body w-full", {
-  variants: {
-    tone: {
-      well: "bg-bg-washed",
-      primary: "bg-bg-primary-50",
-    },
-  },
-  defaultVariants: { tone: "well" },
-});
 
 interface CtaBandProps extends Omit<ComponentProps<"section">, "title"> {
   title: ReactNode;

@@ -9,7 +9,7 @@ pre-commit:
   commands:
     format:
       glob: "*.{ts,tsx,md}"
-      run: pnpm exec prettier --write {staged_files}
+      run: pnpm exec oxfmt {staged_files}
       stage_fixed: true
     lint:
       run: pnpm lint

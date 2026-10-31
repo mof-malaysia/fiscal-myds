@@ -1,0 +1,131 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import { footer_cva, footer_link_class } from "@mof-malaysia/ftds-style/variants/footer";
+import Link from "@/components/ui/link.astro";
+
+/**
+ * Footer is the plain government footer every MOF site and service needs:
+ * one compact band with the copyright line, an optional "last updated" note
+ * and the required links. Paper or Well background, one Hairline rule on
+ * top, hidden when printing.
+ *
+ * It renders a `<footer>` (the contentinfo landmark). Under a marketing
+ * SiteFooter pass `as="div"` so the page keeps a single contentinfo landmark.
+ *
+ * `copyright` is the full line; or pass `owner` for
+ * "© {year} {owner}. {footerCopyright}". `links` render as a labelled
+ * `<nav>` list, aligned to the end of the row on desktop. Slots `copyright`,
+ * `meta` and `links` replace those parts; the default slot goes before the links.
+ *
+ * @example
+ * <Footer
+ *   copyright="© 2026 Kementerian Kewangan Malaysia"
+ *   meta="Last updated: 28 Oct 2026"
+ *   linksLabel="Legal"
+ *   links={[
+ *     { label: "Privacy policy", href: "/privacy" },
+ *     { label: "Disclaimer", href: "/disclaimer" },
+ *     { label: "Accessibility", href: "/accessibility" },
+ *   ]}
+ * />
+ */
+interface FooterLink {
+  label: string;
+  href: string;
+  /** Opens in a new tab, with `rel="noopener noreferrer"`. */
+  newTab?: boolean;
+}
+
+type Props = Omit<HTMLAttributes<"footer">, "class" | "lang"> &
+  VariantProps<typeof footer_cva> & {
+    /** `div` when it sits inside another footer landmark. */
+    as?: "footer" | "div";
+    /** The copyright line, e.g. "© 2026 Kementerian Kewangan Malaysia". */
+    copyright?: string;
+    /** Builds the copyright line from the owner, the year and `footerCopyright`. */
+    owner?: string;
+    /** Secondary information such as "Last updated: 28 Oct 2026". */
+    meta?: string;
+    links?: FooterLink[];
+    /** Accessible name of the links `<nav>`. Defaults to the dictionary's `footerNav`. */
+    linksLabel?: string;
+    /** Class for the inner max-width row. */
+    containerClass?: string;
+    lang?: Lang;
+    class?: string;
+  };
+
+const {
+  as: Tag = "footer",
+  tone,
+  copyright,
+  owner,
+  meta,
+  links = [],
+  linksLabel,
+  containerClass,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+
+const slots = Astro.slots;
+const copyrightText =
+  copyright ??
+  (owner
+    ? `© ${new Date().getFullYear()} ${owner}. ${label(lang, "footerCopyright")}`
+    : undefined);
+const hasLinks = links.length > 0 || slots.has("links");
+---
+
+<Tag class={clx(footer_cva({ tone }), className)} {...props}>
+  <div
+    class={clx(
+      "gap-stack-sm py-surface mx-auto flex w-full max-w-[1280px] flex-col px-4 md:flex-row md:flex-wrap md:items-center md:gap-x-6 md:px-6",
+      "md:in-data-[density=compact]:gap-x-4",
+      containerClass,
+    )}
+  >
+    {
+      (copyrightText || slots.has("copyright")) && (
+        <p class="text-txt-black-900 font-medium">
+          <slot name="copyright">{copyrightText}</slot>
+        </p>
+      )
+    }
+    {
+      (meta || slots.has("meta")) && (
+        <p class="text-txt-black-700 tabular-nums">
+          <slot name="meta">{meta}</slot>
+        </p>
+      )
+    }
+    <slot />
+    {
+      hasLinks && (
+        <nav aria-label={linksLabel ?? label(lang, "footerNav")} class="md:last:ml-auto">
+          <ul class="flex flex-wrap gap-x-6 gap-y-2 in-data-[density=compact]:gap-x-4">
+            <slot name="links">
+              {links.map((link) => (
+                <li>
+                  <Link
+                    href={link.href}
+                    newTab={link.newTab}
+                    underline="hover"
+                    class={footer_link_class}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </slot>
+          </ul>
+        </nav>
+      )
+    }
+  </div>
+</Tag>

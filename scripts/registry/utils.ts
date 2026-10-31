@@ -85,7 +85,13 @@ export const REGISTRY_ITEM_SCHEMA =
 
 export const COMPONENT_TIERS = ["core", "app", "marketing"] as const;
 export type ComponentTier = (typeof COMPONENT_TIERS)[number];
-export type RegistryName = ComponentTier | "icons" | "style";
+export type RegistryName =
+  | ComponentTier
+  | "icons"
+  | "style"
+  | "astro-core"
+  | "astro-marketing"
+  | "astro-icons";
 
 export const COMPONENTS_DIR = path.join(
   __dirname,
@@ -239,8 +245,41 @@ export function transformImports(
       acc.replace(pattern, (...args) =>
         replacement.replace("$1", args[1] ?? ""),
       ),
-    content,
+    rewriteVariantsImports(content),
   );
+}
+
+/**
+ * Classes shared by the React and Astro components live in
+ * packages/style/variants and are imported as
+ * `@mof-malaysia/ftds-style/variants/<name>`. Each ships inside the items
+ * that import it, installed as components/ui/<name>.variants.ts.
+ */
+export const VARIANTS_PACKAGE = "@mof-malaysia/ftds-style";
+const VARIANTS_DIR = path.join(__dirname, "../../packages/style/variants");
+const VARIANTS_IMPORT =
+  /from\s+["']@mof-malaysia\/ftds-style\/variants\/([a-z0-9-]+)["']/g;
+
+/** Names of the variants files a source file imports, e.g. ["button"]. */
+export function variantImports(content: string): string[] {
+  return [...new Set([...content.matchAll(VARIANTS_IMPORT)].map((m) => m[1]!))];
+}
+
+/** "@mof-malaysia/ftds-style/variants/button" -> "@/components/ui/button.variants" */
+export function rewriteVariantsImports(content: string): string {
+  return content.replace(
+    VARIANTS_IMPORT,
+    (_, name: string) => `from "@/components/ui/${name}.variants"`,
+  );
+}
+
+/** The registry file for a variants file, installed beside the components. */
+export function variantsFile(name: string): ComponentFile {
+  return {
+    path: `components/ui/${name}.variants.ts`,
+    content: readFileContent(path.join(VARIANTS_DIR, `${name}.ts`)),
+    type: "registry:ui",
+  };
 }
 
 export interface RegistryDependency {

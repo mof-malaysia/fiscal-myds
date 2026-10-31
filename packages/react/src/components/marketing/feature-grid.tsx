@@ -7,11 +7,14 @@ import {
   RefAttributes,
   useId,
 } from "react";
-import { cva } from "class-variance-authority";
 import { clx } from "../../utils";
 import { Link } from "../core/link";
 import { ArrowForwardIcon } from "../../icons/arrow-forward";
 import { SectionHeading } from "./section-heading";
+import {
+  grid_cva,
+  item_cva,
+} from "@mof-malaysia/ftds-style/variants/feature-grid";
 
 /**
  * FeatureGrid introduces what a service offers: a section title and intro,
@@ -36,27 +39,6 @@ interface Feature {
   /** Link text. Defaults to the grid's `linkLabel`. */
   linkLabel?: ReactNode;
 }
-
-const grid_cva = cva("grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2", {
-  variants: {
-    columns: {
-      2: "",
-      3: "lg:grid-cols-3",
-    },
-  },
-  defaultVariants: { columns: 3 },
-});
-
-const item_cva = cva("flex flex-col items-start gap-4", {
-  variants: {
-    surface: {
-      none: "",
-      // Sheet on Paper (both themes: Sheet is one step above Paper).
-      sheet: "bg-bg-white rounded-lg p-surface",
-    },
-  },
-  defaultVariants: { surface: "none" },
-});
 
 interface FeatureGridProps extends Omit<ComponentProps<"section">, "title"> {
   title?: ReactNode;

@@ -194,6 +194,10 @@
         {
           "path": "components/ui/button.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/button.variants.ts",
+          "type": "registry:ui"
         }
       ]
     },
@@ -222,6 +226,10 @@
         {
           "path": "components/ui/callout.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/callout.variants.ts",
+          "type": "registry:ui"
         }
       ]
     },
@@ -242,6 +250,10 @@
       "files": [
         {
           "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -404,6 +416,10 @@
         {
           "path": "components/ui/footer.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/footer.variants.ts",
+          "type": "registry:ui"
         }
       ]
     },
@@ -528,6 +544,10 @@
       "files": [
         {
           "path": "components/ui/link.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/link.variants.ts",
           "type": "registry:ui"
         }
       ]
@@ -858,6 +878,10 @@
       "files": [
         {
           "path": "components/ui/tag.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/tag.variants.ts",
           "type": "registry:ui"
         }
       ]

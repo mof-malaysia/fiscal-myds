@@ -588,14 +588,13 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
-    "prettier": "^3.6.2",
-    "prettier-plugin-tailwindcss": "^0.7.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tsup": "^8.5.1"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
+    "@mof-malaysia/ftds-style": "workspace:*",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",

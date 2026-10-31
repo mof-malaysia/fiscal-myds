@@ -7,6 +7,9 @@
     "registry/app/registry.json",
     "registry/marketing/registry.json",
     "registry/icons/registry.json",
-    "registry/style/registry.json"
+    "registry/style/registry.json",
+    "registry/astro-core/registry.json",
+    "registry/astro-marketing/registry.json",
+    "registry/astro-icons/registry.json"
   ]
 }

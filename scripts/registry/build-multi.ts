@@ -12,10 +12,11 @@ import {
 /**
  * Build the registry the shadcn CLI reads straight from GitHub
  * (https://ui.shadcn.com/docs/registry/github):
- *   registry/<name>/registry.json + files   core, app, marketing, icons, style
- *   registry.json                           root, includes the five above
+ *   registry/<name>/registry.json + files   core, app, marketing, icons, style,
+ *                                           astro-core, astro-marketing, astro-icons
+ *   registry.json                           root, includes all of the above
  * Items install as `mof-malaysia/ftds/<item>`, so names are unique across all
- * five. scripts/registry/build-json.ts turns the same files into the JSON
+ * of them (Astro items are prefixed `astro-`). scripts/registry/build-json.ts turns the same files into the JSON
  * registry served on GitHub Pages.
  */
 
@@ -26,9 +27,12 @@ const REGISTRIES: RegistryName[] = [
   "marketing",
   "icons",
   "style",
+  "astro-core",
+  "astro-marketing",
+  "astro-icons",
 ];
 
-/** Every item name across the five registries; throws on a duplicate. */
+/** Every item name across the registries; throws on a duplicate. */
 function assertUniqueNames(): number {
   const seen = new Map<string, RegistryName>();
   for (const registry of REGISTRIES) {
@@ -65,6 +69,8 @@ function main() {
   execSync("tsx scripts/registry/generate-icons.ts", { stdio: "inherit" });
   console.log("Generating style registry...");
   execSync("tsx scripts/registry/generate-style.ts", { stdio: "inherit" });
+  console.log("Generating Astro registries (astro-core, astro-marketing, astro-icons)...");
+  execSync("tsx scripts/registry/generate-astro.ts", { stdio: "inherit" });
   console.log("");
 
   const total = assertUniqueNames();

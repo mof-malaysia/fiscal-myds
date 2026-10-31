@@ -90,6 +90,10 @@
           "path": "components/blocks/cta-band.tsx",
           "type": "registry:component",
           "target": "components/blocks/cta-band.tsx"
+        },
+        {
+          "path": "components/ui/cta-band.variants.ts",
+          "type": "registry:ui"
         }
       ]
     },
@@ -137,6 +141,10 @@
           "path": "components/blocks/feature-grid.tsx",
           "type": "registry:component",
           "target": "components/blocks/feature-grid.tsx"
+        },
+        {
+          "path": "components/ui/feature-grid.variants.ts",
+          "type": "registry:ui"
         }
       ]
     },
@@ -296,6 +304,10 @@
           "path": "components/blocks/stats-band.tsx",
           "type": "registry:component",
           "target": "components/blocks/stats-band.tsx"
+        },
+        {
+          "path": "components/ui/stats-band.variants.ts",
+          "type": "registry:ui"
         }
       ]
     },

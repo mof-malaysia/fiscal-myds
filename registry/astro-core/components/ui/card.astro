@@ -1,0 +1,91 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
+import { card_cva } from "@/components/ui/card.variants";
+
+/**
+ * Card groups related content on its own surface: Sheet on a Paper page, or
+ * `tone="well"` for grouped secondary content. 12px corners, no border, no
+ * shadow. Cards are never nested.
+ *
+ * The header (title, description, one quiet action top-right) renders when
+ * `title`, `description` or the `title`/`description`/`action` slots are set.
+ * The default slot is the content; the `footer` slot holds the main actions,
+ * separated by spacing, not a divider. Fill the `header` slot to replace the
+ * whole header.
+ *
+ * @example
+ * <Card title="Tax payable" titleAs="h2" description="Year of assessment 2025">
+ *   <Button slot="action" variant="default-ghost" href="/returns/2025">View return</Button>
+ *   <p>Pay by 30 April 2026 to avoid a penalty.</p>
+ *   <Button slot="footer" href="/pay">Pay now</Button>
+ * </Card>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class" | "title"> &
+  VariantProps<typeof card_cva> & {
+    title?: string;
+    /** Heading element of the title; pick the level that fits the page outline. */
+    titleAs?: "h2" | "h3" | "h4" | "div";
+    description?: string;
+    class?: string;
+  };
+
+const {
+  tone,
+  title,
+  titleAs: Title = "h3",
+  description,
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const hasDescription = Boolean(description) || slots.has("description");
+const hasHeader =
+  hasTitle || hasDescription || slots.has("action") || slots.has("header");
+---
+
+<div class={clx(card_cva({ tone }), className)} {...props}>
+  {
+    hasHeader && (
+      <slot name="header">
+        <div class="grid auto-rows-min grid-cols-[1fr_auto] items-start gap-x-4 gap-y-1 [&>:not([data-slot=card-action])]:col-start-1">
+          {hasTitle && (
+            <Title class="text-title text-txt-black-900 font-semibold">
+              <slot name="title">{title}</slot>
+            </Title>
+          )}
+          {hasDescription && (
+            <p class="text-content text-txt-black-700">
+              <slot name="description">{description}</slot>
+            </p>
+          )}
+          {slots.has("action") && (
+            <div
+              data-slot="card-action"
+              class="col-start-2 row-span-2 row-start-1 self-start justify-self-end"
+            >
+              <slot name="action" />
+            </div>
+          )}
+        </div>
+      </slot>
+    )
+  }
+  {
+    slots.has("default") && (
+      <div class="text-content">
+        <slot />
+      </div>
+    )
+  }
+  {
+    slots.has("footer") && (
+      <div class="gap-stack-sm flex flex-wrap items-center">
+        <slot name="footer" />
+      </div>
+    )
+  }
+</div>

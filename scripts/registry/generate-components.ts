@@ -11,6 +11,9 @@ import {
   getIconExportMap,
   listComponents,
   registryItemRef,
+  variantImports,
+  variantsFile,
+  VARIANTS_PACKAGE,
   REGISTRY_ITEM_SCHEMA,
   type ComponentSource,
   type ComponentTier,
@@ -40,6 +43,7 @@ const ICONS_DIR = path.join(SRC_DIR, "icons");
 const BLOCK_MARKER = /^(?:"use client";\s*)?\/\/ registry:block\b/;
 
 const iconMap = getIconExportMap(ICONS_DIR);
+
 
 const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
   readFileContent(path.join(__dirname, "../../packages/react/package.json")),
@@ -79,6 +83,16 @@ function generateComponentItem({
   const content = expandIconBarrelImports(readFileContent(filePath), iconMap);
   const { npmDependencies, localImports } = extractImports(content);
 
+  // Variants from packages/style ship inside the item: the classes the React
+  // and Astro components share (generate-astro.ts bundles the same files)
+  const variantFiles = variantImports(content).map(variantsFile);
+  npmDependencies.delete(VARIANTS_PACKAGE);
+  for (const file of variantFiles) {
+    extractImports(file.content).npmDependencies.forEach((dep) =>
+      npmDependencies.add(dep),
+    );
+  }
+
   const deps = localImports
     .map((importPath) => mapToRegistryDependency(importPath, tier))
     .filter(
@@ -105,6 +119,7 @@ function generateComponentItem({
         type: isBlock ? "registry:component" : "registry:ui",
         ...(isBlock ? { target } : {}),
       },
+      ...variantFiles,
     ],
   };
 }

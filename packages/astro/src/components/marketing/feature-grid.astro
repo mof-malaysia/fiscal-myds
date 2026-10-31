@@ -1,0 +1,134 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Link from "@/components/ui/link.astro";
+import SectionHeading from "@/components/ui/section-heading.astro";
+import ArrowForwardIcon from "@/components/ui/icons/arrow-forward.astro";
+import { grid_cva, item_cva } from "@mof-malaysia/ftds-style/variants/feature-grid";
+
+/**
+ * FeatureGrid introduces what a service offers: a section title and intro,
+ * then a responsive grid (1 / 2 / 3 columns) of features. Each feature has an
+ * icon in a primary-wash circle, a title, supporting text and an optional link.
+ *
+ * A feature's `icon` is an icon component (not an element), rendered
+ * decorative. Slots: `title`, `description`, and the default slot under the
+ * grid (e.g. a "See all services" link).
+ *
+ * @example
+ * ---
+ * import MoneyIcon from "@/components/ui/icons/money.astro";
+ * ---
+ * <FeatureGrid
+ *   title="Everything in one account"
+ *   description="One MyDigital ID for every MOF service."
+ *   features={[
+ *     { icon: MoneyIcon, title: "Pay online", description: "FPX, cards and e-wallets.", href: "/pay" },
+ *   ]}
+ * />
+ */
+interface Feature {
+  /** Icon component, e.g. `MoneyIcon`. Pass the component, unsized. */
+  icon?: AstroComponentFactory;
+  title: string;
+  description?: string;
+  href?: string;
+  /** Link text. Defaults to the grid's `linkLabel`. */
+  linkLabel?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  features: Feature[];
+  /** Columns on desktop. Defaults to 3. */
+  columns?: 2 | 3;
+  /** `"sheet"` puts each feature on a Sheet surface. Defaults to `"none"`. */
+  surface?: "none" | "sheet";
+  /** Default link text for features with an `href`. Defaults to the `learnMore` label. */
+  linkLabel?: string;
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  features,
+  columns = 3,
+  surface = "none",
+  lang: langProp,
+  titleId = `feature-grid-${crypto.randomUUID().slice(0, 8)}`,
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const linkLabel = Astro.props.linkLabel ?? label(lang, "learnMore");
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+---
+
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx("bg-bg-gray-50 font-body w-full", className)}
+  {...props}
+>
+  <div
+    class="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-4 py-12 md:px-6 md:py-16 lg:gap-12 lg:py-24"
+  >
+    {/* Forward a slot only when filled: SectionHeading checks Astro.slots.has. */}
+    <SectionHeading
+      titleId={titleId}
+      title={title}
+      description={description}
+      class="max-w-[720px]"
+    >
+      <slot name="title" slot={slots.has("title") ? "title" : "_"} />
+      <slot name="description" slot={slots.has("description") ? "description" : "_"} />
+    </SectionHeading>
+    <ul class={grid_cva({ columns })}>
+      {
+        features.map((feature) => {
+          const Icon = feature.icon;
+          return (
+            <li class={item_cva({ surface })}>
+              {Icon && (
+                <span
+                  aria-hidden="true"
+                  class="bg-bg-primary-50 text-txt-primary flex size-12 shrink-0 items-center justify-center rounded-full [&_svg]:size-6"
+                >
+                  <Icon />
+                </span>
+              )}
+              <div class="flex flex-col gap-2">
+                <h3 class="text-txt-black-900 text-title font-semibold">{feature.title}</h3>
+                {feature.description && (
+                  <p class="text-txt-black-700 text-content">{feature.description}</p>
+                )}
+              </div>
+              {feature.href && (
+                <Link
+                  href={feature.href}
+                  primary
+                  underline="hover"
+                  class="text-label-md inline-flex items-center gap-1.5 font-medium"
+                >
+                  {feature.linkLabel ?? linkLabel}
+                  <span class="sr-only">: {feature.title}</span>
+                  <ArrowForwardIcon aria-hidden="true" class="size-4" />
+                </Link>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+    <slot />
+  </div>
+</section>

@@ -1,6 +1,7 @@
 import React, { ComponentProps, forwardRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 import { clx } from "../../utils";
+import { card_cva } from "@mof-malaysia/ftds-style/variants/card";
 
 /**
  * Card groups related content on its own surface (DESIGN.md: Cards / Containers):
@@ -23,27 +24,8 @@ import { clx } from "../../utils";
  * </Card>
  */
 
-const card_cva = cva(
-  [
-    "font-body text-txt-black-900 flex flex-col rounded-lg",
-    "gap-stack-lg p-surface",
-  ],
-  {
-    variants: {
-      tone: {
-        sheet: "bg-bg-white",
-        well: "bg-bg-washed",
-      },
-    },
-    defaultVariants: {
-      tone: "sheet",
-    },
-  },
-);
-
 interface CardProps
-  extends ComponentProps<"div">,
-    VariantProps<typeof card_cva> {}
+  extends ComponentProps<"div">, VariantProps<typeof card_cva> {}
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, tone, ...props }, ref) => (

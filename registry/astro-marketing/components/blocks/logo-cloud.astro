@@ -1,0 +1,103 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+
+/**
+ * LogoCloud lists the agencies or partners that use a service, as a quiet
+ * row of logos. Logos are greyed and slightly faded at rest and return to
+ * full colour on hover or focus, so they support the page without competing
+ * with it. Every logo needs `alt` text naming the organisation.
+ * Slot: `title`.
+ *
+ * @example
+ * <LogoCloud
+ *   title="Agencies using this service"
+ *   logos={[{ src: "/lhdn.svg", alt: "Lembaga Hasil Dalam Negeri", href: "https://www.hasil.gov.my" }]}
+ * />
+ */
+interface LogoCloudLogo {
+  src: string;
+  /** Name of the organisation. Required. */
+  alt: string;
+  href?: string;
+  width?: number;
+  height?: number;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  logos: LogoCloudLogo[];
+  /** Show the logos greyed out until hovered; set `false` for full colour. Defaults to true. */
+  muted?: boolean;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  logos,
+  muted = true,
+  titleId = `logo-cloud-${crypto.randomUUID().slice(0, 8)}`,
+  class: className,
+  ...props
+} = Astro.props;
+
+const hasTitle = Boolean(title) || Astro.slots.has("title");
+const imgClass = clx(
+  "h-10 w-auto max-w-[160px] object-contain select-none md:h-12",
+  muted &&
+    "opacity-70 grayscale transition-[opacity,filter] duration-200 ease-standard group-hover:opacity-100 group-hover:grayscale-0 group-focus-visible:opacity-100 group-focus-visible:grayscale-0 motion-reduce:transition-none",
+);
+---
+
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx("bg-bg-gray-50 font-body w-full", className)}
+  {...props}
+>
+  <div
+    class="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-8 px-4 py-12 md:px-6 md:py-16"
+  >
+    {
+      hasTitle && (
+        <h2 id={titleId} class="text-txt-black-700 text-body-md text-center font-medium">
+          <slot name="title">{title}</slot>
+        </h2>
+      )
+    }
+    <ul class="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14">
+      {
+        logos.map((logo) => (
+          <li class="group flex items-center">
+            {logo.href ? (
+              <a
+                href={logo.href}
+                class="group focus-visible:outline-fr-primary flex items-center rounded-md outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-solid"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  loading="lazy"
+                  class={imgClass}
+                />
+              </a>
+            ) : (
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                loading="lazy"
+                class={imgClass}
+              />
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

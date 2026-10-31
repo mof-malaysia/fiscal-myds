@@ -1,0 +1,72 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+
+/**
+ * SectionHeading is the title and intro shared by the marketing blocks: an h2
+ * with the section title and an optional larger intro paragraph. Pass
+ * `titleId` so the block's `<section>` can point `aria-labelledby` at it.
+ * The `title` and `description` slots take rich content in place of the
+ * props; the default slot renders under the intro.
+ *
+ * @example
+ * <section aria-labelledby="features">
+ *   <SectionHeading
+ *     titleId="features"
+ *     title="Everything in one account"
+ *     description="One MyDigital ID for every MOF service."
+ *   />
+ * </section>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  /** `id` for the heading, referenced by the section's `aria-labelledby`. */
+  titleId?: string;
+  /** Heading level. Defaults to `"h2"`. */
+  as?: "h2" | "h3";
+  /** Step the title up to heading-sm from `md`. Defaults to true. */
+  responsive?: boolean;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  titleId,
+  as: Heading = "h2",
+  responsive = true,
+  class: className,
+  ...props
+} = Astro.props;
+
+const hasTitle = Boolean(title) || Astro.slots.has("title");
+const hasDescription = Boolean(description) || Astro.slots.has("description");
+const hasChildren = Astro.slots.has("default");
+---
+
+{
+  (hasTitle || hasDescription || hasChildren) && (
+    <div class={clx("flex flex-col gap-3", className)} {...props}>
+      {hasTitle && (
+        <Heading
+          id={titleId}
+          class={clx(
+            "text-txt-black-900 font-semibold text-balance",
+            responsive
+              ? "text-heading-xs md:text-heading-sm tracking-[-0.015em]"
+              : "text-headline",
+          )}
+        >
+          <slot name="title">{title}</slot>
+        </Heading>
+      )}
+      {hasDescription && (
+        <p class="text-txt-black-700 text-body-lg">
+          <slot name="description">{description}</slot>
+        </p>
+      )}
+      <slot />
+    </div>
+  )
+}

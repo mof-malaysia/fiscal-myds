@@ -1,0 +1,65 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Tag from "@/components/ui/tag.astro";
+
+/**
+ * PhaseBanner tells users which stage a service is at (Alpha, Beta,
+ * Maintenance) and invites feedback. Place it directly under the masthead or
+ * top bar; it scrolls away with the page and is never sticky.
+ *
+ * The default slot is the message, wrapped in a `<p>` (inline content only);
+ * without it the dictionary's `phaseBannerText` is shown. For the feedback
+ * link use `<Link primary class="font-medium">`, as PhaseBannerLink does in React.
+ *
+ * @example
+ * <PhaseBanner phase="Beta">
+ *   This is a new service. Your <Link href="/feedback" primary class="font-medium">feedback</Link> will help us improve it.
+ * </PhaseBanner>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class" | "lang"> & {
+  /** The phase shown in the tag, e.g. "Alpha", "Beta", "Maintenance". */
+  phase?: string;
+  /** Tag colour. Primary for Alpha/Beta, warning for Maintenance, default for Retired. */
+  tagVariant?: "default" | "primary" | "success" | "danger" | "warning";
+  /** Class for the inner max-width row. */
+  containerClass?: string;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  phase = "Beta",
+  tagVariant = "primary",
+  containerClass,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+---
+
+<div
+  class={clx("bg-bg-gray-50 border-otl-gray-200 font-body w-full border-b", className)}
+  {...props}
+>
+  <div
+    class={clx(
+      "gap-stack-sm mx-auto flex w-full max-w-[1280px] items-start px-[18px] py-3 md:items-center md:px-6",
+      "in-data-[density=compact]:py-2",
+      containerClass,
+    )}
+  >
+    <Tag
+      variant={tagVariant}
+      size="medium"
+      class="max-md:text-label-compact max-md:h-[22px]"
+    >
+      <slot name="phase">{phase}</slot>
+    </Tag>
+    <p class="text-txt-black-700 text-content m-0 min-w-0">
+      <slot>{label(lang, "phaseBannerText")}</slot>
+    </p>
+  </div>
+</div>
