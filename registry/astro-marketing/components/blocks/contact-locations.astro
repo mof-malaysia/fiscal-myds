@@ -1,0 +1,245 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Link from "@/components/ui/link.astro";
+import Section from "@/components/ui/section.astro";
+import { icon_badge_cva } from "@/components/ui/section.variants";
+import PhoneIcon from "@/components/ui/icons/phone.astro";
+import EmailIcon from "@/components/ui/icons/email.astro";
+import ClockIcon from "@/components/ui/icons/clock.astro";
+import ChatBubbleIcon from "@/components/ui/icons/chat-bubble.astro";
+import PinIcon from "@/components/ui/icons/pin.astro";
+import DirectionIcon from "@/components/ui/icons/direction.astro";
+
+/**
+ * ContactLocations tells people how to reach an agency: the main contact
+ * channels (phone, email, hours, live chat) on Sheet cards, then the offices
+ * people can visit, each with its address, phone, hours and a directions link.
+ * Either part can be left out.
+ *
+ * Each channel's `kind` picks its icon and default label; phone and email
+ * values become `tel:` and `mailto:` links unless an `href` is given. Office
+ * details are an `<address>`. Slots: `title`, `description`, and the default
+ * slot under the offices (e.g. a link to every branch).
+ *
+ * @example
+ * <ContactLocations
+ *   channels={[
+ *     { kind: "phone", value: "03-8000 8000", detail: "Monday to Friday, 8 am to 5 pm" },
+ *     { kind: "email", value: "pertanyaan@mof.gov.my" },
+ *   ]}
+ *   offices={[
+ *     {
+ *       name: "Ibu pejabat, Putrajaya",
+ *       address: ["Kompleks Kementerian Kewangan", "No. 5 Persiaran Perdana, Presint 2", "62592 Putrajaya"],
+ *       hours: "Isnin hingga Jumaat, 8 pagi hingga 5 petang",
+ *       mapHref: "https://maps.google.com/?q=Kementerian+Kewangan+Putrajaya",
+ *     },
+ *   ]}
+ * />
+ */
+type ChannelKind = "phone" | "email" | "hours" | "chat";
+
+interface Channel {
+  kind: ChannelKind;
+  /** The number, address or hours, e.g. "03-8000 8000". */
+  value: string;
+  /** Replaces the kind's default label ("Telefon", "E-mel"...). */
+  label?: string;
+  /** A line under the value, e.g. when the line is open. */
+  detail?: string;
+  /** Link for the value. Phone and email link to `tel:` / `mailto:` by default. */
+  href?: string;
+}
+
+interface Office {
+  name: string;
+  /** Address lines, first to last. */
+  address: string[];
+  phone?: string;
+  email?: string;
+  hours?: string;
+  /** A map or directions link. */
+  mapHref?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** @default "Hubungi kami" / "Contact us" */
+  title?: string;
+  description?: string;
+  channels?: Channel[];
+  offices?: Office[];
+  /** Heading over the offices, when there are channels too. */
+  officesTitle?: string;
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title: titleProp,
+  description,
+  channels = [],
+  offices = [],
+  officesTitle,
+  lang: langProp,
+  titleId = uniqueId("contact-locations"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const title = titleProp ?? label(lang, "contactTitle");
+
+const KINDS: Record<ChannelKind, { icon: AstroComponentFactory; label: string }> = {
+  phone: { icon: PhoneIcon, label: label(lang, "phone") },
+  email: { icon: EmailIcon, label: label(lang, "email") },
+  hours: { icon: ClockIcon, label: label(lang, "officeHours") },
+  chat: { icon: ChatBubbleIcon, label: label(lang, "liveChat") },
+};
+
+// Offices sit under their own heading when there are channels above them
+const officesHeading = channels.length > 0 && Boolean(officesTitle);
+const OfficeHeading = officesHeading ? "h4" : "h3";
+
+const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
+/** The address, phone, email and hours of an office that has them. */
+const officeRows = (office: Office) =>
+  [
+    { Icon: PinIcon, label: label(lang, "address"), lines: office.address },
+    office.phone && {
+      Icon: PhoneIcon,
+      label: label(lang, "phone"),
+      lines: [office.phone],
+      href: telHref(office.phone),
+    },
+    office.email && {
+      Icon: EmailIcon,
+      label: label(lang, "email"),
+      lines: [office.email],
+      href: `mailto:${office.email}`,
+    },
+    office.hours && { Icon: ClockIcon, label: label(lang, "officeHours"), lines: [office.hours] },
+  ].filter((row) => Boolean(row)) as {
+    Icon: AstroComponentFactory;
+    label: string;
+    lines: string[];
+    href?: string;
+  }[];
+
+const channelHref = (channel: Channel) =>
+  channel.href ??
+  (channel.kind === "phone"
+    ? telHref(channel.value)
+    : channel.kind === "email"
+      ? `mailto:${channel.value}`
+      : undefined);
+---
+
+<Section
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  {
+    channels.length > 0 && (
+      <ul
+        class={clx(
+          "grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6",
+          channels.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4",
+        )}
+      >
+        {channels.map((channel) => {
+          const { icon: Icon, label: kindLabel } = KINDS[channel.kind];
+          const href = channelHref(channel);
+          return (
+            <li class="bg-bg-white flex flex-col gap-3 rounded-lg p-surface">
+              <span
+                aria-hidden="true"
+                class={icon_badge_cva({ size: "medium" })}
+              >
+                <Icon />
+              </span>
+              <div class="flex flex-col gap-1">
+                <h3 class="text-txt-black-700 text-label-md font-medium">
+                  {channel.label ?? kindLabel}
+                </h3>
+                <p class="text-txt-black-900 text-title font-semibold break-words">
+                  {href ? (
+                    <Link href={href} primary underline="hover">
+                      {channel.value}
+                    </Link>
+                  ) : (
+                    channel.value
+                  )}
+                </p>
+                {channel.detail && <p class="text-txt-black-700 text-body-sm">{channel.detail}</p>}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    )
+  }
+  {
+    offices.length > 0 && (
+      <div class="flex flex-col gap-6">
+        {officesHeading && (
+          <h3 class="text-txt-black-900 text-headline font-semibold">{officesTitle}</h3>
+        )}
+        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+          {offices.map((office) => (
+              <li class="bg-bg-white flex flex-col gap-4 rounded-lg p-surface">
+                <OfficeHeading class="text-txt-black-900 text-title font-semibold">
+                  {office.name}
+                </OfficeHeading>
+                <address class="text-txt-black-700 text-content flex flex-col gap-3 not-italic">
+                  {officeRows(office).map(({ Icon, label: rowLabel, lines, href }) => (
+                    <p class="flex gap-3">
+                      <Icon aria-hidden="true" class="text-txt-black-500 mt-0.5 size-5 shrink-0" />
+                      <span class="min-w-0 break-words">
+                        <span class="sr-only">{rowLabel}: </span>
+                        {href ? (
+                          <Link href={href} underline="hover">
+                            {lines[0]}
+                          </Link>
+                        ) : (
+                          lines.map((line, i) => (
+                            <>
+                              {i > 0 && <br />}
+                              {line}
+                            </>
+                          ))
+                        )}
+                      </span>
+                    </p>
+                  ))}
+                </address>
+                {office.mapHref && (
+                  <Link
+                    href={office.mapHref}
+                    primary
+                    newTab
+                    class="text-label-md mt-auto inline-flex items-center gap-1.5 font-medium"
+                  >
+                    <DirectionIcon aria-hidden="true" class="size-4" />
+                    {label(lang, "directions")}
+                    <span class="sr-only">: {office.name}</span>
+                  </Link>
+                )}
+              </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+  <slot />
+</Section>

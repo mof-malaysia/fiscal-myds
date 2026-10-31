@@ -44,7 +44,8 @@ type TooltipPositionerProps = Pick<
 >;
 
 interface TooltipContentProps
-  extends Omit<TooltipPrimitive.Popup.Props, "className">,
+  extends
+    Omit<TooltipPrimitive.Popup.Props, "className">,
     TooltipPositionerProps,
     Pick<TooltipPrimitive.Portal.Props, "container" | "keepMounted"> {
   className?: string;

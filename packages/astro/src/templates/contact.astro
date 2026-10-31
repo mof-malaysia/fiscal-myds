@@ -1,0 +1,58 @@
+---
+/**
+ * Template: contact. The quickest way to an answer first (the FAQ and the
+ * helpline), then the offices people can visit.
+ *
+ * PageIntro → Callout → Faq → ContactLocations (channels and offices).
+ * Copy this file, the blocks it imports and site-layout.astro, then swap in
+ * your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import PageIntro from "@/components/blocks/page-intro.astro";
+import ContactLocations from "@/components/blocks/contact-locations.astro";
+import Faq from "@/components/blocks/faq.astro";
+import Callout from "@/components/ui/callout.astro";
+import Link from "@/components/ui/link.astro";
+import { helpline, home, offices } from "./site";
+---
+
+<SiteLayout current="Hubungi kami">
+  <PageIntro
+    breadcrumb={[home, { label: "Hubungi kami" }]}
+    title="Hubungi kami"
+    description="Kebanyakan soalan dijawab dalam soalan lazim. Jika tidak, hubungi kami melalui telefon, e-mel atau kunjungi pejabat kami."
+  />
+
+  <div class="mx-auto w-full max-w-[1280px] px-4 py-8 md:px-6">
+    <Callout variant="warning" title="Berhati-hati dengan penipuan">
+      Pegawai kami tidak akan meminta kata laluan, nombor TAC atau bayaran melalui telefon.{" "}
+      <Link href="#penipuan" primary>Cara mengenal pasti penipuan</Link>
+    </Callout>
+  </div>
+
+  <Faq
+    tone="well"
+    description="Jawapan kepada soalan yang paling kerap kami terima."
+    items={[
+      {
+        question: "Bagaimana saya menyemak status bayaran bantuan saya?",
+        answer: "Log masuk ke portal bantuan dengan MyDigital ID dan pilih Status bayaran.",
+      },
+      {
+        question: "Berapa lama aduan saya akan diproses?",
+        answer: "Kami mengakui setiap aduan dalam 3 hari bekerja dan menyelesaikan kebanyakannya dalam 15 hari bekerja.",
+      },
+      {
+        question: "Bolehkah saya membuat temu janji di pejabat?",
+        answer: "Ya. Hubungi pejabat yang anda ingin kunjungi sekurang-kurangnya dua hari bekerja lebih awal.",
+      },
+    ]}
+  />
+
+  <ContactLocations
+    title="Talian utama"
+    officesTitle="Pejabat kami"
+    channels={helpline}
+    offices={offices}
+  />
+</SiteLayout>

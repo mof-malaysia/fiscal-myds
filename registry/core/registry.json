@@ -188,7 +188,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-button"
       ],
       "files": [
         {
@@ -216,7 +217,8 @@
         "mof-malaysia/ftds/icon-info",
         "mof-malaysia/ftds/icon-warning",
         "mof-malaysia/ftds/icon-warning-circle",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-callout"
       ],
       "files": [
         {
@@ -237,7 +239,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-card"
       ],
       "files": [
         {
@@ -285,7 +288,8 @@
       "registryDependencies": [
         "mof-malaysia/ftds/button",
         "mof-malaysia/ftds/icon-cross",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-cookie-banner"
       ],
       "files": [
         {
@@ -398,7 +402,8 @@
       ],
       "registryDependencies": [
         "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-footer"
       ],
       "files": [
         {
@@ -523,7 +528,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-link"
       ],
       "files": [
         {
@@ -832,7 +838,8 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-tabs"
       ],
       "files": [
         {
@@ -849,11 +856,10 @@
         "data-display"
       ],
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-tag"
       ],
       "files": [
         {

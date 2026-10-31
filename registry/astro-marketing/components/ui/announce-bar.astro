@@ -1,0 +1,52 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import Tag from "@/components/ui/tag.astro";
+
+/**
+ * AnnounceBar is a short notice across the top of an agency site: a status tag
+ * and one line of text, such as planned maintenance or a new service. For a
+ * service in alpha or beta, use PhaseBanner.
+ *
+ * The default slot is the description (one sentence, at most one link). The
+ * `tag` slot replaces the Tag built from `tag` and `tagVariant`.
+ *
+ * @example
+ * <AnnounceBar tag="Maintenance" tagVariant="warning">
+ *   <p>
+ *     Online payments are unavailable on 2 November from 1 am to 4 am.
+ *     <Link href="/notices/maintenance" primary>Read the notice</Link>
+ *   </p>
+ * </AnnounceBar>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  /** Tag label, e.g. "Maintenance". A word that stands on its own. */
+  tag?: string;
+  tagVariant?: "default" | "primary" | "success" | "danger" | "warning";
+  /** Draws a Hairline under the bar. Defaults to true. */
+  border?: boolean;
+  class?: string;
+};
+
+const {
+  tag,
+  tagVariant = "default",
+  border = true,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<div
+  class={clx(
+    "mx-[18px] flex flex-row gap-2 py-2 md:mx-6",
+    border && "border-otl-gray-200 border-b",
+    className,
+  )}
+  {...props}
+>
+  <slot name="tag">{tag && <Tag variant={tagVariant}>{tag}</Tag>}</slot>
+  <div class="text-txt-black-700 font-body text-content flex min-h-[28px] items-center">
+    <slot />
+  </div>
+</div>

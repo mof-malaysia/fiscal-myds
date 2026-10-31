@@ -10,8 +10,9 @@ The repository is the registry: the shadcn CLI installs straight from GitHub, or
 
 - **Components**, in three tiers: **core** (shared primitives and government chrome, plus utils and hooks), **app** (service and officer tools) and **marketing** (agency site components and page blocks)
 - **Icons**, 220, named `icon-<name>` (`icon-chevron-down`)
+- **FTDS for Astro**: native Astro components for static agency, landing and marketing sites, named `astro-<name>` (`astro-hero`). A focused subset of core plus marketing, with no app components. See [FTDS for Astro](#ftds-for-astro)
 - **Styles**: the Tailwind v4 tokens and themes, all in one with `ftds-init`
-- **Storybook**: an interactive component browser
+- **Storybook**: an interactive component browser, with the Astro components composed in as "FTDS for Astro"
 
 Every item name is unique across the tiers, so you install `button` or `icon-search` without knowing which tier it lives in.
 
@@ -161,10 +162,49 @@ Installed as `icon-<name>`, for example `icon-chevron-down`.
 
 See [REGISTRY.md](./REGISTRY.md) for full component list and details.
 
+## FTDS for Astro
+
+A second distribution for sites whose job is to inform or persuade: agency pages, landing pages, campaign and marketing sites built with [Astro](https://astro.build). Components are native `.astro` files that ship no JavaScript by default.
+
+**It does not replace the React components.** React stays the primary library and keeps its full marketing tier; use it for anything that is also a service, or when a site already runs on React. Astro is the more focused choice for a static marketing site. See [docs/rfc/astro.md](./docs/rfc/astro.md) for the decisions.
+
+- **Scope**: a selective subset of core (the pieces marketing pages need) and the marketing tier. App components are never part of it.
+- **Not a mirror**: Astro can have marketing and content components React doesn't.
+- **Same look**: components in both stacks share their classes from `packages/style/variants` (the `variants-<name>` items, installed as `components/ui/<name>.variants.ts`), and both use the same `ftds-init` styles.
+- **Built-in labels** in Bahasa Melayu (default) and English, from `astro-i18n`.
+- **Page templates**: full agency pages (homepage, service landing, campaign, news, event, about, contact, publications, 404 and maintenance) assembled from the blocks, in `packages/astro/src/templates` and the Astro Storybook under Marketing › Templates. They are references to copy from, not a starter kit or a registry item.
+- **Requirements**: Astro 7+ and Tailwind v4.
+
+```bash
+npx shadcn@latest add @ftds/ftds-init
+npx shadcn@latest add @ftds/astro-hero @ftds/astro-masthead
+```
+
+| Item                   | Installed to                       |
+| ---------------------- | ---------------------------------- |
+| Astro components       | `components/ui/<name>.astro`       |
+| Astro marketing blocks | `components/blocks/<name>.astro`   |
+| Astro icons            | `components/ui/icons/<name>.astro` |
+| Shared variants        | `components/ui/<name>.variants.ts` |
+| i18n labels            | `lib/ftds/i18n/`                   |
+
+Import with the extension, so `button.astro` and a React `button.tsx` can live side by side:
+
+```astro
+---
+import Hero from "@/components/blocks/hero.astro";
+---
+
+<Hero
+  title="Bayar bil kerajaan di satu tempat"
+  primaryAction={{ label: "Mula membayar", href: "/bayar" }}
+/>
+```
+
 ## Documentation & Demo
 
 - **🎨 Live Demo**: [https://mof-malaysia.github.io/ftds](https://mof-malaysia.github.io/ftds)
-- **📚 Storybook**: [https://mof-malaysia.github.io/ftds/storybook](https://mof-malaysia.github.io/ftds/storybook)
+- **📚 Storybook**: [https://mof-malaysia.github.io/ftds/storybook](https://mof-malaysia.github.io/ftds/storybook) (React, with the Astro components composed in; Astro alone at [/storybook-astro](https://mof-malaysia.github.io/ftds/storybook-astro))
 - **📦 Registry Catalog**: [`registry.json`](./registry.json), or a release's JSON catalog at `https://mof-malaysia.github.io/ftds/r/<version>/registry.json`
 - **Registry Docs**: See [REGISTRY.md](./REGISTRY.md)
 - **Deployment Guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
@@ -177,10 +217,12 @@ See [REGISTRY.md](./REGISTRY.md) for full component list and details.
 ```
 apps/
   storybook/        Component browser, deployed to GitHub Pages
+  storybook-astro/  Astro component browser, composed into storybook/ (Playwright a11y and keyboard tests)
   docs/             Legacy docs site (being deprecated; not linted)
 packages/
   react/            Component source, by tier: src/components/{core,app,marketing}
-  style/            Tailwind v4 tokens and themes (source for @ftds-style)
+  astro/            FTDS for Astro source: src/components/{core,marketing}, icons, i18n, templates
+  style/            Tailwind v4 tokens and themes (source for @ftds-style), plus variants/: cva classes shared by React and Astro
   _typescript/      Shared tsconfig presets
 registry.json       Registry root the shadcn CLI reads from GitHub
 registry/           Generated registry files by tier (committed; the pre-push hook checks they are current)
@@ -206,15 +248,15 @@ pnpm --filter @mof-malaysia/ftds-storybook dev # Storybook at http://localhost:6
 | ------------------------------ | --------------------------------------------------------------- |
 | `pnpm lint`                    | oxlint across the workspace; fails on any warning               |
 | `pnpm typecheck`               | `tsc --noEmit` in every package, via Turborepo                  |
-| `pnpm format`                  | Prettier over `.ts`, `.tsx` and `.md` files                     |
-| `pnpm icons:generate`          | Rebuild `packages/react/src/icons` from `src/svg/icons/*.svg`   |
+| `pnpm format`                  | oxfmt over `.ts`, `.tsx` and `.md` files                        |
+| `pnpm icons:generate`          | Rebuild the React and Astro icons from `src/svg/icons/*.svg`    |
 | `pnpm components:sync-exports` | Regenerate `packages/react/package.json` exports from the tiers |
 | `pnpm registry:build`          | Regenerate `registry.json` and everything under `registry/`     |
 | `pnpm registry:validate`       | Check the registry with `shadcn registry validate`              |
 | `pnpm llms:check`              | Typecheck every example in the component docs and guides        |
 | `pnpm llms:build`              | Build `llms.txt` and the agent docs into `deploy/`              |
 
-Every commit runs Prettier on staged files plus `pnpm lint` and `pnpm typecheck`; every push also checks the registry and agent docs and builds Storybook, the docs and the playground. Commit the output of `pnpm registry:build` with any component, doc, icon or style change: the push fails if `registry/` is out of date. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and [DEPLOYMENT.md](./DEPLOYMENT.md) for releasing.
+Every commit runs oxfmt on staged files plus `pnpm lint` and `pnpm typecheck`; every push also checks the registry and agent docs and builds Storybook, the docs and the playground. Commit the output of `pnpm registry:build` with any component, doc, icon or style change: the push fails if `registry/` is out of date. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and [DEPLOYMENT.md](./DEPLOYMENT.md) for releasing.
 
 ## Origins
 

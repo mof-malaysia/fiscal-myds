@@ -1,0 +1,116 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Button from "@/components/ui/button.astro";
+import Section from "@/components/ui/section.astro";
+import { icon_badge_cva } from "@/components/ui/section.variants";
+
+/**
+ * CtaCards is a call to action with a choice: two or three ways to do the
+ * same thing (apply online, at a counter, by post) or the next steps for
+ * different people (citizens, businesses, agencies), each on a Sheet card with
+ * an icon, a short case and its own action.
+ *
+ * Mark the option most people should take `recommended`: it gets the only
+ * filled button, the others an outline one, so the page keeps one primary
+ * action. Slots: `title`, `description`, and the default slot under the cards.
+ *
+ * @example
+ * <CtaCards
+ *   title="Pilih cara memohon"
+ *   options={[
+ *     { title: "Dalam talian", description: "Paling cepat.", action: { label: "Mohon dalam talian", href: "/mohon" }, recommended: true },
+ *     { title: "Di kaunter", description: "Bawa MyKad anda.", action: { label: "Cari pejabat", href: "/pejabat" } },
+ *   ]}
+ * />
+ */
+interface CtaOption {
+  /** Icon component, e.g. `DesktopIcon`. Pass the component, unsized. */
+  icon?: AstroComponentFactory;
+  title: string;
+  description?: string;
+  action: { label: string; href: string };
+  /** Gets the filled primary button. Mark one option at most. */
+  recommended?: boolean;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  /** Two or three options. Extra items are dropped. */
+  options: CtaOption[];
+  /** Section band: Well (default) or Paper. */
+  tone?: "well" | "paper";
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  options,
+  tone = "well",
+  titleId = uniqueId("cta-cards"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const Heading = hasTitle ? "h3" : "h2";
+const shown = options.slice(0, 3);
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <ul
+    class={clx(
+      "grid grid-cols-1 gap-4 md:gap-6",
+      shown.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2",
+    )}
+  >
+    {
+      shown.map((option) => {
+        const Icon = option.icon;
+        return (
+          <li class="bg-bg-white flex flex-col items-start gap-5 rounded-lg p-surface md:p-8">
+            {Icon && (
+              <span
+                aria-hidden="true"
+                class={icon_badge_cva()}
+              >
+                <Icon />
+              </span>
+            )}
+            <div class="flex flex-col gap-2">
+              <Heading class="text-txt-black-900 text-headline font-semibold">{option.title}</Heading>
+              {option.description && (
+                <p class="text-txt-black-700 text-content">{option.description}</p>
+              )}
+            </div>
+            <Button
+              variant={option.recommended ? "primary-fill" : "default-outline"}
+              size="large"
+              href={option.action.href}
+              class="mt-auto"
+            >
+              {option.action.label}
+            </Button>
+          </li>
+        );
+      })
+    }
+  </ul>
+  <slot />
+</Section>

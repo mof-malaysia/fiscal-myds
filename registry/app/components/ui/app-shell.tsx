@@ -211,8 +211,7 @@ AppShellProvider.displayName = "AppShellProvider";
 /*========================================================================================================================*/
 
 interface AppShellProps
-  extends ComponentProps<"div">,
-    Omit<AppShellProviderProps, "children"> {
+  extends ComponentProps<"div">, Omit<AppShellProviderProps, "children"> {
   /** Width of the expanded sidebar (any CSS length). Sets `--sidebar-width`. */
   sidebarWidth?: string;
   /** Width of the icon rail. Sets `--sidebar-width-icon`. Defaults to one control height plus 24px. */
@@ -576,8 +575,7 @@ const SidebarMenuCollapsible = forwardRef<
 ));
 SidebarMenuCollapsible.displayName = "SidebarMenuCollapsible";
 
-interface SidebarMenuCollapsibleTriggerProps
-  extends WithClassName<CollapsiblePrimitive.Trigger.Props> {
+interface SidebarMenuCollapsibleTriggerProps extends WithClassName<CollapsiblePrimitive.Trigger.Props> {
   /** Label shown in a tooltip on the icon rail. */
   tooltip?: ReactNode;
 }

@@ -1,0 +1,88 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import ChevronRight from "@/components/ui/icons/chevron-right.astro";
+
+/**
+ * Breadcrumb shows where the current page sits and links back up the trail:
+ * Label type, parents in Ink Secondary, the current page in Ink, small
+ * chevrons between them, and no container.
+ *
+ * `items` runs from the top level down. The last item, or any item without
+ * `href`, is the current page (`aria-current="page"`, not a link). Long names
+ * truncate at 200px; the full name stays in the `title` tooltip. The `<nav>`
+ * is labelled from the i18n dictionary; pass `aria-label` to override.
+ * `class` goes on the list, as in React.
+ *
+ * @example
+ * <Breadcrumb
+ *   items={[
+ *     { label: "Home", href: "/" },
+ *     { label: "Services", href: "/services" },
+ *     { label: "Applications" },
+ *   ]}
+ * />
+ */
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+type Props = Omit<HTMLAttributes<"nav">, "class" | "lang"> & {
+  items: BreadcrumbItem[];
+  lang?: Lang;
+  class?: string;
+};
+
+const { items, lang: langProp, class: className, ...props } = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+const ariaLabel = props["aria-label"] ?? label(lang, "breadcrumb");
+---
+
+<nav {...props} aria-label={ariaLabel}>
+  <ol
+    class={clx(
+      "font-body text-label-sm flex min-w-0 flex-wrap items-center gap-1",
+      className,
+    )}
+  >
+    {
+      items.map((item, i) => {
+        const current = i === items.length - 1 || !item.href;
+        return (
+          <>
+            {i > 0 && (
+              <li
+                role="presentation"
+                aria-hidden="true"
+                class="text-txt-black-500 inline-flex shrink-0 items-center [&>svg]:size-4"
+              >
+                <ChevronRight />
+              </li>
+            )}
+            <li class="inline-flex max-w-[200px] min-w-0 items-center">
+              {current ? (
+                <span
+                  aria-current="page"
+                  title={item.label}
+                  class="text-txt-black-900 truncate font-medium"
+                >
+                  {item.label}
+                </span>
+              ) : (
+                <a
+                  href={item.href}
+                  title={item.label}
+                  class="text-txt-black-700 hover:text-txt-black-900 focus-ring truncate rounded-sm font-medium decoration-from-font underline-offset-4 transition-colors duration-150 hover:underline motion-reduce:transition-none"
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          </>
+        );
+      })
+    }
+  </ol>
+</nav>

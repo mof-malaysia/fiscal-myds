@@ -1,0 +1,302 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+import Cross from "@/components/ui/icons/cross.astro";
+import HamburgerMenu from "@/components/ui/icons/hamburger-menu.astro";
+import NavbarMenu from "@/components/ui/navbar-menu.astro";
+import type { NavbarItem, NavbarMenuEntry } from "@/components/ui/navbar-menu.astro";
+import {
+  navbar_bar_class,
+  navbar_brand_class,
+  navbar_brand_image_class,
+  navbar_header_class,
+  navbar_logo_cva,
+} from "@mof-malaysia/ftds-style/variants/navbar";
+
+/**
+ * Navbar is the site's top navigation bar: the logo and site title linking
+ * home, the links and dropdown menus, and actions such as search or the
+ * LanguageSwitcher in the `actions` slot. It is sticky and goes under the
+ * Masthead.
+ *
+ * From `xl` (1280px) the links sit in the bar and an item with `children` or
+ * `groups` opens a dropdown. Below it they move into a full-width panel under
+ * the bar, opened by a menu button, where dropdowns expand in place.
+ *
+ * Plain links make the standard bar. Children with a `description` (and an
+ * `icon`), titled `groups`, a `feature` and a `footer` link make the
+ * expressive dropdowns: a citizen sees what is behind a link before clicking.
+ *
+ * Native first: dropdowns and the mobile panel are popovers (`popovertarget`),
+ * so they open, close on Escape or an outside click, and return focus without
+ * JavaScript; mobile sections are `<details>`. The script adds positioning
+ * where CSS anchor positioning is missing, `aria-expanded`, arrow keys in a
+ * dropdown, and moves focus into the mobile panel. An item with both `href`
+ * and children gets a footer link to its `href`, so its section page is
+ * always one link away.
+ *
+ * @example
+ * <Navbar
+ *   brand={{ title: "Kementerian Kewangan", logo: { src: "/jata.png", alt: "Jata Negara" } }}
+ *   items={[
+ *     { label: "Utama", href: "/", current: true },
+ *     { label: "Perkhidmatan", href: "/perkhidmatan", children: [
+ *       { label: "Bayar bil", href: "/bayar", description: "Saman, yuran dan taksiran" },
+ *     ] },
+ *   ]}
+ * >
+ *   <LanguageSwitcher slot="actions" locales={locales} />
+ * </Navbar>
+ */
+interface NavbarBrand {
+  /** Site or agency title beside the logo. */
+  title?: string;
+  /** @default "/" */
+  href?: string;
+  /** The logo image. The `logo` slot replaces it. */
+  logo?: { src: string; alt: string };
+  /** A title longer than this is set smaller over two lines. @default 19 */
+  maxChars?: number;
+}
+
+type Props = Omit<HTMLAttributes<"header">, "class" | "lang"> & {
+  brand?: NavbarBrand;
+  /** Links and dropdowns. The item types are in navbar-menu.astro. */
+  items?: NavbarItem[];
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  brand = {},
+  items = [],
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+const id = uniqueId("navbar");
+const panelId = `${id}-panel`;
+const navLabel = label(lang, "navbarNav");
+
+/** Every dropdown as sections: untitled `children` first, then the groups. */
+const menus: NavbarMenuEntry[] = items.map((item, i) => {
+  const sections = [
+    ...(item.children?.length ? [{ title: undefined, links: item.children }] : []),
+    ...(item.groups ?? []),
+  ];
+  const links = sections.flatMap((section) => section.links);
+  return {
+    ...item,
+    key: `${id}-${i}`,
+    sections,
+    hasDropdown: sections.length > 0,
+    grouped: sections.some((section) => section.title),
+    // The trigger is underlined when the visitor is anywhere in the section
+    inSection: Boolean(item.current || links.some((link) => link.current)),
+    footer:
+      item.footer ??
+      (item.href ? { label: `${label(lang, "navbarViewAll")}: ${item.label}`, href: item.href } : undefined),
+  };
+});
+
+const hasLogo = Astro.slots.has("logo") || brand.logo;
+const maxChars = brand.maxChars ?? 19;
+---
+
+<header
+  id={id}
+  class={clx(navbar_header_class, "group/navbar font-body", className)}
+  style={`anchor-name: --${id}`}
+  data-nosnippet
+  data-ftds-navbar
+  {...props}
+>
+  <div class={navbar_bar_class}>
+    {/* min-w-0: on a narrow bar the title wraps instead of pushing the menu button off-screen */}
+    <a
+      href={brand.href ?? "/"}
+      class={clx(navbar_brand_class, "focus-ring min-w-0 rounded-xs py-3 max-md:py-2.5")}
+    >
+      {
+        hasLogo && (
+          <slot name="logo">
+            <img
+              src={brand.logo?.src}
+              width="40"
+              height="32"
+              class={clx(navbar_brand_image_class, "shrink-0")}
+              alt={brand.logo?.alt}
+            />
+          </slot>
+        )
+      }
+      {
+        brand.title && (
+          <span class={navbar_logo_cva({ too_long: brand.title.length > maxChars })}>
+            {brand.title}
+          </span>
+        )
+      }
+    </a>
+
+    {/* Desktop */}
+    <nav aria-label={navLabel} class="hidden grow xl:block">
+      <ul class="flex justify-start gap-1">
+        {menus.map((item) => <NavbarMenu item={item} mobile={false} lang={lang} />)}
+      </ul>
+    </nav>
+
+    <div class="ml-auto flex items-center justify-end gap-2">
+      <slot name="actions" />
+      {
+        menus.length > 0 && (
+          <Button
+            variant="default-ghost"
+            iconOnly
+            class="xl:hidden"
+            popovertarget={panelId}
+            aria-controls={panelId}
+            data-ftds-navbar-toggle
+          >
+            {/* Icon and name follow the panel through CSS, so they are right without JavaScript */}
+            <HamburgerMenu class="group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:hidden" aria-hidden="true" />
+            <Cross class="hidden group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:block" aria-hidden="true" />
+            <span class="sr-only group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:hidden">
+              {label(lang, "navbarMenu")}
+            </span>
+            <span class="sr-only hidden group-has-[[data-ftds-navbar-panel]:popover-open]/navbar:inline">
+              {label(lang, "navbarClose")}
+            </span>
+          </Button>
+        )
+      }
+    </div>
+  </div>
+
+  {/* Tablet / mobile: the panel fills the space under the bar; its own background is the scrim */}
+  {
+    menus.length > 0 && (
+      <div
+        id={panelId}
+        popover="auto"
+        style={`position-anchor: --${id}`}
+        class="bg-scrim/40 text-txt-black-900 xl:hidden"
+        data-ftds-navbar-panel
+      >
+        <nav aria-label={navLabel} class="max-h-full overflow-y-auto overscroll-contain">
+          {/* Full-width sheet (DESIGN.md: Navigation, Mobile) */}
+          <ul class="bg-bg-dialog px-2 pt-2 pb-4">
+            {menus.map((item) => <NavbarMenu item={item} mobile lang={lang} />)}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
+</header>
+
+<style>
+  /* A popover in the top layer: drop the UA's centred box (dropdowns: navbar-menu.astro).
+     Fills the space under the bar, wherever the bar sits. JavaScript sets
+     `top` where anchor() isn't supported. */
+  [data-ftds-navbar-panel] {
+    inset: 3.5rem 0 0 0;
+    inset-block-start: anchor(bottom);
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+  }
+  [data-ftds-navbar-panel]:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<script>
+  import { moveFocus, onEach, trackExpanded } from "@/lib/ftds/scripts";
+
+  const anchored = CSS.supports("anchor-name: --a");
+  const desktop = matchMedia("(min-width: 80rem)");
+
+  onEach("[data-ftds-navbar]", (header) => {
+    /* Desktop dropdowns */
+    for (const trigger of header.querySelectorAll<HTMLButtonElement>("[data-ftds-navbar-trigger]")) {
+      const popup = document.getElementById(trigger.getAttribute("popovertarget")!)!;
+      const item = trigger.parentElement!;
+      const links = [...popup.querySelectorAll<HTMLElement>("[data-ftds-navbar-link]")];
+      trackExpanded(trigger, popup);
+
+      popup.addEventListener("toggle", (event) => {
+        if ((event as ToggleEvent).newState === "open" && !anchored) {
+          // No anchor positioning: place it under the trigger, inside the viewport
+          const rect = trigger.getBoundingClientRect();
+          const left = Math.max(16, Math.min(rect.left, innerWidth - popup.offsetWidth - 16));
+          Object.assign(popup.style, { top: `${rect.bottom + 8}px`, left: `${left}px`, marginTop: "0" });
+        }
+      });
+      // Down arrow from the trigger opens the dropdown on its first link
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowDown") return;
+        event.preventDefault();
+        if (!popup.matches(":popover-open")) popup.showPopover();
+        links[0]?.focus();
+      });
+      for (const link of links) {
+        link.addEventListener("keydown", (event) => {
+          moveFocus(event, links, "vertical");
+        });
+      }
+      // Tabbing out of the item closes its dropdown
+      item.addEventListener("focusout", (event) => {
+        const next = event.relatedTarget as Node | null;
+        if (next && !item.contains(next) && popup.matches(":popover-open")) popup.hidePopover();
+      });
+    }
+
+    /* Tablet / mobile panel */
+    const panel = header.querySelector<HTMLElement>("[data-ftds-navbar-panel]");
+    const toggle = header.querySelector<HTMLButtonElement>("[data-ftds-navbar-toggle]");
+    if (!panel || !toggle) return;
+    trackExpanded(toggle, panel);
+
+    // The page under the scrim doesn't scroll while the menu is open
+    const lockScroll = (lock: boolean) => {
+      document.documentElement.style.overflow = lock ? "hidden" : "";
+    };
+    panel.addEventListener("beforetoggle", (event) => {
+      if ((event as ToggleEvent).newState === "open" && !anchored) {
+        panel.style.top = `${header.getBoundingClientRect().bottom}px`;
+      }
+    });
+    panel.addEventListener("toggle", (event) => {
+      const open = (event as ToggleEvent).newState === "open";
+      lockScroll(open);
+      // Into the panel; the popover returns focus to the menu button when it closes
+      if (open) panel.querySelector<HTMLElement>("a, summary")?.focus();
+    });
+    // A tap on the scrim (the panel itself, outside the sheet) closes it
+    panel.addEventListener("click", (event) => {
+      if (event.target !== panel) return;
+      panel.hidePopover();
+      toggle.focus();
+    });
+    // Widening to desktop closes it: the bar has the links again
+    const onDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches && panel.matches(":popover-open")) panel.hidePopover();
+    };
+    desktop.addEventListener("change", onDesktop);
+
+    return () => {
+      desktop.removeEventListener("change", onDesktop);
+      // Leaving the page with the menu open mustn't leave the next one locked
+      if (panel.matches(":popover-open")) lockScroll(false);
+    };
+  });
+</script>

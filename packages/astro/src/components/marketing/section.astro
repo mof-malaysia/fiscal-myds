@@ -1,0 +1,83 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
+import SectionHeading from "@/components/ui/section-heading.astro";
+import { band_cva, container_cva } from "@mof-malaysia/ftds-style/variants/section";
+
+/**
+ * Section is the band every marketing block sits in: a Paper or Well
+ * background, the centred column, and the SectionHeading (title and intro)
+ * when there is one. The `<section>` is labelled by the title.
+ *
+ * Use it for a block of your own so it lines up with the others. `width`
+ * narrows the column to a reading width; `flush` drops the band padding, for
+ * a block inside a tab panel or another column. Slots: `title`,
+ * `description`, `aside` (beside the heading on desktop, e.g. a "View all"
+ * link) and the default slot under the heading.
+ *
+ * @example
+ * <Section tone="well" title="Latest updates" titleId="updates">
+ *   <ul>...</ul>
+ * </Section>
+ */
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> &
+  VariantProps<typeof band_cva> &
+  VariantProps<typeof container_cva> & {
+    title?: string;
+    description?: string;
+    /** `id` for the h2. Required when there is a title. */
+    titleId?: string;
+    /** Class for the inner column, e.g. a grid layout. */
+    containerClass?: string;
+    class?: string;
+  };
+
+const {
+  tone,
+  width,
+  flush,
+  title,
+  description,
+  titleId,
+  containerClass,
+  class: className,
+  ...props
+} = Astro.props;
+
+// Rendered, not Astro.slots.has: a block forwarding an empty slot still "has"
+// it, and the section would be labelled by a heading that isn't there
+const render = async (name: string) =>
+  Astro.slots.has(name) ? (await Astro.slots.render(name)).trim() : "";
+const titleHtml = await render("title");
+const descriptionHtml = await render("description");
+const hasTitle = Boolean(title || titleHtml);
+const hasAside = Astro.slots.has("aside");
+const hasHeading = hasTitle || Boolean(description || descriptionHtml) || hasAside;
+---
+
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx(band_cva({ tone: flush ? null : tone }), className)}
+  {...props}
+>
+  <div class={clx(container_cva({ width, flush }), containerClass)}>
+    {
+      hasHeading && (
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-12">
+          <SectionHeading
+            titleId={titleId}
+            title={title}
+            description={description}
+            class="max-w-[720px]"
+          >
+            {titleHtml && <Fragment slot="title" set:html={titleHtml} />}
+            {descriptionHtml && <Fragment slot="description" set:html={descriptionHtml} />}
+          </SectionHeading>
+          {hasAside && <slot name="aside" />}
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</section>

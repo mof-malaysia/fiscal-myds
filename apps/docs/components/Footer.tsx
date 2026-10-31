@@ -21,8 +21,8 @@ export default function Footer(props: Props) {
   return (
     <div className="bg-bg-gray-50 border-otl-gray-200 border-t py-8 lg:py-16">
       <div className="divide-otl-gray-200 container mx-auto divide-y max-sm:px-0">
-        <div className="max-sm:px-4.5 flex flex-col gap-6 pb-8 lg:flex-row lg:justify-between">
-          <div className="lg:gap-4.5 flex flex-col gap-4">
+        <div className="flex flex-col gap-6 pb-8 max-sm:px-4.5 lg:flex-row lg:justify-between">
+          <div className="flex flex-col gap-4 lg:gap-4.5">
             <div className="flex items-center gap-x-2.5">
               <Image
                 src="/common/jata-negara.png"
@@ -30,11 +30,11 @@ export default function Footer(props: Props) {
                 height={28}
                 alt="Jata Negara"
               />
-              <span className="whitespace-nowrap font-semibold text-inherit">
+              <span className="font-semibold whitespace-nowrap text-inherit">
                 {props.ministry}
               </span>
             </div>
-            <p className="text-black-700 whitespace-pre-line text-sm">
+            <p className="text-black-700 text-sm whitespace-pre-line">
               {props.descriptionWithNewlines}
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function Footer(props: Props) {
           </div>
         </div>
 
-        <div className="text-dim-500 max-sm:px-4.5 flex flex-col justify-between gap-6 pt-8 text-sm lg:flex-row">
+        <div className="text-dim-500 flex flex-col justify-between gap-6 pt-8 text-sm max-sm:px-4.5 lg:flex-row">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
             <p>
               {t("Footer.copyright") || "Hak Cipta Terpelihara"} ©{" "}

@@ -1,0 +1,117 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Section from "@/components/ui/section.astro";
+import CheckCircleIcon from "@/components/ui/icons/check-circle.astro";
+import CrossCircleIcon from "@/components/ui/icons/cross-circle.astro";
+
+/**
+ * Eligibility tells people, before they start, whether they can apply: a
+ * checklist of what they must meet and, optionally, a second list of what
+ * rules them out. Each list has its own heading, so the meaning never rests
+ * on the green tick or the cross alone.
+ *
+ * Write the criteria to complete the heading: "You can apply if you" ... "are
+ * a Malaysian citizen". The `note` (or `note` slot) takes the exceptions and
+ * where to ask. Slots: `title`, `description`, `note`.
+ *
+ * @example
+ * <Eligibility
+ *   criteria={["are a Malaysian citizen", "are 18 or older", "earn RM 5,000 a month or less"]}
+ *   exclusions={["already receive Sumbangan Tunai Rahmah"]}
+ *   note="Not sure? Call 03-8000 8000 before you apply."
+ * />
+ */
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** @default "Siapa yang layak" / "Who can apply" */
+  title?: string;
+  description?: string;
+  /** What an applicant must meet. */
+  criteria: string[];
+  /** What rules an applicant out. */
+  exclusions?: string[];
+  /** Heading of `criteria`. @default "Anda boleh memohon jika anda" / "You can apply if you" */
+  criteriaTitle?: string;
+  /** Heading of `exclusions`. @default "Anda tidak boleh memohon jika anda" / "You can't apply if you" */
+  exclusionsTitle?: string;
+  /** A closing line: exceptions, or where to ask. */
+  note?: string;
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title: titleProp,
+  description,
+  criteria,
+  exclusions = [],
+  criteriaTitle: criteriaTitleProp,
+  exclusionsTitle: exclusionsTitleProp,
+  note,
+  tone = "paper",
+  lang: langProp,
+  titleId = uniqueId("eligibility"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const title = titleProp ?? label(lang, "eligibilityTitle");
+const lists = [
+  {
+    title: criteriaTitleProp ?? label(lang, "eligibilityMeet"),
+    items: criteria,
+    Icon: CheckCircleIcon,
+    iconClass: "text-txt-success",
+  },
+  {
+    title: exclusionsTitleProp ?? label(lang, "eligibilityNotMeet"),
+    items: exclusions,
+    Icon: CrossCircleIcon,
+    iconClass: "text-txt-danger",
+  },
+].filter((list) => list.items.length > 0);
+const hasNote = Boolean(note) || Astro.slots.has("note");
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <div class={clx("grid grid-cols-1 gap-4 md:gap-6", lists.length > 1 && "lg:grid-cols-2")}>
+    {
+      lists.map(({ title, items, Icon, iconClass }) => (
+        <div class="bg-bg-white flex flex-col gap-4 rounded-lg p-surface">
+          <h3 class="text-txt-black-900 text-title font-semibold">{title}</h3>
+          <ul class="flex flex-col gap-3">
+            {items.map((item) => (
+              <li class="text-txt-black-900 text-content flex gap-3">
+                <Icon aria-hidden="true" class={clx("mt-0.5 size-5 shrink-0", iconClass)} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  {
+    hasNote && (
+      <p class="text-txt-black-700 text-content max-w-[70ch] [&_a]:text-txt-primary [&_a]:underline">
+        <slot name="note">{note}</slot>
+      </p>
+    )
+  }
+</Section>

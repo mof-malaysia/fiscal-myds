@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Input } from "@mof-malaysia/myds-react/input";
 import { Button } from "@mof-malaysia/myds-react/button";
@@ -8,20 +8,21 @@ import { CheckCircleIcon } from "@mof-malaysia/myds-react/icon";
 
 export function ForgotPasswordTemplate() {
   return (
-    <div className="bg-bg-gray-50 min-h-screen flex items-center justify-center">
+    <div className="bg-bg-gray-50 flex min-h-screen items-center justify-center">
       <div className="bg-bg-gray-50 w-full max-w-md p-8">
-
-        <div className="text-2xl font-semibold mb-2 text-center">
-            Forgot password?
+        <div className="mb-2 text-center text-2xl font-semibold">
+          Forgot password?
         </div>
 
-        <p className="text-body-md text-center mb-6">
+        <p className="text-body-md mb-6 text-center">
           Don&apos;t worry, we&apos;ll send you reset instructions.
         </p>
 
         <form className="space-y-6">
           <div>
-            <Label className="pb-2" htmlFor="email">Email</Label>
+            <Label className="pb-2" htmlFor="email">
+              Email
+            </Label>
             <Input
               size="medium"
               id="email"
@@ -36,7 +37,7 @@ export function ForgotPasswordTemplate() {
         </form>
 
         <div className="mt-6 text-center">
-          <Link href="#" className="text-primary-600 hover:underline text-sm">
+          <Link href="#" className="text-primary-600 text-sm hover:underline">
             ← Back to Login
           </Link>
         </div>
@@ -47,27 +48,20 @@ export function ForgotPasswordTemplate() {
 
 export function ResetEmailTemplate() {
   return (
-    <div className="bg-bg-gray-50 min-h-screen flex items-center justify-center">
+    <div className="bg-bg-gray-50 flex min-h-screen items-center justify-center">
       <div className="bg-bg-gray-50 w-full max-w-md p-8 text-center">
-        
-        <div className="text-2xl font-semibold mb-2">
-          Check your email
-        </div>
+        <div className="mb-2 text-2xl font-semibold">Check your email</div>
 
         <p className="text-body-md mb-6">
           We sent a password reset link to{" "}
           <span className="font-medium">yourname@example.gov.my</span>
         </p>
 
-        <Button
-          type="button"
-          className="w-full justify-center"
-          size="medium"
-        >
+        <Button type="button" className="w-full justify-center" size="medium">
           Open email app
         </Button>
 
-        <p className="text-body-sm text-gray-500 mt-4">
+        <p className="text-body-sm mt-4 text-gray-500">
           Didn&apos;t receive the email?{" "}
           <Link href="#" className="text-primary-600 hover:underline">
             Click to resend
@@ -77,7 +71,7 @@ export function ResetEmailTemplate() {
         <div className="mt-6">
           <Link
             href="#"
-            className="text-primary-600 hover:underline text-sm flex items-center justify-center gap-1"
+            className="text-primary-600 flex items-center justify-center gap-1 text-sm hover:underline"
           >
             ← Back to Login
           </Link>
@@ -89,34 +83,27 @@ export function ResetEmailTemplate() {
 
 export function SetNewPasswordTemplate() {
   return (
-    <div className="bg-bg-gray-50 min-h-screen flex items-center justify-center">
+    <div className="bg-bg-gray-50 flex min-h-screen items-center justify-center">
       <div className="bg-bg-gray-50 w-full max-w-md p-8 text-center">
-        
-        <h1 className="text-2xl font-semibold mb-2">Set new password</h1>
+        <h1 className="mb-2 text-2xl font-semibold">Set new password</h1>
 
-        <p className="text-body-md text-gray-600 mb-6">
+        <p className="text-body-md mb-6 text-gray-600">
           Your new password must be different from previously used passwords.
         </p>
 
         <form className="space-y-4 text-left">
           <div>
-            <label className="block mb-1 text-sm font-medium">
+            <label className="mb-1 block text-sm font-medium">
               New Password
             </label>
-            <Input
-              type="password"
-              placeholder="Enter your new password"
-            />
+            <Input type="password" placeholder="Enter your new password" />
           </div>
 
           <div>
-            <label className="block mb-1 text-sm font-medium">
+            <label className="mb-1 block text-sm font-medium">
               Confirm new password
             </label>
-            <Input
-              type="password"
-              placeholder="Re-enter your new password"
-            />
+            <Input type="password" placeholder="Re-enter your new password" />
           </div>
 
           <div className="mt-4 space-y-2 text-sm text-gray-500">
@@ -134,7 +121,7 @@ export function SetNewPasswordTemplate() {
             </p>
           </div>
 
-          <Button type="submit" className="w-full mt-6 justify-center">
+          <Button type="submit" className="mt-6 w-full justify-center">
             Reset password
           </Button>
         </form>
@@ -142,7 +129,7 @@ export function SetNewPasswordTemplate() {
         <div className="mt-6">
           <Link
             href="#"
-            className="text-primary-600 hover:underline text-sm flex items-center justify-center gap-1"
+            className="text-primary-600 flex items-center justify-center gap-1 text-sm hover:underline"
           >
             ← Back to Login
           </Link>
@@ -154,21 +141,18 @@ export function SetNewPasswordTemplate() {
 
 export function SetNewPasswordSuccessTemplate() {
   return (
-    <div className="bg-bg-gray-50 min-h-screen flex items-center justify-center">
-      <div className="shadow-md w-full max-w-sm p-8 text-center">
-        
-        <CheckCircleIcon className="w-16 h-16 mx-auto mb-4 text-[#15803D]" />
-        <h1 className="text-2xl font-semibold mb-2">Password reset</h1>
+    <div className="bg-bg-gray-50 flex min-h-screen items-center justify-center">
+      <div className="w-full max-w-sm p-8 text-center shadow-md">
+        <CheckCircleIcon className="mx-auto mb-4 h-16 w-16 text-[#15803D]" />
+        <h1 className="mb-2 text-2xl font-semibold">Password reset</h1>
 
-        <p className="text-gray-600 mb-6">
+        <p className="mb-6 text-gray-600">
           Your password has been successfully reset.
           <br />
           Click below to log in.
         </p>
 
-        <Button className="w-full justify-center">
-          Login
-        </Button>
+        <Button className="w-full justify-center">Login</Button>
       </div>
     </div>
   );

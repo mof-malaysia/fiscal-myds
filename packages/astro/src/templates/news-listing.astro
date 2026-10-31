@@ -1,0 +1,27 @@
+---
+/**
+ * Template: news listing. Every news item, press statement and announcement,
+ * newest first, with a Pager. In your site, build the items from a Content
+ * Collection and the pages with Astro's `paginate()`.
+ *
+ * PageIntro → NewsList (list) → Pager. Copy this file, the blocks it imports
+ * and site-layout.astro, then swap in your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import PageIntro from "@/components/blocks/page-intro.astro";
+import NewsList from "@/components/blocks/news-list.astro";
+import Pager from "@/components/ui/pager.astro";
+import { home, news } from "./site";
+
+---
+
+<SiteLayout current="Media">
+  <PageIntro
+    breadcrumb={[home, { label: "Media" }]}
+    title="Berita dan kenyataan media"
+    description="Kenyataan media, pengumuman dan berita terkini daripada Kementerian Kewangan."
+  />
+  <NewsList title="" layout="list" items={news}>
+    <Pager current={1} total={12} href="#media-{n}" firstHref="#media" />
+  </NewsList>
+</SiteLayout>

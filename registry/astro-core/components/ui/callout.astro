@@ -1,0 +1,134 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
+import { calloutVariants } from "@/components/ui/callout.variants";
+import CheckCircle from "@/components/ui/icons/check-circle.astro";
+import WarningCircle from "@/components/ui/icons/warning-circle.astro";
+import Info from "@/components/ui/icons/info.astro";
+import Warning from "@/components/ui/icons/warning.astro";
+import Cross from "@/components/ui/icons/cross.astro";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+
+/**
+ * Callout is a status message about one page or task, with an icon in the
+ * variant's colour: `info` (default), `success`, `warning` or `danger`.
+ * Danger is announced as an alert; the others politely, as a status.
+ *
+ * `title` is the bold line; the default slot is the text under it; the
+ * `actions` slot holds buttons. A title alone is fine.
+ *
+ * `dismissible` adds a close button that removes the callout and moves focus
+ * to the next focusable element. It needs JavaScript, so it only appears
+ * once the script runs; without it the callout simply stays.
+ *
+ * @example
+ * <Callout variant="warning" title="Your details don't match our records">
+ *   The name you entered is different from the name on your MyKad.
+ *   <Button slot="actions" variant="default-outline" href="/profile">Check my details</Button>
+ * </Callout>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class" | "title"> &
+  VariantProps<typeof calloutVariants> & {
+    title?: string;
+    /** Adds a close button (shown only with JavaScript). */
+    dismissible?: boolean;
+    /** Accessible name of the close button. @default "Tutup" / "Dismiss" */
+    dismissLabel?: string;
+    lang?: Lang;
+    class?: string;
+  };
+
+const {
+  variant = "info",
+  title,
+  dismissible = false,
+  dismissLabel,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+const lang = resolveLang(langProp, Astro.currentLocale);
+
+const icons = {
+  success: CheckCircle,
+  warning: WarningCircle,
+  info: Info,
+  danger: Warning,
+};
+const Icon = icons[variant ?? "info"];
+const slots = Astro.slots;
+---
+
+<div
+  role={variant === "danger" ? "alert" : "status"}
+  class={clx(calloutVariants({ variant }), className)}
+  data-ftds-callout-dismissible={dismissible ? "" : undefined}
+  {...props}
+>
+  <Icon class="size-5 shrink-0" aria-hidden="true" />
+  <div
+    class="flex grow items-center justify-between gap-2 [&:has([role=definition])]:block [&:has([role=definition])]:space-y-1"
+  >
+    {
+      (title || slots.has("title")) && (
+        <p role="term" class="text-content font-semibold text-inherit">
+          <slot name="title">{title}</slot>
+        </p>
+      )
+    }
+    {
+      slots.has("default") && (
+        <p role="definition" class="text-txt-black-900 peer text-content font-normal">
+          <slot />
+        </p>
+      )
+    }
+    {
+      slots.has("actions") && (
+        <div class="flex gap-1 peer-[&[role=definition]]:pt-2">
+          <slot name="actions" />
+        </div>
+      )
+    }
+  </div>
+  {
+    dismissible && (
+      <Button
+        variant="default-ghost"
+        size="small"
+        iconOnly
+        hidden
+        data-ftds-requires-js
+        data-ftds-callout-dismiss
+        aria-label={dismissLabel ?? label(lang, "dismiss")}
+        class="-my-1 -mr-1 shrink-0 self-start"
+      >
+        <Cross aria-hidden="true" />
+      </Button>
+    )
+  }
+</div>
+
+<script>
+  import { onEach } from "@/lib/ftds/scripts";
+
+  const FOCUSABLE =
+    "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex='-1'])";
+
+  onEach("[data-ftds-callout-dismissible]", (callout) => {
+    const button = callout.querySelector<HTMLButtonElement>("[data-ftds-callout-dismiss]")!;
+    button.addEventListener("click", () => {
+      // The first focusable element after the callout; else focus falls to <body>
+      const next = [...document.querySelectorAll<HTMLElement>(FOCUSABLE)].find(
+        (element) =>
+          !callout.contains(element) &&
+          callout.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING &&
+          element.getClientRects().length > 0,
+      );
+      callout.remove();
+      next?.focus();
+    });
+  });
+</script>

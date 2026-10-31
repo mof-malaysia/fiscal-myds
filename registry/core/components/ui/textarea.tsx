@@ -28,7 +28,8 @@ const text_area_cva = cva(
 );
 
 interface TextAreaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size">,
+  extends
+    Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size">,
     VariantProps<typeof text_area_cva> {}
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(

@@ -18,8 +18,10 @@ import { clx } from "@/lib/ftds/utils";
  * </ToggleGroup>
  */
 
-interface ToggleGroupProps<Value extends string = string>
-  extends Omit<ToggleGroupPrimitive.Props<Value>, "className"> {
+interface ToggleGroupProps<Value extends string = string> extends Omit<
+  ToggleGroupPrimitive.Props<Value>,
+  "className"
+> {
   className?: string;
   size?: ToggleSize;
 }

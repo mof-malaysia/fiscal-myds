@@ -78,12 +78,11 @@
         "blocks"
       ],
       "type": "registry:block",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/section-heading",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-cta-band"
       ],
       "files": [
         {
@@ -123,14 +122,13 @@
         "blocks"
       ],
       "type": "registry:block",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/icon-arrow-forward",
         "mof-malaysia/ftds/link",
         "mof-malaysia/ftds/section-heading",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-feature-grid"
       ],
       "files": [
         {
@@ -191,8 +189,7 @@
       ],
       "type": "registry:ui",
       "dependencies": [
-        "@base-ui/react@^1.9.0",
-        "class-variance-authority@^0.7.1"
+        "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
         "mof-malaysia/ftds/button",
@@ -201,7 +198,8 @@
         "mof-malaysia/ftds/icon-cross",
         "mof-malaysia/ftds/icon-hamburger-menu",
         "mof-malaysia/ftds/link",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-navbar"
       ],
       "files": [
         {
@@ -284,12 +282,11 @@
         "blocks"
       ],
       "type": "registry:block",
-      "dependencies": [
-        "class-variance-authority@^0.7.1"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "mof-malaysia/ftds/section-heading",
-        "mof-malaysia/ftds/utils"
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-stats-band"
       ],
       "files": [
         {

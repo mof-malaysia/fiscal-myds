@@ -112,16 +112,19 @@ interface ScrollAreaProps extends WithClassName<ScrollAreaPrimitive.Root.Props> 
 }
 
 /** Viewport plus scrollbars in one: the usual way to make a region scroll. */
-const ScrollArea = forwardRef<ComponentRef<typeof ScrollAreaPrimitive.Root>, ScrollAreaProps>(
-  ({ children, viewportClassName, scrollbars = "both", ...props }, ref) => (
-    <ScrollAreaRoot ref={ref} {...props}>
-      <ScrollAreaViewport className={viewportClassName}>{children}</ScrollAreaViewport>
-      {scrollbars !== "horizontal" && <ScrollBar orientation="vertical" />}
-      {scrollbars !== "vertical" && <ScrollBar orientation="horizontal" />}
-      {scrollbars === "both" && <ScrollAreaCorner />}
-    </ScrollAreaRoot>
-  ),
-);
+const ScrollArea = forwardRef<
+  ComponentRef<typeof ScrollAreaPrimitive.Root>,
+  ScrollAreaProps
+>(({ children, viewportClassName, scrollbars = "both", ...props }, ref) => (
+  <ScrollAreaRoot ref={ref} {...props}>
+    <ScrollAreaViewport className={viewportClassName}>
+      {children}
+    </ScrollAreaViewport>
+    {scrollbars !== "horizontal" && <ScrollBar orientation="vertical" />}
+    {scrollbars !== "vertical" && <ScrollBar orientation="horizontal" />}
+    {scrollbars === "both" && <ScrollAreaCorner />}
+  </ScrollAreaRoot>
+));
 ScrollArea.displayName = "ScrollArea";
 
 export {

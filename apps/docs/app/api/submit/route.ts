@@ -106,7 +106,11 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("API Proxy Error:", err);
     const message =
-      err instanceof Error ? err.message : typeof err === "string" ? err : "Unknown error";
+      err instanceof Error
+        ? err.message
+        : typeof err === "string"
+          ? err
+          : "Unknown error";
     return NextResponse.json(
       { status: "error", message: `Internal server error ${message}` },
       { status: 500 },

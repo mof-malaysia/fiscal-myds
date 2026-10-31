@@ -1,0 +1,193 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+import Link from "@/components/ui/link.astro";
+import SectionHeading from "@/components/ui/section-heading.astro";
+import CalendarIcon from "@/components/ui/icons/calendar.astro";
+import ClockIcon from "@/components/ui/icons/clock.astro";
+import PinIcon from "@/components/ui/icons/pin.astro";
+import MoneyIcon from "@/components/ui/icons/money.astro";
+import DirectionIcon from "@/components/ui/icons/direction.astro";
+
+import { band_cva, container_cva } from "@/components/ui/section.variants";
+/**
+ * EventDetails sets out the facts of an event (date, time, venue, fee) and
+ * the registration action on a Sheet panel, beside the description and the
+ * programme. Put it under a PageIntro on an event page.
+ *
+ * The default slot is the description (Prose works well there). Facts are a
+ * description list; `extra` adds rows such as the language or the dress code.
+ * The programme is an ordered list of times and sessions. Slots: the default
+ * (about the event), `actions` (replaces the register button), `aside`
+ * (under the facts, e.g. parking or access notes). `mapHref` adds a
+ * directions link there.
+ *
+ * @example
+ * <EventDetails
+ *   date="Khamis, 12 November 2026"
+ *   time="9.00 pagi hingga 1.00 petang"
+ *   venue="Dewan Perdana, Kompleks Kementerian Kewangan, Putrajaya"
+ *   fee="Percuma"
+ *   registerAction={{ label: "Daftar sekarang", href: "/daftar" }}
+ *   programme={[{ time: "9.00 pagi", title: "Pendaftaran" }]}
+ * >
+ *   <p>Sesi penerangan Belanjawan 2027 untuk perniagaan kecil.</p>
+ * </EventDetails>
+ */
+interface Fact {
+  label: string;
+  value: string;
+  icon?: AstroComponentFactory;
+}
+
+interface Session {
+  /** Start time as people read it, e.g. "10.30 pagi". */
+  time: string;
+  title: string;
+  /** Speaker or detail line. */
+  detail?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** The date as people read it, e.g. "Khamis, 12 November 2026". */
+  date: string;
+  time?: string;
+  venue?: string;
+  fee?: string;
+  /** More fact rows after the built-in ones. */
+  extra?: Fact[];
+  registerAction?: { label: string; href: string };
+  /** A line under the register button, e.g. "Registration closes 5 November". */
+  registerNote?: string;
+  /** A map of the venue. Adds "Dapatkan arah" / "Get directions" under the facts. */
+  mapHref?: string;
+  programme?: Session[];
+  /** Heading of the description. Pass "" for none. */
+  aboutTitle?: string;
+  /** @default "Atur cara" / "Programme" */
+  programmeTitle?: string;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  date,
+  time,
+  venue,
+  fee,
+  extra = [],
+  registerAction,
+  registerNote,
+  mapHref,
+  programme = [],
+  aboutTitle,
+  programmeTitle: programmeTitleProp,
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const programmeTitle = programmeTitleProp ?? label(lang, "eventProgramme");
+const programmeId = uniqueId("event-programme");
+const slots = Astro.slots;
+const facts: Fact[] = [
+  { label: label(lang, "eventDate"), value: date, icon: CalendarIcon },
+  time && { label: label(lang, "eventTime"), value: time, icon: ClockIcon },
+  venue && { label: label(lang, "eventVenue"), value: venue, icon: PinIcon },
+  fee && { label: label(lang, "eventFee"), value: fee, icon: MoneyIcon },
+  ...extra,
+].filter((fact): fact is Fact => Boolean(fact));
+---
+
+<section class={clx(band_cva(), className)} {...props}>
+  <div class={clx(container_cva(), "grid lg:grid-cols-12 lg:gap-12")}>
+    <div class="flex flex-col gap-6 lg:order-2 lg:col-span-4">
+      <div class="bg-bg-white flex flex-col gap-6 rounded-lg p-surface lg:sticky lg:top-24">
+        <dl class="flex flex-col gap-4">
+          {
+            facts.map(({ label: factLabel, value, icon: Icon }) => (
+              // A row is one dt/dd pair; the icon sits in the dt, the value indents under the label
+              <div class="flex flex-col gap-0.5">
+                <dt class="text-txt-black-700 text-label-md flex items-center gap-3 font-medium">
+                  {Icon ? (
+                    <Icon aria-hidden="true" class="text-txt-black-500 size-5 shrink-0" />
+                  ) : (
+                    <span aria-hidden="true" class="size-5 shrink-0" />
+                  )}
+                  {factLabel}
+                </dt>
+                <dd class="text-txt-black-900 text-content pl-8">{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        {
+          (registerAction || slots.has("actions")) && (
+            <div class="flex flex-col gap-2">
+              <slot name="actions">
+                {registerAction && (
+                  <Button variant="primary-fill" size="large" href={registerAction.href} class="w-full justify-center">
+                    {registerAction.label}
+                  </Button>
+                )}
+              </slot>
+              {registerNote && <p class="text-txt-black-700 text-body-sm">{registerNote}</p>}
+            </div>
+          )
+        }
+        {
+          mapHref && (
+            <Link
+              href={mapHref}
+              newTab
+              primary
+              lang={lang}
+              class="text-label-md inline-flex items-center gap-1.5 font-medium"
+            >
+              <DirectionIcon aria-hidden="true" class="size-4" />
+              {label(lang, "directions")}
+            </Link>
+          )
+        }
+        <slot name="aside" />
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col gap-10 lg:order-1 lg:col-span-8">
+      {
+        slots.has("default") && (
+          <div class="flex flex-col gap-4">
+            {aboutTitle && (
+              <SectionHeading title={aboutTitle} responsive={false} />
+            )}
+            <slot />
+          </div>
+        )
+      }
+      {
+        programme.length > 0 && (
+          <div class="flex flex-col gap-4">
+            <SectionHeading titleId={programmeId} title={programmeTitle} responsive={false} />
+            <ol aria-labelledby={programmeId} class="bg-bg-white flex flex-col rounded-lg px-6">
+              {programme.map((session) => (
+                <li class="border-otl-gray-200 flex flex-col gap-1 border-b py-4 last:border-b-0 sm:flex-row sm:gap-6">
+                  <span class="text-txt-black-700 text-body-md w-32 shrink-0 font-medium tabular-nums">
+                    {session.time}
+                  </span>
+                  <div class="flex flex-col gap-0.5">
+                    <span class="text-txt-black-900 text-body-md font-semibold">{session.title}</span>
+                    {session.detail && <span class="text-txt-black-700 text-body-sm">{session.detail}</span>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

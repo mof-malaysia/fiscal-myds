@@ -490,7 +490,7 @@ const DateRangePicker = ({
             <div
               role="group"
               aria-label={labels.presets}
-              className="bg-bg-washed flex min-w-0 gap-1 overflow-x-auto p-2 [scrollbar-width:none] sm:w-40 sm:flex-col sm:overflow-visible"
+              className="bg-bg-washed flex min-w-0 [scrollbar-width:none] gap-1 overflow-x-auto p-2 sm:w-40 sm:flex-col sm:overflow-visible"
             >
               {presetList.map((preset) => (
                 <button

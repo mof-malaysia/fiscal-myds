@@ -1,0 +1,163 @@
+---
+/**
+ * Template: service landing page. Answers, in order, the questions people
+ * have before they start: what is it, can I get it, how do I apply, what do I
+ * need, and who do I ask.
+ *
+ * Hero → FeatureGrid → Eligibility → Steps → DownloadList → Faq →
+ * ContactLocations → CtaBand. Copy this file, the blocks it imports and
+ * site-layout.astro, then swap in your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import Link from "@/components/ui/link.astro";
+import Hero from "@/components/blocks/hero.astro";
+import FeatureGrid from "@/components/blocks/feature-grid.astro";
+import Eligibility from "@/components/blocks/eligibility.astro";
+import Steps from "@/components/blocks/steps.astro";
+import DownloadList from "@/components/blocks/download-list.astro";
+import Faq from "@/components/blocks/faq.astro";
+import ContactLocations from "@/components/blocks/contact-locations.astro";
+import CtaBand from "@/components/blocks/cta-band.astro";
+import { helpline } from "./site";
+import MoneyIcon from "@/components/ui/icons/money.astro";
+import ClockIcon from "@/components/ui/icons/clock.astro";
+import CheckShieldIcon from "@/components/ui/icons/check-shield.astro";
+---
+
+<SiteLayout current="Perkhidmatan">
+  <Hero
+    eyebrow="Permohonan dibuka"
+    title="Sumbangan Tunai Rahmah"
+    description="Bantuan tunai sehingga RM 2,000 setahun untuk isi rumah berpendapatan rendah. Mohon dalam talian dalam kira-kira 15 minit."
+    primaryAction={{ label: "Mohon sekarang", href: "#mohon" }}
+    secondaryAction={{ label: "Semak kelayakan", href: "#kelayakan" }}
+    footnote="Permohonan ditutup pada 31 Disember 2026."
+  />
+
+  <FeatureGrid
+    tone="well"
+    title="Apa yang anda terima"
+    features={[
+      {
+        icon: MoneyIcon,
+        title: "Sehingga RM 2,000 setahun",
+        description: "Jumlah bergantung pada pendapatan dan bilangan tanggungan isi rumah anda.",
+      },
+      {
+        icon: ClockIcon,
+        title: "Dibayar dalam empat fasa",
+        description: "Terus ke akaun bank anda pada Februari, Mei, Ogos dan November.",
+      },
+      {
+        icon: CheckShieldIcon,
+        title: "Tiada orang tengah",
+        description: "Permohonan adalah percuma. Kami tidak akan meminta bayaran untuk memproses.",
+      },
+    ]}
+  />
+
+  <Eligibility
+    id="kelayakan"
+    criteria={[
+      "warganegara Malaysia yang tinggal di Malaysia",
+      "berumur 18 tahun ke atas",
+      "mempunyai pendapatan isi rumah RM 5,000 sebulan atau kurang",
+    ]}
+    exclusions={[
+      "ialah penjawat awam yang berpendapatan lebih RM 3,000 sebulan",
+      "telah dibankrapkan",
+    ]}
+    note="Tidak pasti? Hubungi talian bantuan di 03-8000 8000 sebelum memohon."
+  />
+
+  <Steps
+    id="mohon"
+    tone="well"
+    description="Kebanyakan orang selesai dalam satu sesi."
+    steps={[
+      {
+        title: "Semak kelayakan anda",
+        description: "Pastikan anda memenuhi syarat di atas.",
+      },
+      {
+        title: "Sediakan dokumen anda",
+        value: "dokumen",
+      },
+      {
+        title: "Mohon dalam talian",
+        description: "Log masuk dengan MyDigital ID dan isi borang. Simpan nombor rujukan anda.",
+        link: { label: "Buka borang permohonan", href: "#borang" },
+      },
+      {
+        title: "Tunggu keputusan",
+        description: "Kami memaklumkan keputusan melalui SMS dan e-mel dalam 14 hari bekerja.",
+      },
+    ]}
+    action={{ label: "Mohon sekarang", href: "#borang" }}
+  >
+    <Fragment slot="dokumen">
+      <p>Anda memerlukan:</p>
+      <ul>
+        <li>MyKad anda dan pasangan anda</li>
+        <li>penyata gaji atau pengesahan pendapatan terkini</li>
+        <li>nombor akaun bank atas nama anda</li>
+      </ul>
+    </Fragment>
+  </Steps>
+
+  <DownloadList
+    title="Borang dan panduan"
+    files={[
+      {
+        title: "Panduan permohonan Sumbangan Tunai Rahmah 2026",
+        href: "#panduan.pdf",
+        type: "pdf",
+        size: "1.2 MB",
+        date: "2026-01-05",
+      },
+      {
+        title: "Borang pengesahan pendapatan (untuk pekerja tidak bergaji tetap)",
+        href: "#borang.docx",
+        type: "docx",
+        size: "84 KB",
+        date: "2026-01-05",
+        description: "Diisi dan ditandatangani oleh ketua kampung atau penghulu.",
+      },
+    ]}
+  />
+
+  <Faq
+    tone="well"
+    items={[
+      {
+        question: "Bilakah saya akan menerima bayaran?",
+        answer: "Bayaran dibuat dalam empat fasa: Februari, Mei, Ogos dan November. Anda menerima bayaran fasa yang belum berlalu selepas permohonan diluluskan.",
+      },
+      {
+        question: "Bolehkah saya mengemas kini maklumat akaun bank saya?",
+        answer: "Ya. Log masuk dan pilih Kemas kini maklumat sebelum tarikh akhir setiap fasa.",
+      },
+      {
+        question: "Permohonan saya ditolak. Apa yang boleh saya lakukan?",
+        answer: "Anda boleh membuat rayuan dalam 30 hari dari tarikh keputusan. Sertakan dokumen yang menunjukkan perubahan pendapatan anda.",
+      },
+    ]}
+  >
+    <Fragment slot="contact">
+      Masih perlukan bantuan? <Link href="#hubungi" primary>Hubungi kami</Link>
+    </Fragment>
+  </Faq>
+
+  <ContactLocations
+    id="hubungi"
+    title="Talian bantuan"
+    channels={helpline.slice(0, 3)}
+  />
+
+  <CtaBand
+    tone="primary"
+    title="Sedia untuk memohon?"
+    description="Ia mengambil masa kira-kira 15 minit. Sediakan MyKad dan penyata gaji anda."
+    primaryAction={{ label: "Mohon sekarang", href: "#borang" }}
+  />
+</SiteLayout>

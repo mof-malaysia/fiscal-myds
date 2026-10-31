@@ -41,8 +41,10 @@ const ToastContext = React.createContext<{
 
 /*========================================================================================================================*/
 
-interface ToastViewportProps
-  extends Omit<ToastPrimitives.Viewport.Props, "className"> {
+interface ToastViewportProps extends Omit<
+  ToastPrimitives.Viewport.Props,
+  "className"
+> {
   className?: string;
 }
 
@@ -67,7 +69,8 @@ ToastViewport.displayName = "ToastViewport";
 /*========================================================================================================================*/
 
 interface ToastRootProps
-  extends Omit<ToastPrimitives.Root.Props, "className">,
+  extends
+    Omit<ToastPrimitives.Root.Props, "className">,
     VariantProps<typeof toast_cva> {
   className?: string;
   /** Defaults to the toast object's `type`, then "message". */

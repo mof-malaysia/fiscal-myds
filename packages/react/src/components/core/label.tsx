@@ -24,8 +24,7 @@ const label_cva = cva(
 );
 
 interface LabelProps
-  extends useRender.ComponentProps<"label">,
-    VariantProps<typeof label_cva> {}
+  extends useRender.ComponentProps<"label">, VariantProps<typeof label_cva> {}
 
 const Label: ForwardRefExoticComponent<LabelProps> = React.forwardRef(
   ({ render, size, className, ...props }, ref) => {

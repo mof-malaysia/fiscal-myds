@@ -79,8 +79,10 @@ const FORGOT_LABELS: ForgotPasswordFormLabels = {
   errorTitle: "There is a problem",
 };
 
-interface ForgotPasswordFormProps
-  extends Omit<ComponentProps<"div">, "onSubmit" | "children"> {
+interface ForgotPasswordFormProps extends Omit<
+  ComponentProps<"div">,
+  "onSubmit" | "children"
+> {
   onSubmit?: (email: string) => void;
   /** Once the link is sent: the address it went to. Switches to the "Check your email" state. */
   sentTo?: string;
@@ -241,8 +243,10 @@ const RESET_LABELS: ResetPasswordFormLabels = {
   errorTitle: "There is a problem",
 };
 
-interface ResetPasswordFormProps
-  extends Omit<ComponentProps<"form">, "onSubmit" | "children"> {
+interface ResetPasswordFormProps extends Omit<
+  ComponentProps<"form">,
+  "onSubmit" | "children"
+> {
   onSubmit?: (values: ResetPasswordValues) => void;
   errors?: Partial<Record<keyof ResetPasswordValues, ReactNode>>;
   pending?: boolean;

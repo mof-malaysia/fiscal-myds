@@ -1,0 +1,130 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { format, label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+
+import { band_cva, container_cva } from "@mof-malaysia/ftds-style/variants/section";
+/**
+ * StatusPage is the whole-page message for when a site can't show a page:
+ * `not-found` (404), `server-error` (500) or `maintenance` (503). It says what
+ * happened in plain words and what to do next, with one or two actions. The
+ * status code sits small above the title: it helps support staff, not the
+ * reader. The wording follows the React ErrorPage, in BM and English.
+ *
+ * Put it in the site layout, so the masthead, navbar and footer stay and
+ * people can find their way on. For a maintenance page served while the site
+ * is down, render it on its own. The default slot sits under the text (e.g.
+ * links to popular pages); the `actions` slot replaces the buttons and the
+ * `media` slot takes an illustration above the code.
+ *
+ * @example
+ * <StatusPage kind="not-found" homeHref="/" supportHref="/hubungi" />
+ * <StatusPage kind="maintenance" backAt="10.00 malam ini" />
+ */
+type Kind = "not-found" | "server-error" | "maintenance";
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  kind: Kind;
+  /** Replaces the kind's title. Rendered as the page's h1. */
+  title?: string;
+  /** Replaces the kind's explanation. */
+  description?: string;
+  /** Replaces the status code above the title. Pass `null` to hide it. */
+  code?: string | null;
+  /** Maintenance: when the site is expected back, e.g. "10.00 malam ini". */
+  backAt?: string;
+  /** Shows "Pergi ke laman utama" (the primary action). */
+  homeHref?: string;
+  /** Shows "Hubungi kami". */
+  supportHref?: string;
+  lang?: Lang;
+  /** `id` for the h1. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const DEFAULTS = {
+  "not-found": { code: "404", title: "notFoundTitle", body: "notFoundBody" },
+  "server-error": { code: "500", title: "serverErrorTitle", body: "serverErrorBody" },
+  maintenance: { code: "503", title: "maintenanceTitle", body: "maintenanceBody" },
+} as const;
+
+const {
+  kind,
+  title,
+  description,
+  code = DEFAULTS[Astro.props.kind].code,
+  backAt,
+  homeHref,
+  supportHref,
+  lang: langProp,
+  titleId = uniqueId("status-page"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const defaults = DEFAULTS[kind];
+const slots = Astro.slots;
+const hasActions = Boolean(homeHref || supportHref) || slots.has("actions");
+---
+
+<section
+  aria-labelledby={titleId}
+  class={clx(band_cva(), className)}
+  {...props}
+>
+  <div class={clx(container_cva(), "gap-0 py-16 md:py-24")}>
+    <div class="flex max-w-xl flex-col items-start">
+      {slots.has("media") && <div class="mb-8"><slot name="media" /></div>}
+      {
+        code && (
+          <p class="text-txt-black-700 text-label-md font-medium tracking-wide">
+            {format(label(lang, "errorCode"), { code })}
+          </p>
+        )
+      }
+      <h1
+        id={titleId}
+        class="text-txt-black-900 text-heading-xs md:text-heading-sm mt-2 font-semibold tracking-[-0.02em] text-balance"
+      >
+        {title ?? label(lang, defaults.title)}
+      </h1>
+      <p class="text-txt-black-700 text-body-lg mt-4 max-w-prose">
+        {description ?? label(lang, defaults.body)}
+      </p>
+      {
+        kind === "maintenance" && backAt && (
+          <p class="text-txt-black-900 text-body-lg mt-3 font-medium">
+            {format(label(lang, "backAt"), { time: backAt })}
+          </p>
+        )
+      }
+      {slots.has("default") && <div class="text-content mt-6 w-full"><slot /></div>}
+      {
+        hasActions && (
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <slot name="actions">
+              {homeHref && (
+                <Button variant="primary-fill" size="large" href={homeHref}>
+                  {label(lang, "goHome")}
+                </Button>
+              )}
+              {supportHref && (
+                <Button
+                  variant={homeHref ? "default-ghost" : "default-outline"}
+                  size="large"
+                  href={supportHref}
+                >
+                  {label(lang, "contactTitle")}
+                </Button>
+              )}
+            </slot>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

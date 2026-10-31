@@ -200,8 +200,9 @@ const DataTableContext = createContext<DataTableContextProps<any>>({
   radioName: "",
 });
 
-interface DataTableProviderProps<TData extends Record<string, any>>
-  extends DataTableProps<TData> {
+interface DataTableProviderProps<
+  TData extends Record<string, any>,
+> extends DataTableProps<TData> {
   children: ReactNode;
 }
 const DataTableProvider = <TData extends Record<string, any>>({

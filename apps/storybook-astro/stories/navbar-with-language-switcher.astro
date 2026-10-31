@@ -1,0 +1,19 @@
+---
+/**
+ * Story-only composite: a Navbar with the real LanguageSwitcher in its
+ * `actions` slot (story slots take HTML strings, not components).
+ */
+import type { ComponentProps } from "astro/types";
+import Navbar from "@/components/ui/navbar.astro";
+import LanguageSwitcher from "@/components/ui/language-switcher.astro";
+
+type Props = ComponentProps<typeof Navbar> & {
+  locales: ComponentProps<typeof LanguageSwitcher>["locales"];
+};
+
+const { locales, ...props } = Astro.props;
+---
+
+<Navbar {...props}>
+  <LanguageSwitcher slot="actions" locales={locales} lang={props.lang} />
+</Navbar>

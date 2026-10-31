@@ -1,0 +1,136 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Section from "@/components/ui/section.astro";
+import { linked_item_class, stretched_link_class } from "@mof-malaysia/ftds-style/variants/section";
+import ArrowOutgoingIcon from "@/components/ui/icons/arrow-outgoing.astro";
+
+/**
+ * PartnerGrid introduces the agencies, departments or partners behind a
+ * service: a grid of Sheet cards, each with a logo, the organisation's name,
+ * what it does here, and a link to its site. Use it where people need to know
+ * who does what; for a quiet row of logos, use LogoCloud.
+ *
+ * A card with an `href` is one link (the name, stretched over the card); an
+ * external link opens in a new tab and says so. The logo is decorative, since
+ * the name sits beside it. Slots: `title`, `description`, and the default
+ * slot under the grid.
+ *
+ * @example
+ * <PartnerGrid
+ *   partners={[
+ *     { name: "Lembaga Hasil Dalam Negeri", description: "Income tax", logo: "/lhdn.svg", href: "https://www.hasil.gov.my", external: true },
+ *   ]}
+ * />
+ */
+interface Partner {
+  name: string;
+  description?: string;
+  /** Logo URL. Decorative: the name is the label. */
+  logo?: string;
+  /** A short tag line above the name, e.g. the agency's acronym or type. */
+  kind?: string;
+  href?: string;
+  /** Opens in a new tab. Set for sites outside this one. */
+  external?: boolean;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  partners: Partner[];
+  /** Columns on desktop. Defaults to 3. */
+  columns?: 3 | 4;
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  partners,
+  columns = 3,
+  tone = "paper",
+  lang: langProp,
+  titleId = uniqueId("partner-grid"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const Heading = hasTitle ? "h3" : "h2";
+const opensNewTab = label(resolveLang(langProp, Astro.currentLocale), "opensInNewTab");
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <ul
+    class={clx(
+      "grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6",
+      columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3",
+    )}
+  >
+    {
+      partners.map((partner) => (
+        <li class={clx(linked_item_class, "bg-bg-white p-surface flex flex-col gap-4 rounded-lg")}>
+          {partner.logo && (
+            <img
+              src={partner.logo}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="h-12 w-auto max-w-[160px] self-start object-contain"
+            />
+          )}
+          <div class="flex flex-col gap-1.5">
+            {partner.kind && (
+              <p class="text-txt-black-700 text-label-md font-medium">{partner.kind}</p>
+            )}
+            <Heading class="text-txt-black-900 text-title font-semibold text-pretty">
+              {partner.href ? (
+                <a
+                  href={partner.href}
+                  target={partner.external ? "_blank" : undefined}
+                  rel={partner.external ? "noopener noreferrer" : undefined}
+                  class={stretched_link_class}
+                >
+                  {partner.name}
+                  {partner.external && (
+                    <>
+                      <ArrowOutgoingIcon
+                        aria-hidden="true"
+                        class="text-txt-black-700 ml-1 inline size-4 align-[-0.125em]"
+                      />
+                      <span class="sr-only"> {opensNewTab}</span>
+                    </>
+                  )}
+                </a>
+              ) : (
+                partner.name
+              )}
+            </Heading>
+            {partner.description && (
+              <p class="text-txt-black-700 text-content">{partner.description}</p>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+  <slot />
+</Section>

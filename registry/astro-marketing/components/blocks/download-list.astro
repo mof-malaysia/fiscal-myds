@@ -1,0 +1,182 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { formatDate, isoDate, label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Section from "@/components/ui/section.astro";
+import {
+  linked_item_class,
+  meta_row_class,
+  stretched_link_class,
+} from "@/components/ui/section.variants";
+import Tag from "@/components/ui/tag.astro";
+import PdfMediaIcon from "@/components/ui/icons/pdf-media.astro";
+import ExcelMediaIcon from "@/components/ui/icons/excel-media.astro";
+import WordMediaIcon from "@/components/ui/icons/word-media.astro";
+import PowerpointMediaIcon from "@/components/ui/icons/powerpoint-media.astro";
+import DocumentIcon from "@/components/ui/icons/document.astro";
+import DownloadIcon from "@/components/ui/icons/download.astro";
+
+/**
+ * DownloadList offers forms, guidelines, reports and other publications to
+ * download: one row per file with its type icon, title, a short description,
+ * and the file type, size and date. People can tell what they'll get, and how
+ * big it is, before they tap.
+ *
+ * Each row is one link (the title, stretched over the row), and its
+ * accessible name includes the file type and size, as GOV.UK and the WCAG
+ * link-purpose guidance ask. `layout="cards"` sets the files in a grid of
+ * Sheet cards for a publications library. Slots: `title`, `description`, and
+ * the default slot under the files.
+ *
+ * @example
+ * <DownloadList
+ *   files={[
+ *     { title: "Borang permohonan", href: "/files/borang.pdf", type: "pdf", size: "240 KB", date: "2026-09-01" },
+ *   ]}
+ * />
+ */
+type FileType = "pdf" | "xlsx" | "csv" | "docx" | "pptx" | "zip";
+
+interface DownloadFile {
+  title: string;
+  href: string;
+  /** Picks the icon and the type shown, e.g. `"pdf"` shows "PDF". */
+  type: FileType;
+  /** File size as people read it, e.g. "2.4 MB". */
+  size?: string;
+  /** ISO date it was published or last updated. */
+  date?: string;
+  description?: string;
+  /** A category Tag, e.g. "Laporan tahunan". */
+  category?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** @default "Muat turun" / "Downloads". Pass "" for none. */
+  title?: string;
+  description?: string;
+  files: DownloadFile[];
+  /** `list` rows (default) or a grid of `cards`. */
+  layout?: "list" | "cards";
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  /** `article` narrows the column to a reading width, under an article. */
+  width?: "wide" | "article";
+  /** Drop the band and its padding, e.g. inside a tab panel. */
+  flush?: boolean;
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title: titleProp,
+  description,
+  files,
+  layout = "list",
+  tone = "paper",
+  width,
+  flush,
+  lang: langProp,
+  titleId = uniqueId("download-list"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const title = titleProp ?? label(lang, "downloadsTitle");
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+const Heading = hasTitle ? "h3" : "h2";
+
+// The media icons carry their own colours; the generic one takes Ink Secondary
+const ICONS: Record<FileType, AstroComponentFactory> = {
+  pdf: PdfMediaIcon,
+  xlsx: ExcelMediaIcon,
+  csv: ExcelMediaIcon,
+  docx: WordMediaIcon,
+  pptx: PowerpointMediaIcon,
+  zip: DocumentIcon,
+};
+
+/** "PDF, 2.4 MB": what people get before they tap. */
+const details = (file: DownloadFile) =>
+  [file.type.toUpperCase(), file.size].filter(Boolean).join(", ");
+---
+
+<Section
+  tone={tone}
+  width={width}
+  flush={flush}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <ul
+    class={layout === "cards"
+      ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3"
+      : "bg-bg-white flex flex-col rounded-lg px-6"}
+  >
+    {
+      files.map((file) => {
+        const Icon = ICONS[file.type];
+        const info = details(file);
+        return (
+          <li
+            class={clx(
+              linked_item_class,
+              "flex gap-4 rounded-sm",
+              layout === "cards"
+                ? "bg-bg-white flex-col rounded-lg p-surface"
+                : "border-otl-gray-200 items-start border-b py-5 last:border-b-0",
+            )}
+          >
+            <Icon aria-hidden="true" class="text-txt-black-700 size-8 shrink-0" />
+            <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+              {file.category && (
+                <Tag size="small" class="self-start">
+                  {file.category}
+                </Tag>
+              )}
+              <Heading class="text-txt-black-900 text-body-md font-semibold text-pretty">
+                <a href={file.href} class={stretched_link_class}>
+                  {file.title}
+                  <span class="sr-only"> ({info})</span>
+                </a>
+              </Heading>
+              {file.description && (
+                <p class="text-txt-black-700 text-content">{file.description}</p>
+              )}
+              <p class={meta_row_class}>
+                <span>{info}</span>
+                {file.date && (
+                  <span>
+                    {label(lang, "published")}{" "}
+                    <time datetime={isoDate(file.date)}>{formatDate(lang, file.date)}</time>
+                  </span>
+                )}
+              </p>
+            </div>
+            <span
+              aria-hidden="true"
+              class={clx(
+                "text-txt-primary group-hover:bg-bg-washed flex size-10 shrink-0 items-center justify-center rounded-md transition-colors duration-150 motion-reduce:transition-none [&_svg]:size-5",
+                layout === "cards" && "absolute top-5 right-5",
+              )}
+            >
+              <DownloadIcon />
+            </span>
+          </li>
+        );
+      })
+    }
+  </ul>
+  <slot />
+</Section>

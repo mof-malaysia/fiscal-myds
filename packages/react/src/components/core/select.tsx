@@ -354,8 +354,10 @@ const select_trigger_cva = cva(
   },
 );
 
-interface SelectTriggerProps
-  extends Omit<SelectPrimitive.Trigger.Props, "className"> {
+interface SelectTriggerProps extends Omit<
+  SelectPrimitive.Trigger.Props,
+  "className"
+> {
   /** Sizes and places the control, e.g. `w-fit` for a toolbar or `max-w-64`. */
   className?: string;
   /** Icon before the value, e.g. a filter or language icon. */
@@ -420,11 +422,10 @@ SelectTrigger.displayName = "SelectTrigger";
 
 /*========================================================================================================================*/
 
-interface SelectValueProps
-  extends Omit<
-    SelectPrimitive.Value.Props,
-    "children" | "render" | "className"
-  > {
+interface SelectValueProps extends Omit<
+  SelectPrimitive.Value.Props,
+  "children" | "render" | "className"
+> {
   className?: string;
   /** Custom display of the chosen value(s). */
   children?: (value: string | string[]) => React.ReactNode;
@@ -493,7 +494,8 @@ SelectValue.displayName = "SelectValue";
 /*========================================================================================================================*/
 
 interface SelectContentProps
-  extends Omit<SelectPrimitive.Popup.Props, "className">,
+  extends
+    Omit<SelectPrimitive.Popup.Props, "className">,
     PositionerProps<SelectPrimitive.Positioner.Props> {
   className?: string;
   /**
@@ -544,8 +546,10 @@ SelectContent.displayName = "SelectContent";
 
 const SelectGroup = SelectPrimitive.Group;
 
-interface SelectGroupTitleProps
-  extends Omit<SelectPrimitive.GroupLabel.Props, "className"> {
+interface SelectGroupTitleProps extends Omit<
+  SelectPrimitive.GroupLabel.Props,
+  "className"
+> {
   className?: string;
 }
 
@@ -583,8 +587,10 @@ const select_item_cva = cva(
   },
 );
 
-interface SelectItemProps
-  extends Omit<SelectPrimitive.Item.Props, "className" | "value"> {
+interface SelectItemProps extends Omit<
+  SelectPrimitive.Item.Props,
+  "className" | "value"
+> {
   className?: string;
   value: string;
   /** A second line under the label, in Ink Secondary. Not shown in the trigger. */
@@ -652,8 +658,10 @@ SelectItem.displayName = "SelectItem";
 
 /*========================================================================================================================*/
 
-interface SelectSeparatorProps
-  extends Omit<SelectPrimitive.Separator.Props, "className"> {
+interface SelectSeparatorProps extends Omit<
+  SelectPrimitive.Separator.Props,
+  "className"
+> {
   className?: string;
 }
 

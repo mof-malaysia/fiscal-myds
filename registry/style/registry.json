@@ -120,6 +120,253 @@
           "target": "~/styles/ftds.css"
         }
       ]
+    },
+    {
+      "name": "variants-button",
+      "title": "Button variants",
+      "description": "The cva classes the React and Astro button components share, installed to components/ui/button.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/button.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-callout",
+      "title": "Callout variants",
+      "description": "The cva classes the React and Astro callout components share, installed to components/ui/callout.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/callout.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-card",
+      "title": "Card variants",
+      "description": "The cva classes the React and Astro card components share, installed to components/ui/card.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/card.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-cookie-banner",
+      "title": "Cookie Banner variants",
+      "description": "The cva classes the React and Astro cookie-banner components share, installed to components/ui/cookie-banner.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/cookie-banner.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-cta-band",
+      "title": "Cta Band variants",
+      "description": "The cva classes the React and Astro cta-band components share, installed to components/ui/cta-band.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/cta-band.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-feature-grid",
+      "title": "Feature Grid variants",
+      "description": "The cva classes the React and Astro feature-grid components share, installed to components/ui/feature-grid.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/feature-grid.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-footer",
+      "title": "Footer variants",
+      "description": "The cva classes the React and Astro footer components share, installed to components/ui/footer.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/footer.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-link",
+      "title": "Link variants",
+      "description": "The cva classes the React and Astro link components share, installed to components/ui/link.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/link.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-navbar",
+      "title": "Navbar variants",
+      "description": "The cva classes the React and Astro navbar components share, installed to components/ui/navbar.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/navbar.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-section",
+      "title": "Section variants",
+      "description": "The cva classes the React and Astro section components share, installed to components/ui/section.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/section.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-stats-band",
+      "title": "Stats Band variants",
+      "description": "The cva classes the React and Astro stats-band components share, installed to components/ui/stats-band.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/stats-band.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-tabs",
+      "title": "Tabs variants",
+      "description": "The cva classes the React and Astro tabs components share, installed to components/ui/tabs.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/tabs.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "variants-tag",
+      "title": "Tag variants",
+      "description": "The cva classes the React and Astro tag components share, installed to components/ui/tag.variants.ts.",
+      "categories": [
+        "utilities"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/tag.variants.ts",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

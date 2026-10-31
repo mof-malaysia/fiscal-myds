@@ -45,8 +45,7 @@ const AlertDialogContext = createContext<AlertDialogContextProps>({
 });
 
 interface AlertDialogProps
-  extends ComponentProps<typeof Dialog>,
-    Partial<AlertDialogContextProps> {}
+  extends ComponentProps<typeof Dialog>, Partial<AlertDialogContextProps> {}
 
 const AlertDialog: FunctionComponent<AlertDialogProps> = ({
   variant = "default",
@@ -58,8 +57,10 @@ const AlertDialog: FunctionComponent<AlertDialogProps> = ({
     </AlertDialogContext.Provider>
   );
 };
-interface AlertDialogActionProps
-  extends Omit<ComponentProps<typeof DialogFooter>, "border"> {}
+interface AlertDialogActionProps extends Omit<
+  ComponentProps<typeof DialogFooter>,
+  "border"
+> {}
 
 const AlertDialogAction: ForwardRefExoticComponent<AlertDialogActionProps> =
   forwardRef(({ children, className, ...props }, ref) => {

@@ -61,8 +61,10 @@ const DEFAULT_LABELS: FormStepLabels = {
   progressLabel: "Application progress",
 };
 
-interface FormStepProps
-  extends Omit<ComponentProps<"form">, "title" | "onSubmit"> {
+interface FormStepProps extends Omit<
+  ComponentProps<"form">,
+  "title" | "onSubmit"
+> {
   /** The page's question or topic, rendered as the only h1. */
   title: ReactNode;
   /** The application's name, shown small above the title. */

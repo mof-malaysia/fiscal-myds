@@ -82,8 +82,10 @@ type ToggleSize = NonNullable<VariantProps<typeof toggle_cva>["size"]>;
 /** The ToggleGroup's size; set so its toggles render as segments of one size. */
 const ToggleGroupContext = createContext<ToggleSize | null>(null);
 
-interface ToggleProps<Value extends string = string>
-  extends Omit<TogglePrimitive.Props<Value>, "className"> {
+interface ToggleProps<Value extends string = string> extends Omit<
+  TogglePrimitive.Props<Value>,
+  "className"
+> {
   className?: string;
   size?: ToggleSize;
   iconOnly?: boolean;

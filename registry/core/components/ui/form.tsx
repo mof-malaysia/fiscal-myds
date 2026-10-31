@@ -15,8 +15,9 @@ import { clx } from "@/lib/ftds/utils";
  * </Form>
  */
 
-interface FormProps<Values extends Record<string, any> = Record<string, any>>
-  extends Omit<FormPrimitive.Props<Values>, "className"> {
+interface FormProps<
+  Values extends Record<string, any> = Record<string, any>,
+> extends Omit<FormPrimitive.Props<Values>, "className"> {
   className?: string;
   ref?: React.Ref<HTMLFormElement>;
 }

@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+import { link_cva } from "@/components/ui/link.variants";
+import ChevronRight from "@/components/ui/icons/chevron-right.astro";
+
+/**
+ * Details hides a short piece of help behind a link-like trigger, such as
+ * "Help with your IC number". Use it for information only some users need;
+ * for several sections that open and close, use an Accordion instead.
+ *
+ * A native `<details>`: works with JavaScript off. `summary` (or the
+ * `summary` slot) is the trigger, written as the user's question; the
+ * default slot is the help, set in a Well capped at about 70 characters.
+ *
+ * @example
+ * <Details summary="I cannot find my reference number">
+ *   Your reference number is on the letter we sent you, under your name.
+ * </Details>
+ */
+type Props = Omit<HTMLAttributes<"details">, "class"> & {
+  /** The trigger text. */
+  summary?: string;
+  /** Starts open. */
+  open?: boolean;
+  /** Class for the revealed content box. */
+  contentClass?: string;
+  class?: string;
+};
+
+const { summary, open = false, contentClass, class: className, ...props } = Astro.props;
+---
+
+<details class={clx("group font-body flex w-full flex-col", className)} open={open} {...props}>
+  <summary
+    class={clx(
+      "text-txt-primary inline-flex w-fit cursor-pointer list-none items-start gap-1.5 rounded-xs text-left font-medium",
+      "text-content outline-none [&::-webkit-details-marker]:hidden",
+      "focus-ring",
+    )}
+  >
+    <ChevronRight
+      aria-hidden="true"
+      class={clx(
+        // Optical alignment with the first line of text
+        "ease-standard mt-[0.2em] size-4 shrink-0 transition-transform duration-200",
+        "group-open:rotate-90 motion-reduce:transition-none",
+      )}
+    />
+    <span class={link_cva({ underline: "always", className: "group-hover:decoration-2" })}>
+      <slot name="summary">{summary}</slot>
+    </span>
+  </summary>
+  <div
+    class={clx(
+      "bg-bg-washed text-txt-black-700 text-content mt-3 max-w-[70ch] rounded-lg p-4",
+      "in-data-[density=compact]:mt-2 in-data-[density=compact]:p-3",
+      contentClass,
+    )}
+  >
+    <slot />
+  </div>
+</details>

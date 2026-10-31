@@ -60,7 +60,8 @@ const toolbar_cva = cva(
 const ToolbarContext = createContext<{ size: ToggleSize }>({ size: "small" });
 
 interface ToolbarProps
-  extends WithClassName<ToolbarPrimitive.Root.Props>,
+  extends
+    WithClassName<ToolbarPrimitive.Root.Props>,
     VariantProps<typeof toolbar_cva> {
   /** Size of the controls inside, relative to density. */
   size?: ToggleSize;
@@ -86,8 +87,7 @@ Toolbar.displayName = "Toolbar";
 const toolbar_on_well =
   "in-data-[toolbar=well]:hover:bg-bg-raised in-data-[toolbar=well]:data-[pressed]:bg-bg-primary-50";
 
-interface ToolbarButtonProps
-  extends WithClassName<ToolbarPrimitive.Button.Props> {
+interface ToolbarButtonProps extends WithClassName<ToolbarPrimitive.Button.Props> {
   size?: ToggleSize;
   iconOnly?: boolean;
 }

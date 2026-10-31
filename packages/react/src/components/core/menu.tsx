@@ -61,7 +61,8 @@ const menu_popup_cva = cva([
 ]);
 
 interface MenuContentProps
-  extends WithClassName<MenuPrimitive.Popup.Props>,
+  extends
+    WithClassName<MenuPrimitive.Popup.Props>,
     PositionerProps<MenuPrimitive.Positioner.Props> {
   /** Element to portal the popup into. Defaults to `document.body`. */
   container?: MenuPrimitive.Portal.Props["container"];
@@ -127,7 +128,8 @@ const menu_item_cva = cva(
 );
 
 interface MenuItemProps
-  extends WithClassName<MenuPrimitive.Item.Props>,
+  extends
+    WithClassName<MenuPrimitive.Item.Props>,
     VariantProps<typeof menu_item_cva> {}
 
 const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(

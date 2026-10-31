@@ -11,6 +11,8 @@ import {
   getIconExportMap,
   listComponents,
   registryItemRef,
+  variantsItemName,
+  withVersions as pinVersions,
   REGISTRY_ITEM_SCHEMA,
   type ComponentSource,
   type ComponentTier,
@@ -50,11 +52,7 @@ const PACKAGE_DEPENDENCIES: Record<string, string> = JSON.parse(
  * doesn't pull in a new major (e.g. @tanstack/react-table v9).
  */
 function withVersions(deps: Iterable<string>): string[] {
-  return Array.from(deps)
-    .sort()
-    .map((dep) =>
-      PACKAGE_DEPENDENCIES[dep] ? `${dep}@${PACKAGE_DEPENDENCIES[dep]}` : dep,
-    );
+  return pinVersions(deps, PACKAGE_DEPENDENCIES);
 }
 
 /** App and marketing may depend on core; app and marketing never depend on each other. */
@@ -77,7 +75,7 @@ function generateComponentItem({
   filePath,
 }: ComponentSource): RegistryComponent {
   const content = expandIconBarrelImports(readFileContent(filePath), iconMap);
-  const { npmDependencies, localImports } = extractImports(content);
+  const { npmDependencies, localImports, variants } = extractImports(content);
 
   const deps = localImports
     .map((importPath) => mapToRegistryDependency(importPath, tier))
@@ -85,7 +83,11 @@ function generateComponentItem({
       (dep): dep is RegistryDependency => dep !== null && dep.name !== name,
     );
   assertTierBoundary(name, tier, deps);
-  const registryDeps = new Set(deps.map((dep) => registryItemRef(dep.name)));
+  const registryDeps = new Set(
+    [...deps.map((dep) => dep.name), ...variants.map(variantsItemName)].map(
+      registryItemRef,
+    ),
+  );
 
   const isBlock = tier !== "core" && BLOCK_MARKER.test(content);
   const target = isBlock

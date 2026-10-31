@@ -7,9 +7,9 @@ import {
   RefAttributes,
   useId,
 } from "react";
-import { cva } from "class-variance-authority";
 import { clx } from "../../utils";
 import { SectionHeading } from "./section-heading";
+import { grid_cva } from "@mof-malaysia/ftds-style/variants/stats-band";
 
 /**
  * StatsBand shows two to four headline figures on a Well band. Each figure
@@ -32,18 +32,6 @@ interface Stat {
   label: ReactNode;
   footnote?: ReactNode;
 }
-
-const grid_cva = cva("grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2", {
-  variants: {
-    count: {
-      1: "sm:grid-cols-1",
-      2: "",
-      3: "lg:grid-cols-3",
-      4: "lg:grid-cols-4",
-    },
-  },
-  defaultVariants: { count: 3 },
-});
 
 interface StatsBandProps extends Omit<ComponentProps<"section">, "title"> {
   title?: ReactNode;
@@ -83,7 +71,7 @@ const StatsBand: ForwardRefExoticComponent<
                 <dt className="text-txt-black-700 text-body-md order-2 font-medium">
                   {stat.label}
                 </dt>
-                <dd className="text-txt-black-900 text-heading-md lg:text-heading-lg order-1 font-semibold tracking-[-0.02em] tabular-nums [font-feature-settings:'tnum'_1,'cv11'_1]">
+                <dd className="text-txt-black-900 text-heading-md lg:text-heading-lg order-1 [font-feature-settings:'tnum'_1,'cv11'_1] font-semibold tracking-[-0.02em] tabular-nums">
                   {stat.value}
                 </dd>
                 {stat.footnote && (

@@ -1,0 +1,137 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+import Link from "@/components/ui/link.astro";
+import Section from "@/components/ui/section.astro";
+
+/**
+ * Steps explains how to apply, register or claim, in order: a numbered list
+ * where each step has a title, what to do, and an optional link (a form to
+ * download, a page with more detail), on a Sheet panel. Numbers sit in
+ * primary-wash circles joined by a Hairline, so the order reads at a glance;
+ * the markup is an `<ol>`, so screen readers announce it too.
+ *
+ * Rich step content goes in the slot named after the step's `value`
+ * (`step-0`, `step-1`... when unset). The `action` prop or slot adds the
+ * primary button under the list. Slots: `title`, `description`, `action`.
+ *
+ * @example
+ * <Steps
+ *   steps={[
+ *     { title: "Check you're eligible", description: "Read who can apply." },
+ *     { title: "Prepare your documents", description: "MyKad and your latest payslip." },
+ *     { title: "Apply online", description: "It takes about 15 minutes.", link: { label: "Start now", href: "/apply" } },
+ *   ]}
+ *   action={{ label: "Apply now", href: "/apply" }}
+ * />
+ */
+interface Step {
+  title: string;
+  /** Plain-text detail. The slot named after `value` takes rich content. */
+  description?: string;
+  link?: { label: string; href: string };
+  /** Slot name for rich content. Defaults to `step-<index>`. */
+  value?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** @default "Cara memohon" / "How to apply" */
+  title?: string;
+  description?: string;
+  steps: Step[];
+  /** The primary action under the steps. */
+  action?: { label: string; href: string };
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title: titleProp,
+  description,
+  steps,
+  action,
+  tone = "paper",
+  lang: langProp,
+  titleId = uniqueId("steps"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const title = titleProp ?? label(lang, "stepsTitle");
+const slots = Astro.slots;
+const values = steps.map((step, i) => step.value ?? `step-${i}`);
+// Rendered up front: a slot can't be rendered inside the map by name
+const details = await Promise.all(
+  values.map(async (value) =>
+    slots.has(value) ? await slots.render(value) : "",
+  ),
+);
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <ol class="bg-bg-white flex max-w-[760px] flex-col rounded-lg p-surface md:p-8">
+    {
+      steps.map((step, i) => (
+        <li class="relative flex gap-5 pb-8 last:pb-0">
+          {i < steps.length - 1 && (
+            <span
+              aria-hidden="true"
+              class="bg-otl-gray-200 absolute top-12 bottom-2 left-[19px] w-0.5 rounded-full"
+            />
+          )}
+          <span
+            aria-hidden="true"
+            class="bg-bg-primary-50 text-txt-primary text-body-md flex size-10 shrink-0 items-center justify-center rounded-full font-semibold tabular-nums"
+          >
+            {i + 1}
+          </span>
+          <div class="flex min-w-0 flex-col gap-2 pt-1.5">
+            <h3 class="text-txt-black-900 text-title font-semibold">{step.title}</h3>
+            {details[i] ? (
+              <div class="text-txt-black-700 text-content [&_a]:text-txt-primary flex flex-col gap-2 [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5">
+                <Fragment set:html={details[i]} />
+              </div>
+            ) : (
+              step.description && <p class="text-txt-black-700 text-content">{step.description}</p>
+            )}
+            {step.link && (
+              <Link href={step.link.href} primary class="text-content font-medium">
+                {step.link.label}
+              </Link>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+  {
+    (action || slots.has("action")) && (
+      <div class="flex flex-wrap items-center gap-3">
+        <slot name="action">
+          {action && (
+            <Button variant="primary-fill" size="large" href={action.href}>
+              {action.label}
+            </Button>
+          )}
+        </slot>
+      </div>
+    )
+  }
+</Section>

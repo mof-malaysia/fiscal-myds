@@ -1,0 +1,51 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+
+/**
+ * Prose styles long-form content written in Markdown or a CMS (an article, a
+ * policy page, an event description) without classes on every element:
+ * headings, paragraphs, lists, links, quotes, figures, tables and rules, in
+ * the FTDS type scale and capped at 70ch.
+ *
+ * Wrap the rendered content, e.g. `<Prose><Content /></Prose>` for a Content
+ * Collection entry. Headings start at h2: the page's h1 is in the PageIntro
+ * or Hero above.
+ *
+ * @example
+ * <Prose>
+ *   <h2>Siapa yang layak</h2>
+ *   <p>Semua warganegara Malaysia berumur 18 tahun ke atas.</p>
+ * </Prose>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  /** Element to render. Defaults to `"div"`. */
+  as?: "div" | "article" | "section";
+  class?: string;
+};
+
+const { as: Tag = "div", class: className, ...props } = Astro.props;
+---
+
+<Tag
+  class={clx(
+    "font-body text-txt-black-900 text-body-lg max-w-[70ch]",
+    // Flow: space before blocks, more before headings
+    "[&>*+*]:mt-5 [&>*+h2]:mt-10 [&>*+h3]:mt-8",
+    "[&_h2]:text-headline [&_h2]:font-semibold [&_h2]:tracking-[-0.015em] [&_h2]:text-balance",
+    "[&_h3]:text-title [&_h3]:font-semibold",
+    "[&_h4]:text-body-lg [&_h4]:font-semibold",
+    "[&_p]:text-pretty [&_strong]:font-semibold",
+    "[&_a]:text-txt-primary [&_a]:focus-ring [&_a]:rounded-xs [&_a]:underline [&_a]:decoration-1 [&_a]:underline-offset-[3px] [&_a:hover]:decoration-2",
+    "[&_ul]:list-disc [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:pl-6 [&_li]:pl-1 [&_li+li]:mt-2 [&_li::marker]:text-txt-black-700",
+    "[&_blockquote]:bg-bg-washed [&_blockquote]:text-txt-black-900 [&_blockquote]:rounded-lg [&_blockquote]:px-6 [&_blockquote]:py-5",
+    "[&_figure_img]:rounded-lg [&_img]:h-auto [&_img]:max-w-full [&_figcaption]:text-txt-black-700 [&_figcaption]:text-body-sm [&_figcaption]:mt-2",
+    "[&_hr]:border-otl-gray-200 [&_hr]:my-10",
+    "[&_table]:text-body-md [&_table]:w-full [&_table]:border-collapse [&_th]:text-txt-black-700 [&_th]:text-label-md [&_th]:py-3 [&_th]:pr-4 [&_th]:text-left [&_th]:font-medium [&_td]:border-otl-gray-200 [&_td]:border-t [&_td]:py-3 [&_td]:pr-4 [&_td]:align-top",
+    "[&_code]:bg-bg-washed [&_code]:rounded-sm [&_code]:px-1 [&_code]:text-[0.875em]",
+    className,
+  )}
+  {...props}
+>
+  <slot />
+</Tag>

@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+
+/**
+ * Separator draws a single Hairline between two groups of content, horizontal
+ * or vertical, announced to screen readers as a separator. Lines must earn
+ * their place: reach for spacing or a tonal surface first.
+ *
+ * Pass `decorative` when the line only repeats a split that is already
+ * obvious, so screen readers skip it.
+ *
+ * @example
+ * <div class="flex h-5 items-center gap-3">
+ *   <span>Draft</span>
+ *   <Separator orientation="vertical" decorative />
+ *   <span>Updated 3 May 2026</span>
+ * </div>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  orientation?: "horizontal" | "vertical";
+  /** Hide the line from assistive technology when it is purely visual. */
+  decorative?: boolean;
+  class?: string;
+};
+
+const {
+  orientation = "horizontal",
+  decorative = false,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<div
+  role={decorative ? "none" : "separator"}
+  aria-orientation={decorative ? undefined : orientation}
+  class={clx(
+    "bg-otl-gray-200 shrink-0",
+    orientation === "vertical" ? "w-px self-stretch" : "h-px w-full",
+    className,
+  )}
+  {...props}
+>
+</div>

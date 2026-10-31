@@ -1,0 +1,33 @@
+---
+/**
+ * Template: maintenance page. Served on its own while the site is down, so it
+ * has only the Masthead (people can still tell it's official) and the agency
+ * name: no navigation to pages that won't load.
+ *
+ * Masthead → StatusPage (maintenance) → Footer. Serve it with a 503 status
+ * and a `Retry-After` header.
+ */
+import Masthead from "@/components/ui/masthead.astro";
+import StatusPage from "@/components/blocks/status-page.astro";
+import Footer from "@/components/ui/footer.astro";
+import Link from "@/components/ui/link.astro";
+import { agency, jataNegara } from "./site";
+---
+
+<Masthead />
+<header class="border-otl-gray-200 bg-bg-gray-50 border-b">
+  <div class="mx-auto flex w-full max-w-[1280px] items-center gap-3 px-4 py-4 md:px-6">
+    <img src={jataNegara} width="46" height="36" alt="" class="h-9 w-auto" />
+    <p class="text-txt-black-900 text-body-md font-semibold">{agency.name}</p>
+  </div>
+</header>
+<main id="main">
+  <StatusPage kind="maintenance" backAt="4.00 pagi, 2 November 2026">
+    <p class="text-txt-black-700">
+      Anda masih boleh menghubungi kami di{" "}
+      <Link href="tel:0380008000" primary>03-8000 8000</Link>, Isnin hingga Jumaat, 8 pagi hingga 5
+      petang.
+    </p>
+  </StatusPage>
+</main>
+<Footer tone="well" owner={agency.name} />

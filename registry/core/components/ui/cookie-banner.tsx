@@ -16,6 +16,7 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { clx } from "@/lib/ftds/utils";
 import { cva } from "class-variance-authority";
 import { CrossIcon } from "@/components/ui/icons/cross";
+import { cookie_content_cva } from "@/components/ui/cookie-banner.variants";
 
 interface CookieBannerContextValue {
   showPreferences: boolean;
@@ -34,13 +35,12 @@ type CookieBannerProps = Omit<DialogPrimitive.Root.Props, "children"> & {
   closeLabel?: string;
 };
 
-const cookie_content_cva = cva([
-  "bg-bg-white p-4.5 shadow-card border-otl-gray-200 fixed bottom-0 right-0 z-banner max-w-[500px]",
-  "space-y-1 rounded-lg border transition-all outline-none",
+// The panel classes are shared with Astro; the animation is React's own
+const cookie_content_animation = [
+  "transition-all",
   "data-[open]:animate-in data-[open]:slide-in-from-bottom-full data-[open]:fade-in data-[open]:duration-400",
   "data-[closed]:animate-out data-[closed]:fill-mode-forwards data-[closed]:slide-out-to-bottom-full data-[closed]:fade-out data-[closed]:duration-200",
-  "sm:mb-4 sm:mr-4 sm:p-6",
-]);
+];
 
 /**
  * CookieBanner asks for cookie consent in the corner of the page. It is not
@@ -77,7 +77,11 @@ const CookieBanner: FunctionComponent<CookieBannerProps> = ({
       >
         <DialogPrimitive.Portal>
           <DialogPrimitive.Popup
-            className={clx(cookie_content_cva(), className)}
+            className={clx(
+              cookie_content_cva(),
+              cookie_content_animation,
+              className,
+            )}
           >
             <DialogPrimitive.Close
               aria-label={closeLabel}

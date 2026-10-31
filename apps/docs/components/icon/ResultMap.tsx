@@ -46,7 +46,7 @@ const IconGridItem: FunctionComponent<{ icon: IconData }> = ({ icon }) => {
           </Button>
         </div>
       </div>
-      <p className="text-txt-black-500 text-body-sm max-w-full text-wrap py-2 text-center">
+      <p className="text-txt-black-500 text-body-sm max-w-full py-2 text-center text-wrap">
         {icon.name}
       </p>
     </div>

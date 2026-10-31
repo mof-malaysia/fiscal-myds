@@ -1,0 +1,293 @@
+import { Meta, Source, Unstyled } from "@storybook/addon-docs/blocks";
+import { button_cva } from "@mof-malaysia/ftds-style/variants/button";
+import { tag_cva } from "@mof-malaysia/ftds-style/variants/tag";
+
+<Meta title="Introduction" />
+
+{/* Docs pages render with React, so this page can't use the Astro components.
+    It takes Button and Tag classes from packages/style/variants instead: the
+    same classes both stacks use. */}
+
+export const Section = ({ title, children }) => (
+  <section className="mt-12">
+    <h2 className="text-txt-black-900 mb-4 text-lg font-semibold tracking-tight">
+      {title}
+    </h2>
+    {children}
+  </section>
+);
+
+export const Tag = ({ variant = "default", children }) => (
+  <span className={tag_cva({ variant, size: "medium" })}>{children}</span>
+);
+
+{/* Story links work here and composed into the React Storybook, where ids
+    carry the ref's prefix (astro_core-button--primary) and the page lives in
+    the parent Storybook's frame. */}
+
+export const storyUrl = (id) => {
+  const ref = new URLSearchParams(window.location.search).get("refId");
+  try {
+    return new URL(
+      `./?path=/story/${ref ? `${ref}_` : ""}${id}`,
+      window.top.location.href,
+    ).href;
+  } catch {
+    // Cross-origin parent (local dev composition): open this Storybook itself
+    return new URL(`./?path=/story/${id}`, window.location.href).href;
+  }
+};
+
+export const StoryLink = ({ id, className, children }) => (
+  <a
+    href={storyUrl(id)}
+    target="_top"
+    className={className ?? "text-txt-primary underline"}
+  >
+    {children}
+  </a>
+);
+
+export const TierCard = ({ name, components, unit = "components", stories, id, children, examples }) => (
+  <StoryLink
+    id={id}
+    className="bg-bg-washed hover:bg-bg-washed-active group flex flex-col gap-2 rounded-xl p-5 no-underline transition-colors"
+  >
+    <div className="flex items-baseline justify-between">
+      <span className="text-txt-black-900 font-semibold">{name}</span>
+      <span className="text-txt-black-500 text-sm tabular-nums">
+        {components} {unit} · {stories} stories
+      </span>
+    </div>
+    <p className="text-txt-black-700 text-sm leading-relaxed">{children}</p>
+    <p className="text-txt-black-500 mt-auto pt-2 text-xs">{examples}</p>
+  </StoryLink>
+);
+
+export const Principle = ({ index, title, children }) => (
+  <li className="flex gap-4">
+    <span className="text-txt-primary w-5 shrink-0 font-semibold tabular-nums">
+      {index}
+    </span>
+    <div>
+      <p className="text-txt-black-900 font-medium">{title}</p>
+      <p className="text-txt-black-700 mt-1 text-sm leading-relaxed">
+        {children}
+      </p>
+    </div>
+  </li>
+);
+
+export const Tip = ({ title, children }) => (
+  <div className="bg-bg-washed rounded-xl p-4">
+    <p className="text-txt-black-900 text-sm font-medium">{title}</p>
+    <p className="text-txt-black-700 mt-1 text-sm leading-relaxed">{children}</p>
+  </div>
+);
+
+export const Code = ({ children }) => (
+  <code className="bg-bg-washed rounded px-1 py-0.5 text-xs">{children}</code>
+);
+
+{/* The page lives in an export so MDX leaves its JSX alone: in the MDX body,
+    text lines become markdown paragraphs and <a> becomes Storybook's docs link. */}
+
+export const IntroPage = () => (
+  <div className="text-txt-black-900 mx-auto max-w-3xl px-6 py-12 font-sans">
+    <header>
+      <p className="text-txt-primary text-sm font-medium">
+        Ministry of Finance Malaysia
+      </p>
+      <h1 className="mt-2 text-4xl font-semibold tracking-tight">
+        FTDS for Astro
+      </h1>
+      <p className="text-txt-black-700 mt-4 max-w-2xl text-lg leading-relaxed">
+        FTDS as native Astro components, for static agency, landing and
+        campaign sites: the government chrome and marketing sections, rendered
+        to plain HTML that ships no JavaScript unless a component needs it.
+      </p>
+      <div className="mt-5 flex flex-wrap gap-2">
+        <Tag variant="primary">Astro 7</Tag>
+        <Tag>Tailwind v4</Tag>
+        <Tag>shadcn registry</Tag>
+        <Tag variant="success">WCAG 2.2 AA</Tag>
+        <Tag>BM / EN</Tag>
+      </div>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <StoryLink
+          id="marketing-hero--default"
+          className={button_cva({ variant: "primary-fill", size: "small" })}
+        >
+          Browse components
+        </StoryLink>
+      </div>
+    </header>
+    <Section title="Astro or React?">
+      <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
+        FTDS for Astro sits beside the React library. It does not replace it,
+        and the React marketing components stay supported.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Tip title="Use Astro for sites that inform">
+          Agency pages, landing pages, campaigns and announcements: content
+          people read, where a fast first load matters more than sharing code
+          with an app.
+        </Tip>
+        <Tip title="Use React for anything that is also a service">
+          Forms, payments, dashboards and officer tools, or a site already
+          built on React. The React library has every tier, including App.
+        </Tip>
+      </div>
+    </Section>
+    <Section title="What's inside">
+      <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
+        A selective subset of core and the marketing tier. There are no App
+        components, and Astro can have marketing components React doesn't.{" "}
+        <strong className="font-medium">Blocks</strong> are ready-made page
+        sections installed to <Code>components/blocks</Code>.{" "}
+        <strong className="font-medium">Templates</strong> are full pages
+        built from them: pick one, copy it and the blocks it uses from{" "}
+        <Code>packages/astro/src/templates</Code>, and swap in your content.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <TierCard
+          name="Core"
+          components={17}
+          stories={75}
+          id="core-masthead--default"
+          examples="Masthead, Button, Tabs, Breadcrumb, CookieBanner, ThemeSwitch"
+        >
+          Government chrome and the primitives marketing pages need.
+        </TierCard>
+        <TierCard
+          name="Marketing"
+          components={29}
+          stories={92}
+          id="marketing-navbar--expressive"
+          examples="Navbar, Hero, FeatureGrid, FAQ, Carousel, SiteFooter"
+        >
+          Agency site sections and blocks, from the navbar to the footer.
+        </TierCard>
+        <TierCard
+          name="Templates"
+          components={11}
+          unit="pages"
+          stories={11}
+          id="marketing-templates-agency-homepage--default"
+          examples="Agency homepage, Service landing, News, Event, Contact, 404"
+        >
+          Whole pages assembled from the blocks, to copy and fill in.
+        </TierCard>
+      </div>
+    </Section>
+    <Section title="How the components work">
+      <ol className="flex flex-col gap-5">
+        <Principle index="1" title="HTML first">
+          Every component renders complete, readable HTML. With JavaScript off,
+          nothing essential is hidden: tabs show every panel, the carousel is a
+          scrollable row, every navbar link is reachable.
+        </Principle>
+        <Principle index="2" title="Native before scripted">
+          Disclosure is <Code>&lt;details&gt;</Code>, menus use the Popover
+          API, carousels use scroll snap. A small script runs only where the
+          platform has no answer, such as tab keyboard support.
+        </Principle>
+        <Principle index="3" title="The same look as React">
+          Components in both stacks import their classes from{" "}
+          <Code>packages/style/variants</Code>, and both use the same{" "}
+          <Code>ftds-init</Code> tokens.
+        </Principle>
+        <Principle index="4" title="Bahasa Melayu by default">
+          Built-in labels come in BM and English. A <Code>lang</Code> prop or
+          the page's locale switches them.
+        </Principle>
+        <Principle index="5" title="Accessible by test">
+          Every story here passes axe at WCAG 2.2 AA, and every scripted
+          component has keyboard tests, run before each push.
+        </Principle>
+      </ol>
+    </Section>
+    <Section title="Using this Storybook">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Tip title="One story per variant">
+          Astro stories are rendered when Storybook is built, so Controls don't
+          change them. Each variant, tone, size and the English labels has its
+          own story in the sidebar.
+        </Tip>
+        <Tip title="Try it with the keyboard">
+          Stories run each component's real script. Tab into Tabs, the Navbar
+          or the Carousel to check focus and arrow keys.
+        </Tip>
+        <Tip title="Check accessibility">
+          The Accessibility panel runs axe against the current story. Aim for
+          zero violations before shipping a component.
+        </Tip>
+        <Tip title="Compare with React">
+          This Storybook also appears in the React one, under FTDS for Astro,
+          so the two versions of a component are a click apart.
+        </Tip>
+      </div>
+    </Section>
+    <Section title="Install">
+      <p className="text-txt-black-700 mb-4 text-sm leading-relaxed">
+        Components install through the shadcn CLI, which copies the source into
+        your project. Use Astro 7 with Tailwind v4 and the{" "}
+        <Code>@/</Code> alias, and add the <Code>@ftds</Code> namespace to{" "}
+        <Code>components.json</Code>:
+      </p>
+      <Source
+        language="json"
+        dark
+        code={`{
+  "registries": {
+    "@ftds": "https://mof-malaysia.github.io/ftds/r/v0/{name}.json"
+  }
+}`}
+      />
+      <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
+        Then add the styles and the components you need. Astro items are named{" "}
+        <Code>astro-&lt;name&gt;</Code>, and their dependencies come along:
+      </p>
+      <Source
+        language="bash"
+        dark
+        code={`# The FTDS styles (creates styles/ftds.css)
+npx shadcn@latest add @ftds/ftds-init
+
+# Components and blocks
+npx shadcn@latest add @ftds/astro-masthead @ftds/astro-navbar @ftds/astro-hero`}
+      />
+      <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
+        Import them with the <Code>.astro</Code> extension, so they can sit
+        beside React components of the same name:
+      </p>
+      <Source
+        language="tsx"
+        dark
+        code={`---
+import Masthead from "@/components/ui/masthead.astro";
+import Hero from "@/components/blocks/hero.astro";
+import ThemeScript from "@/components/ui/theme-script.astro";
+---
+
+<html lang="ms">
+  <head><ThemeScript /></head>
+  <body>
+    <Masthead />
+    <Hero
+      title="Bayar bil kerajaan di satu tempat"
+      primaryAction={{ label: "Mula membayar", href: "/bayar" }}
+    />
+  </body>
+</html>`}
+      />
+      <p className="text-txt-black-700 mt-4 text-sm leading-relaxed">
+        The README covers the style options and where every file installs.
+      </p>
+    </Section>
+  </div>
+);
+
+<Unstyled>
+  <IntroPage />
+</Unstyled>

@@ -48,7 +48,8 @@ const avatar_cva = cva(
 );
 
 interface AvatarProps
-  extends WithClassName<AvatarPrimitive.Root.Props>,
+  extends
+    WithClassName<AvatarPrimitive.Root.Props>,
     VariantProps<typeof avatar_cva> {}
 
 const Avatar = forwardRef<

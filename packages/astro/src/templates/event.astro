@@ -1,0 +1,89 @@
+---
+/**
+ * Template: event page. When and where, what happens, and how to register,
+ * with the facts kept beside the description on desktop.
+ *
+ * PageIntro → EventDetails (with Prose and the programme) → Faq →
+ * ContactLocations. Copy this file, the blocks it imports and
+ * site-layout.astro, then swap in your content.
+ */
+import SiteLayout from "./site-layout.astro";
+import PageIntro from "@/components/blocks/page-intro.astro";
+import EventDetails from "@/components/blocks/event-details.astro";
+import Prose from "@/components/ui/prose.astro";
+import Faq from "@/components/blocks/faq.astro";
+import ContactLocations from "@/components/blocks/contact-locations.astro";
+import GlobeIcon from "@/components/ui/icons/globe.astro";
+import { home } from "./site";
+---
+
+<SiteLayout current="Media">
+  <PageIntro
+    breadcrumb={[
+      home,
+      { label: "Media", href: "#media" },
+      { label: "Acara", href: "#acara" },
+      { label: "Taklimat Belanjawan 2027" },
+    ]}
+    eyebrow="Acara"
+    title="Taklimat Belanjawan 2027 untuk perniagaan kecil"
+    description="Ketahui apa yang Belanjawan 2027 bermakna untuk perniagaan anda, dan tanya pegawai kami secara terus."
+    meta={["12 November 2026", "Putrajaya dan dalam talian"]}
+  />
+
+  <EventDetails
+    aboutTitle="Mengenai taklimat ini"
+    date="Khamis, 12 November 2026"
+    time="9.00 pagi hingga 1.00 petang"
+    venue="Dewan Perdana, Kompleks Kementerian Kewangan, Putrajaya"
+    fee="Percuma"
+    extra={[{ label: "Bahasa", value: "Bahasa Melayu, dengan sari kata bahasa Inggeris", icon: GlobeIcon }]}
+    registerAction={{ label: "Daftar sekarang", href: "#daftar" }}
+    mapHref="https://maps.google.com/?q=Kementerian+Kewangan+Putrajaya"
+    registerNote="Pendaftaran ditutup pada 5 November, atau apabila tempat penuh."
+    programme={[
+      { time: "8.30 pagi", title: "Pendaftaran dan sarapan" },
+      { time: "9.00 pagi", title: "Ucapan alu-aluan", detail: "Ketua Setiausaha Perbendaharaan" },
+      { time: "9.30 pagi", title: "Belanjawan 2027: apa yang berubah untuk perniagaan", detail: "Bahagian Analisis Cukai" },
+      { time: "10.30 pagi", title: "Rehat" },
+      { time: "11.00 pagi", title: "Sesi soal jawab", detail: "Bersama pegawai LHDN, JKDM dan Kementerian Kewangan" },
+      { time: "1.00 petang", title: "Bersurai" },
+    ]}
+  >
+    <Prose>
+      <p>
+        Taklimat setengah hari ini menerangkan perubahan cukai, insentif dan bantuan dalam Belanjawan 2027 yang
+        melibatkan perniagaan kecil dan sederhana.
+      </p>
+      <p>Taklimat ini sesuai untuk:</p>
+      <ul>
+        <li>pemilik perniagaan kecil dan sederhana</li>
+        <li>akauntan dan perunding cukai</li>
+        <li>persatuan perniagaan dan dewan perniagaan</li>
+      </ul>
+      <p>Tidak dapat hadir? Taklimat disiarkan secara langsung, dan rakamannya disiarkan di laman ini selepas itu.</p>
+    </Prose>
+  </EventDetails>
+
+  <Faq
+    tone="well"
+    items={[
+      {
+        question: "Adakah saya perlu membawa apa-apa?",
+        answer: "Bawa MyKad dan e-mel pengesahan pendaftaran anda, sama ada dicetak atau di telefon.",
+      },
+      {
+        question: "Adakah tempat letak kereta disediakan?",
+        answer: "Ya, di Aras B1 dan B2. Anda juga boleh menaiki MRT ke Stesen Putrajaya Sentral dan bas perantara ke Presint 2.",
+      },
+    ]}
+  />
+
+  <ContactLocations
+    title="Pertanyaan tentang acara ini"
+    channels={[
+      { kind: "phone", value: "03-8000 8080", detail: "Isnin hingga Jumaat, 8 pagi hingga 5 petang" },
+      { kind: "email", value: "acara@mof.gov.my" },
+    ]}
+  />
+</SiteLayout>

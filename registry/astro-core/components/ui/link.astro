@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import { link_cva } from "@/components/ui/link.variants";
+
+/**
+ * An `<a>` in the FTDS theme. With `newTab` it opens in a new tab and tells
+ * screen readers so ("dibuka dalam tab baharu"), in the page's language.
+ *
+ * @example
+ * <Link href="https://www.mof.gov.my" newTab primary>Ministry of Finance</Link>
+ */
+type Props = Omit<HTMLAttributes<"a">, "class" | "lang"> &
+  VariantProps<typeof link_cva> & {
+    /** Opens in a new tab, with `rel="noopener noreferrer"`. */
+    newTab?: boolean;
+    lang?: Lang;
+    class?: string;
+  };
+
+const {
+  newTab = false,
+  primary = false,
+  underline = "always",
+  lang,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<a
+  class={clx(link_cva({ primary, underline }), className)}
+  target={newTab ? "_blank" : undefined}
+  rel={newTab ? "noopener noreferrer" : undefined}
+  {...props}><slot />{
+    newTab && (
+      <span class="sr-only"> {label(resolveLang(lang, Astro.currentLocale), "opensInNewTab")}</span>
+    )
+  }</a
+>

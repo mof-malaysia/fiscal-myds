@@ -80,8 +80,10 @@ const DEFAULT_LABELS: CheckAnswersLabels = {
   errorTitle: "There is a problem",
 };
 
-interface CheckAnswersProps
-  extends Omit<ComponentProps<"form">, "title" | "onSubmit"> {
+interface CheckAnswersProps extends Omit<
+  ComponentProps<"form">,
+  "title" | "onSubmit"
+> {
   sections: CheckAnswersSection[];
   /** What the citizen declares by submitting. Leave out for no declaration. */
   declaration?: ReactNode;

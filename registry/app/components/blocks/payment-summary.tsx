@@ -135,8 +135,7 @@ const DEFAULT_METHODS: PaymentMethod[] = [
 ];
 
 interface PaymentSummaryProps
-  extends Omit<ComponentProps<"form">, "title" | "onSubmit">,
-    MoneyOptions {
+  extends Omit<ComponentProps<"form">, "title" | "onSubmit">, MoneyOptions {
   /** The agency or account being paid. */
   payee: ReactNode;
   /** Bill or application reference. */
@@ -358,8 +357,7 @@ const DEFAULT_RECEIPT_LABELS: PaymentReceiptLabels = {
 };
 
 interface PaymentReceiptProps
-  extends Omit<ComponentProps<"section">, "title">,
-    MoneyOptions {
+  extends Omit<ComponentProps<"section">, "title">, MoneyOptions {
   /** Overrides the "Payment successful" heading (the page's h1). */
   title?: ReactNode;
   amount: Amount;

@@ -67,7 +67,8 @@ const checkbox_icon_cva = cva(
 type CheckedState = boolean | "indeterminate";
 
 interface CheckboxProps
-  extends Omit<
+  extends
+    Omit<
       CheckboxPrimitive.Root.Props,
       "checked" | "defaultChecked" | "onCheckedChange" | "className"
     >,

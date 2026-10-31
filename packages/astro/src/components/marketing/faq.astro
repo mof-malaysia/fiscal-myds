@@ -1,0 +1,116 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Accordion from "@/components/ui/accordion.astro";
+import SectionHeading from "@/components/ui/section-heading.astro";
+
+import { band_cva } from "@mof-malaysia/ftds-style/variants/section";
+/**
+ * Faq answers common questions: a section heading and intro beside (desktop)
+ * or above (mobile) an accordion of question / answer items, with an optional
+ * "still need help" contact line. The answers are native `<details>`, so the
+ * block works with JavaScript off.
+ *
+ * An answer is the item's `answer` text or, for rich content, the slot named
+ * after its `value` (`faq-0`, `faq-1`... when unset). Slots: `title`,
+ * `description`, `contact`.
+ *
+ * @example
+ * <Faq
+ *   items={[
+ *     { question: "Who can apply?", answer: "Any Malaysian citizen aged 18 and above." },
+ *     { value: "documents", question: "What documents do I need?" },
+ *   ]}
+ * >
+ *   <ul slot="documents"><li>MyKad</li></ul>
+ *   <Fragment slot="contact">Still need help? <Link href="/contact" primary>Contact us</Link></Fragment>
+ * </Faq>
+ */
+interface FaqItem {
+  question: string;
+  /** Plain-text answer. The slot named after `value` takes rich content. */
+  answer?: string;
+  /** Stable id for the item and its slot name. Defaults to `faq-<index>`. */
+  value?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** @default "Soalan lazim" / "Frequently asked questions" */
+  title?: string;
+  description?: string;
+  items: FaqItem[];
+  /** "Still need help?" line under the intro. The `contact` slot takes links. */
+  contact?: string;
+  /** Allow several answers open at once. Defaults to false. */
+  multiple?: boolean;
+  /** Item open on first render. */
+  defaultOpen?: string;
+  /** Section band: Paper (default) or Well. */
+  tone?: "paper" | "well";
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  title: titleProp,
+  description,
+  items,
+  contact,
+  multiple = false,
+  defaultOpen,
+  tone = "paper",
+  titleId = uniqueId("faq"),
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const title = titleProp ?? label(lang, "faqTitle");
+const values = items.map((item, i) => item.value ?? `faq-${i}`);
+// Forward only the filled slots: a forwarded slot always "has" content
+const filled = values.filter((value) => Astro.slots.has(value));
+const hasContact = Boolean(contact) || Astro.slots.has("contact");
+---
+
+<section
+  aria-labelledby={titleId}
+  class={clx(band_cva({ tone }), className)}
+  {...props}
+>
+  <div
+    class="mx-auto grid w-full max-w-[1280px] gap-8 px-4 py-12 md:px-6 md:py-16 lg:grid-cols-12 lg:gap-12 lg:py-24"
+  >
+    <SectionHeading titleId={titleId} title={title} description={description} class="lg:col-span-4">
+      <slot name="title" slot="title" />
+      <slot name="description" slot="description" />
+      {
+        hasContact && (
+          <p class="text-txt-black-700 text-body-md mt-3">
+            <slot name="contact">{contact}</slot>
+          </p>
+        )
+      }
+    </SectionHeading>
+    <div class="lg:col-span-8">
+      <Accordion
+        type={multiple ? "multiple" : "single"}
+        defaultValue={defaultOpen}
+        items={items.map((item, i) => ({
+          title: item.question,
+          content: item.answer,
+          value: values[i],
+        }))}
+        itemClass="bg-transparent"
+        triggerClass="text-body-lg gap-4 bg-transparent py-5 text-left leading-snug"
+        contentClass="pr-0 pb-5 md:pr-9"
+      >
+        {filled.map((value) => <Fragment slot={value}><slot name={value} /></Fragment>)}
+      </Accordion>
+    </div>
+  </div>
+</section>

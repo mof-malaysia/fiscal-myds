@@ -3,6 +3,7 @@ import path from "path";
 import {
   describeItem,
   iconItemName,
+  iconTitle,
   readFileContent,
   writeRegistry,
   REGISTRY_DIR,
@@ -44,20 +45,20 @@ async function main() {
     const exportName = content.match(/export const (\w+)/)?.[1] ?? iconName;
     const registryComponent: RegistryComponent = describeItem(
       {
-      name: iconItemName(iconName),
-      type: "registry:ui",
-      dependencies: [],
-      registryDependencies: [],
-      files: [
-        {
-          path: `components/ui/icons/${iconName}.tsx`,
-          content: transformedContent,
-          type: "registry:ui",
-        },
-      ],
+        name: iconItemName(iconName),
+        type: "registry:ui",
+        dependencies: [],
+        registryDependencies: [],
+        files: [
+          {
+            path: `components/ui/icons/${iconName}.tsx`,
+            content: transformedContent,
+            type: "registry:ui",
+          },
+        ],
       },
       {
-        title: `${iconName.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase())} icon`,
+        title: iconTitle(iconName),
         description: `The ${exportName} icon component, installed to components/ui/icons/${iconName}.tsx.`,
         categories: ["icons"],
       },

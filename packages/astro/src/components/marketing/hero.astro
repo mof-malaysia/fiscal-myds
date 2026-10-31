@@ -1,0 +1,135 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Button from "@/components/ui/button.astro";
+import Tag from "@/components/ui/tag.astro";
+
+/**
+ * Hero is the opening section of an agency or landing page: an optional
+ * eyebrow tag, the page's single h1, supporting text, a primary and a
+ * secondary action, and an optional media slot beside the text on desktop.
+ *
+ * Actions take `{ label, href }` (links styled as buttons); for anything else
+ * fill the `actions` slot. Slots: `eyebrow`, `title`, `description`,
+ * `actions`, `footnote`, `media`, and the default slot under the actions.
+ *
+ * @example
+ * <Hero
+ *   eyebrow="New"
+ *   title="Pay your government bills in one place"
+ *   description="Settle fees, fines and assessments from 30 agencies with one MyDigital ID."
+ *   primaryAction={{ label: "Start a payment", href: "/pay" }}
+ *   secondaryAction={{ label: "How it works", href: "#how" }}
+ * >
+ *   <img slot="media" src="/hero.png" alt="" />
+ * </Hero>
+ */
+interface HeroAction {
+  label: string;
+  href: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  /** Short label above the title, rendered as a primary Tag. */
+  eyebrow?: string;
+  /** The page title, rendered as the only h1. */
+  title?: string;
+  description?: string;
+  primaryAction?: HeroAction;
+  secondaryAction?: HeroAction;
+  /** Short line under the actions, e.g. a reassurance. */
+  footnote?: string;
+  /** `id` for the h1. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryAction,
+  secondaryAction,
+  footnote,
+  titleId = uniqueId("hero"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasMedia = slots.has("media");
+const hasActions = Boolean(primaryAction || secondaryAction) || slots.has("actions");
+---
+
+<section
+  aria-labelledby={titleId}
+  class={clx("bg-bg-gray-50 font-body w-full", className)}
+  {...props}
+>
+  <div
+    class={clx(
+      "mx-auto grid w-full max-w-[1280px] items-center gap-10 px-4 py-12 md:px-6 md:py-16 lg:py-24",
+      hasMedia && "lg:grid-cols-12 lg:gap-12",
+    )}
+  >
+    <div
+      class={clx(
+        "flex flex-col items-start gap-6",
+        hasMedia ? "lg:col-span-6" : "max-w-[760px]",
+      )}
+    >
+      <slot name="eyebrow">
+        {eyebrow && <Tag variant="primary" size="medium">{eyebrow}</Tag>}
+      </slot>
+      <div class="flex flex-col gap-4">
+        <h1
+          id={titleId}
+          class="text-txt-black-900 text-heading-sm md:text-heading-md lg:text-heading-lg font-semibold tracking-[-0.02em] text-balance"
+        >
+          <slot name="title">{title}</slot>
+        </h1>
+        {
+          (description || slots.has("description")) && (
+            <p class="text-txt-black-700 text-body-lg md:text-body-xl max-w-[60ch]">
+              <slot name="description">{description}</slot>
+            </p>
+          )
+        }
+      </div>
+      {
+        hasActions && (
+          <div class="flex flex-wrap items-center gap-3">
+            <slot name="actions">
+              {primaryAction && (
+                <Button variant="primary-fill" size="large" href={primaryAction.href}>
+                  {primaryAction.label}
+                </Button>
+              )}
+              {secondaryAction && (
+                <Button variant="default-outline" size="large" href={secondaryAction.href}>
+                  {secondaryAction.label}
+                </Button>
+              )}
+            </slot>
+          </div>
+        )
+      }
+      {
+        (footnote || slots.has("footnote")) && (
+          <p class="text-txt-black-700 text-body-md">
+            <slot name="footnote">{footnote}</slot>
+          </p>
+        )
+      }
+      <slot />
+    </div>
+    {
+      hasMedia && (
+        <div class="overflow-hidden rounded-lg lg:col-span-6">
+          <slot name="media" />
+        </div>
+      )
+    }
+  </div>
+</section>

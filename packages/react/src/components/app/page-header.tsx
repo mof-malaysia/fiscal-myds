@@ -79,8 +79,7 @@ const page_header_title_cva = cva(
 );
 
 interface PageHeaderTitleProps
-  extends ComponentProps<"h1">,
-    VariantProps<typeof page_header_title_cva> {
+  extends ComponentProps<"h1">, VariantProps<typeof page_header_title_cva> {
   /** Heading element. Keep `h1`: one per page. */
   as?: "h1" | "h2";
 }

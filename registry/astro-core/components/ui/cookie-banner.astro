@@ -1,0 +1,143 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Button from "@/components/ui/button.astro";
+import Cross from "@/components/ui/icons/cross.astro";
+import { cookie_content_cva } from "@/components/ui/cookie-banner.variants";
+
+/**
+ * CookieBanner asks for consent to non-essential cookies in the corner of the
+ * page. It is not modal: the page stays usable behind it. Accepting or
+ * declining saves the choice in localStorage under `storageKey`, closes the
+ * banner and dispatches `ftds:cookie-consent` on `document` with
+ * `detail.value` set to `"accepted"` or `"declined"`. The ✕ button and Esc
+ * close it for this page view without saving a choice.
+ *
+ * The banner is rendered `hidden` and the script shows it only when no choice
+ * is saved, so a visitor without JavaScript never sees a banner they can't
+ * close. Load analytics only after the event (or a saved `"accepted"`).
+ *
+ * Slots: `title`, the default slot (the description, e.g. with a link to the
+ * cookies page) and `actions` (extra links after the buttons).
+ *
+ * @example
+ * <CookieBanner />
+ * <script>
+ *   document.addEventListener("ftds:cookie-consent", (event) => {
+ *     if (event.detail.value === "accepted") loadAnalytics();
+ *   });
+ * </script>
+ */
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  /** @default "Terima kuki analitik" / "Accept analytics cookies" */
+  acceptLabel?: string;
+  /** @default "Tolak kuki analitik" / "Reject analytics cookies" */
+  declineLabel?: string;
+  /** Accessible name of the ✕ button. @default "Tutup sepanduk kuki" / "Close cookie banner" */
+  closeLabel?: string;
+  /** localStorage key the choice is saved under. @default "ftds-cookie-consent" */
+  storageKey?: string;
+  lang?: Lang;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  acceptLabel,
+  declineLabel,
+  closeLabel,
+  storageKey = "ftds-cookie-consent",
+  lang: langProp,
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+const id = uniqueId("cookie-banner");
+---
+
+<section
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby={`${id}-title`}
+  aria-describedby={`${id}-description`}
+  hidden
+  data-ftds-cookie-banner
+  data-storage-key={storageKey}
+  class={clx(cookie_content_cva(), "font-body", className)}
+  {...props}
+>
+  <Button
+    variant="default-ghost"
+    size="small"
+    iconOnly
+    data-ftds-cookie-close
+    aria-label={closeLabel ?? label(lang, "cookieBannerClose")}
+    class="absolute top-0 right-0 mt-4 mr-4"
+  >
+    <Cross aria-hidden="true" />
+  </Button>
+  <h2 id={`${id}-title`} class="text-body-md text-txt-black-900 pr-8 font-semibold">
+    <slot name="title">{title ?? label(lang, "cookieBannerTitle")}</slot>
+  </h2>
+  <div id={`${id}-description`} class="text-body-sm text-txt-black-900 font-normal">
+    <slot>{description ?? label(lang, "cookieBannerBody")}</slot>
+  </div>
+  <div class="flex w-full flex-col justify-start gap-2 pt-3 sm:flex-row sm:flex-wrap">
+    <Button
+      variant="default-outline"
+      size="medium"
+      class="w-full justify-center sm:w-auto"
+      data-ftds-cookie-choice="accepted"
+    >
+      {acceptLabel ?? label(lang, "cookieAccept")}
+    </Button>
+    <Button
+      variant="default-outline"
+      size="medium"
+      class="w-full justify-center sm:w-auto"
+      data-ftds-cookie-choice="declined"
+    >
+      {declineLabel ?? label(lang, "cookieDecline")}
+    </Button>
+    <slot name="actions" />
+  </div>
+</section>
+
+<script>
+  import { onEach, readStorage, writeStorage } from "@/lib/ftds/scripts";
+
+  type Consent = "accepted" | "declined";
+
+  onEach("[data-ftds-cookie-banner]", (banner) => {
+    const key = banner.dataset.storageKey!;
+    if (readStorage(key) !== null) return;
+
+    const close = () => {
+      // Hand focus back to the page if it was in the banner
+      const hadFocus = banner.contains(document.activeElement);
+      banner.hidden = true;
+      if (hadFocus) (document.activeElement as HTMLElement | null)?.blur();
+    };
+
+    for (const button of banner.querySelectorAll<HTMLElement>("[data-ftds-cookie-choice]")) {
+      button.addEventListener("click", () => {
+        const value = button.dataset.ftdsCookieChoice as Consent;
+        // Not saved where storage is unavailable: the banner shows again next page
+        writeStorage(key, value);
+        close();
+        document.dispatchEvent(new CustomEvent("ftds:cookie-consent", { detail: { value } }));
+      });
+    }
+    banner.querySelector("[data-ftds-cookie-close]")?.addEventListener("click", close);
+    banner.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+
+    banner.hidden = false;
+  });
+</script>

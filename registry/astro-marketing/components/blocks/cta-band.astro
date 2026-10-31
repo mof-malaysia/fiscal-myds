@@ -1,0 +1,104 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Button from "@/components/ui/button.astro";
+import SectionHeading from "@/components/ui/section-heading.astro";
+import { band_cva } from "@/components/ui/cta-band.variants";
+
+/**
+ * CtaBand is the closing call to action of a page: a title, short text, one
+ * primary action and an optional secondary one. It sits on a Well or a
+ * primary-wash band, never a saturated blue block (Wash, Not Fill), so the
+ * primary button stays the only filled blue on screen.
+ *
+ * Actions take `{ label, href }` (links styled as buttons); for anything else
+ * fill the `actions` slot. Slots: `title`, `description`, `actions`.
+ *
+ * @example
+ * <CtaBand
+ *   title="Ready to pay?"
+ *   description="It takes about three minutes. Keep your bill number handy."
+ *   primaryAction={{ label: "Start a payment", href: "/pay" }}
+ *   secondaryAction={{ label: "Contact us", href: "/contact" }}
+ * />
+ */
+interface CtaAction {
+  label: string;
+  href: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  /** Required unless the `actions` slot is filled. */
+  primaryAction?: CtaAction;
+  secondaryAction?: CtaAction;
+  /** Band colour: Well (default) or FTDS Blue Wash. */
+  tone?: "well" | "primary";
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  primaryAction,
+  secondaryAction,
+  tone = "well",
+  titleId = uniqueId("cta-band"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasTitle = Boolean(title) || slots.has("title");
+---
+
+<section
+  aria-labelledby={hasTitle ? titleId : undefined}
+  class={clx(band_cva({ tone }), className)} {...props}>
+  <div
+    class="mx-auto flex w-full max-w-[1280px] flex-col gap-6 px-4 py-12 md:px-6 md:py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-12"
+  >
+    <SectionHeading
+      titleId={titleId}
+      title={title}
+      description={description}
+      class="max-w-[680px]"
+    >
+      <slot name="title" slot="title" />
+      <slot name="description" slot="description" />
+    </SectionHeading>
+    <div class="flex shrink-0 flex-wrap items-center gap-3">
+      <slot name="actions">
+        {
+          primaryAction && (
+            <Button variant="primary-fill" size="large" href={primaryAction.href}>
+              {primaryAction.label}
+            </Button>
+          )
+        }
+        {
+          // Ghost hover must differ from the band: wash on Well, Raised on wash.
+          secondaryAction &&
+            (tone === "well" ? (
+              <Button variant="primary-ghost" size="large" href={secondaryAction.href}>
+                {secondaryAction.label}
+              </Button>
+            ) : (
+              <Button
+                variant="default-ghost"
+                size="large"
+                href={secondaryAction.href}
+                class="hover:bg-bg-raised"
+              >
+                {secondaryAction.label}
+              </Button>
+            ))
+        }
+      </slot>
+    </div>
+  </div>
+</section>

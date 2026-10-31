@@ -48,8 +48,9 @@ const swipe_direction = {
 
 const DrawerSideContext = createContext<DrawerSide>("bottom");
 
-interface DrawerProps<Payload = unknown>
-  extends DrawerPrimitive.Root.Props<Payload> {
+interface DrawerProps<
+  Payload = unknown,
+> extends DrawerPrimitive.Root.Props<Payload> {
   /** The edge the drawer slides in from. Also sets `swipeDirection`. */
   side?: DrawerSide;
 }
@@ -121,8 +122,7 @@ const drawer_popup_cva = cva(
   },
 );
 
-interface DrawerContentProps
-  extends WithClassName<DrawerPrimitive.Popup.Props> {
+interface DrawerContentProps extends WithClassName<DrawerPrimitive.Popup.Props> {
   /** Element to portal the drawer into. Defaults to `document.body`. */
   container?: DrawerPrimitive.Portal.Props["container"];
   /** Keep the drawer's contents mounted (and hidden) while it is closed. */

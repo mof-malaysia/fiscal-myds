@@ -7,7 +7,12 @@ import CommunityHero from "@/components/community/community-hero";
 import CommunityForm from "@/components/community/community-form";
 import Footer from "@/components/Footer";
 import { links } from "@/lib/constant";
-import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogTitle } from "@/components/myds";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+} from "@/components/myds";
 
 export default function CommunityPage({
   params,
@@ -63,12 +68,13 @@ export default function CommunityPage({
       </CommunityHero>
 
       {showModal && (
-        <AlertDialog variant="success" open={showModal} onOpenChange={setShowModal}>
-
+        <AlertDialog
+          variant="success"
+          open={showModal}
+          onOpenChange={setShowModal}
+        >
           <AlertDialogContent>
-            <AlertDialogTitle>
-              {t("community.modal.title")}
-            </AlertDialogTitle>
+            <AlertDialogTitle>{t("community.modal.title")}</AlertDialogTitle>
             <AlertDialogDescription>
               {t("community.modal.content")}
             </AlertDialogDescription>

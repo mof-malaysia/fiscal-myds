@@ -52,7 +52,8 @@ const pill_cva = cva(
 );
 
 interface PillProps
-  extends useRender.ComponentProps<"div">,
+  extends
+    useRender.ComponentProps<"div">,
     Omit<VariantProps<typeof pill_cva>, "dismissible"> {
   disabled?: boolean;
   /** Shows a ✕ that calls this. Hidden while `disabled`. */

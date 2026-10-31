@@ -1,31 +1,14 @@
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { forwardRef, ForwardRefExoticComponent } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 import { clx } from "@/lib/ftds/utils";
+import { link_cva } from "@/components/ui/link.variants";
 
 interface LinkProps
-  extends useRender.ComponentProps<"a">,
-    VariantProps<typeof link_cva> {
+  extends useRender.ComponentProps<"a">, VariantProps<typeof link_cva> {
   newTab?: boolean;
 }
-
-const link_cva = cva(
-  "decoration-1 underline-offset-[3px] transition-colors rounded-xs outline-none focus-ring",
-  {
-    variants: {
-      underline: {
-        always: "underline hover:decoration-2",
-        hover: "no-underline hover:underline",
-        none: "no-underline",
-      },
-      primary: {
-        true: "text-txt-primary",
-        false: "text-inherit decoration-inherit",
-      },
-    },
-  },
-);
 
 /**
  * The Link component extends the `<a>` element, customised according to the FTDS theme.

@@ -49,8 +49,7 @@ const stat_cva = cva(
 );
 
 interface StatProps
-  extends ComponentProps<"div">,
-    VariantProps<typeof stat_cva> {}
+  extends ComponentProps<"div">, VariantProps<typeof stat_cva> {}
 
 const Stat = forwardRef<HTMLDivElement, StatProps>(
   ({ className, surface, ...props }, ref) => (
@@ -126,8 +125,7 @@ const stat_delta_cva = cva(
 );
 
 interface StatDeltaProps
-  extends ComponentProps<"p">,
-    VariantProps<typeof stat_delta_cva> {
+  extends ComponentProps<"p">, VariantProps<typeof stat_delta_cva> {
   /** Which way the figure moved; picks the arrow. `none` shows no arrow. */
   direction?: "up" | "down" | "none";
   /**

@@ -145,3 +145,11 @@ export function isEditable(target: EventTarget | null): boolean {
   }
   return false;
 }
+
+/**
+ * A unique element id, e.g. `uniqueId("hero")` -> "hero-3f9a1c2b". For the
+ * Astro components, which have no `useId`.
+ */
+export function uniqueId(prefix: string): string {
+  return `${prefix}-${crypto.randomUUID().slice(0, 8)}`;
+}

@@ -10,6 +10,8 @@ import { buildJsonRegistry } from "../registry/build-json";
  *   index.html, docs/      apps/docs-astro build at the root (run `pnpm build`
  *                          there with FTDS_SITE_URL set first)
  *   storybook/             apps/storybook build (run `pnpm build:gh-pages` there first)
+ *   storybook-astro/       apps/storybook-astro build, composed into storybook/
+ *                          (run `pnpm build:gh-pages` there first)
  *   r/v0.1.0/<name>.json   JSON registry of each release tag, built from its own files
  *   r/v0/<name>.json       latest 0.x release
  *   r/latest/<name>.json   latest release
@@ -25,6 +27,7 @@ import { buildJsonRegistry } from "../registry/build-json";
 const ROOT_DIR = path.join(__dirname, "../..");
 const DEPLOY_DIR = path.join(ROOT_DIR, "deploy");
 const STORYBOOK_BUILD = path.join(ROOT_DIR, "apps/storybook/dist");
+const STORYBOOK_ASTRO_BUILD = path.join(ROOT_DIR, "apps/storybook-astro/dist");
 const DOCS_BUILD = path.join(ROOT_DIR, "apps/docs-astro/dist");
 
 /** Where the site is served; set FTDS_SITE_URL for a custom domain. */
@@ -162,6 +165,15 @@ function copyStorybook() {
     recursive: true,
   });
   log("storybook/ copied");
+  if (!fs.existsSync(STORYBOOK_ASTRO_BUILD)) {
+    throw new Error(
+      "Astro Storybook build not found. Run `pnpm build:gh-pages` in apps/storybook-astro first.",
+    );
+  }
+  fs.cpSync(STORYBOOK_ASTRO_BUILD, path.join(DEPLOY_DIR, "storybook-astro"), {
+    recursive: true,
+  });
+  log("storybook-astro/ copied");
 }
 
 function main() {

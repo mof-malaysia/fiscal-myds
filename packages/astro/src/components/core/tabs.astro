@@ -1,0 +1,178 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import {
+  tabs_indicator_cva,
+  tabs_list_cva,
+  tabs_trigger_cva,
+} from "@mof-malaysia/ftds-style/variants/tabs";
+
+/**
+ * Tabs switch between views of the same subject on one page: Label type in
+ * Ink Secondary on a single Hairline, the active tab in Ink with a 2px FTDS
+ * Blue underline. Each item's panel is the slot named after its `value`.
+ *
+ * Without JavaScript every panel shows, stacked under its label, so nothing
+ * is hidden. The script turns them into tabs: arrow keys, Home and End move
+ * between tabs, and a tab activates on focus unless `activationMode` is
+ * `"manual"`.
+ *
+ * @example
+ * <Tabs items={[
+ *   { value: "details", label: "Butiran" },
+ *   { value: "documents", label: "Dokumen", count: 3 },
+ * ]}>
+ *   <div slot="details">...</div>
+ *   <div slot="documents">...</div>
+ * </Tabs>
+ */
+interface TabItem {
+  value: string;
+  label: string;
+  /** A count beside the label, in a neutral pill. */
+  count?: number;
+  disabled?: boolean;
+}
+
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  items: TabItem[];
+  /** The tab open first. Defaults to the first enabled item. */
+  defaultValue?: string;
+  /** @default "small" */
+  size?: "small" | "medium";
+  /** `full` runs the Hairline across the container. @default "fit" */
+  width?: "fit" | "full";
+  /** `manual` activates a tab on Enter or Space instead of on focus. */
+  activationMode?: "automatic" | "manual";
+  class?: string;
+};
+
+const {
+  items,
+  defaultValue = items.find((item) => !item.disabled)?.value,
+  size = "small",
+  width = "fit",
+  activationMode = "automatic",
+  class: className,
+  ...props
+} = Astro.props;
+
+const id = uniqueId("tabs");
+const panels = await Promise.all(
+  items.map(async (item) =>
+    Astro.slots.has(item.value) ? await Astro.slots.render(item.value) : "",
+  ),
+);
+
+---
+
+<div
+  class={clx("font-body group/tabs flex flex-col", className)}
+  data-ftds-tabs
+  data-activation={activationMode}
+  {...props}
+>
+  <div
+    role="tablist"
+    hidden
+    data-ftds-requires-js
+    class={tabs_list_cva({ width })}
+  >
+    {
+      items.map((item) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${id}-tab-${item.value}`}
+          aria-controls={`${id}-panel-${item.value}`}
+          aria-selected={item.value === defaultValue ? "true" : "false"}
+          tabindex={item.value === defaultValue ? 0 : -1}
+          disabled={item.disabled}
+          class={tabs_trigger_cva({ size })}
+        >
+          {item.label}
+          {item.count !== undefined && (
+            <span class="bg-bg-washed-active text-txt-black-700 text-label-compact inline-flex min-w-5 justify-center rounded-full px-1.5 font-medium tabular-nums">
+              {item.count}
+            </span>
+          )}
+        </button>
+      ))
+    }
+    <span
+      aria-hidden="true"
+      data-ftds-tabs-indicator
+      class={tabs_indicator_cva()}
+    ></span>
+  </div>
+  {
+    items.map((item, i) => (
+      <section
+        role="tabpanel"
+        id={`${id}-panel-${item.value}`}
+        aria-labelledby={`${id}-tab-${item.value}`}
+        tabindex="0"
+        class="text-txt-black-900 text-content focus-ring rounded-md pt-(--space-stack-md)"
+      >
+        {/* Shown only without JavaScript, where every panel is visible */}
+        <h3 data-ftds-tabs-label class="text-txt-black-900 font-semibold">
+          {item.label}
+        </h3>
+        <Fragment set:html={panels[i]} />
+      </section>
+    ))
+  }
+</div>
+
+<script>
+  import { moveFocus, onEach } from "@/lib/ftds/scripts";
+
+  onEach("[data-ftds-tabs]", (root) => {
+    const list = root.querySelector<HTMLElement>("[role=tablist]")!;
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>("[role=tab]")];
+    const indicator = list.querySelector<HTMLElement>("[data-ftds-tabs-indicator]")!;
+    const manual = root.dataset.activation === "manual";
+    const panelOf = (tab: HTMLElement) =>
+      document.getElementById(tab.getAttribute("aria-controls")!);
+
+    let active = tabs.find((tab) => tab.getAttribute("aria-selected") === "true") ?? tabs[0]!;
+
+    /** Move the indicator under `tab`. */
+    const place = (tab: HTMLElement) => {
+      indicator.style.setProperty("--active-tab-left", `${tab.offsetLeft}px`);
+      indicator.style.setProperty("--active-tab-width", `${tab.offsetWidth}px`);
+    };
+
+    const select = (tab: HTMLButtonElement) => {
+      active = tab;
+      for (const other of tabs) {
+        const selected = other === tab;
+        other.setAttribute("aria-selected", String(selected));
+        other.tabIndex = selected ? 0 : -1;
+        const panel = panelOf(other);
+        if (panel) panel.hidden = !selected;
+      }
+      place(tab);
+    };
+
+    // Enhance: show the tablist now (rather than after setup, as
+    // data-ftds-requires-js would) so the indicator can measure its tab, drop
+    // the no-JS labels and open the default tab.
+    list.hidden = false;
+    for (const label of root.querySelectorAll<HTMLElement>("[data-ftds-tabs-label]")) {
+      label.hidden = true;
+    }
+    select(active);
+
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("keydown", (event) => {
+        const next = moveFocus(event, tabs);
+        if (next && !manual) select(next as HTMLButtonElement);
+      });
+    }
+    const observer = new ResizeObserver(() => place(active));
+    observer.observe(list);
+    return () => observer.disconnect();
+  });
+</script>

@@ -1,0 +1,58 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { clx } from "@/lib/ftds/utils";
+import { button_cva } from "@/components/ui/button.variants";
+
+/**
+ * Button in the FTDS theme. With `href` it renders a link styled as a button;
+ * without, a `<button type="button">`. Icons in the slot are sized to the
+ * button, as ButtonIcon does in React.
+ *
+ * @example
+ * <Button variant="primary-fill" size="large" href="/pay">Start a payment</Button>
+ * <Button variant="default-outline" type="submit">Send</Button>
+ */
+type ButtonVariants = VariantProps<typeof button_cva> & { class?: string };
+
+/** With `href`, an `<a>` taking anchor attributes; without, a `<button>`. */
+type Props =
+  | (Omit<HTMLAttributes<"a">, "class"> & ButtonVariants & { href: string })
+  | (Omit<HTMLAttributes<"button">, "class"> &
+      ButtonVariants & { href?: undefined });
+
+const {
+  variant = "primary-fill",
+  size = "small",
+  iconOnly = false,
+  href,
+  class: className,
+  ...props
+} = Astro.props;
+
+// ButtonIcon sizes from button.variants, applied to every svg in the slot.
+// No display class: svgs are flex items already, and setting one would
+// override `hidden` / `dark:hidden` on an icon.
+const icon_class = [
+  "[&_svg]:shrink-0 [&_svg]:stroke-[1.5px]",
+  size === "small" ? "[&_svg]:size-4" : "[&_svg]:size-5",
+];
+
+// The rest of a destructured union isn't narrowed by `href`; without it,
+// these are the <button> branch's attributes
+const buttonProps = props as Omit<HTMLAttributes<"button">, "class">;
+
+const classes = clx(button_cva({ variant, size, iconOnly }), icon_class, className);
+---
+
+{
+  href ? (
+    <a href={href} class={classes} {...props}>
+      <slot />
+    </a>
+  ) : (
+    <button type="button" class={classes} {...buttonProps}>
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,127 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import { label, resolveLang, type Lang } from "@/lib/ftds/i18n";
+import Link from "@/components/ui/link.astro";
+import Section from "@/components/ui/section.astro";
+
+/**
+ * ImpactStats shows what a programme has achieved, with the evidence: each
+ * figure on its own Sheet card with what it counts, the period it covers and
+ * its source, linked where the data is published. A government figure people
+ * can't check is a claim; one with a source is a fact.
+ *
+ * Use StatsBand for two to four headline figures that share one source line.
+ * Use ImpactStats when figures come from different sources, or need context.
+ * The figures are a description list (label first for screen readers).
+ * Slots: `title`, `description`, and the default slot under the cards (e.g. a
+ * methodology note or a link to the open data).
+ *
+ * @example
+ * <ImpactStats
+ *   title="Kesan Belanjawan 2026"
+ *   stats={[
+ *     {
+ *       value: "5.4 juta",
+ *       label: "isi rumah menerima Sumbangan Tunai Rahmah",
+ *       period: "Januari hingga September 2026",
+ *       source: { label: "Kementerian Kewangan", href: "https://www.mof.gov.my" },
+ *     },
+ *   ]}
+ * />
+ */
+interface ImpactStat {
+  value: string;
+  /** What the figure counts. Reads after the value: "5.4 juta" "households helped". */
+  label: string;
+  /** The period or date the figure covers. */
+  period?: string;
+  /** Where the figure comes from; linked when `href` is set. */
+  source?: { label: string; href?: string };
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  stats: ImpactStat[];
+  /** Columns on desktop. Defaults to 3. */
+  columns?: 2 | 3 | 4;
+  /** Section band: Well (default) or Paper. */
+  tone?: "well" | "paper";
+  lang?: Lang;
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  stats,
+  columns = 3,
+  tone = "well",
+  lang: langProp,
+  titleId = uniqueId("impact-stats"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const lang = resolveLang(langProp, Astro.currentLocale);
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <dl
+    class={clx(
+      "grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6",
+      columns === 3 && "lg:grid-cols-3",
+      columns === 4 && "lg:grid-cols-4",
+    )}
+  >
+    {
+      stats.map((stat) => (
+        <div class="bg-bg-white flex flex-col gap-3 rounded-lg p-surface">
+          <dt class="text-txt-black-900 text-body-md order-2 font-medium text-pretty">
+            {stat.label}
+          </dt>
+          <dd class="text-txt-black-900 text-heading-sm md:text-heading-md order-1 font-semibold tracking-[-0.02em] tabular-nums [font-feature-settings:'tnum'_1,'cv11'_1]">
+            {stat.value}
+          </dd>
+          {(stat.period || stat.source) && (
+            <dd class="text-txt-black-700 text-body-sm order-3 mt-auto flex flex-col gap-0.5 pt-2">
+              {stat.period && <span>{stat.period}</span>}
+              {stat.source && (
+                <span>
+                  {label(lang, "source")}:{" "}
+                  {stat.source.href ? (
+                    <Link href={stat.source.href} primary>
+                      {stat.source.label}
+                    </Link>
+                  ) : (
+                    stat.source.label
+                  )}
+                </span>
+              )}
+            </dd>
+          )}
+        </div>
+      ))
+    }
+  </dl>
+  {
+    Astro.slots.has("default") && (
+      <div class="text-txt-black-700 text-body-sm max-w-[70ch] [&_a]:text-txt-primary [&_a]:underline">
+        <slot />
+      </div>
+    )
+  }
+</Section>

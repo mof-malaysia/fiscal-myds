@@ -1,0 +1,136 @@
+---
+/** Preview of the core components. Not shipped. */
+import Preview from "../layouts/preview.astro";
+import Button from "@/components/ui/button.astro";
+import Link from "@/components/ui/link.astro";
+import Tag from "@/components/ui/tag.astro";
+import Card from "@/components/ui/card.astro";
+import Callout from "@/components/ui/callout.astro";
+import Separator from "@/components/ui/separator.astro";
+import Breadcrumb from "@/components/ui/breadcrumb.astro";
+import Masthead from "@/components/ui/masthead.astro";
+import PhaseBanner from "@/components/ui/phase-banner.astro";
+import Skiplink from "@/components/ui/skiplink.astro";
+import Footer from "@/components/ui/footer.astro";
+import InsetText from "@/components/ui/inset-text.astro";
+import Details from "@/components/ui/details.astro";
+import SectionHeading from "@/components/ui/section-heading.astro";
+import ArrowForward from "@/components/ui/icons/arrow-forward.astro";
+---
+
+<Preview title="Core">
+  <div class="relative">
+    <Skiplink />
+    <Masthead />
+    <PhaseBanner phase="Beta">
+      Ini perkhidmatan baharu. <Link href="#core" primary class="font-medium">Maklum balas</Link> anda membantu kami menambah baiknya.
+    </PhaseBanner>
+    <Masthead lang="en" class="mt-4" id="masthead-en" />
+    <PhaseBanner lang="en" phase="Maintenance" tagVariant="warning" />
+
+    <section id="core" class="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 md:px-6">
+      <SectionHeading titleId="core-title" title="Core" description="Button, Link, Tag and the government chrome." />
+
+      <Breadcrumb
+        items={[
+          { label: "Utama", href: "/" },
+          { label: "Perkhidmatan", href: "#core" },
+          { label: "Permohonan cukai pendapatan individu tahun taksiran 2025" },
+        ]}
+      />
+
+      <div class="flex flex-wrap items-center gap-3">
+        <Button>Primary</Button>
+        <Button variant="default-outline" size="medium">Default</Button>
+        <Button variant="danger-fill" size="large">Danger</Button>
+        <Button variant="primary-ghost" href="#core">
+          Link button <ArrowForward />
+        </Button>
+        <Button variant="default-outline" iconOnly aria-label="Next">
+          <ArrowForward />
+        </Button>
+      </div>
+      <p>
+        <Link href="https://www.mof.gov.my" newTab primary>Kementerian Kewangan</Link>
+        · <Link href="#core" underline="hover">Hover underline</Link>
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <Tag>Default</Tag>
+        <Tag variant="primary">Primary</Tag>
+        <Tag variant="success" dot>Paid</Tag>
+        <Tag variant="warning" size="large">Due</Tag>
+        <Tag variant="danger" size="small">Overdue</Tag>
+      </div>
+
+      <Separator />
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <Card title="Tax payable" titleAs="h3" description="Year of assessment 2025">
+          <Button slot="action" variant="default-ghost" href="#core">View return</Button>
+          <p class="text-headline text-txt-black-900 font-semibold tabular-nums">RM 2,481.50</p>
+          <p class="text-txt-black-700">Pay by 30 April 2026 to avoid a penalty.</p>
+          <Button slot="footer" href="#core">Pay now</Button>
+        </Card>
+        <Card tone="well" title="Need help?">
+          Call the LHDN contact centre on 03-8911 1000, or <Link href="#core">read the filing guide</Link>.
+        </Card>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <Callout title="Scheduled maintenance">
+          MyTax will be unavailable on Saturday 14 June from 10pm to 2am.
+        </Callout>
+        <Callout variant="success" title="Payment received" />
+        <Callout variant="warning" title="Your details don't match our records">
+          The name you entered is different from the name on your MyKad.
+          <Button slot="actions" variant="default-outline" href="#core">Check my details</Button>
+        </Callout>
+        <Callout variant="danger" title="Payment declined">
+          Your bank declined the payment. No money was taken.
+        </Callout>
+      </div>
+
+      <div class="text-content text-txt-black-700 flex h-5 items-center gap-3">
+        <span>Reference LHDN-2025-004821</span>
+        <Separator orientation="vertical" decorative />
+        <span>Updated 3 May 2026</span>
+      </div>
+
+      <InsetText>
+        You must submit your income tax return by 30 April 2026. After that, a penalty of up to RM 2,000.00 may apply.
+      </InsetText>
+      <InsetText author="Ministry of Finance Malaysia">
+        Every ringgit of public money must be spent with care and accounted for.
+      </InsetText>
+
+      <Details summary="I don't have a MyKad">
+        If you are a permanent resident, use the number on your MyPR card. If you are not a Malaysian
+        citizen, apply with your passport number instead.
+      </Details>
+      <Details summary="Where to find your income tax number" open>
+        It starts with IG and is printed on your notice of assessment.
+      </Details>
+    </section>
+
+    <Footer
+      as="div"
+      owner="Kementerian Kewangan Malaysia"
+      meta="Dikemas kini: 28 Okt 2026"
+      links={[
+        { label: "Dasar privasi", href: "#core" },
+        { label: "Penafian", href: "#core" },
+        { label: "Kebolehcapaian", href: "#core" },
+      ]}
+    />
+    <Footer
+      lang="en"
+      tone="well"
+      copyright="© 2026 Ministry of Finance Malaysia"
+      linksLabel="Legal"
+      links={[
+        { label: "Privacy policy", href: "#core" },
+        { label: "MOF website", href: "https://www.mof.gov.my", newTab: true },
+      ]}
+    />
+  </div>
+</Preview>

@@ -1,0 +1,766 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ftds-astro-marketing",
+  "homepage": "https://github.com/mof-malaysia/ftds",
+  "items": [
+    {
+      "name": "astro-accordion",
+      "title": "Accordion (Astro)",
+      "description": "A stack of sections that open and close under their headings. Use it when a page has several sections people need one at a time.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-icon-chevron-down",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accordion.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-announce-bar",
+      "title": "Announce Bar (Astro)",
+      "description": "A one-line notice with a tag under the site's navigation, such as planned maintenance or a new feature. For a service's alpha or beta phase, use PhaseBanner.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/announce-bar.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-carousel",
+      "title": "Carousel (Astro)",
+      "description": "A horizontal row of slides people scroll by touch, buttons, dots or arrow keys. Built on CSS scroll-snap; no autoplay unless you turn it on.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-chevron-left",
+        "mof-malaysia/ftds/astro-icon-chevron-right",
+        "mof-malaysia/ftds/astro-icon-pause",
+        "mof-malaysia/ftds/astro-icon-play",
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/carousel.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-contact-locations",
+      "title": "Contact Locations (Astro)",
+      "description": "ContactLocations tells people how to reach an agency: the main contact channels (phone, email, hours, live chat) on Sheet cards, then the offices people can visit, each with its address, phone, hours and a directions link.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-chat-bubble",
+        "mof-malaysia/ftds/astro-icon-clock",
+        "mof-malaysia/ftds/astro-icon-direction",
+        "mof-malaysia/ftds/astro-icon-email",
+        "mof-malaysia/ftds/astro-icon-phone",
+        "mof-malaysia/ftds/astro-icon-pin",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/contact-locations.astro",
+          "type": "registry:component",
+          "target": "components/blocks/contact-locations.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-cta-band",
+      "title": "CTA Band (Astro)",
+      "description": "The closing call to action of a landing page: a title, short text, one primary action and an optional secondary one, on a Well or blue-wash band.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-cta-band"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/cta-band.astro",
+          "type": "registry:component",
+          "target": "components/blocks/cta-band.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-cta-cards",
+      "title": "Cta Cards (Astro)",
+      "description": "CtaCards is a call to action with a choice: two or three ways to do the same thing (apply online, at a counter, by post) or the next steps for different people (citizens, businesses, agencies), each on a Sheet card with an icon, a short case and its own action.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/cta-cards.astro",
+          "type": "registry:component",
+          "target": "components/blocks/cta-cards.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-cta-split",
+      "title": "Cta Split (Astro)",
+      "description": "CtaSplit is a call to action with a picture: the title, a short case for acting, up to four reasons as a checklist, and the actions on one side; an image or illustration on the other.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-icon-check-circle",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/cta-split.astro",
+          "type": "registry:component",
+          "target": "components/blocks/cta-split.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-download-list",
+      "title": "Download List (Astro)",
+      "description": "DownloadList offers forms, guidelines, reports and other publications to download: one row per file with its type icon, title, a short description, and the file type, size and date.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-document",
+        "mof-malaysia/ftds/astro-icon-download",
+        "mof-malaysia/ftds/astro-icon-excel-media",
+        "mof-malaysia/ftds/astro-icon-pdf-media",
+        "mof-malaysia/ftds/astro-icon-powerpoint-media",
+        "mof-malaysia/ftds/astro-icon-word-media",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/download-list.astro",
+          "type": "registry:component",
+          "target": "components/blocks/download-list.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-eligibility",
+      "title": "Eligibility (Astro)",
+      "description": "Eligibility tells people, before they start, whether they can apply: a checklist of what they must meet and, optionally, a second list of what rules them out.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-check-circle",
+        "mof-malaysia/ftds/astro-icon-cross-circle",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/eligibility.astro",
+          "type": "registry:component",
+          "target": "components/blocks/eligibility.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-event-details",
+      "title": "Event Details (Astro)",
+      "description": "EventDetails sets out the facts of an event (date, time, venue, fee) and the registration action on a Sheet panel, beside the description and the programme.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-calendar",
+        "mof-malaysia/ftds/astro-icon-clock",
+        "mof-malaysia/ftds/astro-icon-direction",
+        "mof-malaysia/ftds/astro-icon-money",
+        "mof-malaysia/ftds/astro-icon-pin",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/event-details.astro",
+          "type": "registry:component",
+          "target": "components/blocks/event-details.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-faq",
+      "title": "FAQ (Astro)",
+      "description": "A frequently asked questions section: a heading and intro beside an accordion of questions and answers, with an optional \"still need help\" line.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-accordion",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/faq.astro",
+          "type": "registry:component",
+          "target": "components/blocks/faq.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-feature-grid",
+      "title": "Feature Grid (Astro)",
+      "description": "A section that introduces what a service offers: a heading and intro, then a grid of features, each with an icon, title, text and optional link.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-feature-grid",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/feature-grid.astro",
+          "type": "registry:component",
+          "target": "components/blocks/feature-grid.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-hero",
+      "title": "Hero (Astro)",
+      "description": "The opening section of an agency or landing page, with the page's only h1, supporting text, up to two actions and optional media beside the text.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/hero.astro",
+          "type": "registry:component",
+          "target": "components/blocks/hero.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-impact-stats",
+      "title": "Impact Stats (Astro)",
+      "description": "ImpactStats shows what a programme has achieved, with the evidence: each figure on its own Sheet card with what it counts, the period it covers and its source, linked where the data is published.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/impact-stats.astro",
+          "type": "registry:component",
+          "target": "components/blocks/impact-stats.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-logo-cloud",
+      "title": "Logo Cloud (Astro)",
+      "description": "A quiet row of the agencies or partners that use a service, muted at rest and in full colour on hover or focus. Each logo needs alt text.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/logo-cloud.astro",
+          "type": "registry:component",
+          "target": "components/blocks/logo-cloud.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-navbar-menu",
+      "title": "Navbar Menu (Astro)",
+      "description": "NavbarMenu is one item of the Navbar: a top-level link, or a dropdown with its links, groups, feature and footer.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-icon-chevron-down",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-navbar"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navbar-menu.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-navbar",
+      "title": "Navbar (Astro)",
+      "description": "The site's top navigation bar: logo, links and dropdown menus, and actions such as search, with a full-width menu panel on tablet and mobile.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-cross",
+        "mof-malaysia/ftds/astro-icon-hamburger-menu",
+        "mof-malaysia/ftds/astro-navbar-menu",
+        "mof-malaysia/ftds/astro-scripts",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-navbar"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navbar.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-news-list",
+      "title": "News List (Astro)",
+      "description": "NewsList shows the latest news, press statements and announcements, newest first.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/news-list.astro",
+          "type": "registry:component",
+          "target": "components/blocks/news-list.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-page-intro",
+      "title": "Page Intro (Astro)",
+      "description": "PageIntro opens an inner page of an agency site (About, Contact, a news article, a publication list): the breadcrumb, an optional eyebrow tag, the page's one h1, a short description and a meta row (published date, category, reading time).",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-breadcrumb",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/page-intro.astro",
+          "type": "registry:component",
+          "target": "components/blocks/page-intro.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-pager",
+      "title": "Pager (Astro)",
+      "description": "Pager moves between the pages of a static listing (news, publications): previous, the page numbers around the current one with the first and last, and next.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-chevron-left",
+        "mof-malaysia/ftds/astro-icon-chevron-right",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pager.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-partner-grid",
+      "title": "Partner Grid (Astro)",
+      "description": "PartnerGrid introduces the agencies, departments or partners behind a service: a grid of Sheet cards, each with a logo, the organisation's name, what it does here, and a link to its site.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-icon-arrow-outgoing",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/partner-grid.astro",
+          "type": "registry:component",
+          "target": "components/blocks/partner-grid.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-people-grid",
+      "title": "People Grid (Astro)",
+      "description": "PeopleGrid introduces an agency's leadership or a team: a photo (or initials), the person's name, their position and an optional short bio and profile link.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/people-grid.astro",
+          "type": "registry:component",
+          "target": "components/blocks/people-grid.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-prose",
+      "title": "Prose (Astro)",
+      "description": "Prose styles long-form content written in Markdown or a CMS (an article, a policy page, an event description) without classes on every element: headings, paragraphs, lists, links, quotes, figures, tables and rules, in the FTDS type scale and capped at 70ch.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/prose.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-section-heading",
+      "title": "Section Heading (Astro)",
+      "description": "The h2 title and intro paragraph used by the marketing blocks. Use it to give your own landing page sections the same heading style.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/section-heading.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-section",
+      "title": "Section (Astro)",
+      "description": "Section is the band every marketing block sits in: a Paper or Well background, the centred column, and the SectionHeading (title and intro) when there is one.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/ui/section.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-service-highlights",
+      "title": "Service Highlights (Astro)",
+      "description": "ServiceHighlights sends people to the services they came for: a grid of Sheet cards, each one link with an icon, the service name, one sentence and a row of facts (online, how long it takes, the fee).",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-icon-arrow-forward",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/astro-tag",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/service-highlights.astro",
+          "type": "registry:component",
+          "target": "components/blocks/service-highlights.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-site-footer",
+      "title": "Site Footer (Astro)",
+      "description": "The large multi-column footer for agency and landing sites: agency name, address and social links, then groups of site links. Pair it with Footer.",
+      "categories": [
+        "astro",
+        "marketing"
+      ],
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-footer"
+      ],
+      "files": [
+        {
+          "path": "components/ui/site-footer.astro",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "astro-stats-band",
+      "title": "Stats Band (Astro)",
+      "description": "Two to four headline figures on a Well band, each with a label and optional footnote, and a source line. For landing pages, not dashboards.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-stats-band"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/stats-band.astro",
+          "type": "registry:component",
+          "target": "components/blocks/stats-band.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-status-page",
+      "title": "Status Page (Astro)",
+      "description": "StatusPage is the whole-page message for when a site can't show a page: `not-found` (404), `server-error` (500) or `maintenance` (503).",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/utils",
+        "mof-malaysia/ftds/variants-section"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/status-page.astro",
+          "type": "registry:component",
+          "target": "components/blocks/status-page.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-steps",
+      "title": "Steps (Astro)",
+      "description": "Steps explains how to apply, register or claim, in order: a numbered list where each step has a title, what to do, and an optional link (a form to download, a page with more detail), on a Sheet panel.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-button",
+        "mof-malaysia/ftds/astro-i18n",
+        "mof-malaysia/ftds/astro-link",
+        "mof-malaysia/ftds/astro-section",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/steps.astro",
+          "type": "registry:component",
+          "target": "components/blocks/steps.astro"
+        }
+      ]
+    },
+    {
+      "name": "astro-testimonial",
+      "title": "Testimonial (Astro)",
+      "description": "What people say about a service. One quote renders as a large centred pull quote; two or three render as a grid of Sheet panels.",
+      "categories": [
+        "astro",
+        "blocks"
+      ],
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "mof-malaysia/ftds/astro-section-heading",
+        "mof-malaysia/ftds/utils"
+      ],
+      "files": [
+        {
+          "path": "components/blocks/testimonial.astro",
+          "type": "registry:component",
+          "target": "components/blocks/testimonial.astro"
+        }
+      ]
+    }
+  ]
+}

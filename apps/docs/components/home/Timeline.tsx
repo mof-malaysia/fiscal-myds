@@ -180,7 +180,7 @@ export function ItemList(props: {
                 <></>
               )}
             </div>
-            <p className="text-dim-500 line-clamp-1 text-xs font-medium uppercase tracking-widest">
+            <p className="text-dim-500 line-clamp-1 text-xs font-medium tracking-widest uppercase">
               {item.date}
             </p>
             <p className="text-black-900 font-medium">{item.title}</p>

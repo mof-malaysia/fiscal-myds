@@ -13,6 +13,8 @@ Two groups use services built with FTDS (FiscalTech Design System), the Ministry
 
 The primary surfaces are service and task screens: forms, tables, dashboards, portals. Public agency pages exist but are secondary.
 
+Public agency and marketing sites can also use FTDS for Astro: native Astro components for static sites, covering a selective subset of core plus the marketing tier. It sits beside the React library, which stays primary and keeps its own marketing tier; it is not a replacement. See [docs/rfc/astro.md](./docs/rfc/astro.md).
+
 ## Product Purpose
 
 FTDS is a component library, shipped as a shadcn registry, that MOF teams use to build their services. It exists so every MOF service feels like one trustworthy institution, and so teams spend their effort on the service, not on styling.

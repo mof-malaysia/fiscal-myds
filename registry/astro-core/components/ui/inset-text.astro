@@ -1,0 +1,57 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx } from "@/lib/ftds/utils";
+
+/**
+ * InsetText sets a passage apart from the text around it: a deadline, a
+ * requirement, a quote. It sits in a Well with no side stripe. For a status
+ * or warning with an icon, use a Callout instead.
+ *
+ * `as` changes the element (default `<div>`). With `author` (or the `author`
+ * slot) it becomes a quote: a `<figure>` with the slot in a `<blockquote>`
+ * and the author in a `<figcaption>`.
+ *
+ * @example
+ * <InsetText>
+ *   You must submit your declaration by 30 April 2026 to avoid a late penalty.
+ * </InsetText>
+ *
+ * <InsetText author="Ministry of Finance Malaysia">
+ *   Every ringgit of public money must be spent with care.
+ * </InsetText>
+ */
+type Props = Omit<HTMLAttributes<"div">, "class"> & {
+  as?: "div" | "aside" | "figure" | "section";
+  /** Who said it. Renders the inset text as a quote. */
+  author?: string;
+  class?: string;
+};
+
+const { as, author, class: className, ...props } = Astro.props;
+
+const isQuote = Boolean(author) || Astro.slots.has("author");
+const Tag = as ?? (isQuote ? "figure" : "div");
+---
+
+<Tag
+  class={clx(
+    "bg-bg-washed text-txt-black-900 font-body text-content gap-stack-sm p-surface flex max-w-[70ch] flex-col rounded-lg",
+    className,
+  )}
+  {...props}
+>
+  {
+    isQuote ? (
+      <>
+        <blockquote>
+          <slot />
+        </blockquote>
+        <figcaption class="text-txt-black-700 text-label-md font-medium">
+          <slot name="author">{author}</slot>
+        </figcaption>
+      </>
+    ) : (
+      <slot />
+    )
+  }
+</Tag>

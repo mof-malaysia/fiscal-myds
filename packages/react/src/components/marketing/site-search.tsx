@@ -46,8 +46,10 @@ const DEFAULT_LABELS: SiteSearchLabels = {
   submit: "Search",
 };
 
-interface SiteSearchProps
-  extends Omit<ComponentProps<"form">, "onSubmit" | "children"> {
+interface SiteSearchProps extends Omit<
+  ComponentProps<"form">,
+  "onSubmit" | "children"
+> {
   /** Field and button size, relative to density. `large` suits a hero. @default "medium" */
   size?: "small" | "medium" | "large";
   /** Name of the query parameter. @default "q" */

@@ -1,0 +1,137 @@
+---
+// registry:block — composed page section, installs to components/blocks
+import type { HTMLAttributes } from "astro/types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Section from "@/components/ui/section.astro";
+import {
+  icon_badge_cva,
+  linked_item_class,
+  meta_row_class,
+  stretched_link_class,
+} from "@mof-malaysia/ftds-style/variants/section";
+import Tag from "@/components/ui/tag.astro";
+import ArrowForwardIcon from "@/components/ui/icons/arrow-forward.astro";
+
+/**
+ * ServiceHighlights sends people to the services they came for: a grid of
+ * Sheet cards, each one link with an icon, the service name, one sentence and
+ * a row of facts (online, how long it takes, the fee). Unlike FeatureGrid,
+ * which describes what a service offers, every card here is a way in.
+ *
+ * The whole card is the link (the title's `<a>` stretches over it), so it has
+ * one stop in the tab order and one accessible name. Slots: `title`,
+ * `description`, and the default slot under the grid (e.g. "All services").
+ *
+ * @example
+ * ---
+ * import MoneyIcon from "@/components/ui/icons/money.astro";
+ * ---
+ * <ServiceHighlights
+ *   title="Popular services"
+ *   services={[
+ *     { icon: MoneyIcon, title: "Pay a bill", description: "Fees, fines and assessments.", href: "/pay", facts: ["Online", "3 min"] },
+ *   ]}
+ * />
+ */
+interface Service {
+  /** Icon component, e.g. `MoneyIcon`. Pass the component, unsized. */
+  icon?: AstroComponentFactory;
+  title: string;
+  description?: string;
+  href: string;
+  /** Short facts under the text, e.g. `["Online", "About 10 minutes", "Free"]`. */
+  facts?: string[];
+  /** A status tag beside the title, e.g. "New". */
+  tag?: string;
+}
+
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> & {
+  title?: string;
+  description?: string;
+  services: Service[];
+  /** Columns on desktop. Defaults to 3. */
+  columns?: 2 | 3;
+  /** Section band: Paper (default) or Well. The cards are Sheet on both. */
+  tone?: "paper" | "well";
+  /** `id` for the h2. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  title,
+  description,
+  services,
+  columns = 3,
+  tone = "paper",
+  titleId = uniqueId("service-highlights"),
+  class: className,
+  ...props
+} = Astro.props;
+
+---
+
+<Section
+  tone={tone}
+  title={title}
+  description={description}
+  titleId={titleId}
+  class={className}
+  {...props}
+>
+  <slot name="title" slot="title" />
+  <slot name="description" slot="description" />
+  <ul
+    class={clx(
+      "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6",
+      columns === 3 && "lg:grid-cols-3",
+    )}
+  >
+    {
+      services.map((service) => {
+        const Icon = service.icon;
+        return (
+          <li
+            class={clx(
+              linked_item_class,
+              "bg-bg-white hover:bg-bg-white-hover p-surface flex flex-col gap-4 rounded-lg transition-colors duration-150 motion-reduce:transition-none",
+            )}
+          >
+            {Icon && (
+              <span
+                aria-hidden="true"
+                class={icon_badge_cva()}
+              >
+                <Icon />
+              </span>
+            )}
+            <div class="flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-2 pr-8">
+                <h3 class="text-txt-black-900 text-title font-semibold">
+                  <a href={service.href} class={stretched_link_class}>
+                    {service.title}
+                  </a>
+                </h3>
+                {service.tag && <Tag variant="primary" size="small">{service.tag}</Tag>}
+              </div>
+              {service.description && (
+                <p class="text-txt-black-700 text-content">{service.description}</p>
+              )}
+            </div>
+            {service.facts?.length ? (
+              <ul class={clx(meta_row_class, "mt-auto")}>
+                {service.facts.map((fact) => <li>{fact}</li>)}
+              </ul>
+            ) : null}
+            <ArrowForwardIcon
+              aria-hidden="true"
+              class="text-txt-primary absolute top-6 right-6 size-5 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none"
+            />
+          </li>
+        );
+      })
+    }
+  </ul>
+  <slot />
+</Section>

@@ -113,7 +113,8 @@ const DialogClose: ForwardRefExoticComponent<
 /*========================================================================================================================*/
 
 interface DialogBodyProps
-  extends Omit<DialogPrimitive.Popup.Props, "className">,
+  extends
+    Omit<DialogPrimitive.Popup.Props, "className">,
     DialogBodyContextProps {
   className?: string;
   hideClose?: boolean;
@@ -310,8 +311,10 @@ const DialogFooter: ForwardRefExoticComponent<DialogFooterProps> = forwardRef(
 
 /*========================================================================================================================*/
 
-interface DialogTitleProps
-  extends Omit<ComponentProps<typeof DialogPrimitive.Title>, "className"> {
+interface DialogTitleProps extends Omit<
+  ComponentProps<typeof DialogPrimitive.Title>,
+  "className"
+> {
   className?: string;
 }
 
@@ -329,11 +332,10 @@ const DialogTitle: ForwardRefExoticComponent<DialogTitleProps> = forwardRef(
 );
 
 /*========================================================================================================================*/
-interface DialogDescriptionProps
-  extends Omit<
-    ComponentProps<typeof DialogPrimitive.Description>,
-    "className"
-  > {
+interface DialogDescriptionProps extends Omit<
+  ComponentProps<typeof DialogPrimitive.Description>,
+  "className"
+> {
   className?: string;
 }
 

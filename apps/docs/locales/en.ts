@@ -330,7 +330,7 @@ export default {
       requiredInterest: "Please select your area of interest.",
       invalidEmail: "Please Enter a valid Government email address.",
       invalidName: "Name can only contain letters and spaces.",
-        emailExists: "This email has already been registered.",
+      emailExists: "This email has already been registered.",
       emailExistsDetail:
         "Email already exists in database, therefore we won't be submitting your request. Thank you.",
       success1: "Thank you",
@@ -360,12 +360,15 @@ export default {
     },
   },
   myds_ai: {
-    description: "MYDS AI is a tool that helps you generate MYDS components and designs.",
+    description:
+      "MYDS AI is a tool that helps you generate MYDS components and designs.",
   },
   splask: {
-    description: "SPLaSK is a an accessibility testing tool for Malaysian government websites.",
+    description:
+      "SPLaSK is a an accessibility testing tool for Malaysian government websites.",
   },
   storybook: {
-    description: "Storybook is a UI development environment for MYDS components.",
+    description:
+      "Storybook is a UI development environment for MYDS components.",
   },
 };

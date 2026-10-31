@@ -50,7 +50,8 @@ const PreviewCardTrigger = forwardRef<
 PreviewCardTrigger.displayName = "PreviewCardTrigger";
 
 interface PreviewCardContentProps
-  extends WithClassName<PreviewCardPrimitive.Popup.Props>,
+  extends
+    WithClassName<PreviewCardPrimitive.Popup.Props>,
     PositionerProps<PreviewCardPrimitive.Positioner.Props> {
   /** A parent element to render the portal into. */
   container?: PreviewCardPrimitive.Portal.Props["container"];

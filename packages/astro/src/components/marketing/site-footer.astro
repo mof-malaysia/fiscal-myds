@@ -1,0 +1,114 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { clx, uniqueId } from "@/lib/ftds/utils";
+import Link from "@/components/ui/link.astro";
+import { footer_link_class } from "@mof-malaysia/ftds-style/variants/footer";
+
+/**
+ * SiteFooter is the large multi-column footer for agency and landing sites:
+ * agency identity, address and social links, then groups of site links.
+ * It sits on a Well band and separates its rows with space, not lines.
+ *
+ * Pair it with the core `Footer` (copyright and required links) below it:
+ * wrap both in one `<footer>` and pass `as="div"` here (and to Footer) so the
+ * page keeps a single contentinfo landmark.
+ *
+ * The info column holds the logo (`logo` slot, with `logoTitle`) and the
+ * default slot (address, social links). Each group of `groups` gets an h2
+ * naming its `<nav>`. The `groups` slot adds custom columns after them.
+ *
+ * @example
+ * <SiteFooter
+ *   as="div"
+ *   logoTitle="Kementerian Kewangan"
+ *   groups={[{ title: "About us", links: [{ label: "Ministry profile", href: "/profile" }] }]}
+ * >
+ *   <img slot="logo" src="/jata.png" width="36" alt="" />
+ *   <p>No. 5 Persiaran Perdana, Presint 2, 62592 Putrajaya</p>
+ * </SiteFooter>
+ */
+interface SiteFooterLink {
+  label: string;
+  href: string;
+}
+
+interface SiteFooterLinkGroup {
+  /** Renders an h2 that labels the group's nav. */
+  title: string;
+  links: SiteFooterLink[];
+  /** Show only the first `linkCount` links. All are shown by default. */
+  linkCount?: number;
+}
+
+type Props = Omit<HTMLAttributes<"footer">, "class"> & {
+  /** Root element. `"div"` when wrapped in a page `<footer>`. Defaults to `"footer"`. */
+  as?: "footer" | "div";
+  /** Agency name beside the logo, rendered as a paragraph. */
+  logoTitle?: string;
+  groups?: SiteFooterLinkGroup[];
+  /** Prefix for the group heading ids. Generated when unset. */
+  titleId?: string;
+  class?: string;
+};
+
+const {
+  as: Tag = "footer",
+  logoTitle,
+  groups = [],
+  titleId = uniqueId("site-footer"),
+  class: className,
+  ...props
+} = Astro.props;
+
+const slots = Astro.slots;
+const hasLogo = slots.has("logo") || Boolean(logoTitle) || slots.has("logoTitle");
+---
+
+<Tag
+  class={clx(
+    "bg-bg-washed font-body text-content text-txt-black-700 flex flex-col print:hidden",
+    "gap-8 px-4 py-10 md:px-6 md:py-12 lg:py-16",
+    "in-data-[density=compact]:gap-6 in-data-[density=compact]:py-8",
+    className,
+  )}
+  {...props}
+>
+  <div
+    class="mx-auto grid w-full max-w-[1280px] grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 lg:grid-cols-12 in-data-[density=compact]:gap-y-6"
+  >
+    {/* A <div>, not <aside>: a complementary landmark can't sit inside <footer>. */}
+    <div class="gap-stack-md col-span-full flex flex-col lg:col-start-1 lg:col-end-5 lg:pr-8">
+      {
+        hasLogo && (
+          <div class="text-txt-black-900 flex items-center gap-x-3">
+            <slot name="logo" />
+            <slot name="logoTitle">
+              {logoTitle && <p class="text-title font-semibold">{logoTitle}</p>}
+            </slot>
+          </div>
+        )
+      }
+      <slot />
+    </div>
+    {
+      groups.map((group, i) => (
+        <div class="gap-stack-sm col-span-1 flex flex-col md:col-span-1 lg:col-span-2">
+          <h2 id={`${titleId}-${i}`} class="text-txt-black-900 font-semibold">
+            {group.title}
+          </h2>
+          <nav
+            aria-labelledby={`${titleId}-${i}`}
+            class="flex flex-col gap-2 in-data-[density=compact]:gap-1.5"
+          >
+            {group.links.slice(0, group.linkCount).map((link) => (
+              <Link href={link.href} underline="hover" class={clx(footer_link_class, "w-fit")}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      ))
+    }
+    <slot name="groups" />
+  </div>
+</Tag>

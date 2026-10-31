@@ -41,8 +41,10 @@ import { clx } from "@/lib/ftds/utils";
 
 /*========================================================================================================================*/
 
-interface ResendButtonProps
-  extends Omit<ButtonProps, "onClick" | "children" | "disabled"> {
+interface ResendButtonProps extends Omit<
+  ButtonProps,
+  "onClick" | "children" | "disabled"
+> {
   /** How long to wait before the first resend, and between resends. @default 60 */
   seconds?: number;
   onResend?: () => void;
@@ -125,8 +127,10 @@ const DEFAULT_LABELS: OtpVerifyLabels = {
   otherMethod: "Use another way to verify",
 };
 
-interface OtpVerifyProps
-  extends Omit<ComponentProps<"form">, "onSubmit" | "children"> {
+interface OtpVerifyProps extends Omit<
+  ComponentProps<"form">,
+  "onSubmit" | "children"
+> {
   /** Masked phone number or email address the code went to, e.g. "••••5678". */
   destination: ReactNode;
   /** How the code was sent; changes the sentence above the field. @default "sms" */

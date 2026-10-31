@@ -1,0 +1,40 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": [
+    "//"
+  ],
+  "tasks": {
+    "build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/scripts/llms/**",
+        "$TURBO_ROOT$/scripts/registry/**",
+        "$TURBO_ROOT$/docs/**",
+        "$TURBO_ROOT$/registry/**"
+      ],
+      "outputs": [
+        "dist/**",
+        ".catalogue/**",
+        "src/generated/**"
+      ]
+    },
+    "typecheck": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/scripts/llms/**",
+        "$TURBO_ROOT$/scripts/registry/**",
+        "$TURBO_ROOT$/docs/**",
+        "$TURBO_ROOT$/registry/**"
+      ],
+      "outputs": [
+        ".catalogue/**",
+        "src/generated/**"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^transit"
+      ]
+    }
+  }
+}

@@ -36,15 +36,20 @@ export function readFileContent(filePath: string): string {
 
 /**
  * Module specifiers of a file's top-level `import ... from` / `export ... from`
- * statements, split into npm packages and relative paths. Anchored to the start
- * of a line so `import` examples inside JSDoc are ignored.
+ * statements, split into npm packages, relative paths, `@/` aliases (Astro
+ * source) and shared variants (`variants`, by name). Anchored to the start of
+ * a line so `import` examples inside JSDoc are ignored.
  */
 export function extractImports(content: string): {
   npmDependencies: Set<string>;
   localImports: string[];
+  aliasImports: string[];
+  variants: string[];
 } {
   const npmDependencies = new Set<string>();
   const localImports: string[] = [];
+  const aliasImports: string[] = [];
+  const variants: string[] = [];
 
   for (const match of content.matchAll(
     /^(?:import|export)\s[^;=]*?from\s+["']([^"']+)["']/gm,
@@ -52,6 +57,10 @@ export function extractImports(content: string): {
     const specifier = match[1]!;
     if (specifier.startsWith(".")) {
       localImports.push(specifier);
+    } else if (specifier.startsWith("@/")) {
+      aliasImports.push(specifier);
+    } else if (specifier.startsWith(VARIANTS_PREFIX)) {
+      variants.push(specifier.slice(VARIANTS_PREFIX.length));
     } else if (specifier !== "react" && specifier !== "react-dom") {
       // "@base-ui/react/dialog" -> "@base-ui/react", "date-fns/locale" -> "date-fns"
       const [scope, name] = specifier.split("/");
@@ -61,7 +70,33 @@ export function extractImports(content: string): {
     }
   }
 
-  return { npmDependencies, localImports };
+  return { npmDependencies, localImports, aliasImports, variants };
+}
+
+/**
+ * Pin npm dependencies to the ranges in `versions` (a package.json's
+ * dependencies), so a project doesn't pull in a new major.
+ */
+export function withVersions(
+  deps: Iterable<string>,
+  versions: Record<string, string>,
+): string[] {
+  return Array.from(deps)
+    .sort()
+    .map((dep) => (versions[dep] ? `${dep}@${versions[dep]}` : dep));
+}
+
+/** "site-footer" -> "Site Footer" */
+export function titleFromName(name: string): string {
+  return name
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+/** "chevron-down" -> "Chevron down icon" */
+export function iconTitle(name: string): string {
+  return `${name.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase())} icon`;
 }
 
 /**
@@ -85,7 +120,13 @@ export const REGISTRY_ITEM_SCHEMA =
 
 export const COMPONENT_TIERS = ["core", "app", "marketing"] as const;
 export type ComponentTier = (typeof COMPONENT_TIERS)[number];
-export type RegistryName = ComponentTier | "icons" | "style";
+export type RegistryName =
+  | ComponentTier
+  | "icons"
+  | "style"
+  | "astro-core"
+  | "astro-marketing"
+  | "astro-icons";
 
 export const COMPONENTS_DIR = path.join(
   __dirname,
@@ -100,24 +141,33 @@ export interface ComponentSource {
 
 /**
  * Every component file, tier by tier. Components install flat into
- * components/ui, so a name may exist in only one tier.
+ * components/ui, so a name may exist in only one tier. Defaults to the React
+ * source; generate-astro.ts passes packages/astro and `.astro`.
  */
-export function listComponents(): ComponentSource[] {
+export function listComponents({
+  dir = COMPONENTS_DIR,
+  tiers = COMPONENT_TIERS,
+  ext = ".tsx",
+}: {
+  dir?: string;
+  tiers?: readonly ComponentTier[];
+  ext?: string;
+} = {}): ComponentSource[] {
   const tierOf = new Map<string, ComponentTier>();
-  return COMPONENT_TIERS.flatMap((tier) =>
+  return tiers.flatMap((tier) =>
     fs
-      .readdirSync(path.join(COMPONENTS_DIR, tier))
-      .filter((file) => file.endsWith(".tsx"))
+      .readdirSync(path.join(dir, tier))
+      .filter((file) => file.endsWith(ext))
       .sort()
       .map((file) => {
-        const name = file.replace(/\.tsx$/, "");
+        const name = file.slice(0, -ext.length);
         if (tierOf.has(name)) {
           throw new Error(
             `"${name}" exists in both ${tierOf.get(name)} and ${tier}`,
           );
         }
         tierOf.set(name, tier);
-        return { name, tier, filePath: path.join(COMPONENTS_DIR, tier, file) };
+        return { name, tier, filePath: path.join(dir, tier, file) };
       }),
   );
 }
@@ -239,7 +289,37 @@ export function transformImports(
       acc.replace(pattern, (...args) =>
         replacement.replace("$1", args[1] ?? ""),
       ),
-    content,
+    rewriteVariantsImports(content),
+  );
+}
+
+/**
+ * Classes shared by the React and Astro components live in
+ * packages/style/variants and are imported as
+ * `@mof-malaysia/ftds-style/variants/<name>`. Each file is its own item in the
+ * style registry (`variants-<name>`), installed as
+ * components/ui/<name>.variants.ts; the generators rewrite the import to match.
+ */
+export const VARIANTS_PREFIX = "@mof-malaysia/ftds-style/variants/";
+export const VARIANTS_DIR = path.join(
+  __dirname,
+  "../../packages/style/variants",
+);
+const VARIANTS_IMPORT = new RegExp(
+  `from\\s+["']${VARIANTS_PREFIX.replace(/[/.]/g, "\\$&")}([a-z0-9-]+)["']`,
+  "g",
+);
+
+/** Item name of a variants file: "button" -> "variants-button" */
+export function variantsItemName(name: string): string {
+  return `variants-${name}`;
+}
+
+/** "@mof-malaysia/ftds-style/variants/button" -> "@/components/ui/button.variants" */
+export function rewriteVariantsImports(content: string): string {
+  return content.replace(
+    VARIANTS_IMPORT,
+    (_, name: string) => `from "@/components/ui/${name}.variants"`,
   );
 }
 

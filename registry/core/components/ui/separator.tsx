@@ -24,15 +24,20 @@ import { clx } from "@/lib/ftds/utils";
  * </div>
  */
 
-interface SeparatorProps
-  extends Omit<SeparatorPrimitive.Props, "className"> {
+interface SeparatorProps extends Omit<SeparatorPrimitive.Props, "className"> {
   className?: string;
   /** Hide the line from assistive technology when it is purely visual. */
   decorative?: boolean;
 }
 
-const Separator = forwardRef<ComponentRef<typeof SeparatorPrimitive>, SeparatorProps>(
-  ({ className, orientation = "horizontal", decorative = false, ...props }, ref) => {
+const Separator = forwardRef<
+  ComponentRef<typeof SeparatorPrimitive>,
+  SeparatorProps
+>(
+  (
+    { className, orientation = "horizontal", decorative = false, ...props },
+    ref,
+  ) => {
     return (
       <SeparatorPrimitive
         ref={ref}

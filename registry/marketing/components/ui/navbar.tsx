@@ -18,7 +18,40 @@ import { ArrowForwardIcon } from "@/components/ui/icons/arrow-forward";
 import { ChevronDownIcon } from "@/components/ui/icons/chevron-down";
 import { CrossIcon } from "@/components/ui/icons/cross";
 import { HamburgerMenuIcon } from "@/components/ui/icons/hamburger-menu";
-import { cva } from "class-variance-authority";
+import {
+  navbar_bar_class,
+  navbar_brand_class,
+  navbar_brand_image_class,
+  navbar_chevron_class,
+  navbar_current_class,
+  navbar_dropdown_body_class,
+  navbar_dropdown_columns,
+  navbar_dropdown_feature_class,
+  navbar_dropdown_footer_class,
+  navbar_dropdown_list_class,
+  navbar_feature_arrow_class,
+  navbar_feature_class,
+  navbar_feature_cta_class,
+  navbar_feature_description_class,
+  navbar_feature_eyebrow_class,
+  navbar_feature_title_class,
+  navbar_footer_arrow_class,
+  navbar_footer_link_class,
+  navbar_group_class,
+  navbar_group_heading_class,
+  navbar_header_class,
+  navbar_logo_cva as logo_cva,
+  navbar_menu_icon_tile_class,
+  navbar_menu_item_cva,
+  navbar_menu_rich_description_class,
+  navbar_menu_rich_label_class,
+  navbar_menu_rich_link_class,
+  navbar_menu_rich_text_class,
+  navbar_mobile_dropdown_class,
+  navbar_mobile_feature_class,
+  navbar_mobile_footer_class,
+  navbar_trigger_class,
+} from "@/components/ui/navbar.variants";
 
 interface NavbarProps extends ComponentProps<"header"> {}
 
@@ -45,16 +78,11 @@ const Navbar: FunctionComponent<NavbarProps> = ({
     <NavbarContext.Provider value={{ id, show, setShow }}>
       <header
         id={id}
-        className={clx(
-          "bg-bg-white border-otl-gray-200 z-sticky sticky top-0 h-16 w-full border-b max-md:h-14 print:hidden",
-          className,
-        )}
+        className={clx(navbar_header_class, className)}
         data-nosnippet
         {...props}
       >
-        <div className="relative mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-4 px-4.5 max-md:h-14 md:px-6">
-          {children}
-        </div>
+        <div className={navbar_bar_class}>{children}</div>
       </header>
     </NavbarContext.Provider>
   );
@@ -68,20 +96,6 @@ interface NavbarLogoProps extends ComponentProps<typeof Link> {
   maxChars?: number;
 }
 
-const logo_cva = cva(
-  ["font-semibold max-w-[200px] font-heading text-txt-black-900 line-clamp-2"],
-  {
-    variants: {
-      too_long: {
-        false: "text-body-lg max-md:text-body-md max-md:leading-tight",
-        true: "text-body-xs leading-[14px] line-clamp-2",
-      },
-    },
-    defaultVariants: {
-      too_long: false,
-    },
-  },
-);
 const NavbarLogo: FunctionComponent<NavbarLogoProps> = ({
   src,
   alt,
@@ -95,14 +109,14 @@ const NavbarLogo: FunctionComponent<NavbarLogoProps> = ({
     <Link
       href={href}
       underline="none"
-      className={clx("flex h-full w-auto items-center gap-2.5", className)}
+      className={clx(navbar_brand_class, className)}
       {...props}
     >
       <img
         src={src}
         width={40}
         height={32}
-        className="aspect-auto h-full max-h-8 w-auto select-none"
+        className={navbar_brand_image_class}
         alt={alt}
       />
       {typeof children === "string" ? (
@@ -267,15 +281,10 @@ NavbarMenu.displayName = "NavbarMenu";
 
 /*========================================================================================================================*/
 
-/** Marks the trigger or link of the section the visitor is in (DESIGN.md: Navigation). */
-const navbar_current_class = [
-  "relative text-txt-black-900",
-  // Inside the item's box: items truncate (overflow hidden), so it can't hang below
-  "xl:after:absolute xl:after:inset-x-2.5 xl:after:bottom-0 xl:after:h-0.5 xl:after:rounded-full xl:after:bg-bg-primary-600",
-];
-
-interface NavbarMenuItemProps
-  extends Omit<ComponentProps<"li">, "children" | "className"> {
+interface NavbarMenuItemProps extends Omit<
+  ComponentProps<"li">,
+  "children" | "className"
+> {
   children: ReactNode;
   href: string;
   className?: string;
@@ -290,30 +299,6 @@ interface NavbarMenuItemProps
    */
   render?: useRender.RenderProp;
 }
-
-const navbar_menu_item_cva = cva(
-  [
-    "bg-transparent hover:bg-bg-washed-active text-txt-black-700 truncate px-2.5 py-1.5",
-    "transition-colors motion-reduce:transition-none list-none",
-    "w-full xl:w-fit text-body-sm flex items-center cursor-pointer",
-    // Tablet / mobile sheet: 44px rows and 16px text (DESIGN.md: Navigation, Mobile)
-    "max-xl:min-h-11 max-xl:text-body-md",
-  ],
-  {
-    variants: {
-      is_from_dropdown: {
-        true: "text-label-sm font-normal ml-3 xl:ml-0 xl:w-full rounded-md xl:rounded-xs text-left",
-        false: "font-medium rounded-md",
-      },
-    },
-  },
-);
-
-/** A dropdown link with an icon and/or description: the whole row is the link. */
-const navbar_menu_rich_link_class = [
-  "group/item flex w-full items-start gap-3 rounded-md p-2.5 text-left",
-  "hover:bg-bg-washed-active data-[active]:bg-bg-primary-50 transition-colors motion-reduce:transition-none",
-];
 
 const NavbarMenuItem: FunctionComponent<NavbarMenuItemProps> = ({
   className,
@@ -333,19 +318,14 @@ const NavbarMenuItem: FunctionComponent<NavbarMenuItemProps> = ({
   const rich_content = (
     <>
       {icon != null && (
-        <span
-          className="bg-bg-washed-active text-txt-black-700 group-hover/item:bg-bg-dialog group-data-[active]/item:bg-bg-dialog group-data-[active]/item:text-txt-primary flex size-9 shrink-0 items-center justify-center rounded-md transition-colors motion-reduce:transition-none [&_svg]:size-5"
-          aria-hidden
-        >
+        <span className={clx(navbar_menu_icon_tile_class)} aria-hidden>
           {icon}
         </span>
       )}
-      <span className="flex min-w-0 flex-col gap-0.5 pt-px">
-        <span className="text-txt-black-900 group-data-[active]/item:text-txt-primary text-body-sm font-medium">
-          {children}
-        </span>
+      <span className={navbar_menu_rich_text_class}>
+        <span className={navbar_menu_rich_label_class}>{children}</span>
         {description != null && (
-          <span className="text-txt-black-700 text-body-sm font-normal">
+          <span className={navbar_menu_rich_description_class}>
             {description}
           </span>
         )}
@@ -449,18 +429,8 @@ const NavbarMenuGroup: FunctionComponent<NavbarMenuGroupProps> = ({
   const heading_id = useId();
 
   return (
-    <li
-      className={clx(
-        "flex list-none flex-col gap-1",
-        // Mobile: space above each group, not below, so a heading reads with its own links
-        "max-xl:gap-0 max-xl:not-first:mt-3",
-        className,
-      )}
-    >
-      <span
-        id={heading_id}
-        className="text-txt-black-700 text-label-compact px-2.5 pt-1 font-medium max-xl:ml-3 max-xl:pt-2 max-xl:pb-0.5"
-      >
+    <li className={clx(navbar_group_class, className)}>
+      <span id={heading_id} className={navbar_group_heading_class}>
         {title}
       </span>
       <ul aria-labelledby={heading_id} className="flex flex-col">
@@ -500,30 +470,19 @@ const NavbarMenuFeature: FunctionComponent<NavbarMenuFeatureProps> = ({
   render,
 }) => {
   const is_mobile = useContext(NavbarMobileContext);
-  const feature_className = clx(
-    "bg-bg-washed-active flex h-full flex-col gap-2 rounded-md p-4 text-left",
-    "group/feature transition-colors motion-reduce:transition-none",
-    className,
-  );
+  const feature_className = clx(navbar_feature_class, className);
   const content = (
     <>
       {eyebrow != null && (
-        <span className="text-txt-primary text-label-compact font-medium">
-          {eyebrow}
-        </span>
+        <span className={navbar_feature_eyebrow_class}>{eyebrow}</span>
       )}
-      <span className="text-txt-black-900 text-body-md font-semibold">
-        {title}
-      </span>
+      <span className={navbar_feature_title_class}>{title}</span>
       {description != null && (
-        <span className="text-txt-black-700 text-body-sm">{description}</span>
+        <span className={navbar_feature_description_class}>{description}</span>
       )}
-      <span className="text-txt-primary text-body-sm mt-auto inline-flex items-center gap-1 pt-2 font-medium">
+      <span className={navbar_feature_cta_class}>
         {linkLabel}
-        <ArrowForwardIcon
-          className="size-4 transition-transform group-hover/feature:translate-x-0.5 motion-reduce:transition-none"
-          aria-hidden
-        />
+        <ArrowForwardIcon className={navbar_feature_arrow_class} aria-hidden />
       </span>
     </>
   );
@@ -566,17 +525,11 @@ const NavbarMenuFooterLink: FunctionComponent<NavbarMenuFooterLinkProps> = ({
   render,
 }) => {
   const is_mobile = useContext(NavbarMobileContext);
-  const link_className = clx(
-    "text-txt-primary text-body-sm group/footer inline-flex items-center gap-1 font-medium",
-    className,
-  );
+  const link_className = clx(navbar_footer_link_class, className);
   const content = (
     <>
       {children}
-      <ArrowForwardIcon
-        className="size-4 transition-transform group-hover/footer:translate-x-0.5 motion-reduce:transition-none"
-        aria-hidden
-      />
+      <ArrowForwardIcon className={navbar_footer_arrow_class} aria-hidden />
     </>
   );
 
@@ -619,12 +572,6 @@ interface NavbarMenuDropdownProps {
 
 const NavbarMenuDropdownContext = createContext(false);
 
-const navbar_dropdown_columns = {
-  1: "grid-cols-[minmax(13rem,20rem)]",
-  2: "grid-cols-[repeat(2,minmax(0,16rem))]",
-  3: "grid-cols-[repeat(3,minmax(0,15rem))]",
-};
-
 const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
   children,
   title,
@@ -638,11 +585,10 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
 
   const trigger_className = clx(
     navbar_menu_item_cva({ is_from_dropdown: false }),
-    "group w-full select-none bg-transparent transition-colors xl:w-max",
+    navbar_trigger_class,
     active && navbar_current_class,
   );
-  const chevron_className =
-    "relative top-px ml-1.5 size-4 transition motion-reduce:transition-none";
+  const chevron_className = navbar_chevron_class;
 
   // Tablet / mobile panel: expands inline, feature and footer stack below the links
   if (is_mobile)
@@ -668,14 +614,14 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
             />
           </CollapsiblePrimitive.Trigger>
           <CollapsiblePrimitive.Panel
-            className={clx("flex w-full flex-col gap-2 pb-2", className)}
+            className={clx(navbar_mobile_dropdown_class, className)}
           >
             <ul className="flex flex-col">{children}</ul>
-            {feature != null && <div className="ml-3">{feature}</div>}
+            {feature != null && (
+              <div className={navbar_mobile_feature_class}>{feature}</div>
+            )}
             {footer != null && (
-              <div className="ml-3 flex min-h-11 items-center px-2.5">
-                {footer}
-              </div>
+              <div className={navbar_mobile_footer_class}>{footer}</div>
             )}
           </CollapsiblePrimitive.Panel>
         </CollapsiblePrimitive.Root>
@@ -711,10 +657,10 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
             className,
           )}
         >
-          <div className="flex gap-2 p-2">
+          <div className={navbar_dropdown_body_class}>
             <ul
               className={clx(
-                "grid content-start gap-x-2 gap-y-1",
+                navbar_dropdown_list_class,
                 navbar_dropdown_columns[columns],
                 // Groups are columns of their own
                 "has-[>li>ul]:auto-cols-[minmax(0,15rem)] has-[>li>ul]:grid-flow-col has-[>li>ul]:grid-cols-none has-[>li>ul]:gap-x-4",
@@ -722,11 +668,13 @@ const NavbarMenuDropdown: FunctionComponent<NavbarMenuDropdownProps> = ({
             >
               {children}
             </ul>
-            {feature != null && <div className="w-64 shrink-0">{feature}</div>}
+            {feature != null && (
+              <div className={navbar_dropdown_feature_class}>{feature}</div>
+            )}
           </div>
           {footer != null && (
             // A Well band, not a divider (DESIGN.md: tone, not lines)
-            <div className="bg-bg-washed-active px-4.5 py-3">{footer}</div>
+            <div className={navbar_dropdown_footer_class}>{footer}</div>
           )}
         </NavigationMenuPrimitive.Content>
       </NavigationMenuPrimitive.Item>
